@@ -1,0 +1,19 @@
+# Downloaded research datasets
+datasets/raw/
+datasets/processed/
+
+# Credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Scala build files
+target/
+**/target/
+.metals/
+.bloop/
+
+# macOS
+.DS_Store
