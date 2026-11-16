@@ -1,0 +1,1001 @@
+key,title,year,venue,doi,authors
+series/sapere/BerkeleyR13,Machine Mentality?,2011,PT-AI,10.1007/978-3-642-31674-6_1,Istvan S. N. Berkeley; Claiborne Rice
+series/sapere/NasutoB13,Of (Zombie) Mice and Animats.,2011,PT-AI,10.1007/978-3-642-31674-6_7,Slawomir J. Nasuto; John Mark Bishop
+series/sapere/SchiaffonatiV13,The Influence of Engineering Theory and Practice on Philosophy of AI.,2011,PT-AI,10.1007/978-3-642-31674-6_28,Viola Schiaffonati; Mario Verdicchio
+series/sapere/BishopNC13,'Quantum Linguistics' and Searle's Chinese Room Argument.,2011,PT-AI,10.1007/978-3-642-31674-6_2,John Mark Bishop; Slawomir J. Nasuto; Bob Coecke
+series/sapere/HornHTOE13,Intentional State-Ascription in Multi-Agent Systems - A Case Study in Unmanned Underwater Vehicles.,2011,PT-AI,10.1007/978-3-642-31674-6_17,Justin Horn; Nicodemus Hallin; Hossein Taheri; Michael O'Rourke; Dean Edwards
+series/sapere/ZantKS13,Generative Artificial Intelligence.,2011,PT-AI,10.1007/978-3-642-31674-6_8,Tijn van der Zant; Matthijs Kouw; Lambert Schomaker
+series/sapere/BringsjordG13,"Toward a Modern Geography of Minds, Machines, and Math.",2011,PT-AI,10.1007/978-3-642-31674-6_11,Selmer Bringsjord; Naveen Sundar Govindarajulu
+series/sci/MizunoL15,Does a Code Review Tool Evolve as the Developer Intended?,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_5,Osamu Mizuno; Junwei Liang 0002
+series/sci/GayB13,A Bayesian Criterion for Evaluating the Robustness of Classification Rules in Binary Data Sets.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_1,Dominique Gay; Marc Boullé
+series/sci/LermanG13,Comparing Two Discriminant Probabilistic Interestingness Measures for Association Rules.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_4,Israël-César Lerman; Sylvie Guillaume
+series/sci/HazeyamaS15,Preliminary Evaluation of a Software Security Learning Environment.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_9,Atsuo Hazeyama; Masahito Saito
+series/sci/KitayamaONS15,A Route Recommender System Based on the User's Visit Duration at Sightseeing Locations.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_14,Daisuke Kitayama; Keisuke Ozu; Shinsuke Nakajima; Kazutoshi Sumiya
+series/sci/RabatelBP13,Mining Sequential Patterns: A Context-Aware Approach.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_2,Julien Rabatel; Sandra Bringay; Pascal Poncelet
+series/sci/KangLKL15,A Procedure for the Development of Mobile Applications Software.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_11,Byeongdo Kang; Jongseok Lee; Jonathan Kissinger; Roger Y. Lee
+series/sci/AzzagL13,A New Way for Hierarchical and Topological Clustering.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_5,Hanane Azzag; Mustapha Lebbah
+series/sci/ShishleninH15,Predicting Access to Healthcare Using Data Mining Techniques.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_15,Sergey Shishlenin; Gongzhu Hu
+series/sci/MechoucheAPM13,Ontology-Based Formal Specifications for User-Friendly Geospatial Data Discovery.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_8,Ammar Mechouche; Nathalie Abadie; Emeric Prouteau; Sébastien Mustière
+series/sci/HayakawaFIBW15,Object Tracking Method Using PTAMM and Estimated Foreground Regions.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_16,So Hayakawa; Shinji Fukui 0001; Yuji Iwahori; Manas Kamal Bhuyan; Robert J. Woodham
+series/sci/ToriiOTI15,Application of Detecting Blinks for Communication Support Tool.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_17,Ippei Torii; Kaoruko Ohtani; Shunki Takami; Naohiro Ishii
+series/sci/KawashimaM15,Predicting Fault-Prone Modules by Word Occurrence in Identifiers.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_7,Naoki Kawashima; Osamu Mizuno
+series/sci/MorikuniNH15,Expression Strength for the Emotional Scene Detection from Lifelog Videos.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_10,Atsushi Morikuni; Hiroki Nomiya; Teruhisa Hochin
+series/sci/GherasimHBK13,Methods and Tools for Automatic Construction of Ontologies from Textual Resources: A Framework for Comparison and Its Application.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_9,Toader Gherasim; Mounira Harzallah; Giuseppe Berio; Pascale Kuntz
+series/sci/ZighedAB13,Comparison of Proximity Measures: A Topological Approach.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_3,Djamel Abdelkader Zighed; Rafik Abdesselam; Ahmed Bounekkar
+series/sci/GarciaPC15,Changing the Software Engineering Education: A Report from Current Situation in Mexico.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_4,Iván A. García; Carla Pacheco 0001; José Antonio Calvo-Manzano
+series/sci/TakagiB15,Optimized Test Case Generation Based on Operational Profiles with Fault-Proneness Information.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_2,Tomohiko Takagi; Mutlu Beyazit
+series/sci/AligonMN13,Summarizing and Querying Logs of OLAP Queries.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_6,Julien Aligon; Patrick Marcel; Elsa Nègre
+series/sci/MoritaIS15,Automatic Matching on Fracture Surface of Quarried Stone Using the Features of Plug-and-Feather Holes.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_13,Karin Morita; Sei Ikeda; Kosuke Sato
+series/sci/IwamotoKM15,The Relationship Between Conversation Skill and Feeling of Load on Youth in Communicate with Elderly Persons Using Video Image and Photographs.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_12,Miyuki Iwamoto; Noriaki Kuwahara; Kazunari Morimoto
+series/sci/LimpensGB13,A Complete Life-Cycle for the Semantic Enrichment of Folksonomies.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_7,Freddy Limpens; Fabien Gandon; Michel Buffa
+series/sci/SaidKKAA15,Design Pattern for Self-adaptive RTE Systems Monitoring.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_3,Mouna Ben Said; Yessine Hadj Kacem; Mickaël Kerboeuf; Nader Ben Amor; Mohamed Abid
+series/sci/0001N15,Analysis of Mouth Shape Deformation Rate for Generation of Japanese Utterance Images Automatically.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_6,Tsuyoshi Miyazaki 0001; Toyoshiro Nakashima
+series/sci/ChenSM15,The Influence of Alias and References Escape on Java Program Analysis.,2014,"Software Engineering Research, Management and Applications",10.1007/978-3-319-11265-7_8,Shengbo Chen; Dashen Sun; Huaikou Miao
+series/sci/ChauvinGDL13,User Centered Cognitive Maps.,2011,EGC (best of volume),10.1007/978-3-642-35855-5_10,Lionel Chauvin; David Genest; Aymeric Le Dorze; Stéphane Loiseau
+conf/dac/NewtonRMSB00,Embedded systems design in the new millennium (panel session).,2000,DAC,10.1145/337292.337434,A. Richard Newton; Walden C. Rhines; Sünke Mehrgardt; Henry Samueli; Tudor Brown
+conf/dac/GuoXJLHYZZS26,GEMIR: Graph-Based Joint Modeling of Electromigration and IR Drop for Power Grid.,2026,DAC,10.1145/3770743.3803897,Feng Guo; Yueyue Xi; Jingyu Jia; Jiawei Liu 0006; Tianshu Hou; Yuyang Ye 0001; Jianwang Zhai; Kang Zhao 0009; Chuan Shi 0001
+conf/dac/SixCRM86,An intelligent module generator environment.,1986,DAC,10.1145/318013.318151,Paul Six; Luc J. M. Claesen; Jan M. Rabaey; Hugo De Man
+conf/dac/YalcinMPBS99,Functional Timing Analysis for IP Characterization.,1999,DAC,10.1145/309847.310045,Hakan Yalcin; Mohammad Mortazavi; Robert Palermo; Cyrus Bamji; Karem A. Sakallah
+conf/dac/LiuPS98,ftd: An Exact Frequency to Time Domain Conversion for Reduced Order RLC Interconnect Models.,1998,DAC,10.1145/277044.277174,Ying Liu; Lawrence T. Pileggi; Andrzej J. Strojwas
+conf/dac/MinS82,Testing functional faults in VLSI.,1982,DAC,10.1145/800263.809234,Yinghua Min; Stephen Y. H. Su
+conf/dac/CasuM04,A new approach to latency insensitive design.,2004,DAC,10.1145/996566.996725,Mario R. Casu; Luca Macchiarulo
+conf/dac/RoyKG09,Device/circuit interactions at 22nm technology node.,2009,DAC,10.1145/1629911.1629942,Kaushik Roy 0001; Jaydeep P. Kulkarni; Sumeet Kumar Gupta
+conf/dac/SinghNLS05,Robust gate sizing by geometric programming.,2005,DAC,10.1145/1065579.1065662,Jaskirat Singh; Vidyasagar Nookala; Zhi-Quan Luo; Sachin S. Sapatnekar
+conf/dac/QiuM12,Can pin access limit the footprint scaling?,2012,DAC,10.1145/2228360.2228560,Xiang Qiu; Malgorzata Marek-Sadowska
+conf/dac/RoquetSRTSK24,Cross-Layer Reliability Evaluation and Efficient Hardening of Large Vision Transformers Models.,2024,DAC,10.1145/3649329.3655688,Lucas Roquet; Fernando Fernandes dos Santos; Paolo Rech; Marcello Traiola; Olivier Sentieys; Angeliki Kritikakou
+conf/dac/LiuZWCYHYJ22,SATO: spiking neural network acceleration via temporal-oriented dataflow and architecture.,2022,DAC,10.1145/3489517.3530592,Fangxin Liu; Wenbo Zhao 0005; Zongwu Wang; Yongbiao Chen; Tao Yang 0031; Zhezhi He; Xiaokang Yang 0001; Li Jiang 0002
+conf/dac/KoppelmanM80,Verifying deep logic hierarchies with ALEX.,1980,DAC,10.1145/800139.804546,George M. Koppelman; Klim Maling
+conf/dac/AhnYLHKP20,Hawkware: Network Intrusion Detection based on Behavior Analysis with ANNs on an IoT Device.,2020,DAC,10.1109/DAC18072.2020.9218559,Sunwoo Ahn; Hayoon Yi; Younghan Lee 0001; Whoi Ree Ha; Giyeol Kim; Yunheung Paek
+conf/dac/ShiG03,Hybrid hierarchical timing closure methodology for a high performance and low power DSP.,2003,DAC,10.1145/775832.776046,Kaijian Shi; Graig Godwin
+conf/dac/ParkPVC24,Accelerating DTCO with a Sample-Efficient Active Learning Framework for TCAD Device Modeling.,2024,DAC,10.1145/3649329.3655925,Chanwoo Park; Junghwan Park; Premkumar Vincent; Hyunbo Cho
+conf/dac/PuL0HLC024,Lesyn: Placement-aware Logic Resynthesis for Non-Integer Multiple-Cell-Height Designs.,2024,DAC,10.1145/3649329.3656243,Yuan Pu 0001; Fangzhou Liu 0005; Yu Zhang 0189; Zhuolun He; Yibo Lin; Kai-Yuan Chao; Bei Yu 0001
+conf/dac/ZhangDV22,Statistical computing framework and demonstration for in-memory computing systems.,2022,DAC,10.1145/3489517.3530557,Bonan Zhang; Peter Deaville; Naveen Verma
+conf/dac/KravetsK04,Implicit enumeration of structural changes in circuit optimization.,2004,DAC,10.1145/996566.996691,Victor N. Kravets; Prabhakar Kudva
+conf/dac/LeeCY22,Bipolar vector classifier for fault-tolerant deep neural networks.,2022,DAC,10.1145/3489517.3530498,Suyong Lee; Insu Choi; Joon-Sung Yang
+conf/dac/HsiaoA19,Thread Weaving: Static Resource Scheduling for Multithreaded High-Level Synthesis.,2019,DAC,10.1145/3316781.3317924,Hsuan Hsiao; Jason Helge Anderson
+conf/dac/PomeranzR03,On test data compression and n-detection test sets.,2003,DAC,10.1145/775832.776023,Irith Pomeranz; Sudhakar M. Reddy
+conf/dac/SeshiaLB03,A hybrid SAT-based decision procedure for separation logic with uninterpreted functions.,2003,DAC,10.1145/775832.775945,Sanjit A. Seshia; Shuvendu K. Lahiri; Randal E. Bryant
+conf/dac/KhatriMBOS99,A Novel VLSI Layout Fabric for Deep Sub-Micron Applications.,1999,DAC,10.1145/309847.309985,Sunil P. Khatri; Amit Mehrotra; Robert K. Brayton; Ralph H. J. M. Otten; Alberto L. Sangiovanni-Vincentelli
+conf/dac/GordonO64,Printer graphics: New horizons in graphic output on the IBM 1403 printer.,1964,DAC,10.1145/800265.810750,Michael Gordon; Arthur Oratorio
+conf/dac/RohfleischKW96,Reducing Power Dissipation after Technology Mapping by Structural Transformations.,1996,DAC,10.1145/240518.240667,Bernhard Rohfleisch; Alfred Kölbl; Bernd Wurth
+conf/dac/LiuLLWY20,Monitoring the Health of Emerging Neural Network Accelerators with Cost-effective Concurrent Test.,2020,DAC,10.1109/DAC18072.2020.9218675,Qi Liu 0017; Tao Liu 0023; Zihao Liu 0015; Wujie Wen; Chengmo Yang
+conf/dac/ChakradharBA94,An Exact Algorithm for Selecting Partial Scan Flip-Flops.,1994,DAC,10.1145/196244.196285,Srimat T. Chakradhar; Arun Balakrishnan; Vishwani D. Agrawal
+conf/dac/AmonBHL97,Symbolic Timing Verification of Timing Diagrams using Presburger Formulas.,1997,DAC,10.1145/266021.266071,Tod Amon; Gaetano Borriello; Taokuan Hu; Jiwen Liu
+conf/dac/ChelottiB80,Design automation at a large architect-engineer.,1980,DAC,10.1145/800139.804510,E. F. Chelotti; D. P. Bossie
+conf/dac/OlofssonRM22,A distributed approach to silicon compilation: invited.,2022,DAC,10.1145/3489517.3530673,Andreas Olofsson; William Ransohoff; Noah Moroze
+conf/dac/WoodruffO21,New Regular Expressions on Old Accelerators.,2021,DAC,10.1109/DAC18074.2021.9586095,Jackson Woodruff; Michael F. P. O'Boyle
+conf/dac/YorkC12,On the asymptotic costs of multiplexer-based reconfigurability.,2012,DAC,10.1145/2228360.2228503,Johnathan York; Derek Chiou
+conf/dac/KoMNM17,Design of an Energy-Efficient Accelerator for Training of Convolutional Neural Networks using Frequency-Domain Computation.,2017,DAC,10.1145/3061639.3062228,Jong Hwan Ko; Burhan Ahmad Mudassar; Taesik Na; Saibal Mukhopadhyay
+conf/dac/UlrichLPTKEB80,High-speed concurrent fault simulation with vectors and scalars.,1980,DAC,10.1145/800139.804558,Ernst G. Ulrich; D. Lacy; N. Phillips; J. Tellier; M. Kearney; T. Elkind; R. Beaven
+conf/dac/ChouB95,Interval Scheduling: Fine-Grained Code Scheduling for Embedded Systems.,1995,DAC,10.1145/217474.217571,Pai H. Chou; Gaetano Borriello
+conf/dac/ChangC00,An architecture-driven metric for simultaneous placement and global routing for FPGAs.,2000,DAC,10.1145/337292.337582,Yao-Wen Chang; Yu-Tsang Chang
+conf/dac/ChiangCLCHCC25,Late Breaking Results: Scalable GPU-Friendly Parallelization for Sweep-Based Maze Routing.,2025,DAC,10.1109/DAC63849.2025.11132843,Cheng-Yu Chiang; Zong-Ying Cai; Chao-Chi Lan; Yan-Jen Chen; Yang Hsu; Yao-Wen Chang; Hung-Ming Chen
+conf/dac/JiangWFYL25,Generalizable Lithographic Hotspot Detection Using Asynchronous Meta-Learning with Only One Shot.,2025,DAC,10.1109/DAC63849.2025.11132646,Cong Jiang; Yujia Wang; Dan Feng 0001; Haoyu Yang; Kang Liu 0017
+conf/dac/ShenZWLDWCG23,MARS: Exploiting Multi-Level Parallelism for DNN Workloads on Adaptive Multi-Accelerator Systems.,2023,DAC,10.1109/DAC56929.2023.10247992,Guan Shen; Jieru Zhao; Zeke Wang; Zhe Lin 0007; Wenchao Ding 0001; Chentao Wu; Quan Chen 0002; Minyi Guo
+conf/dac/LinLM13,Verification of digitally-intensive analog circuits via kernel ridge regression and hybrid reachability analysis.,2013,DAC,10.1145/2463209.2488814,Honghuang Lin; Peng Li 0001; Chris J. Myers
+conf/dac/RajaramP08,Robust chip-level clock tree synthesis for SOC designs.,2008,DAC,10.1145/1391469.1391654,Anand Rajaram; David Z. Pan
+conf/dac/DingWHP97,Statistical Estimation of the Cumulative Distribution Function for Power Dissipation in VLSI Cirucits.,1997,DAC,10.1145/266021.266174,Chih-Shun Ding; Qing Wu 0002; Cheng-Ta Hsieh; Massoud Pedram
+conf/dac/ShresthaFRMQ21,In-Hardware Learning of Multilayer Spiking Neural Networks on a Neuromorphic Processor.,2021,DAC,10.1109/DAC18074.2021.9586323,Amar Shrestha; Haowen Fang; Daniel Patrick Rider; Zaidao Mei; Qinru Qiu
+conf/dac/ZhouAZYUGUJ15,Detecting hardware trojans using backside optical imaging of embedded watermarks.,2015,DAC,10.1145/2744769.2744822,Boyou Zhou; Ronen Adato; Mahmoud Zangeneh; Tianyu Yang; Aydan Uyar; Bennett B. Goldberg; M. Selim Ünlü; Ajay Joshi
+conf/dac/BaidyaKZZD20,Vehicular and Edge Computing for Emerging Connected and Autonomous Vehicle Applications.,2020,DAC,10.1109/DAC18072.2020.9218618,Sabur Baidya; Yu-Jen Ku; Hengyu Zhao; Jishen Zhao; Sujit Dey
+conf/dac/GhoshRJ97,Hierarchical Test Generation and Design for Testability of ASPPs and ASIPs.,1997,DAC,10.1145/266021.266277,Indradeep Ghosh; Anand Raghunathan; Niraj K. Jha
+conf/dac/KahngLN12,Explicit modeling of control and data for improved NoC router estimation.,2012,DAC,10.1145/2228360.2228430,Andrew B. Kahng; Bill Lin 0001; Siddhartha Nath
+conf/dac/LinWZHWBSCW24,Older and Wiser: The Marriage of Device Aging and Intellectual Property Protection of DNNs.,2024,DAC,10.1145/3649329.3656223,Ning Lin; Shaocong Wang 0001; Yue Zhang 0011; Yangu He; Kwunhang Wong; Arindam Basu; Dashan Shang; Xiaoming Chen 0003; Zhongrui Wang
+conf/dac/Luo0KHL24,Double-Win NAS: Towards Deep-to-Shallow Transformable Neural Architecture Search for Intelligent Embedded Systems.,2024,DAC,10.1145/3649329.3656247,Xiangzhong Luo; Di Liu 0002; Hao Kong 0001; Shuo Huai; Weichen Liu 0001
+conf/dac/HoTDDGS08,Early formal verification of conditional coverage points to identify intrinsically hard-to-verify logic.,2008,DAC,10.1145/1391469.1391537,C. Richard Ho; Michael Theobald; Martin M. Deneroff; Ron O. Dror; Joseph Gagliardo; David E. Shaw
+conf/dac/RaghavanS82,Optimal single row router.,1982,DAC,10.1145/800263.809183,Raghunath Raghavan; Sartaj Sahni
+conf/dac/ZhaoWYYZNHRZ26,PRO-V-R1: Reasoning Enhanced Programming Agent for RTL Verification.,2026,DAC,10.1145/3770743.3803912,Yujie Zhao; Zhijing Wu 0010; Boqin Yuan; Zhongming Yu; Hejia Zhang 0001; Wentao Ni; Chia-Tung Ho; Haoxing Ren; Jishen Zhao
+conf/dac/HassounE96,Architectural Retiming: Pipelining Latency-Constrained Circuts.,1996,DAC,10.1145/240518.240652,Soha Hassoun; Carl Ebeling
+conf/dac/HsuTJC06,Visibility enhancement for silicon debug.,2006,DAC,10.1145/1146909.1146917,Yu-Chin Hsu; Fur-Shing Tsai; Wells Jong; Ying-Tsai Chang
+conf/dac/PatilBC11,Enforcing architectural contracts in high-level synthesis.,2011,DAC,10.1145/2024724.2024909,Nikhil A. Patil; Ankit Bansal; Derek Chiou
+conf/dac/JiangLZWGWYLWHL25,A Systematic Approach for Multi-objective Double-side Clock Tree Synthesis.,2025,DAC,10.1109/DAC63849.2025.11133160,Xun Jiang 0002; Haoran Lu; Yuxuan Zhao 0001; Jiarui Wang; Zizheng Guo 0001; Heng Wu 0007; Bei Yu 0001; Sung Kyu Lim; Runsheng Wang; Ru Huang 0001; Yibo Lin
+conf/dac/LinL91,Automatic Synthesis of Asynchronous Circuits.,1991,DAC,10.1145/127601.127684,Kuan-Jen Lin; Chen-Shang Lin
+conf/dac/RenKTK20,ParaGraph: Layout Parasitics and Device Parameter Prediction using Graph Neural Networks.,2020,DAC,10.1109/DAC18072.2020.9218515,Haoxing Ren; George F. Kokai; Walker J. Turner; Ting-Sheng Ku
+conf/dac/NanshiS09,Constraints in one-to-many concretization for abstraction refinement.,2009,DAC,10.1145/1629911.1630058,Kuntal Nanshi; Fabio Somenzi
+conf/dac/HuangOSC09,Programmable neural processing on a smartdust.,2009,DAC,10.1145/1629911.1630072,Shimeng Huang; Joseph Oresko; Yuwen Sun; Allen C. Cheng
+conf/dac/Miskov-ZivanovM06,MARS-C: modeling and reduction of soft errors in combinational circuits.,2006,DAC,10.1145/1146909.1147104,Natasa Miskov-Zivanov; Diana Marculescu
+conf/dac/HamzehSV12,EPIMap: using epimorphism to map applications on CGRAs.,2012,DAC,10.1145/2228360.2228600,Mahdi Hamzeh; Aviral Shrivastava; Sarma B. K. Vrudhula
+conf/dac/ChaiKRTWM03,Temporofunctional crosstalk noise analysis.,2003,DAC,10.1145/775832.776048,Donald Chai; Alex Kondratyev; Yajun Ran; Kenneth H. Tseng; Yosinori Watanabe; Malgorzata Marek-Sadowska
+conf/dac/BawiecN09,Boolean logic function synthesis for generalised threshold gate circuits.,2009,DAC,10.1145/1629911.1629935,Marek A. Bawiec; Maciej Nikodem
+conf/dac/RoseBT85,Integrating stochastic performance analysis with system design tools.,1985,DAC,10.1145/317825.317932,Charles W. Rose; Marcus Buchnen; Yatin Trivedi
+conf/dac/Samajdar0PK22,Self adaptive reconfigurable arrays (SARA): learning flexible GEMM accelerator configuration and mapping-space using ML.,2022,DAC,10.1145/3489517.3530506,Ananda Samajdar; Eric Qin 0001; Michael Pellauer; Tushar Krishna
+conf/dac/RahaR17,Towards Full-System Energy-Accuracy Tradeoffs: A Case Study of An Approximate Smart Camera System.,2017,DAC,10.1145/3061639.3062333,Arnab Raha; Vijay Raghunathan
+conf/dac/ChenXWYZFL26,EHPC: Efficient Heterogeneous Probabilistic Computing Architecture for Combinatorial Optimization Acceleration.,2026,DAC,10.1145/3770743.3804390,Weican Chen; Chenhao Xia; Haoxuan Wang; Guanwen Yao; Yuxiang Zhang; Yunyi Fu; Fei Liu
+conf/dac/DrinicK02,Behavioral synthesis via engineering change.,2002,DAC,10.1145/513918.513925,Milenko Drinic; Darko Kirovski
+conf/dac/TutuianuDP96,An Explicit RC-Circuit Delay Approximation Based on the First Three Moments of the Impulse Response.,1996,DAC,10.1145/240518.240634,Bogdan Tutuianu; Florentin Dartu; Lawrence T. Pileggi
+conf/dac/VelevB01,Effective Use of Boolean Satisfiability Procedures in the Formal Verification of Superscalar and VLIW Microprocessors.,2001,DAC,10.1145/378239.378469,Miroslav N. Velev; Randal E. Bryant
+conf/dac/LiuLHCS18,Design-for-testability for continuous-flow microfluidic biochips.,2018,DAC,10.1145/3195970.3196025,Chunfeng Liu; Bing Li 0005; Tsung-Yi Ho; Krishnendu Chakrabarty; Ulf Schlichtmann
+conf/dac/GusmaoH0021,Late Breaking Results: Attention in Graph2Seq Neural Networks towards Push-Button Analog IC Placement.,2021,DAC,10.1109/DAC18074.2021.9586177,António Gusmão 0001; Nuno Horta; Nuno Lourenço 0003; Ricardo Martins 0003
+conf/dac/YuJCWYZZ25,DuoQ: A DSP Utilization-aware and Outlier-free Quantization for FPGA-based LLMs Acceleration.,2025,DAC,10.1109/DAC63849.2025.11132816,Zhuoquan Yu; Huidong Ji; Yue Cao; Junfu Wu; Xiaoze Yan; Lirong Zheng 0001; Zhuo Zou
+conf/dac/VittalM95,Power Optimal Buffered Clock Tree Design.,1995,DAC,10.1145/217474.217577,Ashok Vittal; Malgorzata Marek-Sadowska
+conf/dac/ChoudhuryYGM08,Technology exploration for graphene nanoribbon FETs.,2008,DAC,10.1145/1391469.1391539,Mihir R. Choudhury; Youngki Yoon; Jing Guo; Kartik Mohanram
+conf/dac/ZhengM0W24,EMOGen: Enhancing Mask Optimization via Pattern Generation.,2024,DAC,10.1145/3649329.3655680,Su Zheng; Yuzhe Ma; Bei Yu 0001; Martin D. F. Wong
+conf/dac/WangCAG26,Special Research Session: AnAutomate - Towards Full Spec-to-Layout Agentic LLM-aided Analog/Mixed-Signal Design Automation.,2026,DAC,10.1145/3770743.3807768,Jiaqi Wang; Kaichang Chen; Mohsen Ahmadzadeh; Georges G. E. Gielen
+conf/dac/ZhangS10,Adaptive and autonomous thermal tracking for high performance computing systems.,2010,DAC,10.1145/1837274.1837293,Yufu Zhang; Ankur Srivastava 0001
+conf/dac/DongLY08,WavePipe: parallel transient simulation of analog and digital circuits on multi-core shared-memory machines.,2008,DAC,10.1145/1391469.1391531,Wei Dong 0002; Peng Li 0001; Xiaoji Ye
+conf/dac/ChangMR09,A voltage-scalable & process variation resilient hybrid SRAM architecture for MPEG-4 video processors.,2009,DAC,10.1145/1629911.1630087,Ik Joon Chang; Debabrata Mohapatra; Kaushik Roy 0001
+conf/dac/XuYYSJWJ26,Achieving Intra- and Inter-Operator Communication Lower Bounds in Near-Memory Processing.,2026,DAC,10.1145/3770743.3804099,Lei Xu; Chen Yin; Zelong Yuan; Weiguang Sheng; Jianfei Jiang 0001; Qin Wang 0009; Naifeng Jing
+conf/dac/OgrasM06,Prediction-based flow control for network-on-chip traffic.,2006,DAC,10.1145/1146909.1147123,Ümit Y. Ogras; Radu Marculescu
+conf/dac/Li00ZL24,Toward Controllable Hierarchical Clock Tree Synthesis with Skew-Latency-Load Tree.,2024,DAC,10.1145/3649329.3658243,Weiguo Li; Zhipeng Huang 0009; Bei Yu 0001; Wenxing Zhu; Xingquan Li
+conf/dac/PrasadMDRCB26,Towards Always-on Interaction: A Sub-mW Visual Wakeup Acceleration Subsystem for Smart Glasses.,2026,DAC,10.1145/3770743.3804210,Arpan Suravi Prasad; Sergio Mazzola; Cyrill Durrer; Davide Rossi 0001; Francesco Conti 0001; Luca Benini
+conf/dac/ZhuQ06,Prototyping a fault-tolerant multiprocessor SoC with run-time fault recovery.,2006,DAC,10.1145/1146909.1146926,Xinping Zhu; Wei Qin
+conf/dac/XieDS10,Post-silicon diagnosis of segments of failing speedpaths due to manufacturing variations.,2010,DAC,10.1145/1837274.1837344,Lin Xie; Azadeh Davoodi; Kewal K. Saluja
+conf/dac/GuoW0L21,Formulating Data-arrival Synchronizers in Integer Linear Programming for CGRA Mapping.,2021,DAC,10.1109/DAC18074.2021.9586267,Yijiang Guo; Jiarui Wang; Jiaxi Zhang 0001; Guojie Luo
+conf/dac/GanaiAK99,Enhancing Simulation with BDDs and ATPG.,1999,DAC,10.1145/309847.309965,Malay K. Ganai; Adnan Aziz; Andreas Kuehlmann
+conf/dac/ChangCH87,Automated Layout Generation Using Gate Matrix Approach.,1987,DAC,10.1145/37888.37970,Y.-C. Chang; S. C. Chang; L.-H. Hsu
+conf/dac/NathAR13,Temperature aware thread block scheduling in GPGPUs.,2013,DAC,10.1145/2463209.2488952,Rajib Nath; Raid Zuhair Ayoub; Tajana Simunic Rosing
+conf/dac/SouMD05,A quasi-convex optimization approach to parameterized model order reduction.,2005,DAC,10.1145/1065579.1065823,Kin Cheong Sou; Alexandre Megretski; Luca Daniel
+conf/dac/ZhangQZCZ25,DCDiff: Enhancing JPEG Compression via Diffusion-based DC Coefficients Estimation.,2025,DAC,10.1109/DAC63849.2025.11132562,Ziyuan Zhang; Han Qiu 0001; Tianwei Zhang 0004; Bin Chen 0011; Chao Zhang 0008
+conf/dac/YuPPKLLC22,NN-LUT: neural approximation of non-linear operations for efficient transformer inference.,2022,DAC,10.1145/3489517.3530505,Joonsang Yu; Junki Park; Seongmin Park 0003; Minsoo Kim 0020; Sihwa Lee; Dong Hyun Lee; Jungwook Choi
+conf/dac/LiLYOZJ25,Espresso: Exploiting the Sparsity Property in Event Sensors with Spatiotemporal Ordering.,2025,DAC,10.1109/DAC63849.2025.11132508,Leshan Li; Hongyi Li; Qingyuan Yang; Mingtao Ou; Rong Zhao; Xinglong Ji
+conf/dac/RongFQJW26,"EmuDRop: A Minimalistic, Hardware-based Emulation Detection Approach through Intel Reserved Opcodes.",2026,DAC,10.1145/3770743.3804011,Kaiyuan Rong; Ke Fang; Pengfei Qiu; Dapeng Ju; Dongsheng Wang 0002
+conf/dac/PapachristouHN93,An Approach for Redesigning in Data Path Synthesis.,1993,DAC,10.1145/157485.164958,Christos A. Papachristou; Haidar Harmanani; Mehrdad Nourani
+conf/dac/DattaSCPR14,Neuro Inspired Computing with Coupled Relaxation Oscillators.,2014,DAC,10.1145/2593069.2596685,Suman Datta; Nikhil Shukla; Matthew Cotter; Abhinav Parihar; Arijit Raychowdhury
+conf/dac/EscobedoL18,Extracting data parallelism in non-stencil kernel computing by optimally coloring folded memory conflict graph.,2018,DAC,10.1145/3195970.3196088,Juan Escobedo; Mingjie Lin
+conf/dac/EntenmanD85,A fully automatic hierarchical compactor.,1985,DAC,10.1145/317825.317835,George Entenman; Stephen W. Daniel
+conf/dac/ThieleSYB11,Thermal-aware system analysis and software synthesis for embedded multi-processors.,2011,DAC,10.1145/2024724.2024786,Lothar Thiele; Lars Schor; Hoeseok Yang; Iuliana Bacivarov
+conf/dac/PsarakisGHPRR06,Systematic software-based self-test for pipelined processors.,2006,DAC,10.1145/1146909.1147014,Mihalis Psarakis; Dimitris Gizopoulos; Miltiadis Hatzimihail; Antonis M. Paschalis; Anand Raghunathan; Srivaths Ravi 0001
+conf/dac/KunduGG08,Partial order reduction for scalable testing of systemC TLM designs.,2008,DAC,10.1145/1391469.1391706,Sudipta Kundu; Malay K. Ganai; Rajesh Gupta 0001
+conf/dac/ChenZLP19,Efficient GPU NVRAM Persistence with Helper Warps.,2019,DAC,10.1145/3316781.3317810,Sui Chen; Faen Zhang; Lei Liu 0037; Lu Peng 0001
+conf/dac/FalkK09,Optimal static WCET-aware scratchpad allocation of program code.,2009,DAC,10.1145/1629911.1630101,Heiko Falk; Jan C. Kleinsorge
+conf/dac/FrancescoMABCM04,An integrated hardware/software approach for run-time scratchpad management.,2004,DAC,10.1145/996566.996634,Francesco Poletti; Paul Marchal; David Atienza 0001; Luca Benini; Francky Catthoor; Jose Manuel Mendias
+conf/dac/YehCCJ99,Gate-Level Design Exploiting Dual Supply Voltages for Power-Driven Applications.,1999,DAC,10.1145/309847.309873,Ching-Wei Yeh; Min-Cheng Chang; Shih-Chieh Chang 0001; Wen-Ben Jone
+conf/dac/KangSC02,An optimal voltage synthesis technique for a power-efficient satellite application.,2002,DAC,10.1145/513918.514043,Dong-In Kang 0001; Jinwoo Suh; Stephen P. Crago
+conf/dac/HelinskiAP09,A physical unclonable function defined using power distribution system equivalent resistance variations.,2009,DAC,10.1145/1629911.1630089,Ryan Helinski; Dhruva Acharyya; Jim Plusquellic
+conf/dac/ChenLLLZLG24,A High-Throughput Private Inference Engine Based on 3D Stacked Memory.,2024,DAC,10.1145/3649329.3657375,Zhaohui Chen; Ling Liang 0003; Qi Liu; Zhirui Li; Fahong Zhang 0004; Yanheng Lu; Zhen Gu
+conf/dac/JoyC91,Placement for Clock Period Minimization With Multiple Wave Propagation.,1991,DAC,10.1145/127601.127742,Donald A. Joy; Maciej J. Ciesielski
+conf/dac/HuWZMC19,Sample-Guided Automated Synthesis for CCSL Specifications.,2019,DAC,10.1145/3316781.3317904,Ming Hu 0003; Tongquan Wei; Min Zhang 0002; Frédéric Mallet; Mingsong Chen 0001
+conf/dac/CytrynP76,A system for computer assisted planning (Planning ADES).,1976,DAC,10.1145/800146.804806,Allan Cytryn; William H. Parsons
+conf/dac/BasuLWMB04,Simultaneous optimization of supply and threshold voltages for low-power and high-performance circuits in the leakage dominant era.,2004,DAC,10.1145/996566.996801,Anirban Basu; Sheng-Chih Lin; Vineet Wason; Amit Mehrotra; Kaustav Banerjee
+conf/dac/DissanayakeJP26,EXRA: Efficient Execution of Data-Dominated Applications via ISA Extensions for Expandable Register Files.,2026,DAC,10.1145/3770743.3804403,Heshan Dissanayake; Darshana Jayasinghe; Sri Parameswaran
+conf/dac/ZhangAH22,Bringing source-level debugging frameworks to hardware generators.,2022,DAC,10.1145/3489517.3530603,Keyi Zhang; Zain Asgar; Mark Horowitz
+conf/dac/UptonSS90,Integrated Placement for Mixed Macro Cell and Standard Cell Designs.,1990,DAC,10.1145/123186.123219,Michael Upton; Khosrow Samii; Stephen Sugiyama
+conf/dac/YouXFWSJJ26,MACH: Memory-Aware Configuration Generation for Homomorphically Encrypted Neural Networks.,2026,DAC,10.1145/3770743.3804059,Honghui You; Linjie Xiao; Yuhang Fan; Wenzhe Wang; Tianxiang Sui; Zhuoran Ji; Lei Ju 0001
+conf/dac/ZhouJWHJYFZGJ25,Insights from Rights and Wrongs: A Large Language Model for Solving Assertion Failures in RTL Design.,2025,DAC,10.1109/DAC63849.2025.11133100,Jie Zhou 0001; Youshu Ji; Ning Wang 0071; Yuchen Hu; Xinyao Jiao; Bingkun Yao; Xinwei Fang; Shuai Zhao 0004; Nan Guan; Zhe Jiang 0004
+conf/dac/LiuC13,On learning-based methods for design-space exploration with high-level synthesis.,2013,DAC,10.1145/2463209.2488795,Hung-Yi Liu; Luca P. Carloni
+conf/dac/GharsalliMRJ02,Automatic generation of embedded memory wrapper for multiprocessor SoC.,2002,DAC,10.1145/513918.514070,Ferid Gharsalli; Samy Meftali; Frédéric Rousseau 0001; Ahmed Amine Jerraya
+conf/dac/KouZHXGY22,GEML: GNN-based efficient mapping method for large loop applications on CGRA.,2022,DAC,10.1145/3489517.3530453,Mingyang Kou; Jun Zeng 0001; Boxiao Han; Fei Xu; Jiangyuan Gu; Hailong Yao 0002
+conf/dac/AhnYC14,Dynamic Power Management of Off-Chip Links for Hybrid Memory Cubes.,2014,DAC,10.1145/2593069.2593128,Junwhan Ahn; Sungjoo Yoo; Kiyoung Choi
+conf/dac/HojatiSBK93,A Unified Approach to Language Containment and Fair CTL Model Checking.,1993,DAC,10.1145/157485.164985,Ramin Hojati; Thomas R. Shiple; Robert K. Brayton; Robert P. Kurshan
+conf/dac/FeldmannASSBG08,Driver waveform computation for timing analysis with multiple voltage threshold driver models.,2008,DAC,10.1145/1391469.1391580,Peter Feldmann; Soroush Abbaspour; Debjit Sinha; Gregory Schaeffer; Revanta Banerji; Hemlata Gupta
+conf/dac/HeldS14,Post-Routing Latch Optimization for Timing Closure.,2014,DAC,10.1145/2593069.2593182,Stephan Held; Ulrike Schorr
+conf/dac/WangOC14,Enabling Efficient Analog Synthesis by Coupling Sparse Regression and Polynomial Optimization.,2014,DAC,10.1145/2593069.2593131,Ye Wang 0014; Michael Orshansky; Constantine Caramanis
+conf/dac/DingLDCLL23,HAIMA: A Hybrid SRAM and DRAM Accelerator-in-Memory Architecture for Transformer.,2023,DAC,10.1109/DAC56929.2023.10247913,Yan Ding 0004; Chubo Liu; Mingxing Duan; Wanli Chang 0001; Keqin Li 0001; Kenli Li 0001
+conf/dac/BushnellD86,VLSI CAD tool integration using the Ulysses environment.,1986,DAC,10.1145/318013.318023,Michael L. Bushnell; Stephen W. Director
+conf/dac/ChippaMRRC10,Scalable effort hardware design: exploiting algorithmic resilience for energy efficiency.,2010,DAC,10.1145/1837274.1837411,Vinay K. Chippa; Debabrata Mohapatra; Anand Raghunathan; Kaushik Roy 0001; Srimat T. Chakradhar
+conf/dac/MaisselO82,"Interactive design language: A unified approach to hardware simulation, synthesis and documentation.",1982,DAC,10.1145/800263.809206,Leon I. Maissel; Daniel L. Ostapko
+conf/dac/CongS93,A Parallel Bottom-Up Clustering Algorithm with Applications to Circuit Partitioning in VLSI Design.,1993,DAC,10.1145/157485.165119,Jason Cong; M'Lissa Smith
+conf/dac/ClarkKBL18,LEAD: learning-enabled energy-aware dynamic voltage/frequency scaling in NoCs.,2018,DAC,10.1145/3195970.3196068,Mark Clark; Avinash Kodi; Razvan C. Bunescu; Ahmed Louri
+conf/dac/LiSARHP13,RASTER: runtime adaptive spatial/temporal error resiliency for embedded processors.,2013,DAC,10.1145/2463209.2488809,Tuo Li 0001; Muhammad Shafique 0001; Jude Angelo Ambrose; Semeen Rehman; Jörg Henkel; Sri Parameswaran
+conf/dac/EspinosaHAAR15,Analysis and RTL correlation of instruction set simulators for automotive microcontroller robustness verification.,2015,DAC,10.1145/2744769.2744798,Jaime Espinosa; Carles Hernández 0001; Jaume Abella 0001; David de Andrés; Juan-Carlos Ruiz-Garcia 0001
+conf/dac/ZhaoGFH10,Parallel hierarchical cross entropy optimization for on-chip decap budgeting.,2010,DAC,10.1145/1837274.1837485,Xueqian Zhao; Yonghe Guo; Zhuo Feng; Shiyan Hu 0001
+conf/dac/ChakradharAB90,Automatic Test Generation Using Quadratic 0-1 Programming.,1990,DAC,10.1145/123186.123430,Srimat T. Chakradhar; Vishwani D. Agrawal; Michael L. Bushnell
+conf/dac/HameedBH14,Reducing Latency in an SRAM/DRAM Cache Hierarchy via a Novel Tag-Cache Architecture.,2014,DAC,10.1145/2593069.2593197,Fazal Hameed; Lars Bauer; Jörg Henkel
+conf/dac/GuoLC0YCZC20,Analysis and Optimization of the Implicit Broadcasts in FPGA HLS to Improve Maximum Frequency.,2020,DAC,10.1109/DAC18072.2020.9218718,Licheng Guo; Jason Lau; Yuze Chi; Jie Wang 0022; Cody Hao Yu; Zhe Chen 0030; Zhiru Zhang; Jason Cong
+conf/dac/SebastianoHPIDS17,Cryo-CMOS Electronic Control for Scalable Quantum Computing: Invited.,2017,DAC,10.1145/3061639.3072948,Fabio Sebastiano; Harald Homulle; Bishnu Patra; Rosario M. Incandela; Jeroen P. G. van Dijk; Lin Song 0004; Masoud Babaie; Andrei Vladimirescu; Edoardo Charbon
+conf/dac/PanZXZD23,HUNTER: Releasing Persistent Memory Write Performance with A Novel PM-DRAM Collaboration Architecture.,2023,DAC,10.1109/DAC56929.2023.10247940,Yanqi Pan; Yifeng Zhang; Wen Xia; Xiangyu Zou; Cai Deng
+conf/dac/MajiZPP25,Late Breaking Results: Breaking Symmetry - Unconventional Placement of Analog Circuits using Multi-Level Multi-Agent Reinforcement Learning.,2025,DAC,10.1109/DAC63849.2025.11132657,Supriyo Maji; Linran Zhao; Souradip Poddar; David Z. Pan
+conf/dac/LauP03,Fractional-N frequency synthesizer design at the transfer function level using a direct closed loop realization algorithm.,2003,DAC,10.1145/775832.775966,Charlotte Y. Lau; Michael H. Perrott
+conf/dac/WangZSLG13,Bayesian model fusion: large-scale performance modeling of analog and mixed-signal circuits by reusing early-stage data.,2013,DAC,10.1145/2463209.2488812,Fa Wang; Wangyang Zhang; Shupeng Sun; Xin Li 0001; Chenjie Gu
+conf/dac/WangJH22,ODHD: one-class brain-inspired hyperdimensional computing for outlier detection.,2022,DAC,10.1145/3489517.3530395,Ruixuan Wang; Xun Jiao 0002; X. Sharon Hu
+conf/dac/QiaoZWLCC26,LHGstore: An In-Memory Learned Graph Storage for Fast Updates and Analytics.,2026,DAC,10.1145/3770743.3804389,Pengpeng Qiao; Zhiwei Zhang 0002; Xinzhou Wang; Zhetao Li; Xiaochun Cao; Yang Cao 0011
+conf/dac/LaiPV93,BDD Based Decomposition of Logic Functions with Application to FPGA Synthesis.,1993,DAC,10.1145/157485.165078,Yung-Te Lai; Massoud Pedram; Sarma B. K. Vrudhula
+conf/dac/ChienHLYC14,Contactless Stacked-die Testing for Pre-bond Interposers.,2014,DAC,10.1145/2593069.2593111,Jui-Hung Chien; Ruei-Siang Hsu; Hsueh-Ju Lin; Ka-Yi Yeh; Shih-Chieh Chang 0001
+conf/dac/ZouLMYC21,Late Breaking Results: Incremental 3D Global Routing Considering Cell Movement.,2021,DAC,10.1109/DAC18074.2021.9586277,Peng Zou; Zhifeng Lin; Chenyue Ma; Jun Yu 0010; Jianli Chen
+conf/dac/DamianoK03,Checking satisfiability of a conjunction of BDDs.,2003,DAC,10.1145/775832.776039,Robert F. Damiano; James H. Kukula
+conf/dac/LuongoMNS25,Measurement-based uncomputation of quantum circuits for modular arithmetic.,2025,DAC,10.1109/DAC63849.2025.11132981,Alessandro Luongo; Antonio Michele Miti; Varun Narasimhachar; Adithya Sireesh
+conf/dac/ShachamY07,On-The-Fly Resolve Trace Minimization.,2007,DAC,10.1145/1278480.1278630,Ohad Shacham; Karen Yorav
+conf/dac/Meng0Q22,Write or not: programming scheme optimization for RRAM-based neuromorphic computing.,2022,DAC,10.1145/3489517.3530558,Ziqi Meng; Yanan Sun 0003; Weikang Qian
+conf/dac/HuangLSH18,Using imprecise computing for improved non-preemptive real-time scheduling.,2018,DAC,10.1145/3195970.3196134,Lin Huang; Youmeng Li; Sachin S. Sapatnekar; Jiang Hu 0001
+conf/dac/ZhangWCHL12,Heterogeneous multi-channel: fine-grained DRAM control for both system performance and power efficiency.,2012,DAC,10.1145/2228360.2228517,Guangfei Zhang; Huandong Wang; Xinke Chen; Shuai Huang; Peng Li
+conf/dac/LuoWH10,An effective GPU implementation of breadth-first search.,2010,DAC,10.1145/1837274.1837289,Lijuan Luo; Martin D. F. Wong; Wen-mei W. Hwu
+conf/dac/JollyPM02,Automated equivalence checking of switch level circuits .,2002,DAC,10.1145/513918.513996,Simon Jolly; Atanas N. Parashkevov; Tim McDougall
+conf/dac/SongCGC22,Serpens: a high bandwidth memory based accelerator for general-purpose sparse matrix-vector multiplication.,2022,DAC,10.1145/3489517.3530420,Linghao Song; Yuze Chi; Licheng Guo; Jason Cong
+conf/dac/GopeCJ05,DiMES: multilevel fast direct solver based on multipole expansions for parasitic extraction of massively coupled 3D microelectronic structures.,2005,DAC,10.1145/1065579.1065622,Dipanjan Gope; Indranil Chowdhury; Vikram Jandhyala
+conf/dac/ChenGB01,A New Gate Delay Model for Simultaneous Switching and Its Applications.,2001,DAC,10.1145/378239.378488,Liang-Chi Chen; Sandeep K. Gupta 0001; Melvin A. Breuer
+conf/dac/XanthopoulosYC97,Architectural Exploration Using Verilog-Based Power Estimation: A Case Study of the IDCT.,1997,DAC,10.1145/266021.266184,Thucydides Xanthopoulos; Yoshifumi Yaoi; Anantha P. Chandrakasan
+conf/dac/ChangD05,Explaining the gap between ASIC and custom power: a custom perspective.,2005,DAC,10.1145/1065579.1065652,Andrew Chang 0001; William J. Dally
+conf/dac/BadarogluTDWMVG02,Clock tree optimization in synchronous CMOS digital circuits for substrate noise reduction using folding of supply current transients.,2002,DAC,10.1145/513918.514021,Mustafa Badaroglu; Kris Tiri; Stéphane Donnay; Piet Wambacq; Hugo De Man; Ingrid Verbauwhede; Georges G. E. Gielen
+conf/dac/LiuS07,Confidence Scalable Post-Silicon Statistical Delay Prediction under Process Variations.,2007,DAC,10.1145/1278480.1278609,Qunzeng Liu; Sachin S. Sapatnekar
+conf/dac/BurnhamYH09,A stochastic jitter model for analyzing digital timing-recovery circuits.,2009,DAC,10.1145/1629911.1629947,James R. Burnham; Chih-Kong Ken Yang; Haitham A. Hindi
+conf/dac/LiWO16,A Monte Carlo simulation flow for SEU analysis of sequential circuits.,2016,DAC,10.1145/2897937.2897967,Meng Li 0004; Ye Wang 0014; Michael Orshansky
+conf/dac/SongSL16,Single-tier virtual queuing: an efficacious memory controller architecture for MPSoCs with multiple realtime cores.,2016,DAC,10.1145/2897937.2898093,Yang Song 0006; Kambiz Samadi; Bill Lin 0001
+conf/dac/WagstaffGFT13,"Early partial evaluation in a JIT-compiled, retargetable instruction set simulator generated from a high-level architecture description.",2013,DAC,10.1145/2463209.2488760,Harry Wagstaff; Miles Gould; Björn Franke; Nigel P. Topham
+conf/dac/LeiXC13,Post-silicon conformance checking with virtual prototypes.,2013,DAC,10.1145/2463209.2488770,Li Lei; Fei Xie; Kai Cong
+conf/dac/NiknafsUEP19,Runtime Resource Management with Workload Prediction.,2019,DAC,10.1145/3316781.3317902,Mina Niknafs; Ivan Ukhov; Petru Eles; Zebo Peng
+conf/dac/ChenTCHWC21,Skew-Oblivious Data Routing for Data Intensive Applications on FPGAs with HLS.,2021,DAC,10.1109/DAC18074.2021.9586184,Xinyu Chen 0001; Hongshi Tan; Yao Chen 0008; Bingsheng He; Weng-Fai Wong; Deming Chen
+conf/dac/RyzhenkoB11,Physical synthesis onto a layout fabric with regular diffusion and polysilicon geometries.,2011,DAC,10.1145/2024724.2024743,Nikolai Ryzhenko; Steven M. Burns
+conf/dac/ShethSM06,The importance of adopting a package-aware chip design flow.,2006,DAC,10.1145/1146909.1147127,Kaushik Sheth; Egino Sarto; Joel McGrath
+conf/dac/KrauterW02,Variable frequency crosstalk noise analysis: : a methodology to guarantee functionality from dc to fmax.,2002,DAC,10.1145/513918.514087,Byron Krauter; David Widiger
+conf/dac/CongM10,LUT-based FPGA technology mapping for reliability.,2010,DAC,10.1145/1837274.1837401,Jason Cong; Kirill Minkovich
+conf/dac/BurnsKMBTD07,Comparative Analysis of Conventional and Statistical Design Techniques.,2007,DAC,10.1145/1278480.1278539,Steven M. Burns; Mahesh Ketkar; Noel Menezes; Keith A. Bowman; James W. Tschanz; Vivek De
+conf/dac/LeeJLCZCSHH25,iG-kway: Incremental k-way Graph Partitioning on GPU.,2025,DAC,10.1109/DAC63849.2025.11132904,Wan-Luan Lee; Shui Jiang; Dian-Lun Lin; Che Chang; Boyang Zhang 0007; Yi-Hua Chung; Ulf Schlichtmann; Tsung-Yi Ho; Tsung-Wei Huang
+conf/dac/YadavLGK19,Improving Static Power Efficiency via Placement of Network Demultiplexer over Control Plane of Router in Multi-NoCs.,2019,DAC,10.1145/3316781.3322471,Sonal Yadav; Vijay Laxmi; Manoj Singh Gaur; Hemangee K. Kapoor
+conf/dac/SeiculescuMBM09,NoC topology synthesis for supporting shutdown of voltage islands in SoCs.,2009,DAC,10.1145/1629911.1630121,Ciprian Seiculescu; Srinivasan Murali; Luca Benini; Giovanni De Micheli
+conf/dac/DoboliNDGV99,Behavioral Synthesis of Analog Systems Using Two-layered Design Space Exploration.,1999,DAC,10.1145/309847.310105,Alex Doboli; Adrián Núñez-Aldana; Nagu R. Dhanwada; Sree Ganesan; Ranga Vemuri
+conf/dac/WuCYWWHGY25,LVM-MO: A Large Vision Model Pioneer on Full-Chip Mask Optimization.,2025,DAC,10.1109/DAC63849.2025.11132784,Yiwen Wu; Yuyang Chen; Shuo Yin; Nan Wang; Tao Wu; Xuming He 0001; Hao Geng; Jingyi Yu 0001
+conf/dac/ZhouZZJYC25,Parallel Dynamic Partitioning for Datapath Combinational Equivalence Checking.,2025,DAC,10.1109/DAC63849.2025.11132837,Shuai Zhou; Weikang Zhang; Xindi Zhang 0001; Zite Jiang; Haihang You; Shaowei Cai 0001
+conf/dac/HemmadyR89,On the Repair of Redundant RAMs.,1989,DAC,10.1145/74382.74510,V. G. Hemmady; Sudhakar M. Reddy
+conf/dac/RehmanKSSH14,dTune: Leveraging Reliable Code Generation for Adaptive Dependability Tuning under Process Variation and Aging-Induced Effects.,2014,DAC,10.1145/2593069.2593127,Semeen Rehman; Florian Kriebel; Duo Sun; Muhammad Shafique 0001; Jörg Henkel
+conf/dac/GuthausWR10,Non-uniform clock mesh optimization with linear programming buffer insertion.,2010,DAC,10.1145/1837274.1837295,Matthew R. Guthaus; Gustavo Wilke; Ricardo Reis 0001
+conf/dac/HuangHLGX26,On-Demand Multi-Task Sparsity for Efficient Large-Model Deployment on Edge Devices.,2026,DAC,10.1145/3770743.3804262,Lianming Huang; Haibo Hu 0005; Qiao Li 0001; Nan Guan; Chun Jason Xue
+conf/dac/JiangS08,Circuit-wise buffer insertion and gate sizing algorithm with scalability.,2008,DAC,10.1145/1391469.1391652,Zhanyuan Jiang; Weiping Shi
+conf/dac/KanduriMRLBD18,Approximation-aware coordinated power/performance management for heterogeneous multi-cores.,2018,DAC,10.1145/3195970.3195994,Anil Kanduri; Antonio Miele; Amir M. Rahmani; Pasi Liljeberg; Cristiana Bolchini; Nikil D. Dutt
+conf/dac/KirovNPS17,ArchEx: An Extensible Framework for the Exploration of Cyber-Physical System Architectures.,2017,DAC,10.1145/3061639.3062204,Dmitrii Kirov; Pierluigi Nuzzo 0002; Roberto Passerone; Alberto L. Sangiovanni-Vincentelli
+conf/dac/Li0ZZM22,Conditional address propagation: an efficient defense mechanism against transient execution attacks.,2022,DAC,10.1145/3489517.3530679,Peinan Li; Rui Hou 0001; Lutan Zhao; Yifan Zhu 0008; Dan Meng 0002
+conf/dac/OhCYNJKWI26,"TRINE: A Token-Aware, Runtime-Adaptive FPGA Inference Engine for Multimodal AI.",2026,DAC,10.1145/3770743.3804010,Hyunwoo Oh; Hanning Chen; Sanggeon Yun; Yang Ni 0001; Suyeon Jang; Behnam Khaleghi; Fei Wen 0003; Mohsen Imani
+conf/dac/HoC21,TCL: an ANN-to-SNN Conversion with Trainable Clipping Layers.,2021,DAC,10.1109/DAC18074.2021.9586266,Nguyen-Dong Ho; Ik-Joon Chang
+conf/dac/HuYW20,Adjoint Transient Sensitivity Analysis for Objective Functions Associated to Many Time Points.,2020,DAC,10.1109/DAC18072.2020.9218602,Wenfei Hu; Zuochang Ye; Yan Wang 0023
+conf/dac/ChuangCLFLS18,PlanarONoC: concurrent placement and routing considering crossing minimization for optical networks-on-chip.,2018,DAC,10.1145/3195970.3196093,Yu-Kai Chuang; Kuan-Jung Chen; Kun-Lin Lin; Shao-Yun Fang; Bing Li 0005; Ulf Schlichtmann
+conf/dac/JooK11,WaveMin: a fine-grained clock buffer polarity assignment combined with buffer sizing.,2011,DAC,10.1145/2024724.2024846,Deokjin Joo; Taewhan Kim 0001
+conf/dac/DoodWLS91,A Two-Dimensional Topological Compactor With Octagonal Geometry.,1991,DAC,10.1145/127601.127759,Paul de Dood; John Wawrzynek; Erwin Liu; Roberto Suaya
+conf/dac/LiCZLSLLC26,HeRo: Adaptive Orchestration of Retrieval-Augmented Generation on Heterogeneous Mobile SoC.,2026,DAC,10.1145/3770743.3804310,Maoliang Li; Jiayu Chen; Zihao Zheng; Ziqian Li; Xinhao Sun; Guojie Luo; Chenchen Liu; Xiang Chen 0010
+conf/dac/IranliLP06,Backlight dimming in power-aware mobile displays.,2006,DAC,10.1145/1146909.1147064,Ali Iranli; Wonbok Lee; Massoud Pedram
+conf/dac/ChengWLLH05,Device and architecture co-optimization for FPGA power reduction.,2005,DAC,10.1145/1065579.1065819,Lerong Cheng; Phoebe Wong; Fei Li 0003; Yan Lin 0001; Lei He 0001
+conf/dac/ChattopadhyayGK26,STRAP-ViT: Segregated Tokens with Randomized - Transformations for Defense against Adversarial Patches in ViTs.,2026,DAC,10.1145/3770743.3804199,Nandish Chattopadhyay; Anadi Goyal; Chandan Karfa; Anupam Chattopadhyay
+conf/dac/FeghhiMK90,An Object-Oriented Kernel for an Integrated Design and Process Planning System.,1990,DAC,10.1145/123186.123330,S. J. Feghhi; Michael M. Marefat; Rangasami L. Kashyap
+conf/dac/AgrawalAB85,Multiple output minimization.,1985,DAC,10.1145/317825.317962,Prathima Agrawal; Vishwani D. Agrawal; Nripendra N. Biswas
+conf/dac/HsuCHKD11,A version-based strategy for reliability enhancement of flash file systems.,2011,DAC,10.1145/2024724.2024732,Pei-Han Hsu; Yuan-Hao Chang 0001; Po-Chun Huang; Tei-Wei Kuo; David Hung-Chang Du
+conf/dac/ChandraC02,"Reduction of SOC test data volume, scan power and testing time using alternating run-length codes.",2002,DAC,10.1145/513918.514090,Anshuman Chandra; Krishnendu Chakrabarty
+conf/dac/PrabakaranJM020,EMAP: A Cloud-Edge Hybrid Framework for EEG Monitoring and Cross-Correlation Based Real-time Anomaly Prediction.,2020,DAC,10.1109/DAC18072.2020.9218713,Bharath Srinivas Prabakaran; Alberto García Jiménez; Germán Moltó Martínez; Muhammad Shafique 0001
+conf/dac/WilleSD10,Reducing the number of lines in reversible circuits.,2010,DAC,10.1145/1837274.1837439,Robert Wille; Mathias Soeken; Rolf Drechsler
+conf/dac/LiuC98,Extending Moment Computation to 2-Port Circuit Representations.,1998,DAC,10.1145/277044.277176,Fang-Jou Liu; Chung-Kuan Cheng
+conf/dac/BasitRS26,Scale-Gest: Scalable Model-Space Synthesis and Runtime Selection for On-Device Gesture Detection.,2026,DAC,10.1145/3770743.3804419,Abdul Basit 0013; Saim Rehman; Muhammad Shafique 0001
+conf/dac/ZhuangYKWC15,An algorithmic framework for efficient large-scale circuit simulation using exponential integrators.,2015,DAC,10.1145/2744769.2744793,Hao Zhuang 0001; Wenjian Yu; Ilgweon Kang; Xinan Wang; Chung-Kuan Cheng
+conf/dac/CasottoNS90,Design Management Based on Design Traces.,1990,DAC,10.1145/123186.123241,Andrea Casotto; A. Richard Newton; Alberto L. Sangiovanni-Vincentelli
+conf/dac/ZhangYZDKDKC08,Low power passive equalizer optimization using tritonic step response.,2008,DAC,10.1145/1391469.1391613,Ling Zhang; Wenjian Yu; Haikun Zhu; Alina Deutsch; George A. Katopis; Daniel M. Dreps; Ernest S. Kuh; Chung-Kuan Cheng
+conf/dac/LimVH11,Challenges in a future IP/ethernet-based in-car network for real-time applications.,2011,DAC,10.1145/2024724.2024727,Hyung-Taek Lim; Lars Völker; Daniel Herrscher
+conf/dac/WuZN04,An analytical approach for dynamic range estimation.,2004,DAC,10.1145/996566.996699,Bin Wu; Jianwen Zhu; Farid N. Najm
+conf/dac/WangJWY22,A2-ILT: GPU accelerated ILT with spatial attention mechanism.,2022,DAC,10.1145/3489517.3530579,Qijing Wang; Bentian Jiang; Martin D. F. Wong; Evangeline F. Y. Young
+conf/dac/SudarsanamLD97,Analysis and Evaluation of Address Arithmetic Capabilities in Custom DSP Architectures.,1997,DAC,10.1145/266021.266103,Ashok Sudarsanam; Stan Y. Liao; Srinivas Devadas
+conf/dac/OrshanskyCH98,A Statistical Performance Simulation Methodology for VLSI Circuits.,1998,DAC,10.1145/277044.277153,Michael Orshansky; James C. Chen; Chenming Hu
+conf/dac/MukherjeeSML99,Wave Steering in YADDs: A Novel Non-Iterative Synthesis and Layout Technique.,1999,DAC,10.1145/309847.309981,Arindam Mukherjee 0001; Ranganathan Sudhakar; Malgorzata Marek-Sadowska; Stephen I. Long
+conf/dac/LiLLCLL25,STREAM: Spatiotemporal Similarity-based Efficient Approximate Median with Tunable Granularity.,2025,DAC,10.1109/DAC63849.2025.11133038,Fenfang Li; Huizhang Luo; Weichen Liu 0001; Anthony Theodore Chronopoulos; Kenli Li 0001; Chubo Liu
+conf/dac/CongP99,Interconnect Estimation and Dlanning for Deep Submicron Designs.,1999,DAC,10.1145/309847.309988,Jason Cong; David Zhigang Pan
+conf/dac/HuaLMYKZ26,Chimera: A Unified FHE Accelerator with Enhanced Compatibility for TFHE.,2026,DAC,10.1145/3770743.3804057,Tenghui Hua; Huawei Li 0001; Jianan Mu; Jing Ye 0001; Liang Kong 0005; Mingzhe Zhang 0005
+conf/dac/ChaoHY80a,A hierarchical approach for layout versus circuit consistency check.,1980,DAC,10.1145/800139.804539,Shiu-Ping Chao; Yen-Son Huang; Lap Man Yam
+conf/dac/DasBMKMPPRBNB25,Machine Learning-Driven STL Generation for Enhancing Functional Safety of E/E Systems.,2025,DAC,10.1109/DAC63849.2025.11132095,Sanjay Das; Swastik Bhattacharya; Anand Menon; Shamik Kundu; Pooja Madhusoodhanan; Prasanth Viswanathan Pillai; Rubin A. Parekhji; Arnab Raha; Suvadeep Banerjee; Suriyaprakash Natarajan; Kanad Basu
+conf/dac/BowmanTWLKDB09,Circuit techniques for dynamic variation tolerance.,2009,DAC,10.1145/1629911.1629915,Keith A. Bowman; James W. Tschanz; Chris Wilkerson; Shih-Lien Lu; Tanay Karnik; Vivek De; Shekhar Y. Borkar
+conf/dac/ChengK93,Automatic Functional Test Generation Using the Extended Finite State Machine Model.,1993,DAC,10.1145/157485.164585,Kwang-Ting Cheng; A. S. Krishnakumar
+conf/dac/ChenHL0SZ024,Artisan: Automated Operational Amplifier Design via Domain-specific Large Language Model.,2024,DAC,10.1145/3649329.3655903,Zihao Chen; Jiangli Huang; Yiting Liu 0002; Fan Yang 0001; Li Shang 0001; Dian Zhou; Xuan Zeng 0001
+conf/dac/PatilLZWM09,Digital VLSI logic technology using Carbon Nanotube FETs: frequently asked questions.,2009,DAC,10.1145/1629911.1629995,Nishant Patil; Albert Lin 0002; Jie Zhang 0007; H.-S. Philip Wong; Subhasish Mitra
+conf/dac/MancusiW72,"Interactive graphics for schematic editing, a working tool.",1972,DAC,10.1145/800153.804961,M. D. Mancusi; J. Christian Wild
+conf/dac/ChenCSSY21,Late Breaking Results: Novel Discrete Dynamic Filled Function Algorithm for Acyclic Graph Partitioning.,2021,DAC,10.1109/DAC18074.2021.9586307,Jianli Chen; Jiarui Chen; Xiao Shi 0001; Lichong Sun; Jun Yu 0010
+conf/dac/TanAMKDL26,Syndrome Extraction Circuits with Near-Optimal Depths for Practical Quantum Error Correcting Code Families.,2026,DAC,10.1145/3770743.3803913,Daniel Bochen Tan; Juan Pablo Bonilla Ataides; Varun Menon; Jin Ming Koh; Andrei C. Diaconu; Mikhail D. Lukin
+conf/dac/WangLGKWG16,MTJ variation monitor-assisted adaptive MRAM write.,2016,DAC,10.1145/2897937.2897979,Shaodi Wang; Hochul Lee; Cecile Grezes; Pedram Khalili; Kang L. Wang; Puneet Gupta 0001
+conf/dac/BorgstromHWADCMCN09,"System prototypes: virtual, hardware or hybrid?",2009,DAC,10.1145/1629911.1629913,Tom Borgstrom; Eshel Haritan; Ron Wilson; David Abada; Andrew Dauman; Ramesh Chandra; Olivier Mielo; Chuck Cruse; Achim Nohl
+conf/dac/HanLZFYCYH26,ModuPlace: LLM-Assisted Modular PCB Placement via Preference-Optimized Constraint Graph Generation.,2026,DAC,10.1145/3770743.3803892,Yaohui Han; Beichen Li 0003; Mingyang Zhao; Rongliang Fu; Qunsong Ye; Tinghuan Chen; Bei Yu 0001; Tsung-Yi Ho
+conf/dac/SzeAHS05,Path based buffer insertion.,2005,DAC,10.1145/1065579.1065711,Cliff C. N. Sze; Charles J. Alpert; Jiang Hu 0001; Weiping Shi
+conf/dac/BhardwajCM20,INVITED: New Directions in Distributed Deep Learning: Bringing the Network at Forefront of IoT Design.,2020,DAC,10.1109/DAC18072.2020.9218628,Kartikeya Bhardwaj; Wei Chen 0124; Radu Marculescu
+conf/dac/BonapaceL89,An O(nlogm) Algorithm for VLSI Design Rule Checking.,1989,DAC,10.1145/74382.74466,Charles R. Bonapace; Chi-Yuan Lo
+conf/dac/LiuF14,A Time-Unrolling Method to Compute Sensitivity of Dynamic Systems.,2014,DAC,10.1145/2593069.2593080,Frank Liu 0001; Peter Feldmann
+conf/dac/BrodersenHKKLK02,Nanometer design: what hurts next...?,2002,DAC,10.1145/513918.513981,Robert W. Brodersen; Anthony M. Hill; John Kibarian; Desmond Kirkpatrick; Mark A. Lavin; Mitsumasa Koyanagi
+conf/dac/ChandrikakuttyUTW13,High-performance hardware monitors to protect network processors from data plane attacks.,2013,DAC,10.1145/2463209.2488832,Harikrishnan Chandrikakutty; Deepak Unnikrishnan; Russell Tessier; Tilman Wolf
+conf/dac/CoptyJKV07,Intelligent Interleaving of Scenarios: A Novel Approach to System Level Test Generation.,2007,DAC,10.1145/1278480.1278700,Shady Copty; Itai Jaeger; Yoav Katz; Michael Vinov
+conf/dac/ShinSS86,"Two-dimensional compaction by ""zone refining"".",1986,DAC,10.1145/318013.318032,Hyunchul Shin; Alberto L. Sangiovanni-Vincentelli; Carlo H. Séquin
+conf/dac/KshirsagarEB08,Analysis and implications of parasitic and screening effects on the high-frequency/RF performance of tunneling-carbon nanotube FETs.,2008,DAC,10.1145/1391469.1391533,Chaitanya Kshirsagar; Mohamed N. El-Zeftawi; Kaustav Banerjee
+conf/dac/KeeSGK94,The Use of CAD Frameworks in a CIM Environment.,1994,DAC,10.1145/196244.196369,Wang Tek Kee; Dennis Sng; Jacob Gan; Low Kin Kiong
+conf/dac/LinMBFXZZ25,SNAPPIX: Efficient-Coding-Inspired In-Sensor Compression for Edge Vision.,2025,DAC,10.1109/DAC63849.2025.11132672,Weikai Lin; Tianrui Ma; Adith Boloor; Yu Feng 0007; Ruofan Xing; Xuan Zhang 0001; Yuhao Zhu 0001
+conf/dac/UtyamishevP20,Late Breaking Results: A Neural Network that Routes ICs.,2020,DAC,10.1109/DAC18072.2020.9218598,Dmitry Utyamishev; Inna Partin-Vaisband
+conf/dac/IshiuraYY90,NES: The Behavioral Model for the Formal Semantics of a Hardware Design Language UDL/I.,1990,DAC,10.1145/123186.123191,Nagisa Ishiura; Hiroto Yasuura; Shuzo Yajima
+conf/dac/LeviaMR94,Lessons in Language Design: Cost/Benefit analysis of VHDL Features.,1994,DAC,10.1145/196244.196464,Oz Levia; Serge Maginot; Jacques Rouillard
+conf/dac/HernandezA14,LiVe: Timely Error Detection in Light-Lockstep Safety Critical Systems.,2014,DAC,10.1145/2593069.2593155,Carles Hernández 0001; Jaume Abella 0001
+conf/dac/KrautzPAKPB14,Automatic Verification of Floating Point Units.,2014,DAC,10.1145/2593069.2593096,Udo Krautz; Viresh Paruthi; Anand Arunagiri; Sujeet Kumar; Shweta Pujar; Tina Babinsky
+conf/dac/WangPYG25,Leopard: Hardware Pass-Through Remote Storage Access with Queue Concurrency for Edge Intelligent Workstations.,2025,DAC,10.1109/DAC63849.2025.11133404,Wenjie Wang; Bo Peng 0043; Jianguo Yao 0002; Haibing Guan
+conf/dac/FrenchLLO95,A General Method for Compiling Event-Driven Simulations.,1995,DAC,10.1145/217474.217522,Robert S. French; Monica S. Lam; Jeremy R. Levitt; Kunle Olukotun
+conf/dac/SilveiraEWCK94,An Efficient Approach to Transmission Line Simulation Using Measured or Tabulated S-parameter Data.,1994,DAC,10.1145/196244.196598,Luís Miguel Silveira; Ibrahim M. Elfadel; Jacob White 0001; Moni Chilukuri; Kenneth S. Kundert
+conf/dac/CheC12,Unrolling and retiming of stream applications onto embedded multicore processors.,2012,DAC,10.1145/2228360.2228598,Weijia Che; Karam S. Chatha
+conf/dac/FrezzaLC95,Requirements-Based Design Evaluation.,1995,DAC,10.1145/217474.217510,Stephen T. Frezza; Steven P. Levitan; Panos K. Chrysanthis
+conf/dac/BanerjeePDKD06,Test generation games from formal specifications.,2006,DAC,10.1145/1146909.1147120,Ansuman Banerjee; Bhaskar Pal; Sayantan Das; Abhijeet Kumar; Pallab Dasgupta
+conf/dac/GuoDJFM15,Pre-silicon security verification and validation: a formal perspective.,2015,DAC,10.1145/2744769.2747939,Xiaolong Guo 0001; Raj Gautam Dutta; Yier Jin; Farimah Farahmandi; Prabhat Mishra 0001
+conf/dac/SchweikertK72,A proper model for the partitioning of electrical circuits.,1972,DAC,10.1145/800153.804930,Daniel G. Schweikert; Brian W. Kernighan
+conf/dac/YangCS05,Advanced timing analysis based on post-OPC extraction of critical dimensions.,2005,DAC,10.1145/1065579.1065676,Jie Yang 0010; Luigi Capodieci; Dennis Sylvester
+conf/dac/LiuH12,Dynamic river network simulation at large scale.,2012,DAC,10.1145/2228360.2228491,Frank Liu 0001; Ben R. Hodges
+conf/dac/LiuWYCRWJLQZ25,MIRACLE: Multimodal Information Retrieval via a Combined In-Memory Processing and Content Addressable Memory Approach.,2025,DAC,10.1109/DAC63849.2025.11132973,Xuehui Liu; Xueyan Wang; Tianyang Yu; Chen Cheng; Shuo Ran; Bi Wu 0002; Xiaotao Jia; Weiqiang Liu 0001; Gang Qu 0001; Weisheng Zhao 0001
+conf/dac/SuWKLK05,A noise-driven effective capacitance method with fast embedded noise rule calculation for functional noise analysis.,2005,DAC,10.1145/1065579.1065630,Haihua Su; David Widiger; Chandramouli V. Kashyap; Frank Liu 0001; Byron Krauter
+conf/dac/TakayanagiSPSL04,A dual-core 64b ultraSPARC microprocessor for dense server applications.,2004,DAC,10.1145/996566.996750,Toshinari Takayanagi; Jinuk Luke Shin; Bruce Petrick; Jeffrey Y. Su; Ana Sonia Leon
+conf/dac/LiS14,Robust and In-Situ Self-Testing Technique for Monitoring Device Aging Effects in Pipeline Circuits.,2014,DAC,10.1145/2593069.2593205,Jiangyi Li; Mingoo Seok
+conf/dac/ZhanXS14,NoC-Sprinting: Interconnect for Fine-Grained Sprinting in the Dark Silicon Era.,2014,DAC,10.1145/2593069.2593165,Jia Zhan; Yuan Xie 0001; Guangyu Sun 0003
+conf/dac/GobulukogluDHKR21,Classifying Computations on Multi-Tenant FPGAs.,2021,DAC,10.1109/DAC18074.2021.9586098,Mustafa S. Gobulukoglu; Colin Drewes; William Hunter; Ryan Kastner; Dustin Richmond
+conf/dac/MishchenkoBPSAD18,Canonical computation without canonical representation.,2018,DAC,10.1145/3195970.3196006,Alan Mishchenko; Robert K. Brayton; Ana Petkovska; Mathias Soeken; Luca G. Amarù; Antun Domic
+conf/dac/NguyenHC19,St-DRC: Stretchable DRAM Refresh Controller with No Parity-overhead Error Correction Scheme for Energy-efficient DNNs.,2019,DAC,10.1145/3316781.3317915,Duy Thanh Nguyen; Nhut-Minh Ho; Ik-Joon Chang
+conf/dac/ShafiqueZWBH12,Adaptive power management of on-chip video memory for multiview video coding.,2012,DAC,10.1145/2228360.2228516,Muhammad Shafique 0001; Bruno Zatt; Fabio Leandro Walter; Sergio Bampi; Jörg Henkel
+conf/dac/BorosRP00,High-level model of a WDMA passive optical bus for a reconfigurable multiprocessor system.,2000,DAC,10.1145/337292.337395,Vince E. Boros; Aleksandar D. Rakic; Sri Parameswaran
+conf/dac/KoelblBP07,Memory Modeling in ESL-RTL Equivalence Checking.,2007,DAC,10.1145/1278480.1278530,Alfred Kölbl; Jerry R. Burch; Carl Pixley
+conf/dac/RudnickP95,Combining Deterministic and Genetic Approaches for Sequential Circuit Test Generation.,1995,DAC,10.1145/217474.217527,Elizabeth M. Rudnick; Janak H. Patel
+conf/dac/MaHDCCG01,Floorplanning with Abutment Constraints and L-Shaped/T-Shaped Blocks based on Corner Block List.,2001,DAC,10.1145/378239.379063,Yuchun Ma; Xianlong Hong; Sheqin Dong; Yici Cai; Chung-Kuan Cheng; Jun Gu
+conf/dac/NajmM04,Statistical timing analysis based on a timing yield model.,2004,DAC,10.1145/996566.996696,Farid N. Najm; Noel Menezes
+conf/dac/LiuJQSZ26,Mask-Guided Diffusion with Process-Aware Metric Optimization for Long-Tailed Wafer Defect Analysis.,2026,DAC,10.1145/3770743.3804007,Yumeng Liu; Qian Jin; Xiaotian Qiu; Qi Sun 0002; Cheng Zhuo
+conf/dac/ShihA86,Transistor-level test generation for physical failures in CMOS circuits.,1986,DAC,10.1145/318013.318052,Hsi-Ching Shih; Jacob A. Abraham
+conf/dac/RenZXZ024,Invited: Leveraging Machine Learning for Quantum Compilation Optimization.,2024,DAC,10.1145/3649329.3663510,Xiangyu Ren; Tianyu Zhang; Xiong Xu 0002; Yicong Zheng; Shengyu Zhang 0002
+conf/dac/SchenkelPZSGA01,Mismatch Analysis and Direct Yield Optimization by Spec-Wise Linearization and Feasibility-Guided Search.,2001,DAC,10.1145/378239.379079,Frank Schenkel; Michael Pronath; Stephan Zizala; Robert Schwencker; Helmut E. Graeb; Kurt Antreich
+conf/dac/WangLL17,Real-Time Meets Approximate Computing: An Elastic CNN Inference Accelerator with Adaptive Trade-off between QoS and QoR.,2017,DAC,10.1145/3061639.3062307,Ying Wang 0001; Huawei Li 0001; Xiaowei Li 0001
+conf/dac/YuCCS16,DAG-aware logic synthesis of datapaths.,2016,DAC,10.1145/2897937.2898000,Cunxi Yu; Maciej J. Ciesielski; Mihir Choudhury; Andrew Sullivan
+conf/dac/0001SPVL18,Cross-layer fault-space pruning for hardware-assisted fault injection.,2018,DAC,10.1145/3195970.3196019,Christian Dietrich 0001; Achim Schmider; Oskar Pusz; Guillermo Payá Vayá; Daniel Lohmann
+conf/dac/WatanabeKLS18,Runtime monitoring for safety of intelligent vehicles.,2018,DAC,10.1145/3195970.3199856,Kosuke Watanabe; Eunsuk Kang; Chung-Wei Lin; Shinichi Shiraishi
+conf/dac/ChouCC93,High-Speed Interconnect Modeling and High-Accuracy Simulation Using SPICE and Finite Element Methods.,1993,DAC,10.1145/157485.165091,Tai-Yu Chou; Jay Cosentino; Zoltan J. Cendes
+conf/dac/RubelK76,KINSYN: A minicomputer-based interactive mechanism design system.,1976,DAC,10.1145/800146.804789,Andrew J. Rubel; Roger E. Kaufman
+conf/dac/KimKP20,Navigator: Dynamic Multi-kernel Scheduling to Improve GPU Performance.,2020,DAC,10.1109/DAC18072.2020.9218711,Jiho Kim; John Kim 0001; Yongjun Park 0001
+conf/dac/ShiLJW26,Enabling Robust On-Device Personalization via Pulse-Based Mapping and Noise Suppression for Non-Ideal CIM Architecture.,2026,DAC,10.1145/3770743.3804280,Yiyang Shi; Xinyu Liu; Zhenge Jia; Shaocong Wang 0001
+conf/dac/SinghalPRB95,The Validity of Retiming Sequential Circuits.,1995,DAC,10.1145/217474.217548,Vigyan Singhal; Carl Pixley; Richard L. Rudell; Robert K. Brayton
+conf/dac/WeiD06,Systematic development of nonlinear analog circuit macromodels through successive operator composition and nonlinear model decoupling.,2006,DAC,10.1145/1146909.1147167,Ying Wei 0002; Alex Doboli
+conf/dac/ClementHLRCP99,Fast Prototyping: A System Design Flow Applied to a Complex System-on-Chip Multiprocessor Design.,1999,DAC,10.1145/309847.309971,Benoit Clement; Richard Hersemeule; Etienne Lantreibecq; Bernard Ramanadin; Pierre Coulomb; François Pogodalla
+conf/dac/BanksBEFH91,A Configuration Management System in a Data Management Framework.,1991,DAC,10.1145/127601.127754,Steve Banks; Catherine Bunting; Russ Edwards; Laura Fleming; Peter Hackett
+conf/dac/FerrandiCCFF0MP21,Invited: Bambu: an Open-Source Research Framework for the High-Level Synthesis of Complex Applications.,2021,DAC,10.1109/DAC18074.2021.9586110,Fabrizio Ferrandi; Vito Giovanni Castellana; Serena Curzel; Pietro Fezzardi; Michele Fiorito; Marco Lattuada 0001; Marco Minutoli; Christian Pilato; Antonino Tumeo
+conf/dac/KahngKL13,Smart non-default routing for clock power reduction.,2013,DAC,10.1145/2463209.2488846,Andrew B. Kahng; Seokhyeong Kang; Hyein Lee 0001
+conf/dac/ChenHCWGBWZ26,Toward True-3D Timing-Driven Analytical Global Placement for Mixed-Size Face-to-Face 3D ICs.,2026,DAC,10.1145/3770743.3804283,Qiyuan Chen; Fuxing Huang; Lixin Chen; Hao Wu; Hao Gu; Xiqiong Bai; Xi Wang 0009; Ziran Zhu
+conf/dac/0003RKEKSOGC21,PrefixRL: Optimization of Parallel Prefix Circuits using Deep Reinforcement Learning.,2021,DAC,10.1109/DAC18074.2021.9586094,Rajarshi Roy 0003; Jonathan Raiman; Neel Kant; Ilyas Elkin; Robert Kirby 0001; Michael Y. Siu; Stuart F. Oberman; Saad Godil; Bryan Catanzaro
+conf/dac/TanLZCYLW21,ROLoad: Securing Sensitive Operations with Pointee Integrity.,2021,DAC,10.1109/DAC18074.2021.9586274,Wende Tan; Yuan Li 0061; Chao Zhang 0008; Xingman Chen; Songtao Yang 0001; Ying Liu 0024; Jianping Wu
+conf/dac/WangH0LL15,ProPRAM: exploiting the transparent logic resources in non-volatile memory for near data computing.,2015,DAC,10.1145/2744769.2744896,Ying Wang 0001; Yinhe Han 0001; Lei Zhang 0008; Huawei Li 0001; Xiaowei Li 0001
+conf/dac/GhoshPSBGHS26,COmPOSER: Circuit Optimization of mm-wave/RF circuits with Performance-Oriented Synthesis for Efficient Realizations.,2026,DAC,10.1145/3770743.3804157,Subhadip Ghosh; Surya Srikar Peri; Ramprasath S 0001; Sosina A. Berhan; Endalk Y. Gebru; Ramesh Harjani; Sachin S. Sapatnekar
+conf/dac/GongYH11,Fast non-monte-carlo transient noise analysis for high-precision analog/RF circuits by stochastic orthogonal polynomials.,2011,DAC,10.1145/2024724.2024797,Fang Gong; Hao Yu 0001; Lei He 0001
+conf/dac/SchaumontKV02,Unlocking the design secrets of a 2.29 Gb/s Rijndael processor.,2002,DAC,10.1145/513918.514079,Patrick Schaumont; Henry Kuo; Ingrid Verbauwhede
+conf/dac/BacchiniMFBNMD05,Is methodology the highway out of verification hell?,2005,DAC,10.1145/1065579.1065714,Francine Bacchini; Gabe Moretti; Harry Foster; Janick Bergeron; Masayuki Nakamura; Shrenik Mehta; Laurent Ducousso
+conf/dac/ChangW85,A knowledge based planning system for mechanical assembly usign robots.,1985,DAC,10.1145/317825.317879,Kai-Hsiung Chang; William G. Wee
+conf/dac/DesmetVM00,Operating system based software generation for systems-on-chip.,2000,DAC,10.1145/337292.337509,Dirk Desmet; Diederik Verkest; Hugo De Man
+conf/dac/ZhangHSHS26,FUSE-TCAD: A Diffusion-Based Multi-Field Surrogate for High-Fidelity TCAD Device Simulation.,2026,DAC,10.1145/3770743.3804103,Xulin Zhang; Yupeng Hu; Zhuoran Song; Shucheng Huang; Qi Sun 0002
+conf/dac/TsarasGCXBY26,ShortCircuit: AlphaZero-Driven Generative Circuit Design.,2026,DAC,10.1145/3770743.3804316,Dimitrios Tsaras; Antoine Frederic Grosnit; Lei Chen 0031; Zhiyao Xie; Haitham Bou-Ammar; Mingxuan Yuan
+conf/dac/CaldwellKKM99,"Hypergraph Partitioning for VLSI CAD: Methodology for Heuristic Development, Experimentation and Reporting.",1999,DAC,10.1145/309847.309955,Andrew E. Caldwell; Andrew B. Kahng; Andrew A. Kennings; Igor L. Markov
+conf/dac/SperlingBSE23,Invited: Caching in Automated Data Centric Vehicles for Edge Computing Scenarios.,2023,DAC,10.1109/DAC56929.2023.10247983,Nora Sperling; Alex Bendrick; Dominik Stöhrmann; Rolf Ernst
+conf/dac/PrabakaranMVS020,ApproxFPGAs: Embracing ASIC-Based Approximate Arithmetic Components for FPGA-Based Systems.,2020,DAC,10.1109/DAC18072.2020.9218533,Bharath Srinivas Prabakaran; Vojtech Mrazek; Zdenek Vasícek; Lukás Sekanina; Muhammad Shafique 0001
+conf/dac/JordanW89,COMP: A VHDL Composition System.,1989,DAC,10.1145/74382.74521,Paul R. Jordan; Ronald D. Williams
+conf/dac/KirovskiDP01,Hypermedia-Aided Design.,2001,DAC,10.1145/378239.378536,Darko Kirovski; Milenko Drinic; Miodrag Potkonjak
+conf/dac/VijayaraghavanS26,Special Research Session: HRL-Topo: Hierarchical Reinforcement Learning with Large Language Models for Analog Circuit Topology Synthesis.,2026,DAC,10.1145/3770743.3807772,Prashanth Vijayaraghavan; Luyao Shi; Ehsan Degan; Vandana V. Mukherjee; Xin Zhang 0025
+conf/dac/CoudertMMS00,Web-based frameworks to enable CAD RD (abstract).,2000,DAC,10.1145/337292.337746,Olivier Coudert; Igor L. Markov; Christoph Meinel; Ellen Sentovich
+conf/dac/SuttonD96,A Description Language for Design Process Management.,1996,DAC,10.1145/240518.240551,Peter R. Sutton; Stephen W. Director
+conf/dac/SeyedzadehMJM15,PRES: pseudo-random encoding scheme to increase the bit flip reduction in the memory.,2015,DAC,10.1145/2744769.2755440,Seyed Mohammad Seyedzadeh; Rakan Maddah; Alex K. Jones; Rami G. Melhem
+conf/dac/ChenKLC24,Arbitrary-size Multi-layer OARSMT RL Router Trained with Combinatorial Monte-Carlo Tree Search.,2024,DAC,10.1145/3649329.3656500,Liang-Ting Chen 0003; Hung-Ru Kuo; Yih-Lang Li; Mango C.-T. Chao
+conf/dac/ChangZNV05,"Parameterized block-based statistical timing analysis with non-gaussian parameters, nonlinear delay functions.",2005,DAC,10.1145/1065579.1065604,Hongliang Chang; Vladimir Zolotov; Sambasivan Narayan; Chandu Visweswariah
+conf/dac/IachponiVBI85,A hierarchical gate array architecture and design methodology.,1985,DAC,10.1145/317825.317925,M. Iachponi; D. Vail; S. Bierly; A. Ignatowski
+conf/dac/BrunelKKPPKS00,COSY communication IP's.,2000,DAC,10.1145/337292.337515,Jean-Yves Brunel; W. M. Kruijtzer; H. J. H. N. Kenter; Frédéric Pétrot; L. Pasquier; Erwin A. de Kock; W. J. M. Smits
+conf/dac/SongWHZZLW25,ACRS: Adjacent Computation Resource Sharing among Partitioned GPU Sub-Cores.,2025,DAC,10.1109/DAC63849.2025.11132550,Penghao Song; Chongxi Wang; Chenji Han; Haoyu Zhao; Tingting Zhang; Tianyi Liu; Jian Wang
+conf/dac/BairamkulovYM24,Unleashing the Power of T1-cells in SFQ Arithmetic Circuits.,2024,DAC,10.1145/3649329.3658267,Rassul Bairamkulov; Mingfei Yu; Giovanni De Micheli
+conf/dac/HuaUZS22,GuardNN: secure accelerator architecture for privacy-preserving deep learning.,2022,DAC,10.1145/3489517.3530439,Weizhe Hua; Muhammad Umar 0002; Zhiru Zhang; G. Edward Suh
+conf/dac/WilleBHGPP22,"The basis of design tools for quantum computing: arrays, decision diagrams, tensor networks, and ZX-calculus.",2022,DAC,10.1145/3489517.3530627,Robert Wille; Lukas Burgholzer; Stefan Hillmich; Thomas Grurl; Alexander Ploier; Tom Peham
+conf/dac/FangDV20,Reuse-trap: Re-purposing Cache Reuse Distance to Defend against Side Channel Leakage.,2020,DAC,10.1109/DAC18072.2020.9218725,Hongyu Fang; Milos Doroslovacki; Guru Venkataramani
+conf/dac/YangSLS17,Phase-driven Learning-based Dynamic Reliability Management For Multi-core Processors.,2017,DAC,10.1145/3061639.3062301,Zhiyuan Yang 0001; Caleb Serafy; Tiantao Lu; Ankur Srivastava 0001
+conf/dac/SafarpourVBY06,Efficient SAT-based Boolean matching for FPGA technology mapping.,2006,DAC,10.1145/1146909.1147034,Sean Safarpour; Andreas G. Veneris; Gregg Baeckler; Richard Yuan
+conf/dac/BosbachZP0WL24,Towards High-Performance Virtual Platforms: A Parallelization Strategy for SystemC TLM-2.0 CPU Models.,2024,DAC,10.1145/3649329.3658257,Nils Bosbach; Niko Zurstraßen; Rebecca Pelke; Lukas Jünger 0001; Jan Henrik Weinstock; Rainer Leupers
+conf/dac/HuangBKWCL0Z24,Series-Parallel Hybrid SOT-MRAM Computing-in-Memory Macro with Multi-Method Modulation for High Area and Energy Efficiency.,2024,DAC,10.1145/3649329.3656214,Weiliang Huang; Jinyu Bai; Wang Kang 0001; Zhaohao Wang; Kaihua Cao; Hongxi Liu; He Zhang 0011; Weisheng Zhao 0001
+conf/dac/LemkeCEW71,Rainbow: An integrated CAD system.,1971,DAC,10.1145/800158.805086,Heinz U. Lemke; Chris J. Cheney; M. Etherton; Neil E. Wiseman
+conf/dac/SmirnovGRT17,Optimizing Message Routing and Scheduling in Automotive Mixed-Criticality Time-Triggered Networks.,2017,DAC,10.1145/3061639.3062298,Fedor Smirnov; Michael Glaß; Felix Reimann; Jürgen Teich
+conf/dac/ObermaierIHS18,A measurement system for capacitive PUF-based security enclosures.,2018,DAC,10.1145/3195970.3195976,Johannes Obermaier; Vincent Immler; Matthias Hiller; Georg Sigl
+conf/dac/MengWYYBM26,TRAM: Training Approximate Multiplier Structures for Low-Power AI Accelerators.,2026,DAC,10.1145/3770743.3804298,Chang Meng; Hanyu Wang; Yuyang Ye 0001; Mingfei Yu; Wayne P. Burleson; Giovanni De Micheli
+conf/dac/RadT06,A new hybrid FPGA with nanoscale clusters and CMOS routing.,2006,DAC,10.1145/1146909.1147094,Reza M. Rad; Mohammad Tehranipoor
+conf/dac/AgarwalSB03,An effective capacitance based driver output model for on-chip RLC interconnects.,2003,DAC,10.1145/775832.775931,Kanak Agarwal 0001; Dennis Sylvester; David T. Blaauw
+conf/dac/BaltusVADM97,Developing a Concurrent Methodology for Standard-Cell Library Generation.,1997,DAC,10.1145/266021.266129,Donald G. Baltus; Thomas Varga; Robert C. Armstrong; John Duh; T. G. Matheson
+conf/dac/ChouMM10,"Find your flow: increasing flow experience by designing ""human"" embedded systems.",2010,DAC,10.1145/1837274.1837428,Chen-Ling Chou; Anca M. Miron; Radu Marculescu
+conf/dac/CiesielskiK82,An analytical method for compacting routing area in integrated circuits.,1982,DAC,10.1145/800263.809182,Maciej J. Ciesielski; Edwin Kinnen
+conf/dac/JouWLCJ10,New model-driven design and generation of multi-facet arbiters part I: from the design model to the architecture model.,2010,DAC,10.1145/1837274.1837340,Jer-Min Jou; Sih-Sian Wu; Yun-Lung Lee; Cheng Chou; Yuan-Long Jeang
+conf/dac/El-ShambakeyR12,STM concurrency control for embedded real-time software with tighter time bounds.,2012,DAC,10.1145/2228360.2228437,Mohammed El-Shambakey; Binoy Ravindran
+conf/dac/SylvesterK01,Future Performance Challenges in Nanometer Design.,2001,DAC,10.1145/378239.378245,Dennis Sylvester; Himanshu Kaul
+conf/dac/HuGWLCC25,AdreamDCO: AI-Driven Robust and Efficient Design Automation for Digitally Controlled Oscillators.,2025,DAC,10.1109/DAC63849.2025.11132798,Yaolong Hu; Hao Guo; Shikai Wang; Jiaqi Liu; Weidong Cao; Taiyun Chi
+conf/dac/LeeK26,ORBIS: Output-Guided Token Reduction with Distribution-Aware Matching for Video Diffusion Acceleration.,2026,DAC,10.1145/3770743.3804346,Hangyeol Lee; Joo-Young Kim 0001
+conf/dac/WiggersBS07,Efficient Computation of Buffer Capacities for Cyclo-Static Dataflow Graphs.,2007,DAC,10.1145/1278480.1278647,Maarten Wiggers; Marco Bekooij; Gerard J. M. Smit
+conf/dac/FangMZLHZCLZ12,Transformer: a functional-driven cycle-accurate multicore simulator.,2012,DAC,10.1145/2228360.2228381,Zhenman Fang; Qinghao Min; Keyong Zhou; Yi Lu; Yibin Hu; Weihua Zhang 0001; Haibo Chen 0001; Jian Li 0059; Binyu Zang
+conf/dac/ChoALLPK26,Differentiable Fill Insertion with Explicit Delay Optimization.,2026,DAC,10.1145/3770743.3804006,Jinoh Cho; Jinmo Ahn; Jakang Lee; Jaeseung Lee; Seonghyeon Park; Seokhyeong Kang
+conf/dac/GrahmC01,SoC Integration of Reusable Baseband Bluetooth IP.,2001,DAC,10.1145/378239.378478,Torbjörn Grahm; Barry Clark
+conf/dac/ChungRPG15,Domain wall memory based digital signal processors for area and energy-efficiency.,2015,DAC,10.1145/2744769.2744825,Jinil Chung; Kenneth Ramclam; Jongsun Park 0001; Swaroop Ghosh
+conf/dac/LiLYWFGZZWLWZ26,Cachence: Fine-Grained Cache Partitioning in Both Time and Space.,2026,DAC,10.1145/3770743.3803974,Liujia Li; Yuanlong Li; Yiming Yao; Jianyu Wu; Yi Fan; Jinhao Guo; Liren Zhu; Jie Zhang 0048; Xiaolin Wang 0001; Yingwei Luo; Zhenlin Wang 0003; Diyu Zhou 0001
+conf/dac/BanerjeeS06,Are carbon nanotubes the future of VLSI interconnections?,2006,DAC,10.1145/1146909.1147116,Kaustav Banerjee; Navin Srivastava
+conf/dac/FranzonBFMPSW99,Parasitic Extraction Accuracy - How Much is Enough?,1999,DAC,10.1145/309847.309973,Paul D. Franzon; Mark Basel; Aki Fujimara; Sharad Mehrotra; Ron Preston; Robin C. Sarma; Marty Walker
+conf/dac/ZhaoBD04,A scalable soft spot analysis methodology for compound noise effects in nano-meter circuits.,2004,DAC,10.1145/996566.996804,Chong Zhao; Xiaoliang Bai; Sujit Dey
+conf/dac/LiuYLLL26,Hades: Harnessing Architecture Design Automation for Application-specific FHE Accelerators.,2026,DAC,10.1145/3770743.3804063,Silin Liu; Yinghao Yang 0001; Fuping Li; Hang Lu; Xiaowei Li 0001
+conf/dac/XuYGHP15,PARR: pin access planning and regular routing for self-aligned double patterning.,2015,DAC,10.1145/2744769.2744890,Xiaoqing Xu; Bei Yu 0001; Jhih-Rong Gao; Che-Lun Hsu; David Z. Pan
+conf/dac/HeitmannKC20,Late Breaking Results: Can You Hear Me? Towards an Ultra Low-Cost Hearing Screening Device.,2020,DAC,10.1109/DAC18072.2020.9218597,Nils Heitmann; Philipp H. Kindt; Samarjit Chakraborty
+conf/dac/YuVH10,Leakage-aware dynamic scheduling for real-time adaptive applications on multiprocessor systems.,2010,DAC,10.1145/1837274.1837396,Heng Yu 0001; Bharadwaj Veeravalli; Yajun Ha
+conf/dac/TangZMLLLTW25,HIVE: A High-Priority Victim Cache for Accelerating GPU Memory Accesses.,2025,DAC,10.1109/DAC63849.2025.11133338,Yuhan Tang; Jianmin Zhang; Sheng Ma; Tiejun Li; Hanqing Li; Shengbai Luo; Jixuan Tang; Lizhou Wu
+conf/dac/ShiD17,TraPL: Track Planning of Local Congestion for Global Routing.,2017,DAC,10.1145/3061639.3062335,Daohang Shi; Azadeh Davoodi
+conf/dac/KongHJLKY26,CLUE-ECC: Low-Cost LPDDR6 Reliability Enhancement by Integrating System ECC with On-Die ECC.,2026,DAC,10.1145/3770743.3804014,Youngbae Kong; Jae-Youn Hong; Jongwoo Jeon; Junki Lee; Youngjung Kang; Joon-Sung Yang
+conf/dac/NetoAPVLMG22,Improving LUT-based optimization for ASICs.,2022,DAC,10.1145/3489517.3530461,Walter Lau Neto; Luca G. Amarù; Vinicius Possani; Patrick Vuillod; Jiong Luo; Alan Mishchenko; Pierre-Emmanuel Gaillardon
+conf/dac/RajsumanMJ87,On Accuracy of Switch-Level Modeling of Bridging Faults in Complex Gates.,1987,DAC,10.1145/37888.37924,Rochit Rajsuman; Yashwant K. Malaiya; Anura P. Jayasumana
+conf/dac/LiDX20,Eliminating Redundant Computation in Noisy Quantum Computing Simulation.,2020,DAC,10.1109/DAC18072.2020.9218666,Gushu Li; Yufei Ding 0001; Yuan Xie 0001
+conf/dac/WangCIHI23,Late Breaking Results: Scalable and Efficient Hyperdimensional Computing for Network Intrusion Detection.,2023,DAC,10.1109/DAC56929.2023.10247859,Junyao Wang 0001; Hanning Chen; Mariam Issa; Sitao Huang; Mohsen Imani
+conf/dac/FangCC12,A novel layout decomposition algorithm for triple patterning lithography.,2012,DAC,10.1145/2228360.2228579,Shao-Yun Fang; Yao-Wen Chang; Wei-Yu Chen
+conf/dac/CheeKMPSBSRWS08,PicoCube: a 1 cm3 sensor node powered by harvested energy.,2008,DAC,10.1145/1391469.1391499,Yuen-Hui Chee; Mike Koplow; Michael Mark; Nathan Pletcher; Mike Seeman; Fred L. Burghardt; Dan Steingart; Jan M. Rabaey; Paul K. Wright; Seth Sanders
+conf/dac/MaoLLZZLMD25,CXL-INTERPLAY: Unraveling and Characterizing CXL Interference in Modern Computer Systems.,2025,DAC,10.1109/DAC63849.2025.11132607,Shunyu Mao; Jiajun Luo; Yixin Li; Jiapeng Zhou; Weidong Zhang; Zheng Liu 0022; Teng Ma 0006; Shuwen Deng
+conf/dac/ClarkeKZ96,Word Level Model Checking - Avoiding the Pentium FDIV Error.,1996,DAC,10.1145/240518.240640,Edmund M. Clarke; Manpreet Khaira; Xudong Zhao 0005
+conf/dac/FaroughiS87,An Improved Systematic Method for Constructing Systolic Arrays from Algorithms.,1987,DAC,10.1145/37888.37892,Nikrouz Faroughi; Michael A. Shanblatt
+conf/dac/NachtergaeleVPLBB99,Implementation of a Scalable MPEG-4 Wavelet-Based Visual Texture Compression System.,1999,DAC,10.1145/309847.309948,Lode Nachtergaele; Bart Vanhoof; Mercedes Peón; Gauthier Lafruit; Jan Bormans; Ivo Bolsens
+conf/dac/El-MalehMRM95,On Test Set Preservation of Retimed Circuits.,1995,DAC,10.1145/217474.217526,Aiman H. El-Maleh; Thomas E. Marchok; Janusz Rajski; Wojciech Maly
+conf/dac/AmdeBS03,Automating the design of an asynchronous DLX microprocessor.,2003,DAC,10.1145/775832.775961,Manish Amde; Ivan Blunno; Christos P. Sotiriou
+conf/dac/BhardwajV05,Leakage minimization of nano-scale circuits in the presence of systematic and random variations.,2005,DAC,10.1145/1065579.1065719,Sarvesh Bhardwaj; Sarma B. K. Vrudhula
+conf/dac/KungPPK19,Peregrine: A Flexible Hardware Accelerator for LSTM with Limited Synaptic Connection Patterns.,2019,DAC,10.1145/3316781.3317879,Jaeha Kung 0001; Junki Park; Sehun Park; Jae-Joon Kim
+conf/dac/MoitraBKP23,XPert: Peripheral Circuit & Neural Architecture Co-search for Area and Energy-efficient Xbar-based Computing.,2023,DAC,10.1109/DAC56929.2023.10247676,Abhishek Moitra; Abhiroop Bhattacharjee; Youngeun Kim; Priyadarshini Panda
+conf/dac/WeiZL23,GDSII-Guard: ECO Anti-Trojan Optimization with Exploratory Timing-Security Trade-Offs.,2023,DAC,10.1109/DAC56929.2023.10247697,Xinming Wei; Jiaxi Zhang 0001; Guojie Luo
+conf/dac/LiangSKCZ19,ZUMA: Enabling Direct Insertion/Deletion Operations with Emerging Skyrmion Racetrack Memory.,2019,DAC,10.1145/3316781.3317937,Zheng Liang 0003; Guangyu Sun 0003; Wang Kang 0001; Xing Chen 0012; Weisheng Zhao 0001
+conf/dac/DadgourB07,Design and Analysis of Hybrid NEMS-CMOS Circuits for Ultra Low-Power Applications.,2007,DAC,10.1145/1278480.1278559,Hamed F. Dadgour; Kaustav Banerjee
+conf/dac/DeOrioB09,Human computing for EDA.,2009,DAC,10.1145/1629911.1630073,Andrew DeOrio; Valeria Bertacco
+conf/dac/BruckKKR86,Synthesis of concurrent modular controllers from algorithmic descriptions.,1986,DAC,10.1145/318013.318058,Rainer Brück 0001; Bernd Kleinjohann; Thomas Kathöfer; Franz J. Rammig
+conf/dac/MentzosPZPH26,Late-Breaking Results: Ultra Energy Efficient Personalized Glucose Prediction with RLS Implementation on a Tiny FPGA.,2026,DAC,10.1145/3770743.3807688,Georgios Mentzos; Theodora Panagiota Podimata; Georgios Zervakis 0001; Emmanouil Z. Psarakis; Jörg Henkel
+conf/dac/WuPA26,ATTINA: Spatial Acceleration of Additive Number Theoretic Transform for Energy-Efficient zkSNARKs at the Edge.,2026,DAC,10.1145/3770743.3804075,Yanze Wu; Devin Park; Md Tanvir Arafin
+conf/dac/ZykovMJVS05,High performance computing on fault-prone nanotechnologies: novel microarchitecture techniques exploiting reliability-delay trade-offs.,2005,DAC,10.1145/1065579.1065649,Andrey V. Zykov; Elias Mizan; Margarida F. Jacome; Gustavo de Veciana; Ajay Subramanian
+conf/dac/DuanNLRX25,Holistic Design towards Resource-Stringent Binary Vector Symbolic Architecture.,2025,DAC,10.1109/DAC63849.2025.11132468,Shijin Duan; Nuntipat Narkthong; Yukui Luo; Shaolei Ren; Xiaolin Xu 0001
+conf/dac/WangAK98,Automatic Generation of Assertions for Formal Verification of PowerPC Microprocessor Arrays Using Symbolic Trajectory Evaluation.,1998,DAC,10.1145/277044.277188,Li-C. Wang; Magdy S. Abadir; Nari Krishnamurthy
+conf/dac/LinC14,POLAR 2.0: An Effective Routability-Driven Placer.,2014,DAC,10.1145/2593069.2593181,Tao Lin 0007; Chris Chu
+conf/dac/TangLHW22,SEM-latch: a lost-cost and high-performance latch design for mitigating soft errors in nanoscale CMOS process.,2022,DAC,10.1145/3489517.3530533,Zhong-Li Tang; Chia-Wei Liang; Ming-Hsien Hsiao; Charles H.-P. Wen
+conf/dac/Libeskind-HadasL89,Solutions to the Module Orientation and Rotation Problems by Neural Computation Networks.,1989,DAC,10.1145/74382.74449,Ran Libeskind-Hadas; C. L. Liu 0001
+conf/dac/LiY07,Statistical Analysis of Full-Chip Leakage Power Considering Junction Tunneling Leakage.,2007,DAC,10.1145/1278480.1278505,Tao Li; Zhiping Yu
+conf/dac/ClercqUHV14,Ultra Low-Power implementation of ECC on the ARM Cortex-M0+.,2014,DAC,10.1145/2593069.2593238,Ruan de Clercq; Leif Uhsadel; Anthony Van Herrewege; Ingrid Verbauwhede
+conf/dac/LiXXQTZYM25,3D-SubG: A 3D Stacked Hybrid Processing Near/In-Memory Accelerator for Subgraph GNNs.,2025,DAC,10.1109/DAC63849.2025.11132830,Guoxiang Li; Runnan Xu; Ruohang Xu; Yikan Qiu; Renati Tuerhong; Muhan Zhang; Le Ye; Yufei Ma 0002
+conf/dac/GoodbyO97,Frequency-Domain Compatibility in Digital Filter BIST.,1997,DAC,10.1145/266021.266278,Laurence Goodby; Alex Orailoglu
+conf/dac/BurgunRFBL96,Serial Fault Emulation.,1996,DAC,10.1145/240518.240669,Luc Burgun; Frédéric Reblewski; Gérard Fenelon; Jean Barbier; Olivier Lepape
+conf/dac/KleebergerGS13,Predicting future product performance: modeling and evaluation of standard cells in FinFET technologies.,2013,DAC,10.1145/2463209.2488775,Veit Kleeberger; Helmut E. Graeb; Ulf Schlichtmann
+conf/dac/HilgenstockHONP98,A Video Signal Processor for MIMD Multiprocessing.,1998,DAC,10.1145/277044.277054,Jörg Hilgenstock; Klaus Herrmann 0002; Jan Otterstedt; Dirk Niggemeyer; Peter Pirsch
+conf/dac/BrownCS68,Design automation and the WRAP System.,1968,DAC,10.1145/800167.805404,J. A. Brown; L. J. Cesa; J. J. Sawicki
+conf/dac/SarmaDNH90,High-Level Synthesis: Technology Transfer to Industry.,1990,DAC,10.1145/123186.123399,Robin C. Sarma; Mark D. Dooley; N. Craig Newman; Graham Hetherington
+conf/dac/WuCZWZ23,DriverJar: Lightweight Device Driver Isolation for ARM.,2023,DAC,10.1109/DAC56929.2023.10247974,Huamao Wu; Yuan Chen; Yajin Zhou; Yifei Wang; Lubo Zhang
+conf/dac/WangWZ25,ZION: A Practical Confidential Virtual Machine Architecture on Commodity RISC-V Processors.,2025,DAC,10.1109/DAC63849.2025.11133121,Jie Wang 0006; Juan Wang 0006; Yinqian Zhang
+conf/dac/InacioSNRTTK99,Vertical Benchmarks for CAD.,1999,DAC,10.1145/309847.309969,Christopher Inacio; Herman Schmit; David Nagle; Andrew Ryan; Donald E. Thomas; Yingfai Tong; Ben Klass
+conf/dac/TheWC89,VIA Minimization by Layout Modification.,1989,DAC,10.1145/74382.74533,Khe-Sing The; D. F. Wong 0001; Jason Cong
+conf/dac/LiS09,Yield-driven iterative robust circuit optimization algorithm.,2009,DAC,10.1145/1629911.1630065,Yan Li 0029; Vladimir Stojanovic
+conf/dac/AbercrombiePC09,Use of lithography simulation for the calibration of equation-based design rule checks.,2009,DAC,10.1145/1629911.1629931,David Abercrombie; Fedor Pikus; Cosmin Cazan
+conf/dac/SongQYZZWL24,TSAcc: An Efficient \underline{T}empo-\underline{S}patial Similarity Aware \underline{Acc}elerator for Attention Acceleration.,2024,DAC,10.1145/3649329.3655982,Zhuoran Song; Chunyu Qi; Yuanzheng Yao; Peng Zhou 0030; Yanyi Zi; Nan Wang; Xiaoyao Liang
+conf/dac/DaoMHOM93,A Compaction Method for Full Chip VLSI Layouts.,1993,DAC,10.1145/157485.164953,Joseph Dao; Nobu Matsumoto; Tsuneo Hamai; Chusei Ogawa; Shojiro Mori
+conf/dac/EisnerSHNNV00,A methodology for formal design of hardware control with application to cache coherence protocols.,2000,DAC,10.1145/337292.337757,Cindy Eisner; Irit Shitsevalov; Russ Hoover; Wayne G. Nation; Kyle L. Nelson; Ken Valk
+conf/dac/ThompsonKRRSB80,The incorporation of functional level element routines into an existing digital simulation system.,1980,DAC,10.1145/800139.804561,Edward W. Thompson; Patrick G. Karger; W. R. Read Jr.; Don Ross; John Smith; Richard von Blucher
+conf/dac/LeeKKOK23,In-Memory Neural Network Accelerator based on eDRAM Cell with Enhanced Retention Time.,2023,DAC,10.1109/DAC56929.2023.10247975,Inhwan Lee; Eunhwan Kim; Nameun Kang; Hyunmyung Oh; Jae-Joon Kim
+conf/dac/ManLZW19,A General Pattern-Based Dynamic Compilation Framework for Coarse-Grained Reconfigurable Architectures.,2019,DAC,10.1145/3316781.3317745,Xingchen Man; Leibo Liu; Jianfeng Zhu 0001; Shaojun Wei
+conf/dac/PenryA03,Optimizations for a simulator construction system supporting reusable components.,2003,DAC,10.1145/775832.776065,David A. Penry; David I. August
+conf/dac/ArmstrongCSK90,The VHDL Validation Suite.,1990,DAC,10.1145/123186.123190,James Armstrong; Chang H. Cho; Sandeep Shah; Chakravarthy Kosaraju
+conf/dac/BhardwajCR12,Towards graceful aging degradation in NoCs through an adaptive routing algorithm.,2012,DAC,10.1145/2228360.2228429,Kshitij Bhardwaj; Koushik Chakraborty; Sanghamitra Roy
+conf/dac/VandrisS91,"Algorithms for Fast, Memory Efficient Switch-Level Fault Simulation.",1991,DAC,10.1145/127601.127645,Evstratios Vandris; Gerald E. Sobelman
+conf/dac/AttarhaN02,Signal integrity fault analysis using reduced-order modeling.,2002,DAC,10.1145/513918.514012,Amir Attarha; Mehrdad Nourani
+conf/dac/HuangCCW23,BWA-NIMC: Budget-based Workload Allocation for Hybrid Near/In-Memory-Computing.,2023,DAC,10.1109/DAC56929.2023.10247819,Chi-Tse Huang; Cheng-Yang Chang; Yu-Chuan Chuang; An-Yeu Andy Wu
+conf/dac/YuZHZZW26,TDH-GNN: An Efficient Topology-driven Accelerator for Dynamic Heterogeneous GNN.,2026,DAC,10.1145/3770743.3803895,Hui Yu 0029; Wei Zhang 0138; Ligang He; Jin Zhao 0003; Yu Zhang 0027; Zixiao Wang 0005
+conf/dac/LearyCC12,System-level synthesis of memory architecture for stream processing sub-systems of a MPSoC.,2012,DAC,10.1145/2228360.2228481,Glenn Leary; Weijia Che; Karam S. Chatha
+conf/dac/LiuLWJXWQ18,DeepN-JPEG: a deep neural network favorable JPEG-based image compression framework.,2018,DAC,10.1145/3195970.3196022,Zihao Liu 0015; Tao Liu 0023; Wujie Wen; Lei Jiang 0001; Jie Xu 0001; Yanzhi Wang 0001; Gang Quan
+conf/dac/EeckelaertSGSS06,Hierarchical bottom--up analog optimization methodology validated by a delta-sigma A/D converter design for the 802.11a/b/g standard.,2006,DAC,10.1145/1146909.1146920,Tom Eeckelaert; Raf Schoofs; Georges G. E. Gielen; Michiel Steyaert; Willy M. C. Sansen
+conf/dac/WangVG97,An Investigation of Power Delay Trade-Offs on PowerPC Circuits.,1997,DAC,10.1145/266021.266190,Qi Wang; Sarma B. K. Vrudhula; Shantanu Ganguly
+conf/dac/SantenWKPPCWA23,Design Automation for Cryogenic CMOS Circuits.,2023,DAC,10.1109/DAC56929.2023.10247824,Victor M. van Santen; Marcel Walter; Florian Klemme; Shivendra Singh Parihar; Girish Pahwa; Yogesh Singh Chauhan; Robert Wille; Hussam Amrouch
+conf/dac/VladimirescuWKBKDNJL87,A Vector Hardware Accelerator with Circuit Simulation Emphasis.,1987,DAC,10.1145/37888.37901,Andrei Vladimirescu; David Weiss; Manolis Katevenis; Zvika Bronstein; Alon Kifir; Karja Danuwidjaja; K. C. Ng; Niraj Jain; Steven Lass
+conf/dac/ChoiSP04,Off-chip latency-driven dynamic voltage and frequency scaling for an MPEG decoding.,2004,DAC,10.1145/996566.996718,Kihwan Choi; Ramakrishna Soma; Massoud Pedram
+conf/dac/SinghalIA17,LSC: A Large-Scale Consensus-Based Clustering Algorithm for High-Performance FPGAs.,2017,DAC,10.1145/3061639.3062279,Love Singhal; Mahesh A. Iyer; Saurabh N. Adya
+conf/dac/HuangCCB16,Area optimization of resilient designs guided by a mixed integer geometric program.,2016,DAC,10.1145/2897937.2897990,Hsin-Ho Huang; Huimei Cheng; Chris C. N. Chu; Peter A. Beerel
+conf/dac/DavareZNPKS07,Period Optimization for Hard Real-time Distributed Automotive Systems.,2007,DAC,10.1145/1278480.1278553,Abhijit Davare; Qi Zhu 0002; Marco Di Natale; Claudio Pinello; Sri Kanajan; Alberto L. Sangiovanni-Vincentelli
+conf/dac/UlrichBW72,Fault-test analysis techniques based on logic simulation.,1972,DAC,10.1145/800153.804936,Ernst G. Ulrich; Thomas E. Baker; L. R. Williams
+conf/dac/HsuW08,A generalized network flow based algorithm for power-aware FPGA memory mapping.,2008,DAC,10.1145/1391469.1391479,Tien-Yuan Hsu; Ting-Chi Wang
+conf/dac/WangS20,Machine Leaming to Set Meta-Heuristic Specific Parameters for High-Level Synthesis Design Space Exploration.,2020,DAC,10.1109/DAC18072.2020.9218674,Zi Wang 0006; Benjamin Carrión Schäfer
+conf/dac/SuhKL05,Cache coherence support for non-shared bus architecture on heterogeneous MPSoCs.,2005,DAC,10.1145/1065579.1065725,Taeweon Suh; Daehyun Kim 0001; Hsien-Hsin S. Lee
+conf/dac/LiCW17,Energy-Efficient Execution for Repetitive App Usages on big.LITTLE Architectures.,2017,DAC,10.1145/3061639.3062239,Xianfeng Li; Guikang Chen; Wen Wen
+conf/dac/BirminghamJK86,Knowlege-based expert systems and their application (tutorial session.,1986,DAC,10.1145/318013.318098,William P. Birmingham; Rostam Joobbani; Jin Kim 0001
+conf/dac/LuebbertU80,Gate assignment and pack placement: Two approaches compared.,1980,DAC,10.1145/800139.804572,Frank Luebbert; Mike Ulrey
+conf/dac/SatoYMF90,Boolean Resubstitution with Permissible Functions and Binary Decision Diagrams.,1990,DAC,10.1145/123186.123276,Hitomi Sato; Yoshihiro Yasue; Yusuke Matsunaga; Masahiro Fujita
+conf/dac/PutraH021,SparkXD: A Framework for Resilient and Energy-Efficient Spiking Neural Network Inference using Approximate DRAM.,2021,DAC,10.1109/DAC18074.2021.9586332,Rachmad Vidya Wicaksana Putra; Muhammad Abdullah Hanif; Muhammad Shafique 0001
+conf/dac/WangHZLL16,DISCO: a low overhead in-network data compressor for energy-efficient chip multi-processors.,2016,DAC,10.1145/2897937.2898007,Ying Wang 0001; Yinhe Han 0001; Jun Zhou 0022; Huawei Li 0001; Xiaowei Li 0001
+conf/dac/DasV08,Topology synthesis of analog circuits based on adaptively generated building blocks.,2008,DAC,10.1145/1391469.1391483,Angan Das; Ranga Vemuri
+conf/dac/PapachristouCH91,A Data Path Synthesis Method for Self-Testable Designs.,1991,DAC,10.1145/127601.127698,Christos A. Papachristou; Scott Chiu; Haidar Harmanani
+conf/dac/DeyBK90,Corolla Based Circuit Partitioning and Resynthesis.,1990,DAC,10.1145/123186.123416,Sujit Dey; Franc Brglez; Gershon Kedem
+conf/dac/KuehlmannBCRMN08,Verifying really complex systems: on earth and beyond.,2008,DAC,10.1145/1391469.1391608,Andreas Kuehlmann; Anjan Bose; David E. Corman; Rob A. Rutenbar; Robert M. Manning; Anna Newman
+conf/dac/ShanCCLL19,Exact and Heuristic Allocation of Multi-kernel Applications to Multi-FPGA Platforms.,2019,DAC,10.1145/3316781.3317821,Junnan Shan; Mario R. Casu; Jordi Cortadella; Luciano Lavagno; Mihai T. Lazarescu
+conf/dac/LuJY20,Late Breaking Results: Design Dependent Mega Cell Methodology for Area and Power Optimization.,2020,DAC,10.1109/DAC18072.2020.9218739,Chien-Pang Lu; Iris Hui-Ru Jiang; Chih-Wen Yang
+conf/dac/ParkKKJR25,RADiT: Redundancy-Aware Diffusion Transformer Acceleration Leveraging Timestep Similarity.,2025,DAC,10.1109/DAC63849.2025.11133190,Youngjun Park; Sangyeon Kim; Yeonggeon Kim; Gisan Ji; Sungju Ryu
+conf/dac/ChoiHKKJSKCPJKC21,Application of Deep Reinforcement Learning to Dynamic Verification of DRAM Designs.,2021,DAC,10.1109/DAC18074.2021.9586282,Hyojin Choi; In Huh; Seungju Kim; Jeonghoon Ko; Changwook Jeong; Hyeonsik Son; Kiwon Kwon; Joonwan Chai; Younsik Park; Jaehoon Jeong; Daesin Kim; Jung Yun Choi
+conf/dac/LevitanC09,Massively parallel processing: it's déjà vu all over again.,2009,DAC,10.1145/1629911.1630050,Steven P. Levitan; Donald M. Chiarulli
+conf/dac/ParkMJ02,The wearable motherboard: a framework for personalized mobile information processing (PMIP).,2002,DAC,10.1145/513918.513961,Sungmee Park; Kenneth Mackenzie; Sundaresan Jayaraman
+conf/dac/BianSHS17,LSTA: Learning-Based Static Timing Analysis for High-Dimensional Correlated On-Chip Variations.,2017,DAC,10.1145/3061639.3062280,Song Bian 0001; Michihiro Shintani; Masayuki Hiromoto; Takashi Sato 0001
+conf/dac/ChoLKC08,The design of a low power carbon nanotube chemical sensor system.,2008,DAC,10.1145/1391469.1391494,Taeg Sang Cho; Kyeong-Jae Lee; Jing Kong; Anantha P. Chandrakasan
+conf/dac/LuLJYP26,Late Breaking Results: Power Mesh Construction for 3D-IC with Backside Power Delivery.,2026,DAC,10.1145/3770743.3807697,Chien-Pang Lu; Chun-Hao Lai; Iris Hui-Ru Jiang; Chih-Hsiang Yang; Chung-Ching Peng
+conf/dac/YuHZ09,Variational capacitance extraction of on-chip interconnects based on continuous surface model.,2009,DAC,10.1145/1629911.1630108,Wenjian Yu; Chao Hu; Wangyang Zhang
+conf/dac/BehmLLRV04,Industrial experience with test generation languages for processor verification.,2004,DAC,10.1145/996566.996578,Michael L. Behm; John M. Ludden; Yossi Lichtenstein; Michal Rimon; Michael Vinov
+conf/dac/HongP99,Behavioral Synthesis Techniques for Intellectual Property Protection.,1999,DAC,10.1145/309847.310085,Inki Hong; Miodrag Potkonjak
+conf/dac/CaldwellCKMPQW99,Effective Iterative Techniques for Fingerprinting Design IP.,1999,DAC,10.1145/309847.310083,Andrew E. Caldwell; Hyun-Jin Choi; Andrew B. Kahng; Stefanus Mantik; Miodrag Potkonjak; Gang Qu 0001; Jennifer L. Wong
+conf/dac/XinZLWSDJXLZZ26,Shooting Falcon with One Fault: A Practical Rowhammer-based Fault Attack against Falcon.,2026,DAC,10.1145/3770743.3804138,Zihao Xin; Xin Zhang 0110; Zhe Liu 0001; Qianmei Wu; Qingni Shen; Ruyi Ding; Yixin Jiang; Wenqian Xu; Zhihong Liang; Lu Zhou 0002; Fan Zhang 0010
+conf/dac/SalzH89,IRSIM: An Incremental MOS Switch-Level Simulator.,1989,DAC,10.1145/74382.74412,A. Salz; Mark Horowitz
+conf/dac/XieRZL021,Obfuscated Priority Assignment to CAN-FD Messages with Dependencies: A Swapping-based and Affix-Matching Approach.,2021,DAC,10.1109/DAC18074.2021.9586125,Guoqi Xie; Debayan Roy; Yawen Zhang; Renfa Li; Wanli Chang 0001
+conf/dac/KhdrPSH15,Thermal constrained resource management for mixed ILP-TLP workloads in dark silicon chips.,2015,DAC,10.1145/2744769.2744916,Heba Khdr; Santiago Pagani; Muhammad Shafique 0001; Jörg Henkel
+conf/dac/SorinMZ14,Architecting Dynamic Power Management to be Formally Verifiable.,2014,DAC,10.1145/2593069.2596669,Daniel J. Sorin; Opeoluwa Matthews; Meng Zhang 0017
+conf/dac/LiangFR26,HySpecPro: Scalable Hypergraph Partitioning via Spectral Projection Optimization.,2026,DAC,10.1145/3770743.3804370,Rongjian Liang; Zhuo Feng; Haoxing Ren
+conf/dac/0001Y17,Fixed-Parameter Tractable Algorithms for Optimal Layout Decomposition and Beyond.,2017,DAC,10.1145/3061639.3062250,Jian Kuang 0001; Evangeline F. Y. Young
+conf/dac/KiourtiWJL20,TrojDRL: Evaluation of Backdoor Attacks on Deep Reinforcement Learning.,2020,DAC,10.1109/DAC18072.2020.9218663,Panagiota Kiourti; Kacper Wardega; Susmit Jha; Wenchao Li 0001
+conf/dac/ShaoNYZLWYLTH26,S2CIM: A Secure-Computation and Secure-Storage Compute-in-Memory Architecture with Circuit-Algorithm Co-Design for Efficient and Trustworthy Edge Inference.,2026,DAC,10.1145/3770743.3803925,Hanyong Shao; Zhiyuan Ning; Wenshuai Yao; Runteng Zhu; Wenpu Luo; Xiaolei Wang; Xunzhao Yin; Meng Li 0004; Kechao Tang; Ru Huang 0001
+conf/dac/KangPHC18,Fast and precise routability analysis with conditional design rules.,2018,SLIP@DAC,10.1145/3225209.3225210,Ilgweon Kang; Dongwon Park; Changho Han; Chung-Kuan Cheng
+conf/dac/WolfsthalG05,Formal verification: is it real enough?,2005,DAC,10.1145/1065579.1065755,Yaron Wolfsthal; Rebecca M. Gott
+conf/dac/NazariFMOERSSKH24,Architectural Whispers: Robust Machine Learning Models Fingerprinting via Frequency Throttling Side-Channels.,2024,DAC,10.1145/3649329.3657388,Najmeh Nazari; Chongzhou Fang; Hosein Mohammadi Makrani; Behnam Omidi; Mahdi Eslamimehr; Setareh Rafatirad; Avesta Sasan; Hossein Sayadi; Khaled N. Khasawneh; Houman Homayoun
+conf/dac/KrupnovaAS97,A Hierarchy-Driven FPGA Partitioning Method.,1997,DAC,10.1145/266021.266271,Helena Krupnova; Ali Abbara; Gabriele Saucier
+conf/dac/YangHCF20,Non-uniform DNN Structured Subnets Sampling for Dynamic Inference.,2020,DAC,10.1109/DAC18072.2020.9218736,Li Yang 0009; Zhezhi He; Yu Cao 0001; Deliang Fan
+conf/dac/UbalSMGUCSK14,Exploring the Heterogeneous Design Space for both Performance and Reliability.,2014,DAC,10.1145/2593069.2596680,Rafael Ubal; Dana Schaa; Perhaad Mistry; Xiang Gong; Yash Ukidave; Zhongliang Chen; Gunar Schirner; David R. Kaeli
+conf/dac/YangLCMS19,"No Compromises: Secure NVM with Crash Consistency, Write-Efficiency and High-Performance.",2019,DAC,10.1145/3316781.3317869,Fan Yang 0134; Youyou Lu; Youmin Chen; Haiyu Mao; Jiwu Shu
+conf/dac/FalahatiMCU25,VISTA: Optimizing GPU Scheduling through Versatile Locality-Aware Data Sharing.,2025,DAC,10.1109/DAC63849.2025.11133076,Hajar Falahati; Negin Mahani; Adrián Cristal; Osman S. Unsal
+conf/dac/ShrideviRCR16,Catching the flu: emerging threats from a third party power management unit.,2016,DAC,10.1145/2897937.2897994,Rajesh Jayashankara Shridevi; Chidhambaranathan Rajamanikkam; Koushik Chakraborty; Sanghamitra Roy
+conf/dac/MaestroR08,Study of the effects of MBUs on the reliability of a 150 nm SRAM device.,2008,DAC,10.1145/1391469.1391704,Juan Antonio Maestro; Pedro Reviriego
+conf/dac/EbrahimiAT13,A layout-based approach for multiple event transient analysis.,2013,DAC,10.1145/2463209.2488858,Mojtaba Ebrahimi; Hossein Asadi 0001; Mehdi Baradaran Tahoori
+conf/dac/FaviC08,Techniques for fully integrated intra-/inter-chip optical communication.,2008,DAC,10.1145/1391469.1391558,Claudio Favi; Edoardo Charbon
+conf/dac/SekitaniYTSS13,Electrical artificial skin using ultraflexible organic transistor.,2013,DAC,10.1145/2463209.2488888,Tsuyoshi Sekitani; Tomoyuki Yokota; Makoto Takamiya; Takayasu Sakurai; Takao Someya
+conf/dac/ZiLS23,Optimal Synthesis of Multi-Controlled Qudit Gates.,2023,DAC,10.1109/DAC56929.2023.10247925,Wei Zi; Qian Li 0012; Xiaoming Sun 0001
+conf/dac/HuangLLCLLH26,LRTA: Routability-Driven 3D-aware Track Assignment with Layer Reassignment.,2026,DAC,10.1145/3770743.3804264,Pengcheng Huang; Zepeng Li; Zhenkun Lin; Guangyong Chen; Genggeng Liu; Wen-Hao Liu 0001; Xing Huang 0001
+conf/dac/TangGJDY23,Reaction Time Analysis of Event-Triggered Processing Chains with Data Refreshing.,2023,DAC,10.1109/DAC56929.2023.10248012,Yue Tang 0001; Nan Guan; Xu Jiang 0004; Zheng Dong 0002; Wang Yi 0001
+conf/dac/ThiagarajanNM22,A defect tolerance framework for improving yield.,2022,DAC,10.1145/3489517.3530534,Shiva Shankar Thiagarajan; Suriyaprakash Natarajan; Yiorgos Makris
+conf/dac/ZhaoQRZZY24,Neural Barrier Certificates Synthesis of NN-Controlled Continuous Systems via Counterexample-Guided Learning.,2024,DAC,10.1145/3649329.3658256,Hanrui Zhao; Niuniu Qi; Mengxin Ren; Xia Zeng; Zhenbing Zeng; Zhengfeng Yang
+conf/dac/WangZPCYLH26,Timing-Driven Scheduling and Placement under Pressure-Path Interference for Fully Programmable Valve Array Biochips.,2026,DAC,10.1145/3770743.3804072,Jingyi Wang; Yuhan Zhu; Youlin Pan; Zhisheng Chen 0002; Zhiwen Yu 0001; Genggeng Liu; Xing Huang 0001
+conf/dac/ShenABHKGCH99,Functional Verification of the Equator MAP1000 Microprocessor.,1999,DAC,10.1145/309847.309908,Jian Shen; Jacob A. Abraham; Dave Baker; Tony Hurson; Martin Kinkade; Gregorio Gervasio; Chen-chau Chu; Guanghui Hu
+conf/dac/ChaiyakulGR93,High-Level Transformations for Minimizing Syntactic Variances.,1993,DAC,10.1145/157485.164956,Viraphol Chaiyakul; Daniel Gajski; Loganath Ramachandran
+conf/dac/0019WZ0ZHSC24,FDCA: Fine-grained Digital-CIM based CNN Accelerator with Hybrid Quantization and Weight-Stationary Dataflow.,2024,DAC,10.1145/3649329.3656253,Bo Liu 0019; Qingwen Wei; Yang Zhang 0132; Xingyu Xu 0008; Zihan Zou; Xinxiang Huang; Xin Si; Hao Cai 0001
+conf/dac/AnticevACF24,SGM-PINN: Sampling Graphical Models for Faster Training of Physics-Informed Neural Networks.,2024,DAC,10.1145/3649329.3656521,John Anticev; Ali Aghdaei; Wuxinlin Cheng; Zhuo Feng
+conf/dac/LiuE82,Design of a graphic processor for computer-aided drafting.,1982,DAC,10.1145/800263.809253,Clive K. Liu; Charles M. Eastman
+conf/dac/YuKL87,VLSI Circuit Testing Using an Adaptive Optimization Model.,1987,DAC,10.1145/37888.37948,Philip S. Yu; C. Mani Krishna 0001; Yann-Hang Lee
+conf/dac/ChoiK03,Memory layout techniques for variables utilizing efficient DRAM access modes in embedded system design.,2003,DAC,10.1145/775832.776053,Yoonseo Choi; Taewhan Kim 0001
+conf/dac/LiG96,HDL Optimization Using Timed Decision Tables.,1996,DAC,10.1145/240518.240528,Jian Li 0061; Rajesh K. Gupta 0001
+conf/dac/ZouCWLZG26,UNICON: A Unified Reconfigurable Nonlinear Architecture for Efficient Neural Network Inference.,2026,DAC,10.1145/3770743.3807670,Xiaofeng Zou; Cen Chen 0002; Qinyu Wang 0002; Zhao Liu 0006; Huiping Zhuang; Jingcai Guo
+conf/dac/OuCC12,Non-uniform multilevel analog routing with matching constraints.,2012,DAC,10.1145/2228360.2228458,Hung-Chih Ou; Hsing-Chih Chang Chien; Yao-Wen Chang
+conf/dac/Gester0NPSV12,Algorithms and data structures for fast and good VLSI routing.,2012,DAC,10.1145/2228360.2228441,Michael Gester; Dirk Müller 0003; Tim Nieberg; Christian Panten; Christian Schulte 0002; Jens Vygen
+conf/dac/SunDH96,Fast Parameters Extraction of General Three-Dimension Interconnects Using Geometry Independent Measured Equation of Invariance.,1996,DAC,10.1145/240518.240589,Weikai Sun; Wayne Wei-Ming Dai; Wei Hong II
+conf/dac/MeyerowitzPS03,A tool for describing and evaluating hierarchical real-time bus scheduling policies.,2003,DAC,10.1145/775832.775913,Trevor Meyerowitz; Claudio Pinello; Alberto L. Sangiovanni-Vincentelli
+conf/dac/BokhariJSHP14,darkNoC: Designing Energy-Efficient Network-on-Chip with Multi-Vt Cells for Dark Silicon.,2014,DAC,10.1145/2593069.2593117,Haseeb Bokhari; Haris Javaid; Muhammad Shafique 0001; Jörg Henkel; Sri Parameswaran
+conf/dac/KoikeA024,Triplet Network-Based DNA Encoding for Enhanced Similarity Image Retrieval.,2024,DAC,10.1145/3649329.3657320,Takefumi Koike; Hiromitsu Awano; Takashi Sato 0001
+conf/dac/BurceaHG16,Procedural capacitor placement in differential charge-scaling converters by nonlinearity analysis.,2016,DAC,10.1145/2897937.2898073,Florin Burcea; Husni M. Habal; Helmut E. Graeb
+conf/dac/WuZHLZC25,PIMoE: Towards Efficient MoE Transformer Deployment on NPU-PIM System through Throttle-Aware Task Offloading.,2025,DAC,10.1109/DAC63849.2025.11132528,Lizhou Wu; Haozhe Zhu; Siqi He; Xuanda Lin; Xiaoyang Zeng; Chixiao Chen
+conf/dac/NagR93,Iterative Wirability and Performance Improvement for FPGAs.,1993,DAC,10.1145/157485.164913,Sudip Nag; Kaushik Roy 0001
+conf/dac/PathaniaVSMH16,Distributed scheduling for many-cores using cooperative game theory.,2016,DAC,10.1145/2897937.2898009,Anuj Pathania; Vanchinathan Venkataramani; Muhammad Shafique 0001; Tulika Mitra; Jörg Henkel
+conf/dac/YangSZJY23,On-Device Unsupervised Image Segmentation.,2023,DAC,10.1109/DAC56929.2023.10247959,Junhuan Yang; Yi Sheng 0001; Yuzhou Zhang; Weiwen Jiang; Lei Yang 0018
+conf/dac/SongCC23,Critical Paths Prediction under Multiple Corners Based on BiLSTM Network.,2023,DAC,10.1109/DAC56929.2023.10247984,Qianqian Song; Xu Cheng; Peng Cao
+conf/dac/LeeHKLL23,A Memory-Efficient Edge Inference Accelerator with XOR-based Model Compression.,2023,DAC,10.1109/DAC56929.2023.10248005,Hyunseung Lee 0001; Jihoon Hong; Soosung Kim 0001; Seung Yul Lee; Jae W. Lee
+conf/dac/BouvierVS21,Scalable Pitch-Constrained Neural Processing Unit for 3D Integration with Event-Based Imagers.,2021,DAC,10.1109/DAC18074.2021.9586099,Maxence Bouvier; Alexandre Valentian; Gilles Sicard
+conf/dac/PengYTLK22,SMART: on simultaneously marching racetracks to improve the performance of racetrack-based main memory.,2022,DAC,10.1145/3489517.3530538,Xiangjun Peng; Ming-Chang Yang; Ho Ming Tsui; Chi Ngai Leung; Wang Kang 0001
+conf/dac/ShafiqueKTH15,EnAAM: energy-efficient anti-aging for on-chip video memories.,2015,DAC,10.1145/2744769.2744834,Muhammad Shafique 0001; Muhammad Usman Karim Khan; Adnan Orcun Tüfek; Jörg Henkel
+conf/dac/Dow0MP21,SHORE: Hardware/Software Method for Memory Safety Acceleration on RISC-V.,2021,DAC,10.1109/DAC18074.2021.9586293,Hsu-Kang Dow; Tuo Li 0001; William Miles; Sri Parameswaran
+conf/dac/HongYHYLY26,Fast Template Matching for Quantum Circuits Using Hypergraph.,2026,DAC,10.1145/3770743.3804087,Xin Hong; Jintao Yu; Runhong He; Shenggang Ying; Sanjiang Li; Mingsheng Ying
+conf/dac/KrauterM98,Layout Based Frequency Dependent Inductance and Resistance Extraction for On-Chip Interconnect Timing Analysis.,1998,DAC,10.1145/277044.277133,Byron Krauter; Sharad Mehrotra
+conf/dac/XueWGSZDYZJGWSY26,AccelCIM: Systematic Dataflow Exploration for SRAM Compute-in-Memory Accelerator.,2026,DAC,10.1145/3770743.3806387,Chenhao Xue; Yukun Wang; An Guo 0001; Yuhui Shi; Jinwei Zhou; Xiping Dong; Yihan Yin; Yuanpeng Zhang 0002; Tianyu Jia; Wei Gao 0058; Qiang Wu 0012; Xin Si; Jun Yang 0006; Guangyu Sun 0003
+conf/dac/ZengLZ0Y24,Safe Controller Synthesis for Nonlinear Systems via Reinforcement Learning and PAC Approximation.,2024,DAC,10.1145/3649329.3657332,Xia Zeng; Banglong Liu; Zhenbing Zeng; Zhiming Liu 0001; Zhengfeng Yang
+conf/dac/LiuCW14,Floorplanning and Signal Assignment for Silicon Interposer-based 3D ICs.,2014,DAC,10.1145/2593069.2593142,Wen-Hao Liu 0001; Min-Sheng Chang; Ting-Chi Wang
+conf/dac/MehrotraS09,A robust and efficient harmonic balance (HB) using direct solution of HB Jacobian.,2009,DAC,10.1145/1629911.1630010,Amit Mehrotra; Abhishek Somani
+conf/dac/GaurdianiSMSC00,"An asymptotically constant, linearly bounded methodology for the statistical simulation of analog circuits including component mismatch effects.",2000,DAC,10.1145/337292.337302,Carlo Guardiani; Sharad Saxena; Patrick McNamara; Phillip Schumaker; Dale Coder
+conf/dac/FuWGZRS18,IAfinder: identifying potential implicit assumptions to facilitate validation in medical cyber-physical system.,2018,DAC,10.1145/3195970.3196062,Zhicheng Fu; Zhao Wang; Chunhui Guo; Zhenyu Zhang 0009; Shangping Ren; Lui Sha
+conf/dac/LinA86,Minplex - a compactor that minimizes the bounding rectangle and individual rectangles in a layout.,1986,DAC,10.1145/318013.318033,Sching L. Lin; Jonathan Allen
+conf/dac/BirminghamGS89,The MICON System for Computer Design.,1989,DAC,10.1145/74382.74406,William P. Birmingham; Anurag P. Gupta; Daniel P. Siewiorek
+conf/dac/ZhuoCCV06,Extending the lifetime of fuel cell based hybrid systems.,2006,DAC,10.1145/1146909.1147056,Jianli Zhuo; Chaitali Chakrabarti; Naehyuck Chang; Sarma B. K. Vrudhula
+conf/dac/ChenHSW26,Module-Level Placement Using Force-Based Deformation for Efficient Early Design Estimation.,2026,DAC,10.1145/3770743.3804071,Mengen Chen; Xu He; Tong Shen; Yao Wang 0002
+conf/dac/RivestF82,"A ""greedy"" channel router.",1982,DAC,10.1145/800263.809239,Ronald L. Rivest; Charles M. Fiduccia
+conf/dac/EnbodyD86,Near-optimal n-layer channel routing.,1986,DAC,10.1145/318013.318147,Richard J. Enbody; David Hung-Chang Du
+conf/dac/MathurS01,Improved Merging of Datapath Operators using Information Content and Required Precision Analysis.,2001,DAC,10.1145/378239.378562,Anmol Mathur; Sanjeev Saluja
+conf/dac/DangTLS20,MEMTONIC: A Neuromorphic Accelerator for Energy Efficient Deep Learning.,2020,DAC,10.1109/DAC18072.2020.9218560,Dharanidhar Dang; Sahar Taheri; Bill Lin 0001; Debashis Sahoo
+conf/dac/RoychowdhuryM96,Homotopy Techniques for Obtaining a DC Solution of Large-Scale MOS Circuits.,1996,DAC,10.1145/240518.240571,Jaijeet S. Roychowdhury; Robert C. Melville
+conf/dac/BacchiniRCLLRW05,Wireless platforms: GOPS for cents and MilliWatts.,2005,DAC,10.1145/1065579.1065673,Francine Bacchini; Jan M. Rabaey; Allan Cox; Frank Lane; Rudy Lauwereins; Ulrich Ramacher; David Witt
+conf/dac/ChengZOHLZ26,Capacitive Touchscreens at Risk: Recovering Handwritten Trajectory on Smartphone via Electromagnetic Emanations.,2026,DAC,10.1145/3770743.3803951,Yukun Cheng; Shiyu Zhu; Changhai Ou; Xingshuo Han; Yuan Li; Shihui Zheng
+conf/dac/ParkKK24,HiLight: A Comprehensive Framework for High-Performance and Lightweight Scalability in Surface Code Communication.,2024,DAC,10.1145/3649329.3655980,Sunghye Park; Dohun Kim; Seokhyeong Kang
+conf/dac/NiM08,Leakage power-aware clock skew scheduling: converting stolen time into leakage power reduction.,2008,DAC,10.1145/1391469.1391625,Min Ni; Seda Ogrenci Memik
+conf/dac/YangLYD93,An Efficient Non-Quasi-Static Diode Model for Circuit Simulation.,1993,DAC,10.1145/157485.165107,Andrew T. Yang; Yu Liu; Jack T. Yao; R. R. Daniels
+conf/dac/TremblayMIK95,A Fast and Flexible Performance Simulator for Micro-Architecture Trade-off Analysis on UltraSPARC-I.,1995,DAC,10.1145/217474.217479,Marc Tremblay; Guillermo Maturana; Atsushi Inoue; Leslie Kohn
+conf/dac/GuHY07,Optimization of Static Task and Bus Access Schedules for Time-Triggered Distributed Embedded Systems with Model-Checking.,2007,DAC,10.1145/1278480.1278556,Zonghua Gu 0001; Xiuqiang He 0001; Mingxuan Yuan
+conf/dac/LuoCH13,Design of cyberphysical digital microfluidic biochips under completion-time uncertainties in fluidic operations.,2013,DAC,10.1145/2463209.2488788,Yan Luo; Krishnendu Chakrabarty; Tsung-Yi Ho
+conf/dac/BentzRL97,A Dynamic Design Estimation and Exploration Environment.,1997,DAC,10.1145/266021.266063,Ole Bentz; Jan M. Rabaey; David Lidsky
+conf/dac/UzelacM09,A real-time program trace compressor utilizing double move-to-front method.,2009,DAC,10.1145/1629911.1630102,Vladimir Uzelac; Aleksandar Milenkovic
+conf/dac/HsuYWC18,Adaptive sensitivity analysis with nonlinear power load modeling.,2018,SLIP@DAC,10.1145/3225209.3225211,Po-Ya Hsu; Chun-Han Yao; Yuwei Wang; Chung-Kuan Cheng
+conf/dac/KroeningP01,Automated Pipeline Design.,2001,DAC,10.1145/378239.379071,Daniel Kroening; Wolfgang J. Paul
+conf/dac/ZhangC12,GDRouter: interleaved global routing and detailed routing for ultimate routability.,2012,DAC,10.1145/2228360.2228469,Yanheng Zhang; Chris Chu
+conf/dac/LadjadjMHM86,Use of the subscripted DALG in submodule testing with applications in cellular arrays.,1986,DAC,10.1145/318013.318068,M. Ladjadj; John F. McDonald 0001; D.-H. Ho; W. Murray Jr.
+conf/dac/0006ADMR0FD0SK24,MCU-Wide Timing Side Channels and Their Detection.,2024,DAC,10.1145/3649329.3656541,Johannes Müller 0006; Anna Lena Duque Antón; Lucas Deutschmann; Dino Mehmedagic; Cristiano Rodrigues; Daniel Oliveira 0003; Mohammad Rahmani Fadiheh; Keerthikumara Devarajegowda; Sandro Pinto 0001; Dominik Stoffel; Wolfgang Kunz
+conf/dac/MartinMAAGA19,A Flat Timing-Driven Placement Flow for Modern FPGAs.,2019,DAC,10.1145/3316781.3317743,Timothy Martin; Dani Maarouf; Ziad Abuowaimer; Abeer Alhyari; Gary Gréwal; Shawki Areibi
+conf/dac/GebotysE91,Simultaneous Scheduling and Allocation for Cost Constrained Optimal Architectural Synthesis.,1991,DAC,10.1145/127601.127609,Catherine H. Gebotys; Mohamed I. Elmasry
+conf/dac/BaoAEP09,On-line thermal aware dynamic voltage scaling for energy optimization with frequency/temperature dependency consideration.,2009,DAC,10.1145/1629911.1630039,Min Bao; Alexandru Andrei; Petru Eles; Zebo Peng
+conf/dac/LeeOMC06,Design space exploration and prototyping for on-chip multimedia applications.,2006,DAC,10.1145/1146909.1146949,Hyung Gyu Lee; Ümit Y. Ogras; Radu Marculescu; Naehyuck Chang
+conf/dac/KarakonstantisRBB12,On the exploitation of the inherent error resilience of wireless systems under unreliable silicon.,2012,DAC,10.1145/2228360.2228451,Georgios Karakonstantis; Christoph Roth; Christian Benkeser; Andreas Burg 0001
+conf/dac/HuangQFQ11,Throughput maximization for periodic real-time systems under the maximal temperature constraint.,2011,DAC,10.1145/2024724.2024811,Huang Huang; Gang Quan; Jeffrey Fan; Meikang Qiu
+conf/dac/LiuP02,Design of a high-throughput low-power IS95 Viterbi decoder.,2002,DAC,10.1145/513918.513988,Xun Liu; Marios C. Papaefthymiou
+conf/dac/KimY19,DRIS-3: Deep Neural Network Reliability Improvement Scheme in 3D Die-Stacked Memory based on Fault Analysis.,2019,DAC,10.1145/3316781.3317805,Jae-San Kim; Joon-Sung Yang
+conf/dac/HongKK17,3 Channel Dependency-Based Power Model for Mobile AMOLED Displays.,2017,DAC,10.1145/3061639.3062181,Seongwoo Hong; Suk-Won Kim; Young-Jin Kim 0002
+conf/dac/ShinYY25,Grasp: Group-based Prediction of Activation Sparsity for Fast LLM Inference.,2025,DAC,10.1109/DAC63849.2025.11132899,Jiho Shin; Hoeseok Yang; Youngmin Yi
+conf/dac/GeistBASNFHLKB99,"A Methodology for the Verification of a ""System on Chip"".",1999,DAC,10.1145/309847.310001,Daniel Geist; Giora Biran; Tamarah Arons; Michael Slavkin; Yvgeny Nustov; Monica Farkas; Karen Holtz; Andy Long; Dave King; Steve Barret
+conf/dac/LiLZXWSSSY16,HW/SW co-design of nonvolatile IO system in energy harvesting sensor nodes for optimal data acquisition.,2016,DAC,10.1145/2897937.2898029,Zewei Li; Yongpan Liu; Daming Zhang; Chun Jason Xue; Zhangyuan Wang; Xin Shi; Wenyu Sun; Jiwu Shu; Huazhong Yang
+conf/dac/ZhouCDH25,A Memory-Efficient LLM Accelerator with Q-K Correlation Prediction using Cluster-Based Associative Array for Selective KV Accessing.,2025,DAC,10.1109/DAC63849.2025.11133377,Zikang Zhou; Kaiqi Chen; Xuyang Duan; Jun Han 0003
+conf/dac/HuangTNC20,Latch Clustering for Timing-Power Co-Optimization.,2020,DAC,10.1109/DAC18072.2020.9218617,Chau-Chin Huang; Gustavo E. Téllez; Gi-Joon Nam; Yao-Wen Chang
+conf/dac/HuangFYZZL16,Efficient performance modeling via Dual-Prior Bayesian Model Fusion for analog and mixed-signal circuits.,2016,DAC,10.1145/2897937.2898014,Qicheng Huang; Chenlei Fang; Fan Yang 0001; Xuan Zeng 0001; Dian Zhou; Xin Li 0001
+conf/dac/ZengAA02,False timing path identification using ATPG techniques and delay-based information.,2002,DAC,10.1145/513918.514060,Jing Zeng; Magdy S. Abadir; Jacob A. Abraham
+conf/dac/TanRLJ01,High-level Software Energy Macro-modeling.,2001,DAC,10.1145/378239.379033,Tat Kee Tan; Anand Raghunathan; Ganesh Lakshminarayana; Niraj K. Jha
+conf/dac/LiuYPSHDLHG23,Ising-CF: A Pathbreaking Collaborative Filtering Method Through Efficient Ising Machine Learning.,2023,DAC,10.1109/DAC56929.2023.10247860,Zhuo Liu; Yunan Yang; Zhenyu Pan; Anshujit Sharma; Amit Hasan 0001; Caiwen Ding; Ang Li 0006; Michael C. Huang 0001; Tong Geng
+conf/dac/XygkisPMSY18,Efficient winograd-based convolution kernel implementation on edge devices.,2018,DAC,10.1145/3195970.3196041,Athanasios Xygkis; Lazaros Papadopoulos; David Moloney; Dimitrios Soudris; Sofiane Yous
+conf/dac/MenonVVR26,Athena: Analytical Timing-Aware Pre-Silicon Estimation of Side-Channel Leakage.,2026,DAC,10.1145/3770743.3804247,C. Rohin Menon; Annapurna Valiveti; Janakiraman Viraraghavan; Chester Rebeiro
+conf/dac/PoduvalNK0KCI22,Adaptive neural recovery for highly robust brain-like representation.,2022,DAC,10.1145/3489517.3530659,Prathyush Poduval; Yang Ni 0001; Yeseong Kim; Kai Ni 0004; Raghavan Kumar; Rosario Cammarota; Mohsen Imani
+conf/dac/TrimbergerM14,FPGA Security: From Features to Capabilities to Trusted Systems.,2014,DAC,10.1145/2593069.2602555,Steve Trimberger; Jason Moore
+conf/dac/Murray-LassoK68,On-line circuit analysis and optimization with commercially available time-shared computer systems.,1968,DAC,10.1145/800167.805398,M. A. Murray-Lasso; F. J. Kasper
+conf/dac/PaulB08,Reconfigurable computing using content addressable memory for improved performance and resource usage.,2008,DAC,10.1145/1391469.1391670,Somnath Paul; Swarup Bhunia
+conf/dac/MudeMLT25,Efficient and Scalable Architectures for Multi-level Superconducting Qubit Readout.,2025,DAC,10.1109/DAC63849.2025.11133314,Chaithanya Naik Mude; Satvik Maurya; Benjamin Lienhard; Swamit Tannu
+conf/dac/YuanTK97,Statistical Estimation of Average Power Dissipation in Sequential Circuits.,1997,DAC,10.1145/266021.266175,Li-Pen Yuan; Chin-Chi Teng; Sung-Mo Kang
+conf/dac/NieuwoudtM05,Multi-level approach for integrated spiral inductor optimization.,2005,DAC,10.1145/1065579.1065749,Arthur Nieuwoudt; Yehia Massoud
+conf/dac/ArunachalamBP01,False Coupling Interactions in Static Timing Analysis.,2001,DAC,10.1145/378239.379055,Ravishankar Arunachalam; Ronald D. Blanton; Lawrence T. Pileggi
+conf/dac/PerryMP85,Yield analysis modeling.,1985,DAC,10.1145/317825.317922,Steve Perry; Mike Mitchell; David J. Pilling
+conf/dac/SahaKPMD19,ALAFA: Automatic Leakage Assessment for Fault Attack Countermeasures.,2019,DAC,10.1145/3316781.3317763,Sayandeep Saha; S. Nishok Kumar; Sikhar Patranabis; Debdeep Mukhopadhyay; Pallab Dasgupta
+conf/dac/PopescuM96,Innovative Verification Strategy Reduces Design Cycle Time for High-End Sparc Processor.,1996,DAC,10.1145/240518.240577,Val Popescu; Bill McNamara
+conf/dac/SeitanidisDMMC17,Timing Driven Incremental Multi-Bit Register Composition Using a Placement-Aware ILP formulation.,2017,DAC,10.1145/3061639.3062327,Ioannis Seitanidis; Giorgos Dimitrakopoulos; Pavlos M. Mattheakis; Laurent Masse-Navette; David G. Chinnery
+conf/dac/EganL82,Optimal bipartite folding of PLA.,1982,DAC,10.1145/800263.809199,Jack R. Egan; C. L. Liu 0001
+conf/dac/ShenZQ23,MES-Attacks: Software-Controlled Covert Channels based on Mutual Exclusion and Synchronization.,2023,DAC,10.1109/DAC56929.2023.10247792,Chaoqun Shen; Jiliang Zhang 0002; Gang Qu 0001
+conf/dac/AhnGK26,TRAC: Transparent Row Activation Counting for Efficient RowHammer Monitoring.,2026,DAC,10.1145/3770743.3804122,Sunggi Ahn; Saeid Gorgin 0001; Jungrae Kim
+conf/dac/LiuMZM08,A power and temperature aware DRAM architecture.,2008,DAC,10.1145/1391469.1391691,Song Liu; Seda Ogrenci Memik; Yu Zhang; Gokhan Memik
+conf/dac/CaiW91,On Minimizing the Number of L-Shaped Channels.,1991,DAC,10.1145/127601.127689,Yang Cai 0003; D. F. Wong 0001
+conf/dac/HoevenLDD89,A New Model for the High Level Description and Simulation of VLSI Networks.,1989,DAC,10.1145/74382.74517,A. J. van der Hoeven; A. A. de Lange; Ed F. Deprettere; Patrick M. Dewilde
+conf/dac/KolheSGSRDSH22,LOCK&ROLL: deep-learning power side-channel attack mitigation using emerging reconfigurable devices and logic locking.,2022,DAC,10.1145/3489517.3530414,Gaurav Kolhe; Tyler David Sheaves; Kevin Immanuel Gubbi; Soheil Salehi; Setareh Rafatirad; Sai Manoj P. D.; Avesta Sasan; Houman Homayoun
+conf/dac/ZhuGWLWX26,ComPart: Community-Guided Post-Coarsening for High-Quality Hypergraph Partitioning.,2026,DAC,10.1145/3770743.3804131,Yugao Zhu; Zhicheng Guo; Yuchao Wu; Mengming Li; Jing Wang 0171; Zhiyao Xie
+conf/dac/HirakawaSM82,Logic simulation for LSI.,1982,DAC,10.1145/800263.809286,Kazuyuki Hirakawa; Noboru Shiraki; Michiaki Muraoka
+conf/dac/LuoYYB05,Low power network processor design using clock gating.,2005,DAC,10.1145/1065579.1065766,Yan Luo 0001; Jia Yu 0008; Jun Yang 0002; Laxmi N. Bhuyan
+conf/dac/AsharDN90,A Unified Approach to the Decomposition and Re-Decomposition of Sequential Machines.,1990,DAC,10.1145/123186.123414,Pranav Ashar; Srinivas Devadas; A. Richard Newton
+conf/dac/ChenZCZX12,Quality-retaining OLED dynamic voltage scaling for video streaming applications on mobile devices.,2012,DAC,10.1145/2228360.2228540,Xiang Chen 0010; Jian Zheng; Yiran Chen 0001; Mengying Zhao; Chun Jason Xue
+conf/dac/SchulerU72,Clustering and linear placement.,1972,DAC,10.1145/800153.804929,Donald M. Schuler; Ernst G. Ulrich
+conf/dac/GandikotaDTB09,Worst-case aggressor-victim alignment with current-source driver models.,2009,DAC,10.1145/1629911.1629919,Ravikishore Gandikota; Li Ding 0002; Peivand Tehrani; David T. Blaauw
+conf/dac/DuL0ZLCC16,Invited - Airtouch: a novel single layer 3D touch sensing system for human/mobile devices interactions.,2016,DAC,10.1145/2897937.2901902,Li Du; Chun-Chen Liu; Adrian Tang 0002; Yan Zhang 0050; Yilei Li; Kye Cheung; Mau-Chung Frank Chang
+conf/dac/WangKL89,A New Approach to Derive Robust Sets for Stuck-open Faults in CMOS Combinational Logic Circuits.,1989,DAC,10.1145/74382.74514,Jhing-Fa Wang; Tah-Yuan Kuo; Jau-Yien Lee
+conf/dac/RenCWZY12,Sparse LU factorization for parallel circuit simulation on GPU.,2012,DAC,10.1145/2228360.2228565,Ling Ren 0001; Xiaoming Chen 0003; Yu Wang 0002; Chenxi Zhang; Huazhong Yang
+conf/dac/ForsytheAYAG90,"NASFLOW, a Simulation Tool for Silicon Technology Development.",1990,DAC,10.1145/123186.123296,D. David Forsythe; Atul P. Agarwal; Chune-Sin Yeh; Sheldon Aronowitz; Bhaskar Gadepally
+conf/dac/LiuHYLC25,McPAL: Scaling Unstructured Sparse Inference with Multi-Chiplet HBM-PIM Architecture for LLMs.,2025,DAC,10.1109/DAC63849.2025.11132914,Shiwei Liu 0002; Zhirui Huang; Jiangnan Yu; Qi Liu 0010; Chixiao Chen
+conf/dac/YuJTSS15,The challenge of interoperability: model-based integration for automotive control software.,2015,DAC,10.1145/2744769.2747945,Huafeng Yu; Prachi Joshi; Jean-Pierre Talpin; Sandeep K. Shukla; Shin'ichi Shiraishi
+conf/dac/WhatmoughDBD11,Error-resilient low-power DSP via path-delay shaping.,2011,DAC,10.1145/2024724.2024946,Paul N. Whatmough; Shidhartha Das; David M. Bull; Izzat Darwazeh
+conf/dac/SuTH16,A quantum annealing approach for boolean satisfiability problem.,2016,DAC,10.1145/2897937.2897973,Juexiao Su; Tianheng Tu; Lei He 0001
+conf/dac/ZhuGLLWX26,IMPart: Integration of Memetic Operations into Multi-Level Framework for Large-k-Way Hypergraph Partitioning.,2026,DAC,10.1145/3770743.3804129,Yugao Zhu; Zhicheng Guo; Shang Liu 0006; Mengming Li; Jing Wang 0171; Zhiyao Xie
+conf/dac/LiKWNNYL25,PUFiM: A Robust and Efficient FeFET-Based Security Solution Merging Physical Unclonable Function with Compute-in-Memory for Edge AI.,2025,DAC,10.1109/DAC63849.2025.11132800,Taixin Li; Thomas Kämpfe; Jianfeng Wang; Kai Ni 0004; Vijaykrishnan Narayanan; Huazhong Yang; Xueqing Li 0002
+conf/dac/GuthausSB06,Clock buffer and wire sizing using sequential programming.,2006,DAC,10.1145/1146909.1147171,Matthew R. Guthaus; Dennis Sylvester; Richard B. Brown
+conf/dac/TsoutsosKM14,Advanced Techniques for Designing Stealthy Hardware Trojans.,2014,DAC,10.1145/2593069.2596668,Nektarios Georgios Tsoutsos; Charalambos Konstantinou; Michail Maniatakos
+conf/dac/HuHCCTLW25,Energy-Efficient Large-Scale Vector Similarity Search in NAND-Flash via Hybrid Matching.,2025,DAC,10.1109/DAC63849.2025.11132636,Chih-Yu Hu; Chi-Tse Huang; Hao-Wei Chiang; Hsiang-Yun Cheng; Po-Hao Tseng; Ming-Hsiu Lee; An-Yeu Andy Wu
+conf/dac/YuXM18,Developing synthesis flows without human knowledge.,2018,DAC,10.1145/3195970.3196026,Cunxi Yu; Houping Xiao; Giovanni De Micheli
+conf/dac/ChakrabortyXS18,GPU obfuscation: attack and defense strategies.,2018,DAC,10.1145/3195970.3196058,Abhishek Chakraborty 0001; Yang Xie 0001; Ankur Srivastava 0001
+conf/dac/Liu0L024,TBNet: A Neural Architectural Defense Framework Facilitating DNN Model Protection in Trusted Execution Environments.,2024,DAC,10.1145/3649329.3658251,Ziyu Liu; Tong Zhou 0002; Yukui Luo; Xiaolin Xu 0001
+conf/dac/WongBK04,Passivity-preserving model reduction via a computationally efficient project-and-balance scheme.,2004,DAC,10.1145/996566.996673,Ngai Wong 0001; Venkataramanan Balakrishnan; Cheng-Kok Koh
+conf/dac/PhelpsKRCH00,A case study of synthesis for industrial-scale analog IP: redesign of the equalizer/filter frontend for an ADSL CODEC.,2000,DAC,10.1145/337292.337297,Rodney Phelps; Michael Krasnicki; Rob A. Rutenbar; L. Richard Carley; James R. Hellums
+conf/dac/BanerjeeMSH99,On Thermal Effects in Deep Sub-Micron VLSI Interconnects.,1999,DAC,10.1145/309847.310093,Kaustav Banerjee; Amit Mehrotra; Alberto L. Sangiovanni-Vincentelli; Chenming Hu
+conf/dac/StratigopoulosFCM13,Multidimensional analog test metrics estimation using extreme value theory and statistical blockade.,2013,DAC,10.1145/2463209.2488822,Haralampos-G. D. Stratigopoulos; Pierre Faubet; Yoann Courant; Firas Mohamed
+conf/dac/ChenCDZ14,Demystifying Energy Usage in Smartphones.,2014,DAC,10.1145/2593069.2596676,Xiang Chen 0010; Yiran Chen 0001; Mian Dong; Jianzhong (Charlie) Zhang
+conf/dac/GuoLSX25,PracMHBench: Re-evaluating Model-Heterogeneous Federated Learning Based on Practical Edge Device Constraints.,2025,DAC,10.1109/DAC63849.2025.11132995,Yuanchun Guo; Bingyan Liu; Yulong Sha; Zhensheng Xian
+conf/dac/SunL94,Routing in a New 2-Dimensional FPGA/FPIC Routing Architecture.,1994,DAC,10.1145/196244.196327,Yachyang Sun; C. L. Liu 0001
+conf/dac/LamBS94,Exact Minimum Cycle Times for Finite State Machines.,1994,DAC,10.1145/196244.196294,William K. C. Lam; Robert K. Brayton; Alberto L. Sangiovanni-Vincentelli
+conf/dac/DingCZ15,An efficient shift invariant rasterization algorithm for all-angle mask patterns in ILT.,2015,DAC,10.1145/2744769.2744797,Yixiao Ding; Chris C. N. Chu; Xin Zhou
+conf/dac/GorjiaraG08,Automatic architecture refinement techniques for customizing processing elements.,2008,DAC,10.1145/1391469.1391571,Bita Gorjiara; Daniel Gajski
+conf/dac/KunalMSXBHHKS19,ALIGN: Open-Source Analog Layout Automation from the Ground Up.,2019,DAC,10.1145/3316781.3323471,Kishor Kunal; Meghna Madhusudan; Arvind K. Sharma; Wenbin Xu; Steven M. Burns; Ramesh Harjani; Jiang Hu 0001; Desmond A. Kirkpatrick; Sachin S. Sapatnekar
+conf/dac/ChenC87,A Design Rule Independent Cell Compiler.,1987,DAC,10.1145/37888.37957,John S. J. Chen; David Y. Chen
+conf/dac/LiLGZWZ26,GPU-Fuzz: Finding Memory Errors in Deep Learning Frameworks.,2026,DAC,10.1145/3770743.3804266,Zihao Li; Hongyi Lu; Yanan Guo 0002; Zhenkai Zhang 0002; Shuai Wang 0011; Fengwei Zhang 0001
+conf/dac/MorenoYTYPSZYKR26,HyperLiDAR: Adaptive Post-Deployment LiDAR Segmentation via Hyperdimensional Computing.,2026,DAC,10.1145/3770743.3804248,Ivannia Gomez Moreno; Yi Yao; Ye Tian 0023; Xiaofan Yu 0001; Flavio Ponzina; Michael Sullivan; Jingyi Zhang; Mingyu Yang 0002; Hun Seok Kim; Tajana Rosing
+conf/dac/GroeneveldRPCC09,"Oil fields, hedge funds, and drugs.",2009,DAC,10.1145/1629911.1630021,Patrick Groeneveld; Rob A. Rutenbar; Jed W. Pitera; Erik C. Carlson; Jinsong Chen
+conf/dac/YaoWZWGJG25,Location is Key: Leveraging LLM for Functional Bug Localization in Verilog Design.,2025,DAC,10.1109/DAC63849.2025.11133280,Bingkun Yao; Ning Wang 0071; Jie Zhou 0001; Xi Wang 0009; Hong Gao 0001; Zhe Jiang 0004; Nan Guan
+conf/dac/CongWYZ17,Bandwidth Optimization Through On-Chip Memory Restructuring for HLS.,2017,DAC,10.1145/3061639.3062208,Jason Cong; Peng Wei 0004; Cody Hao Yu; Peipei Zhou 0001
+conf/dac/ZinnerNGSW11,Application and realization of gateways between conventional automotive and IP/ethernet-based networks.,2011,DAC,10.1145/2024724.2024726,Helge Zinner; Josef Nöbauer; Thomas Gallner; Jochen Seitz 0001; Thomas Waas
+conf/dac/CoryC80,Developments in verification of design correctness (A Tutorial).,1980,DAC,10.1145/800139.804525,Wendell E. Cory; William M. van Cleemput
+conf/dac/NedevschiPB05,"Hardware speech recognition for user interfaces in low cost, low power devices.",2005,DAC,10.1145/1065579.1065760,Sergiu Nedevschi; Rabin K. Patra; Eric A. Brewer
+conf/dac/ElizehN10,Embedded memory binding in FPGAs.,2010,DAC,10.1145/1837274.1837389,Kaveh Elizeh; Nicola Nicolici
+conf/dac/ChangHW04,Re-synthesis for delay variation tolerance.,2004,DAC,10.1145/996566.996785,Shih-Chieh Chang 0001; Cheng-Tao Hsieh; Kai-Chiang Wu
+conf/dac/AakhusSMP68,ACCLAIM - a computer aided design system.,1968,DAC,10.1145/800167.805407,Miles D. Aakhus; D. Michael Seeman; Donna C. Mazzola; Eugene J. Ptak
+conf/dac/GoelM82,Electronic Chip-in-Place Test.,1982,DAC,10.1145/800263.809248,Prabhakar Goel; M. T. McMahon
+conf/dac/ChenH15,Equivalence among stochastic logic circuits and its application.,2015,DAC,10.1145/2744769.2744837,Te-Hsuan Chen; John P. Hayes
+conf/dac/ChangA93,VIPER: An Efficient Vigorously Sensitizable Path Extractor.,1993,DAC,10.1145/157485.158845,Hoon Chang; Jacob A. Abraham
+conf/dac/PrabakaranR019,XBioSiP: A Methodology for Approximate Bio-Signal Processing at the Edge.,2019,DAC,10.1145/3316781.3317933,Bharath Srinivas Prabakaran; Semeen Rehman; Muhammad Shafique 0001
+conf/dac/ShengXM09,Soft error optimization of standard cell circuits based on gate sizing and multi-objective genetic algorithm.,2009,DAC,10.1145/1629911.1630042,Weiguang Sheng; Liyi Xiao; Zhigang Mao
+conf/dac/Wang0LH020,An Efficient Deep Learning Accelerator for Compressed Video Analysis.,2020,DAC,10.1109/DAC18072.2020.9218743,Yongchen Wang; Ying Wang 0001; Huawei Li 0001; Yinhe Han 0001; Xiaowei Li 0001
+conf/dac/RiessDJ94,Partitioning Very Large Circuits Using Analytical Placement Techniques.,1994,DAC,10.1145/196244.196602,Bernhard M. Riess; Konrad Doll; Frank M. Johannes
+conf/dac/LiLSH15,Joint precision optimization and high level synthesis for approximate computing.,2015,DAC,10.1145/2744769.2744863,Chaofan Li; Wei Luo; Sachin S. Sapatnekar; Jiang Hu 0001
+conf/dac/GoswamiSML16,Re-target-able software power management framework using SoC data auto-generation.,2016,DAC,10.1145/2897937.2898085,Piyali Goswami; Sushaanth Srirangapathi; Chetan Matad; Stanley Liu
+conf/dac/WangWLMKCGSLK26,Thermal Stability Strategy for a 12nm/28nm Hybrid-Bonding Wafer-on-Wafer 3D-Integrated eFlash In-Memory Computing SoC.,2026,DAC,10.1145/3770743.3804233,Guangyao Wang; Saiya Wang; Yuexi Lv; Jenny Ma; Jing Kou; Yizhe Chen; Jinhao Guo; Yichen Song; Yingming Lu; Wang Kang 0001
+conf/dac/SharifiK11,Process variation-aware routing in NoC based multicores.,2011,DAC,10.1145/2024724.2024930,Akbar Sharifi; Mahmut T. Kandemir
+conf/dac/RenSXYTW19,Workload-Aware Harmonic Partitioned Scheduling of Periodic Real-Time Tasks with Constrained Deadlines.,2019,DAC,10.1145/3316781.3317932,Jiankang Ren; Xiaoyan Su; Guoqi Xie; Chao Yu 0004; Guozhen Tan; Guowei Wu 0001
+conf/dac/GunupudiN99,Model-Reduction of Nonlinear Circuits Using Krylov-Space Techniques.,1999,DAC,10.1145/309847.309854,Pavan K. Gunupudi; Michel S. Nakhla
+conf/dac/ChoiMH26,Phantom Walk: Reducing the Post-Migration Translation Path via Proactive Translation Dissemination in Multi-GPU Systems.,2026,DAC,10.1145/3770743.3804244,Jihun Choi; Jaesang Moh; Tae Hee Han
+conf/dac/CataldoFMSSMD18,Subutai: distributed synchronization primitives in NoC interfaces for legacy parallel-applications.,2018,DAC,10.1145/3195970.3196124,Rodrigo Cataldo; Ramon Fernandes; Kevin J. M. Martin; Johanna Sepúlveda; Altamiro Amadeu Susin; César A. M. Marcon; Jean-Philippe Diguet
+conf/dac/TaylorBS85,Layout design-lessons from the Jedi designer (tutorial session).,1985,DAC,10.1145/317825.317880,Susan L. Taylor; Roderic Beresford; Theodore Sabety
+conf/dac/LyuLCXH23,FLNA: An Energy-Efficient Point Cloud Feature Learning Accelerator with Dataflow Decoupling.,2023,DAC,10.1109/DAC56929.2023.10247674,Dongxu Lyu; Zhenyu Li; Yuzhou Chen; Ningyi Xu; Guanghui He 0002
+conf/dac/ParkYL11,Power management of hybrid DRAM/PRAM-based main memory.,2011,DAC,10.1145/2024724.2024738,Hyunsun Park; Sungjoo Yoo; Sunggu Lee
+conf/dac/DobesB76,The automatic recognition of silicon gate transistor geometries: An LSI design aid program.,1976,DAC,10.1145/800146.804832,Ivan Dobes; Ron Byrd
+conf/dac/SchaffnerGSKB14,An Approximate Computing Technique for Reducing the Complexity of a Direct-Solver for Sparse Linear Systems in Real-Time Video Processing.,2014,DAC,10.1145/2593069.2593082,Michael Schaffner; Frank K. Gürkaynak; Aljoscha Smolic; Hubert Kaeslin; Luca Benini
+conf/dac/WirthlinM02,IP delivery for FPGAs using Applets and JHDL.,2002,DAC,10.1145/513918.513922,Michael J. Wirthlin; Brian McMurtrey
+conf/dac/YouGZGLCH21,JPDHeap: A JVM Heap Design for PM-DRAM Memories.,2021,DAC,10.1109/DAC18074.2021.9586279,Litong You; Tianxiao Gu; Shengan Zheng; Jianmei Guo; Sanhong Li; Yuting Chen 0001; Linpeng Huang
+conf/dac/YehCHCC25,PIMDup: An Optimized Deduplication Design on a Real Processing-in-Memory System.,2025,DAC,10.1109/DAC63849.2025.11133045,Chun-Le Yeh; Liang-Chi Chen; Chien-Chung Ho; Yu-Ming Chang 0001; Da-Wei Chang
+conf/dac/BergmannH99,Vex - A CAD Toolbox.,1999,DAC,10.1145/309847.309991,Jules P. Bergmann; Mark Horowitz
+conf/dac/KuznarBZ94,Multi-way Netlist Partitioning into Heterogeneous FPGAs and Minimization of Total Device Cost and Interconnect.,1994,DAC,10.1145/196244.196364,Roman Kuznar; Franc Brglez; Baldomir Zajc
+conf/dac/VattikondaWC06,Modeling and minimization of PMOS NBTI effect for robust nanometer design.,2006,DAC,10.1145/1146909.1147172,Rakesh Vattikonda; Wenping Wang 0004; Yu Cao 0001
+conf/dac/MacdonaldPP80,"Technical documentation by ""MAGIC"" (Machine Aided Graphics for Illustration and Composition.",1980,DAC,10.1145/800139.804567,John B. Macdonald; Mary K. Podlecki; Milt J. Pappas
+conf/dac/GonzalezGomezSKBH23,Smart Detection of Obfuscated Thermal Covert Channel Attacks in Many-core Processors.,2023,DAC,10.1109/DAC56929.2023.10247844,Jeferson González-Gómez; Mohammed Bakr Sikal; Heba Khdr; Lars Bauer; Jörg Henkel
+conf/dac/GleinigHH19,Embedding Functions Into Reversible Circuits: A Probabilistic Approach to the Number of Lines.,2019,DAC,10.1145/3316781.3317814,Niels Gleinig; Frances Ann Hubis; Torsten Hoefler
+conf/dac/WangSZBCFY23,DiffPattern: Layout Pattern Generation via Discrete Diffusion.,2023,DAC,10.1109/DAC56929.2023.10248009,Zixiao Wang 0001; Yunheng Shen; Wenqian Zhao 0002; Yang Bai; Guojin Chen; Farzan Farnia; Bei Yu 0001
+conf/dac/CzajkowskiB08,Functionally linear decomposition and synthesis of logic circuits for FPGAs.,2008,DAC,10.1145/1391469.1391477,Tomasz S. Czajkowski; Stephen Dean Brown
+conf/dac/ChangC98,Efficient Boolean Division and Substitution.,1998,DAC,10.1145/277044.277141,Shih-Chieh Chang 0001; David Ihsin Cheng
+conf/dac/DaiGVK23,Efficient Transformer Inference with Statically Structured Sparse Attention.,2023,DAC,10.1109/DAC56929.2023.10247993,Steve Dai; Hasan Genc; Rangharajan Venkatesan; Brucek Khailany
+conf/dac/HeRK11,Test-case generation for embedded simulink via formal concept analysis.,2011,DAC,10.1145/2024724.2024777,Nannan He; Philipp Rümmer; Daniel Kroening
+conf/dac/HurstMB08,Scalable min-register retiming under timing and initializability constraints.,2008,DAC,10.1145/1391469.1391604,Aaron P. Hurst; Alan Mishchenko; Robert K. Brayton
+conf/dac/LuPZSL20,TP-GNN: A Graph Neural Network Framework for Tier Partitioning in Monolithic 3D ICs.,2020,DAC,10.1109/DAC18072.2020.9218582,Yi-Chen Lu; Sai Surya Kiran Pentapati; Lingjun Zhu; Kambiz Samadi; Sung Kyu Lim
+conf/dac/GoundanH76,Partitioning logic circuits to maximize fault resolution.,1976,DAC,10.1145/800146.804824,Ayee Goundan; John P. Hayes
+conf/dac/RajaramHM04,Reducing clock skew variability via cross links.,2004,DAC,10.1145/996566.996574,Anand Rajaram; Jiang Hu 0001; Rabi N. Mahapatra
+conf/dac/ChoCK26,CO-MAC: A Center-Out Ordered Stochastic MAC for Low-Latency Inference.,2026,DAC,10.1145/3770743.3804415,Hwangyu Cho; Tong Chen; Younghyun Kim 0001
+conf/dac/KimCLLPK98,Virtual Chip: Making Functional Models Work on Real Target Systems.,1998,DAC,10.1145/277044.277084,Namseung Kim; Hoon Choi; Seungjong Lee; Seungwang Lee; In-Cheol Park; Chong-Min Kyung
+conf/dac/LeeJCC020,Bit Parallel 6T SRAM In-memory Computing with Reconfigurable Bit-Precision.,2020,DAC,10.1109/DAC18072.2020.9218567,Kyeongho Lee; Jinho Jeong 0002; Sungsoo Cheon; Woong Choi; Jongsun Park 0001
+conf/dac/GrujicRJKV19,Design Principles for True Random Number Generators for Security Applications.,2019,DAC,10.1145/3316781.3323482,Milos Grujic; Vladimir Rozic; David Johnston; John Kelsey; Ingrid Verbauwhede
+conf/dac/MaloneyBM02,Computer aided design of long-haul optical transmission systems.,2002,DAC,10.1145/513918.513978,James G. Maloney; Brian E. Brewington; Curtis R. Menyuk
+conf/dac/BozorgzadehGTS03,Optimal integer delay budgeting on directed acyclic graphs.,2003,DAC,10.1145/775832.776064,Elaheh Bozorgzadeh; Soheil Ghiasi; Atsushi Takahashi 0001; Majid Sarrafzadeh
+conf/dac/FaruqueKH08,ADAM: run-time agent-based distributed application mapping for on-chip communication.,2008,DAC,10.1145/1391469.1391664,Mohammad Abdullah Al Faruque; Rudolf Krist; Jörg Henkel
+conf/dac/SinghMB05,Incremental retiming for FPGA physical synthesis.,2005,DAC,10.1145/1065579.1065694,Deshanand P. Singh; Valavan Manohararajah; Stephen Dean Brown
+conf/dac/XuC0CH024,Performance-driven Analog Routing via Heterogeneous 3DGNN and Potential Relaxation.,2024,DAC,10.1145/3649329.3658480,Peng Xu 0052; Guojin Chen; Keren Zhu 0001; Tinghuan Chen; Tsung-Yi Ho; Bei Yu 0001
+conf/dac/FuLZHZNWJ25,PairGraph: An Efficient Search-space-aware Accelerator for High-performance Concurrent Pairwise Queries.,2025,DAC,10.1109/DAC63849.2025.11132889,Yutao Fu; Zhongtian Long; Yu Zhang 0027; Zirui He; Jin Zhao 0003; Qiyuan Niu; Zixiao Wang 0005; Hai Jin 0001
+conf/dac/ZengYFL10,Tradeoff analysis and optimization of power delivery networks with on-chip voltage regulation.,2010,DAC,10.1145/1837274.1837483,Zhiyu Zeng; Xiaoji Ye; Zhuo Feng; Peng Li 0001
+conf/dac/WangPWWPCLJ18,Efficient multi-layer obstacle-avoiding region-to-region rectilinear steiner tree construction.,2018,DAC,10.1145/3195970.3196040,Run-Yi Wang; Chia-Cheng Pai; Junjie Wang; Hsiang-Ting Wen; Yu-Cheng Pai; Yao-Wen Chang; James Chien-Mo Li; Jie-Hong Roland Jiang
+conf/dac/WilsonGHMLBTC05,Structured/platform ASIC apprentices: which platform will survive your board room?,2005,DAC,10.1145/1065579.1065811,Ron Wilson; Joe Gianelli; Chris Hamlin; Ken McElvain; Steve Leibson; Ivo Bolson; Rich Tobias; Raul Camposano
+conf/dac/FrancisRV91,Chortle-crf: Fast Technology Mapping for Lookup Table-Based FPGAs.,1991,DAC,10.1145/127601.127670,Robert J. Francis; Jonathan Rose; Zvonko G. Vranesic
+conf/dac/YangCZPCXFWG25,AASD: Accelerate Inference by Aligning Speculative Decoding in Multimodal Large Language Models.,2025,DAC,10.1109/DAC63849.2025.11132960,Chaoqun Yang; Ran Chen; Muyang Zhang; Weiguang Pang; Yuzhi Chen; Rongtao Xu; Kexue Fu 0001; Changwei Wang 0001; Longxiang Gao
+conf/dac/RahimiCMGB15,Task scheduling strategies to mitigate hardware variability in embedded shared memory clusters.,2015,DAC,10.1145/2744769.2744915,Abbas Rahimi; Daniele Cesarini; Andrea Marongiu; Rajesh K. Gupta 0001; Luca Benini
+conf/dac/RoyKM08,Protecting bus-based hardware IP by secret sharing.,2008,DAC,10.1145/1391469.1391684,Jarrod A. Roy; Farinaz Koushanfar; Igor L. Markov
+conf/dac/CaiHXWHSLWW26,ESCAPE: Elegant Scan Chain Activity Probability Establishment for Programmable Low-Power LBIST.,2026,DAC,10.1145/3770743.3804104,Hairui Cai; Yumei Hu; Xiaohui Xue; Yaning Wang; Yu Huang 0005; Zhouxing Su; Zhipeng Lv; Zezhong Wang 0006; Xing Wang
+conf/dac/DuHZQYWWLZLJ26,HyperWafer: Communication-Aware Sparse Matrix Multiplication on Wafer-Scale Chips.,2026,DAC,10.1145/3770743.3804282,Zhongcheng Du; Yu Huang 0013; Yi Zhang 0191; Qihang Qiu; Chencheng Ye 0001; Huanyu Wu; Qie Wang; Xueqi Li 0001; Long Zheng 0003; Xiaofei Liao; Hai Jin 0001
+conf/dac/WoudenbergGVFDLB23,Invited: Pre-silicon Side Channel and Fault Analysis.,2023,DAC,10.1109/DAC56929.2023.10247882,Jasper Van Woudenberg; Peter Grossmann; Avinash Varna 0001; Joseph Friel; Daniel Dinu; Ronnie Lindsay; Steve J. Brown
+conf/dac/BertinoKK25,Security Opportunities and Challenges for Disaggregated Architectures (Invited).,2025,DAC,10.1109/DAC63849.2025.11132793,Elisa Bertino; Imtiaz Karim; Ashish Kundu
+conf/dac/HanLLLYY26,LLM4SDC: Leveraging Multi-Agent System for Automated SDC Generation and Benchmarking.,2026,DAC,10.1145/3770743.3804364,Peiyi Han; Yuntao Lu; Haiyang Liu; Fangzhou Liu 0005; Xufeng Yao; Yuyang Ye 0001
+conf/dac/HuKM13,Taming the complexity of coordinated place and route.,2013,DAC,10.1145/2463209.2488920,Jin Hu; Myung-Chul Kim; Igor L. Markov
+conf/dac/QiuWP01,Dynamic Power Management in a Mobile Multimedia System with Guaranteed Quality-of-Service.,2001,DAC,10.1145/378239.379075,Qinru Qiu; Qing Wu 0002; Massoud Pedram
+conf/dac/ParkXJFT18,Power-based side-channel instruction-level disassembler.,2018,DAC,10.1145/3195970.3196094,Jungmin Park; Xiaolin Xu 0001; Yier Jin; Domenic Forte; Mark Tehranipoor
+conf/dac/ShivaC82,Modular description/simulation/synthesis using DDL.,1982,DAC,10.1145/800263.809224,Sajjan G. Shiva; J. A. Covington
+conf/dac/GrasonN80,Digital test generation and design for testability.,1980,DAC,10.1145/800139.804527,John Grason; Andrew W. Nagle
+conf/dac/QiaoOTH20,The Best of Both Worlds: Combining CUDA Graph with an Image Processing DSL.,2020,DAC,10.1109/DAC18072.2020.9218531,Bo Qiao 0004; M. Akif Özkan; Jürgen Teich; Frank Hannig
+conf/dac/LiCDHKS00,Hardware-software co-design of embedded reconfigurable architectures.,2000,DAC,10.1145/337292.337559,Yanbing Li; Tim Callahan; Ervan Darnell; Randolph E. Harr; Uday Kurkure; Jon Stockwood
+conf/dac/MazumderPF87,Design and Algorithms for Parallel Testing of Random Access and Content Addressable Memories.,1987,DAC,10.1145/37888.37999,Pinaki Mazumder; Janak H. Patel; W. Kent Fuchs
+conf/dac/NouraniCP97,A Scheme for Integrated Controller-Datapath Fault Testing.,1997,DAC,10.1145/266021.266280,Mehrdad Nourani; Joan Carletta; Christos A. Papachristou
+conf/dac/MondalZS20,StatSAT: A Boolean Satisfiability based Attack on Logic-Locked Probabilistic Circuits.,2020,DAC,10.1109/DAC18072.2020.9218703,Ankit Mondal; Michael Zuzak; Ankur Srivastava 0001
+conf/dac/KaoCA97,Transistor Sizing Issues and Tool For Multi-Threshold CMOS Technology.,1997,DAC,10.1145/266021.266182,James T. Kao; Anantha P. Chandrakasan; Dimitri A. Antoniadis
+conf/dac/LiuZYFWYLWY25,AcclMT: A Highly Resource-Efficient and Flexible Poseidon Hash-Based Merkle Tree Architecture.,2025,DAC,10.1109/DAC63849.2025.11132911,Changxu Liu; Hao Zhou 0015; Lan Yang; Yifei Feng; Zheng Wu; Zhuoyuan Yang; Yinlong Li; Shiyong Wu; Fan Yang 0001
+conf/dac/AksoyCFM07,Optimization of Area in Digital FIR Filters using Gate-Level Metrics.,2007,DAC,10.1145/1278480.1278588,Levent Aksoy; Eduardo A. C. da Costa; Paulo F. Flores; José Monteiro 0001
+conf/dac/RaviCS25,ADVeRL-ELF: ADVersarial ELF Malware Generation using Reinforcement Learning.,2025,DAC,10.1109/DAC63849.2025.11132466,Akshara Ravi; Vivek Chaturvedi; Muhammad Shafique 0001
+conf/dac/ChengZZ0SI15,Core vs. uncore: the heart of darkness.,2015,DAC,10.1145/2744769.2747916,Hsiang-Yun Cheng; Jia Zhan; Jishen Zhao; Yuan Xie 0001; Jack Sampson; Mary Jane Irwin
+conf/dac/HemmatiBNB17,Real-Time Multi-Scale Pedestrian Detection for Driver Assistance Systems.,2017,DAC,10.1145/3061639.3062308,Maryam Hemmati; Morteza Biglari-Abhari; Smaïl Niar; Stevan Berber
+conf/dac/0002WYSSLH20,GCN-RL Circuit Designer: Transferable Transistor Sizing with Graph Neural Networks and Reinforcement Learning.,2020,DAC,10.1109/DAC18072.2020.9218757,Hanrui Wang 0002; Kuan Wang; Jiacheng Yang; Linxiao Shen; Nan Sun 0001; Hae-Seung Lee; Song Han 0003
+conf/dac/HuLYZCLM26,KCD-CAM: A K-Nearest-Neighbor Accelerator Based on Charge-Domain Content-Addressable-Memory for Point Cloud Processing.,2026,DAC,10.1145/3770743.3804182,Tong Hu; Jiancong Li; Yingjie Yu; Zhiwei Zhou; Jia Chen 0032; Yi Li 0049; Xiangshui Miao
+conf/dac/KeszoczeWHD14,Exact One-pass Synthesis of Digital Microfluidic Biochips.,2014,DAC,10.1145/2593069.2593135,Oliver Keszöcze; Robert Wille; Tsung-Yi Ho; Rolf Drechsler
+conf/dac/AguilarLAM16,Automatic parallelization and accelerator offloading for embedded applications on heterogeneous MPSoCs.,2016,DAC,10.1145/2897937.2897991,Miguel Angel Aguilar; Rainer Leupers; Gerd Ascheid; Luis Gabriel Murillo
+conf/dac/SilvaGKN89,Protection and Versioning for OCT.,1989,DAC,10.1145/74382.74427,Mário J. Silva; David Gedye; Randy H. Katz; Richard Newton 0001
+conf/dac/HuangLWLCLPW16,Efficient probing schemes for fine-pitch pads of InFO wafer-level chip-scale package.,2016,DAC,10.1145/2897937.2898015,Yu-Chieh Huang; Bing-Yang Lin; Cheng-Wen Wu; Mincent Lee; Hao Chen 0053; Hung-Chih Lin; Ching-Nen Peng; Min-Jer Wang
+conf/dac/ZhaoF12,Towards efficient SPICE-accurate nonlinear circuit simulation with on-the-fly support-circuit preconditioners.,2012,DAC,10.1145/2228360.2228564,Xueqian Zhao; Zhuo Feng
+conf/dac/ZhangHSQZ26,ROSA: Robust and Energy-Efficient Microring-Based Optical Neural Networks via Optical Shift-and-Add and Layer-Wise Hybrid Mapping.,2026,DAC,10.1145/3770743.3803919,Huifan Zhang; Yun Hu 0003; Caizhi Sheng; Yurui Qu; Pingqiang Zhou
+conf/dac/KuoHCKC12,Efficient trimmed-sample Monte Carlo methodology and yield-aware design flow for analog circuits.,2012,DAC,10.1145/2228360.2228563,Chin-Cheng Kuo; Wei-Yi Hu; Yi-Hung Chen; Jui-Feng Kuan; Yi-Kan Cheng
+conf/dac/JiangLZYW15,A 127 fps in full hd accelerator based on optimized AKAZE with efficiency and effectiveness for image feature extraction.,2015,DAC,10.1145/2744769.2744772,Guangli Jiang; Leibo Liu; Wenping Zhu; Shouyi Yin; Shaojun Wei
+conf/dac/HuYD94,New Techniques for Efficient Verification with Implicitly Conjoined BDDs.,1994,DAC,10.1145/196244.196377,Alan J. Hu; Gary York; David L. Dill
+conf/dac/ZhongHMYM020,Deep Learning-Driven Simultaneous Layout Decomposition and Mask Optimization.,2020,DAC,10.1109/DAC18072.2020.9218530,Wei Zhong; Shuxiang Hu; Yuzhe Ma; Haoyu Yang; Xiuyuan Ma; Bei Yu 0001
+conf/dac/OgrasMCM07,Voltage-Frequency Island Partitioning for GALS-based Networks-on-Chip.,2007,DAC,10.1145/1278480.1278509,Ümit Y. Ogras; Radu Marculescu; Puru Choudhary; Diana Marculescu
+conf/dac/ZhangWCMCL21,F-CAD: A Framework to Explore Hardware Accelerators for Codec Avatar Decoding.,2021,DAC,10.1109/DAC18074.2021.9586192,Xiaofan Zhang 0001; Dawei Wang; Pierce Chuang; Shugao Ma; Deming Chen; Yuecheng Li
+conf/dac/0001CAAA20,In-Memory Computing in Emerging Memory Technologies for Machine Learning: An Overview.,2020,DAC,10.1109/DAC18072.2020.9218505,Kaushik Roy 0001; Indranil Chakraborty; Mustafa Fayez Ali; Aayush Ankit; Amogh Agrawal
+conf/dac/LeeW95,A Performance and Routability Driven Router for FPGAs Considering Path Delays.,1995,DAC,10.1145/217474.217588,Yuh-Sheng Lee; Allen C.-H. Wu
+conf/dac/ZhaoLLDLLHD25,Harnessing Conventional Video Processing Insights for Emerging 3D Video Generation Models: A Comprehensive Attention-aware Way.,2025,DAC,10.1109/DAC63849.2025.11132992,Tianlang Zhao; Jun Liu 0117; Xingyang Li; Li Ding 0012; Jinhao Li 0006; Shuaiheng Li; Jinbo Hu; Guohao Dai 0001
+conf/dac/AxerE13,"Stochastic response-time guarantee for non-preemptive, fixed-priority scheduling under errors.",2013,DAC,10.1145/2463209.2488946,Philip Axer; Rolf Ernst
+conf/dac/VisweswariahW93,Incremental Event-Driven Simulation of Digital FET Circuits.,1993,DAC,10.1145/157485.165111,Chandramouli Visweswariah; Jalal A. Wehbeh
+conf/dac/GoraczkoLLMPZ08,Energy-optimal software partitioning in heterogeneous multiprocessor embedded systems.,2008,DAC,10.1145/1391469.1391518,Michel Goraczko; Jie Liu 0001; Dimitrios Lymberopoulos; Slobodan Matic; Bodhi Priyantha; Feng Zhao 0001
+conf/dac/LiuZ15,A reconfigurable analog substrate for highly efficient maximum flow computation.,2015,DAC,10.1145/2744769.2744781,Gai Liu; Zhiru Zhang
+conf/dac/MuttrejaRRJ05,Hybrid simulation for embedded software energy estimation.,2005,DAC,10.1145/1065579.1065590,Anish Muttreja; Anand Raghunathan; Srivaths Ravi 0001; Niraj K. Jha
+conf/dac/LeeKCZSIK23,Comprehensive Integration of Hyperdimensional Computing with Deep Learning towards Neuro-Symbolic AI.,2023,DAC,10.1109/DAC56929.2023.10248004,Hyunsei Lee; Jiseung Kim 0005; Hanning Chen; Ariela Zeira; Narayan Srinivasa; Mohsen Imani; Yeseong Kim
+conf/dac/JiangM08,Power gating scheduling for power/ground noise reduction.,2008,DAC,10.1145/1391469.1391716,Hailin Jiang; Malgorzata Marek-Sadowska
+conf/dac/LiuLHZZHLTF24,Auto-ISP: An Efficient Real-Time Automatic Hyperparameter Optimization Framework for ISP Hardware System.,2024,DAC,10.1145/3649329.3655952,Jiaming Liu; Zihao Liu 0015; Xuan Huang; Ruoxi Zhu; Qi Zheng 0004; Zhijian Hao; Tao Liu 0023; Jun Tao 0001; Yibo Fan
+conf/dac/KarkowskiC98,Design Space Exploration Algorithm for Heterogeneous Multi-Processor Embedded System Design.,1998,DAC,10.1145/277044.277060,Ireneusz Karkowski; Henk Corporaal
+conf/dac/HsiehBLS00,Efficient methods for embedded system design space exploration.,2000,DAC,10.1145/337292.337593,Harry Hsieh; Felice Balarin; Luciano Lavagno; Alberto L. Sangiovanni-Vincentelli
+conf/dac/SehgalSDSDSRB25,Enhancing Parallelism and Energy-Efficiency in SOT-MRAM based CIM Architecture for On-Chip Learning.,2025,DAC,10.1109/DAC63849.2025.11424425,Anubha Sehgal; Alok Kumar Shukla; Sumit Diware; Sandeep Soni; Seema Dhull; Sonal Shreya; Sourajeet Roy; Rajendra Bishnoi
+conf/dac/OkuboWW90,New Algorithm for Overlapping Cell Treatment in Hierarchical CAD Data/Electron Beam Exposure Data Conversion.,1990,DAC,10.1145/123186.123293,Tsuneo Okubo; Takashi Watanabe; Kou Wada
+conf/dac/BolsensRCM89,Electrical Debugging of Synchronous MOS VLSI Circuits Exploiting Analysis of the Intended Logic Behaviour.,1989,DAC,10.1145/74382.74468,Ivo Bolsens; W. De Rammelaere; Luc J. M. Claesen; Hugo De Man
+conf/dac/OuTC15,Cutting structure-aware analog placement based on self-aligned double patterning with e-beam lithography.,2015,DAC,10.1145/2744769.2744813,Hung-Chih Ou; Kai-Han Tseng; Yao-Wen Chang
+conf/dac/DaiTHZ14,Flushing-Enabled Loop Pipelining for High-Level Synthesis.,2014,DAC,10.1145/2593069.2593143,Steve Dai; Mingxing Tan; Kecheng Hao; Zhiru Zhang
+conf/dac/MandalODAKP20,Online Adaptive Learning for Runtime Resource Management of Heterogeneous SoCs.,2020,DAC,10.1109/DAC18072.2020.9218604,Sumit K. Mandal; Ümit Y. Ogras; Janardhan Rao Doppa; Raid Zuhair Ayoub; Michael Kishinevsky; Partha Pratim Pande
+conf/dac/YuSPJ21,Cross-Device Profiled Side-Channel Attacks using Meta-Transfer Learning.,2021,DAC,10.1109/DAC18074.2021.9586100,Honggang Yu; Haoqi Shan; Maximillian Panoff; Yier Jin
+conf/dac/VanderhaegenB04,Automated design of operational transconductance amplifiers using reversed geometric programming.,2004,DAC,10.1145/996566.996608,Johan P. Vanderhaegen; Robert W. Brodersen
+conf/dac/CoburnRR05,Power emulation: a new paradigm for power estimation.,2005,DAC,10.1145/1065579.1065764,Joel Coburn; Srivaths Ravi 0001; Anand Raghunathan
+conf/dac/JainVSCGC19,BiScaled-DNN: Quantizing Long-tailed Datastructures with Two Scale Factors for Deep Neural Networks.,2019,DAC,10.1145/3316781.3317783,Shubham Jain 0004; Swagath Venkataramani; Vijayalakshmi Srinivasan; Jungwook Choi; Kailash Gopalakrishnan; Leland Chang
+conf/dac/WangLZMDW17,A 700fps Optimized Coarse-to-Fine Shape Searching Based Hardware Accelerator for Face Alignment.,2017,DAC,10.1145/3061639.3062182,Qiang Wang; Leibo Liu; Wenping Zhu; Huiyu Mo; Chenchen Deng; Shaojun Wei
+conf/dac/KongC12,Exploiting narrow-width values for process variation-tolerant 3-D microprocessors.,2012,DAC,10.1145/2228360.2228581,Joonho Kong; Sung Woo Chung
+conf/dac/XieTPCLWPZLYMLY26,PiMM-NoC: Process-in-Memristor-Memory NoC with RL Mapping Framework for Versatile AI Models.,2026,DAC,10.1145/3770743.3804275,Ziang Xie; Yaoyu Tao; Zelun Pan; Haojun Chen 0001; Zhiyuan Li; Qinghao Wang; Zhiming Pan; Yihang Zhu; Zixiang Luo; Yian Yang; Guang Mo; Kaiwen Long; Yaodong Yang 0001; Yuchao Yang 0001
+conf/dac/TrivediS18,Ultralow power acoustic feature-scoring using gaussian I-V transistors.,2018,DAC,10.1145/3195970.3196133,Amit Ranjan Trivedi; Ahish Shylendra
+conf/dac/TorranceJ11,The state-of-the-art in semiconductor reverse engineering.,2011,DAC,10.1145/2024724.2024805,Randy Torrance; Dick James
+conf/dac/JiangSC08,Routability-driven analytical placement by net overlapping removal for large-scale mixed-size designs.,2008,DAC,10.1145/1391469.1391513,Zhe-Wei Jiang; Bor-Yiing Su; Yao-Wen Chang
+conf/dac/ChungC89,Data Parallel Simulation Using Time-Warp on the Connection Machine.,1989,DAC,10.1145/74382.74400,Moon-Jung Chung; Y. Chung
+conf/dac/CheOQLSL24,Fast Virtual Gate Extraction For Silicon Quantum Dot Devices.,2024,DAC,10.1145/3649329.3655923,Shize Che; Seongwoo Oh; Haoyun Qin; Yuhao Liu 0017; Anthony Sigillito; Gushu Li
+conf/dac/WuM95,Orthogonal Greedy Coupling - A New Optimization Approach to 2-D FPGA Routing.,1995,DAC,10.1145/217474.217591,Yu-Liang Wu; Malgorzata Marek-Sadowska
+conf/dac/Mador-HaimAM11,Litmus tests for comparing memory consistency models: how long do they need to be?,2011,DAC,10.1145/2024724.2024842,Sela Mador-Haim; Rajeev Alur; Milo M. K. Martin
+conf/dac/ChowdhuryYN23,SimLL: Similarity-Based Logic Locking Against Machine Learning Attacks.,2023,DAC,10.1109/DAC56929.2023.10247822,Subhajit Dutta Chowdhury; Kaixin Yang; Pierluigi Nuzzo 0002
+conf/dac/YangLD06,High-performance operating system controlled memory compression.,2006,DAC,10.1145/1146909.1147086,Lei Yang 0017; Haris Lekatsas; Robert P. Dick
+conf/dac/WalkupB94,Interface Timing Verification with Application to Synthesis.,1994,DAC,10.1145/196244.196297,Elizabeth A. Walkup; Gaetano Borriello
+conf/dac/LiangYL0M24,CAMO: Correlation-Aware Mask Optimization with Modulated Reinforcement Learning.,2024,DAC,10.1145/3649329.3656254,Xiaoxiao Liang; Haoyu Yang; Kang Liu 0017; Bei Yu 0001; Yuzhe Ma
+conf/dac/WangZB17,Retiming of Two-Phase Latch-Based Resilient Circuits.,2017,DAC,10.1145/3061639.3062312,Hsiao-Lun Wang; Minghe Zhang; Peter A. Beerel
+conf/dac/MaciiPS97,"High-Level Power Modeling, Estimation, and Optimization.",1997,DAC,10.1145/266021.266268,Enrico Macii; Massoud Pedram; Fabio Somenzi
+conf/dac/HadiMHS23,Hardware Support for Durable Atomic Instructions for Persistent Parallel Programming.,2023,DAC,10.1109/DAC56929.2023.10247729,Khan Shaikhul Hadi; Naveed Ul Mustafa; Mark Heinrich; Yan Solihin
+conf/dac/SaadatJP19,Approximate Integer and Floating-Point Dividers with Near-Zero Error Bias.,2019,DAC,10.1145/3316781.3317773,Hassaan Saadat; Haris Javaid; Sri Parameswaran
+conf/dac/SentovichCDK04,"Business models in IP, software licensing, and services.",2004,DAC,10.1145/996566.996642,Ellen Sentovich; Raul Camposano; Jim Douglas; Aurangzeb Khan
+conf/dac/WangLZ17,FlexCL: An Analytical Performance Model for OpenCL Workloads on Flexible FPGAs.,2017,DAC,10.1145/3061639.3062251,Shuo Wang 0009; Yun Liang 0001; Wei Zhang 0012
+conf/dac/LiuKLC10,Multi-threaded collision-aware global routing with bounded-length maze routing.,2010,DAC,10.1145/1837274.1837324,Wen-Hao Liu 0001; Wei-Chun Kao; Yih-Lang Li; Kai-Yuan Chao
+conf/dac/KravitzR86,Multiprocessor-based placement by simulated annealing.,1986,DAC,10.1145/318013.318104,Saul A. Kravitz; Rob A. Rutenbar
+conf/dac/LiangZHSFW25,ZK-Hammer: Leaking Secrets from Zero-Knowledge Proofs via Rowhammer.,2025,DAC,10.1109/DAC63849.2025.11133021,Junkai Liang; Xin Zhang 0110; Daqi Hu; Qingni Shen; Yuejian Fang; Zhonghai Wu
+conf/dac/JuS91,Incremental Techniques for the Identification of Statically Sensitizable Critical Paths.,1991,DAC,10.1145/127601.127729,Yun-Cheng Ju; Resve A. Saleh
+conf/dac/ZouMGS06,"A CPPLL hierarchical optimization methodology considering jitter, power and locking time.",2006,DAC,10.1145/1146909.1146919,Jun Zou; Daniel Mueller 0001; Helmut E. Graeb; Ulf Schlichtmann
+conf/dac/CowardCD23,Automating Constraint-Aware Datapath Optimization using E-Graphs.,2023,DAC,10.1109/DAC56929.2023.10247797,Samuel Coward; George A. Constantinides; Theo Drane
+conf/dac/CaiYM0Z021,NeurFill: Migrating Full-Chip CMP Simulators to Neural Networks for Model-Based Dummy Filling Synthesis.,2021,DAC,10.1109/DAC18074.2021.9586325,Junzhe Cai; Changhao Yan; Yuzhe Ma; Bei Yu 0001; Dian Zhou; Xuan Zeng 0001
+conf/dac/MrugalskiRCT07,New Test Data Decompressor for Low Power Applications.,2007,DAC,10.1145/1278480.1278617,Grzegorz Mrugalski; Janusz Rajski; Dariusz Czysz; Jerzy Tyszer
+conf/dac/ChenCW96a,Optimal Wire-Sizing Formular Under the Elmore Delay Model.,1996,DAC,10.1145/240518.240611,Chung-Ping Chen; Yao-Ping Chen; D. F. Wong 0001
+conf/dac/UtyamishevP21,Late Breaking Results: Parallelizing Net Routing with cGANs.,2021,DAC,10.1109/DAC18074.2021.9586319,Dmitry Utyamishev; Inna Partin-Vaisband
+conf/dac/SimunicBM99,Cycle-Accurate Simulation of Energy Consumption in Embedded Systems.,1999,DAC,10.1145/309847.310090,Tajana Simunic; Luca Benini; Giovanni De Micheli
+conf/dac/ParkLPHLJHLJKK26,Neural Domain Decomposition for Scalable Multi-Physics: Chip-Scale Thermal-Stress Analysis.,2026,DAC,10.1145/3770743.3803918,Min-Chul Park; Ji-Hye Lee; Hong-hyun Park; In Huh; Sungyeop Lee; Hyunjae Jang; Giyong Hong; Seokki Lee; Changwook Jeong; Young-Gu Kim; Dae Sin Kim
+conf/dac/PiyachonL08,Design of high performance pattern matching engine through compact deterministic finite automata.,2008,DAC,10.1145/1391469.1391685,Piti Piyachon; Yan Luo 0001
+conf/dac/YalcinPMBSH01,An Advanced Timing Characterization Method Using Mode Dependency.,2001,DAC,10.1145/378239.379042,Hakan Yalcin; Robert Palermo; Mohammad Mortazavi; Cyrus Bamji; Karem A. Sakallah; John P. Hayes
+conf/dac/ChenYZ22,GaBAN: a generic and flexibly programmable vector neuro-processor on FPGA.,2022,DAC,10.1145/3489517.3530561,Jiajie Chen 0001; Le Yang; Youhui Zhang 0001
+conf/dac/VenkataramaniSKRR12,SALSA: systematic logic synthesis of approximate circuits.,2012,DAC,10.1145/2228360.2228504,Swagath Venkataramani; Amit Sabne; Vivek Joy Kozhikkottu; Kaushik Roy 0001; Anand Raghunathan
+conf/dac/PreasK86,Automatic placement a review of current techniques (tutorial session).,1986,DAC,10.1145/318013.318124,Bryan Preas; Patrick G. Karger
+conf/dac/GuoBLLS25,KLiNQ: Knowledge Distillation-Assisted Lightweight Neural Network for Qubit Readout on FPGA.,2025,DAC,10.1109/DAC63849.2025.11132854,Xiaorang Guo; Tigran Bunarjyan; Dai Liu; Benjamin Lienhard; Martin Schulz 0001
+conf/dac/JeongK24,Binding Multi-bit Flip-flop Cells through Design and Technology Co-optimization.,2024,DAC,10.1145/3649329.3658264,Jooyeon Jeong; Taewhan Kim 0001
+conf/dac/XuJHMWSZRYLS26,DiffDEG: Diffusion-Enhanced Design Evolution Graph Representation Learning for Post-Layout Optimization.,2026,DAC,10.1145/3770743.3804019,Jiajie Xu; Leilei Jin; Ziyue Han; Yanlong Mao; Liangji Wu; Chenpu Shi; Yunfan Zuo; Lizheng Ren; Hao Yan 0002; Xingquan Li; Longxing Shi
+conf/dac/MinhasPAHS25,Replay4NCL: An Efficient Memory Replay-based Methodology for Neuromorphic Continual Learning in Embedded AI Systems.,2025,DAC,10.1109/DAC63849.2025.11132839,Mishal Fatima Minhas; Rachmad Vidya Wicaksana Putra; Falah Awwad; Osman Hasan; Muhammad Shafique 0001
+conf/dac/ShookBKAJ20,MLParest: Machine Learning based Parasitic Estimation for Custom Circuit Design.,2020,DAC,10.1109/DAC18072.2020.9218495,Brett Shook; Prateek Bhansali; Chandramouli V. Kashyap; Chirayu Amin; Siddhartha Joshi
+conf/dac/RaoufiYTZ23,EP-ORAM: Efficient NVM-Friendly Path Eviction for Ring ORAM in Hybrid Memory.,2023,DAC,10.1109/DAC56929.2023.10247714,Mehrnoosh Raoufi; Jun Yang 0002; Xulong Tang; Youtao Zhang
+conf/dac/TsengC23,Late Breaking Results: An Efficient Bridge-based Compression Algorithm for Topologically Quantum Error Corrected Circuits.,2023,DAC,10.1109/DAC56929.2023.10247656,Wei-Hsiang Tseng; Yao-Wen Chang
+conf/dac/ChenL97,Power Supply Noise Analysis Methodology for Deep-Submicron VLSI Chip Design.,1997,DAC,10.1145/266021.266307,Howard H. Chen; David D. Ling
+conf/dac/QinXJ0A0H024,Enabling On-Device Large Language Model Personalization with Self-Supervised Data Selection and Synthesis.,2024,DAC,10.1145/3649329.3655665,Ruiyang Qin; Jun Xia 0003; Zhenge Jia; Meng Jiang 0001; Ahmed Abbasi; Peipei Zhou 0001; Jingtong Hu; Yiyu Shi 0001
+conf/dac/RaghunathanDJ96,Glitch Analysis and Reduction in Register Transfer Level.,1996,DAC,10.1145/240518.240581,Anand Raghunathan; Sujit Dey; Niraj K. Jha
+conf/dac/ZhouYWLMLSXSLL26,OpenACMv2: An Accuracy-Constrained Co-Optimization Framework for Approximate DCiM.,2026,DAC,10.1145/3770743.3804259,Yiqi Zhou; Yue Yuan; Yikai Wang; Bohao Liu; Qinxin Mei; Zhuohua Liu; Shan Shen; Wei Xing 0005; Daying Sun; Li Li; Guozhu Liu
+conf/dac/RoyB04,An algorithm for converting floating-point computations to fixed-point in MATLAB based FPGA design.,2004,DAC,10.1145/996566.996701,Sanghamitra Roy; Prithviraj Banerjee
+conf/dac/HanKMZ18,A study of optimal cost-skew tradeoff and remaining suboptimality in interconnect tree constructions.,2018,SLIP@DAC,10.1145/3225209.3225215,Kwangsoo Han; Andrew B. Kahng; Christopher Moyes; Alex Zelikovsky
+conf/dac/GhoshDJ98,A Fast and Low Cost Testing Technique for Core-Based System-on-Chip.,1998,DAC,10.1145/277044.277190,Indradeep Ghosh; Sujit Dey; Niraj K. Jha
+conf/dac/LeeDBABM04,Circuit-aware architectural simulation.,2004,DAC,10.1145/996566.996656,Seokwoo Lee; Shidhartha Das; Valeria Bertacco; Todd M. Austin; David T. Blaauw; Trevor N. Mudge
+conf/dac/LiWMB23,Global Floorplanning via Semidefinite Programming.,2023,DAC,10.1109/DAC56929.2023.10247967,Wei Li 0159; Fangzhou Wang; José M. F. Moura; R. D. (Shawn) Blanton
+conf/dac/GuQZ09,Information hiding for trusted system design.,2009,DAC,10.1145/1629911.1630093,Junjun Gu; Gang Qu 0001; Qiang Zhou 0001
+conf/dac/BruceMH89,Multi Chip Modules.,1989,DAC,10.1145/74382.74447,R. H. Bruce; W. P. Meuli; J. Ho
+conf/dac/BapatV86,Reasoning about digital systems using temporal logic.,1986,DAC,10.1145/318013.318047,S. Bapat; G. Venkatesh
+conf/dac/BarkatullahC91,A Transmission Line Simulator for GaAs Integrated Circuits.,1991,DAC,10.1145/127601.127763,Javed Sabir Barkatullah; S. Chowdhury
+conf/dac/YuZYL89,A Novel Algorithm for Improving Convergence Behavior of Circuit Simulators.,1989,DAC,10.1145/74382.74491,Zhiping Yu; Weijian Zhao; Zhilian Yang; Y. Edmund Lien
+conf/dac/Gao0CZC18,Electro-magnetic analysis of GPU-based AES implementation.,2018,DAC,10.1145/3195970.3196042,Yiwen Gao 0001; Hailong Zhang 0001; Wei Cheng 0003; Yongbin Zhou; Yuchen Cao 0002
+conf/dac/YangSDKLYYL23,Late Breaking Results: Fast Fair Medical Applications? Hybrid Vision Models Achieve the Fairness on the Edge.,2023,DAC,10.1109/DAC56929.2023.10247761,Changdi Yang; Yi Sheng 0001; Peiyan Dong; Zhenglun Kong; Yanyu Li; Pinrui Yu; Lei Yang 0018; Xue Lin 0001
+conf/dac/CaoFHS08,Optimality and improvement of dynamic voltage scaling algorithms for multimedia applications.,2008,DAC,10.1145/1391469.1391516,Zhen Cao; Brian Foo; Lei He 0001; Mihaela van der Schaar
+conf/dac/HsiehH08,An embedded infrastructure of debug and trace interface for the DSP platform.,2008,DAC,10.1145/1391469.1391688,Ming-Chang Hsieh; Chih-Tsun Huang
+conf/dac/WangDYZHWJG26,CircuitDiff: Bridging Netlist Knowledge with RTL based on Graph Denoising Diffusion.,2026,DAC,10.1145/3770743.3804385,Ning Wang 0069; Zichong Deng; Bingkun Yao; Jie Zhou 0001; Yuchen Hu; Xi Wang 0009; Zhe Jiang 0004; Nan Guan
+conf/dac/DuttACDWY94,Design Reuse: Fact or Fiction? (Panel).,1994,DAC,10.1145/196244.196555,Nikil D. Dutt; David Agnew; Raul Camposano; Antun Domic; Manfred Wiesel; Hiroto Yasuura
+conf/dac/PapirlaC09,Energy-aware error control coding for Flash memories.,2009,DAC,10.1145/1629911.1630085,Veera Papirla; Chaitali Chakrabarti
+conf/dac/KrolakFM70,A man-machine approach toward solving the traveling salesman problem.,1970,DAC,10.1145/800160.805133,Patrick D. Krolak; Wayne Felts; George Marble
+conf/dac/DengSWO25,Mixed-Precision Quantization for Deep Vision Models with Integer Quadratic Programming.,2025,DAC,10.1109/DAC63849.2025.11132777,Zihao Deng; Sayeh Sharify; Xin Wang; Michael Orshansky
+conf/dac/SloanSK12,On software design for stochastic processors.,2012,DAC,10.1145/2228360.2228524,Joseph Sloan; John Sartori; Rakesh Kumar 0002
+conf/dac/SeomunSS10,Synthesis and implementation of active mode power gating circuits.,2010,DAC,10.1145/1837274.1837395,Jun Seomun; Insup Shin; Youngsoo Shin
+conf/dac/HuSLGDGLGYW16,Dot-product engine for neuromorphic computing: programming 1T1M crossbar to accelerate matrix-vector multiplication.,2016,DAC,10.1145/2897937.2898010,Miao Hu 0002; John Paul Strachan; Zhiyong Li; Emmanuelle M. Grafals; Noraica Davila; Catherine Graves; Sity Lam; Ning Ge 0001; Jianhua Joshua Yang; R. Stanley Williams
+conf/dac/ZhangPHM09,Carbon nanotube circuits in the presence of carbon nanotube density variations.,2009,DAC,10.1145/1629911.1629933,Jie Zhang 0007; Nishant Patil; Arash Hazeghi; Subhasish Mitra
+conf/dac/DonzelleDHPS91,A Constraint Based Approach to Automatic Design of Analog Cells.,1991,DAC,10.1145/127601.127722,Louis-Oliver Donzelle; Pierre-François Dubois; B. Hennion; J. Parissis; Patrice Senn
+conf/dac/HuangTLLTCYW26,Late Breaking Results: QUBO Approaches to Logic Equivalence Checking and Testing.,2026,DAC,10.1145/3770743.3807713,Tao-Chun Huang; Hao-Yu Tsai; You-Cheng Lin; Yi-Ting Li; Wuqian Tang; Yung-Chih Chen; Jian-Meng Yang; Chun-Yao Wang
+conf/dac/ZhaoLSZYGY17,Design Methodology for Thin-Film Transistor Based Pseudo-CMOS Logic Array with Multi-Layer Interconnect Architecture.,2017,DAC,10.1145/3061639.3062227,Qinghang Zhao; Yongpan Liu; Wenyu Sun; Jiaqing Zhao; Hailong Yao 0002; Xiaojun Guo; Huazhong Yang
+conf/dac/RaghunathanSG03,A survey of techniques for energy efficient on-chip communication.,2003,DAC,10.1145/775832.776059,Vijay Raghunathan; Mani B. Srivastava; Rajesh K. Gupta 0001
+conf/dac/SmithFC85,An architecture design and assessment system for software/hardware codesign.,1985,DAC,10.1145/317825.317921,Connie U. Smith; Geoffrey A. Frank; John L. Cuadrado
+conf/dac/JiXZZLSW26,Instruction-Level Side-Channel Disassembly on Modern Complex CPUs via Voltage Waveform Analysis.,2026,DAC,10.1145/3770743.3804299,Yucheng Ji; Ruibin Xia; Hanyuan Zou; Yingqi Zhang; Weidong Liu 0001; Jiaxing Song; Dongsheng Wang 0002
+conf/dac/LimKH10,An efficient test vector generation for checking analog/mixed-signal functional models.,2010,DAC,10.1145/1837274.1837468,ByongChan Lim; Jaeha Kim; Mark A. Horowitz
+conf/dac/ParkBWM10,BLoG: post-silicon bug localization in processors using bug localization graphs.,2010,DAC,10.1145/1837274.1837367,Sung-Boem Park; Anne Bracy; Hong Wang 0003; Subhasish Mitra
+conf/dac/MundhenkSLFC15,Security analysis of automotive architectures using probabilistic model checking.,2015,DAC,10.1145/2744769.2744906,Philipp Mundhenk; Sebastian Steinhorst; Martin Lukasiewycz; Suhaib A. Fahmy; Samarjit Chakraborty
+conf/dac/AndrikosLPS07,A Fully-Automated Desynchronization Flow for Synchronous Circuits.,2007,DAC,10.1145/1278480.1278722,Nikolaos Andrikos; Luciano Lavagno; Davide Pandini; Christos P. Sotiriou
+conf/dac/XueYHTTYF24,GDR-HGNN: A Heterogeneous Graph Neural Networks Accelerator Frontend with Graph Decoupling and Recoupling.,2024,DAC,10.1145/3649329.3656540,Runzhen Xue; Mingyu Yan; Dengke Han; Yihan Teng; Zhimin Tang; Xiaochun Ye; Dongrui Fan
+conf/dac/LiuLYPHS17,Transport or Store?: Synthesizing Flow-based Microfluidic Biochips using Distributed Channel Storage.,2017,DAC,10.1145/3061639.3062334,Chunfeng Liu; Bing Li 0005; Hailong Yao 0002; Paul Pop; Tsung-Yi Ho; Ulf Schlichtmann
+conf/dac/KimK05,"Memory access optimization through combined code scheduling, memory allocation, and array binding in embedded system design.",2005,DAC,10.1145/1065579.1065611,Jungeun Kim; Taewhan Kim 0001
+conf/dac/FabbroFCG95,An Assigned Probability Technique to Derive Realistic Worst-Case Timing Models of Digital Standard Cells.,1995,DAC,10.1145/217474.217614,Alessandro Dal Fabbro; Bruno Franzini; Luigi Croce; Carlo Guardiani
+conf/dac/StadeBW26,"Search Smarter, Not Harder: A Scalable, High-Quality Zoned Neutral Atom Compiler.",2026,DAC,10.1145/3770743.3804136,Yannick Stade; Lukas Burgholzer; Robert Wille
+conf/dac/SerranoQ18,Response-time analysis of DAG tasks supporting heterogeneous computing.,2018,DAC,10.1145/3195970.3196104,Maria A. Serrano; Eduardo Quiñones
+conf/dac/GencKAHIPZGLMO021,Gemmini: Enabling Systematic Deep-Learning Architecture Evaluation via Full-Stack Integration.,2021,DAC,10.1109/DAC18074.2021.9586216,Hasan Genc; Seah Kim; Alon Amid; Ameer Haj-Ali; Vighnesh Iyer; Pranav Prakash; Jerry Zhao; Daniel Grubb; Harrison Liew; Howard Mao; Albert J. Ou; Colin Schmidt 0001; Samuel Steffl; John Charles Wright; Ion Stoica; Jonathan Ragan-Kelley; Krste Asanovic; Borivoje Nikolic; Yakun Sophia Shao
+conf/dac/XiaoDTWYWZ14,Directed Self-Assembly (DSA) Template Pattern Verification.,2014,DAC,10.1145/2593069.2593125,Zigang Xiao; Yuelin Du; Haitong Tian; Martin D. F. Wong; He Yi; H.-S. Philip Wong; Hongbo Zhang 0001
+conf/dac/LiuYCP16,Incremental layer assignment for critical path timing.,2016,DAC,10.1145/2897937.2898033,Derong Liu 0002; Bei Yu 0001; Salim Chowdhury; David Z. Pan
+conf/dac/0006PLPY22,GLite: a fast and efficient automatic graph-level optimizer for large-scale DNNs.,2022,DAC,10.1145/3489517.3530418,Jiaqi Li 0006; Min Peng 0002; Qingan Li; Meizheng Peng; Mengting Yuan 0001
+conf/dac/KengV12,Path directed abstraction and refinement in SAT-based design debugging.,2012,DAC,10.1145/2228360.2228530,Brian Keng; Andreas G. Veneris
+conf/dac/CaoABDDDDDDFGGGILMMMPPPRRSSSSVWYYZZ95,CAD Methodology for the Design of UltraSPARC-I Microprocessor at Sun Microsystems Inc.,1995,DAC,10.1145/217474.217485,A. Cao; A. Adalal; J. Bauman; P. Delisle; P. Dedood; P. Donehue; M. Dell'OcaKhouja; T. Doan; Manjunath Doreswamy; Philip A. Ferolito; O. Geva; D. Greenhill; S. Gopaladhine; J. Irwin; L. Lev; J. MacDonald; M. Ma; Samir Mitra; P. Patel; A. Prabhu; R. Puranik; S. Rozanski; N. Ross; P. Saggurti; Slobodan Simovich; R. Sunder; B. Sur; W. Vercruysse; Michelle Wong; P. Yip; Robert K. Yu; J. Zhou; Gregory B. Zyner
+conf/dac/OwensI87,An Overview of the Penn State Design System.,1987,DAC,10.1145/37888.37965,Robert Michael Owens; Mary Jane Irwin
+conf/dac/JangP10,Application-aware NoC design for efficient SDRAM access.,2010,DAC,10.1145/1837274.1837387,Wooyoung Jang; David Z. Pan
+conf/dac/HuangWHDS25,Expanding Logical Space Freely: A Memory-efficient Mapping Table Design for Compressional SSDs.,2025,DAC,10.1109/DAC63849.2025.11132583,Zixuan Huang 0011; Tianyu Wang 0009; Kecheng Huang; Zelin Du; Zili Shao
+conf/dac/HuLH19,Enabling High-Dimensional Bayesian Optimization for Efficient Failure Detection of Analog and Mixed-Signal Circuits.,2019,DAC,10.1145/3316781.3317818,Hanbin Hu; Peng Li 0001; Jianhua Z. Huang
+conf/dac/OzisikyilmazMC08,Efficient system design space exploration using machine learning techniques.,2008,DAC,10.1145/1391469.1391712,Berkin Özisikyilmaz; Gokhan Memik; Alok N. Choudhary
+conf/dac/ShiC06,Efficient escape routing for hexagonal array of high density I/Os.,2006,DAC,10.1145/1146909.1147162,Rui Shi 0003; Chung-Kuan Cheng
+conf/dac/MalikALKSW00,Embedded systems education (panel abstract).,2000,DAC,10.1145/337292.337563,Sharad Malik; D. K. Arvind 0001; Edward A. Lee; Phil Koopman; Alberto L. Sangiovanni-Vincentelli; Wayne H. Wolf
+conf/dac/YuFCHTSS19,Pin Accessibility Prediction and Optimization with Deep Learning-based Pin Pattern Recognition.,2019,DAC,10.1145/3316781.3317882,Tao-Chun Yu; Shao-Yun Fang; Hsien-Shih Chiu; Kai-Shun Hu; Philip Hui-Yuh Tai; Cindy Chin-Fang Shen; Henry Sheng
+conf/dac/SakaiTYOOKKY82,An Interactive Simulation System for structured logic design - ISS.,1982,DAC,10.1145/800263.809285,Takeshi Sakai; Yoshiyuki Tsuchida; Hiroto Yasuura; Yasushi Ooi; Yoshitsugu Ono; Hiroshi Kano; Shinji Kimura; Shuzo Yajima
+conf/dac/VermaI06,Towards the automatic exploration of arithmetic-circuit architectures.,2006,DAC,10.1145/1146909.1147027,Ajay Kumar Verma; Paolo Ienne
+conf/dac/ManeatisKMMS03,Self-biased high-bandwidth low-jitter 1-to-4096 multiplier clock generator PLL.,2003,DAC,10.1145/775832.776006,John G. Maneatis; Jaeha Kim; Iain McClatchie; Jay Maxey; Manjusha Shankaradas
+conf/dac/QiFZC26,InferWeave: Efficient LLM Inference on the MT-3000 Processor.,2026,DAC,10.1145/3770743.3804174,Xinxin Qi; Jianbin Fang; Peng Zhang 0061; Yonggang Che
+conf/dac/JaniszewskiHM01,VHDL-Based Design and Design Methodology for Reusable High Performance Direct Digital Frequency Synthesizers.,2001,DAC,10.1145/378239.379026,Ireneusz Janiszewski; Bernhard Hoppe; Hermann Meuth
+conf/dac/ShenSDFPP26,Active Imitation Learning for Thermal- and Kernel-Aware LFM Inference on 3D S-NUCA Many-Cores.,2026,DAC,10.1145/3770743.3804132,Yixian Shen; Chaoyao Shen; Jan Deen; George Floros 0002; Andy D. Pimentel; Anuj Pathania
+conf/dac/TrillaHAC18,Cache side-channel attacks and time-predictability in high-performance critical real-time systems.,2018,DAC,10.1145/3195970.3196003,David Trilla; Carles Hernández 0001; Jaume Abella 0001; Francisco J. Cazorla
+conf/dac/AtacCLWSZWH14,An HDL-Based System Design Methodology for Multistandard RF SoC's.,2014,DAC,10.1145/2593069.2593089,Aytac Atac; Zhimiao Chen; Lei Liao; Yifan Wang 0001; Martin Schleyer; Ye Zhang 0003; Ralf Wunderlich; Stefan Heinen
+conf/dac/ElmWIZLM08,Scan chain clustering for test power reduction.,2008,DAC,10.1145/1391469.1391680,Melanie Elm; Hans-Joachim Wunderlich; Michael E. Imhof; Christian G. Zoellin; Jens Leenstra; Nicolas Mäding
+conf/dac/KernsY96,"Stable and Efficient Reduction of Large, Multiport RC Networks by Pole Analysis via Congruence Transformations.",1996,DAC,10.1145/240518.240570,Kevin J. Kerns; Andrew T. Yang
+conf/dac/PaleologoBBM98,Policy Optimization for Dynamic Power Management.,1998,DAC,10.1145/277044.277094,Giuseppe A. Paleologo; Luca Benini; Alessandro Bogliolo; Giovanni De Micheli
+conf/dac/SinghC90,A Transistor Reordering Technique for Gate Matrix Layout.,1990,DAC,10.1145/123186.123340,Uminder Singh; C. Y. Roger Chen
+conf/dac/HuangSQKT16,Physics-based full-chip TDDB assessment for BEOL interconnects.,2016,DAC,10.1145/2897937.2898062,Xin Huang 0003; Valeriy Sukharev; Zhongdong Qi; Taeyoung Kim 0001; Sheldon X.-D. Tan
+conf/dac/LiuZWYL21,PETRI: Reducing Bandwidth Requirement in Smart Surveillance by Edge-Cloud Collaborative Adaptive Frame Clustering and Pipelined Bidirectional Tracking.,2021,DAC,10.1109/DAC18074.2021.9586088,Ruoyang Liu; Lu Zhang 0074; Jingyu Wang 0004; Huazhong Yang; Yongpan Liu
+conf/dac/JohnsonCB96,"Application of a Markov Model to the Measurement, Simulation, and Diagnosis of an Iterative Design Process.",1996,DAC,10.1145/240518.240553,Eric W. Johnson; Luis A. Castillo; Jay B. Brockman
+conf/dac/KissionDJ94,Structured Design Methodology for High-Level Design.,1994,DAC,10.1145/196244.196470,Polen Kission; Hong Ding; Ahmed Amine Jerraya
+conf/dac/WangHYCC25,Late Breaking Results: Opera: An Open and Efficient Platform for Data-driven Synthesis of Analog Circuits.,2025,DAC,10.1109/DAC63849.2025.11132555,Shikai Wang; Yaolong Hu; Zhiqiang Yi; Taiyun Chi; Weidong Cao 0001
+conf/dac/QianR08,The synthesis of robust polynomial arithmetic with stochastic logic.,2008,DAC,10.1145/1391469.1391636,Weikang Qian; Marc D. Riedel
+conf/dac/ChangCCKLL14,On Trading Wear-leveling with Heal-leveling.,2014,DAC,10.1145/2593069.2593172,Yu-Ming Chang 0001; Yuan-Hao Chang 0001; Jian-Jia Chen; Tei-Wei Kuo; Hsiang-Pang Li; Hang-Ting Lue
+conf/dac/DaiHYYZDXY022,Heuristic adaptability to input dynamics for SpMM on CPUs.,2022,DAC,10.1145/3489517.3530508,Guohao Dai 0001; Guyue Huang; Shang Yang; Zhongming Yu; Hengrui Zhang; Yufei Ding 0001; Yuan Xie 0001; Huazhong Yang; Yu Wang 0002
+conf/dac/YuanLJX13,On testing timing-speculative circuits.,2013,DAC,10.1145/2463209.2488771,Feng Yuan; Yannan Liu; Wen-Ben Jone; Qiang Xu 0001
+conf/dac/ReddiGSWBC09,Software-assisted hardware reliability: abstracting circuit-level challenges to the software stack.,2009,DAC,10.1145/1629911.1630114,Vijay Janapa Reddi; Simone Campanoni; Meeta Sharma Gupta; Michael D. Smith 0001; Gu-Yeon Wei; David M. Brooks
+conf/dac/BoeseKMR94,Rectilinear Steiner Trees with Minimum Elmore Delay.,1994,DAC,10.1145/196244.196428,Kenneth D. Boese; Andrew B. Kahng; Bernard A. McCoy; Gabriel Robins
+conf/dac/DuttD23,Lightning Talk: The New Era of Computational Cognitive Intelligence.,2023,DAC,10.1109/DAC56929.2023.10247865,Nikil D. Dutt; Bryan Donyanavard
+conf/dac/AdamiakAPRW90,System Simulation of Printed Circuit Boards Including Packages and Connectors.,1990,DAC,10.1145/123186.123321,K. Adamiak; R. Allen; J. Poltz; C. Rebizant; A. Wexler
+conf/dac/ChenHSCC24,Mixed-Size 3D Analytical Placement with Heterogeneous Technology Nodes.,2024,DAC,10.1145/3649329.3657370,Yan-Jen Chen; Cheng-Hsiu Hsieh; Po-Han Su; Shao-Hsiang Chen; Yao-Wen Chang
+conf/dac/TanCPC26,SafeGen: LLM-Driven Assertion Generation and Fault Criticality Evaluation for Functional Safety.,2026,DAC,10.1145/3770743.3804246,Xuanyi Tan; Arjun Chaudhuri; Rubin A. Parekhji; Krishnendu Chakrabarty
+conf/dac/ZhangCQTH26,PD-Swap: Prefill-Decode Logic Swapping for End-to-End LLM Inference on Edge FPGAs via Dynamic Partial Reconfiguration.,2026,DAC,10.1145/3770743.3804245,Yifan Zhang; Zhiheng Chen; Ye Qiao; Zhenyu Tang; Sitao Huang
+conf/dac/SahaMKB21,KV-SSD: What Is It Good For?,2021,DAC,10.1109/DAC18074.2021.9586111,Manoj Pravakar Saha; Adnan Maruf; Bryan S. Kim; Janki Bhimani
+conf/dac/TatsuokaWOHZOLT15,Physically aware high level synthesis design flow.,2015,DAC,10.1145/2744769.2744893,Masato Tatsuoka; Ryosuke Watanabe; Tatsushi Otsuka; Takashi Hasegawa; Qiang Zhu 0005; Ryosuke Okamura; Xingri Li; Tsuyoshi Takabatake
+conf/dac/LiuPWY20,CUGR: Detailed-Routability-Driven 3D Global Routing with Probabilistic Resource Model.,2020,DAC,10.1109/DAC18072.2020.9218646,Jinwei Liu; Chak-Wa Pui; Fangzhou Wang; Evangeline F. Y. Young
+conf/dac/StowAH0LL19,Efficient System Architecture in the Era of Monolithic 3D: Dynamic Inter-tier Interconnect and Processing-in-Memory.,2019,DAC,10.1145/3316781.3323475,Dylan C. Stow; Itir Akgun; Wenqin Huangfu; Yuan Xie 0001; Xueqi Li 0001; Gabriel H. Loh
+conf/dac/AlpertKSW06,Timing-driven Steiner trees are (practically) free.,2006,DAC,10.1145/1146909.1147012,Charles J. Alpert; Andrew B. Kahng; Cliff C. N. Sze; Qinke Wang
+conf/dac/LiMZP16,Practical public PUF enabled by solving max-flow problem on chip.,2016,DAC,10.1145/2897937.2898067,Meng Li 0004; Jin Miao; Kai Zhong 0007; David Z. Pan
+conf/dac/HanifHH020,PEMACx: A Probabilistic Error Analysis Methodology for Adders with Cascaded Approximate Units.,2020,DAC,10.1109/DAC18072.2020.9218678,Muhammad Abdullah Hanif; Rehan Hafiz; Osman Hasan; Muhammad Shafique 0001
+conf/dac/LiuL18,Towards accurate and high-speed spiking neuromorphic systems with data quantization-aware deep networks.,2018,DAC,10.1145/3195970.3196131,Fuqiang Liu; Chenchen Liu
+conf/dac/Nguyen0CY21,Low-Cost and Effective Fault-Tolerance Enhancement Techniques for Emerging Memories-Based Deep Neural Networks.,2021,DAC,10.1109/DAC18074.2021.9586112,Thai-Hoang Nguyen; Muhammad Imran 0010; Jaehyuk Choi 0001; Joon-Sung Yang
+conf/dac/McConaghyPGS07,Simultaneous Multi-Topology Multi-Objective Sizing Across Thousands of Analog Circuit Topologies.,2007,DAC,10.1145/1278480.1278712,Trent McConaghy; Pieter Palmers; Georges G. E. Gielen; Michiel Steyaert
+conf/dac/BayraktarogluO00,Improved fault diagnosis in scan-based BIST via superposition.,2000,DAC,10.1145/337292.337311,Ismet Bayraktaroglu; Alex Orailoglu
+conf/dac/HeLWLL021,GCiM: A Near-Data Processing Accelerator for Graph Construction.,2021,DAC,10.1109/DAC18074.2021.9586221,Lei He 0016; Cheng Liu 0008; Ying Wang 0001; Shengwen Liang; Huawei Li 0001; Xiaowei Li 0001
+conf/dac/AluruW97,Algorithms for Coupled Domain MEMS Simulation.,1997,DAC,10.1145/266021.266321,Narayan R. Aluru; James White
+conf/dac/RichterZJE02,Model composition for scheduling analysis in platform design.,2002,DAC,10.1145/513918.513993,Kai Richter 0001; Dirk Ziegenbein; Marek Jersak; Rolf Ernst
+conf/dac/SirowyHV10,Online SystemC emulation acceleration.,2010,DAC,10.1145/1837274.1837284,Scott Sirowy; Chen Huang 0005; Frank Vahid
+conf/dac/PujarBGDLSSNJMP23,Invited: Automated Code generation for Information Technology Tasks in YAML through Large Language Models.,2023,DAC,10.1109/DAC56929.2023.10247987,Saurabh Pujar; Luca Buratti; Xiaojie Guo; Nicolas Dupuis; Burn L. Lewis; Sahil Suneja; Atin Sood; Ganesh Nalawade; Matthew Jones; Alessandro Morari; Ruchir Puri
+conf/dac/RoyCMC19,Tighter Dimensioning of Heterogeneous Multi-Resource Autonomous CPS with Control Performance Guarantees.,2019,DAC,10.1145/3316781.3317925,Debayan Roy; Wanli Chang 0001; Sanjoy K. Mitter; Samarjit Chakraborty
+conf/dac/GuptaRRJ05,Efficient fingerprint-based user authentication for embedded systems.,2005,DAC,10.1145/1065579.1065643,Pallav Gupta; Srivaths Ravi 0001; Anand Raghunathan; Niraj K. Jha
+conf/dac/TongPY25,BlasPart: A Deterministic Parallel Partitioner for Balanced Large-Scale Hypergraph Partitioning.,2025,DAC,10.1109/DAC63849.2025.11133010,Shengbo Tong; Chunyan Pei; Wenjian Yu
+conf/dac/LiuZLZPC26,Design Technology Co-optimization for Network on Chip in High Performance CPUs at 3nm node using Monolithic 3D and Backside Interconnect Technologies.,2026,DAC,10.1145/3770743.3804305,Tianchi Liu; Hu Zhou; Zexu Leng; Zhiyong Zhang; Lianmao Peng; Rongmei Chen
+conf/dac/HeLS04,System level leakage reduction considering the interdependence of temperature and leakage.,2004,DAC,10.1145/996566.996572,Lei He 0001; Weiping Liao; Mircea R. Stan
+conf/dac/HorroKP0T19,Effect of Distributed Directories in Mesh Interconnects.,2019,DAC,10.1145/3316781.3317808,Marcos Horro; Mahmut T. Kandemir; Louis-Noël Pouchet; Gabriel Rodríguez 0001; Juan Touriño
+conf/dac/AgrawalAV93,Sequential Circuit Test Generation on a Distributed System.,1993,DAC,10.1145/157485.164762,Prathima Agrawal; Vishwani D. Agrawal; Joan Villoldo
+conf/dac/FreundG82,Automated conversion of design data for building the IBM 3081.,1982,DAC,10.1145/800263.809193,Vincent J. Freund Jr.; J. A. Guerin
+conf/dac/WeiZXWHL25,SpecASR: Accelerating LLM-based Automatic Speech Recognition via Speculative Decoding.,2025,DAC,10.1109/DAC63849.2025.11132579,Linye Wei; Shuzhang Zhong; Songqiang Xu; Runsheng Wang; Ru Huang 0001; Meng Li 0004
+conf/dac/KimG11,Leakage-aware redundancy for reliable sub-threshold memories.,2011,DAC,10.1145/2024724.2024826,Seokjoong Kim; Matthew R. Guthaus
+conf/dac/ShiLYH18,A fast and robust failure analysis of memory circuits using adaptive importance sampling method.,2018,DAC,10.1145/3195970.3195972,Xiao Shi 0001; Fengyuan Liu; Jun Yang 0006; Lei He 0001
+conf/dac/KimOCHH13,A novel analytical method for worst case response time estimation of distributed embedded systems.,2013,DAC,10.1145/2463209.2488893,Jinwoo Kim; Hyunok Oh; Junchul Choi; Hyojin Ha; Soonhoi Ha
+conf/dac/MallikZLCBBBCRBMV13,TEASE: a systematic analysis framework for early evaluation of FinFET-based advanced technology nodes.,2013,DAC,10.1145/2463209.2488764,Arindam Mallik; Paul Zuber; Tsung-Te Liu; Bharani Chava; Bhavana Ballal; Pablo Royer Del Bario; Rogier Baert; Kris Croes; Julien Ryckaert; Mustafa Badaroglu; Abdelkarim Mercha; Diederik Verkest
+conf/dac/UkhovBEP12,Steady-state dynamic temperature analysis and reliability optimization for embedded multiprocessor systems.,2012,DAC,10.1145/2228360.2228399,Ivan Ukhov; Min Bao; Petru Eles; Zebo Peng
+conf/dac/RowsonS97,Interface-Based Design.,1997,DAC,10.1145/266021.266060,James A. Rowson; Alberto L. Sangiovanni-Vincentelli
+conf/dac/LinD90,Performance-Driven Constructive Placement.,1990,DAC,10.1145/123186.123235,Ichiang Lin; David Hung-Chang Du
+conf/dac/ChenHJ19,Disjoint-Support Decomposition and Extraction for Interconnect-Driven Threshold Logic Synthesis.,2019,DAC,10.1145/3316781.3317801,Hao Chen; Shao-Chun Hung; Jie-Hong R. Jiang
+conf/dac/ChouLCDL94,Circuit Partitioning for Huge Logic Emulation Systems.,1994,DAC,10.1145/196244.196365,Nan-Chi Chou; Lung-Tien Liu; Chung-Kuan Cheng; Wei-Jin Dai; Rodney Lindelof
+conf/dac/JungKS09,Hierarchical architecture of flash-based storage systems for high performance and durability.,2009,DAC,10.1145/1629911.1630144,Sanghyuk Jung; Jin Hyuk Kim; Yong Ho Song
+conf/dac/CollinsK85,The impact of technological advances on programmable controller s(tutorial session).,1985,DAC,10.1145/317825.317935,Robert P. Collins; William J. Ketelhut
+conf/dac/LiCSWHYLZW25,StreamCSD: SSD-Autonomous Stream Management via In-Storage Content Learning.,2025,DAC,10.1109/DAC63849.2025.11133202,Wenjie Li; Xiang Chen 0028; Yelin Shan; Jiapin Wang; Yunxin Huang; Yafei Yang; Tao Lu 0014; You Zhou 0009; Fei Wu 0005
+conf/dac/LyseckyVT04,Dynamic FPGA routing for just-in-time FPGA compilation.,2004,DAC,10.1145/996566.996819,Roman L. Lysecky; Frank Vahid; Sheldon X.-D. Tan
+conf/dac/KumarT11,Cool shapers: shaping real-time tasks for improved thermal guarantees.,2011,DAC,10.1145/2024724.2024835,Pratyush Kumar; Lothar Thiele
+conf/dac/ZhouRZKKZ19,PRIMAL: Power Inference using Machine Learning.,2019,DAC,10.1145/3316781.3317884,Yuan Zhou; Haoxing Ren; Yanqing Zhang 0002; Ben Keller; Brucek Khailany; Zhiru Zhang
+conf/dac/BharathESUY07,Computationally Efficient Power Integrity Simulation for System-on-Package Applications.,2007,DAC,10.1145/1278480.1278634,Krishna Bharath; Ege Engin; Madhavan Swaminathan; Kazuhide Uriu; Toru Yamada
+conf/dac/MarculescuT05,Variability and energy awareness: a microarchitecture-level perspective.,2005,DAC,10.1145/1065579.1065588,Diana Marculescu; Emil Talpes
+conf/dac/LiLWS19,ASCache: An Approximate SSD Cache for Error-Tolerant Applications.,2019,DAC,10.1145/3316781.3317778,Fei Li; Youyou Lu; Zhongjie Wu; Jiwu Shu
+conf/dac/Yu0XZS024,SPFuzz: Stateful Path based Parallel Fuzzing for Protocols in Autonomous Vehicles.,2024,DAC,10.1145/3649329.3658270,Junze Yu; Zhengxiong Luo 0002; Fangshangyuan Xia; Yanyang Zhao; Heyuan Shi 0001; Yu Jiang 0001
+conf/dac/BalarinS97,Schedule Validation for Embedded Reactive Real-Time Systems.,1997,DAC,10.1145/266021.266034,Felice Balarin; Alberto L. Sangiovanni-Vincentelli
+conf/dac/KadryMGAK11,Facing the challenge of new design features: an effective verification approach.,2011,DAC,10.1145/2024724.2024913,Wisam Kadry; Ronny Morad; Alex Goryachev; Eli Almog; Christopher A. Krygowski
+conf/dac/WangCHR16,The cat and mouse in split manufacturing.,2016,DAC,10.1145/2897937.2898104,Yujie Wang; Pu Chen; Jiang Hu 0001; Jeyavijayan Rajendran
+conf/dac/KinsmanN11,Dynamic binary translation to a reconfigurable target for on-the-fly acceleration.,2011,DAC,10.1145/2024724.2024792,Phillip Kinsman; Nicola Nicolici
+conf/dac/ZhouZQXM26,3D-DuRA: Accelerating Next-Resolution Generation via 3D Near/In-Memory Architecture with Dual-Ring Sparse Attention.,2026,DAC,10.1145/3770743.3804147,Zecheng Zhou; Yuxiang Zhao; Xinyu Qu; Ruohang Xu; Yufei Ma 0002
+conf/dac/KapurZ97,A Fast Method of Moments Solver for Efficient Parameter Extraction of MCMs.,1997,DAC,10.1145/266021.266051,Sharad Kapur; Jinsong Zhao
+conf/dac/DengBR25,ChipAlign: Instruction Alignment in Large Language Models for Chip Design via Geodesic Interpolation.,2025,DAC,10.1109/DAC63849.2025.11132537,Chenhui Deng; Yunsheng Bai; Haoxing Ren
+conf/dac/JavaidYSBP14,FALCON: A Framework for HierarchicAL Computation of Metrics for CompONent-Based Parameterized SoCs.,2014,DAC,10.1145/2593069.2593138,Haris Javaid; Yusuke Yachide; Su Myat Min Shwe; Haseeb Bokhari; Sri Parameswaran
+conf/dac/RamakrishnanK90,Extension of the Critical Path Tracing Algorithm.,1990,DAC,10.1145/123186.123450,T. Ramakrishnan; L. Kinney
+conf/dac/Miskov-ZivanovMF13,Dynamic behavior of cell signaling networks: model design and analysis automation.,2013,DAC,10.1145/2463209.2488743,Natasa Miskov-Zivanov; Diana Marculescu; James R. Faeder
+conf/dac/ColagrandeB25,Dual-Issue Execution of Mixed Integer and Floating-Point Workloads on Energy-Efficient In-Order RISC-V Cores.,2025,DAC,10.1109/DAC63849.2025.11132520,Luca Colagrande; Luca Benini
+conf/dac/LaarhovenAD85,PHIPLA-a new algorithm for logic minimization.,1985,DAC,10.1145/317825.317973,Peter J. M. van Laarhoven; Emile H. L. Aarts; Marc Davio
+conf/dac/ChienOCKC13,Double patterning lithography-aware analog placement.,2013,DAC,10.1145/2463209.2488738,Hsing-Chih Chang Chien; Hung-Chih Ou; Tung-Chieh Chen; Ta-Yu Kuan; Yao-Wen Chang
+conf/dac/AlamLM25,ReVeil: Unconstrained Concealed Backdoor Attack on Deep Neural Networks using Machine Unlearning.,2025,DAC,10.1109/DAC63849.2025.11133199,Manaar Alam; Hithem Lamri; Michail Maniatakos
+conf/dac/SinghMPO06,Gain-based technology mapping for minimum runtime leakage under input vector uncertainty.,2006,DAC,10.1145/1146909.1147046,Ashish Kumar Singh; Murari Mani; Ruchir Puri; Michael Orshansky
+conf/dac/ChanSSM12,Specification and synthesis of hardware checkpointing and rollback mechanisms.,2012,DAC,10.1145/2228360.2228585,Carven Chan; Daniel Schwartz-Narbonne; Divjyot Sethi; Sharad Malik
+conf/dac/AlpertDQ99,Buffer Insertion with Accurate Gate and Interconnect Delay Computation.,1999,DAC,10.1145/309847.309983,Charles J. Alpert; Anirudh Devgan; Stephen T. Quay
+conf/dac/LiSJ12,CrowdMine: towards crowdsourced human-assisted verification.,2012,DAC,10.1145/2228360.2228590,Wenchao Li 0001; Sanjit A. Seshia; Somesh Jha
+conf/dac/NookalaCLS05,Microarchitecture-aware floorplanning using a statistical design of experiments approach.,2005,DAC,10.1145/1065579.1065731,Vidyasagar Nookala; Ying Chen; David J. Lilja; Sachin S. Sapatnekar
+conf/dac/JerrayaVJC86,Principles of the SYCO compiler.,1986,DAC,10.1145/318013.318148,Ahmed Amine Jerraya; Patrick Varinot; Robert Jamier; Bernard Courtois
+conf/dac/SouzaMPB20,Enhancing Thread-Level Parallelism in Asymmetric Multicores using Transparent Instruction Offloading.,2020,DAC,10.1109/DAC18072.2020.9218614,Jeckson Dellagostin Souza; Madhavan Manivannan; Miquel Pericàs; Antonio Carlos Schneider Beck
+conf/dac/ChenCLC23,Toward Parallelism-Optimal Topology Generation for Wavelength-Routed Optical NoC Designs.,2023,DAC,10.1109/DAC56929.2023.10247996,Kuan-Cheng Chen; Yan-Lin Chen; Yu-Sheng Lu; Yao-Wen Chang
+conf/dac/HaoKPY26,Escaping Flatland: A Placement Flow for Enabling 3D FPGAs.,2026,DAC,10.1145/3770743.3804424,Cong Hao; Andrew B. Kahng; Bodhisatta Pramanik; Ismael Youssef
+conf/dac/McGeeN05,A lattice-based framework for the classification and design of asynchronous pipelines.,2005,DAC,10.1145/1065579.1065707,Peggy B. McGee; Steven M. Nowick
+conf/dac/BottorffR70,A view of a user-oriented production test data generation system.,1970,DAC,10.1145/800160.805115,Peter S. Bottorff; Robert A. Rasmussen
+conf/dac/Blanco0PPAC24,A Deep Reinforcement Learning based Online Scheduling Policy for Deep Neural Network Multi-Tenant Multi-Accelerator Systems.,2024,DAC,10.1145/3649329.3657319,Francesco Giulio Blanco; Enrico Russo 0002; Maurizio Palesi; Davide Patti; Giuseppe Ascia; Vincenzo Catania
+conf/dac/AbhishekN12,Incremental power grid verification.,2012,DAC,10.1145/2228360.2228390,Abhishek; Farid N. Najm
+conf/dac/SenguptaS08,Application-driven floorplan-aware voltage island design.,2008,DAC,10.1145/1391469.1391511,Dipanjan Sengupta; Resve A. Saleh
+conf/dac/AluruNW96,A Parallel Precorrected FFT Based Capacitance Extraction Program for Signal Integrity Analysis.,1996,DAC,10.1145/240518.240587,Narayan R. Aluru; V. B. Nadkarni; James White
+conf/dac/GaillardonMABSLM13,Towards structured ASICs using polarity-tunable Si nanowire transistors.,2013,DAC,10.1145/2463209.2488886,Pierre-Emmanuel Gaillardon; Michele De Marchi; Luca Gaetano Amarù; Shashikanth Bobba; Davide Sacchetto; Yusuf Leblebici; Giovanni De Micheli
+conf/dac/CividjianDC76,The calculation of the dimensions for an electromagnet with a T armature.,1976,DAC,10.1145/800146.804851,Grigore A. Cividjian; Profir Degeratu; Oleg Cernian
+conf/dac/FarzanehLKKMTC24,SHERLOCK: Scheduling Efficient and Reliable Bulk Bitwise Operations in NVMs.,2024,DAC,10.1145/3649329.3658485,Hamid Farzaneh; João Paulo C. de Lima; Ali Nezhadi Khelejani; Asif Ali Khan; Mahta Mayahinia; Mehdi B. Tahoori; Jerónimo Castrillón
+conf/dac/YehM03,Delay budgeting in sequential circuit with application on FPGA placement.,2003,DAC,10.1145/775832.775886,Chao-Yang Yeh; Malgorzata Marek-Sadowska
+conf/dac/NiuCXX10,Impact of process variations on emerging memristor.,2010,DAC,10.1145/1837274.1837495,Dimin Niu; Yiran Chen 0001; Cong Xu 0002; Yuan Xie 0001
+conf/dac/KwonZC19,A Learning-Based Recommender System for Autotuning Design Flows of Industrial High-Performance Processors.,2019,DAC,10.1145/3316781.3323919,Jihye Kwon; Matthew M. Ziegler; Luca P. Carloni
+conf/dac/ChinneryK05,Closing the power gap between ASIC and custom: an ASIC perspective.,2005,DAC,10.1145/1065579.1065651,David G. Chinnery; Kurt Keutzer
+conf/dac/LeeH90,SOPRANO: An Efficient Automatic Test Pattern Generator for Stuck-Open Faults in CMOS Combinational Circuits.,1990,DAC,10.1145/123186.123432,Hyung Ki Lee; Dong Sam Ha
+conf/dac/WuYWZSY26,GenDSE: Generative CPU Design Space Exploration via Sequential Decision Making.,2026,DAC,10.1145/3770743.3804086,Meng Wu 0006; Mingyu Yan; Duo Wang; Shijun Zhou; Guangyu Sun 0003; Xiaochun Ye
+conf/dac/CortadellaKLMMPWS00,Task generation and compile-time scheduling for mixed data-control embedded software.,2000,DAC,10.1145/337292.337553,Jordi Cortadella; Alex Kondratyev; Luciano Lavagno; Marc Massot; Sandra Moral; Claudio Passerone; Yosinori Watanabe; Alberto L. Sangiovanni-Vincentelli
+conf/dac/KlingB87,ESP: A New Standard Cell Placement Package Using Simulated Evolution.,1987,DAC,10.1145/37888.37897,Ralph-Michael Kling; Prithviraj Banerjee
+conf/dac/VleeschhouwerEFGRHC05,Differentiate and deliver: leveraging your partners.,2005,DAC,10.1145/1065579.1065583,Jay Vleeschhouwer; Warren East; Michael J. Fister; Aart J. de Geus; Walden C. Rhines; Jackson Hu; Rick Cassidy
+conf/dac/CraftonPSLZKA25,Finding the Pareto Frontier of Low-Precision Data Formats and MAC Architecture for LLM Inference.,2025,DAC,10.1109/DAC63849.2025.11132989,Brian Crafton; Xiaochen Peng; Xiaoyu Sun 0001; Ashwin Sanjay Lele; Bo Zhang; Win-San Khwa; Kerem Akarvardar
+conf/dac/ShenWQ26,PRICE: An Operator Recomputation and Fission Framework for Computation Graphs via Attainable Arithmetic Intensity.,2026,DAC,10.1145/3770743.3804050,Minghua Shen; Fuyu Wang 0001; Zhaoyun Qin
+conf/dac/SuzukiBKTS87,TRIP: An Automated Technology Mapping System.,1987,DAC,10.1145/37888.37966,Shigenobu Suzuki; Tatsushige Bitoh; Masao Kakimoto; Kazutoshi Takahashi; Takao Sugimoto
+conf/dac/ObermeierJ04,Quadratic placement using an improved timing model.,2004,DAC,10.1145/996566.996760,Bernd Obermeier; Frank M. Johannes
+conf/dac/HeBLLJCKS26,PAGE: Processing-Using-DRAM Architecture-Circuits Co-Optimization for Efficient Acceleration of General Matrix-Vector Multiplication.,2026,DAC,10.1145/3770743.3803970,Yifan He 0003; Hyung Joon Byun; Jimin Lee; Do-Yoon Lim; Houxiang Ji; Jungmin Choi; Hoshik Kim; Jae-sun Seo
+conf/dac/NikolovTSPPBZD08,Daedalus: toward composable multimedia MP-SoC design.,2008,DAC,10.1145/1391469.1391615,Hristo Nikolov; Mark Thompson 0001; Todor P. Stefanov; Andy D. Pimentel; Simon Polstra; Raj Bose; Claudiu Zissulescu; Ed F. Deprettere
+conf/dac/ChenH96,Efficient Approximation Algorithms for Floorplan Area Minimization.,1996,DAC,10.1145/240518.240610,Danny Z. Chen; Xiaobo Hu 0001
+conf/dac/LevittO96,A Scalable Formal Verification Methodology for Pipelined Microprocessors.,1996,DAC,10.1145/240518.240624,Jeremy R. Levitt; Kunle Olukotun
+conf/dac/SriramK93,Fast Approximation of the Transient Response of Lossy Transmision Line Trees.,1993,DAC,10.1145/157485.165093,Mysore Sriram; Sung-Mo Kang
+conf/dac/ParkKC13,Hybrid energy storage systems and battery management for electric vehicles.,2013,DAC,10.1145/2463209.2488854,Sangyoung Park; Younghyun Kim 0001; Naehyuck Chang
+conf/dac/HuLWR12,Hardware realization of BSB recall function using memristor crossbar arrays.,2012,DAC,10.1145/2228360.2228448,Miao Hu 0002; Hai Li 0001; Qing Wu 0002; Garrett S. Rose
+conf/dac/PitchumaniS82,A formal method for computer design verification.,1982,DAC,10.1145/800263.809294,Vijay Pitchumani; Edward P. Stabler
+conf/dac/ManciniYB95,A Methodology for HW-SW Codesign in ATM.,1995,DAC,10.1145/217474.217581,Giovanni Mancini; Dave Yurach; Spiros Boucouris
+conf/dac/Chen0ZZYY17,Minimizing Thermal Gradient and Pumping Power in 3D IC Liquid Cooling Network Design.,2017,DAC,10.1145/3061639.3062285,Gengjie Chen; Jian Kuang 0001; Zhiliang Zeng; Hang Zhang 0010; Evangeline F. Y. Young; Bei Yu 0001
+conf/dac/HsiaoHF00RSK22,Zhuyi: perception processing rate estimation for safety in autonomous vehicles.,2022,DAC,10.1145/3489517.3530445,Yu-Shun Hsiao; Siva Kumar Sastry Hari; Michal Filipiuk; Timothy Tsai 0002; Michael B. Sullivan 0001; Vijay Janapa Reddi; Vasu Singh; Stephen W. Keckler
+conf/dac/FangG94,Clock Grouping: A Low Cost DFT Methodology for Delay Testing.,1994,DAC,10.1145/196244.196291,Wen-Chang Fang; Sandeep K. Gupta 0001
+conf/dac/LiZGMZL26,Lin-search: Scaling Exact Synthesis of CNOT Circuits via Hybrid Iterative Deepening Search.,2026,DAC,10.1145/3770743.3804378,Chenjian Li; Xiangzhen Zhou; Ji Guan 0001; Fanxu Meng 0002; Pengcheng Zhu 0002; Yu Luo 0012
+conf/dac/PerskyDS76,LTX - a system for the directed automatic design of LSI circuits.,1976,DAC,10.1145/800146.804840,G. Persky; David N. Deutsch; Daniel G. Schweikert
+conf/dac/BroedersL11,Extracting behavior and dynamically generated hierarchy from SystemC models.,2011,DAC,10.1145/2024724.2024810,Harry Broeders; René van Leuken 0001
+conf/dac/BorkarKNTKD03,Parameter variations and impact on circuits and microarchitecture.,2003,DAC,10.1145/775832.775920,Shekhar Borkar; Tanay Karnik; Siva G. Narendra; James W. Tschanz; Ali Keshavarzi; Vivek De
+conf/dac/ChenZJT20,Tight Compression: Compressing CNN Model Tightly Through Unstructured Pruning and Simulated Annealing Based Permutation.,2020,DAC,10.1109/DAC18072.2020.9218701,Xizi Chen; Jingyang Zhu; Jingbo Jiang; Chi-Ying Tsui
