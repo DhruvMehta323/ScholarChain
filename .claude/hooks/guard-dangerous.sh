@@ -663,11 +663,26 @@ def check_mcp():
                     for seg in segments(tokenize(s)):
                         check_aws(seg, read_only=True)
 
+# Phrase rule: the words "terraform apply" or "terraform destroy" anywhere in the raw Bash command text
+# are blocked, including inside quotes, echo/printf/grep/rg arguments, git messages and comments. The
+# benign/quoted-text exemption does NOT apply. Separators may be any whitespace (spaces, tabs, newlines),
+# a backslash line continuation, or an escaped space. Case-insensitive. Accepted false positive: read-only
+# searches for the phrase; use the Grep tool instead of shell grep.
+TF_PHRASE = re.compile(r"\bterraform(?:\s|\\(?=\s))+(apply|destroy)\b", re.IGNORECASE)
+
+def check_tf_phrase(text):
+    m = TF_PHRASE.search(text)
+    if m:
+        block("the command text contains `terraform %s`. This phrase is blocked anywhere in a Bash command, "
+              "including quoted text, echo/printf/grep arguments, git messages and comments." % m.group(1).lower(),
+              TF_INSTEAD + " To search files for the phrase, use the Grep tool instead of shell grep.")
+
 if TOOL == "Bash":
     cmd = TI.get("command", "")
     if not isinstance(cmd, str):
         block("the Bash command was not a string (fail-closed).", "retry with a plain command string.")
     TOP_CMD = cmd
+    check_tf_phrase(cmd)
     if AGENT == "deploy-engineer":
         check_deploy_scope(cmd)
     check_command(cmd, 0)

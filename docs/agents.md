@@ -112,10 +112,11 @@ Each of these requires an explicit human decision, recorded by the human in the 
 - any command that mentions `.env`, `*.pem`, `*.key`, or `secrets/`, even inside a grep pattern
 - `rm -rf .` or `rm -rf ./*` in any directory
 - a non-benign command with `terraform` and `apply` as separate words
+- any Bash command whose text contains the phrase `terraform apply` or `terraform destroy` (any case, with any whitespace or a backslash line continuation between the words), even inside quotes, `echo`/`printf` arguments, `grep`/`rg` patterns, git commit or log messages, and comments. This is an accepted false positive for read-only commands such as shell `grep`. Workaround: search for the phrase with the Grep tool instead of shell grep.
 - heredoc bodies that contain blocked commands
 - running a script whose text contains a blocked command, such as `scripts/cleanup.sh`, which therefore stays human-executed
 
-Script-text scanning follows only shell scripts (a `.sh`, `.bash`, or `.zsh` extension or a shell shebang). It skips the ratified hook scripts in `.claude/hooks/`, which contain the very patterns they block. Those scripts are protected from agent writes by the constitutional rule. Quoted text passed to `grep`, `rg`, `echo`, `printf`, and `git commit/log/tag/show` is not treated as a command, unless the same command line pipes into a shell, `eval`, `source`, or `xargs`. Scripts must guard `rm` targets as `"${VAR:?}"`. Infrastructure scripts must never call `terraform apply` or `destroy`, and pipeline scripts should use EMR auto-termination rather than `terminate-clusters`.
+Script-text scanning follows only shell scripts (a `.sh`, `.bash`, or `.zsh` extension or a shell shebang). It skips the ratified hook scripts in `.claude/hooks/`, which contain the very patterns they block. Those scripts are protected from agent writes by the constitutional rule. Quoted text passed to `grep`, `rg`, `echo`, `printf`, and `git commit/log/tag/show` is not treated as a command, unless the same command line pipes into a shell, `eval`, `source`, or `xargs`. The exception is the phrase `terraform apply` or `terraform destroy`: the guard blocks it anywhere in the Bash command text, quoted text included. Scripts must guard `rm` targets as `"${VAR:?}"`. Infrastructure scripts must never call `terraform apply` or `destroy`, and pipeline scripts should use EMR auto-termination rather than `terminate-clusters`.
 
 ## 6. Commands
 

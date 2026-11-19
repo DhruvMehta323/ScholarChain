@@ -183,3 +183,136 @@ BLOCKED-ON EVIDENCE: n/a
 
 NEXT GATE: ratification of this diff together with the Phase 01 system, then a fresh session and the post-ratification probes.
 ```
+
+---
+
+## Part 3 — Repair-02 (terraform phrase guard)
+
+````text
+The guard change is made and every probe gave the expected exit code. The diff is proposed only: nothing is committed or ratified, and it is not in force until a human ratifies it and restarts the session.
+
+```
+STATUS: COMPLETE
+OWNER: factory-engineer
+WORK ORDER: Block any Bash command whose text contains "terraform apply" or "terraform destroy" anywhere, including quotes, echo/printf/grep/rg arguments, git messages and comments, with no benign-command exemption. Document the accepted grep false positive and its workaround (use the Grep tool) in docs/agents.md section 5, and correct the "quoted text is not treated as a command" sentence. Matrix basis: docs/agents.md section 1, factory-engineer row (owns `docs/agents.md` and `.claude/**`), Phase 01 authority matrix as ratified by the human; the human work order is in docs/agent-runs/phase-01-agent-factory/repair-02.md. Section 4 classes this as both a constitutional change and a security change (permission rules). Every change has a basis; none is unbased.
+
+FILES CREATED: none in the repository. Scratch files outside the repo, used only for testing:
+- /private/tmp/claude-501/-Users-dhruv-mehta-Desktop-ScholarChain/d3a102ca-d38e-43da-a708-2c8725af0c47/scratchpad/probes/01-echo-destroy.json, 02-destroy.json, 03-force-push.json, 04-s3-rb.json, 05-ls.json: hook-input fixtures for the required probes
+- /private/tmp/claude-501/-Users-dhruv-mehta-Desktop-ScholarChain/d3a102ca-d38e-43da-a708-2c8725af0c47/scratchpad/probes/extra.jsonl: 18 extra fixtures covering whitespace, case, git and comment variants and regression checks
+- /private/tmp/claude-501/-Users-dhruv-mehta-Desktop-ScholarChain/d3a102ca-d38e-43da-a708-2c8725af0c47/scratchpad/run-probes.sh: runner that pipes the fixtures into the guard (it never runs the probed commands)
+
+FILES MODIFIED:
+- /Users/dhruv_mehta/Desktop/ScholarChain/.claude/hooks/guard-dangerous.sh: adds the TF_PHRASE regex and check_tf_phrase(). The check runs on the raw top-level Bash command text before tokenizing, so the benign/quoted-text exemption never applies to it.
+- /Users/dhruv_mehta/Desktop/ScholarChain/docs/agents.md: section 5 gets a new "Text-inspection limits" bullet (the false positive and the Grep-tool workaround), and the quoted-text sentence now notes the exception.
+- Not modified: validate-agent-files.sh and validate-agent-files.py. Their only terraform content is the required deny rules list (py lines 246-252). Nothing in them asserts that echo of the phrase is allowed.
+- docs/agent-runs/phase-01-agent-factory/repair-02.md was already untracked when I started. It is human-owned evidence, and I did not touch it.
+
+Complete diff (`git diff`; there are no untracked files of mine):
+
+diff --git a/.claude/hooks/guard-dangerous.sh b/.claude/hooks/guard-dangerous.sh
+index c7c45e7..081b8c6 100755
+--- a/.claude/hooks/guard-dangerous.sh
++++ b/.claude/hooks/guard-dangerous.sh
+@@ -663,11 +663,26 @@ def check_mcp():
+                     for seg in segments(tokenize(s)):
+                         check_aws(seg, read_only=True)
+ 
++# Phrase rule: the words "terraform apply" or "terraform destroy" anywhere in the raw Bash command text
++# are blocked, including inside quotes, echo/printf/grep/rg arguments, git messages and comments. The
++# benign/quoted-text exemption does NOT apply. Separators may be any whitespace (spaces, tabs, newlines),
++# a backslash line continuation, or an escaped space. Case-insensitive. Accepted false positive: read-only
++# searches for the phrase; use the Grep tool instead of shell grep.
++TF_PHRASE = re.compile(r"\bterraform(?:\s|\\(?=\s))+(apply|destroy)\b", re.IGNORECASE)
++
++def check_tf_phrase(text):
++    m = TF_PHRASE.search(text)
++    if m:
++        block("the command text contains `terraform %s`. This phrase is blocked anywhere in a Bash command, "
++              "including quoted text, echo/printf/grep arguments, git messages and comments." % m.group(1).lower(),
++              TF_INSTEAD + " To search files for the phrase, use the Grep tool instead of shell grep.")
++
+ if TOOL == "Bash":
+     cmd = TI.get("command", "")
+     if not isinstance(cmd, str):
+         block("the Bash command was not a string (fail-closed).", "retry with a plain command string.")
+     TOP_CMD = cmd
++    check_tf_phrase(cmd)
+     if AGENT == "deploy-engineer":
+         check_deploy_scope(cmd)
+     check_command(cmd, 0)
+diff --git a/docs/agents.md b/docs/agents.md
+index 832f191..30d0556 100644
+--- a/docs/agents.md
++++ b/docs/agents.md
+@@ -112,10 +112,11 @@
+ - any command that mentions `.env`, `*.pem`, `*.key`, or `secrets/`, even inside a grep pattern
+ - `rm -rf .` or `rm -rf ./*` in any directory
+ - a non-benign command with `terraform` and `apply` as separate words
++- any Bash command whose text contains the phrase `terraform apply` or `terraform destroy` (any case, with any whitespace or a backslash line continuation between the words), even inside quotes, `echo`/`printf` arguments, `grep`/`rg` patterns, git commit or log messages, and comments. This is an accepted false positive for read-only commands such as shell `grep`. Workaround: search for the phrase with the Grep tool instead of shell grep.
+ - heredoc bodies that contain blocked commands
+ - running a script whose text contains a blocked command, such as `scripts/cleanup.sh`, which therefore stays human-executed
+ 
+-Script-text scanning follows only shell scripts (...). Quoted text passed to `grep`, `rg`, `echo`, `printf`, and `git commit/log/tag/show` is not treated as a command, unless the same command line pipes into a shell, `eval`, `source`, or `xargs`. Scripts must guard `rm` targets as `"${VAR:?}"`. (...)
++Script-text scanning follows only shell scripts (...). Quoted text passed to `grep`, `rg`, `echo`, `printf`, and `git commit/log/tag/show` is not treated as a command, unless the same command line pipes into a shell, `eval`, `source`, or `xargs`. The exception is the phrase `terraform apply` or `terraform destroy`: the guard blocks it anywhere in the Bash command text, quoted text included. Scripts must guard `rm` targets as `"${VAR:?}"`. (...)
+(In the docs/agents.md hunk, "(...)" stands for sentence text that is unchanged on both lines. The exact git diff output appears verbatim in this run's tool output, and `git diff docs/agents.md` reproduces it.)
+
+COMMANDS RUN:
+- ls/wc/git status on .claude/hooks: exit 0
+- cat validate-agent-files.sh plus grep for terraform/echo/probe in the validator, settings and docs: exit 0
+- bash -n .claude/hooks/guard-dangerous.sh: "bash-n exit=0"
+- command -v shellcheck: exit 1 (shellcheck is not installed, so shellcheck was not run)
+- bash .../scratchpad/run-probes.sh: "runner exit=0"
+- .claude/hooks/validate-agent-files.sh: "validator exit=0"
+- python3 -m json.tool .claude/settings.json: "settings json exit=0" (read-only check; the file is not modified)
+- git status --short; git diff: exit 0
+- No command I ran contained the blocked phrase, so the edited guard never blocked any of my own commands. All phrase probes went through fixture files.
+
+TEST RESULTS: No source under modules/, tests/, project/, or build.sbt was touched, so sbt check is not required and was not run. The test-stop hook was not exercised. Guard probe results (observed):
+  01-echo-destroy.json (echo 'terraform destroy')         exit=2  "the command text contains `terraform destroy`..."
+  02-destroy.json      (terraform destroy)                exit=2  "the command text contains `terraform destroy`..."
+  03-force-push.json   (git push --force origin main)     exit=2  "force or ref-deleting push (`git push ... --force`)."
+  04-s3-rb.json        (aws s3 rb s3://scholarchain-raw --force) exit=2  "S3 bucket removal (`aws s3 rb`)."
+  05-ls.json           (ls)                               exit=0
+  Extra probes: "extra: 18 ok, 0 mismatch".
+  - Blocked (exit 2): tab separator in printf, multiple spaces in echo, grep pattern, rg with mixed case, git commit -m message, git log --grep, trailing comment, backslash-newline continuation, -chdir apply, tofu destroy, terragrunt apply, and the alias form TF=terraform; $TF apply.
+  - Allowed (exit 0): terraform plan -out=tfplan, echo 'terraform plan', echo terraform-apply-docs, grep for 'git push --force', echo 'tofu destroy' (unchanged behavior), and a non-Bash Read tool call.
+
+VALIDATION RESULTS:
+- JSON: I touched no JSON files. settings.json parses (exit 0). The validator reports ".claude/settings.json parses as JSON" and ".mcp.json parses as JSON" as PASS.
+- bash -n: guard-dangerous.sh passes (exit 0), and the validator reports PASS for bash -n on all five hook scripts. shellcheck is not available and was not run.
+- Executable bit: guard-dangerous.sh is -rwxr-xr-x. The validator reports PASS for all six wired hook references being executable.
+- Frontmatter: the validator reports PASS for all 18 agent files.
+- Validator output (exact): every check is PASS or INFO. The INFO lines are: "factory-engineer.md has no model field (inherits); file is out of scope for this phase", "validate-agent-files.py is the logic module of validate-agent-files.sh (not a hook)", and "validate-agent-files.sh is a manual validation tool, intentionally not wired as a hook". The summary says "FAILURES: 0" and the exit code was 0. The full output is in this run's tool output.
+- Audits:
+  - Collision: agent names are unique (validator: "18 agent definitions match the 18-agent matrix; names unique"). Commands are unique. Maximum description overlap is 0.24 against a 0.50 threshold. No hook matcher changed, and the validator found no duplicate matchers.
+  - Orphan: there are no new agents, commands or hooks. The validator reports every hook referenced and existing, and every command mapped to an existing agent.
+  - One-writer: unchanged. Both modified files belong to factory-engineer.
+- Floor invariants:
+  - Dangerous-command guard: preserved (the s3 rb, force-push and ls probes behave as before).
+  - Test-stop hook: preserved (wiring PASS, bash -n PASS).
+  - Formatter: preserved (file not touched).
+  - Secret-read denial: preserved (check_raw is unchanged, deny rules PASS).
+  - Terraform denial: preserved and strengthened.
+  - Destructive AWS denial: preserved.
+  - Force-push denial: preserved.
+- Per-agent privilege delta: no tools, ownership or autonomy were added or removed for any agent. All agents lose the ability to run Bash commands that mention the phrase, which is a restriction, not a privilege change.
+
+ASSUMPTIONS:
+- The phrase match is case-insensitive and needs word boundaries. "terraform-apply-docs" is allowed, and "Terraform Apply" is blocked.
+- These count as reasonable whitespace variants: any whitespace, a backslash line continuation, and an escaped space. The escaped-space form is covered by the regex but was not probed.
+- Scope is literally "terraform" followed by apply or destroy. Quoted "tofu destroy" or "terragrunt apply" in echo are still allowed. Their command-position forms remain blocked by the existing check_tf.
+- The phrase rule applies only to the top-level Bash command text. It does not apply to the text of scripts the guard scans, or to MCP tool input. So a shell script that merely echoes the phrase can still be run as before; scanned scripts that invoke terraform apply are still blocked by check_tf. I chose this to keep all other behavior unchanged.
+- The table row in docs/agents.md section 5 already says "Terraform apply, destroy", so I left it as is to honor "change nothing else".
+
+RISKS:
+- False positives: any shell command mentioning the phrase is blocked. That includes grep/rg searches, git commit messages and git log --grep. Commit messages that mention it must be written by a human or phrased differently.
+- The rule inspects text only. Commands built dynamically, for example "terra""form apply", variable concatenation or base64, evade the phrase rule. check_tf still catches tokenized forms such as $TF apply. These limits are already documented in section 5.
+- This is a security change (section 4). It needs a code-reviewer verdict before human approval.
+- The guard file is read on every invocation, so the edited behavior is already live in this working tree even before ratification. If the human rejects the change, it should be reverted with git checkout of the two files.
+
+MANUAL ACTION REQUIRED: Ratification request. Please review the diff above for .claude/hooks/guard-dangerous.sh and docs/agents.md, obtain the code-reviewer verdict that a security change requires, and record your decision in docs/agent-runs/phase-01-agent-factory/human-gate.md. If you ratify it, commit it yourself and restart the Claude Code session. Optionally, install shellcheck and run it on .claude/hooks/guard-dangerous.sh, because it was not available here.
+BLOCKED-ON OWNER: n/a
+BLOCKED-ON EVIDENCE: n/a
+NEXT GATE: code-reviewer read-only verdict, then human ratification, then a fresh session and a rerun of the ratification probe (echo 'terraform destroy' should exit 2).
+```
+````
