@@ -17,3 +17,26 @@ target/
 
 # macOS
 .DS_Store
+# sbt, BSP and IDE caches
+.bsp/
+.idea/
+.vscode/
+project/target/
+project/project/
+*.class
+*.log
+
+# Test-run marker (runtime state written only by the canonical test command)
+.claude/.last-test-run
+
+# Terraform state, plan files and local provider caches
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+tfplan.*
+crash.log
+crash.*.log
+*.tfvars
+!*.tfvars.example

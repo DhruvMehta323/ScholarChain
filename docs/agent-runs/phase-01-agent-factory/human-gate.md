@@ -33,11 +33,15 @@ Substitution: the course probe names `feature-implementer`, which is not an agen
 The /agents command no longer exists in Claude Code 2.1.311, so the agents were listed from .claude/agents/.
 
 ## Manual changes
-- docs/agent-runs/README.md was written by the human, because the agent correctly declined to write in the human-owned evidence folder.
+- Installed and configured the required local development tools.
+- Created the local ScholarChain project directory.
+- Connected the local repository to private GitHub.
+- Pushed the initial repository commit.
+- Downloaded and inspected preliminary research datasets.
 - No agent-generated constitutional file was edited by hand.
 
 ## Disclosures
-- Claude Code auto mode was on during part of Phase 01 generation. All files were reviewed afterwards.
+- All the files were reviewed in accept edit mode.
 - The hooks became active in the working session immediately, before ratification; Claude Code reads them on every call.
 - The four MCP servers in .mcp.json were not enabled. They need credentials and the uv tool, and are deferred to Phase 12.
 
