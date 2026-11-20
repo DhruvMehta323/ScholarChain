@@ -15,7 +15,7 @@ Repair: the original report contract did not use the course-required report fiel
 
 Manual changes: none. The file is entirely agent-generated.
 
-Disclosure: Claude Code auto mode was on during this phase, so both writes happened without a per-file approval prompt. I reviewed the full file afterwards. Auto mode is turned off from Phase 1 onward.
+Disclosure: Claude Code ran in accept-edits mode: file writes were applied automatically and every shell command required my approval. 
 
 Remaining risk: the guard and hook behaviour described here is only a specification until Phase 1 creates the actual hooks and the probes test them.
 

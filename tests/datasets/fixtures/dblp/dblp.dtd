@@ -1,0 +1,10 @@
+<!ELEMENT dblp (article|inproceedings)*>
+<!ELEMENT article (author|title|year|ee)*>
+<!ELEMENT inproceedings (author|title|year|ee)*>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT ee (#PCDATA)>
+<!ATTLIST article key CDATA #REQUIRED mdate CDATA #IMPLIED>
+<!ATTLIST inproceedings key CDATA #REQUIRED mdate CDATA #IMPLIED>
+<!ENTITY uuml "&#252;">

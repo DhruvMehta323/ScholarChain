@@ -1,0 +1,84 @@
+{
+  "method": "first N Crossref-retrieved DOIs in sha256(seed|enrichment|key) order; normalisation = strip tags, unescape, casefold, non-alphanumerics to single space",
+  "distinct_matches_available": 99,
+  "inspected_count": 3,
+  "three_distinct_matches_inspected": true,
+  "inspected": [
+    {
+      "doi": "10.1145/1455270.1455285",
+      "dblp_key": "conf/aieeire/GurkR54",
+      "dblp_title": "Numerical solution of differential equations.",
+      "crossref_title": "Numerical solution of differential equations",
+      "title_equal_after_normalisation": true,
+      "dblp_year": 1954,
+      "crossref_year": 1954,
+      "crossref_year_field": "issued",
+      "year_equal": true,
+      "dblp_author_count": 2,
+      "crossref_author_count": 2,
+      "author_count_equal": true
+    },
+    {
+      "doi": "10.1109/glocom.2005.1577046",
+      "dblp_key": "conf/globecom/YamamotoO05",
+      "dblp_title": "Wireless sensor networks with local fusion.",
+      "crossref_title": "Wireless sensor networks with local fusion",
+      "title_equal_after_normalisation": true,
+      "dblp_year": 2005,
+      "crossref_year": 2005,
+      "crossref_year_field": "issued",
+      "year_equal": true,
+      "dblp_author_count": 2,
+      "crossref_author_count": 2,
+      "author_count_equal": true
+    },
+    {
+      "doi": "10.18653/v1/2022.acl-long.387",
+      "dblp_key": "conf/acl/RonyKCU022",
+      "dblp_title": "RoMe: A Robust Metric for Evaluating Natural Language Generation.",
+      "crossref_title": "RoMe: A Robust Metric for Evaluating Natural Language Generation",
+      "title_equal_after_normalisation": true,
+      "dblp_year": 2022,
+      "crossref_year": 2022,
+      "crossref_year_field": "issued",
+      "year_equal": true,
+      "dblp_author_count": 5,
+      "crossref_author_count": 5,
+      "author_count_equal": true
+    }
+  ],
+  "all_matches_aggregate": {
+    "n": 99,
+    "title_equal_after_normalisation": 99,
+    "year_equal": 90,
+    "author_count_equal": 99
+  },
+  "crossref_matches_without_year": 0,
+  "crossref_year_difference_histogram_dblp_minus_crossref": {
+    "-29": 1,
+    "-21": 1,
+    "-11": 1,
+    "-5": 1,
+    "-2": 1,
+    "-1": 1,
+    "0": 90,
+    "1": 3
+  },
+  "openalex_vs_dblp": {
+    "compared": 100,
+    "title_equal_after_normalisation": 100,
+    "year_equal": 78,
+    "year_differs": 22,
+    "author_count_equal": 100,
+    "year_difference_histogram_dblp_minus_openalex": {
+      "-29": 1,
+      "-21": 1,
+      "-11": 1,
+      "-5": 1,
+      "-2": 1,
+      "-1": 1,
+      "0": 78,
+      "1": 16
+    }
+  }
+}

@@ -17,7 +17,7 @@ First review: REQUEST_CHANGES, with one blocking finding (B1: the Docker base-im
 4. The smoke test asserts a trivial core constant (ScholarChain.Name), written by domain-engineer and tested by test-engineer, to keep one owner per artifact.
 
 ## Answers to the reviewer's human-decision items
-- H1 (tests not run on JDK 17): accepted for Phase 02, which has only a string-constant test. Action taken: SCHOLARCHAIN_JAVA_HOME and JAVA_HOME now point at Temurin 17 in ~/.zshenv. The JDK will be verified with `sbt jdkInfo` in Phase 03, before any Spark or Hadoop code exists.
+- H1 (tests not run on JDK 17): accepted for Phase 02, which has only a string-constant test. Action taken: SCHOLARCHAIN_JAVA_HOME and JAVA_HOME now point at Temurin 17 in ~/.zshenv. The JDK will be verified with `sbt jdkInfo` in Phase 03, before any Spark or Hadoop code exists. Verified 2026-11-19: sbt jdkInfo shows the forked test JVM is Temurin 17.0.21+9 (sbt itself runs on Homebrew JDK 27; bytecode is -release 17).
 - H2 (empty module and top-level folders not created): accepted. Creating them would break the one-writer ownership rule; each owning agent creates its folders in its own phase.
 - H3 (verification in the working tree, not a clean clone): accepted for now. A clean-checkout `sbt clean check` is required at the Phase 17 final gate.
 - H4 (authorship of the two core files): confirmed from the agents' own reports. domain-engineer wrote ScholarChain.scala and test-engineer wrote CoreContractSuite.scala. No ownership deviation.
@@ -34,6 +34,7 @@ The test-stop hook (verify-tests-ran.sh) blocked the orchestrator from ending a 
 None. All Phase 02 files are agent-generated. The human made the decisions listed above and edited ~/.zshenv (outside the repository).
 
 ## Disclosures
+- Claude Code ran in accept-edits mode: file writes were automatic, and every shell command needed my approval.All output was reviewed afterwards.
 - The prompt is the course Phase 02 work order plus human-architect additions: the local toolchain, the EMR compatibility requirement, keeping the .gitignore entries, the ledger-ownership routing to dependency-updater, the minimal smoke test, and the orchestration of code review and report saving.
 - The phase was executed by instructing the orchestrator to run the work order saved in prompt.md, rather than pasting it.
 

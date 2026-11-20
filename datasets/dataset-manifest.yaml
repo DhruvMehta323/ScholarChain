@@ -1,0 +1,446 @@
+# ScholarChain dataset manifest, Phase 03.
+# Owner: dataset-engineer. Every downstream transformation cites this file as provenance.
+# Values below are observed command outputs or quotes from official pages fetched with curl
+# on 2026-11-19 (local date; retrieval timestamps in the raw envelopes are UTC and read
+# 2026-11-20T03:3xZ because they were taken in the evening of 2026-11-19 local time).
+# Anything that could not be verified is written UNVERIFIED.
+manifest_version: 1
+manifest_date: "2026-11-19"
+validation:
+  command: "python3 datasets/scripts/validate_manifest.py"
+  declared_requirements:
+    - "PyYAML (installed 6.0.3; used by validate_manifest.py only)"
+    - "certifi (OPTIONAL, runtime-only; installed in this environment; imported by fetch_common.py tls_context() only when the interpreter has an empty CA store and SSL_CERT_FILE is unset; not needed by any other script)"
+  secrets_check_command: "python3 datasets/scripts/check_no_secrets.py"
+  note: "Scripts use python3 standard library plus lxml (dblp_select.py index stage only). Fetchers are stdlib-only if the interpreter has a CA store or SSL_CERT_FILE points at a system CA bundle; otherwise they fall back to certifi (optional, see declared_requirements). TLS certificate verification is never disabled. Note: the python.org installer's 'Install Certificates.command' is not a stdlib-only route because it pip-installs certifi."
+  stdlib_only_tls_alternative: "export SSL_CERT_FILE=<path to a system CA bundle> before running the fetchers (supported at fetch_common.py tls_context())."
+
+instructor_approval:
+  statement: >-
+    The OpenAlex, Crossref and ORCID datasets are bounded, DOI-driven subsets by design,
+    following the specification's own bounded-retrieval requirement. This is a design choice,
+    not an instructor-approved deviation. Selection criteria, retrieval procedure, matching
+    rules, actual coverage, source information, and missing or inconsistent data are documented
+    for each. Every enrichment dataset below is such a subset, linked to selected DBLP works.
+    None is a full snapshot. The deviations the instructor actually approved (received
+    2026-11-20) are recorded in docs/agent-runs/instructor-approvals.md and are listed under
+    instructor_approved_deviations.
+  instructor_approved_deviations:
+    source: docs/agent-runs/instructor-approvals.md
+    items:
+      - "DBLP experiments at two scales, about 10K and about 50K real works; the 50K run replaces the 100K scale."
+      - "S3 Vectors: up to 10K real vectors."
+      - "Entity-resolution gold set of at least 170 pairs split 102 calibration and 68 held-out."
+      - "Bedrock fallback: the Anthropic API (LLM) and Voyage AI (embeddings) when Bedrock quotas prevent timely execution."
+    not_covered: "The bounded, DOI-driven enrichment subsets of OpenAlex, Crossref and ORCID."
+  documentation_requirements_and_where_met:
+    selection_criteria: "datasets.dblp.subset_rule and datasets.<enrichment>.subset_rule"
+    retrieval_procedure: "datasets.<enrichment>.retrieval and datasets/scripts/fetch_*.py"
+    matching_rules: "datasets.<enrichment>.linkage_keys and matching_rules"
+    actual_coverage: "datasets.<enrichment>.coverage (observed counts)"
+    source_information: "datasets.<enrichment>.source and .license (official URLs)"
+    missing_or_inconsistent_data: "datasets.<enrichment>.limitations and datasets/samples/doi_spot_check.json"
+
+s3_prefix_convention: >-
+  Placeholders only. ${RAW_BUCKET} is supplied by configuration at runtime. No real bucket
+  name is recorded. Nothing has been uploaded in this phase (S3 upload belongs to storage-engineer).
+
+exploratory_non_graded_files:
+  note: >-
+    Human-authored, pre-agent exploratory artifacts. Not part of the reproducible selection,
+    not graded, not modified by any agent. Recorded for completeness only.
+  files:
+    - {path: datasets/samples/sample_dlbp.py, sha256: 568bec68e3bdaf00ce992f624d7caec93d58e0f16542046de05a708e14cb8872, bytes: 4611, status: exploratory}
+    - {path: datasets/samples/analyze_dblp.py, sha256: acd677549de6219d59548a57bc4f4639d4a14fd969ea7f45df625ef88732c9e5, bytes: 1416, status: exploratory}
+    - {path: datasets/samples/crossref_db_script.py, sha256: d39143aa198632526396109a011d78f8747a56ab17a78f422dc90b599ff43d0a, bytes: 2001, status: exploratory}
+    - {path: datasets/samples/dblp_100.csv, sha256: cb5f02a9c2f4b2a46109c44ba25c762b5249346d70f27832653ac58ebe483a7a, bytes: 18386, status: exploratory}
+    - {path: datasets/samples/dblp_1000.csv, sha256: 91602d219703d1c30eeb97d9d6cc79b187161de49a57128bd9df6c3d34227614, bytes: 199480, status: exploratory}
+    - {path: datasets/raw/crossref/test_paper.json, sha256: 5276342581a4192d03b463bac0dad4ec34ab8149131150ab7287498998cef7a0, bytes: 9547, status: "exploratory, gitignored, presumed human-made; origin not recorded"}
+
+datasets:
+  dblp:
+    role: mandatory seed
+    source:
+      name: "dblp computer science bibliography, XML export"
+      download_page: "https://dblp.org/xml/"
+      documentation: "https://dblp.org/xml/README.txt"
+      doi_of_release_series: "10.4230/dblp.xml (https://dblp.org/xml/release/)"
+      retrieval_date_of_local_file: "UNVERIFIED (file mtime is 2026-11-15; no download record exists)"
+      retrieval_method_of_local_file: "UNVERIFIED (placed in datasets/raw/dblp/ before this phase)"
+    license:
+      identifier: "CC0-1.0 (the README also names ODC-By 1.0 as a secondary license; see secondary_license_quote)"
+      status: verified
+      url: "https://dblp.org/xml/README.txt"
+      also_confirmed_at: "https://dblp.org/xml/release/ (License: Creative Commons Zero v1.0 Universal)"
+      quote: "The metadata provided by dblp on its webpages, as well as their XML, JSON, RDF, RIS, BibTeX, and text export formats available at our website, is released under the CC0 1.0 Public Domain Dedication license."
+      secondary_license_quote: "To ensure compatibility with existing integrations of our data, all metadata is also released under Open Data Commons ODC-BY 1.0 license as a secondary license. If you are currently using our data under ODC-by 1.0, please update to CC0 accordingly."
+      fetched: "2026-11-19 via curl (README sentences re-confirmed by curl on repair 01)"
+    snapshot:
+      date: "2026-11-14"
+      method: >-
+        Newest mdate attribute observed over all 13,108,714 top-level records during the full lxml
+        iterparse pass (see summary file). dblp.xml has no embedded generation date, so this
+        is a lower bound of the file's generation date, not an official release date. File
+        mtime (2026-11-15) is consistent but is not used. The official monthly release list
+        was not matched against the file.
+      observed_newest_mdate: "2026-11-14"
+      evidence: "datasets/raw/dblp/derived/eligible_index.summary.json (gitignored) field newest_mdate"
+    format: "XML, ISO-8859-1, DTD entities (dblp.dtd), several records per line"
+    files:
+      - {path: datasets/raw/dblp/dblp.xml, bytes: 5405851335, sha256: f9f1f1e19621f7b03edbe18f8e50e36af24d557a626177145965b974f1e22ef3, hash_command: "shasum -a 256 datasets/raw/dblp/dblp.xml"}
+      - {path: datasets/raw/dblp/dblp.dtd, bytes: 13134, sha256: 2d864498f9eef9298662df11e3874171ff24cd4a21ab5974f1369c90acdb1ef6, hash_command: "shasum -a 256 datasets/raw/dblp/dblp.dtd"}
+    size_estimate: "5,405,851,335 bytes uncompressed (observed). The server listing shows dblp.xml.gz at 1.0G on 2026-11-19."
+    s3_prefixes:
+      raw: "s3://${RAW_BUCKET}/dblp/snapshot_date=2026-11-14/"
+      sample: "s3://${RAW_BUCKET}/samples/dblp/selection_size=1000/"
+    parser_requirement: "lxml.etree.iterparse with load_dtd=True, resolve_entities=True, no_network=True, huge_tree=True; clear elements as you go."
+    observed_counts:
+      top_level_records: {article: 4518480, book: 21654, data: 31430, incollection: 71264, inproceedings: 4000250, mastersthesis: 27, phdthesis: 158395, proceedings: 65834, www: 4241380}
+      article_plus_inproceedings: 8518730
+      excluded_first_failing_reason: {dblpnote: 3, invalid_key: 0, empty_title: 0, non_numeric_year: 0, fewer_than_two_authors: 1025794, no_doi: 622385, duplicate_key: 0}
+      eligible_records: 6870548
+      eligible_years: 86
+      observed_by: "python3 datasets/scripts/dblp_select.py index (157.4 s); summary in datasets/raw/dblp/derived/eligible_index.summary.json"
+    subset_rule:
+      eligibility: >-
+        Tag is article or inproceedings; key is well formed and does not start with "dblpnote/";
+        title non-empty after joining inline markup; year exactly four digits; at least two
+        author elements; at least one ee element that is a doi.org URL (DOI normalised to
+        canonical DOI rule, see canonical_doi_rule below); key occurs once among all
+        article/inproceedings records. Conditions are evaluated in that order and the first
+        failure is the recorded reason.
+      algorithm: >-
+        Seeded stratified selection. (1) Year allocation: every year with eligible records
+        gets 1 work when N is at least the number of years, the remaining N minus years is
+        allocated proportionally to the eligible count per year by the largest-remainder
+        method, capped by availability. (2) Venue allocation inside a year: the year quota is
+        allocated across venues proportionally to sqrt(eligible count) by largest remainder,
+        capped by availability; remainder ties are broken by sha256(seed|"venue"|year|venue).
+        Venue is the first two key segments (for example conf/acl). (3) Record choice inside
+        a (year, venue) cell: the k records with the smallest sha256(seed|"key"|key). Output
+        is independent of input order. Never the first N eligible records.
+      seed: 441
+      supported_sizes: [1000, 10000, 50000, 100000]
+      size_note: "50000 added in repair 02 (instructor approval: the 50K scale replaces 100K). 100000 stays accepted by the script for the existing derived selection; no selection was run in repair 02."
+      canonical_doi_rule: >-
+        Implemented in datasets/scripts/doi_canonical.py (the only Python DOI normaliser; Scala
+        implements the same rule). (1) Trim the WS set U+0009-000D, U+001C-001F, U+0020, U+0085,
+        U+00A0, U+1680, U+2000-200A, U+2028, U+2029, U+202F, U+205F, U+3000 from both ends.
+        (2) Remove at most one ASCII-case-insensitive prefix: https://doi.org/, http://doi.org/,
+        https://dx.doi.org/, http://dx.doi.org/ (URL form), or doi: followed by U+0020 only (not URL
+        form). (3) URL form only: strict percent-decode exactly once (a % not followed by two
+        hex digits rejects; strict UTF-8; plus stays plus). Bare and doi: input are never decoded.
+        (4) Lower-case ASCII A-Z only. (5) Reject if empty; the result must fully match 10. then 4
+        to 9 ASCII digits, a slash, then one or more characters outside WS and the control set
+        U+0000-001F, U+007F-009F. No Unicode normalisation, no query or fragment stripping.
+        Every rejection yields no DOI. Outgoing Crossref and OpenAlex requests encode the
+        canonical DOI exactly once (urllib.parse.quote(doi, safe="")), for example
+        10.1000/a%2fb is requested as 10.1000%2Fa%252fb. DBLP eligibility additionally requires the
+        ee value to be in URL form.
+      canonical_doi_checks: "validate_manifest.py reads modules/core/src/test/resources/doi-normalization-vectors.tsv read-only (shared with the Scala suite; sha256 4b669451655aa283f27cad0b9f0b61c1072d4acfd1e4162e350075465e4a370d, 121 rows when recorded) and requires doi_canonical.normalize_doi to match every row, idempotence of accepted rows and at least 80 rows. A surrogate code point anywhere in the input is rejected first, as in Scala. python3 -I -B datasets/scripts/renormalize_check.py re-normalises every DOI in the committed samples offline: 2298 checked, 0 changed (repair 02)."
+      script: datasets/scripts/dblp_select.py
+      commands:
+        adopt_legacy_cache: "SKIPPED by human decision. The legacy cache was built under eligibility policy 1; adopt now refuses it (exit 2, nothing written) because the current policy is 2."
+        index: "python3 datasets/scripts/dblp_select.py index --xml-sha256 f9f1f1e19621f7b03edbe18f8e50e36af24d557a626177145965b974f1e22ef3"
+        select_1000: "python3 datasets/scripts/dblp_select.py select --size 1000   # not run; blocked until the human-approved reindex (no eligible_index.meta.json; cache invalid under policy 2, select refuses to run)"
+        select_10000: "python3 datasets/scripts/dblp_select.py select --size 10000   # not run; blocked until the human-approved reindex (no eligible_index.meta.json; cache invalid under policy 2, select refuses to run)"
+        select_50000: "python3 datasets/scripts/dblp_select.py select --size 50000   # not run; blocked until the deferred reindex"
+        select_100000: "python3 datasets/scripts/dblp_select.py select --size 100000   # not run; blocked until the human-approved reindex (no eligible_index.meta.json; cache invalid under policy 2, select refuses to run)"
+      idempotency: "The index stage fully hashes the XML and DTD, then skips the pass only when the cache verifies (see cache_validation); otherwise it rebuilds. The select stage verifies the cache first and fails without writing outputs when it is invalid, then reads only the cache. A rerun of select_1000 reproduced sha256 52bbb09f... byte for byte (before cache metadata existed, script 1.0.0)."
+      cache: {path: datasets/raw/dblp/derived/eligible_index.tsv.gz, sha256: 5c08b74a7b5e8ffa90a6c6c3b578d7ef30ac3571bf79488366a8cdb2d5b6ab46, gitignored: true, metadata_file: datasets/raw/dblp/derived/eligible_index.meta.json, metadata_status: "ABSENT and the cache is INVALID under eligibility policy 2 (built by script 1.0.0 under policy 1). Reindex is deferred pending human approval; until then select refuses to run and adopt refuses the legacy cache."}
+      current_state: >-
+        Repair 02 (human decisions): ELIGIBILITY_POLICY_VERSION is now "2" (canonical DOI rule),
+        so the existing cache is invalid. adopt and the full 5.4 GB hash are skipped. Reindex and
+        the 10K and 50K selections (and any 100K regeneration) are deferred until a human approves
+        them. Three dblp.xml doi.org ee URLs are newly rejected (see newly_rejected_count_check). No
+        selected DOI is affected directly, but the indirect effect of fewer eligible records on the
+        per-year counts and per-venue weights is unquantified until the human-approved reindex, for
+        the 1K, 10K and 100K selections alike.
+      newly_rejected_count_check:
+        command: "python3 -I -B datasets/scripts/renormalize_check.py --dblp-xml datasets/raw/dblp/dblp.xml"
+        run: "repair 02 (V2-3 rerun), exit 0, about 75 s, offline"
+        old_rule_basis: 'The recorded policy-1 rule from the pre-repair dblp_select.py (lines 87-91): DOI_URL_RE = re.compile(r"^https?://(?:dx\.)?doi\.org/(10\.[0-9]{4,9}/\S+)$", re.IGNORECASE); m = DOI_URL_RE.match(raw.strip()); None if no match, else unquote(m.group(1)).strip().lower(). The shape is checked on the raw, still-encoded text before unquote; unquote uses its default errors="replace". Canonical side: doi_canonical.normalize_doi_url_form.'
+        observed:
+          ee_elements: 10405443
+          doi_org_ee_urls: 7932877
+          accepted_by_old_rule: 7932867
+          accepted_by_canonical_rule: 7932864
+          newly_rejected_count: 3
+          newly_rejected: ["https://doi.org/10.37789/icusi%202026.15 (old rule: 10.37789/icusi 2026.15)", "https://doi.org/10.1109/SWAT%20.1970 (old rule: 10.1109/swat .1970)", "https://doi.org/10.17706/jsw.16.4.%20182-199 (old rule: 10.17706/jsw.16.4. 182-199)"]
+          newly_accepted_count: 0
+          newly_accepted_examples: []
+          different_value_count: 0
+          different_value_examples: []
+        direct_effect_on_selections: "0. Read-only exact match of the three old-rule DOIs in the doi column (column 5) of the selection TSVs: samples/dblp/dblp_selection_1000.tsv 0 (1000 rows), raw/dblp/derived/dblp_selection_10000.tsv 0 (10000 rows), raw/dblp/derived/dblp_selection_100000.tsv 0 (100000 rows). No selection DOI contains whitespace or %20 in any of the three files."
+        read_only: "No hash of dblp.xml, no parse into the index, no writes anywhere; the XML is opened for reading as bytes."
+        known_limits: "Matches line by line (an ee element split across lines is not seen); XML entities are not expanded, so counts are on raw ee text; report-only, always exit 0 whatever it finds; it is not a test and does not replace the reindex."
+      cache_validation:
+        script_version: "1.2.0 (repair 02: note N2, canonical DOI rule, policy 2, adopt policy check, size 50000)"
+        metadata_file: "datasets/raw/dblp/derived/eligible_index.meta.json (written last, atomically)"
+        fingerprint: "sha256 of canonical JSON {index_format_version, eligibility_policy_version, xml_sha256, dtd_sha256}. Seed and selection size are not part of it; they are recorded only in each selection provenance file."
+        versions: {index_format_version: 1, eligibility_policy_version: "2", metadata_format_version: 1}
+        policy_version_rule: "ELIGIBILITY_POLICY_VERSION must be bumped whenever the eligibility rules or the DOI normalisation used by the index change; the existing cache is then invalid and must be rebuilt."
+        metadata_records: "xml path, sha256, bytes, mtime_ns; dtd path, sha256, bytes; fingerprint; sha256 and bytes of the cache and summary files; versions; script_version; code_version"
+        reuse_requires: "metadata present and well formed; supported metadata, index-format and policy versions; fingerprint consistent with the metadata fields; cache and summary files present with recorded size and sha256; DTD sha256 equal; XML sha256 equal."
+        invalid_cache_handling: "index: rebuild (cache, summary, metadata written to temporary names and renamed into place with os.replace, metadata last). select: exit 2 with the reasons, nothing written. Missing metadata, changed input, damaged cache file and unsupported version are all 'invalid'."
+        xml_sha256_argument: "--xml-sha256 is an expected digest compared with the actual file (index, all, adopt hash the whole file) or with the metadata (select; the file is reached only through the default full hash). Mismatch is exit 2 with no rebuild and no write."
+        select_xml_check: "select hashes the full XML by default (after cheaper checks pass); --fast-xml-identity substitutes a size and mtime_ns check, which cannot detect a same-size edit that preserved mtime. select runs with need_inputs=False: if the XML or DTD file is absent it proceeds on the verified cache alone and those checks are skipped."
+        testable_interface: "datasets/scripts/dblp_select.py: --xml, --dtd, --cache-dir arguments; functions verify_cache, compute_fingerprint, build_index, adopt_legacy_cache, main(argv); module constants INDEX_FORMAT_VERSION, ELIGIBILITY_POLICY_VERSION."
+        existing_xml_hash_evidence:
+          recorded_sha256: f9f1f1e19621f7b03edbe18f8e50e36af24d557a626177145965b974f1e22ef3
+          sources: ["manifest files[0]", "datasets/raw/dblp/sha256_dblp.xml.log (2026-11-19 13:45)", "derived/eligible_index.summary.json input_xml_sha256 (2026-11-19 13:51)", "Phase 03 agent reports: validate_manifest.py --full recomputed it and it matched (reports only; the reviewer could not verify them from files)"]
+          file_identity_now: "bytes 5405851335 (equals recorded), mtime 2026-11-15 00:57:47, older than every hashing event above"
+          conclusion: "Historical facts only. The recorded SHA-256 is consistent and circumstantial evidence, not proof: size and mtime cannot rule out a same-size edit that preserved mtime, and no hash result is bound to the file's identity in any file. Human decision (repair 02): skip adopt and skip hashing the full 5.4 GB dblp.xml now; no manual action is open for it. The index and select stages hash the file themselves at the deferred, human-approved reindex, which will verify or replace the recorded value."
+        deferred_by_human_decision: ["multi-generation atomic publication with a metadata pointer", "interruption-recovery tests"]
+      known_design_effect: "Because every year gets one work first, 86 of the 1,000 selected works come from the floor allocation, including sparse early years (1938 onward) and one year, 2027, that DBLP already contains (2 selected). Years with very few records are therefore over-represented relative to a proportional sample."
+    selections:
+      - size: 1000
+        committed: true
+        path: datasets/samples/dblp/dblp_selection_1000.tsv
+        provenance_file: datasets/samples/dblp/dblp_selection_1000.provenance.json
+        sha256: 52bbb09f3d2e261c519857cbe5dea2bdaeb929b7f689a0b8e88539cfe7bc4527
+        bytes: 167873
+        observed: {selected: 1000, years_with_quota: 86, year_venue_cells_used: 999, distinct_venues: 155, article: 430, inproceedings: 570, distinct_keys: 1000, distinct_dois: 1000, min_authors: 2}
+        columns: [key, type, year, venue, doi, n_authors, title]
+        code_version: "04a455d+uncommitted-scripts (scripts were not yet committed when run; a commit hash does not exist for them)"
+      - size: 10000
+        committed: false
+        path: datasets/raw/dblp/derived/dblp_selection_10000.tsv
+        sha256: 851c20657c370ba1cb9ed2f4d3017252825514cc5dde31be82f82fd365a0bbca
+        observed: {selected: 10000, years_with_quota: 86, year_venue_cells_used: 9855, distinct_venues: 1372}
+      - size: 100000
+        committed: false
+        path: datasets/raw/dblp/derived/dblp_selection_100000.tsv
+        sha256: 2a00e090923919ce94888eea0630d82c924c0e0f32c172bc09517628cfd0fdae
+        observed: {selected: 100000, years_with_quota: 86, year_venue_cells_used: 64969, distinct_venues: 6254}
+    schema_notes: datasets/schemas/dblp.md
+    linkage_keys:
+      primary: "dblp key (for example conf/acl/RonyKCU022)"
+      to_enrichment: "DOI (canonical rule: datasets.dblp.subset_rule.canonical_doi_rule)"
+    update_method: "Download a newer dblp.xml.gz and dblp.dtd from https://dblp.org/xml/ into a new datasets/raw/dblp/<snapshot>/ directory (never overwrite), record size and SHA-256, rerun the index and select stages. dblp publishes a new file daily (server listing dated 2026-11-19 02:09) and monthly releases at https://dblp.org/xml/release/."
+    limitations:
+      - "Snapshot date is derived from the newest mdate, not from an official release record."
+      - "Author names in DBLP carry numeric disambiguation suffixes (for example 'Manish Singh 0001'). No author identity is resolved here."
+      - "Only 6,870,548 of 8,518,730 article/inproceedings records are eligible (80.7 percent). Records without a DOI or with one author are excluded by design, which biases the selection toward DOI-bearing, multi-author venues."
+      - "DBLP year is the proceedings or issue year and can differ from the publisher year (see enrichment coverage)."
+      - "The retrieval date and method of the local dblp.xml are not recorded anywhere."
+    privacy_notes: "Contains personal names of authors (bibliographic metadata, CC0). The committed selection holds titles, keys and DOIs, and author counts only, no author names."
+    validation_commands:
+      - "shasum -a 256 datasets/raw/dblp/dblp.xml   # expect f9f1f1e1...ef3"
+      - "python3 datasets/scripts/validate_manifest.py"
+
+  crossref:
+    role: enrichment, bounded DOI-driven subset
+    source:
+      name: "Crossref REST API, works endpoint"
+      base_url: "https://api.crossref.org/works/{doi}"
+      documentation: "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+    license:
+      identifier: "UNVERIFIED (the official REST API page names no formal license identifier)"
+      status: "reuse terms verified; formal license UNVERIFIED"
+      url: "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+      quote: "No sign-up is required to use the REST API, and almost none of the metadata is subject to copyright, and you may use it for any purpose. Some abstracts contained in the metadata may be subject to copyright by publishers or authors."
+      fetched: "2026-11-19 via curl"
+      handling: "Abstracts are not stored in committed samples. Treat the formal license as UNVERIFIED until a human confirms (see manual actions)."
+    access_requirements:
+      url: "https://www.crossref.org/documentation/retrieve-metadata/rest-api/access-and-authentication/"
+      quote: "Anyone can access the REST API, no signup or registration is required. We offer the following access options: Public: No authentication or identification. Polite: Include your email address in the mailto parameter or agent header. Metadata Plus: Include your API key in the request header as crossref-api-key: Bearer [API key]"
+      rate_limits_quote: "Pool / Rate limit / Concurrency limit: Public 5 / 1; Polite 10 / 3; Plus 150 / None."
+      used_here: "Polite pool. The contact email (SCHOLARCHAIN_CONTACT_EMAIL, environment only) is sent in the User-Agent header and never in the URL. No API key."
+    snapshot: {type: "per-request live API; no snapshot", retrieval_dates_utc: ["2026-11-20T03:34:44Z", "2026-11-20T03:36:01Z"], version: "UNVERIFIED (API serves current data; no dataset version)"}
+    format: "JSON (one envelope per DOI: identifier, redacted request_url, retrieved_at, http_status, missing, body)"
+    raw_location: datasets/raw/crossref/works/   # gitignored, one <sha256(doi)>.json per DOI
+    size_estimate: "about 1.5 MB on disk for 100 DOIs (observed with du -sh)"
+    s3_prefixes:
+      raw: "s3://${RAW_BUCKET}/crossref/retrieved_date=2026-11-20/"
+    subset_rule: "The 100 DOIs of the enrichment subset: the 1,000-work DBLP selection ranked by sha256(441|enrichment|key), first 100. Each retrieval script refuses more than 100 identifiers without --allow-more."
+    retrieval:
+      script: datasets/scripts/fetch_crossref.py
+      command: "python3 -u datasets/scripts/fetch_crossref.py"
+      doi_encoding: "percent-encode every reserved character including '/' (urllib.parse.quote(doi, safe=''))"
+      pacing_and_retry: "0.5 s pause between requests; up to 5 retries with exponential backoff on timeouts, HTTP 429 and 5xx; Retry-After honoured; 404 stored as missing; transport failures never stored as responses so they are retried on the next run; run aborts after 3 consecutive transport failures or 1800 s; 150 s budget per DOI."
+      resume: "A DOI whose envelope exists is skipped."
+    matching_rules: "Exact DOI equality after canonical normalisation (datasets.dblp.subset_rule.canonical_doi_rule). No fuzzy matching. Title, year and author count are compared only as a consistency check (datasets/samples/doi_spot_check.json)."
+    coverage:
+      planned: 100
+      retrieved_200: 99
+      missing_404: 1
+      errors: 0
+      missing_detail: "10.48550/arxiv.cs/0608118 (dblp key journals/corr/abs-cs-0608118): an arXiv DOI, registered with DataCite rather than Crossref (inference; not verified against the registration agency)."
+      observed_by: "run log datasets/raw/logs/fetch_crossref_run3.log (gitignored): {planned:100, retrieved_ok:99, missing_404:1, errors:0, aborted:false}"
+      consistency_vs_dblp: {compared: 99, title_equal_after_normalisation: 99, year_equal: 90, author_count_equal: 99, year_difference_dblp_minus_crossref: {"-29": 1, "-21": 1, "-11": 1, "-5": 1, "-2": 1, "-1": 1, "0": 90, "1": 3}, source: "datasets/samples/doi_spot_check.json (crossref_year_difference_histogram_dblp_minus_crossref)"}
+    failed_earlier_attempt:
+      note: >-
+        An earlier run (2026-11-19 19:56Z to 2026-11-20 03:30Z) recorded 11 transport failures in
+        datasets/raw/crossref/works/errors.jsonl and no responses. These are NOT coverage and NOT
+        404s. The orchestrator attributed them to a network outage. The reproduced cause was
+        different: Python urllib raised SSLCertVerificationError ("unable to get local issuer
+        certificate") because the python.org macOS interpreter has no CA store, while curl to the
+        same host returned HTTP 200. The old error file is kept unmodified as raw evidence.
+        fetch_common.py now verifies TLS against the certifi bundle and aborts at once on a
+        verification failure.
+    sample:
+      path: datasets/samples/crossref/crossref_works_sample.jsonl
+      sha256: e7ac4be2286f741497baa3196b4f953c70b017862874c3c833a4e4fbe824dded
+      bytes: 57481
+      rows: 100
+      generator: "python3 datasets/scripts/make_samples.py"
+      minimisation: "No author names, abstracts, affiliations or ORCID iDs. Only author_count and authors_with_orcid_count."
+    schema_notes: datasets/schemas/crossref.md
+    linkage_keys: {to_dblp: "DOI", to_orcid: "message.author[].ORCID (URL form, normalised to bare iD)"}
+    update_method: "Rerun fetch_crossref.py against a new selection; existing envelopes are never overwritten, so a refresh needs a new output directory (--out)."
+    limitations:
+      - "One of 100 DOIs not found (arXiv DOI)."
+      - "Year can differ from DBLP: 9 of 99 compared records differ (datasets/samples/doi_spot_check.json)."
+      - "Only 32 of 100 retrieved records list any author ORCID (89 author-ORCID entries in total)."
+      - "Crossref content is whatever the publisher deposited; abstracts and references may be absent."
+      - "The sample is 100 DOIs chosen by hash from a stratified selection, not a statistically representative sample of Crossref."
+    privacy_notes: "Author names and ORCID iDs are personal data held only in the gitignored raw tree."
+    validation_commands:
+      - "python3 datasets/scripts/validate_manifest.py"
+      - "python3 datasets/scripts/spot_check.py"
+
+  openalex:
+    role: enrichment, bounded DOI-driven subset
+    source:
+      name: "OpenAlex REST API, works endpoint"
+      base_url: "https://api.openalex.org/works/doi:{doi}"
+      documentation: "https://help.openalex.org/ (docs.openalex.org redirects here)"
+    license:
+      identifier: "CC0-1.0"
+      status: verified
+      url: "https://help.openalex.org/access/pricing.md"
+      quote: "Every record is released under a CC0 public-domain license, with no \"personal use only\" carve-out and no permission to ask."
+      fetched: "2026-11-19 via curl"
+    access_requirements:
+      url: "https://help.openalex.org/api/authentication.md"
+      quote: "OpenAlex data is free, and so is casual use of the API — you can make basic queries with no key at all. To use the API at any real scale, though, you'll want a free API key: it raises your daily budget 10×, lets you track your usage, and is required for cursor paging past the first page."
+      rate_limit_quote: "Requests per second, All requests: No API key 10; Free key, or prepaid usage 30. With no key, the limits count per IP address."
+      budget_quote: "Every account gets $1 of API usage per day for free."
+      key_acquisition: "A key is obtained from https://openalex.org/signup or by POST https://api.openalex.org/api-keys with the owner's email; the key works only after the owner clicks an emailed link. Not done here: no key exists and none was requested."
+      used_here: "No key. Keyless basic singleton lookups. OPENALEX_API_KEY is read from the environment if set and sent only as an Authorization bearer header. The contact email goes only in the User-Agent header."
+    snapshot: {type: "per-request live API; no snapshot", retrieval_dates_utc: ["2026-11-20T03:36:14Z", "2026-11-20T03:37:32Z"], version: "UNVERIFIED (API serves current data)"}
+    format: "JSON envelopes, same shape as Crossref"
+    raw_location: datasets/raw/openalex/works/
+    size_estimate: "about 2.4 MB on disk for 100 DOIs (observed with du -sh)"
+    s3_prefixes:
+      raw: "s3://${RAW_BUCKET}/openalex/retrieved_date=2026-11-20/"
+    subset_rule: "Same 100 DOIs as Crossref (see crossref.subset_rule)."
+    retrieval:
+      script: datasets/scripts/fetch_openalex.py
+      command: "python3 -u datasets/scripts/fetch_openalex.py"
+      doi_encoding: "percent-encode every reserved character including '/' after the doi: prefix"
+      pacing_and_retry: "identical to Crossref"
+      resume: "A DOI whose envelope exists is skipped."
+    matching_rules: "Exact DOI via the doi: lookup. OpenAlex may merge works; the returned work id is recorded, not re-matched."
+    coverage:
+      planned: 100
+      retrieved_200: 100
+      missing_404: 0
+      errors: 0
+      observed_by: "run log datasets/raw/logs/fetch_openalex_run1.log: {planned:100, retrieved_ok:100, missing_404:0, errors:0, aborted:false}"
+      consistency_vs_dblp: {compared: 100, title_equal_after_normalisation: 100, year_equal: 78, year_differs: 22, author_count_equal: 100, year_difference_dblp_minus_openalex: {"-29": 1, "-21": 1, "-11": 1, "-5": 1, "-2": 1, "-1": 1, "0": 78, "1": 16}, source: "datasets/samples/doi_spot_check.json (openalex_vs_dblp)"}
+    sample:
+      path: datasets/samples/openalex/openalex_works_sample.jsonl
+      sha256: d7dcc275cf50ddb4ba8b11e0889df69004c65312f98ad46e95f28a7ce448e851
+      bytes: 52721
+      rows: 100
+      generator: "python3 datasets/scripts/make_samples.py"
+      minimisation: "No author names, affiliations or ORCID iDs; counts only."
+    schema_notes: datasets/schemas/openalex.md
+    linkage_keys: {to_dblp: "DOI", to_orcid: "authorships[].author.orcid", own_id: "id (https://openalex.org/W...)"}
+    update_method: "As Crossref."
+    limitations:
+      - "22 of 100 records differ in year from DBLP (OpenAlex publication_year versus DBLP year); source: datasets/samples/doi_spot_check.json openalex_vs_dblp."
+      - "OpenAlex author profiles are machine-disambiguated; ORCID attachment can be wrong (see https://help.openalex.org/data/authors/orcid)."
+      - "Keyless access has a smaller budget; no key was available, so cursor paging is unavailable (not needed for singleton lookups)."
+    privacy_notes: "Author profiles are personal data. Only counts are committed."
+    validation_commands:
+      - "python3 datasets/scripts/validate_manifest.py"
+
+  orcid:
+    role: enrichment, bounded DOI-driven subset (iDs derived from Crossref and OpenAlex author data)
+    source:
+      name: "ORCID Public API v3.0, works endpoint"
+      base_url: "https://pub.orcid.org/v3.0/{orcid-id}/works"
+      documentation: "https://info.orcid.org/documentation/features/public-api/"
+    license:
+      identifier: "ORCID Terms and Conditions of Use license to Public record data; CC0-1.0 applies only to the annual Public Data File (not used here)"
+      status: "terms verified; no SPDX license applies to API responses"
+      url: "https://info.orcid.org/terms-of-use/"
+      quote: "we grant you a license to use any Record Data marked \"Public,\" subject to these Terms and Conditions of Use, ... By \"use\" we mean sublicense, reproduce, store, transmit, distribute, publicly perform and publicly display the Record Data for non-commercial and commercial uses. ... You may download and modify Record Data, but only in a manner that does not make the data false or misleading."
+      public_data_file_quote: "The Public Data File is released under a CC0 1.0 Public Domain Dedication (https://info.orcid.org/privacy-policy/)"
+      fetched: "2026-11-19 via curl"
+    access_requirements:
+      url: "https://info.orcid.org/documentation/api-tutorials/api-tutorial-read-data-on-a-record/"
+      quote: "Anyone can register for read-only Public API credentials ... You need to obtain an access token to use the ORCID API. ... Anyone with public or member API credentials can receive a /read-public access token."
+      observed_behaviour: "On 2026-11-19 and 2026-11-20 UTC, unauthenticated GET https://pub.orcid.org/v3.0/<id>/works with Accept: application/json returned HTTP 200 for all 100 requested iDs. This contradicts the documented token requirement, is undocumented in the pages read, and may change without notice."
+      used_here: "No client credentials, no token. See manual action about registering Public API credentials."
+    snapshot: {type: "per-request live API; no snapshot", retrieval_dates_utc: ["2026-11-20T03:38:12Z", "2026-11-20T03:39:32Z"], version: "UNVERIFIED"}
+    format: "JSON envelopes (works summaries only; no name, email, employment or address sections requested)"
+    raw_location: datasets/raw/orcid/works/ and datasets/raw/orcid/orcid_ids.json
+    size_estimate: "about 24 MB on disk for 100 iDs (observed with du -sh)"
+    s3_prefixes:
+      raw: "s3://${RAW_BUCKET}/orcid/retrieved_date=2026-11-20/"
+    subset_rule: "iDs found in the stored Crossref and OpenAlex envelopes of the 100 selected DOIs, deduplicated, ranked by sha256(441|orcid|id), first 100 retrieved (default maximum)."
+    retrieval:
+      script: datasets/scripts/fetch_orcid.py
+      command: "python3 -u datasets/scripts/fetch_orcid.py"
+      pacing_and_retry: "identical to Crossref"
+      resume: "An iD whose envelope exists is skipped."
+    matching_rules: "An iD is taken only when it matches ^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$ in a Crossref or OpenAlex author entry for a selected DOI. No name-based search. The iD is a claimed identifier from those sources, not independently verified against the DBLP author."
+    coverage:
+      ids_found_distinct: 294
+      ids_found_in_crossref: 89
+      ids_found_in_openalex: 294
+      ids_planned_for_retrieval: 100
+      retrieved_200: 100
+      missing_404: 0
+      errors: 0
+      retrieved_with_zero_public_works: 24
+      not_retrieved_due_to_limit: 194
+      observed_by: "run log datasets/raw/logs/fetch_orcid_run1.log and datasets/samples/orcid/orcid_coverage_summary.json"
+    sample:
+      path: datasets/samples/orcid/orcid_coverage_summary.json
+      sha256: 1089f4a21e3fd4116ec17eb44c196c90c2e9416c68595a28f9e731056a85db5f
+      bytes: 485
+      content: "aggregate counts only. No ORCID iD and no per-person record is committed."
+    schema_notes: datasets/schemas/orcid.md
+    linkage_keys: {to_other_sources: "ORCID iD from Crossref author[].ORCID and OpenAlex authorships[].author.orcid", to_work: "works group external-ids (doi)"}
+    update_method: "Rerun fetch_orcid.py after refreshing Crossref and OpenAlex; ORCID records change continuously."
+    limitations:
+      - "Only 100 of 294 derived iDs were retrieved (default bound)."
+      - "24 of 100 retrieved records list no public works."
+      - "Works lists reflect what each person chose to make public."
+      - "Anonymous access is not documented; see access_requirements."
+    privacy_notes: "See privacy section."
+    validation_commands:
+      - "python3 datasets/scripts/validate_manifest.py"
+
+privacy:
+  rules:
+    - "Personal data (author names, ORCID iDs, affiliations) is stored only under the gitignored datasets/raw/ tree."
+    - "Committed samples are minimised to counts, titles, years, DOIs and source identifiers. No author names and no ORCID iDs are committed."
+    - "No ORCID-derived record-level sample is committed. This is a human decision: ORCID's Terms license use of Public Record Data including storage and distribution, but the committed-ORCID question was left conservative because the work order says not to commit when unsure."
+    - "ORCID requests ask only for /works. No name, email, employment, education or address sections."
+    - "The contact email and any API key come only from environment variables, are sent only in HTTP headers, are never printed, never stored and never committed. Stored request URLs pass through redact_url(). Verification: python3 datasets/scripts/check_no_secrets.py"
+    - "ORCID and Crossref entries are used to link works, not to profile individuals. Downstream stages must keep identity matches uncertain and cite provenance."
+    - "Respect removal: if a person asks for removal of ORCID or author data, delete from derived stores through a human-approved process (raw data deletion is human-only)."
+  sources_read: ["https://info.orcid.org/terms-of-use/", "https://info.orcid.org/privacy-policy/", "https://help.openalex.org/llms.txt (lists an author-profile privacy page)"]
+
+spot_check:
+  file: datasets/samples/doi_spot_check.json
+  sha256: 9dd54cf972b084ed7a88275cf72a182f5221db4af94a8c1ec016eb4ada8494a7
+  crossref_matches_without_year: 0   # N15: records with no year are counted here and excluded from year figures
+  method: "first three Crossref-retrieved DOIs in sha256(441|enrichment|key) order; compare title (normalised), year, author count against the DBLP selection"
+  inspected: 3
+  all_matches: {n: 99, title_equal: 99, year_equal: 90, author_count_equal: 99}
+
+known_unresolved_questions:
+  - "Retrieval date and method of the local dblp.xml are unrecorded; DBLP snapshot date is a lower bound from newest mdate."
+  - "Crossref has no formal license identifier on its REST API page (reuse terms quoted instead)."
+  - "ORCID anonymous API access works but contradicts the documented token requirement."
+  - "Whether any ORCID-derived record-level sample may be committed (decision left to the human)."
+  - "Whether one-work-per-year flooring is the desired stratification at larger sizes."
+  - "MANUAL ACTION: approve certifi as an optional runtime dependency of fetch_common.py, or require the stdlib-only route (SSL_CERT_FILE pointing at a system CA bundle). Verification is never disabled either way."
+  - "The scripts are uncommitted, so recorded code_version carries +uncommitted-scripts."

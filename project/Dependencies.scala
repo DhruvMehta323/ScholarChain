@@ -9,6 +9,9 @@ object Dependencies {
   // JSON: uPickle is the single JSON library for the whole codebase.
   val upickle = "com.lihaoyi" %% "upickle" % Versions.upickle
 
+  // Configuration: HOCON parser (plain Java artifact, no Scala suffix, no transitive deps).
+  val typesafeConfig = "com.typesafe" % "config" % Versions.typesafeConfig
+
   // Logging: API at compile time, implementation at runtime only.
   val slf4jApi = "org.slf4j"      % "slf4j-api"       % Versions.slf4j
   val logback  = "ch.qos.logback" % "logback-classic" % Versions.logback % Runtime

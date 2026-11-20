@@ -26,6 +26,10 @@ project/project/
 *.class
 *.log
 
+# Python bytecode caches (dataset scripts)
+__pycache__/
+*.pyc
+
 # Test-run marker (runtime state written only by the canonical test command)
 .claude/.last-test-run
 

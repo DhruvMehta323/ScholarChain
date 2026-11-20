@@ -1,0 +1,16 @@
+{
+  "error_log_lines": 0,
+  "ids_found_distinct": 294,
+  "ids_found_in_crossref": 89,
+  "ids_found_in_openalex": 294,
+  "ids_planned_for_retrieval": 100,
+  "missing_404": 0,
+  "note": "aggregate counts only; no ORCID iD or personal record is committed",
+  "request_url_pattern": "https://pub.orcid.org/v3.0/<orcid-id>/works",
+  "retrieval_timestamps_utc": [
+    "2026-11-20T03:38:12Z",
+    "2026-11-20T03:39:32Z"
+  ],
+  "retrieved_200": 100,
+  "retrieved_with_zero_public_works": 24
+}

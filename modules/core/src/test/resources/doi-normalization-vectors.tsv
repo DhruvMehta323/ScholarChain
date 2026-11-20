@@ -1,0 +1,126 @@
+# DOI normalization vectors. Single source of truth for Scala (DoiVectorsContractSuite) and Python.
+# Encoding: UTF-8, LF, no BOM. Cells: input, expected (REJECT or normalized DOI), note.
+# Escapes (left to right): \\ backslash; \uXXXX one UTF-16 unit (4 hex); \UXXXXXXXX one non-surrogate code point (8 hex); \e whole cell = empty string.
+# Any other backslash sequence is a reader error; a high \u escape immediately followed by a low \u escape is a reader error.
+input	expected	note
+10.1000/abc.1	10.1000/abc.1	plain lowercase
+10.1000/AbC.1	10.1000/abc.1	mixed case lowered
+https://doi.org/10.1000/ABC	10.1000/abc	prefix https doi.org
+HTTPS://DOI.ORG/10.1000/ABC	10.1000/abc	uppercase prefix https doi.org
+http://doi.org/10.1000/ABC	10.1000/abc	prefix http doi.org
+HTTP://DOI.ORG/10.1000/ABC	10.1000/abc	uppercase prefix http doi.org
+https://dx.doi.org/10.1000/ABC	10.1000/abc	prefix https dx.doi.org
+HTTPS://DX.DOI.ORG/10.1000/ABC	10.1000/abc	uppercase prefix https dx.doi.org
+http://dx.doi.org/10.1000/ABC	10.1000/abc	prefix http dx.doi.org
+HTTP://DX.DOI.ORG/10.1000/ABC	10.1000/abc	uppercase prefix http dx.doi.org
+doi:10.1000/ABC	10.1000/abc	prefix doi: scheme
+DOI:10.1000/ABC	10.1000/abc	uppercase prefix doi: scheme
+Https://Doi.Org/10.1000/ABC	10.1000/abc	mixed case prefix
+DoI:\u0020\u0020\u002010.1000/ABC	10.1000/abc	doi: followed by several spaces
+\u0009\u000A\u000B\u000C\u000D\u002010.1000/abc\u0020\u0009\u000A\u000B\u000C\u000D	10.1000/abc	ASCII whitespace trimmed both ends
+\u0020\u0020https://doi.org/10.1000/abc\u0020\u0020	10.1000/abc	trim around URL form
+\u001C10.1000/abc\u001C	10.1000/abc	trim U+001C both ends
+\u001D10.1000/abc\u001D	10.1000/abc	trim U+001D both ends
+\u001E10.1000/abc\u001E	10.1000/abc	trim U+001E both ends
+\u001F10.1000/abc\u001F	10.1000/abc	trim U+001F both ends
+\u008510.1000/abc\u0085	10.1000/abc	trim U+0085 both ends
+\u00A010.1000/abc\u00A0	10.1000/abc	trim U+00A0 both ends
+\u168010.1000/abc\u1680	10.1000/abc	trim U+1680 both ends
+\u200010.1000/abc\u2000	10.1000/abc	trim U+2000 both ends
+\u200110.1000/abc\u2001	10.1000/abc	trim U+2001 both ends
+\u200210.1000/abc\u2002	10.1000/abc	trim U+2002 both ends
+\u200310.1000/abc\u2003	10.1000/abc	trim U+2003 both ends
+\u200410.1000/abc\u2004	10.1000/abc	trim U+2004 both ends
+\u200510.1000/abc\u2005	10.1000/abc	trim U+2005 both ends
+\u200610.1000/abc\u2006	10.1000/abc	trim U+2006 both ends
+\u200710.1000/abc\u2007	10.1000/abc	trim U+2007 both ends
+\u200810.1000/abc\u2008	10.1000/abc	trim U+2008 both ends
+\u200910.1000/abc\u2009	10.1000/abc	trim U+2009 both ends
+\u200A10.1000/abc\u200A	10.1000/abc	trim U+200A both ends
+\u202810.1000/abc\u2028	10.1000/abc	trim U+2028 both ends
+\u202910.1000/abc\u2029	10.1000/abc	trim U+2029 both ends
+\u202F10.1000/abc\u202F	10.1000/abc	trim U+202F both ends
+\u205F10.1000/abc\u205F	10.1000/abc	trim U+205F both ends
+\u300010.1000/abc\u3000	10.1000/abc	trim U+3000 both ends
+\u00A0doi:10.1000/ABC\u3000	10.1000/abc	NBSP and U+3000 around doi:
+https://doi.org/10.1000/a%2Fb	10.1000/a/b	URL form decodes %2F
+https://doi.org/10.1000/a%3Cb	10.1000/a<b	URL form decodes %3C
+https://doi.org/10.1000/a%3Eb	10.1000/a>b	URL form decodes %3E
+https://doi.org/10.1000/a%2fb	10.1000/a/b	URL form lowercase hex
+https://doi.org/10.1000/A%2FB	10.1000/a/b	URL form decode then lowercase
+https://doi.org/10%2E1000/abc	10.1000/abc	URL form decodes %2E in registrant part
+https://doi.org/10.1000%2Fabc	10.1000/abc	URL form decodes slash after registrant
+10.1000/a%2Fb	10.1000/a%2fb	bare keeps literal %2F (lowered only)
+10.1000/a%G1b	10.1000/a%g1b	bare keeps literal %G1
+10.1000/a%	10.1000/a%	bare keeps trailing %
+10.1000/a%2	10.1000/a%2	bare keeps truncated %2
+doi:10.1000/a%2Fb	10.1000/a%2fb	doi: keeps literal %2F (lowered only)
+doi:10.1000/a%G1b	10.1000/a%g1b	doi: keeps literal %G1
+doi:10.1000/a%	10.1000/a%	doi: keeps trailing %
+doi:10.1000/a%2	10.1000/a%2	doi: keeps truncated %2
+https://doi.org/10.1000/a%252Fb	10.1000/a%2fb	double-encoded decoded once only
+https://doi.org/10.1000/a%	REJECT	URL form trailing % malformed
+https://doi.org/10.1000/a%G1b	REJECT	URL form %G1 malformed
+https://doi.org/10.1000/a%2	REJECT	URL form truncated %2 malformed
+https://doi.org/10.1000/a%2G	REJECT	URL form %2G malformed
+https://doi.org/10.1000/a%FF	REJECT	invalid UTF-8 lone 0xFF
+https://doi.org/10.1000/a%C3	REJECT	invalid UTF-8 truncated sequence
+https://doi.org/10.1000/a%C3b	REJECT	invalid UTF-8 bad continuation
+https://doi.org/10.1000/a%C0%AF	REJECT	invalid UTF-8 overlong slash
+https://doi.org/10.1000/a%ED%A0%80	REJECT	invalid UTF-8 encoded surrogate
+https://doi.org/10.1000/a%20b	REJECT	decoded space
+https://doi.org/10.1000/abc%20	REJECT	decoded trailing space not trimmed
+https://doi.org/10.1000/a%0Ab	REJECT	decoded LF
+https://doi.org/10.1000/a%00b	REJECT	decoded NUL
+https://doi.org/10.1000/a%7Fb	REJECT	decoded DEL
+https://doi.org/10.1000/a%C2%A0b	REJECT	decoded NBSP
+https://doi.org/10.1000/a%C2%85b	REJECT	decoded U+0085
+https://doi.org/10.1000/a%E2%80%8Bb	10.1000/a\u200Bb	decoded zero-width space accepted
+10.1000/a\u0001b	REJECT	raw U+0001 inside
+10.1000/a\u007Fb	REJECT	raw DEL inside
+10.1000/a\u0085b	REJECT	raw U+0085 inside
+10.1000/abc\u0001	REJECT	trailing U+0001 not trimmed
+10.1000/a\u200Bb	10.1000/a\u200Bb	zero-width inside accepted
+\u200B10.1000/abc	REJECT	leading zero-width not trimmed
+\e	REJECT	empty string
+\u0020\u0020\u0020\u0009\u3000	REJECT	whitespace only
+doi:	REJECT	doi: alone
+doi:\u0020\u0020\u0020	REJECT	doi: and spaces only
+https://doi.org/	REJECT	URL prefix alone
+1000/abc	REJECT	missing 10. prefix
+11.1000/abc	REJECT	wrong directory 11.
+10.100/abc	REJECT	3-digit registrant
+10.1234567890/abc	REJECT	10-digit registrant
+10.1234/abc	10.1234/abc	4-digit registrant accepted
+10.123456789/abc	10.123456789/abc	9-digit registrant accepted
+10.١٢٣٤/abc	REJECT	Arabic-Indic digits rejected
+10.1000/	REJECT	empty suffix
+10.1000abc	REJECT	no slash
+10.1000/a\u0020b	REJECT	internal space
+10.1000/a\u3000b	REJECT	internal U+3000
+10.1000/a+b	10.1000/a+b	bare plus literal
+https://doi.org/10.1000/a+b	10.1000/a+b	URL form plus stays plus
+https://doi.org/10.1000/a%2Bb	10.1000/a+b	URL form %2B decodes to plus
+https://doi.org/10.1000/%C3%89	10.1000/É	URL form %C3%89 decodes to E-acute, case kept
+10.1000/ÉA	10.1000/Éa	only ASCII lowered, E-acute kept
+10.1000/İ	10.1000/İ	Turkish dotted capital I unchanged
+https://doi.org/10.1000/%F0%9F%98%80	10.1000/\U0001F600	4-byte UTF-8 decoded
+10.1000/😀	10.1000/\U0001F600	literal supplementary character (raw in file)
+10.1000/\U0001F600	10.1000/\U0001F600	literal supplementary character (U escape in file)
+10.1000/a\uD800b	REJECT	lone high surrogate
+10.1000/a\uDC00b	REJECT	lone low surrogate
+\uD800	REJECT	lone surrogate only
+doi:\u000910.1000/abc	REJECT	doi: then tab not skipped
+doi:\u00A010.1000/abc	REJECT	doi: then NBSP not skipped
+doi:doi:10.1000/abc	REJECT	stacked doi: doi:
+https://doi.org/doi:10.1000/abc	REJECT	stacked URL then doi:
+doi:https://doi.org/10.1000/abc	REJECT	stacked doi: then URL
+https://doi.org/https://doi.org/10.1000/abc	REJECT	stacked URL twice
+https://doi.org/\u002010.1000/abc	REJECT	URL prefix then space
+https://example.org/10.1000/x	REJECT	foreign host
+doi.org/10.1000/abc	REJECT	resolver host without scheme
+10.1000/abc?x=1#f	10.1000/abc?x=1#f	bare query and fragment kept
+https://doi.org/10.1000/abc?x=1#f	10.1000/abc?x=1#f	URL form literal query and fragment kept
+https://doi.org/10.1000/abc%3Fx%3D1%23f	10.1000/abc?x=1#f	URL form %3F %3D %23 decoded
+10.1000/e\u0301	10.1000/e\u0301	NFD unchanged, no NFC
+10.1000/a\\b	10.1000/a\\b	literal backslash

@@ -1,0 +1,1001 @@
+key	type	year	venue	doi	n_authors	title
+journals/jsyml/ChwistekH38	article	1938	journals/jsyml	10.2307/2267504	2	New Foundation of Formal Metamathematics.
+journals/jsyml/QuineG40	article	1940	journals/jsyml	10.2307/2266863	2	Elimination of Extra-Logical Postulates.
+journals/jsyml/NewmanT42	article	1942	journals/jsyml	10.2307/2267552	2	A Formal Theorem in Church's Theory of Types.
+journals/jsyml/RosserT45	article	1945	journals/jsyml	10.2307/2267026	2	Axiom Schemes for M-Valued Propositional Calculi.
+journals/adt/LoebP46a	article	1946	journals/adt	10.1007/bf03013846	2	Le nouvel étalon primaire de tensions en haute fréquence du laboratoire national de radioélectricité.
+journals/jsyml/GoodmanQ47	article	1947	journals/jsyml	10.2307/2266485	2	Steps Toward a Constructive Nominalism.
+journals/bstj/LewisT48	article	1948	journals/bstj	10.1002/j.1538-7305.1948.tb01332.x	2	A non-reflecting branching filter for microwaves.
+journals/bstj/LecontePSW49	article	1949	journals/bstj	10.1002/j.1538-7305.1949.tb03630.x	4	A carrier system for 8000-cycle program transmission.
+journals/jsyml/RosserW50	article	1950	journals/jsyml	10.2307/2266971	2	Non-Standard Models for Formal Logics.
+conf/aieeire/EckertWWM51	inproceedings	1951	conf/aieeire	10.1145/1434770.1434772	4	The UNIVAC system.
+conf/acm/AstrahanR52	inproceedings	1952	conf/acm	10.1145/609784.609791	2	The logical organization of the new IBM scientific calculator.
+conf/aieeire/SalvesonC53	inproceedings	1953	conf/aieeire	10.1145/1434821.1434829	2	Automatic data processing in larger manufacturing plants.
+conf/aieeire/GurkR54	inproceedings	1954	conf/aieeire	10.1145/1455270.1455285	2	Numerical solution of differential equations.
+conf/aieeire/MazelskyO55	inproceedings	1955	conf/aieeire	10.1145/1455292.1455304	2	The integrated use of analog and digital computing machines for aircraft dynamic load problems.
+conf/aieeire/LesserH56	inproceedings	1956	conf/aieeire	10.1145/1455533.1455565	2	The RAMAC data-processing machine: system organization of the IBM 305.
+conf/aieeire/SeehofAFLMS57	inproceedings	1957	conf/aieeire	10.1145/1457720.1457767	6	The National Cash Register high-speed magnetic printer.
+conf/aieeire/HagopianHLW58	inproceedings	1958	conf/aieeire	10.1145/1458043.1458081	4	The GE-100 data processing system.
+conf/aieeire/StrassmanK59	inproceedings	1959	conf/aieeire	10.1145/1457838.1457865	2	System evaluation and instrumentation for military special-purpose digital computer systems.
+conf/aieeire/JacksonRWB60	inproceedings	1960	conf/aieeire	10.1145/1460361.1460394	4	A built-in table lookup arithmetic unit.
+journals/cacm/HellermanO61	article	1961	journals/cacm	10.1145/366813.366837	2	Algorithm 72: composition generator.
+journals/cacm/SmithA62	article	1962	journals/cacm	10.1145/368996.369006	2	Algorithm 131: Coefficient determination.
+conf/afips/RobinPSH63	inproceedings	1963	conf/afips	10.1145/1463822.1463868	4	A computer driven simulation environment for air traffic control studies.
+conf/afips/GluskinJR64	inproceedings	1964	conf/afips	10.1145/1464052.1464112	3	FLODAC: a pure fluid digital computer.
+journals/cacm/MuellerC65	article	1965	journals/cacm	10.1145/365660.365682	2	A comparison of the primal-simplex and primal-dual algorithms for linear programming.
+journals/cacm/RockwellSWM66	article	1966	journals/cacm	10.1145/355592.365639	4	Shock III, a computer system as an aid in the management of critically III patients.
+conf/afips/ShureMM67	inproceedings	1967	conf/afips	10.1145/1465482.1465569	3	TRACE time-shared routines for analysis, classification and evaluation.
+conf/afips/EdwinE68	inproceedings	1968	conf/afips	10.1145/1476589.1476611	2	Non-linear interactive stepwise regression analsis in a time-sharing environment.
+conf/afips/SchwetmanD69	inproceedings	1969	conf/afips	10.1145/1476793.1476835	2	An operational analysis of a remote console system.
+conf/afips/SibleyTA70	inproceedings	1970	conf/afips	10.1145/1476936.1476939	3	The case for a generalized graphic problem solver.
+journals/tc/BudnikK71	article	1971	journals/tc	10.1109/t-c.1971.223171	2	The Organization and Use of Parallel Memories.
+journals/tc/BeakleyT72	article	1972	journals/tc	10.1109/t-c.1972.223505	2	Distribution-Free Pattern Verification Using Statistically Equivalent Blocks.
+journals/tcom/RiceH73	article	1973	journals/tcom	10.1109/tcom.1973.1091546	2	Cumulative Time Statistics of Surface-Point Rainfall Rates.
+journals/tcom/OhbaYNN74	article	1974	journals/tcom	10.1109/tcom.1974.1092101	4	On the Packet-Interleaved Interface Between Packet-Switched Network and Computers.
+journals/tcom/HenryC75	article	1975	journals/tcom	10.1109/tcom.1975.1092851	2	Phase Error Characteristics of a Second-Order Phase-Lock Loop.
+conf/icassp/GuerinMC76	inproceedings	1976	conf/icassp	10.1109/icassp.1976.1170152	3	A voice source taking account of coupling with the supraglottal cavities.
+journals/tcom/GoldsteinL77	article	1977	journals/tcom	10.1109/tcom.1977.1093799	2	Quantization Noise in ADPCM Systems.
+journals/tcom/TaylorH78	article	1978	journals/tcom	10.1109/tcom.1978.1094059	2	Receiver Structure for Saturating Channels.
+journals/tcom/PattersonSBW79	article	1979	journals/tcom	10.1109/tcom.1979.1094427	4	Linearization of Multichannel Analog Optical Transmitters by Quasi-Feedforward Compensation Technique.
+journals/tcom/MinoliL80	article	1980	journals/tcom	10.1109/tcom.1980.1094847	2	Cost Implications for Survivability of Terrestrial Networks Under Malicious Failure.
+conf/icassp/AhmadiR81	inproceedings	1981	conf/icassp	10.1109/icassp.1981.1171213	2	A method for the design of stable (N-D) analog and digital filters.
+conf/icassp/BarnwellQ82	inproceedings	1982	conf/icassp	10.1109/icassp.1982.1171568	2	An analysis of objectively computable measures for speech quality testing.
+journals/tcom/PickholtzSM82	article	1982	journals/tcom	10.1109/tcom.1982.1095533	3	Theory of Spread-Spectrum Communications-A Tutorial.
+conf/icassp/KalouptsidisCM83	inproceedings	1983	conf/icassp	10.1109/icassp.1983.1171932	3	Systems of equations with near-to-Toeplitz or near-to-Hankel parameters and applications to signal processing.
+journals/tcom/GallB83a	article	1983	journals/tcom	10.1109/tcom.1983.1095750	2	An Estimate for the Time Congestion for Overflow Processes.
+conf/icassp/JohnsonM84	inproceedings	1984	conf/icassp	10.1109/icassp.1984.1172301	2	Multichannel relative-entropy spectrum analysis.
+journals/tcom/DukicSS84	article	1984	journals/tcom	10.1109/tcom.1984.1095996	3	A New Robust FM Demodulator Reducing Adjacent Radio-Channel Interference Noise.
+conf/icassp/SimsT85	inproceedings	1985	conf/icassp	10.1109/icassp.1985.1168390	2	The effects of controlled speech level input on the intelligibility testing of speech compression algorithms.
+journals/tsp/DelsarteGK85	article	1985	journals/tsp	10.1109/tassp.1985.1164558	3	Positive-definite Toeplitz embedding based on the cyclic extension of a data matrix.
+conf/icassp/MakhoulE86	inproceedings	1986	conf/icassp	10.1109/icassp.1986.1169252	2	Time-scale modification in medium to low rate speech coding.
+conf/icra/DiCesareGLRD86	inproceedings	1986	conf/icra	10.1109/robot.1986.1087732	5	Functions of a manufacturing workstation controller.
+conf/icassp/LiangM87	inproceedings	1987	conf/icassp	10.1109/icassp.1987.1169758	2	Reducing cocktail party noise by adaptive array filtering.
+conf/icra/RattiBFFV87	inproceedings	1987	conf/icra	10.1109/robot.1987.1087784	5	Tactile perception in unstructured environments: A case study for rehabilitative robotics applications.
+conf/icassp/KubalaCDFKMPRRS88	inproceedings	1988	conf/icassp	10.1109/icassp.1988.196573	11	Continuous speech recognition results of the BYBLOS system on the DARPA 1000-word resource management database.
+conf/icra/FitcherF88	inproceedings	1988	conf/icra	10.1109/robot.1988.12188	2	A survey of legs of insects and spiders from a kinematic perspective.
+conf/icassp/ViswanathanH89	inproceedings	1989	conf/icassp	10.1109/icassp.1989.266443	2	Noise-immune multisensor speech input: formal subjective testing in operational conditions.
+conf/interspeech/AltosaarK89	inproceedings	1989	conf/interspeech	10.21437/eurospeech.1989-311	2	A knowledge-based approach to unlimited vocabulary speech recognition for the Finnish language.
+journals/jssc/HorstmannEC89	article	1989	journals/jssc	10.1109/4.16314	3	Metastability behavior of CMOS ASIC flip-flops in theory and test.
+conf/icassp/ZhuF90	inproceedings	1990	conf/icassp	10.1109/icassp.1990.115766	2	A connectionist model for speaker-independent isolated word recognition.
+conf/ijcnn/ChangLT90	inproceedings	1990	conf/ijcnn	10.1109/ijcnn.1990.137927	3	Using genetic algorithms to select and create features for pattern classification.
+conf/interspeech/CederL90	inproceedings	1990	conf/interspeech	10.21437/icslp.1990-80	2	The integration of linguistic levels in a text-to-speech conversion system.
+conf/icassp/MerhavE91	inproceedings	1991	conf/icassp	10.1109/icassp.1991.150378	2	Hidden Markov modeling using the most likely state sequence.
+conf/icra/HormannR91	inproceedings	1991	conf/icra	10.1109/robot.1991.131992	2	Development of an advanced robot for autonomous assembly.
+journals/tsp/ZarowskiC91	article	1991	journals/tsp	10.1109/78.91151	2	Finite precision arithmetic and the split Schur algorithms.
+conf/icassp/TakebayashiTK92	inproceedings	1992	conf/icassp	10.1109/icassp.1992.226114	3	Keyword-spotting in noisy continuous speech using word pattern vector subabstraction and noise immunity learning.
+conf/icpr/ValevR92	inproceedings	1992	conf/icpr	10.1109/icpr.1992.201792	2	A method of solving pattern or image recognition problems by learning Boolean formulas.
+conf/icra/ZhaNK92	inproceedings	1992	conf/icra	10.1109/robot.1992.220134	3	Quantifying saliency of feature points on 3-D curved surfaces from range images.
+conf/icnn/KoffmanM93	inproceedings	1993	conf/icnn	10.1109/icnn.1993.298612	2	Gaussian network variants: a preliminary study.
+conf/icra/SerajiC93	inproceedings	1993	conf/icra	10.1109/robot.1993.291908	2	Force Tracking in Impedance Control.
+conf/interspeech/MatsuokaL93	inproceedings	1993	conf/interspeech	10.21437/eurospeech.1993-145	2	A study of on-line Bayesian adaptation for HMM-based speech recognition.
+journals/tsp/HerleyKRV93	article	1993	journals/tsp	10.1109/78.258078	4	Tilings of the time-frequency plane: construction of arbitrary orthogonal bases and fast tiling algorithms.
+conf/icassp/ClogluU94	inproceedings	1994	conf/icassp	10.1109/icassp.1994.389965	2	Design of FIR filters with powers of two coefficients based on a new quantization quality criterion.
+conf/icip/AdaliW94	inproceedings	1994	conf/icip	10.1109/icip.1994.413718	2	Probabilistic Neural Networks for Medical Image Quantification.
+conf/icra/MiuraS94	inproceedings	1994	conf/icra	10.1109/robot.1994.351052	2	Modeling Obstacles and Free Spaces for a Mobile Robot Using Stereo Vision with Uncertainty.
+conf/iscas/BrigatiMT94	inproceedings	1994	conf/iscas	10.1109/iscas.1994.409476	3	Gain Enhancement Technique for High-Speed Switched-Capacitor Circuits.
+conf/icassp/BubHW95	inproceedings	1995	conf/icassp	10.1109/icassp.1995.479827	3	Knowing who to listen to in speech recognition: visually guided beamforming.
+conf/icnn/LuI95	inproceedings	1995	conf/icnn	10.1109/icnn.1995.488161	2	Regularization of inverse kinematics for redundant manipulators using neural network inversions.
+conf/icra/WatanabeF95	inproceedings	1995	conf/icra	10.1109/robot.1995.525433	2	A Method for Controlling Tactile Sensation of Surface Roughness Using Ultrasonic Vibration.
+conf/interspeech/RouatLM95	inproceedings	1995	conf/interspeech	10.21437/eurospeech.1995-109	3	A pitch determination and voiced/unvoiced decision algorithm for noisy speech.
+conf/iscas/MurataY95	inproceedings	1995	conf/iscas	10.1109/iscas.1995.521564	2	Petri-Net Methods for Reasoning in Real-Time Control Systems.
+conf/icassp/ShenL96	inproceedings	1996	conf/icassp	10.1109/icassp.1996.540306	2	Fast and accurate recognition of very-large-vocabulary continuous Mandarin speech for Chinese language with improved segmental probability modeling.
+conf/icip/Soltanian-ZadehW96	inproceedings	1996	conf/icip	10.1109/icip.1996.560759	2	Linear filter design for CNR enhancement of MR images with multiple interfering features.
+conf/icpr/WebbS96	inproceedings	1996	conf/icpr	10.1109/icpr.1996.547641	2	Adaptive radial basis functions.
+conf/icra/MartinezA96	inproceedings	1996	conf/icra	10.1109/robot.1996.506509	2	A reformulation of gray-level image geometric moment computation for real-time applications.
+conf/interspeech/BlackburnY96	inproceedings	1996	conf/interspeech	10.21437/icslp.1996-207	2	Pseudo-articulatory speech synthesis for recognition using automatic feature extraction from x-ray data.
+conf/icassp/KompeKNNBSRB97	inproceedings	1997	conf/icassp	10.1109/icassp.1997.596053	8	Improving parsing of spontaneous speech with the help of prosodic boundaries.
+conf/icip/SpaanLB97	inproceedings	1997	conf/icip	10.1109/icip.1997.647963	3	Shape Coding Using Polar Coordinates and the Discrete Cosine Transform *.
+conf/icnn/MaillardG97	inproceedings	1997	conf/icnn	10.1109/icnn.1997.614247	2	RBF neural network, basis functions and genetic algorithm.
+conf/icra/KrausK97	inproceedings	1997	conf/icra	10.1109/robot.1997.614330	2	Compliant contact models for rigid body collisions.
+conf/interspeech/HaulickLS97	inproceedings	1997	conf/interspeech	10.21437/eurospeech.1997-389	3	Residual noise suppression using psychoacoustic criteria.
+conf/icassp/KungM98	inproceedings	1998	conf/icassp	10.1109/icassp.1998.675488	2	Extraction of independent components from hybrid mixture: KuicNet learning algorithm and applications.
+conf/icip/KongLGW98	inproceedings	1998	conf/icip	10.1109/icip.1998.723612	4	Spatio-Temporal Continuous Wavelet Transforms for Motion-Based Segmentation in Real Image Sequences.
+conf/icpr/AsadaBA98	inproceedings	1998	conf/icpr	10.1109/icpr.1998.711241	3	Calibrated computer graphics: a new approach to realistic image synthesis based on camera calibration.
+conf/icra/YamaneSM98	inproceedings	1998	conf/icra	10.1109/robot.1998.680942	3	Person Tracking by Integrating Optical Flow and Uniform Brightness Regions.
+conf/interspeech/SchroderAC98	inproceedings	1998	conf/interspeech	10.21437/icslp.1998-106	3	Can we hear smile?
+conf/smc/PattersonE98	inproceedings	1998	conf/smc	10.1109/icsmc.1998.725070	2	Perfecting the image.
+conf/eucc/TrinhA99	inproceedings	1999	conf/eucc	10.23919/ecc.1999.7099905	2	Estimation of linear functional states for time delay systems.
+conf/icassp/SochenZ99	inproceedings	1999	conf/icassp	10.1109/icassp.1999.757547	2	The Beltrami geometrical framework of color image processing.
+conf/icip/KubotaKA99	inproceedings	1999	conf/icip	10.1109/icip.1999.822936	3	Registration and Blur Estimation Methods for Multiple Differently Focused Images.
+conf/icra/TenagliaOLL99	inproceedings	1999	conf/icra	10.1109/robot.1999.774035	4	Toward Development of a Generalized Contact Algorithm for Polyhedral Objects.
+conf/ijcnn/BrusicZ99	inproceedings	1999	conf/ijcnn	10.1109/ijcnn.1999.836269	2	Artificial neural network applications in immunology.
+conf/interspeech/DahlbackJ99	inproceedings	1999	conf/interspeech	10.21437/eurospeech.1999-387	2	Knowledge sources in spoken dialogue systems.
+conf/iscas/WaltariH99	inproceedings	1999	conf/iscas	10.1109/iscas.1999.780619	2	Timing skew insensitive switching for double sampled circuits.
+conf/amcc/AlvarezYHO00	inproceedings	2000	conf/amcc	10.1109/acc.2000.878965	4	Emergency braking control in automated highway systems with underestimation of friction coefficient.
+conf/cdc/ChoKP00	inproceedings	2000	conf/cdc	10.1109/cdc.2000.912195	3	Robust and non-fragile H∞ controller design for affine parameter uncertain systems.
+conf/icassp/AdireddyT00	inproceedings	2000	conf/icassp	10.1109/icassp.2000.860968	2	Detection with embedded known symbols: optimal symbol placement and equalization.
+conf/icip/WongG00	inproceedings	2000	conf/icip	10.1109/icip.2000.899287	2	Characterization of Perceptual Importance for Object-Based Image Segmentation.
+conf/icpr/SteinbachGEB00	inproceedings	2000	conf/icpr	10.1109/icpr.2000.905504	4	3-D Object Reconstruction Using Spatially Extended Voxels and Multi-Hypothesis Voxel Coloring.
+conf/interspeech/XuS00	inproceedings	2000	conf/interspeech	10.21437/icslp.2000-623	2	How fast can we really change pitch? maximum speed of pitch change revisited.
+conf/iscas/TaoK00	inproceedings	2000	conf/iscas	10.1109/iscas.2000.858832	2	Real discrete Gabor expansion for finite and infinite sequences.
+conf/smc/MoshkovichMS00	inproceedings	2000	conf/smc	10.1109/icsmc.2000.886387	3	Effectiveness of ordinal information for data mining.
+conf/amcc/Ferrari-Trecate01	inproceedings	2001	conf/amcc	10.1109/acc.2001.945542	4	Analysis and control with performance of piecewise affine and hybrid systems.
+conf/cdc/BrownZ01	inproceedings	2001	conf/cdc	10.1109/.2001.980986	2	Control for canceling periodic disturbances with uncertain frequency.
+conf/globecom/ZhangL01	inproceedings	2001	conf/globecom	10.1109/glocom.2001.965199	2	A decoding algorithm for turbo product codes using optimality test and amplitude clipping.
+conf/icassp/WallhoffMR01	inproceedings	2001	conf/icassp	10.1109/icassp.2001.941213	3	Recognition of face profiles from the mugshot database using a hybrid connectionist/HMM approach.
+conf/icip/AlliliMT01	inproceedings	2001	conf/icip	10.1109/icip.2001.958452	3	Cubical homology and the topological classification of 2D and 3D imagery.
+conf/icra/VergauwenPG01	inproceedings	2001	conf/icra	10.1109/robot.2001.932925	3	Calibration and 3D Measurement from Martian Terrain Images.
+conf/interspeech/HoneG01	inproceedings	2001	conf/interspeech	10.21437/eurospeech.2001-491	2	Subjective assessment of speech-system interface usability.
+conf/iscas/YuB01	inproceedings	2001	conf/iscas	10.1109/iscas.2001.921894	2	Error analysis for time-interleaved analog channels.
+conf/amcc/Floret-PontetL02	inproceedings	2002	conf/amcc	10.1109/acc.2002.1024836	2	Parameter identification and state estimation for continuous-time nonlinear systems.
+conf/cdc/SanchezPC02	inproceedings	2002	conf/cdc	10.1109/cdc.2002.1184777	3	Stabilization of stochastic recurrent neural networks via inverse optimal control.
+conf/icassp/TolbaSO02	inproceedings	2002	conf/icassp	10.1109/icassp.2002.5743869	3	Auditory-based acoustic distinctive features and spectral cues for automatic speech recognition using a multi-stream paradigm.
+conf/icip/MovillaBMC02	inproceedings	2002	conf/icip	10.1109/icip.2002.1039974	4	Real time temporal segmentation of MPEG video.
+conf/icpr/WangBR02	inproceedings	2002	conf/icpr	10.1109/icpr.2002.1047817	3	Combining HMM-Based Two-Pass Classifiers for Off-Line Word Recognition.
+conf/icra/LeeKYS02	inproceedings	2002	conf/icra	10.1109/robot.2002.1014419	4	Singularity-Free Algorithms and Design Scheme for a New 6-DOF Parallel Haptic Device.
+conf/igarss/PanN02	inproceedings	2002	conf/igarss	10.1109/igarss.2002.1025135	2	Comparison of microwave scattering models for leaf.
+conf/iscas/LinL02	inproceedings	2002	conf/iscas	10.1109/iscas.2002.1010428	2	Design of a pipelined and expandable sorting architecture with simple control scheme.
+conf/pimrc/HuangZ02	inproceedings	2002	conf/pimrc	10.1109/pimrc.2002.1045438	2	Blind channel estimation in multi-rate multicarrier DS-CDMA systems.
+conf/amcc/PerhinschiNCFML03	inproceedings	2003	conf/amcc	10.1109/acc.2003.1239833	6	Augmentation of a non linear dynamic inversion scheme within the NASA IFCS F-15 WVU simulator.
+conf/cdc/BentsmanM03	inproceedings	2003	conf/cdc	10.1109/cdc.2003.1272329	2	Dynamical systems with controlled singularities: physically based representation and control-oriented modeling.
+conf/globecom/WangWK03	inproceedings	2003	conf/globecom	10.1109/glocom.2003.1258446	3	A topology control algorithm for constructing power efficient wireless ad hoc networks.
+conf/icassp/JaldenMO03	inproceedings	2003	conf/icassp	10.1109/icassp.2003.1202528	3	Semidefinite programming for detection in linear systems - optimality conditions and space-time decoding.
+conf/icc/CassioliWVM03	inproceedings	2003	conf/icc	10.1109/icc.2003.1204113	4	Effects of spreading bandwidth on the performance of UWB RAKE receivers.
+conf/icip/MengAWL03	inproceedings	2003	conf/icip	10.1109/icip.2003.1247375	4	Efficient intra-prediction algorithm in H.264.
+conf/icra/LiuXL03a	inproceedings	2003	conf/icra	10.1109/robot.2003.1242000	3	A comparative study of geometric algorithms for real-time grasping force optimization.
+conf/igarss/00010TL03	inproceedings	2003	conf/igarss	10.1109/igarss.2003.1293712	4	A new image registration method for multi-frequency airborne high-resolution SAR images.
+conf/interspeech/ONeillHLM03	inproceedings	2003	conf/interspeech	10.21437/eurospeech.2003-254	4	The queen's communicator: an object-oriented dialogue manager.
+conf/iscas/KoF03	inproceedings	2003	conf/iscas	10.1109/iscas.2003.1205622	2	Comparison of currents in differential log-domain filters with common-mode feedback.
+conf/smc/CoelhoLZ03	inproceedings	2003	conf/smc	10.1109/icsmc.2003.1245713	3	Hybrid genetic training of gated mixtures of experts for nonlinear time series forecasting.
+conf/amcc/JiangC04	inproceedings	2004	conf/amcc	10.23919/acc.2004.1386701	2	Temporal and spatial distributed event correlation for network security.
+conf/cdc/NodaYHT04	inproceedings	2004	conf/cdc	10.1109/cdc.2004.1428931	4	Sloshing suppression control during liquid container transfer involving dynamic tilting using Wigner distribution analysis.
+conf/globecom/Berger-SabbatelDGHR04	inproceedings	2004	conf/globecom	10.1109/glocom.2004.1378897	5	Fairness and its impact on delay in 802.11 networks.
+conf/icassp/WangZLL04	inproceedings	2004	conf/icassp	10.1109/icassp.2004.1327107	4	Embedded speech recognition system on 8-bit MCU core.
+conf/icc/TeoFCLVY04	inproceedings	2004	conf/icc	10.1109/icc.2004.1312793	6	Optimal placement of wavelength converters in WDM networks using particle swarm optimizer.
+conf/icip/LernerRR04	inproceedings	2004	conf/icip	10.1109/icip.2004.1421636	3	Pose estimation using feature correspondences and dtm.
+conf/icpr/ShimanoN04	inproceedings	2004	conf/icpr	10.1109/icpr.2004.1333966	2	Simultaneous Optimization of Class Configuration and Feature Space for Object Recognition.
+conf/icra/MenciassiGPD04	inproceedings	2004	conf/icra	10.1109/robot.2004.1308760	4	A SMA Actuated Artificial Earthworm.
+conf/igarss/LuLVD04	inproceedings	2004	conf/igarss	10.1109/igarss.2004.1368932	4	Estimation of NPP in Western China using remote sensing and the C-Fix model.
+conf/interspeech/KhanY04	inproceedings	2004	conf/interspeech	10.21437/interspeech.2004-496	2	Speech enhanced multi-Span language model.
+conf/iros/RyooKLL04	inproceedings	2004	conf/iros	10.1109/iros.2004.1389764	4	Design of magnet based position sensing system for autonomous vehicle robot.
+conf/smc/ZylC04	inproceedings	2004	conf/smc	10.1109/icsmc.2004.1400677	2	Heuristic functions for learning fuzzy conjunctive rules.
+journals/corr/nlin-AO-0409013	article	2004	journals/corr	10.48550/arxiv.nlin.ao/0409013	2	Epistemic communities: description and hierarchic categorization
+conf/amcc/OhA05	inproceedings	2005	conf/amcc	10.1109/acc.2005.1470493	2	Guaranteed reachable domain and control design for a cable robot subject to input constraints.
+conf/cdc/Moreno-Valenzuela05	inproceedings	2005	conf/cdc	10.1109/cdc.2005.1582849	2	Pose Regulation of Robot Manipulators with Dynamic Friction Compensation.
+conf/globecom/YamamotoO05	inproceedings	2005	conf/globecom	10.1109/glocom.2005.1577046	2	Wireless sensor networks with local fusion.
+conf/icassp/LicksOJP05	inproceedings	2005	conf/icassp	10.1109/icassp.2005.1415526	4	An Exact Expression for the Bit Error Probability in Angle QIM Watermarking Under Simultaneous Amplitude Scaling and AWGN Attacks.
+conf/icc/LiuL05a	inproceedings	2005	conf/icc	10.1109/icc.2005.1494644	2	Subcarrier PSK intensity modulation for optical wireless communications through turbulent atmospheric channel.
+conf/icip/GaribottoC05	inproceedings	2005	conf/icip	10.1109/icip.2005.1530002	2	3D scene analysis by real-time stereovision.
+conf/icra/AllottaF05	inproceedings	2005	conf/icra	10.1109/robot.2005.1570435	2	3D Motion Planning for Image-Based Visual Servoing Tasks.
+conf/igarss/AhtonenH05	inproceedings	2005	conf/igarss	10.1109/igarss.2005.1525748	2	Automatic detection of water bodies from spaceborne SAR images.
+conf/interspeech/JanickiH05	inproceedings	2005	conf/interspeech	10.21437/interspeech.2005-524	2	Reconstruction of Polish diacritics in a text-to-speech system.
+conf/iros/PagesCCS05	inproceedings	2005	conf/iros	10.1109/iros.2005.1545380	4	Robust decoupled visual servoing based on structured light.
+conf/iscas/HuangS05	inproceedings	2005	conf/iscas	10.1109/iscas.2005.1465292	2	A performance bound for a cascade LMS predictor.
+journals/amc/KeL05	article	2005	journals/amc	10.1016/j.amc.2004.09.002	2	Project scheduling problem with stochastic activity duration times.
+journals/bioinformatics/CavalloM05	article	2005	journals/bioinformatics	10.1093/bioinformatics/bti220	2	Mapping SNPs to protein sequence and structure data.
+journals/corr/abs-cs-0510095	article	2005	journals/corr	10.48550/arxiv.cs/0510095	3	Rate Region of the Quadratic Gaussian Two-Terminal Source-Coding Problem
+journals/ieicet/DaneshSK05	article	2005	journals/ieicet	10.1093/ietfec/e88-a.10.2504	3	External Force Disturbance Rejection in Robotic Arms: An Adaptive Approach.
+conf/amcc/ChenF06	inproceedings	2006	conf/amcc	10.1109/acc.2006.1656446	2	Non-randomized control of constrained Markov decision processes.
+conf/cdc/DuncanMP06	inproceedings	2006	conf/cdc	10.1109/cdc.2006.377118	3	Some Solutions of Semilinear Stochastic Equations in a Hilbert Space With a Fractional Brownian Motion.
+conf/embc/BoyleKWCC06	inproceedings	2006	conf/embc	10.1109/iembs.2006.260426	5	Quantifying Functional Mobility Progress for Chronic Disease Management.
+conf/globecom/JeonGN06	inproceedings	2006	conf/globecom	10.1109/glocom.2006.202	3	QoS-aware Object Replication in Overlay Networks.
+conf/icassp/TangY06	inproceedings	2006	conf/icassp	10.1109/icassp.2006.1660210	2	Objective Evaluation of the Neutral Tone in Putonghua Proficiency Testing.
+conf/icc/KimS06	inproceedings	2006	conf/icc	10.1109/icc.2006.254938	2	Partial Power Control for Slowly Fading MIMO Channels.
+conf/icip/FriebeK06	inproceedings	2006	conf/icip	10.1109/icip.2006.312807	2	Spatio-Temporal Fading Scheme for Error Concealment in Block-Based Video Decoding Systems.
+conf/icpr/ToyamaSM06	inproceedings	2006	conf/icpr	10.1109/icpr.2006.1099	3	Symbol Recognition of Printed Piano Scores with Touching Symbols.
+conf/icra/ShimizuK06	inproceedings	2006	conf/icra	10.1109/robot.2006.1642320	2	An Admittance Design Approach to Dynamic Assembly of Polyhedral Parts with Uncertainty.
+conf/ijcnn/ChandraNM06	inproceedings	2006	conf/ijcnn	10.1109/ijcnn.2006.246879	3	Classification and Clustering of Breast Cancer Images.
+conf/iros/WangLTX06	inproceedings	2006	conf/iros	10.1109/iros.2006.281952	4	A Novel On-board Temperature Monitoring Approach in the Reflow Soldering Process.
+conf/iscas/ChaoM06	inproceedings	2006	conf/iscas	10.1109/iscas.2006.1692669	2	CMOS variable-gain wide-bandwidth CMFB-free differential current feedback amplifier for ultrasound diagnostic applications.
+conf/smc/QianC06	inproceedings	2006	conf/smc	10.1109/icsmc.2006.384576	2	Studies on Competitive Parallel Distribution Channels with Move Sequence under Stochastic Demand.
+conf/vtc/ImC06	inproceedings	2006	conf/vtc	10.1109/vtcf.2006.316	2	Robust Iterative Channel Estimation for OFDM Packet Transmission System.
+journals/amc/YangC06b	article	2006	journals/amc	10.1016/j.amc.2006.05.091	2	Uniformly strong persistence of an nonlinear asymptotically periodic multispecies competition predator-prey system with general functional response.
+journals/corr/abs-cs-0608118	article	2006	journals/corr	10.48550/arxiv.cs/0608118	3	TreeP: A Tree-Based P2P Network Architecture
+journals/ieicet/AdachiEN06	article	2006	journals/ieicet	10.1093/ietfec/e89-a.7.1892	3	Iterative QRM-MLD with Pilot-Assisted Decision Directed Channel Estimation for OFDM MIMO Multiplexing.
+journals/neuroimage/DunningKCFB06	article	2006	journals/neuroimage	10.1016/j.neuroimage.2005.11.050	5	Magnetic resonance imaging of functional Schwann cell transplants labelled with magnetic microspheres.
+conf/acc/PozoIR07	inproceedings	2007	conf/acc	10.1109/acc.2007.4282695	3	Digital Adaptive Control of Nonlinear Base Isolated Structures.
+conf/cdc/KanoFM07	inproceedings	2007	conf/cdc	10.1109/cdc.2007.4434300	3	Optimal smoothing and interpolating splines with constraints.
+conf/globecom/BasalamahS07	inproceedings	2007	conf/globecom	10.1109/glocom.2007.892	2	A Comparison of Packet-Level and Byte-Level Reliable FEC Multicast Protocols for WLANs.
+conf/hci/YangMTDW07	inproceedings	2007	conf/hci	10.1007/978-3-540-73331-7_25	5	Adaptive User Interactive Sketching for Teaching Based on Pen Gesture.
+conf/icassp/RouxKOCS07	inproceedings	2007	conf/icassp	10.1109/icassp.2007.367254	5	Harmonic-Temporal Clustering of Speech for Single and Multiple F0 Contour Estimation in Noisy Environments.
+conf/icc/WangWWAM07	inproceedings	2007	conf/icc	10.1109/icc.2007.649	5	On Data Fusion and Lifetime Constraints in Wireless Sensor Networks.
+conf/icip/ArtaechevarriaMO07	inproceedings	2007	conf/icip	10.1109/icip.2007.4379183	3	Restoration of Biomedical Images using Locally Adaptive B-Spline Smoothing.
+conf/icnc/ZhangQZHZZ07	inproceedings	2007	conf/icnc	10.1109/icnc.2007.314	6	Context-Aware Learning Privacy Disclosure Policy from Interaction History.
+conf/icra/ParkPYKPP07	inproceedings	2007	conf/icra	10.1109/robot.2007.363994	6	Paddling based Microrobot for Capsule Endoscopes.
+conf/igarss/ChandraBG07	inproceedings	2007	conf/igarss	10.1109/igarss.2007.4423617	3	Waveform coding for dual polarization weather radars.
+conf/interspeech/GeiserTV07	inproceedings	2007	conf/interspeech	10.21437/interspeech.2007-663	3	Artificial bandwidth extension without side information for ITU-t g.729.1.
+conf/iscas/PadillaRCL07	inproceedings	2007	conf/iscas	10.1109/iscas.2007.378081	4	Highly Linear V/I Converter with Programmable Current Mirrors.
+conf/pimrc/ArambasicCR07	inproceedings	2007	conf/pimrc	10.1109/pimrc.2007.4394061	3	Efficient RF Front-End Non-Linear Multi Antenna Coupling Cancellation Techniques.
+conf/vtc/NagayamaH07	inproceedings	2007	conf/vtc	10.1109/vetecf.2007.106	2	A Proposal of RM QRM-MLD with Independent Adaptive Control of Surviving Symbol Replica Candidates for MIMO-OFDM System.
+conf/wcnc/LeeC07a	inproceedings	2007	conf/wcnc	10.1109/wcnc.2007.570	2	A Loss Discrimination Scheme for TFRC in Last Hop Wireless Networks.
+journals/amc/NiuZHW07	article	2007	journals/amc	10.1016/j.amc.2006.07.026	4	MCPSO: A multi-swarm cooperative particle swarm optimizer.
+journals/corr/abs-0710-4645	article	2007	journals/corr	10.48550/arxiv.0710.4645	9	At-Speed Logic BIST for IP Cores
+journals/eor/ArmbrusterGM07	article	2007	journals/eor	10.1016/j.ejor.2005.06.052	3	Bucket brigades with worker learning.
+journals/ieicet/HikiharaSF07	article	2007	journals/ieicet	10.1093/ietfec/e90-a.11.2516	3	Enhanced Entrainment of Synchronous Inverters for Distributed Power Sources.
+conf/amcc/FicocelliA08	inproceedings	2008	conf/amcc	10.1109/acc.2008.4587250	2	Control system design for retinal imaging adaptive optics systems.
+conf/cdc/FarinaP08	inproceedings	2008	conf/cdc	10.1109/cdc.2008.4738744	2	Some convergence properties of multi-step prediction error identification criteria.
+conf/csse/GeQC08	inproceedings	2008	conf/csse	10.1109/csse.2008.1133	3	Cooperative Recommendation Based on Ontology Construction.
+conf/cvpr/ZhouDLL08	inproceedings	2008	conf/cvpr	10.1109/cvprw.2008.4563010	4	Circular generalized cylinder fitting for 3D reconstruction in endoscopic imaging based on MRF.
+conf/globecom/Gordejuela-SanchezZ08	inproceedings	2008	conf/globecom	10.1109/glocom.2008.ecp.249	2	Practical Design of IEEE 802.16e Networks: A Mathematical Model and Algorithms.
+conf/icassp/WagnerD08	inproceedings	2008	conf/icassp	10.1109/icassp.2008.4518487	2	Towards analytical convergence analysis of proportionate-type nlms algorithms.
+conf/icc/FooH08	inproceedings	2008	conf/icc	10.1109/icc.2008.857	2	Performance Analysis of Multiuser Diversity with Capture for Wireless Networks.
+conf/icip/HiramatsuOH08	inproceedings	2008	conf/icip	10.1109/icip.2008.4712466	3	A Kalman filter-based approach for adaptive restoration of in-vehicle camera foggy images.
+conf/icnc/TanY08	inproceedings	2008	conf/icnc	10.1109/icnc.2008.695	2	A New Algorithm for Image Retrieval Based on Texture.
+conf/icpr/NakazawaAKT08	inproceedings	2008	conf/icpr	10.1109/icpr.2008.4761648	4	3D image analysis for evaluating internal deformation/fracture characteristics of materials.
+conf/igarss/HungLK08	inproceedings	2008	conf/igarss	10.1109/igarss.2008.4779131	3	A New Adaptive Fuzzy Clustering Algorithm for Remotely Sensed Images.
+conf/interspeech/YuDGA08a	inproceedings	2008	conf/interspeech	10.21437/interspeech.2008-301	4	Parameter clustering and sharing in variable-parameter HMMs for noise robust speech recognition.
+conf/iros/TaharaATAY08	inproceedings	2008	conf/iros	10.1109/iros.2008.4650702	3	Dynamic object grasping by a triple-fingered robotic hand.
+conf/iscas/BoherRH08	inproceedings	2008	conf/iscas	10.1109/iscas.2008.4541576	3	Analysis of CORDIC-based triangularization for MIMO MMSE filtering.
+conf/vtc/HoshyarT08	inproceedings	2008	conf/vtc	10.1109/vetecs.2008.142	2	Soft Decode and Forward of MQAM Modulations for Cooperative Relay Channels.
+journals/amc/KohlBMZ08	article	2008	journals/amc	10.1016/j.amc.2007.09.059	4	Perturbation of Gaussian optical solitons in dispersion-managed fibers.
+journals/bmcbi/GiancarloSU08	article	2008	journals/bmcbi	10.1186/1471-2105-9-462	3	Computational cluster validation for microarray data analysis: experimental assessment of Clest, Consensus Clustering, Figure of Merit, Gap Statistics and Model Explorer.
+journals/corr/abs-0811-0811	article	2008	journals/corr	10.48550/arxiv.0811.0811	3	When are two algorithms the same?
+journals/ieicet/HasegawaOYS08	article	2008	journals/ieicet	10.1093/ietfec/e91-a.2.673	4	An Edge-Preserving Super-Precision for Simultaneous Enhancement of Spacial and Grayscale Resolutions.
+journals/neuroimage/ImaizumiBZGHFPI08	article	2008	journals/neuroimage	10.1016/j.neuroimage.2007.09.063	9	Brain and whole-body imaging in nonhuman primates of [11C]PBR28, a promising PET radioligand for peripheral benzodiazepine receptors.
+conf/amcc/KeelSB09	inproceedings	2009	conf/amcc	10.1109/acc.2009.5160533	3	A frequency response parametrization of all stabilizing controllers for continuous time systems.
+conf/cdc/SandhuLDT09	inproceedings	2009	conf/cdc	10.1109/cdc.2009.5399677	4	Statistical shape learning for 3D tracking.
+conf/csie/ShangLZT09	inproceedings	2009	conf/csie	10.1109/csie.2009.588	4	An Improved Circle Detection Method Based on Right Triangles Inscribed in a Circle.
+conf/eucc/RaffoOR09	inproceedings	2009	conf/eucc	10.23919/ecc.2009.7074999	3	An underactuated ℋ∞control strategy for a quadrotor helicopter.
+conf/globecom/DomzalWJ09	inproceedings	2009	conf/globecom	10.1109/glocom.2009.5425724	3	Reliable Transmission in Flow-Aware Networks.
+conf/hci/BuzziBL09	inproceedings	2009	conf/hci	10.1007/978-3-642-02583-9_3	3	Accessing e-Learning Systems via Screen Reader: An Example.
+conf/icassp/NajaAD09	inproceedings	2009	conf/icassp	10.1109/icassp.2009.4960131	3	Geometrical interpretation and improvements of the Blahut-Arimoto's algorithm.
+conf/icc/StanojevicS09	inproceedings	2009	conf/icc	10.1109/icc.2009.5199141	2	Load Balancing vs. Distributed Rate Limiting: An Unifying Framework for Cloud Control.
+conf/icip/HarguessA09	inproceedings	2009	conf/icip	10.1109/icip.2009.5413671	2	Semantic labeling of track events using time series segmentation and shape analysis.
+conf/icra/ZhangLM09	inproceedings	2009	conf/icra	10.1109/robot.2009.5152665	3	Global vector field computation for feedback motion planning.
+conf/igarss/WalterscheidEGKBE09	inproceedings	2009	conf/igarss	10.1109/igarss.2009.5418052	6	Results and Analysis of Hybrid Bistatic SAR Experiments with Spaceborne, Airborne and Stationary Sensors.
+conf/interspeech/NemethZBOK09	inproceedings	2009	conf/interspeech	10.21437/interspeech.2009-221	5	Human voice or prompt generation? can they co-exist in an application?
+conf/iros/ZhangS09a	inproceedings	2009	conf/iros	10.1109/iros.2009.5354054	2	Robotic de-palletizing using uncalibrated vision and 3D laser-assisted image analysis.
+conf/iscas/ZhangMC09	inproceedings	2009	conf/iscas	10.1109/iscas.2009.5117896	3	Adaptive Inter-layer Intra Prediction in Scalable Video Coding.
+conf/smc/ChenWF09	inproceedings	2009	conf/smc	10.1109/icsmc.2009.5346191	3	Real-time Vision-based Multiple Vehicle Detection and Tracking for Nighttime Traffic Surveillance.
+conf/vtc/NiuBLC09	inproceedings	2009	conf/vtc	10.1109/vetecs.2009.5073832	4	Relay Assisted Cooperative OSTBC Communication with SNR Imbalance and Channel Estimation Errors.
+journals/bioinformatics/HundertmarkFRMKJ09	article	2009	journals/bioinformatics	10.1093/bioinformatics/btn551	6	MS-specific noise model reveals the potential of iTRAQ in quantitative proteomics.
+journals/corr/abs-0912-2553	inproceedings	2009	journals/corr	10.4204/eptcs.14.6	2	An Efficient Explicit-time Description Method for Timed Model Checking
+journals/eswa/ChengC09	article	2009	journals/eswa	10.1016/j.eswa.2008.04.003	2	Classifying the segmentation of customer value via RFM model and RS theory.
+journals/ieicet/RohKP09	article	2009	journals/ieicet	10.1587/transinf.e92.d.2053	3	A Phase-Adaptive Garbage Collector Using Dynamic Heap Partitioning and Opportunistic Collection.
+journals/neuroimage/GiladH09	article	2009	journals/neuroimage	10.1016/j.neuroimage.2009.04.085	2	Impedance changes recorded with scalp electrodes during visual evoked responses: Implications for Electrical Impedance Tomography of fast neural activity.
+journals/twc/NiyatoHK09	article	2009	journals/twc	10.1109/twc.2009.081648	3	Joint admission control and antenna assignment for multiclass QoS in spatial multiplexing MIMO wireless networks.
+conf/amcc/AlaviS10	inproceedings	2010	conf/amcc	10.1109/acc.2010.5530795	2	A decentralized technique for robust simultaneous fault detection and control of uncertain systems.
+conf/cdc/LindstenS10	inproceedings	2010	conf/cdc	10.1109/cdc.2010.5717191	2	Identification of mixed linear/nonlinear state-space models.
+conf/cvpr/KovashkaG10	inproceedings	2010	conf/cvpr	10.1109/cvpr.2010.5539881	2	Learning a hierarchy of discriminative space-time neighborhood features for human action recognition.
+conf/globecom/NasreddineARM10	inproceedings	2010	conf/globecom	10.1109/glocom.2010.5683150	4	Enabling Secondary Access through Robust Primary User Channel Assignment.
+conf/icassp/StarkP10	inproceedings	2010	conf/icassp	10.1109/icassp.2010.5495993	2	On optimizing the computational complexity for VQ-based single channel source separation.
+conf/icc/MukherjeeS10a	inproceedings	2010	conf/icc	10.1109/icc.2010.5502588	2	Equilibrium Outcomes of Dynamic Games in MIMO Channels with Active Eavesdroppers.
+conf/icee/JiajiaD10	inproceedings	2010	conf/icee	10.1109/icee.2010.75	2	Determinants and Effect of Internet Marketing in E-Commerce: An Empirical Investigation from China.
+conf/icip/QianGB10	inproceedings	2010	conf/icip	10.1109/icip.2010.5651369	3	Earth documentation: Overpass detection using mobile Lidar.
+conf/icnc/ZhaoW10	inproceedings	2010	conf/icnc	10.1109/icnc.2010.5583121	2	Study of feature extraction based visual invariance and species identification of weed seeds.
+conf/icpr/GilliamWC10	inproceedings	2010	conf/icpr	10.1109/icpr.2010.463	3	Scribe Identification in Medieval English Manuscripts.
+conf/icra/BalakirskyD10	inproceedings	2010	conf/icra	10.1109/robot.2010.5509583	2	Single-query, Bi-directional, Lazy roadmap planner applied to car-like robots.
+conf/igarss/ArcioniBBDDDFGHHIKKKLLLMSS10	inproceedings	2010	conf/igarss	10.1109/igarss.2010.5651853	20	Biomass, CoReH2O, PREMIER: ESA's candidate 7th Earth Explorer Missions.
+conf/interspeech/LuUIKN10	inproceedings	2010	conf/interspeech	10.21437/interspeech.2010-768	5	Voice activity detection in a reguarized reproducing kernel hilbert space.
+conf/iros/YaliX10	inproceedings	2010	conf/iros	10.1109/iros.2010.5650497	2	Biomechanics study of human lower limb walking: Implication for design of power-assisted robot.
+conf/iscas/MeolaCBSB10	inproceedings	2010	conf/iscas	10.1109/iscas.2010.5538030	5	Minimum hardware serial PID regulator for high efficiency, low power digital DC-DC converters.
+conf/vtc/RocaRRG10	inproceedings	2010	conf/vtc	10.1109/vetecf.2010.5594426	4	An IMS Based Vehicular Service Platform.
+journals/amc/MalinowskaT10	article	2010	journals/amc	10.1016/j.amc.2010.01.015	2	Leitmann's direct method of optimization for absolute extrema of certain problems of the calculus of variations on time scales.
+journals/bioinformatics/RichterSBS10	article	2010	journals/bioinformatics	10.1093/bioinformatics/btp609	4	Seed-based INTARNA prediction combined with GFP-reporter system identifies mRNA targets of the small RNA Yfr1.
+journals/bmcbi/0002W10	article	2010	journals/bmcbi	10.1186/1471-2105-11-s11-s7	2	Gene-centric association analysis for the correlation between the guanine-cytosine content levels and temperature range conditions of prokaryotic species.
+journals/corr/abs-1006-4562	article	2010	journals/corr	10.48550/arxiv.1006.4562	3	Engineering Semantic Web Applications by Using Object-Oriented Paradigm
+journals/eor/KoulamasK10	article	2010	journals/eor	10.1016/j.ejor.2009.02.020	2	A note on the effects of downstream efficiency on upstream pricing.
+journals/eswa/ChenLKCC10	article	2010	journals/eswa	10.1016/j.eswa.2010.04.072	5	The study of a forecasting sales model for fresh food.
+journals/ieicet/ParkC10	article	2010	journals/ieicet	10.1587/transfun.e93.a.1384	2	On Stability of Linear Time-Delay Systems with Multiple Time-Varying Delays.
+journals/neuroimage/OersVZWHKRD10	article	2010	journals/neuroimage	10.1016/j.neuroimage.2009.08.057	8	Contribution of the left and right inferior frontal gyrus in recovery from aphasia. A functional MRI study in stroke patients with preserved hemodynamic responsiveness.
+conf/amcc/GeorgisJAD11	inproceedings	2011	conf/amcc	10.1109/acc.2011.5991513	4	Control of an energy integrated solid oxide fuel cell system.
+conf/cdc/FeiZ11	inproceedings	2011	conf/cdc	10.1109/cdc.2011.6161183	2	Multi-phase vectorial control of synchronous motors with currents and voltages saturations.
+conf/chi/WachirawutthichaiSEZ11	inproceedings	2011	conf/chi	10.1145/1979742.1979499	4	The design process of iConnect: social advice application.
+conf/embc/KobayashiMLPZF11	inproceedings	2011	conf/embc	10.1109/iembs.2011.6091653	6	Haptic feedback control in medical robots through fractional viscoelastic tissue model.
+conf/emeit/ZhaoGZZLY11	inproceedings	2011	conf/emeit	10.1109/emeit.2011.6023842	6	A study on H infinity control in electric power steering system.
+conf/globecom/ShiDLM11	inproceedings	2011	conf/globecom	10.1109/glocom.2011.6134347	4	Coalition-Assisted Resource Allocation for Large-Scale Cooperative Networks.
+conf/hci/BagciMKKT11	inproceedings	2011	conf/hci	10.1007/978-3-642-21669-5_42	5	Object and Scene Recognition Using Color Descriptors and Adaptive Color KLT.
+conf/icassp/NamDEG11	inproceedings	2011	conf/icassp	10.1109/icassp.2011.5947680	4	Cosparse analysis modeling - uniqueness and algorithms.
+conf/icc/ZhangLSG11	inproceedings	2011	conf/icc	10.1109/icc.2011.5963121	4	Dual XOR in the Air: A Network Coding Based Retransmission Scheme for Wireless Broadcasting.
+conf/icip/ZhaoFH11	inproceedings	2011	conf/icip	10.1109/icip.2011.6116232	3	Frequency domain infrared watermarking for printed CMYK image.
+conf/icra/BarnettAPS11	inproceedings	2011	conf/icra	10.1109/icra.2011.5979689	4	Surface mapping feedback for robot-assisted rapid prototyping.
+conf/igarss/ZhangLHJ11	inproceedings	2011	conf/igarss	10.1109/igarss.2011.6049229	4	Spectral clustering based unsupervised change detection in SAR images.
+conf/interspeech/GodinH11	inproceedings	2011	conf/interspeech	10.21437/interspeech.2011-737	2	Vowel Context and Speaker Interactions Influencing Glottal Open Quotient and Formant Frequency Shifts in Physical Task Stress.
+conf/iros/PerrinSLY11	inproceedings	2011	conf/iros	10.1109/iros.2011.6094511	4	Weakly collision-free paths for continuous humanoid footstep planning.
+conf/iscas/MandalBC11	inproceedings	2011	conf/iscas	10.1109/iscas.2011.5937816	3	Symmetry-breaking bifurcation in load resonant dc-dc converters.
+conf/vtc/SinanovicRH11	inproceedings	2011	conf/vtc	10.1109/vetecs.2011.5956508	3	Secrecy Rate of Time Switched Transmit Diversity System.
+journals/amc/SaxenaP11	article	2011	journals/amc	10.1016/j.amc.2011.03.026	2	On fractional integration formulae for Aleph functions.
+journals/bioinformatics/KinsellaHNFB11	article	2011	journals/bioinformatics	10.1093/bioinformatics/btr085	5	Sensitive gene fusion detection using ambiguously mapping RNA-Seq read pairs.
+journals/bmcbi/JonesKB11	article	2011	journals/bmcbi	10.1186/1471-2105-12-30	3	iPhy: an integrated phylogenetic workbench for supermatrix analyses.
+journals/cma/AlwanE11	article	2011	journals/cma	10.1016/j.camwa.2011.09.058	2	Chaos, estimation and optimal control of habitat destruction model with uncertain parameters.
+journals/corr/abs-1102-3936	article	2011	journals/corr	10.48550/arxiv.1102.3936	3	AWGN Channel Analysis of Terminated LDPC Convolutional Codes
+journals/eswa/TanWW11	article	2011	journals/eswa	10.1016/j.eswa.2011.02.114	3	Adapting centroid classifier for document categorization.
+journals/ieicet/LeeN11	article	2011	journals/ieicet	10.1587/transinf.e94.d.2460	2	Understanding of Network Operator-Friendly P2P Traffic Control Techniques.
+journals/neuroimage/KoelewijnDMRS11	article	2011	journals/neuroimage	10.1016/j.neuroimage.2010.11.045	5	Induced and evoked neural correlates of orientation selectivity in human visual cortex.
+journals/procedia/LeeV11	inproceedings	2011	journals/procedia	10.1016/j.procs.2011.04.056	2	Shift-invariant similarities circumvent distance concentration in stochastic neighbor embedding and variants.
+journals/sensors/DaiLXX11	article	2011	journals/sensors	10.3390/s110707204	4	Research on the Filtering Algorithm in Speed and Position Detection of Maglev Trains.
+conf/amcc/KallapurVP12	inproceedings	2012	conf/amcc	10.1109/acc.2012.6314612	3	Robust filtering for continuous-time uncertain nonlinear systems with an integral quadratic constraint.
+conf/cdc/LeeM12	inproceedings	2012	conf/cdc	10.1109/cdc.2012.6425996	2	Dual quaternions, rigid body mechanics, and powered-descent guidance.
+conf/chi/UriuNTKIO12a	inproceedings	2012	conf/chi	10.1145/2212776.2212478	6	Experience "panavi, ": challenge to master professional culinary arts.
+conf/cvpr/VijN12	inproceedings	2012	conf/cvpr	10.1109/cvprw.2012.6239218	2	Fingerprint indexing based on local arrangements of minutiae neighborhoods.
+conf/embc/MaticCJKNSGVHV12	inproceedings	2012	conf/embc	10.1109/embc.2012.6345860	10	Automated EEG inter-burst interval detection in neonates with mild to moderate postasphyxial encephalopathy.
+conf/fskd/ZhaoCLP12	inproceedings	2012	conf/fskd	10.1109/fskd.2012.6234262	4	Identifing reservoir fluid properties in Daniudi Paleozoic gas field by fuzzy clustering analysis method.
+conf/globecom/MotahariJRZ12	inproceedings	2012	conf/globecom	10.1109/glocom.2012.6503942	4	Regularity-based wireless subscriber population estimation.
+conf/icassp/MichaeliES12	inproceedings	2012	conf/icassp	10.1109/icassp.2012.6288336	3	Semi-supervised multi-domain regression with distinct training sets.
+conf/icc/JainTB12	inproceedings	2012	conf/icc	10.1109/icc.2012.6364768	3	Wormhole detection using channel characteristics.
+conf/icip/KarthikeyanJMG12	inproceedings	2012	conf/icip	10.1109/icip.2012.6467074	4	Intra-class multi-output regression based subspace analysis.
+conf/icra/SalumaeRAK12	inproceedings	2012	conf/icra	10.1109/icra.2012.6225023	4	Against the flow: A Braitenberg controller for a fish robot.
+conf/iecon/AdamowiczSK12	inproceedings	2012	conf/iecon	10.1109/iecon.2012.6388970	3	Hybrid high-frequency-SiC and line-frequency-Si based PEBB for MV modular power converters.
+conf/igarss/AmoresBMMP12	inproceedings	2012	conf/igarss	10.1109/igarss.2012.6350506	5	Demonstrator of maritime SAR applications: Automatic ship detection results.
+conf/interspeech/PinheiroRGA12	inproceedings	2012	conf/interspeech	10.21437/interspeech.2012-441	4	Voice source analysis using biomechanical modeling and glottal inverse filtering.
+conf/iros/PaullGSL12	inproceedings	2012	conf/iros	10.1109/iros.2012.6385838	4	Sensor driven online coverage planning for autonomous underwater vehicles.
+conf/iscas/YanKHC12	inproceedings	2012	conf/iscas	10.1109/iscas.2012.6272019	4	Efficient assignment of inter-die signals for die-stacking SiP design.
+conf/vtc/FukuzonoJAM12	inproceedings	2012	conf/vtc	10.1109/vetecs.2012.6240162	4	Decoding Schemes for Amplify-and-Forward Cooperative OFDM-Based Wireless LAN Systems.
+conf/wcnc/ChengPLY12	inproceedings	2012	conf/wcnc	10.1109/wcnc.2012.6214438	4	Improve the performance of LTE Turbo coded modulation by irregular mapping.
+journals/amc/AlamSRI12	article	2012	journals/amc	10.1016/j.amc.2012.10.032	4	Thin-film flow of magnetohydrodynamic (MHD) Johnson-Segalman fluid on vertical surfaces using the Adomian decomposition method.
+journals/bioinformatics/KreimerDBF12a	article	2012	journals/bioinformatics	10.1093/bioinformatics/bts522	4	NetCmpt: a network-based tool for calculating the metabolic competition between bacterial species.
+journals/bmcbi/Esquivel-RodriguezK12	article	2012	journals/bmcbi	10.1186/1471-2105-13-s2-s6	2	Evaluation of multiple protein docking structures using correctly predicted pairwise subunits.
+journals/corr/abs-1207-6617	article	2012	journals/corr	10.48550/arxiv.1207.6617	3	On PMU Location Selection for Line Outage Detection in Wide-area Transmission Networks
+journals/eswa/ChiouCLW12	article	2012	journals/eswa	10.1016/j.eswa.2011.08.008	4	A genetic algorithm for scheduling dual flow shops.
+journals/ieicet/KonishiSKH12	article	2012	journals/ieicet	10.1587/transele.e95.c.1643	4	Experimental Study on Impedance Matching Recovery of a UHF RFID Tag Antenna on a High Impedance Surface by Parasite Elements.
+journals/jam/ZhaoLHL12	article	2012	journals/jam	10.1155/2012/158720	4	The Hybrid Adaptive Control of T-S Fuzzy System Based on Niche.
+journals/neuroimage/SatterthwaiteRLEGCHGGW12	article	2012	journals/neuroimage	10.1016/j.neuroimage.2012.03.060	10	Being right is its own reward: Load and performance related ventral striatum activation to correct responses during a working memory task in youth.
+journals/procedia/LabatutO12	inproceedings	2012	journals/procedia	10.1016/j.procs.2012.06.052	2	Topological Measures for the Analysis of Wireless Sensor Networks.
+journals/sensors/ArocaBG12	article	2012	journals/sensors	10.3390/s120201572	3	Method for Reading Sensors and Controlling Actuators Using Audio Interfaces of Mobile Devices.
+conf/amcc/AltinB13	inproceedings	2013	conf/amcc	10.1109/acc.2013.6580891	2	ℒ1 adaptive control in an iterative learning control framework: Stability, robustness and design trade-offs.
+conf/cdc/RuessL13	inproceedings	2013	conf/cdc	10.1109/cdc.2013.6760291	2	Identifying stochastic biochemical networks from single-cell population experiments: A comparison of approaches based on the Fisher information.
+conf/chi/ClearHMFB13	inproceedings	2013	conf/chi	10.1145/2470654.2481339	5	Domestic food and sustainable design: a study of university student cooking and its impacts.
+conf/embc/FassinaVMSBROAA13	inproceedings	2013	conf/embc	10.1109/embc.2013.6609633	14	Ultrasound stimulus to enhance the bone regeneration capability of gelatin cryogels.
+conf/eucc/HuyckBMIL13	inproceedings	2013	conf/eucc	10.23919/ecc.2013.6669593	5	Model predictive control of a pilot-scale distillation column using a programmable automation controller.
+conf/globecom/DhillonHVV13	inproceedings	2013	conf/globecom	10.1109/glocom.2013.6831373	4	Throughput optimal communication strategy for wireless random access channel.
+conf/hci/XieKD13	inproceedings	2013	conf/hci	10.1007/978-3-642-39182-8_45	3	Anatomy-Based Variational Modeling of Digital Hand and Its Verification.
+conf/icassp/HirabayashiHC13	inproceedings	2013	conf/icassp	10.1109/icassp.2013.6638828	3	Sampling and recovery of continuous sparse signals by maximum likelihood estimation.
+conf/icc/MarcoFSJ13	inproceedings	2013	conf/icc	10.1109/icc.2013.6654756	4	Effects of Rayleigh-lognormal fading on IEEE 802.15.4 networks.
+conf/icip/VuLTN13	inproceedings	2013	conf/icip	10.1109/icip.2013.6738778	4	A vision-based method for automatizing tea shoots detection.
+conf/icra/FullerSHKW13	inproceedings	2013	conf/icra	10.1109/icra.2013.6630750	5	Estimating attitude and wind velocity using biomimetic sensors on a microrobotic bee.
+conf/iecon/GuanH013	inproceedings	2013	conf/iecon	10.1109/iecon.2013.6700059	3	Event-triggered output feedback control for Takagi-Sugeno fuzzy systems.
+conf/igarss/ArmandilloTHWS13	inproceedings	2013	conf/igarss	10.1109/igarss.2013.6723792	5	ESA lidar space missions and supporting activities.
+conf/interspeech/RyantLY13	inproceedings	2013	conf/interspeech	10.21437/interspeech.2013-203	3	Speech activity detection on youtube using deep neural networks.
+conf/iros/GaffordKWW13	inproceedings	2013	conf/iros	10.1109/iros.2013.6696716	4	Force-sensing surgical grasper enabled by pop-up book MEMS.
+conf/iscas/SmailiM13	inproceedings	2013	conf/iscas	10.1109/iscas.2013.6572186	2	Differential pair sense amplifier for a robust reading scheme for memristor-based memories.
+conf/pimrc/FriasV013	inproceedings	2013	conf/pimrc	10.1109/pimrc.2013.6666554	3	Analysis of a Transportation Problem based scheduling algorithm for inter-band carrier aggregation.
+conf/smc/SiddulaSS13	inproceedings	2013	conf/smc	10.1109/smc.2013.268	3	Cryptanalysis of a Digital Watermarking Scheme Based on Support Vector Regression.
+conf/vtc/TesanovicBC13	inproceedings	2013	conf/vtc	10.1109/vtcfall.2013.6692145	3	Co-Operative Use of Licensed Spectrum by Unlicensed Devices: The Concept of Bandwidth Scavenging.
+conf/wcnc/HamzaM13	inproceedings	2013	conf/wcnc	10.1109/wcnc.2013.6555174	2	A clustering scheme based on timing requirements in coordinated base-stations cooperative communications.
+journals/amc/JiangHZC13	article	2013	journals/amc	10.1016/j.amc.2013.09.005	4	PH fitting of the arrival interval distribution of the passenger flow on urban rail transit stations.
+journals/bioinformatics/BurkoffVW13	article	2013	journals/bioinformatics	10.1093/bioinformatics/btt005	3	Predicting protein β-sheet contacts using a maximum entropy-based correlated mutation measure.
+journals/corr/BundalaO13	article	2013	journals/corr	10.48550/arxiv.1312.7603	2	On the Complexity of Path Checking of Temporal Logics.
+journals/eswa/GomesL13	article	2013	journals/eswa	10.1016/j.eswa.2013.05.053	2	Optimization of the weights and asymmetric activation function family of neural network for time series forecasting.
+journals/ieicet/LinLYH13	article	2013	journals/ieicet	10.1587/transcom.e96.b.3135	4	Improved DFT-Based Channel Estimation for TDS-OFDM Wireless Communication Systems.
+journals/ijon/SongXZ13	article	2013	journals/ijon	10.1016/j.neucom.2013.03.038	3	Multi-objective optimal control for a class of unknown nonlinear systems based on finite-approximation-error ADP algorithm.
+journals/jam/WangH13c	article	2013	journals/jam	10.1155/2013/285967	2	Reliable Node Clustering for Mobile Ad Hoc Networks.
+journals/neuroimage/AndicsGVRV13	article	2013	journals/neuroimage	10.1016/j.neuroimage.2012.12.033	5	FMRI repetition suppression for voices is modulated by stimulus expectations.
+journals/sensors/ZubiaCAMZD13	article	2013	journals/sensors	10.3390/s131013584	6	Design and Development of a Low-Cost Optical Current Sensor.
+journals/wpc/CoskunOO13	article	2013	journals/wpc	10.1007/s11277-012-0935-5	3	A Survey on Near Field Communication (NFC) Technology.
+conf/amcc/ZhuZXWF14	inproceedings	2014	conf/amcc	10.1109/acc.2014.6858849	5	Optimal speed synchronization control for clutchless AMT systems in electric vehicles with preview actions.
+conf/cdc/ChabaneMACD14	inproceedings	2014	conf/cdc	10.1109/cdc.2014.7039787	5	Ellipsoidal state estimation for systems with interval uncertainties.
+conf/chi/KhuranaMSS14	inproceedings	2014	conf/chi	10.1145/2559206.2580936	4	NeckGraffe: a postural awareness system.
+conf/cvpr/LiZXW14	inproceedings	2014	conf/cvpr	10.1109/cvpr.2014.27	4	DeepReID: Deep Filter Pairing Neural Network for Person Re-identification.
+conf/embc/TacchellaYRLCGP14	inproceedings	2014	conf/embc	10.1109/embc.2014.6943983	11	A Framework using multimodal imaging for longitudinal monitoring of patients in neuro-oncology. Application to a SPECT/MRI study.
+conf/globecom/PholpabuY14	inproceedings	2014	conf/globecom	10.1109/glocom.2014.7037251	2	A mutual-community-aware routing protocol for mobile social networks.
+conf/hci/KaramT14	inproceedings	2014	conf/hci	10.1007/978-3-319-07731-4_19	2	Two-Handed Interactive Menu: An Application of Asymmetric Bimanual Gestures and Depth Based Selection Techniques.
+conf/icassp/JaoYY14	inproceedings	2014	conf/icassp	10.1109/icassp.2014.6854596	3	Modified lasso screening for audio word-based music classification using large-scale dictionary.
+conf/icc/PekB14	inproceedings	2014	conf/icc	10.1109/icc.2014.6883425	2	Towards the automated detection of unknown malware on live systems.
+conf/icip/MenasheB14	inproceedings	2014	conf/icip	10.1109/icip.2014.7025264	2	Real-time compressed imaging of scattering volumes.
+conf/icpr/ZhouHG14	inproceedings	2014	conf/icpr	10.1109/icpr.2014.110	3	Exploring Brain Tumor Heterogeneity for Survival Time Prediction.
+conf/icra/MoreiraPAM14	inproceedings	2014	conf/icra	10.1109/icra.2014.6907495	4	Needle steering in biological tissue using ultrasound-based online curvature estimation.
+conf/iecon/WangYHC14	inproceedings	2014	conf/iecon	10.1109/iecon.2014.7049182	4	A harmonic elimination approach based on moving average filter for cascaded DSTATCOM.
+conf/igarss/PotinRRB14	inproceedings	2014	conf/igarss	10.1109/igarss.2014.6946713	4	Sentinel-1 Mission operations concept.
+conf/iros/MukadamBB14	inproceedings	2014	conf/iros	10.1109/iros.2014.6942540	3	Quasi-static manipulation of a planar elastic rod using multiple robotic grippers.
+conf/iscas/SerbBKPP14	inproceedings	2014	conf/iscas	10.1109/iscas.2014.6865164	5	Live demonstration: A versatile, low-cost platform for testing large ReRAM cross-bar arrays.
+conf/ofc/LiowDLTYL14	inproceedings	2014	conf/ofc	10.1364/ofc.2014.m2g.6	6	Waveguide Ge/Si avalanche photodetector with a unique low-height-profile device structure.
+conf/smc/MadniSM14	inproceedings	2014	conf/smc	10.1109/smc.2014.6974045	3	Exploring and assessing complex systems' behavior through model-driven storytelling.
+conf/vtc/FakhfakhHT14	inproceedings	2014	conf/vtc	10.1109/vtcfall.2014.6966030	3	Joint Frequency and Time Domain Based eICIC for Better CRE Application in HetNets.
+conf/wcnc/AdalaT14	inproceedings	2014	conf/wcnc	10.1109/wcnc.2014.6953128	2	Improving performance of semantic web services discovery with a hybrid matchmaker.
+journals/amc/YanP14	article	2014	journals/amc	10.1016/j.amc.2013.12.132	2	Positive solutions of nonlinear operator equations with sign-changing kernel and its applications.
+journals/bioinformatics/RyuPSX14	article	2014	journals/bioinformatics	10.1093/bioinformatics/btu116	4	Beyond the proteome: Mass Spectrometry Special Interest Group (MS-SIG) at ISMB/ECCB 2013.
+journals/corr/ZhangZX14	article	2014	journals/corr	10.48550/arxiv.1409.0210	3	Who creates trends in online social media: The crowd or opinion leaders?
+journals/eswa/SindhyaOSNHM14	article	2014	journals/eswa	10.1016/j.eswa.2013.10.002	6	Coupling dynamic simulation and interactive multiobjective optimization for complex problems: An APROS-NIMBUS case study.
+journals/ieicet/KobayashiFH14	article	2014	journals/ieicet	10.1587/transfun.e97.a.459	3	Discrete Abstraction for a Class of Stochastic Hybrid Systems Based on Bounded Bisimulation.
+journals/ijon/GossenKN14	article	2014	journals/ijon	10.1016/j.neucom.2012.09.046	3	Graph clusterings with overlaps: Adapted quality indices and a generation model.
+journals/isci/CrassoMZC14	article	2014	journals/isci	10.1016/j.ins.2010.01.013	4	EasySOC: Making web service outsourcing easier.
+journals/jam/WangPDZZD14	article	2014	journals/jam	10.1155/2014/614613	6	Unsupervised Texture Segmentation Using Active Contour Model and Oscillating Information.
+journals/neuroimage/YourganovSCBGS14	article	2014	journals/neuroimage	10.1016/j.neuroimage.2014.03.074	6	Pattern classification of fMRI data: Applications for analysis of spatially distributed cortical networks.
+journals/sensors/GuiryVN14	article	2014	journals/sensors	10.3390/s140305687	3	Multi-Sensor Fusion for Enhanced Contextual Awareness of Everyday Activities with Ubiquitous Devices.
+journals/tie/GrigolettoP14	article	2014	journals/tie	10.1109/tie.2013.2290752	2	Flexible Arrangement of Static Converters for Grid-Connected Wind Energy Conversion Systems.
+journals/wpc/DulekGSK14	article	2014	journals/wpc	10.1007/s11277-013-1499-8	4	Power Adaptation for Cognitive Radio Systems Under an Average SINR Loss Constraint in the Absence of Path Loss Information.
+conf/aaai/HoeyS15	inproceedings	2015	conf/aaai	10.1609/aaai.v29i1.9222	2	Bayesian Affect Control Theory of Self.
+conf/amcc/WollnackW15	inproceedings	2015	conf/amcc	10.1109/acc.2015.7170952	2	Stability and L2 performance analysis of LPV-IO systems using parameter-dependent lyapunov functions.
+conf/cdc/ManganiniPP15	inproceedings	2015	conf/cdc	10.1109/cdc.2015.7402667	3	A classification-based approach to the optimal control of affine switched systems.
+conf/chi/PatelO15	inproceedings	2015	conf/chi	10.1145/2702123.2702384	2	Contextual Influences on the Use and Non-Use of Digital Technology While Exercising at the Gym.
+conf/cvpr/NieXZ15	inproceedings	2015	conf/cvpr	10.1109/cvpr.2015.7298734	3	Joint action recognition and pose estimation from video.
+conf/embc/OnalOY15	inproceedings	2015	conf/embc	10.1109/embc.2015.7318930	3	Functional Mesh Model with Temporal Measurements for brain decoding.
+conf/globecom/ToccacieliBCF15	inproceedings	2015	conf/globecom	10.1109/glocom.2014.7417261	4	Context-Aware Support for Geographical Routing Protocols.
+conf/hci/ChoiT15	inproceedings	2015	conf/hci	10.1007/978-3-319-20895-4_5	2	Privacy by Design: Examining Two Key Aspects of Social Applications.
+conf/icassp/DouCJS15	inproceedings	2015	conf/icassp	10.1109/icassp.2015.7178209	4	View synthesis optimization based on texture smoothness for 3D-HEVC.
+conf/icc/AkbarJFF15	inproceedings	2015	conf/icc	10.1109/icc.2015.7249321	4	Energy-efficient scheduled directional medium access control protocol for wireless sensor networks.
+conf/icip/MoreBAPN15	inproceedings	2015	conf/icip	10.1109/icip.2015.7351687	5	Parameter tuning of CLAHE based on multi-objective optimization to achieve different contrast levels in medical images.
+conf/icra/SchneiderSW15	inproceedings	2015	conf/icra	10.1109/icra.2015.7139602	3	Completely randomized RRT-connect: A case study on 3D rigid body motion planning.
+conf/iecon/HousseiniOB15	inproceedings	2015	conf/iecon	10.1109/iecon.2015.7392930	3	A unified nonlinear controller design for on-grid/off-grid wind energy battery-storage system.
+conf/igarss/SatalinoBMRMA15	inproceedings	2015	conf/igarss	10.1109/igarss.2015.7327004	6	Retrieval of wheat biomass from multitemporal dual polarised SAR observations.
+conf/interspeech/KhakiE15	inproceedings	2015	conf/interspeech	10.21437/interspeech.2015-324	2	Continuous emotion tracking using total variability space.
+conf/iros/BestickBWNSB15	inproceedings	2015	conf/iros	10.1109/iros.2015.7353498	6	Personalized kinematics for human-robot collaborative manipulation.
+conf/iscas/XuWCO15	inproceedings	2015	conf/iscas	10.1109/iscas.2015.7169121	4	Inductorless linearization of low-power active mixers.
+conf/siu/ComertK15	inproceedings	2015	conf/siu	10.1109/siu.2015.7130409	2	Determination of QT interval on synthetic electrocardiogram.
+conf/vtc/RedondiCBT15	inproceedings	2015	conf/vtc	10.1109/vtcspring.2015.7145619	4	A Mathematical Programming Approach to Task Offloading in Visual Sensor Networks.
+journals/amc/KavithaSDKG15	article	2015	journals/amc	10.1016/j.amc.2014.11.089	5	Collision and propagation of electromagnetic solitons in an antiferromagnetic spin ladder medium.
+journals/bioinformatics/PanseTGS15	article	2015	journals/bioinformatics	10.1093/bioinformatics/btv105	4	specL - an R/Bioconductor package to prepare peptide spectrum matches for use in targeted proteomics.
+journals/chb/KarakayaD15	article	2015	journals/chb	10.1016/j.chb.2014.03.029	2	Collaborative digital environments to enhance the creativity of designers.
+journals/corr/TatariaSSD15	article	2015	journals/corr	10.48550/arxiv.1503.01566	4	Coordinated Two-Tier Heterogeneous Cellular Networks with Leakage Based Beamforming.
+journals/eswa/ZhouZNYL15	article	2015	journals/eswa	10.1016/j.eswa.2014.12.028	5	Two approaches for novelty detection using random forest.
+journals/ieicet/ParkBKJLP15	article	2015	journals/ieicet	10.1587/transinf.2014edl8124	6	Design of an Energy-Aware LED Light System (EA-LLS) for Energy Saving and User Satisfaction through Daylight, Space and User Movement Analysis in Buildings.
+journals/ijdsn/HeCL15	article	2015	journals/ijdsn	10.1155/2015/530194	3	Accurate Real-Time Traffic Speed Estimation Using Infrastructure-Free Vehicular Networks.
+journals/ijon/YangZWL15	article	2015	journals/ijon	10.1016/j.neucom.2014.07.005	4	Scene and place recognition using a hierarchical latent topic model.
+journals/jcphy/SadovskyyKPKG15	article	2015	journals/jcphy	10.1016/j.jcp.2015.04.002	5	Stable large-scale solver for Ginzburg-Landau equations for superconductors.
+journals/neuroimage/MatsuzakiSNOA15	article	2015	journals/neuroimage	10.1016/j.neuroimage.2015.01.015	5	Upright face-preferential high-gamma responses in lower-order visual areas: Evidence from intracranial recordings in children.
+journals/remotesensing/BachoferQHM15	article	2015	journals/remotesensing	10.3390/rs70809563	4	Multisensoral Topsoil Mapping in the Semiarid Lake Manyara Region, Northern Tanzania.
+journals/sensors/HuZCWDL15	article	2015	journals/sensors	10.3390/s151128717	6	First Results of Field Absolute Calibration of the GPS Receiver Antenna at Wuhan University.
+journals/tie/RamosMC15	article	2015	journals/tie	10.1109/tie.2015.2415756	3	Frequency and Phase-Angle Estimation Using Ordinary Least Squares.
+journals/wpc/ZahediRJR15	article	2015	journals/wpc	10.1007/s11277-015-2297-2	4	A Novel Multiuser Detector Based on Restricted Search Space and Depth-First Tree Search Method in DS/CDMA Communication Systems.
+conf/amcc/TzoumasJP16	inproceedings	2016	conf/amcc	10.1109/acc.2016.7524914	3	Sensor placement for optimal Kalman filtering: Fundamental limits, submodularity, and algorithms.
+conf/cdc/GomezCME16	inproceedings	2016	conf/cdc	10.1109/cdc.2016.7798741	4	Scanning the space of parameters for stability regions of neutral type delay systems: A Lyapunov matrix approach.
+conf/chi/HarbachLME16	inproceedings	2016	conf/chi	10.1145/2858036.2858273	4	Keep on Lockin' in the Free World: A Multi-National Comparison of Smartphone Locking.
+conf/cvpr/TanakaMKMY16	inproceedings	2016	conf/cvpr	10.1109/cvpr.2016.475	5	Recovering Transparent Shape from Time-of-Flight Distortion.
+conf/embc/ValenzaGGLTBSMG16	inproceedings	2016	conf/embc	10.1109/embc.2016.7591971	10	Brain-heart linear and nonlinear dynamics during visual emotional elicitation in healthy subjects.
+conf/globecom/WangTL16	inproceedings	2016	conf/globecom	10.1109/glocom.2016.7842250	3	Secure Cooperative AF Relaying Networks with Untrustworthy Relay Nodes.
+conf/hci/GeigerBS16	inproceedings	2016	conf/hci	10.1007/978-3-319-40548-3_83	3	Instruction of Digital Human Models Through Interaction in Immersive Virtual Environments.
+conf/icassp/ZhaiFTH16	inproceedings	2016	conf/icassp	10.1109/icassp.2016.7472379	4	Kalman filters with Bayesian quadratic game fusion in networks.
+conf/icc/XiaoZ16	inproceedings	2016	conf/icc	10.1109/icc.2016.7511473	2	An adaptive channel access mechanism for LTE-U and WiFi coexistence in an unlicensed spectrum.
+conf/icip/ReichmanMC16	inproceedings	2016	conf/icip	10.1109/icip.2016.7533055	3	Leveraging seed dictionaries to improve dictionary learning.
+conf/icpr/NairKNG16	inproceedings	2016	conf/icpr	10.1109/icpr.2016.7899815	4	Segmentation of highly unstructured handwritten documents using a neural network technique.
+conf/icra/MurtraVSFA16	inproceedings	2016	conf/icra	10.1109/icra.2016.7487484	5	Observability analysis and optimal sensor placement in stereo radar odometry.
+conf/iecon/GhorbaniSCR16	inproceedings	2016	conf/iecon	10.1109/iecon.2016.7793741	4	Performance of a new gate drive controller for improving IGBT switching trajectory.
+conf/igarss/DasPP16	inproceedings	2016	conf/igarss	10.1109/igarss.2016.7730115	3	Exploratory data analysis and modelling solar radiation and associated environmental phenomenon.
+conf/ijcnn/AguilarTA16	inproceedings	2016	conf/ijcnn	10.1109/ijcnn.2016.7727693	3	Autonomie decision making based on bayesian networks and ontologies.
+conf/interspeech/LuKDSR16	inproceedings	2016	conf/interspeech	10.21437/interspeech.2016-40	5	Segmental Recurrent Neural Networks for End-to-End Speech Recognition.
+conf/iros/Ben-SaidSL16	inproceedings	2016	conf/iros	10.1109/iros.2016.7759088	3	Sensor-based control using finite time observer of visual signatures: Application to corridor following.
+conf/iscas/HamadMS16	inproceedings	2016	conf/iscas	10.1109/iscas.2016.7539010	3	Towards formal abstraction, modeling, and analysis of Single Event Transients at RTL.
+conf/smc/YueWSM16	inproceedings	2016	conf/smc	10.1109/smc.2016.7844529	4	A hybrid probabilistic and point set registration approach for fusion of 3D occupancy grid maps.
+conf/vtc/YeCWY16	inproceedings	2016	conf/vtc	10.1109/vtcspring.2016.7504514	4	Tunnel and Non-Tunnel Channel Characterization for High-Speed-Train Scenarios in LTE-A Networks.
+journals/access/VadaiGM16	article	2016	journals/access	10.1109/access.2016.2544442	3	Generalized Attack Protection in the Kirchhoff-Law-Johnson-Noise Secure Key Exchanger.
+journals/bioinformatics/NandalKM16	article	2016	journals/bioinformatics	10.1093/bioinformatics/btw335	3	compendiumdb: an R package for retrieval and storage of functional genomics data.
+journals/chb/PataSB16	article	2016	journals/chb	10.1016/j.chb.2015.06.046	3	Social recognition provision patterns in professional Q&A forums in Healthcare and Construction.
+journals/corr/KhazeevRMT16	article	2016	journals/corr	10.48550/arxiv.1605.01663	4	Usability of AutoProof: a case study of software verification.
+journals/ieicet/NogamiUTBIM16	article	2016	journals/ieicet	10.1587/transfun.e99.a.2226	6	A Multi-Value Sequence Generated by Power Residue Symbol and Trace Function over Odd Characteristic Field.
+journals/ijon/YangZZ16	article	2016	journals/ijon	10.1016/j.neucom.2015.09.042	3	Phase-sensitive periodical correlation of local beam descriptors for image registration.
+journals/isci/Fang0CW16	article	2016	journals/isci	10.1016/j.ins.2015.09.055	4	A decentralized quantum-inspired particle swarm optimization algorithm with cellular structured population.
+journals/jcphy/ChenP16	article	2016	journals/jcphy	10.1016/j.jcp.2016.01.003	2	A new definition of fractional Laplacian with application to modeling three-dimensional nonlocal heat conduction.
+journals/jsjkx/WangDQ18	article	2016	journals/jsjkx	10.11896/j.issn.1002-137x.2016.01.035	3	计算节点不可靠网络可靠度的一种MDD算法 (Novel Reliability Analysis Algorithm Based on MDDs in Networks with Imperfect Nodes).
+journals/mta/HsiaCH16	article	2016	journals/mta	10.1007/s11042-015-2714-2	3	Low-complexity range tree for video synopsis system.
+journals/neuroimage/Krieger-Redwood16	article	2016	journals/neuroimage	10.1016/j.neuroimage.2016.07.060	9	Down but not out in posterior cingulate cortex: Deactivation yet functional coupling with prefrontal cortex during demanding semantic cognition.
+journals/remotesensing/JingYYZ16a	article	2016	journals/remotesensing	10.3390/rs8100835	4	A Comparison of Different Regression Algorithms for Downscaling Monthly Satellite-Based Precipitation over North China.
+journals/sensors/HuWWD16	article	2016	journals/sensors	10.3390/s16101683	4	Decomposition of Composite Electric Field in a Three-Phase D-Dot Voltage Transducer Measuring System.
+journals/tie/LlorS16	article	2016	journals/tie	10.1109/tie.2016.2561880	2	Direct Model-Predictive Control With Variable Commutation Instant: Application to a Parallel Multicell Converter.
+journals/tvt/ParkSJPS16	article	2016	journals/tvt	10.1109/tvt.2015.2438822	5	OARE: Overhearing-Aided Redundancy Elimination in Multirate WLANs.
+conf/aaai/BurayaFFC17	inproceedings	2017	conf/aaai	10.1609/aaai.v31i1.11105	4	Towards User Personality Profiling from Multiple Social Networks.
+conf/ahfe/LeeKS17	inproceedings	2017	conf/ahfe	10.1007/978-3-319-60525-8_36	3	STAMP Analysis of the Hanmi Short Selling Episode.
+conf/amcc/SabetDAP17	inproceedings	2017	conf/amcc	10.23919/acc.2017.7963739	4	Computed Torque Control of the Stewart platform with uncertainty for lower extremity robotic rehabilitation.
+conf/bigdataconf/TayebPCHJKPZZZL17	inproceedings	2017	conf/bigdataconf	10.1109/bigdata.2017.8258225	11	Toward data quality analytics in signature verification using a convolutional neural network.
+conf/cdc/GeO17	inproceedings	2017	conf/cdc	10.1109/cdc.2017.8264208	2	Data-driven parameter estimation for optimal connected cruise control.
+conf/chi/ZhouEMR17	inproceedings	2017	conf/chi	10.1145/3025453.3026035	4	Block Party: Synchronized Planning and Navigation Views for Neighbourhood Expeditions.
+conf/cvpr/MustafaH17	inproceedings	2017	conf/cvpr	10.1109/cvpr.2017.592	2	Semantically Coherent Co-Segmentation and Reconstruction of Dynamic Scenes.
+conf/embc/BinghamAK17	inproceedings	2017	conf/embc	10.1109/embc.2017.8037601	3	Measuring the interactions between different locations in a muscle to monitor localized muscle fatigue.
+conf/globecom/KangKC17	inproceedings	2017	conf/globecom	10.1109/glocomw.2017.8269181	3	The K-User Linear Deterministic Broadcast Channel with Receiver Memory.
+conf/hci/MatsunoTYAIMM17	inproceedings	2017	conf/hci	10.1007/978-3-319-58750-9_23	7	Automatic Classification of Eye Blinks and Eye Movements for an Input Interface Using Eye Motion.
+conf/icassp/LeeWW17	inproceedings	2017	conf/icassp	10.1109/icassp.2017.7952351	3	Learning Grassmann manifolds for object state discovery.
+conf/icc/JiLS17	inproceedings	2017	conf/icc	10.1109/iccw.2017.7962791	3	Context-aware cluster based device-to-device communication to serve machine type communications.
+conf/icip/ChouLZH17	inproceedings	2017	conf/icip	10.1109/icip.2017.8296734	4	A parallel convolutional neural network architecture for stereo vision estimation.
+conf/icra/HavoutisC17	inproceedings	2017	conf/icra	10.1109/icra.2017.7989183	2	Supervisory teleoperation with online learning and optimal control.
+conf/iecon/ShaoZGS17	inproceedings	2017	conf/iecon	10.1109/iecon.2017.8216307	4	Analysis of the null current gradient position for sensorless control of SRM.
+conf/igarss/TaoHZ17	inproceedings	2017	conf/igarss	10.1109/igarss.2017.8127151	3	Estimation of forest disturbance intensity from Landsat data in North Carolina and South Carolina.
+conf/ijcai/ZhaoS17	inproceedings	2017	conf/ijcai	10.24963/ijcai.2017/188	2	Role Forgetting for ALCOQH(universal role)-Ontologies Using an Ackermann-Based Approach.
+conf/interspeech/ChenHYLY17	inproceedings	2017	conf/interspeech	10.21437/interspeech.2017-143	5	Mechanisms of Tone Sandhi Rule Application by Non-Native Speakers.
+conf/iros/PhungHNNJKC17	inproceedings	2017	conf/iros	10.1109/iros.2017.8202250	7	Interactive haptic display based on soft actuator and soft sensor.
+conf/iscas/HerzelK17	inproceedings	2017	conf/iscas	10.1109/iscas.2017.8050454	2	Phase noise analysis of a homodyne radar system driven by a phase-locked loop.
+conf/smc/PadmeshFHM17	inproceedings	2017	conf/smc	10.1109/smc.2017.8122685	4	Clustering-based threshold estimation for vortex extraction and visualization.
+conf/vtc/HuiSYHLX17	inproceedings	2017	conf/vtc	10.1109/vtcfall.2017.8288325	6	A Novel Pricing Mechanism to Optimally Schedule the Charging Demands with User Utilities.
+journals/access/BoukSEAR17	article	2017	journals/access	10.1109/access.2017.2783120	5	IEEE Access Special Section Editorial: Future Networks: Architectures, Protocols, and Applications.
+journals/bioinformatics/KockanHSBMBHWVC17	article	2017	journals/bioinformatics	10.1093/bioinformatics/btw536	12	SiNVICT: ultra-sensitive detection of single nucleotide variants and indels in circulating tumour DNA.
+journals/corr/ChenSQH17aa	article	2017	journals/corr	10.48550/arxiv.1707.00248	4	DAG-based Long Short-Term Memory for Neural Word Segmentation.
+journals/eor/GilbertS17	article	2017	journals/eor	10.1016/j.ejor.2017.04.058	2	A double oracle approach to minmax regret optimization problems with interval data.
+journals/icl/BeaulieuZ17	article	2017	journals/icl	10.1109/lcomm.2017.2657500	2	Linear Diversity Combining on Correlated and Unequal Power Nakagami-0.5 Fading Channels.
+journals/ieicet/OzakiY17	article	2017	journals/ieicet	10.1587/transele.e100.c.80	2	Analysis of Pulse Reflection Responses from Periodic Perfect Conductor in Two Dispersion Media.
+journals/ijon/SunLZQL17	article	2017	journals/ijon	10.1016/j.neucom.2016.04.075	5	Movable type printing identification based on Tangut characters registration.
+journals/jcphy/BokilCJL17	article	2017	journals/jcphy	10.1016/j.jcp.2017.08.009	4	Energy stable discontinuous Galerkin methods for Maxwell's equations in nonlinear optical media.
+journals/jsjkx/ZhangZLSW18	article	2017	journals/jsjkx	10.11896/j.issn.1002-137x.2017.07.001	5	新量子技术时代下的信息安全 (Information Security in New Quantum Technology Age).
+journals/mta/CheverstTDF17	article	2017	journals/mta	10.1007/s11042-016-3515-y	4	Supporting the consumption and co-authoring of locative media experiences for a rural village community: design and field trial evaluation of the SHARC2.0 framework.
+journals/neuroimage/KumarFFB17	article	2017	journals/neuroimage	10.1016/j.neuroimage.2017.03.037	4	Evidence for similar patterns of neural activity elicited by picture- and word-based representations of natural scenes.
+journals/remotesensing/YinLV17	article	2017	journals/remotesensing	10.3390/rs9121217	3	Spatiotemporally Representative and Cost-Efficient Sampling Design for Validation Activities in Wanglang Experimental Site.
+journals/sensors/CerioHVV17	article	2017	journals/sensors	10.3390/s17030499	4	Analytical and Experimental Performance Evaluation of BLE Neighbor Discovery Process Including Non-Idealities of Real Chipsets.
+journals/tie/LindhPJGMSP17	article	2017	journals/tie	10.1109/tie.2017.2681975	7	Direct Liquid Cooling Method Verified With an Axial-Flux Permanent-Magnet Traction Machine Prototype.
+journals/tvt/MohamedAG17	article	2017	journals/tvt	10.1109/tvt.2017.2687061	3	Modified Current Injection Method for Power Flow Analysis in Heavy-Meshed DC Railway Networks With Nonreversible Substations.
+journals/wpc/RockeW17	article	2017	journals/wpc	10.1007/s11277-017-4304-2	2	Random Spectral Sampling for Compliance Enforcement in Dynamic Spectrum Access Networks.
+conf/aaai/TonioloGGG18	inproceedings	2018	conf/aaai	10.1609/aaai.v32i1.11368	4	Learning an Image-based Obstacle Detector With Automatic Acquisition of Training Data.
+conf/amcc/DolgovKGRH18	inproceedings	2018	conf/amcc	10.23919/acc.2018.8431584	5	Stochastic Optimal Control using Local Sample-based Value Function Approximation.
+conf/cdc/GadeV18	inproceedings	2018	conf/cdc	10.1109/cdc.2018.8619133	2	Privacy-Preserving Distributed Learning via Obfuscated Stochastic Gradients.
+conf/chi/DillmanM0OM18	inproceedings	2018	conf/chi	10.1145/3173574.3173714	5	A Visual Interaction Cue Framework from Video Game Environments for Augmented Reality.
+conf/cvpr/DalcaGS18	inproceedings	2018	conf/cvpr	10.1109/cvpr.2018.00968	3	Anatomical Priors in Convolutional Networks for Unsupervised Biomedical Segmentation.
+conf/eccv/ChenZSS18	inproceedings	2018	conf/eccv	10.1007/978-3-030-01270-0_2	4	Polarimetric Three-View Geometry.
+conf/embc/BharathKRR18	inproceedings	2018	conf/embc	10.1109/embc.2018.8512343	4	Compact and Programmable Ultrasound Front-End Processing Module for Research Activities.
+conf/globecom/SamarakoonBSD18	inproceedings	2018	conf/globecom	10.1109/glocom.2018.8647927	4	Federated Learning for Ultra-Reliable Low-Latency V2V Communications.
+conf/hci/EliasBV18	inproceedings	2018	conf/hci	10.1007/978-3-319-92037-5_21	3	Methods to Design Home Support for Elders.
+conf/icassp/ChenLLY18	inproceedings	2018	conf/icassp	10.1109/icassp.2018.8461361	4	On Modular Training of Neural Acoustics-to-Word Model for LVCSR.
+conf/icc/QuayumKMP18	inproceedings	2018	conf/icc	10.1109/icc.2018.8422533	4	Non-Orthogonal Pilot Designs with Collision Detection Capability for Grant-Free Access.
+conf/icip/LiuLWL18	inproceedings	2018	conf/icip	10.1109/icip.2018.8451155	4	Local Neuron Radius Estimation in Volumetric Microscopy Images.
+conf/icra/MagnagoADFP18	inproceedings	2018	conf/icra	10.1109/icra.2018.8460714	5	Ruling the Control Authority of a Service Robot Based on Information Precision.
+conf/icse/TrollmannFA18	inproceedings	2018	conf/icse	10.1145/3194133.3194137	3	Hybrid adaptation policies: towards a framework for classification and modelling of different combinations of adaptation policies.
+conf/iecon/Zuniga-VenturaL18	inproceedings	2018	conf/iecon	10.1109/iecon.2018.8591410	5	Nonlinear Voltage Regulation Strategy for a Fuel Cell/Supercapacitor Power Source System.
+conf/igarss/SvendsenMMC18	inproceedings	2018	conf/igarss	10.1109/igarss.2018.8517647	4	Deep Gaussian Processes for Geophysical Parameter Retrieval.
+conf/ijcai/WanWZ18	inproceedings	2018	conf/ijcai	10.24963/ijcai.2018/381	3	Efficient Adaptive Online Learning via Frequent Directions.
+conf/ijcnn/TulalaMKG18	inproceedings	2018	conf/ijcnn	10.1109/ijcnn.2018.8489422	4	Unsupervised Wafermap Patterns Clustering via Variational Autoencoders.
+conf/interspeech/VachhaniBK18	inproceedings	2018	conf/interspeech	10.21437/interspeech.2018-1751	3	Data Augmentation Using Healthy Speech for Dysarthric Speech Recognition.
+conf/iros/ShamsahDK18	inproceedings	2018	conf/iros	10.1109/iros.2018.8593677	3	Analytically-Guided Design of a Tailed Bipedal Hopping Robot.
+conf/iscas/LeeLVEOXM18	inproceedings	2018	conf/iscas	10.1109/iscas.2018.8351126	7	A Power Efficient SAR Algorithm for High Resolution ADCs.
+conf/miccai/BromileyKC18	inproceedings	2018	conf/miccai	10.1007/978-3-030-13736-6_5	3	Error Estimation for Appearance Model Segmentation of Musculoskeletal Structures Using Multiple, Independent Sub-models.
+conf/vtc/FarhatBS18	inproceedings	2018	conf/vtc	10.1109/vtcspring.2018.8417697	3	Secure Throughput Optimization of Selective Decode-and-Forward with Finite Blocklength.
+journals/access/DoN18	article	2018	journals/access	10.1109/access.2018.2833430	2	A Generalized Observer for Estimating Fast-Varying Disturbances.
+journals/amc/ZhouCCL18	article	2018	journals/amc	10.1016/j.amc.2018.03.083	4	Optimal error estimate for energy-preserving splitting schemes for Maxwell's equations.
+journals/bioinformatics/BordinD18	article	2018	journals/bioinformatics	10.1093/bioinformatics/bty493	2	ICBdocker: a Docker image for proteome annotation and visualization.
+journals/complexity/ZhangWLS18	article	2018	journals/complexity	10.1155/2018/8691420	4	Multifractal Detrended Cross-Correlation Analysis of the Return-Volume Relationship of Bitcoin Market.
+journals/corr/abs-1811-04246	article	2018	journals/corr	10.48550/arxiv.1811.04246	6	A Bayesian Approach to Income Inference in a Communication Network.
+journals/entropy/LiLLGFLYF18	article	2018	journals/entropy	10.3390/e20070517	8	Microstructure and Mechanical Properties of Particulate Reinforced NbMoCrTiAl High Entropy Based Composite.
+journals/fgcs/NavarroDZISL18	article	2018	journals/fgcs	10.1016/j.future.2018.06.018	6	Fuzzy adaptive cognitive stimulation therapy generation for Alzheimer's sufferers: Towards a pervasive dementia care monitoring platform.
+journals/ieicet/YangZCS18	article	2018	journals/ieicet	10.1587/transfun.e101.a.1693	4	A New Semi-Blind Method for Spatial Equalization in MIMO Systems.
+journals/ijon/WuLLH18	article	2018	journals/ijon	10.1016/j.neucom.2018.09.008	4	DGCNN: Disordered graph convolutional neural network based on the Gaussian mixture model.
+journals/isci/GuYT18	article	2018	journals/isci	10.1016/j.ins.2017.09.005	3	On designing of an adaptive event-triggered communication scheme for nonlinear networked interconnected control systems.
+journals/jifs/XieWLB18	article	2018	journals/jifs	10.3233/jifs-169527	4	Autoencoder-based deep belief regression network for air particulate matter concentration forecasting.
+journals/mta/GaoHZXX18	article	2018	journals/mta	10.1007/s11042-018-5833-8	5	MMA: a multi-view and multi-modality benchmark dataset for human action recognition.
+journals/neuroimage/Paraskevopoulos18	article	2018	journals/neuroimage	10.1016/j.neuroimage.2018.04.002	5	Statistical learning of multisensory regularities is enhanced in musicians: An MEG study.
+journals/remotesensing/MatsumotoY18	article	2018	journals/remotesensing	10.3390/rs10081253	2	Automated Cobble Mapping of a Mixed Sand-Cobble Beach Using a Mobile LiDAR System.
+journals/sensors/RichardRV18	article	2018	journals/sensors	10.3390/s18071997	3	Nitric Oxide Analysis Down to ppt Levels by Optical-Feedback Cavity-Enhanced Absorption Spectroscopy.
+journals/tcas/JiaoWZLK18	article	2018	journals/tcas	10.1109/tcsi.2017.2766366	5	Planar Balanced-to-Unbalanced In-Phase Power Divider With Wideband Filtering Response and Ultra-Wideband Common-Mode Rejection.
+journals/tie/BhardwajCA18	article	2018	journals/tie	10.1109/tie.2017.2772173	3	Auto Injection Control for In-Circuit Frequency Response Measurement.
+journals/tvt/IsmaielANSFJ18	article	2018	journals/tvt	10.1109/tvt.2018.2840509	6	Analysis of Effective Capacity and Throughput of Polling-Based Device-To-Device Networks.
+journals/wpc/AmmarDTY18	article	2018	journals/wpc	10.1007/s11277-017-4970-0	4	Cross-Layer Approach Based Energy Minimization for Wireless Sensor Networks.
+conf/aaai/KapoorKRSKZ19	inproceedings	2019	conf/aaai	10.1609/aaai.v33i01.33019951	6	Mind Your Language: Abuse and Offense Detection for Code-Switched Languages.
+conf/acl/KumarC19	inproceedings	2019	conf/acl	10.18653/v1/p19-1498	2	Tree LSTMs with Convolution Units to Predict Stance and Rumor Veracity in Social Media Conversations.
+conf/ahfe/WachterLB19	inproceedings	2019	conf/ahfe	10.1007/978-3-030-20040-4_6	3	Towards a Mobile Assistance System to Raise Productivity in Maintenance.
+conf/amcc/HomerM19	inproceedings	2019	conf/amcc	10.23919/acc.2019.8814309	2	Constrained control Lyapunov function construction via approximation of static Hamilton-Jacobi-Bellman equations.
+conf/bigdataconf/LiS19	inproceedings	2019	conf/bigdataconf	10.1109/bigdata47090.2019.9005526	2	Graph Matching via Multi-Scale Heat Diffusion.
+conf/cdc/BerahasIW19	inproceedings	2019	conf/cdc	10.1109/cdc40024.2019.9029541	3	Nested Distributed Gradient Methods with Adaptive Quantized Communication.
+conf/chi/HirvolaSH19	inproceedings	2019	conf/chi	10.1145/3290607.3313044	3	EyeR: Detection Support for Visually Impaired Users.
+conf/cvpr/Lu0JCZ19	inproceedings	2019	conf/cvpr	10.1109/cvpr.2019.01081	5	Learning Binary Code for Personalized Fashion Recommendation.
+conf/embc/NakamuraT19	inproceedings	2019	conf/embc	10.1109/embc.2019.8857319	2	Pitfall of heart rate variability analyses for autonomic nervous system activity with photoplethysmography.
+conf/emnlp/Wang19	inproceedings	2019	conf/emnlp	10.18653/v1/d19-1074	6	Towards Linear Time Neural Machine Translation with Capsule Networks.
+conf/globecom/HouZV19	inproceedings	2019	conf/globecom	10.1109/globecom38437.2019.9013282	3	Energy Efficiency Analysis of JT-CoMP Scheme in Macro/Femto Cellular Networks.
+conf/hci/NunesGSVTMB19	inproceedings	2019	conf/hci	10.1007/978-3-030-22602-2_25	7	Interaction Techniques in Three-Dimensional Virtual Environments Based on Games to Support Chronic Diseases Treatment: A Systematic Review.
+conf/icassp/NayakBM19	inproceedings	2019	conf/icassp	10.1109/icassp.2019.8683462	3	Zero Resource Speaking Rate Estimation from Change Point Detection of Syllable-like Units.
+conf/icc/SushanthC19	inproceedings	2019	conf/icc	10.1109/icc.2019.8761132	2	Multiple-LED Complex Modulation Schemes for Indoor MIMO VLC Systems.
+conf/iccv/SindagiYP19	inproceedings	2019	conf/iccv	10.1109/iccv.2019.00131	3	Pushing the Frontiers of Unconstrained Crowd Counting: New Dataset and Benchmark Method.
+conf/icip/ShaoWC19	inproceedings	2019	conf/icip	10.1109/icip.2019.8802955	3	A Two-Phase Segmentation Method for Drosophila Olfactory Glomeruli.
+conf/icra/SinghJR19	inproceedings	2019	conf/icra	10.1109/icra.2019.8793902	3	Enhancing the Force Transparency of Time Domain Passivity Approach: Observer-Based Gradient Controller.
+conf/iecon/XuLNCO19	inproceedings	2019	conf/iecon	10.1109/iecon.2019.8926833	5	Adaptive Locomotion Generation for a Bionic Hexapod Robot.
+conf/igarss/WangXMLL19	inproceedings	2019	conf/igarss	10.1109/igarss.2019.8900175	5	Present Vertical Crustal Movement in North Segment Of North-South Tectonic Belt Derived From GNSS.
+conf/ijcai/BaratiC19	inproceedings	2019	conf/ijcai	10.24963/ijcai.2019/277	2	An Actor-Critic-Attention Mechanism for Deep Reinforcement Learning in Multi-view Environments.
+conf/ijcnn/TanY19	inproceedings	2019	conf/ijcnn	10.1109/ijcnn.2019.8851694	2	Learning Similarity: Feature-Aligning Network for Few-shot Action Recognition.
+conf/interspeech/MohapatraZF19	inproceedings	2019	conf/interspeech	10.21437/interspeech.2019-1764	3	An Extended Two-Dimensional Vocal Tract Model for Fast Acoustic Simulation of Single-Axis Symmetric Three-Dimensional Tubes.
+conf/iros/TorrobaBF19	inproceedings	2019	conf/iros	10.1109/iros40897.2019.8968241	3	Towards Autonomous Industrial-Scale Bathymetric Surveying.
+conf/miccai/WangWXLZ19	inproceedings	2019	conf/miccai	10.1007/978-3-030-32692-0_70	5	High- and Low-Level Feature Enhancement for Medical Image Segmentation.
+conf/vtc/DoLL19	inproceedings	2019	conf/vtc	10.1109/vtcfall.2019.8891305	3	Improving Spectrum Efficiency in D2D- Assisted Cognitive Radio Networks: Application of NOMA and Performance Analysis.
+journals/access/LiuWZQC19	article	2019	journals/access	10.1109/access.2019.2926593	5	Research on Classification and Recognition of Driving Styles Based on Feature Engineering.
+journals/amc/LiuB19	article	2019	journals/amc	10.1016/j.amc.2019.04.048	2	Error bounds for non-polyhedral convex optimization and applications to linear convergence of FDM and PGM.
+journals/bioinformatics/ShawCJ19	article	2019	journals/bioinformatics	10.1093/bioinformatics/bty1017	3	DeepIsoFun: a deep domain adaptation approach to predict isoform functions.
+journals/bmcbi/ParrelloBCOOPVO19	article	2019	journals/bmcbi	10.1186/s12859-019-3068-y	8	A machine learning-based service for estimating quality of genomes using PATRIC.
+journals/cluster/ZhangZGLL19	article	2019	journals/cluster	10.1007/s10586-018-1936-2	5	Autonomous lane changing control for intelligent vehicles.
+journals/corr/abs-1902-07417	inproceedings	2019	journals/corr	10.4204/eptcs.305.10	4	Query Learning Algorithm for Residual Symbolic Finite Automata.
+journals/entropy/HaoJ19	article	2019	journals/entropy	10.3390/e21080809	2	Dual Loomis-Whitney Inequalities via Information Theory.
+journals/fgcs/KalyanamZSBKKSV19	article	2019	journals/fgcs	10.1016/j.future.2018.02.005	9	MyGeoHub - A sustainable and evolving geospatial science gateway.
+journals/ieicet/SatohNNSKI19	article	2019	journals/ieicet	10.1587/transinf.2018edl8211	6	Clustering Malicious DNS Queries for Blacklist-Based Detection.
+journals/ijon/XinZLNZ19	article	2019	journals/ijon	10.1016/j.neucom.2019.04.024	5	Real-time object tracking via self-adaptive appearance modeling.
+journals/iotj/FengLCZL19	article	2019	journals/iotj	10.1109/jiot.2019.2933632	5	Securing Traffic-Related Messages Exchange Against Inside-and-Outside Collusive Attack in Vehicular Networks.
+journals/isci/ChenB19	article	2019	journals/isci	10.1016/j.ins.2018.11.013	2	Adaptive weighted fuzzy interpolative reasoning based on representative values and similarity measures of interval type-2 fuzzy sets.
+journals/jifs/Gomez-AdornoFMS19	article	2019	journals/jifs	10.3233/jifs-179032	5	A convolutional neural network approach for gender and language variety identification.
+journals/mta/Al-GhamdiAG19	article	2019	journals/mta	10.1007/s11042-018-6977-2	3	Security enhancement of shares generation process for multimedia counting-based secret-sharing technique.
+journals/neuroimage/NguyenVH19	article	2019	journals/neuroimage	10.1016/j.neuroimage.2018.09.010	3	Shared understanding of narratives is correlated with shared neural responses.
+journals/remotesensing/LiYLYZSZ19	article	2019	journals/remotesensing	10.3390/rs11141670	7	Regional Vicarious Calibration of the SWIR-Based Atmospheric Correction Approach for MODIS-Aqua Measurements of Highly Turbid Inland Water.
+journals/sensors/ChadyG19	article	2019	journals/sensors	10.3390/s19061408	2	Eddy Current Transducer with Rotating Permanent Magnets to Test Planar Conducting Plates.
+journals/soco/ShangLJS19	article	2019	journals/soco	10.1007/s00500-018-3464-7	4	A dynamic local cluster ratio-based band selection algorithm for hyperspectral images.
+journals/symmetry/MitkovaM19	article	2019	journals/symmetry	10.3390/sym11060827	2	Investment Opportunities Identification Based on Macroeconomic Development, the Multiple Criteria Decision Approach.
+journals/tcas/YenuchenkoKMP19	article	2019	journals/tcas	10.1109/tcsi.2018.2890412	4	A Switching Sequence for Unary Digital-to-Analog Converters Based on a Knight's Tour.
+journals/tgrs/GhassemiFFM19	article	2019	journals/tgrs	10.1109/tgrs.2019.2906689	4	Learning and Adapting Robust Features for Satellite Image Segmentation on Heterogeneous Data Sets.
+journals/tie/LiuATC19	article	2019	journals/tie	10.1109/tie.2018.2833051	4	Robust and Fast Registration of Infrared and Visible Images for Electro-Optical Pod.
+journals/tvt/SalamSHAM19	article	2019	journals/tvt	10.1109/tvt.2019.2930469	5	Automatic Modulation Classification Using Interacting Multiple Model Kalman Filter for Channel Estimation.
+conf/aaai/WangDMY20	inproceedings	2020	conf/aaai	10.1609/aaai.v34i07.6895	4	Context Modulated Dynamic Networks for Actor and Action Video Segmentation with Language Queries.
+conf/acl/JawanpuriaMM20	inproceedings	2020	conf/acl	10.18653/v1/2020.acl-main.276	3	Geometry-aware domain adaptation for unsupervised alignment of word embeddings.
+conf/ahfe/ShinBTKI20	inproceedings	2020	conf/ahfe	10.1007/978-3-030-51328-3_56	5	Design of the Future Workstation: Enhancing Health and Wellbeing on the Job.
+conf/amcc/GoelIB20	inproceedings	2020	conf/amcc	10.23919/acc45564.2020.9147513	3	Adaptive Control of MIMO Systems Using Sparsely Parameterized Controllers.
+conf/chi/ZhouD20	inproceedings	2020	conf/chi	10.1145/3313831.3376201	2	User's Role in Platform Infrastructuralization: WeChat as an Exemplar.
+conf/cvpr/WangZWRLZH20	inproceedings	2020	conf/cvpr	10.1109/cvpr42600.2020.01078	7	What Deep CNNs Benefit From Global Covariance Pooling: An Optimization Perspective.
+conf/eccv/LinPX0L20	inproceedings	2020	conf/eccv	10.1007/978-3-030-58548-8_2	5	TuiGAN: Learning Versatile Image-to-Image Translation with Two Unpaired Images.
+conf/embc/KremppPTCZ20	inproceedings	2020	conf/embc	10.1109/embc44109.2020.9175404	5	Effect of Closed-Loop Direct Electrical Stimulation during Sleep Spindles in Humans.
+conf/emnlp/YuZW20	inproceedings	2020	conf/emnlp	10.18653/v1/2020.emnlp-main.229	3	Homophonic Pun Generation with Lexically Constrained Rewriting.
+conf/globecom/MaYHLL20	inproceedings	2020	conf/globecom	10.1109/globecom42002.2020.9348198	5	A Data-assisted Algorithm for Truly Grant-free Transmissions of Future mMTC.
+conf/hci/HanXSXZ20	inproceedings	2020	conf/hci	10.1007/978-3-030-49698-2_26	5	A Virtual Reality Dental Anxiety Mitigation Tool Based on Computerized Cognitive Behavioral Therapy.
+conf/icassp/GaoMSMV20	inproceedings	2020	conf/icassp	10.1109/icassp40776.2020.9053313	5	Towards Data-Efficient Modeling for Wake Word Spotting.
+conf/icc/Fang020	inproceedings	2020	conf/icc	10.1109/icc40277.2020.9148615	2	Toward Low-Cost and Stable Blockchain Networks.
+conf/icpr/LiKZB0W20	inproceedings	2020	conf/icpr	10.1109/icpr48806.2021.9412213	6	Towards Practical Compressed Video Action Recognition: A Temporal Enhanced Multi-Stream Network.
+conf/icra/JatavallabhulaI20	inproceedings	2020	conf/icra	10.1109/icra40945.2020.9197519	3	∇SLAM: Dense SLAM meets Automatic Differentiation.
+conf/iecon/WangGMLWZX20	inproceedings	2020	conf/iecon	10.1109/iecon43393.2020.9254689	7	Model Predictive Control of Single-Phase Three-Level Inverters with Wide Inductance Variation.
+conf/igarss/VuPS20	inproceedings	2020	conf/igarss	10.1109/igarss39084.2020.9323427	3	Enhancing Conventional SAR Change Detection Performance with Apodization.
+conf/ijcai/LiFWS0W20	inproceedings	2020	conf/ijcai	10.24963/ijcai.2020/503	6	EmoElicitor: An Open Domain Response Generation Model with User Emotional Reaction Awareness.
+conf/ijcnn/OnetoDP20	inproceedings	2020	conf/ijcnn	10.1109/ijcnn48605.2020.9206819	3	General Fair Empirical Risk Minimization.
+conf/interspeech/OgawaTD20	inproceedings	2020	conf/interspeech	10.21437/interspeech.2020-1524	3	Language Model Data Augmentation Based on Text Domain Transfer.
+conf/iros/LuLCK20	inproceedings	2020	conf/iros	10.1109/iros45743.2020.9341449	4	Motion Planning for Collision-resilient Mobile Robots in Obstacle-cluttered Unknown Environments with Risk Reward Trade-offs.
+conf/iscas/StanojevicCMS20	inproceedings	2020	conf/iscas	10.1109/iscas45731.2020.9180812	4	File Classification Based on Spiking Neural Networks.
+conf/miccai/GaoPSL20	inproceedings	2020	conf/miccai	10.1007/978-3-030-59722-1_42	4	Renal Cell Carcinoma Detection and Subtyping with Minimal Point-Based Annotation in Whole-Slide Images.
+conf/vtc/ZhangZCWP20	inproceedings	2020	conf/vtc	10.1109/vtc2020-spring48590.2020.9128525	5	Clipping Noise Estimation Based on Deep Complex Neural Network with Sparsity Constraint.
+journals/access/JingGB20	article	2020	journals/access	10.1109/access.2020.2974777	3	Analytical Method for Magnetic Field of Eccentric Magnetic Harmonic Gear.
+journals/asc/AnterBZ20	article	2020	journals/asc	10.1016/j.asoc.2020.106677	3	Multi-stage fuzzy swarm intelligence for automatic hepatic lesion segmentation from CT scans.
+journals/bioinformatics/ZhangDL20	article	2020	journals/bioinformatics	10.1093/bioinformatics/btaa152	3	Fast and robust ancestry prediction using principal component analysis.
+journals/complexity/YuZYSH20	article	2020	journals/complexity	10.1155/2020/8210630	5	An Adaptive Large Neighborhood Search for the Larger-Scale Instances of Green Vehicle Routing Problem with Time Windows.
+journals/corr/abs-2007-03545	article	2020	journals/corr	10.48550/arxiv.2007.03545	5	Network Embedding with Completely-imbalanced Labels.
+journals/entropy/CarusoGR20	article	2020	journals/entropy	10.3390/e22080835	3	Dissipation Function: Nonequilibrium Physics and Dynamical Systems.
+journals/fgcs/WeiYGLZT20	article	2020	journals/fgcs	10.1016/j.future.2020.03.040	6	G-SEAP: Analyzing and characterizing soft-error aware approximation in GPGPUs.
+journals/ijon/YaoPG20	article	2020	journals/ijon	10.1016/j.neucom.2019.11.106	3	Information-preserving feature filter for short-term EEG signals.
+journals/iotj/ZhangDC20	article	2020	journals/iotj	10.1109/jiot.2019.2950213	3	Introducing Hypergraph Signal Processing: Theoretical Foundation and Practical Applications.
+journals/isci/WuSL20	article	2020	journals/isci	10.1016/j.ins.2020.04.011	3	A new dynamic strategy for dynamic multi-objective optimization.
+journals/jifs/TanZ20	article	2020	journals/jifs	10.3233/jifs-191758	2	Multiple attribute decision making method based on DEMATEL and fuzzy distance of trapezoidal fuzzy neutrosophic numbers and its application in typhoon disaster evaluation.
+journals/mta/ZhouWLHL20	article	2020	journals/mta	10.1007/s11042-019-08157-0	5	Face recognition based on local binary pattern and improved Pairwise-constrained Multiple Metric Learning.
+journals/nca/Martinez-Garcia20	article	2020	journals/nca	10.1007/s00521-018-3353-0	2	Performance analysis of No-Propagation and ELM algorithms in classification.
+journals/neuroimage/SiSZZ20	article	2020	journals/neuroimage	10.1016/j.neuroimage.2020.116681	4	Genetic susceptibility to parenting style: DRD2 and COMT influence creativity.
+journals/ploscb/MoritaMJ20	article	2020	journals/ploscb	10.1371/journal.pcbi.1008436	3	Mapping molar shapes on signaling pathways.
+journals/ral/OphaswongseA20	article	2020	journals/ral	10.1109/lra.2020.2975720	2	Optimal Design of a Novel 3-DOF Orientational Parallel Mechanism for Pelvic Assistance on a Wheelchair: An Approach Based on Kinematic Geometry and Screw Theory.
+journals/remotesensing/JanardananMTWTV20	article	2020	journals/remotesensing	10.3390/rs12030375	23	Country-Scale Analysis of Methane Emissions with a High-Resolution Inverse Model Using GOSAT and Surface Observations.
+journals/sensors/ZhangRLL20	article	2020	journals/sensors	10.3390/s20010197	4	Interference-Aware Radio Resource Management for Cognitive High-Throughput Satellite Systems.
+journals/soco/ForghaniGK20	article	2020	journals/soco	10.1007/s00500-019-04626-8	3	Solving an integrated cell formation and group layout problem using a simulated annealing enhanced by linear programming.
+journals/symmetry/JungK20	article	2020	journals/symmetry	10.3390/sym12071089	2	Perturbation of One-Dimensional Time Independent Schrödinger Equation With a Symmetric Parabolic Potential Wall.
+journals/tcas/ZhouWWWSWZ20	article	2020	journals/tcas	10.1109/tcsi.2020.3010346	7	An Error Amplifier With a Low Power Multi-Mode Voltage Clamper for Transient Enhancement and High Reliability.
+journals/tie/KimBSCK20	article	2020	journals/tie	10.1109/tie.2019.2926046	5	Bridgeless Triple-Mode Resonant AC-DC Converter: Dynamic Modeling and Controls.
+journals/tii/ChisholmLG20	article	2020	journals/tii	10.1109/tii.2019.2950255	3	FPGA-Based Design for Real-Time Crack Detection Based on Particle Filter.
+journals/tim/CollinFLLLT20	article	2020	journals/tim	10.1109/tim.2020.2992824	6	The Role of Supply Conditions on the Measurement of High-Frequency Emissions.
+journals/tvt/SunWFXO20	article	2020	journals/tvt	10.1109/tvt.2020.2983220	5	An Integrated Urban Positioning Algorithm Using Matching, Particle Swam Optimized Adaptive Neuro Fuzzy Inference System and a Spatial City Model.
+journals/wpc/TamilarasiS20	article	2020	journals/wpc	10.1007/s11277-020-07365-4	2	Detection of Wormhole Attack and Secure Path Selection in Wireless Sensor Network.
+conf/aaai/LiD00G21	inproceedings	2021	conf/aaai	10.1609/aaai.v35i10.17036	5	TRQ: Ternary Neural Networks With Residual Quantization.
+conf/acl/HoyleMS21	inproceedings	2021	conf/acl	10.18653/v1/2021.findings-acl.82	3	Promoting Graph Awareness in Linearized Graph-to-Text Generation.
+conf/ahfe/WatsonYZTSA21	inproceedings	2021	conf/ahfe	10.1007/978-3-030-80285-1_18	6	The Face of Bad Advertising: Assessing the Effects of Human Face Images in Advertisement Design Using Eye-Tracking.
+conf/amcc/BrunoMKA21	inproceedings	2021	conf/amcc	10.23919/acc50511.2021.9483438	4	Analog Solver for Embedded Model Predictive Control with Application to Quadruple Tank System.
+conf/cdc/ElokdaBH21	inproceedings	2021	conf/cdc	10.1109/cdc45484.2021.9683739	3	A Dynamic Population Model of Strategic Interaction and Migration under Epidemic Risk.
+conf/chi/PandeyKYMBTKK21	inproceedings	2021	conf/chi	10.1145/3411764.3445668	8	Galileo: Citizen-led Experimentation Using a Social Computing System.
+conf/cvpr/TranPNTJJ21	inproceedings	2021	conf/cvpr	10.1109/cvprw53098.2021.00461	6	A Region-and-Trajectory Movement Matching for Multiple Turn-Counts at Road Intersection on Edge Device.
+conf/embc/DuMPKBFL21	inproceedings	2021	conf/embc	10.1109/embc46164.2021.9631068	7	Electrode Spacing and Current Distribution in Electrical Stimulation of Peripheral Nerve: A Computational Modeling Study using Realistic Nerve Models.
+conf/emnlp/BahetiSRR21	inproceedings	2021	conf/emnlp	10.18653/v1/2021.emnlp-main.397	4	Just Say No: Analyzing the Stance of Neural Dialogue Generation in Offensive Contexts.
+conf/globecom/ToumiBK21	inproceedings	2021	conf/globecom	10.1109/globecom46510.2021.9685367	3	On using Deep Reinforcement Learning for Multi-Domain SFC placement.
+conf/hci/HamadnehE21	inproceedings	2021	conf/hci	10.1007/978-3-030-78358-7_3	2	Modeling of Onboard Activities: Public Transport and Shared Autonomous Vehicle.
+conf/icassp/VenkateshMKSBFO21	inproceedings	2021	conf/icassp	10.1109/icassp39728.2021.9413597	11	Artificially Synthesising Data for Audio Classification and Segmentation to Improve Speech and Music Detection in Radio Broadcast.
+conf/icc/RezazadehCCV21	inproceedings	2021	conf/icc	10.1109/icc42927.2021.9500265	4	Actor-Critic-Based Learning for Zero-touch Joint Resource and Energy Control in Network Slicing.
+conf/iccv/ChenRDK0BPKFHGP21	inproceedings	2021	conf/iccv	10.1109/iccv48922.2021.00791	13	Multimodal Clustering Networks for Self-supervised Learning from Unlabeled Videos.
+conf/icip/TarasiewiczNK21	inproceedings	2021	conf/icip	10.1109/icip42928.2021.9506070	3	A Graph Neural Network For Multiple-Image Super-Resolution.
+conf/icra/IversenKSE21	inproceedings	2021	conf/icra	10.1109/icra48506.2021.9560946	4	Pneumatic-Mechanical Systems in UAVs: Autonomous Power Line Sensor Unit Deployment.
+conf/iecon/LeonardoCTV21	inproceedings	2021	conf/iecon	10.1109/iecon48115.2021.9589474	4	Rapid analytical method to evaluate eddy current losses in hairpin wound IM due to PWM.
+conf/igarss/RyabkovaTKMBPBO21	inproceedings	2021	conf/igarss	10.1109/igarss47720.2021.9554433	8	Experimental Measurements of the Statistical Charachteristics of the Sea Waves Using Underwater Acoustic Wavegauge and Comparison with ADCP Measurements.
+conf/ijcnn/LiuLLZ21	inproceedings	2021	conf/ijcnn	10.1109/ijcnn52387.2021.9533940	4	Multi-Task Deep Neural Networks for Multi-Document Reading Comprehension.
+conf/interspeech/TammewarCR21	inproceedings	2021	conf/interspeech	10.21437/interspeech.2021-1100	3	Emotion Carrier Recognition from Personal Narratives.
+conf/iros/GaoY21	inproceedings	2021	conf/iros	10.1109/iros51168.2021.9636123	2	Capacitated Vehicle Routing with Target Geometric Constraints.
+conf/miccai/BaumgartnerJIM21	inproceedings	2021	conf/miccai	10.1007/978-3-030-87240-3_51	4	nnDetection: A Self-configuring Method for Medical Object Detection.
+conf/vtc/MaldonadoRP21	inproceedings	2021	conf/vtc	10.1109/vtc2021-spring51267.2021.9449023	3	Multi-link Techniques for New Radio-Unlicensed URLLC in Hostile Environments.
+journals/access/SunWYZ21	article	2021	journals/access	10.1109/access.2021.3085322	4	Robust Multiview Subspace Clustering of Images via Tighter Rank Approximation.
+journals/asc/ParkHLKKZ21	article	2021	journals/asc	10.1016/j.asoc.2021.107116	6	M2FN: Multi-step modality fusion for advertisement image assessment.
+journals/bib/GautamMKMGRNMSA21	article	2021	journals/bib	10.1093/bib/bbab237	10	EcTracker: Tracking and elucidating ectopic expression leveraging large-scale scRNA-seq studies.
+journals/bioinformatics/LiDB21	article	2021	journals/bioinformatics	10.1093/bioinformatics/btaa769	3	Identifying signaling genes in spatial single-cell expression data.
+journals/cbm/PerinajovaJWPBL21	article	2021	journals/cbm	10.1016/j.compbiomed.2021.104385	7	Geometrically induced wall shear stress variability in CFD-MRI coupled simulations of blood flow in the thoracic aortas.
+journals/complexity/ZhangWZLLH21	article	2021	journals/complexity	10.1155/2021/6612363	6	The Complexity of Urban CO2 Emission Network: An Exploration of the Yangtze River Middle Reaches Megalopolis, China.
+journals/corr/abs-2112-14168	article	2021	journals/corr	10.48550/arxiv.2112.14168	2	A Survey on Gender Bias in Natural Language Processing.
+journals/entropy/LeishangthemAD21	article	2021	journals/entropy	10.3390/e23091171	3	Localization, Disorder, and Entropy in a Coarse-Grained Model of the Amorphous Solid.
+journals/eswa/ChenLZWJ21	article	2021	journals/eswa	10.1016/j.eswa.2021.115683	5	Solving the battery swap station location-routing problem with a mixed fleet of electric and conventional vehicles using a heuristic branch-and-price algorithm with an adaptive selection scheme.
+journals/icl/SelimisPAL21	article	2021	journals/icl	10.1109/lcomm.2021.3073981	4	On the Performance Analysis of RIS-Empowered Communications Over Nakagami-m Fading.
+journals/ijgi/DuarteTLVPF21	article	2021	journals/ijgi	10.3390/ijgi10040264	6	An Open Source GIS Application for Spatial Assessment of Health Care Quality Indicators.
+journals/ijon/HuZMWZ21	article	2021	journals/ijon	10.1016/j.neucom.2020.11.009	5	Minor class-based status detection for pipeline network using enhanced generative adversarial networks.
+journals/iotj/Fang0CYW21	article	2021	journals/iotj	10.1109/jiot.2021.3068601	5	Joint Distributed Cache and Power Control in Haptic Communications: A Potential Game Approach.
+journals/isci/SunGYY21	article	2021	journals/isci	10.1016/j.ins.2020.06.059	4	Memory-event-trigger-based secure control of cloud-aided active suspension systems against deception attacks.
+journals/jifs/SunPMWH21	article	2021	journals/jifs	10.3233/jifs-200366	5	An artificial intelligence-based real-time monitoring framework for time series.
+journals/kbs/LiuCLZ21	article	2021	journals/kbs	10.1016/j.knosys.2021.107475	4	MRI reconstruction based on Bayesian piecewise sparsity constraint and adaptive 3D transform.
+journals/mta/LinLWL21	article	2021	journals/mta	10.1007/s11042-020-09767-9	4	Content-and-disparity-aware stereoscopic video stabilization.
+journals/nca/MouassaJBR21	article	2021	journals/nca	10.1007/s00521-020-05496-0	4	Novel design of artificial ecosystem optimizer for large-scale optimal reactive power dispatch problem with application to Algerian electricity grid.
+journals/neuroimage/LucaILPSZANFBZF21	article	2021	journals/neuroimage	10.1016/j.neuroimage.2021.118367	42	On the generalizability of diffusion MRI signal representations across acquisition parameters, sequences and tissue types: Chronicles of the MEMENTO challenge.
+journals/ploscb/HammelmanG21	article	2021	journals/ploscb	10.1371/journal.pcbi.1009282	2	Discovering differential genome sequence activity with interpretable and efficient deep learning.
+journals/ral/LuMSL21	article	2021	journals/ral	10.1109/lra.2021.3092258	4	Self-Supervised Single-Image Depth Estimation From Focus and Defocus Clues.
+journals/remotesensing/RojasMCMFE21	article	2021	journals/remotesensing	10.3390/rs13204105	6	Determining Actual Evapotranspiration Based on Machine Learning and Sinusoidal Approaches Applied to Thermal High-Resolution Remote Sensing Imagery in a Semi-Arid Ecosystem.
+journals/sensors/KozakBT21	article	2021	journals/sensors	10.3390/s21010070	3	Identification of Gate Turn-Off Thyristor Switching Patterns Using Acoustic Emission Sensors.
+journals/soco/HaqueB21	article	2021	journals/soco	10.1007/s00500-020-05259-y	2	Ambient self-powered cluster-based wireless sensor networks for industry 4.0 applications.
+journals/staeors/LiaoDZGZY21	article	2021	journals/staeors	10.1109/jstars.2021.3100342	6	Analyzing the Separability of SAR Classification Dataset in Open Set Conditions.
+journals/symmetry/TarayrahC21	article	2021	journals/symmetry	10.3390/sym13091612	2	Relationship between Unstable Point Symmetries and Higher-Order Approximate Symmetries of Differential Equations with a Small Parameter.
+journals/tie/LiuLHLF21	article	2021	journals/tie	10.1109/tie.2020.2987280	5	Double Clamping Current Inverter With Adjustable Turn-off Time for Bucking Coil Helicopter Transient Electromagnetic Surveying.
+journals/tii/ChenJDZC21	article	2021	journals/tii	10.1109/tii.2020.3024187	5	DOF: A Demand-Oriented Framework for Image Denoising.
+journals/tim/CaoSCTL21	article	2021	journals/tim	10.1109/tim.2020.3016415	5	3-D Dense Rangefinder Sensor With a Low-Cost Scanning Mechanism.
+journals/tvt/ZhouXXFN21	article	2021	journals/tvt	10.1109/tvt.2021.3075018	5	Dynamic Computation Offloading for MIMO Mobile Edge Computing Systems With Energy Harvesting.
+journals/wpc/WangBFHST21	article	2021	journals/wpc	10.1007/s11277-020-08033-3	6	DTN-Balance: A Forwarding-Capacity and Forwarding-Queue Aware Routing for Self-organizing DTNs.
+conf/aaai/Biswas0BP22	inproceedings	2022	conf/aaai	10.1609/aaai.v36i6.20557	4	ErfAct and Pserf: Non-monotonic Smooth Trainable Activation Functions.
+conf/acl/RonyKCU022	inproceedings	2022	conf/acl	10.18653/v1/2022.acl-long.387	5	RoMe: A Robust Metric for Evaluating Natural Language Generation.
+conf/bigdataconf/KumakuraOKY22	inproceedings	2022	conf/bigdataconf	10.1109/bigdata55660.2022.10020953	4	CPU Usage Trends in Android Applications.
+conf/cdc/JannyPB0N22	inproceedings	2022	conf/cdc	10.1109/cdc51059.2022.9993232	5	Learning Reduced Nonlinear State-Space Models: an Output-Error Based Canonical Approach.
+conf/chi/HaugheyPS22	inproceedings	2022	conf/chi	10.1145/3491102.3517503	3	Bridging Contextual and Methodological Gaps on the "Misinformation Beat": Insights from Journalist-Researcher Collaborations at Speed.
+conf/cvpr/LiLL0Z22	inproceedings	2022	conf/cvpr	10.1109/cvprw56347.2022.00191	5	A Neural-network Enhanced Video Coding Framework beyond VVC.
+conf/eccv/ZhaoK22	inproceedings	2022	conf/eccv	10.1007/978-3-031-19830-4_28	2	Real-Time Online Video Detection with Temporal Smoothing Transformers.
+conf/embc/EllisMC22	inproceedings	2022	conf/embc	10.1109/embc48229.2022.9871414	3	A Model Visualization-based Approach for Insight into Waveforms and Spectra Learned by CNNs.
+conf/emnlp/LiKHdBN22	inproceedings	2022	conf/emnlp	10.18653/v1/2022.emnlp-main.812	6	A Systematic Investigation of Commonsense Knowledge in Large Language Models.
+conf/globecom/XieY022	inproceedings	2022	conf/globecom	10.1109/gcwkshps56602.2022.10008497	3	Secure Finite Blocklength Coding Scheme for the RIS-Aided SIMO Channel with Feedback.
+conf/hci/YaoYZ22	inproceedings	2022	conf/hci	10.1007/978-3-031-05939-1_8	3	Virtual Equipment System: Toward Bag of Holding and Other Extradimensional Storage in Extended Reality.
+conf/icassp/WangLWL22	inproceedings	2022	conf/icassp	10.1109/icassp43922.2022.9746215	4	Agcyclegan: Attention-Guided Cyclegan for Single Underwater Image Restoration.
+conf/icc/MaksudH22	inproceedings	2022	conf/icc	10.1109/iccworkshops53468.2022.9814512	2	Physical Layer Encryption for UAV-to-Ground Communications.
+conf/icip/Hsu0YHHK22	inproceedings	2022	conf/icip	10.1109/icip46576.2022.9897409	6	GAITTAKE: Gait Recognition by Temporal Attention and Keypoint-Guided Embedding.
+conf/icpr/GillsjoFA22	inproceedings	2022	conf/icpr	10.1109/icpr56361.2022.9956252	3	Semantic Room Wireframe Detection from a Single View.
+conf/icra/KumraJS22	inproceedings	2022	conf/icra	10.1109/icra46639.2022.9812251	3	Learning Multi-step Robotic Manipulation Policies from Visual Observation of Scene and Q-value Predictions of Previous Action.
+conf/igarss/SaidJC22	inproceedings	2022	conf/igarss	10.1109/igarss46834.2022.9883368	3	A LOOK AT CYGNSS DEPENDENCE ON SEA SURFACE SALINITY AND SEA SURFACE TEMPERATURE.
+conf/ijcai/ZhaoMCD22	inproceedings	2022	conf/ijcai	10.24963/ijcai.2022/237	4	Domain Adaptation via Maximizing Surrogate Mutual Information.
+conf/ijcnn/KozakowskiKMMK22	inproceedings	2022	conf/ijcnn	10.1109/ijcnn55064.2022.9892633	5	Q-Value Weighted Regression: Reinforcement Learning with Limited Data.
+conf/interspeech/RisteaIK22	inproceedings	2022	conf/interspeech	10.21437/interspeech.2022-249	3	SepTr: Separable Transformer for Audio Spectrogram Processing.
+conf/iros/ShyamYK22	inproceedings	2022	conf/iros	10.1109/iros47612.2022.9981166	3	Multi-Source Domain Alignment for Domain Invariant Segmentation in Unknown Targets.
+conf/miccai/BoydVMDPVC22	inproceedings	2022	conf/miccai	10.1007/978-3-031-16434-7_35	7	Region-Guided CycleGANs for Stain Transfer in Whole Slide Images.
+conf/mm/LafruitBAPHSM22	inproceedings	2022	conf/mm	10.1145/3552483.3556461	7	Tele-Robotics VR with Holographic Vision in Immersive Video.
+conf/vtc/PengCSLHC22	inproceedings	2022	conf/vtc	10.1109/vtc2022-spring54318.2022.9861033	6	Blockchain-assisted D2D Data Sharing in Fog Computing.
+journals/access/SongLJM22	article	2022	journals/access	10.1109/access.2022.3151133	4	G2P-SLAM: Generalized RGB-D SLAM Framework for Mobile Robots in Low-Dynamic Environments.
+journals/apin/KavukTCBSTKB22	article	2022	journals/apin	10.1007/s10489-021-02610-0	8	Order dispatching for an ultra-fast delivery service via deep reinforcement learning.
+journals/asc/MishraS22	article	2022	journals/asc	10.1016/j.asoc.2021.108395	2	Linear Ordering Problem based Classifier Chain using Genetic Algorithm for multi-label classification.
+journals/bioinformatics/GeffenOU22	article	2022	journals/bioinformatics	10.1093/bioinformatics/btac474	3	DistilProtBert: a distilled protein language model used to distinguish between real proteins and their randomly shuffled counterparts.
+journals/candie/KimKY22	article	2022	journals/candie	10.1016/j.cie.2022.108072	3	Parisian ruin in a discrete-time Markov-modulated dual risk model.
+journals/cbm/HeidariNUT22	article	2022	journals/cbm	10.1016/j.compbiomed.2021.105141	4	The COVID-19 epidemic analysis and diagnosis using deep learning: A systematic literature review and future directions.
+journals/cea/McSweeneyDOFBMI22	article	2022	journals/cea	10.1016/j.compag.2022.106919	8	Dynamic algorithmic conversion of compressed sward height to dry matter yield by a rising plate meter.
+journals/concurrency/AarifYHHS22	article	2022	journals/concurrency	10.1002/cpe.7378	5	Smart bin: Waste segregation system using deep learning-Internet of Things for sustainable smart cities.
+journals/corr/abs-2203-05642	article	2022	journals/corr	10.48550/arxiv.2203.05642	4	Parameter-Free Attentive Scoring for Speaker Verification.
+journals/entropy/PovstenkoK22	article	2022	journals/entropy	10.3390/e24071002	2	Axisymmetric Fractional Diffusion with Mass Absorption in a Circle under Time-Harmonic Impact.
+journals/eswa/KimYLK22	article	2022	journals/eswa	10.1016/j.eswa.2022.117405	4	Accurate and prompt answering framework based on customer reviews and question-answer pairs.
+journals/ijon/TengZHHL22	article	2022	journals/ijon	10.1016/j.neucom.2022.09.082	5	A two-stage deep learning model based on feature combination effects.
+journals/iotj/GiulianoIMVV22	article	2022	journals/iotj	10.1109/jiot.2021.3097590	5	IMPERSONAL: An IoT-Aided Computer Vision Framework for Social Distancing for Health Safety.
+journals/isci/LiangFX22	article	2022	journals/isci	10.1016/j.ins.2021.11.057	3	Three-way group consensus decision based on hierarchical social network consisting of decision makers and participants.
+journals/kbs/TatsumiTMKY22	article	2022	journals/kbs	10.1016/j.knosys.2022.108807	5	Determination of reinforcement degrees in constructing large-scale structures by using multiclass support vector machines.
+journals/lgrs/ZhangWLSH22	article	2022	journals/lgrs	10.1109/lgrs.2022.3141389	5	SAR Target Recognition Using Only Simulated Data for Training by Hierarchically Combining CNN and Image Similarity.
+journals/mta/IncetasUUK22	article	2022	journals/mta	10.1007/s11042-022-13096-4	4	A novel image Denoising approach using super resolution densely connected convolutional networks.
+journals/nca/ShahTKZF22	article	2022	journals/nca	10.1007/s00521-022-06886-2	5	Data portability for activities of daily living and fall detection in different environments using radar micro-doppler.
+journals/neuroimage/AcunzoLF22	article	2022	journals/neuroimage	10.1016/j.neuroimage.2022.119005	3	Deep neural networks reveal topic-level representations of sentences in medial prefrontal cortex, lateral anterior temporal lobe, precuneus, and angular gyrus.
+journals/ploscb/RoyBF22	article	2022	journals/ploscb	10.1371/journal.pcbi.1009890	3	Deep inference of seabird dives from GPS-only records: Performance and generalization properties.
+journals/ral/WangSSJDF22	article	2022	journals/ral	10.1109/lra.2022.3146522	6	Multi-Mode Motion Control of Reconfigurable Vortex-Shaped Microrobot Swarms for Targeted Tumor Therapy.
+journals/remotesensing/LvGXLYP22	article	2022	journals/remotesensing	10.3390/rs14174367	6	Assessment of Real-Time GPS/BDS-2/BDS-3 Single-Frequency PPP and INS Tight Integration Using Different RTS Products.
+journals/sensors/RamirezVAFF22	article	2022	journals/sensors	10.3390/s22113991	5	Human Activity Recognition by Sequences of Skeleton Features.
+journals/symmetry/DshalalowNSW22	article	2022	journals/symmetry	10.3390/sym14081701	4	Determination of Mutation Rates with Two Symmetric and Asymmetric Mutation Types.
+journals/tcasII/DuttaKR22	article	2022	journals/tcasII	10.1109/tcsii.2022.3157644	3	Numerical Design of Non-Reciprocal Bandpass Filters With the Aid of 3D Coupling Matrix for 5G Bands.
+journals/tcyb/ZhouZW22	article	2022	journals/tcyb	10.1109/tcyb.2021.3109021	3	Hierarchical Motion Learning for Goal-Oriented Movements With Speed-Accuracy Tradeoff of a Musculoskeletal System.
+journals/tgrs/WangWWA22	article	2022	journals/tgrs	10.1109/tgrs.2021.3095899	4	SSA-SiamNet: Spectral-Spatial-Wise Attention-Based Siamese Network for Hyperspectral Image Change Detection.
+journals/tie/LiPDH22	article	2022	journals/tie	10.1109/tie.2021.3075851	4	Adaptive Path Following Controller of a Multijoint Snake Robot Based on the Improved Serpenoid Curve.
+journals/tii/TahirJT22	article	2022	journals/tii	10.1109/tii.2021.3133384	3	Experience-Driven Attack Design and Federated-Learning-Based Intrusion Detection in Industry 4.0.
+journals/tim/ZhengWXW22	article	2022	journals/tim	10.1109/tim.2022.3189642	4	Intrusion Detection of Foreign Objects in Overhead Power System for Preventive Maintenance in High-Speed Railway Catenary Inspection.
+journals/tits/NaCK22	article	2022	journals/tits	10.1109/tits.2022.3191814	3	Adaptive Target Tracking With Interacting Heterogeneous Motion Models.
+journals/tvt/LiuWWYWG22	article	2022	journals/tvt	10.1109/tvt.2022.3187046	6	Robust Downlink Precoding for LEO Satellite Systems With Per-Antenna Power Constraints.
+journals/wpc/TyagiK22	article	2022	journals/wpc	10.1007/s11277-021-09182-9	2	An Improved Multifactor User Authentication Scheme for Wireless Sensor Networks.
+conf/aaai/LiCH23	inproceedings	2023	conf/aaai	10.1609/aaai.v37i7.26046	3	Implicit Stochastic Gradient Descent for Training Physics-Informed Neural Networks.
+conf/acl/0004GHZQZ23	inproceedings	2023	conf/acl	10.18653/v1/2023.acl-long.720	6	An AMR-based Link Prediction Approach for Document-level Event Argument Extraction.
+conf/bibm/LeiZXLZL23	inproceedings	2023	conf/bibm	10.1109/bibm58861.2023.10385575	6	Dual-branch Feature Interaction Network with Structure Information Learning for Retinopathy of Prematurity Classification.
+conf/cdc/CreggAY23	inproceedings	2023	conf/cdc	10.1109/cdc49753.2023.10383642	3	Reinforcement Learning for Zero-Delay Coding Over a Noisy Channel with Feedback.
+conf/chi/MildnerSDCM23	inproceedings	2023	conf/chi	10.1145/3544548.3580695	5	About Engaging and Governing Strategies: A Thematic Analysis of Dark Patterns in Social Networking Services.
+conf/cvpr/KimP23	inproceedings	2023	conf/cvpr	10.1109/cvpr52729.2023.00992	2	SMPConv: Self-Moving Point Representations for Continuous Convolution.
+conf/embc/MalaguttiMN23	inproceedings	2023	conf/embc	10.1109/embc40787.2023.10339991	3	Real-Time Personalised Pharmacokinetic-Pharmacodynamic Modelling in Propofol Anesthesia through Bayesian Inference.
+conf/emnlp/OtaoY23	inproceedings	2023	conf/emnlp	10.18653/v1/2023.emnlp-main.935	2	A linear time approximation of Wasserstein distance with word embedding selection.
+conf/globecom/DengP23	inproceedings	2023	conf/globecom	10.1109/globecom54140.2023.10436865	2	Evaluating Network Boolean Tomography Under Byzantine Attacks.
+conf/hci/MallasXM23	inproceedings	2023	conf/hci	10.1007/978-3-031-35681-0_28	3	Users' Opinions When Drawing with an Eye Tracker.
+conf/icassp/ShopovGM23	inproceedings	2023	conf/icassp	10.1109/icassp49357.2023.10096566	3	StreamSpeech: Low-Latency Neural Architecture for High-Quality on-Device Speech Synthesis.
+conf/icc/ZhouWYZNY23	inproceedings	2023	conf/icc	10.1109/icc45041.2023.10279628	6	Traffic-Aware Fast Reroute Mechanism Exploiting Disjoint Subpaths for Named Data Networks.
+conf/icccnt/SharmaDRKSC23	inproceedings	2023	conf/icccnt	10.1109/icccnt56998.2023.10306504	6	Post Quantum Blockchain Based Lightweight Edge Server Handover Authentication Key Agreement Protocol for Vehicular Communication System.
+conf/iccv/ZhangZZ00Z23	inproceedings	2023	conf/iccv	10.1109/iccv51070.2023.02109	6	ESSAformer: Efficient Transformer for Hyperspectral Image Super-resolution.
+conf/icra/GokmenHK23	inproceedings	2023	conf/icra	10.1109/icra48891.2023.10161004	3	Asking for Help: Failure Prediction in Behavioral Cloning through Value Approximation.
+conf/iecon/WestermannGF23	inproceedings	2023	conf/iecon	10.1109/iecon51785.2023.10312156	3	Representing Timed Automata and Timing Anomalies of Cyber-Physical Production Systems in Knowledge Graphs.
+conf/igarss/IhalainenMJ23	inproceedings	2023	conf/igarss	10.1109/igarss52108.2023.10283065	3	Inversion of True Leaf Reflectance from Very High Spatial Resolution Hyperspectral Images.
+conf/ijcai/AdornettoG23	inproceedings	2023	conf/ijcai	10.24963/ijcai.2023/379	2	GIDnets: Generative Neural Networks for Solving Inverse Design Problems via Latent Space Exploration.
+conf/ijcnn/CarvalhoVA23	inproceedings	2023	conf/ijcnn	10.1109/ijcnn54540.2023.10191711	3	Out-of-Distribution Detection in Deep Learning Models: A Feature Space-Based Approach.
+conf/interspeech/LavechinSTBRBDC23	inproceedings	2023	conf/interspeech	10.21437/interspeech.2023-978	8	BabySLM: language-acquisition-friendly benchmark of self-supervised spoken language models.
+conf/iros/LinW23	inproceedings	2023	conf/iros	10.1109/iros55552.2023.10341655	2	AirLine: Efficient Learnable Line Detection with Local Edge Voting.
+conf/itsc/EisemannM23	inproceedings	2023	conf/itsc	10.1109/itsc57777.2023.10421842	2	Automatic Odometry-Less OpenDRIVE Generation From Sparse Point Clouds.
+conf/miccai/ZhangRTZLYJ23	inproceedings	2023	conf/miccai	10.1007/978-3-031-43895-0_18	7	Self-aware and Cross-Sample Prototypical Learning for Semi-supervised Medical Image Segmentation.
+conf/mm/HuangZSLLG23	inproceedings	2023	conf/mm	10.1145/3581783.3612316	6	SUG: Single-dataset Unified Generalization for 3D Point Cloud Classification.
+conf/smc/KimKHK23	inproceedings	2023	conf/smc	10.1109/smc53992.2023.10394663	4	Highway Condition Analysis and Traffic Safety Monitoring System Through Analysis of Time-Series Data from LiDAR-based Probe Vehicle.
+conf/vtc/DelamouBCA23	inproceedings	2023	conf/vtc	10.1109/vtc2023-spring57618.2023.10200157	4	Deep Learning-based Estimation for Multitarget Radar Detection.
+journals/access/GereviniMOPS23	article	2023	journals/access	10.1109/access.2023.3296260	5	Machine Learning Techniques for Prognosis Estimation and Knowledge Discovery From Lab Test Results With Application to the COVID-19 Emergency.
+journals/apin/LiWZL23a	article	2023	journals/apin	10.1007/s10489-023-04599-0	4	Short-term load forecasting system based on sliding fuzzy granulation and equilibrium optimizer.
+journals/asc/MaheshwariMM23	article	2023	journals/asc	10.1016/j.asoc.2023.110321	3	An entropy-based density peak clustering for numerical gene expression datasets.
+journals/axioms/KhanKTR23	article	2023	journals/axioms	10.3390/axioms12121130	4	Coefficient Inequalities for q-Convex Functions with Respect to q-Analogue of the Exponential Function.
+journals/bioinformatics/DervishiLHJVA23	article	2023	journals/bioinformatics	10.1093/bioinformatics/btad274	6	Privacy preserving identification of population stratification for collaborative genomic research.
+journals/bspc/YangJLY23	article	2023	journals/bspc	10.1016/j.bspc.2023.105008	4	Adaptive zero-learning medical image fusion.
+journals/cbm/DeviSR23	article	2023	journals/cbm	10.1016/j.compbiomed.2023.106864	3	A web server for predicting and scanning of IL-5 inducing peptides using alignment-free and alignment-based method.
+journals/cea/LiYYXFXCZW23	article	2023	journals/cea	10.1016/j.compag.2023.108379	9	Orchard classification based on super-pixels and deep learning with sparse optical images.
+journals/corr/abs-2305-14500	article	2023	journals/corr	10.48550/arxiv.2305.14500	4	Diverse Perspectives Can Mitigate Political Bias in Crowdsourced Content Moderation.
+journals/eaai/GeshniganiGMT23	article	2023	journals/eaai	10.1016/j.engappai.2023.105839	4	Daily solar radiation estimation in Belleville station, Illinois, using ensemble artificial intelligence approaches.
+journals/entropy/ZhangL23	article	2023	journals/entropy	10.3390/e25010026	2	Neural Information Squeezer for Causal Emergence.
+journals/eswa/AL-AlimiCAAA23	article	2023	journals/eswa	10.1016/j.eswa.2022.118971	5	ETR: Enhancing transformation reduction for reducing dimensionality and classification complexity in hyperspectral images.
+journals/ijon/KolliasAK23	article	2023	journals/ijon	10.1016/j.neucom.2023.126244	3	A deep neural architecture for harmonizing 3-D input data analysis and decision making in medical imaging.
+journals/iotj/WuYB23	article	2023	journals/iotj	10.1109/jiot.2023.3287991	3	On the Interplay Between Sensing and Communications for UAV Trajectory Design.
+journals/isci/IkotunEAAJ23	article	2023	journals/isci	10.1016/j.ins.2022.11.139	5	K-means clustering algorithms: A comprehensive review, variants analysis, and advances in the era of big data.
+journals/jaihc/DuricBBLR23	article	2023	journals/jaihc	10.1007/s12652-021-03081-4	5	Model of an intelligent smart home system based on ambient intelligence and user profiling.
+journals/jifs/JavaidR23	article	2023	journals/jifs	10.3233/jifs-230560	2	Manual and non-manual sign language recognition framework using hybrid deep learning techniques.
+journals/kbs/WangCDGLM23	article	2023	journals/kbs	10.1016/j.knosys.2023.110301	6	SABV-Depth: A biologically inspired deep learning network for monocular depth estimation.
+journals/lgrs/ShenZSJY23	article	2023	journals/lgrs	10.1109/lgrs.2023.3264455	5	Learning to Reduce Information Bottleneck for Object Detection in Aerial Images.
+journals/mta/MalhotraS23	article	2023	journals/mta	10.1007/s11042-023-15295-z	2	Recent advances in deep learning models: a systematic literature review.
+journals/nca/BhartiBN23	article	2023	journals/nca	10.1007/s00521-023-08774-9	3	Novel error correction-based key frame extraction technique for dynamic hand gesture recognition.
+journals/pami/WangWZFHC23	article	2023	journals/pami	10.1109/tpami.2022.3170302	6	Reinforced Causal Explainer for Graph Neural Networks.
+journals/ral/LiuLLRR23	article	2023	journals/ral	10.1109/lra.2023.3300587	5	Tunable Stiffness Caudal Peduncle Leads to Higher Swimming Speed Without Extra Energy.
+journals/remotesensing/ChangCZWX23	article	2023	journals/remotesensing	10.3390/rs15041025	5	Early Yield Forecasting of Maize by Combining Remote Sensing Images and Field Data with Logistic Models.
+journals/sensors/0002ZG23	article	2023	journals/sensors	10.3390/s23104751	3	Adaptive Trust Threshold Model Based on Reinforcement Learning in Cooperative Spectrum Sensing.
+journals/sncs/SujanaA23	article	2023	journals/sncs	10.1007/s42979-022-01584-1	2	Diagnosis of Autism Spectrum Disorder: A Review of Three Focused Interventions.
+journals/symmetry/ShariffBH23	article	2023	journals/symmetry	10.3390/sym15030628	3	A Generalised Time-Dependent Mathematical Formulation for Magnetoelectrically Coupled Soft Solids at Finite Strains.
+journals/tcasII/KurniawanDL23	article	2023	journals/tcasII	10.1109/tcsii.2023.3289489	3	Configurable Memory-Based NTT Architecture for Homomorphic Encryption.
+journals/tgrs/ZhuGZLWLL23	article	2023	journals/tgrs	10.1109/tgrs.2023.3324404	7	GLA-STDeepLab: SAR Enhancing Glacier and Ice Shelf Front Detection Using Swin-TransDeepLab With Global-Local Attention.
+journals/tie/ChenDWHS23	article	2023	journals/tie	10.1109/tie.2022.3215457	5	Finite Position Set-Phase-Locked Loop With Low Computational Burden for Sensorless Control of PMSM Drives.
+journals/tii/MuslehCDWC23	article	2023	journals/tii	10.1109/tii.2022.3178418	5	Attack Detection in Automatic Generation Control Systems using LSTM-Based Stacked Autoencoders.
+journals/tim/DuanPWL23	article	2023	journals/tim	10.1109/tim.2023.3280507	4	Filtering 2D-3D Outliers by Camera Adjustment for Visual Odometry.
+journals/tits/CongGDZ23	article	2023	journals/tits	10.1109/tits.2023.3251303	4	Vehicular Behavior-Aware Beamforming Design for Integrated Sensing and Communication Systems.
+journals/tkde/QuHOZ23	article	2023	journals/tkde	10.1109/tkde.2021.3108547	4	A Noise-Aware Method With Type Constraint Pattern for Neural Relation Extraction.
+journals/tnn/LinTDZZC23	article	2023	journals/tnn	10.1109/tnnls.2022.3171553	6	3D-DFM: Anchor-Free Multimodal 3-D Object Detection With Dynamic Fusion Module for Autonomous Driving.
+journals/tvt/ChaiZYXGG23	article	2023	journals/tvt	10.1109/tvt.2023.3238771	6	Joint Multi-Task Offloading and Resource Allocation for Mobile Edge Computing Systems in Satellite IoT.
+conf/aaai/Jiao0WJH24	inproceedings	2024	conf/aaai	10.1609/aaai.v38i11.29190	5	Provably Convergent Federated Trilevel Learning.
+conf/acl/PeritiCDT24	inproceedings	2024	conf/acl	10.18653/v1/2024.acl-long.246	4	Analyzing Semantic Change through Lexical Replacements.
+conf/bibm/ZhangHRHLLL24	inproceedings	2024	conf/bibm	10.1109/bibm62325.2024.10821949	7	Optimizing Feature Selection for Unbalanced Metabolomics Data with A Background Factor: A Comparative Study in Parkinson's Disease.
+conf/bigdataconf/ChoiKL24	inproceedings	2024	conf/bigdataconf	10.1109/bigdata62323.2024.10825169	3	Moral Instruction Fine Tuning for Aligning LMs with Multiple Ethical Principles.
+conf/cdc/RomanoBB24	inproceedings	2024	conf/cdc	10.1109/cdc56724.2024.10886021	3	Stackelberg evolutionary games for cancer modeling and treatment.
+conf/chi/PolenzJ0H24	inproceedings	2024	conf/chi	10.1145/3613905.3650843	4	Simulating projective Augmented Reality Visualizations in Virtual Reality: Is VR a feasible Environment for medical AR Evaluations?
+conf/cvpr/WanyanSSK22	inproceedings	2024	conf/cvpr	10.1109/cvprw63382.2024.00251	4	Extending global-local view alignment for self-supervised learning with remote sensing imagery.
+conf/eccv/XiongFWL24	inproceedings	2024	conf/eccv	10.1007/978-3-031-72949-2_15	4	Causality-Inspired Discriminative Feature Learning in Triple Domains for Gait Recognition.
+conf/embc/WangCLW24	inproceedings	2024	conf/embc	10.1109/embc53108.2024.10782327	4	Tracking Dynamic Conditional Neural Correlation during Task Learning.
+conf/emnlp/Qi0W00L24	inproceedings	2024	conf/emnlp	10.18653/v1/2024.emnlp-main.419	6	ADELIE: Aligning Large Language Models on Information Extraction.
+conf/globecom/HuanCYL24	inproceedings	2024	conf/globecom	10.1109/gcwkshp64532.2024.11101149	4	A Semi-Supervised Learning Method for Multi-Modal Data Vehicle Positioning.
+conf/hci/AtarashiS24	inproceedings	2024	conf/hci	10.1007/978-3-031-76803-3_16	2	Evaluation of Interactive Slider Design Utilizing Haptic Feedback.
+conf/icassp/ZhouPZYST24	inproceedings	2024	conf/icassp	10.1109/icassp48485.2024.10447994	6	Cooperative Sensing Via Matrix Factorization of the Partially Received Sample Covariance Matrix.
+conf/icc/ShiZZLH24	inproceedings	2024	conf/icc	10.1109/icc51166.2024.10622907	5	Inter-user Dependent Task Offloading and Resource Allocation in Dynamic MEC Networks.
+conf/icccnt/AluthwaththageT24a	inproceedings	2024	conf/icccnt	10.1109/icccnt61001.2024.10725820	2	Enhancing Software Development with CCC: A Robust Tool for Code Complexity Analysis.
+conf/icic/XuSXL24	inproceedings	2024	conf/icic	10.1007/978-981-97-5609-4_24	4	Training-Free Diffusion Models for Content-Style Synthesis.
+conf/icpr/NaharM24	inproceedings	2024	conf/icpr	10.1007/978-3-031-78341-8_21	2	Infrared Database for Gait Recognition in Dynamic Outdoor Environment.
+conf/icra/LinWGJ24	inproceedings	2024	conf/icra	10.1109/icra57147.2024.10611487	4	VO-Safe Reinforcement Learning for Drone Navigation.
+conf/iecon/AdilK24	inproceedings	2024	conf/iecon	10.1109/iecon55916.2024.10905171	2	Supertwisted Synergetic Control for AC-DC Power Converter of G2V-V2G Capable Onboard Electric Vehicle Charger.
+conf/igarss/IbanezXY24	inproceedings	2024	conf/igarss	10.1109/igarss53475.2024.10641407	3	When Daformer Meets Multi-Modality Datasets.
+conf/ijcnn/ZhouLW24	inproceedings	2024	conf/ijcnn	10.1109/ijcnn60899.2024.10651494	3	Optimal path planning based on goal heuristics IQLA for mobile robots.
+conf/interspeech/KareemR24	inproceedings	2024	conf/interspeech	10.21437/interspeech.2024-1453	2	Multi-label Bird Species Classification from Field Recordings using Mel_Graph-GCN Framework.
+conf/iros/MalleE24	inproceedings	2024	conf/iros	10.1109/iros58592.2024.10802812	2	Autonomous Power Line Tracking with mmWave Radar.
+conf/iscas/HeLCH0ZF24	inproceedings	2024	conf/iscas	10.1109/iscas58744.2024.10558129	7	CTU-Level Adaptive Quantization Method Joint with GOP based Temporal Filter for Video Coding.
+conf/miccai/WangALM24	inproceedings	2024	conf/miccai	10.1007/978-3-031-72120-5_34	4	Latent Spaces Enable Transformer-Based Dose Prediction in Complex Radiotherapy Plans.
+conf/mm/WangZ24	inproceedings	2024	conf/mm	10.1145/3664647.3681156	2	GS2-GNeSF: Geometry-Semantics Synergy for Generalizable Neural Semantic Fields.
+conf/naacl/0001SCWHY24	inproceedings	2024	conf/naacl	10.18653/v1/2024.naacl-long.291	6	Polarity Calibration for Opinion Summarization.
+conf/vtc/SungCL24	inproceedings	2024	conf/vtc	10.1109/vtc2024-fall63153.2024.10757971	3	Deployment Optimization for Mobile Integrated Access and Backhaul Nodes in Air-Ground Integrated Networks.
+conf/wacv/XuWCZWL24	inproceedings	2024	conf/wacv	10.1109/wacv57701.2024.00016	6	GTP-ViT: Efficient Vision Transformers via Graph-based Token Propagation.
+conf/wcnc/FigueroaBP24	inproceedings	2024	conf/wcnc	10.1109/wcnc57260.2024.10571282	3	Cooperative Multi-Monostatic Sensing for Object Localization in 6G Networks.
+journals/access/SaeedzadehSAH24	article	2024	journals/access	10.1109/access.2024.3422255	4	Adaptive Estimation Using Interacting Multiple Model With Moving Window.
+journals/asc/PandaN24	article	2024	journals/asc	10.1016/j.asoc.2023.111048	2	Software bug severity and priority prediction using SMOTE and intuitionistic fuzzy similarity measure.
+journals/axioms/LeipusSDK24	article	2024	journals/axioms	10.3390/axioms13060355	4	Randomly Stopped Sums, Minima and Maxima for Heavy-Tailed and Light-Tailed Distributions.
+journals/bspc/DengCHLLWH24	article	2024	journals/bspc	10.1016/j.bspc.2023.105683	7	An intelligent computer-aided diagnosis method for paroxysmal atrial fibrillation patients with nondiagnostic ECG signals.
+journals/cbm/LiCXZSLD24	article	2024	journals/cbm	10.1016/j.compbiomed.2024.108447	7	Predictive modeling of deep vein thrombosis risk in hospitalized patients: A Q-learning enhanced feature selection model.
+journals/cea/ChenSNSN24	article	2024	journals/cea	10.1016/j.compag.2024.109539	5	Terrain classification method using an NIR or RGB camera with a CNN-based fusion of vision and a reduced-order proprioception model.
+journals/corr/abs-2406-08569	article	2024	journals/corr	10.48550/arxiv.2406.08569	7	Noise-Aware Differentially Private Regression via Meta-Learning.
+journals/eaai/YuLS24	article	2024	journals/eaai	10.1016/j.engappai.2023.107319	3	DNTC: An unsupervised Deep Networks for Temperature Compensation in non-stationary data.
+journals/eait/ZhouSC24	article	2024	journals/eait	10.1007/s10639-023-12315-1	3	Detecting non-verbal speech and gaze behaviours with multimodal data and computer vision to interpret effective collaborative learning interactions.
+journals/entropy/ScarfoneW24	article	2024	journals/entropy	10.3390/e26010077	2	Multi-Additivity in Kaniadakis Entropy.
+journals/eswa/WuSYHD24	article	2024	journals/eswa	10.1016/j.eswa.2023.121928	5	Dual-channel early rumor detection based on factual evidence.
+journals/ijon/DahalK24	article	2024	journals/ijon	10.1016/j.neucom.2023.127179	2	Guaranteed cost tracking control of constrained input nonlinear uncertain systems using event-based ADP.
+journals/iotj/YangLMJ24	article	2024	journals/iotj	10.1109/jiot.2023.3339395	4	Guest Editorial Special Issue on Recent Advances of Security, Privacy, and Trust in Mobile Crowdsourcing.
+journals/isci/MoX24	article	2024	journals/isci	10.1016/j.ins.2024.120367	2	Maximum output discrepancy computation for convolutional neural network compression.
+journals/kbs/ZhangLZGSH24	article	2024	journals/kbs	10.1016/j.knosys.2024.111650	6	Enhancing user sequence representation with cross-view collaborative learning for depression detection on Sina Weibo.
+journals/lgrs/LeeKSK24	article	2024	journals/lgrs	10.1109/lgrs.2023.3344804	4	Segmentation-Guided Context Learning Using EO Object Labels for Stable SAR-to-EO Translation.
+journals/mta/NhaM24	article	2024	journals/mta	10.1007/s11042-023-16254-4	2	A new block selection strategy from LU decomposition domain for robust image watermarking.
+journals/nca/WeiCHZ24	article	2024	journals/nca	10.1007/s00521-024-09422-6	4	A review of small object detection based on deep learning.
+journals/pr/MaFYCFXSGY24	article	2024	journals/pr	10.1016/j.patcog.2024.110285	9	Fusion-competition framework of local topology and global texture for head pose estimation.
+journals/ral/WangFPLL24	article	2024	journals/ral	10.1109/lra.2023.3333674	5	Design and Analysis of Adaptive Flipper With Origami Structure for Frog-Inspired Swimming Robot.
+journals/remotesensing/YuanWCZSZ24	article	2024	journals/remotesensing	10.3390/rs16173272	6	Spatiotemporal Changes of Glaciers in the Yigong Zangbo River Basin over the Period of the 1970s to 2023 and Their Driving Factors.
+journals/sensors/ZhouWXMY24	article	2024	journals/sensors	10.3390/s24092664	5	Transfer Learning-Based Hyperspectral Image Classification Using Residual Dense Connection Networks.
+journals/sncs/ChangMHXG24	article	2024	journals/sncs	10.1007/s42979-024-02878-2	5	Diagnosis of COVID-19 CT Scans Using Convolutional Neural Networks.
+journals/staeors/ChengXLXS24	article	2024	journals/staeors	10.1109/jstars.2024.3440254	5	Spectral-Spatial Score Fusion Attention Network for Hyperspectral Image Classification With Limited Samples.
+journals/symmetry/LeeL24	article	2024	journals/symmetry	10.3390/sym16111458	2	Gröbner-Shirshov Bases for Temperley-Lieb Algebras of Type F.
+journals/tcasII/MaMWMY24	article	2024	journals/tcasII	10.1109/tcsii.2023.3318608	5	A S/C-Band 5-Bit Passive Attenuator With Phase-Lead Compensation in 55-nm Bulk CMOS.
+journals/tcsv/WangZY24	article	2024	journals/tcsv	10.1109/tcsvt.2024.3413778	3	Boosting Weakly-Supervised Image Segmentation via Representation, Transform, and Compensator.
+journals/tem/AgostiniNTH24	article	2024	journals/tem	10.1109/tem.2021.3138331	4	What is Patent Management? The Purification and Validation of an Integrated Measurement Scale.
+journals/tgrs/LiHWY24	article	2024	journals/tgrs	10.1109/tgrs.2024.3461840	4	SAR Image Reconstruction Method for Target Detection Using Self-Attention CNN-Based Deep Prior Learning.
+journals/tie/ZhangX24a	article	2024	journals/tie	10.1109/tie.2024.3355525	2	Deep Neural Network-Based Stability Region Estimation for Grid-Converter Interaction Systems.
+journals/tii/PatelCS24	article	2024	journals/tii	10.1109/tii.2023.3312402	3	A Weighted Deep Neural Network for Processing Measurements for State Estimation.
+journals/tim/LuoHLLCMJ24	article	2024	journals/tim	10.1109/tim.2024.3398101	7	Distortion Tolerant Method for Fiber Bragg Grating Sensor Network Using Estimation of Distribution Algorithm and Convolutional Neural Network.
+journals/tits/ValienteRTSF24	article	2024	journals/tits	10.1109/tits.2023.3323440	5	Prediction-Aware and Reinforcement Learning-Based Altruistic Cooperative Driving.
+journals/tjs/TN24	article	2024	journals/tjs	10.1007/s11227-024-06335-y	2	Performance evaluation of Cuttlefish optimization-based contention control in Wireless Rechargeable Sensor Network.
+journals/tmc/ZhangSZLLG24	article	2024	journals/tmc	10.1109/tmc.2024.3359669	6	Wi-Fi-Based Indoor Localization With Interval Random Analysis and Improved Particle Swarm Optimization.
+journals/tmm/LiZHGW24	article	2024	journals/tmm	10.1109/tmm.2023.3277286	5	Achieving QoE Fairness in Bitrate Allocation of 360° Video Streaming.
+journals/tnn/SaffariKKS24	article	2024	journals/tnn	10.1109/tnnls.2023.3280078	4	Behind-the-Meter Load and PV Disaggregation via Deep Spatiotemporal Graph Generative Sparse Coding With Capsule Network.
+journals/tvt/YuanWXWLCHSZZLS24	article	2024	journals/tvt	10.1109/tvt.2024.3372704	12	Breaking the Degrees-of-Freedom Limit of Holographic MIMO Communications: A 3-D Antenna Array Topology.
+journals/twc/ZhuCWLCCL24	article	2024	journals/twc	10.1109/twc.2023.3330341	7	Performance Analysis of RIS-Aided Double Spatial Scattering Modulation for mmWave MIMO Systems.
+conf/aaai/Chen0JZFXW25	inproceedings	2025	conf/aaai	10.1609/aaai.v39i15.33738	7	Robust Logit Adjustment for Learning with Long-Tailed Noisy Data.
+conf/acl/IchiharaJAMU25	inproceedings	2025	conf/acl	10.18653/v1/2025.acl-long.793	5	Theoretical Guarantees for Minimum Bayes Risk Decoding.
+conf/bibm/LuLHWP25	inproceedings	2025	conf/bibm	10.1109/bibm66473.2025.11356212	5	RS-EGT: Resting-State EEG Graph Transformer for Large-Scale EEG Signal Analysis.
+conf/bigdataconf/LiuSCY25	inproceedings	2025	conf/bigdataconf	10.1109/bigdata66926.2025.11402477	4	Toward Cost-Efficient Metadata Curation in Agricultural Genomics with LLMs.
+conf/cdc/ZhuPY25	inproceedings	2025	conf/cdc	10.1109/cdc57313.2025.11312548	3	Time-Invariant Polytopic and Interval Observers for Uncertain Linear Systems via Non-Square Transformation.
+conf/chi/HinssBR25	inproceedings	2025	conf/chi	10.1145/3706599.3719921	3	EEG-based Adaptive Visual Alerts to Mitigate UAS Operator Mental Fatigue: A Technical Proof of Concept.
+conf/cvpr/WangJWZZJ025	inproceedings	2025	conf/cvpr	10.1109/cvpr52734.2025.02730	7	Object Detection using Event Camera: A MoE Heat Conduction based Detector and A New Benchmark Dataset.
+conf/emnlp/LiCGLMTHHPZGS25	inproceedings	2025	conf/emnlp	10.18653/v1/2025.findings-emnlp.866	12	Language Models Can Easily Learn to Reason from Demonstrations.
+conf/globecom/BadiaM25	inproceedings	2025	conf/globecom	10.1109/gcwkshps68340.2025.11591112	2	Delay Tolerant Networking Helps Reducing Age of Information Under Intermittent Connectivity.
+conf/hci/WuC25b	inproceedings	2025	conf/hci	10.1007/978-3-031-94156-6_40	2	Optimization of Intelligent Product Design Process Based on the KJ-AHP Model: A Case Study of Intelligent Firefighting Helmet Design.
+conf/icassp/WangG025	inproceedings	2025	conf/icassp	10.1109/icassp49660.2025.10889563	3	Spatio-Temporal Multi-Subgraph GCN for 3D Human Motion Prediction.
+conf/icc/LiXXZGL25	inproceedings	2025	conf/icc	10.1109/icc52391.2025.11161794	6	The Age of Incorrect Information for Multi-User Link Scheduling Over Fading Channels.
+conf/iccv/CaoZZ25	inproceedings	2025	conf/iccv	10.1109/iccv51701.2025.00023	3	IRGPT: Understanding Real-World Infrared Image with Bi-Cross-Modal Curriculum on Large-Scale Benchmark.
+conf/icic/SongQG25	inproceedings	2025	conf/icic	10.1007/978-981-96-9908-7_8	3	A Grasp Detection Network Based on Channel-Spatial Adaptive Fusion Strategy.
+conf/icmcs/TanHQSCCXQ25	inproceedings	2025	conf/icmcs	10.1109/icme59968.2025.11209792	8	Leave the Bias in Bias: Mitigating the Label Noise Effects in Continual Visual Instruction Fine-Tuning.
+conf/icra/MosbachB25	inproceedings	2025	conf/icra	10.1109/icra55743.2025.11128512	2	Prompt-Responsive Object Retrieval with Memory-Augmented Student-Teacher Learning.
+conf/iecon/LiHWZ25	inproceedings	2025	conf/iecon	10.1109/iecon58223.2025.11221285	4	Battery Health and Shifting-Aware Gear Ratio Optimization for Distributed Drive Electric Trucks.
+conf/ijcai/ZhaoC025	inproceedings	2025	conf/ijcai	10.24963/ijcai.2025/275	3	RPMIL: Rethinking Uncertainty-Aware Probabilistic Multiple Instance Learning for Whole Slide Pathology Diagnosis.
+conf/ijcnn/LiDDJTXW25	inproceedings	2025	conf/ijcnn	10.1109/ijcnn64981.2025.11228724	7	Distributed Drones Marine Emergency Search And Rescue Framework based on Probability Prediction Deep Reinforcement Learning.
+conf/interspeech/VisserK25	inproceedings	2025	conf/interspeech	10.21437/interspeech.2025-340	2	Spoken Language Modeling with Duration-Penalized Self-Supervised Units.
+conf/iros/XuGYACWGLX25	inproceedings	2025	conf/iros	10.1109/iros60139.2025.11247159	9	3D-MoRe: Unified Modal-Contextual Reasoning for Embodied Question Answering.
+conf/iscas/LiuLCXXZ0025	inproceedings	2025	conf/iscas	10.1109/iscas56072.2025.11043169	8	An 102dB DR Current Mode Readout Frontend with Level-Crossing Based Ambient Light Monitoring and DC Cancellation.
+conf/miccai/AbutalipSMSADY25	inproceedings	2025	conf/miccai	10.1007/978-3-032-06593-3_11	7	LEXU: Learning from Expert Disagreement for Single-Pass Uncertainty Estimation in Medical Image Segmentation.
+conf/mm/Zhou0ZCL25	inproceedings	2025	conf/mm	10.1145/3746027.3754781	5	FocusTrack: One-Stage Focus-and-Suppress Framework for 3D Point Cloud Object Tracking.
+conf/naacl/ShinLP25	inproceedings	2025	conf/naacl	10.18653/v1/2025.naacl-srw.40	3	Do Video Language Models really understand the video contexts?
+conf/smc/ZhangSWXSW25	inproceedings	2025	conf/smc	10.1109/smc58881.2025.11343274	6	LRS-GGCN: An influence-sensitive subgraph-based approach for detecting Android malware.
+conf/vtc/YangWLM25	inproceedings	2025	conf/vtc	10.1109/vtc2025-spring65109.2025.11174465	4	UAV Detection Based on OTFS ISAC System.
+conf/wacv/AnandGM25	inproceedings	2025	conf/wacv	10.1109/wacvw65960.2025.00031	3	IP-FaceDiff: Identity-Preserving Facial Video Editing with Diffusion.
+conf/www/PanteAFMFL25	inproceedings	2025	conf/www	10.1145/3701716.3715575	6	Beyond Interaction Patterns: Assessing Claims of Coordinated Inter-State Information Operations on Twitter/X.
+journals/access/AbdulhamidM25	article	2025	journals/access	10.1109/access.2025.3571289	2	Fixed-Time Cooperative Tracking Control With Novel Finite-Time Parameter Estimation Algorithm for Nonlinear Multi-Agent Systems.
+journals/apin/YuZQFYZC25	article	2025	journals/apin	10.1007/s10489-025-06263-1	7	CrowdFPN: crowd counting via scale-enhanced and location-aware feature pyramid network.
+journals/asc/HanDGJQM25	article	2025	journals/asc	10.1016/j.asoc.2024.112647	6	ELICIT information-based robust large-scale minimum cost consensus model under social networks.
+journals/bspc/LiuZXFQ25	article	2025	journals/bspc	10.1016/j.bspc.2024.107182	5	PU-CDM: A pyramid UNet based conditional diffusion model for sparse-view reconstruction in EPRI.
+journals/cbm/BoguszP25	article	2025	journals/cbm	10.1016/j.compbiomed.2025.110998	2	Multi-compartment diffusion-relaxation MR signal representation in the spherical 3D-SHORE basis.
+journals/cea/ZhangPHLY25	article	2025	journals/cea	10.1016/j.compag.2025.110412	5	Pig body weight prediction based on weight waveform graph.
+journals/cluster/HegazyHMS25	article	2025	journals/cluster	10.1007/s10586-025-05102-9	4	Optimizing medical data classification: integrating hybrid fuzzy joint mutual information with binary Cheetah optimizer algorithm.
+journals/cmc/SunCK25	article	2025	journals/cmc	10.32604/cmc.2025.067675	3	SSANet-Based Lightweight and Efficient Crop Disease Detection.
+journals/corr/abs-2506-01576	article	2025	journals/corr	10.48550/arxiv.2506.01576	2	All You Need Is Binary Search! A Practical View on Lightweight Database Indexing on GPUs.
+journals/eaai/YangCS25	article	2025	journals/eaai	10.1016/j.engappai.2025.111191	3	Stochastic event-triggered impulsive control of delayed networks under cyber attacks.
+journals/entropy/DengWWZX25	article	2025	journals/entropy	10.3390/e27070667	5	YOLO-SEA: An Enhanced Detection Framework for Multi-Scale Maritime Targets in Complex Sea States and Adverse Weather.
+journals/eswa/YangXKZY25	article	2025	journals/eswa	10.1016/j.eswa.2024.125583	5	SF-GAN: Semantic fusion generative adversarial networks for text-to-image synthesis.
+journals/ijon/YangRKLF25	article	2025	journals/ijon	10.1016/j.neucom.2025.129741	5	Rehearsal-free continual few-shot relation extraction via contrastive weighted prompts.
+journals/information/KaloutsaKM25	article	2025	journals/information	10.3390/info16121083	3	Using Multi-Criteria Decision-Making for Evaluating SDGs' Implementation on Higher Education Institutions: A Framework.
+journals/iotj/ZhuZS25	article	2025	journals/iotj	10.1109/jiot.2025.3621161	3	Research on UWB NLOS Identification and Mitigation Methods Based on Gramian Angular Field and Hybrid Fusion Neural Network.
+journals/isci/ZhaoMW25	article	2025	journals/isci	10.1016/j.ins.2024.121626	3	Dynamic quantization of event-triggered adaptive sliding mode control for networked control systems under false data injection attack.
+journals/jcisd/MaidanaMG25	article	2025	journals/jcisd	10.1021/acs.jcim.5c01544	3	Benchmarking Machine Learning Models for HIV-1 Protease Inhibitor Resistance Prediction: Impact of Data Set Construction and Feature Representation.
+journals/kbs/ZhaoCLHLL25	article	2025	journals/kbs	10.1016/j.knosys.2025.113642	6	FedLGMatch: Federated semi-supervised learning via joint local and global pseudo labeling.
+journals/lgrs/LiWW25	article	2025	journals/lgrs	10.1109/lgrs.2025.3554265	3	Hyperspectral Band Selection via Structural Correlation and Information Measures.
+journals/mta/TanSL25	article	2025	journals/mta	10.1007/s11042-024-19404-4	3	Transformer-based multi-level attention integration network for video saliency prediction.
+journals/nca/KoshyS25	article	2025	journals/nca	10.1007/s00521-024-09988-1	2	Detection of tampered real time videos using deep neural networks.
+journals/nn/TianXMLZ25	article	2025	journals/nn	10.1016/j.neunet.2025.107139	5	MDWConv:CNN based on multi-scale atrous pyramid and depthwise separable convolution for long time series forecasting.
+journals/ral/ZuoRLGC25	article	2025	journals/ral	10.1109/lra.2025.3536855	5	MonoTher-Depth: Enhancing Thermal Depth Estimation via Confidence-Aware Distillation.
+journals/sivp/SunXZZZ25	article	2025	journals/sivp	10.1007/s11760-024-03680-6	5	A forest fire detection method based on improved YOLOv5.
+journals/sncs/BathlaA25	article	2025	journals/sncs	10.1007/s42979-025-03718-7	2	Enhancing the Efficiency of Attacker with Improved Fruit Fly Optimization on Random Key Distribution for WSN.
+journals/staeors/XieYXX25	article	2025	journals/staeors	10.1109/jstars.2025.3609308	4	Visual Geo-Localization Based on Pretrained Models With Global and Local Features.
+journals/symmetry/LiZH25	article	2025	journals/symmetry	10.3390/sym17050642	3	Duality-Driven Aspect Sentiment Triplet Extraction with LLM and Iterative Reinforcement.
+journals/systems/HuangfuFHD25	article	2025	journals/systems	10.3390/systems13050319	4	Research on the Relationship Between Structural Characteristics of Corporate Social Networks and Risk-Taking Levels: Evidence from China.
+journals/taes/ZhangLZZ25	article	2025	journals/taes	10.1109/taes.2025.3557398	4	Beam Broadening Design for Large-Scale Antenna Arrays Using Convex Quadratic Programming.
+journals/tase/DuMLH25	article	2025	journals/tase	10.1109/tase.2025.3578550	4	Change-Driven Analysis of Timed Security Requirements for Data-Aware Workflow Processes.
+journals/tce/GhoshZLB25	article	2025	journals/tce	10.1109/tce.2025.3582905	4	Guest Editorial Distributed and Resilient Machine Learning Toward Trustworthy Sustainable Next-G Consumer Electronics.
+journals/tcom/KumarVML25	article	2025	journals/tcom	10.1109/tcomm.2025.3615678	4	Semi-Contention-Free Access in IoT NOMA Networks: A Reinforcement Learning Framework.
+journals/tcsv/ZhouY25	article	2025	journals/tcsv	10.1109/tcsvt.2025.3589800	2	Breaking a New Image Cryptosystem From Three Perspectives.
+journals/tgrs/LinHGLJJW25	article	2025	journals/tgrs	10.1109/tgrs.2025.3547988	7	RS-MoE: A Vision-Language Model With Mixture of Experts for Remote Sensing Image Captioning and Visual Question Answering.
+journals/tie/WangSPCCZ25	article	2025	journals/tie	10.1109/tie.2025.3585055	6	Optimal Event-Triggered Neural Learning Tracking Control for Pneumatic Muscle Antagonistic Joint With Asymmetric Constraints.
+journals/tifs/WangLKLBR25	article	2025	journals/tifs	10.1109/tifs.2025.3598472	6	Liquid Crystal Mimics Your Heart: A Physical Spoofing Attack Against PPG-Based Systems.
+journals/tii/WuWQFL25	article	2025	journals/tii	10.1109/tii.2025.3584548	5	Free Scale 2D-3D Regional Retrieval Based on Cross Modal Information Fusion.
+journals/tim/YanXNZWZCH25	article	2025	journals/tim	10.1109/tim.2025.3604132	8	Induced Voltage Noise Compensation Method Based on CWW + CNN-BiLSTM-Attention.
+journals/tits/QiLGL25	article	2025	journals/tits	10.1109/tits.2024.3486152	4	Multi-Objective Optimization for Robotaxi Dispatch With Safety-Carpooling Mode in Pandemic Era.
+journals/tjs/HeZCWLXW25	article	2025	journals/tjs	10.1007/s11227-024-06496-w	7	A clustering and vector angle-based adaptive evolutionary algorithm for multi-objective optimization with irregular Pareto fronts.
+journals/tnn/TianLZZY25	article	2025	journals/tnn	10.1109/tnnls.2024.3384181	5	MultiFair: Model Fairness With Multiple Sensitive Attributes.
+journals/tvt/LiuLFC25	article	2025	journals/tvt	10.1109/tvt.2025.3587498	4	Radar Estimation Rate Maximization for UAV Assisted Integrated Sensing and Communication.
+conf/aaai/HuangZGXLWXMXH26	inproceedings	2026	conf/aaai	10.1609/aaai.v40i6.42503	10	VasoMIM: Vascular Anatomy-Aware Masked Image Modeling for Vessel Segmentation.
+conf/acl/BalepurROXDGMCR26	inproceedings	2026	conf/acl	10.18653/v1/2026.acl-long.719	10	BenchMarker: An Education-Inspired Toolkit for Highlighting Flaws in Multiple-Choice Benchmarks.
+conf/chi/EppNHFKB26	inproceedings	2026	conf/chi	10.1145/3772363.3778729	6	CHIdeology: Disentangling the fragmented politics, values and imaginaries of Human-Computer Interaction through ideologies.
+conf/eacl/KleidermacherZ26	inproceedings	2026	conf/eacl	10.18653/v1/2026.findings-eacl.204	2	Science Across Languages: Assessing LLM Multilingual Translation of Scientific Papers.
+conf/eccv/LiXSLG26	inproceedings	2026	conf/eccv	10.1007/978-3-032-37196-6_36	5	CaRe: Critical Parameter Rectification for Efficient Visual Modeling.
+conf/hci/LiuWG26	inproceedings	2026	conf/hci	10.1007/978-3-032-29459-3_2	3	The Role of Transparency in Takeover Information for Trust Calibration in Automated Driving Systems.
+conf/icc/LongLWL26	inproceedings	2026	conf/icc	10.1109/icc59461.2026.11587102	4	Energy Harvesting and Reflection Control in Self-Sustainable RIS: A Dynamic Activation Design.
+conf/icic/LvX26	inproceedings	2026	conf/icic	10.1007/978-981-92-3381-6_41	2	Heterogeneous Graph-Enhanced MADDPG for UAV Swarm Formation Control.
+conf/icpr/KongJJ26	inproceedings	2026	conf/icpr	10.1007/978-3-032-31654-7_24	3	MAMVI: 3D Test-Time Adaptation via Masked Multi-view Point Clouds.
+conf/icra/DistelzweigJSVRB26	inproceedings	2026	conf/icra	10.1109/icra57385.2026.11697367	6	Perfect Prediction or Plenty of Proposals? What Matters Most in Planning for Autonomous Driving.
+conf/ijcai/YangFCWAH26	inproceedings	2026	conf/ijcai	10.24963/ijcai.2026/574	6	PA-GMAE: A Position-Assigned Graph Masked Autoencoder for Point Cloud Representation Learning.
+conf/ijcnn/HuNXLXM26	inproceedings	2026	conf/ijcnn	10.1109/ijcnn69854.2026.11730052	6	Two-stage Gradient Vectorization via SAM Guidance and Differentiable Rendering.
+conf/interspeech/GuT26	inproceedings	2026	conf/interspeech	10.21437/interspeech.2026-1290	2	Mutual Cancellation between Masking Effects Benefits Speech Intelligibility.
+conf/iscas/ZhengJZWS26	inproceedings	2026	conf/iscas	10.1109/iscas66217.2026.11562113	5	A 28nm 56.45TOPS/W Hardware-software Co-optimized Sparse Accelerator for Traditional DNNs and Transformer-based LLMs.
+conf/kdd/ParkLK26	inproceedings	2026	conf/kdd	10.1145/3770854.3780203	3	Fast and Accurate Online Coupled Matrix-Tensor Factorization via Frequency Regularization.
+conf/lrec/GlazkovaLM26	inproceedings	2026	conf/lrec	10.63317/27p9pbh4oods	3	CEFR Level Prediction for Short Russian L2 Texts: Evaluating Classifiers and Instruction-Based LLMs.
+conf/miccai/LiS26	inproceedings	2026	conf/miccai	10.1007/978-3-032-38470-6_49	2	HERO: Hypothesis-Driven Evidence Retrieval from Omics for Multi-task Breast Cancer Analysis.
+conf/wacv/WuZLAGZDWK26	inproceedings	2026	conf/wacv	10.1109/wacv61042.2026.00044	9	Overcoming Fine-Grained Visual Challenges in Animal Re-Identification via Semantic Feature Alignment.
+conf/www/HuLFY26	inproceedings	2026	conf/www	10.1145/3774904.3792219	4	GraphTARIF: Linear Graph Transformer with Augmented Rank and Improved Focus.
+journals/access/YardimciE26	article	2026	journals/access	10.1109/access.2026.3659920	2	A Multiscale Deep Learning Framework With Genetic Algorithm-Optimized Inception Architecture for Defect Classification of Polyacrylonitrile Nanofibers.
+journals/aei/LiJZZ26	article	2026	journals/aei	10.1016/j.aei.2026.104513	4	Mixture probability density function control based deep fuzzy-inference Wiener model with spatiotemporal correlation for wind power prediction.
+journals/asc/WanPSRP26	article	2026	journals/asc	10.1016/j.asoc.2026.115292	5	Adaptive railway alignment optimization via graph convolutional network-enhanced reinforcement learning in constrained environments.
+journals/bspc/PanCLZR26	article	2026	journals/bspc	10.1016/j.bspc.2026.110807	5	Construction and validation of a lightweight lung sound classification model assisted by physical simulation.
+journals/cea/LiLLMZ26	article	2026	journals/cea	10.1016/j.compag.2026.111613	5	Growth monitoring of rice based on UAV hyperspectral images and improved deep learning method: The QRCNN-BIGRU-MLLA network.
+journals/cnsns/WangYJ26	article	2026	journals/cnsns	10.1016/j.cnsns.2025.109319	3	Fixed-time cluster scaled consensus for multi-agent systems with only cooperative communication.
+journals/corr/abs-2602-19768	article	2026	journals/corr	10.48550/arxiv.2602.19768	9	TraceVision: Trajectory-Aware Vision-Language Model for Human-Like Spatial Understanding.
+journals/corr/abs-2608-00624	article	2026	journals/corr	10.48550/arxiv.2608.00624	5	Can Perplexity Serve as a Cognitive Signal for Code Understandability?
+journals/dai/GargBCPGVS26	article	2026	journals/dai	10.1007/s44163-026-01035-3	7	Multifaceted structural classification of Indian legal judgments.
+journals/dsp/WangSZZLW26	article	2026	journals/dsp	10.1016/j.dsp.2026.106495	6	ScaleFusionNet: Adaptive dynamic fusion for blind AIGC image quality assessment.
+journals/eaai/SekhriKT26	article	2026	journals/eaai	10.1016/j.engappai.2025.113330	3	Extensive review of microwave filter tuning techniques with a novel tuning Technique based on Dezert-Smarandache theory and machine learning.
+journals/eswa/SongWL26	article	2026	journals/eswa	10.1016/j.eswa.2026.131271	3	Deep reinforcement learning based topology optimization of triangular meshes.
+journals/ijon/HeWLLZXLL26	article	2026	journals/ijon	10.1016/j.neucom.2026.134180	8	Inclusion arena: A theoretically grounded framework for evaluating large foundation models via application-embedded pairwise comparisons.
+journals/inffus/PanWJMYL26	article	2026	journals/inffus	10.1016/j.inffus.2025.103984	6	PairHuman: A high-fidelity photographic dataset for customized dual-person generation.
+journals/iotj/ZhaoUMARMC26	article	2026	journals/iotj	10.1109/jiot.2026.3720401	7	Federated Metalearning-Driven Self-Organizing Maps for Edge-Based Privacy-Preserving Intrusion Detection in Industrial IoT.
+journals/isci/LopezGarciaBMFG26	article	2026	journals/isci	10.1016/j.ins.2026.123896	5	Highlighting true alerts in false-positive-heavy intrusion detection systems outputs through unsupervised community detection and large language models.
+journals/jcisd/DengCJGXH26	article	2026	journals/jcisd	10.1021/acs.jcim.6c00821	6	ProtSATT: An Advanced Protein Solubility Predictor Based on Attention Mechanism.
+journals/jksucis/YanYWXH26	article	2026	journals/jksucis	10.1007/s44443-026-01291-4	5	FedCORE: federated knowledge collaboration via orchestration and reciprocal enhancement for model-heterogeneous personalized federated learning.
+journals/kbs/LiLFZ26	article	2026	journals/kbs	10.1016/j.knosys.2026.115899	4	PG2CTDL: Pixel and gradient decorrelation guided coupled tensor dictionary learning for multimodal image fusion.
+journals/nn/KumarAG26	article	2026	journals/nn	10.1016/j.neunet.2025.108520	3	A unified framework for EEG seizure detection using universum-integrated generalized eigenvalues proximal support vector machine.
+journals/pami/LuZCZLWRXGY26	article	2026	journals/pami	10.1109/tpami.2026.3689388	10	ThermalGaussian++: Improving Alignment and Resolution for ThermalGaussian.
+journals/pr/LuPWSLZM26	article	2026	journals/pr	10.1016/j.patcog.2026.113936	7	ACSD-Net: SSM-based feature extraction with confidence-guided dynamic fusion for multimodal AxSpA abnormal pattern recognition.
+journals/ral/TabriziCDYSLJT26	article	2026	journals/ral	10.1109/lra.2026.3682980	8	DIJIT: A Robotic Head for an Active Observer.
+journals/ress/TongLZWM26	article	2026	journals/ress	10.1016/j.ress.2025.111882	5	Enhancing urban system safety through urban resilience: A case study of Ningbo, China.
+journals/taes/YangWLWZX26	article	2026	journals/taes	10.1109/taes.2026.3689034	6	3-D Squint InISAR Imaging Technique for Maneuvering Ship Targets Under Nonorthogonal Baseline Configuration via the Joint Distortion Correction.
+journals/tase/LiangCLSF26	article	2026	journals/tase	10.1109/tase.2026.3717449	5	Min-Max Regret Task Allocation and Planning of Heterogeneous Multi-Robot System in Partially Known Environments.
+journals/tccn/LiuLXFZJ26	article	2026	journals/tccn	10.1109/tccn.2026.3720213	6	Distributed Routing for LEO Satellite Networks: A Multi-Agent Deep Reinforcement Learning Approach With State Information Lag.
+journals/tcom/KimNKPLKJC26	article	2026	journals/tcom	10.1109/tcomm.2026.3734323	8	Analysis of Beam Misalignment Effect in Inter-Satellite FSO Links.
+journals/tcsv/LuXTWL26	article	2026	journals/tcsv	10.1109/tcsvt.2025.3602970	5	Medical VLP Model Is Vulnerable: Toward Multimodal Adversarial Attack on Large Medical Vision-Language Models.
+journals/tie/LiSSZ26	article	2026	journals/tie	10.1109/tie.2025.3598184	4	Parameter-Free Model Predictive Control With Series Structure for Permanent Magnet Synchronous Motors.
+journals/tits/WuHHTCW26	article	2026	journals/tits	10.1109/tits.2026.3705445	6	A Trajectory Planning Method for Unpaved Roads Based on Dynamics Response Prediction.
+journals/tmc/YeSF26	article	2026	journals/tmc	10.1109/tmc.2026.3667676	3	Unlicensed Millimeter-Wave NR-U and WiGig Coexistence: A Hybrid Deep Reinforcement Learning Approach.
+journals/tvt/LiLYS26	article	2026	journals/tvt	10.1109/tvt.2025.3613379	4	Heuristic Priority Scheduling Algorithm at Unsignalized Intersections: An Efficient Method Based on Vehicle Conflict.
+journals/twc/SarkarSKLD26	article	2026	journals/twc	10.1109/twc.2025.3622125	5	Deep Learning for Robust ARIS-Aided Multiuser MIMO Networks With Channel Uncertainty.
+journals/wcl/CetinkayaAA26	article	2026	journals/wcl	10.1109/lwc.2026.3669183	3	Low-Complexity Beam Selection via Beam Range Biasing for Beamspace MIMO Systems.
+journals/eswa/WangSLM27	article	2027	journals/eswa	10.1016/j.eswa.2026.134264	4	AGP-MADDPG: A* Guidance Point based Multi-Agent Deep Deterministic Policy Gradient for 3D cooperative multi-UAV trajectory planning.
+journals/ress/DongXLFDY27	article	2027	journals/ress	10.1016/j.ress.2026.113371	6	Multi-dimensional resilience characterization and optimization of equipment system-of-systems considering dynamic load balancing.

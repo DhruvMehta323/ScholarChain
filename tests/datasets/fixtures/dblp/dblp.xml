@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE dblp SYSTEM "dblp.dtd">
+<dblp>
+<article mdate="2023-01-01" key="journals/tods/A1">
+<author>Author 0</author>
+<author>Author 1</author>
+<title>Alpha graphs</title>
+<year>2020</year>
+<ee>https://doi.org/10.1234/abc.1</ee>
+</article>
+<article mdate="2023-01-01" key="journals/tods/A2">
+<author>Author 0</author>
+<author>Author 1</author>
+<author>Author 2</author>
+<title>Beta trees</title>
+<year>2020</year>
+<ee>https://doi.org/10.1234/abc.2</ee>
+</article>
+<inproceedings mdate="2023-01-01" key="conf/icse/A3">
+<author>Author 0</author>
+<author>Author 1</author>
+<title>Gamma paths</title>
+<year>2021</year>
+<ee>https://doi.org/10.1234/abc.3</ee>
+</inproceedings>
+<inproceedings mdate="2023-01-01" key="conf/icse/A4">
+<author>Author 0</author>
+<author>Author 1</author>
+<title>Delta M&uuml;ller</title>
+<year>2021</year>
+<ee>https://doi.org/10.1234/abc.4</ee>
+</inproceedings>
+<inproceedings mdate="2023-01-01" key="conf/icse/A5">
+<author>Author 0</author>
+<title>Epsilon single author</title>
+<year>2022</year>
+<ee>https://doi.org/10.1234/abc.5</ee>
+</inproceedings>
+<article mdate="2023-01-01" key="journals/tods/A6">
+<author>Author 0</author>
+<author>Author 1</author>
+<title>Zeta sets</title>
+<year>2022</year>
+<ee>https://doi.org/10.1234/abc.6</ee>
+</article>
+</dblp>

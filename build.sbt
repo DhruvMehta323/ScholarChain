@@ -82,7 +82,11 @@ lazy val core = (project in file("modules/core"))
   .settings(commonSettings)
   .settings(
     name := "scholarchain-core",
-    libraryDependencies ++= Seq(Dependencies.upickle, Dependencies.slf4jApi),
+    libraryDependencies ++= Seq(
+      Dependencies.upickle,
+      Dependencies.slf4jApi,
+      Dependencies.typesafeConfig,
+    ),
   )
 
 lazy val hadoop = (project in file("modules/hadoop"))

@@ -2,6 +2,7 @@
 // Owned by dependency-updater. This file holds version values only:
 // no logic, no dependency definitions, no ModuleIDs.
 // build-engineer references these constants from build.sbt and project/Dependencies.scala.
+// project/plugins.sbt also reads these constants textually (it cannot reference the object).
 
 object Versions {
   // Languages and runtimes
@@ -17,6 +18,8 @@ object Versions {
   val munit   = "1.3.6"
   val logback = "1.5.38"
   val slf4j   = "2.0.17"
+
+  val typesafeConfig = "1.4.10"
 
   // Formatting
   val scalafmt = "3.11.5"

@@ -41,6 +41,7 @@ The /agents command no longer exists in Claude Code 2.1.311, so the agents were 
 - No agent-generated constitutional file was edited by hand.
 
 ## Disclosures
+- Claude Code ran in accept-edits mode: file writes were applied automatically and every shell command required my approval. (Auto mode was used only in Phase 00.)
 - All the files were reviewed in accept edit mode.
 - The hooks became active in the working session immediately, before ratification; Claude Code reads them on every call.
 - The four MCP servers in .mcp.json were not enabled. They need credentials and the uv tool, and are deferred to Phase 12.
