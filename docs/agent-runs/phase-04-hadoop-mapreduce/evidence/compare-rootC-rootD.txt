@@ -1,0 +1,9 @@
+author-mentions              rows A=  4711 B=  4711 sha256(A)=84636ef429bb7e3c sha256(B)=84636ef429bb7e3c EQUAL
+authorship                   rows A=  3928 B=  3928 sha256(A)=fa745972b7e0a3a6 sha256(B)=fa745972b7e0a3a6 EQUAL
+exact-identifier-evidence    rows A=   296 B=   296 sha256(A)=e534fdbaa9dab184 sha256(B)=e534fdbaa9dab184 EQUAL
+institutions                 rows A=   250 B=   250 sha256(A)=661830fb9c8f62ee sha256(B)=661830fb9c8f62ee EQUAL
+pair-candidates              rows A=  8420 B=  8420 sha256(A)=29d8809b7bae7150 sha256(B)=29d8809b7bae7150 EQUAL
+teams                        rows A=  1000 B=  1000 sha256(A)=78a48c538c6ec67f sha256(B)=78a48c538c6ec67f EQUAL
+topics                       rows A=   206 B=   206 sha256(A)=2e56d1c664d0fac7 sha256(B)=2e56d1c664d0fac7 EQUAL
+works                        rows A=  8295 B=  8295 sha256(A)=f9dcb97ab1362200 sha256(B)=f9dcb97ab1362200 EQUAL
+RESULT: ALL TABLES EQUAL

@@ -1,0 +1,5 @@
+{"_synthetic": true, "identifier": "W1000001", "retrieved_at": "2026-01-01T00:00:00Z", "http_status": 200, "missing": false, "body_is_json": true,
+ "body": {"id": "https://openalex.org/W1000001", "doi": "https://doi.org/10.1000/UNIT.OA1", "title": "OpenAlex Unit Title", "publication_year": 2022,
+  "authorships": [{"author": {"id": "https://openalex.org/A5000001", "display_name": "Olga Test", "orcid": "https://orcid.org/0000-0002-1825-0097"},
+   "institutions": [{"id": "https://openalex.org/I100", "display_name": "Synthetic Institute", "country_code": "US"}]}],
+  "topics": [{"id": "https://openalex.org/T10", "display_name": "Unit Topic"}]}}

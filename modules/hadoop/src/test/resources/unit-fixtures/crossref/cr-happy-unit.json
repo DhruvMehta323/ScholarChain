@@ -1,0 +1,3 @@
+{"_synthetic": true, "identifier": "10.1000/UNIT.CR1", "request_url": "https://example.invalid/x", "retrieved_at": "2026-01-01T00:00:00Z", "http_status": 200, "missing": false, "body_is_json": true,
+ "body": {"status": "ok", "message": {"DOI": "10.1000/UNIT.CR1", "title": ["Unit <i>Title</i> &amp; More"], "issued": {"date-parts": [[2021, 5]]},
+  "subject": ["Unit Topic"], "author": [{"given": "Una", "family": "Test", "ORCID": "http://orcid.org/0000-0002-1825-0097", "affiliation": [{"name": "Synthetic Institute"}]}, {"name": "Consortium Unit"}]}}}

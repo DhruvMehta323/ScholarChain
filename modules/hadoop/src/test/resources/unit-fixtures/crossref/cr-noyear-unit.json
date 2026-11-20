@@ -1,0 +1,2 @@
+{"_synthetic": true, "identifier": "10.1000/unit.cr2", "retrieved_at": "2026-01-01T00:00:00Z", "http_status": 200, "missing": false, "body_is_json": true,
+ "body": {"status": "ok", "message": {"DOI": "10.1000/unit.cr2", "title": ["No Year Here"], "author": [{"given": "Una", "family": "Test"}]}}}

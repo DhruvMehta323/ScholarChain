@@ -69,6 +69,16 @@ object ConfigLoader:
   def fileLayer(path: Path): Either[List[ValidationError], Map[String, String]] =
     parse(ConfigFactory.parseFile(path.toFile, parseOptions))
 
+  /** Module-scoped file layer: parses a versioned classpath resource and keeps only `keys`. The
+    * same parser rules as above apply (no system properties, no `application.conf`, substitutions
+    * confined to the file). Used by `ModuleConfig.load`.
+    */
+  private[core] def moduleFileLayer(
+      resource: String,
+      keys: List[ConfigKey],
+  ): Either[List[ValidationError], Map[String, String]] =
+    parse(ConfigFactory.parseResources(getClass.getClassLoader, resource, parseOptions), keys)
+
   private def resolveWith(
       env: Map[String, String],
       layer: Map[String, String],
@@ -76,7 +86,10 @@ object ConfigLoader:
     ConfigResolver.resolve(env, layer)
 
   /** Runs the (throwing) HOCON parse and flattening inside one total boundary. */
-  private def parse(load: => Config): Either[List[ValidationError], Map[String, String]] =
+  private def parse(
+      load: => Config,
+      keys: List[ConfigKey] = ConfigKeys.all,
+  ): Either[List[ValidationError], Map[String, String]] =
     val loaded =
       try Right(load.resolve(resolveOptions))
       catch
@@ -88,13 +101,16 @@ object ConfigLoader:
           Left(InvalidConfig(FileKey, "has an unresolved substitution"))
         case NonFatal(_) =>
           Left(InvalidConfig(FileKey, "cannot be loaded"))
-    loaded.left.map(List(_)).flatMap(flatten)
+    loaded.left.map(List(_)).flatMap(flatten(_, keys))
 
   /** Keeps the declared keys only. A required or optional key holding an object or a list is an
     * error. A `null` counts as absent.
     */
-  private def flatten(cfg: Config): Either[List[ValidationError], Map[String, String]] =
-    val entries = ConfigKeys.all.map { k =>
+  private def flatten(
+      cfg: Config,
+      keys: List[ConfigKey],
+  ): Either[List[ValidationError], Map[String, String]] =
+    val entries = keys.map { k =>
       try
         if !cfg.hasPathOrNull(k.key) || cfg.getIsNull(k.key) then Right(None)
         else

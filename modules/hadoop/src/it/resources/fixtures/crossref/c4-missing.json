@@ -1,0 +1,12 @@
+{
+ "_synthetic": true,
+ "identifier": "10.1000/gone",
+ "request_url": "https://example.invalid/x",
+ "retrieved_at": "2026-01-01T00:00:00Z",
+ "http_status": 404,
+ "missing": true,
+ "response_content_type": "application/json",
+ "body_is_json": true,
+ "body": null,
+ "fetcher_code_version": "synthetic"
+}

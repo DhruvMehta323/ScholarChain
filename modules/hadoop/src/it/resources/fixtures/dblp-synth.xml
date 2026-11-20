@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- SYNTHETIC FIXTURE (not DBLP data) -->
+<!DOCTYPE dblp SYSTEM "dblp.dtd">
+<dblp>
+<article mdate="2020-01-01" key="journals/synth/Alpha20">
+<author orcid="0000-0002-1825-0097">Anna M&uuml;ller</author>
+<author>Bob Stone</author>
+<author>José Ríos</author>
+<title>Deep <i>Learning</i> for
+ Synthetic Data.</title>
+<year>2020</year>
+<journal>J. Synth.</journal>
+<volume>3</volume>
+<ee>https://doi.org/10.1000/SYNTH.ALPHA</ee>
+<ee>https://arxiv.org/abs/2001.01234v2</ee>
+</article>
+<inproceedings mdate="2020-01-01" key="conf/synth/Beta21">
+<author>Wei Wang 0001</author>
+<author>Wei Wang 0002</author>
+<author orcid="0000-0002-9079-593X">Cy Dee</author>
+<editor>Ed Itor</editor>
+<title>Beta &ndash; A Study.</title>
+<year>2021</year>
+<booktitle>SYNTH</booktitle>
+<ee>https://doi.org/10.1000/beta</ee>
+</inproceedings>
+<article mdate="2020-01-01" key="journals/synth/Gamma22">
+<author>Dan Poe</author>
+<author>Dan Poe</author>
+<author>Eve Ray</author>
+<title>Gamma.</title>
+<year>2022</year>
+<ee>https://doi.org/10.1000/gamma</ee>
+</article>
+<article mdate="2020-01-01" key="journals/synth/Delta22">
+<author orcid="0000-0002-9079-593X">A One</author>
+<author>B Two</author>
+<author>C Three</author>
+<author>D Four</author>
+<author>E Five</author>
+<title>Delta.</title>
+<year>2022</year>
+<ee>https://doi.org/10.1000/delta</ee>
+</article>
+<article mdate="2020-01-01" key="journals/synth/Epsilon23">
+<author>F1 X</author>
+<author>F2 X</author>
+<author>F3 X</author>
+<author>F4 X</author>
+<author>F5 X</author>
+<author>F6 X</author>
+<title>Epsilon.</title>
+<year>2023</year>
+<ee>https://doi.org/10.1000/epsilon</ee>
+</article>
+<article mdate="2020-01-01" key="journals/synth/Alpha20">
+<author>Other Person</author>
+<author>Another Person</author>
+<title>Alpha duplicate copy.</title>
+<year>2020</year>
+</article>
+<article mdate="2020-01-01" key="journals/synth/NoTitle">
+<author>T One</author>
+<author>T Two</author>
+<year>2020</year>
+</article>
+<article mdate="2020-01-01" key="journals/synth/NoYear">
+<author>Y One</author>
+<author>Y Two</author>
+<title>No year.</title>
+</article>
+<article mdate="2020-01-01" key="journals/synth/NoAuth">
+<editor>Only Editor</editor>
+<title>No authors.</title>
+<year>2020</year>
+</article>
+<data mdate="2020-01-01" key="data/synth/Dat1">
+<author>D One</author>
+<title>A dataset.</title>
+<year>2020</year>
+</data>
+<article mdate="2020-01-01" key="journals/synth/BadEnt">
+<author>B One</author>
+<author>B Two</author>
+<title>Unknown &bogus; entity.</title>
+<year>2020</year>
+</article>
+<www mdate="2020-01-01" key="homepages/s/WeiWang">
+<author>Wei Wang 0001</author>
+<author>Wei Wang</author>
+<url>https://orcid.org/0000-0002-1825-0097</url>
+<url>https://example.org/ww</url>
+</www>
+<book mdate="2020-01-01" key="books/synth/Book1">
+<author>K One</author>
+<author orcid="0000-0002-9079-593X">K Two</author>
+<title>A Book.</title>
+<year>2019</year>
+</book>
+<article mdate="2020-01-01" key="journals/synth/Zeta23">
+<author>Z One</author>
+<author>Z Two</author>
+<title>Zeta.</title>
+<year>2023</year>
+<ee>https://doi.org/10.1000/shared</ee>
+</article>
+<article mdate="2020-01-01" key="journals/synth/Eta23">
+<author>H One</author>
+<author>H Two</author>
+<title>Eta.</title>
+<year>2023</year>
+<ee>https://doi.org/10.1000/SHARED</ee>
+</article>
+</dblp>

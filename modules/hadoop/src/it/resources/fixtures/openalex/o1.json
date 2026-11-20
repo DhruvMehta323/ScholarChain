@@ -1,0 +1,47 @@
+{
+ "_synthetic": true,
+ "identifier": "10.1000/synth.alpha",
+ "request_url": "https://example.invalid/x",
+ "retrieved_at": "2026-01-01T00:00:00Z",
+ "http_status": 200,
+ "missing": false,
+ "response_content_type": "application/json",
+ "body_is_json": true,
+ "body": {
+  "id": "https://openalex.org/W111",
+  "doi": "https://doi.org/10.1000/synth.alpha",
+  "title": "Deep Learning for Synthetic Data",
+  "publication_year": 2020,
+  "authorships": [
+   {
+    "author": {
+     "id": "https://openalex.org/A222",
+     "display_name": "Anna Mueller",
+     "orcid": "https://orcid.org/0000-0002-1825-0097"
+    },
+    "institutions": [
+     {
+      "id": "https://openalex.org/I333",
+      "display_name": "Synthetic University",
+      "country_code": "DE"
+     }
+    ]
+   },
+   {
+    "author": {
+     "id": "https://openalex.org/A444",
+     "display_name": "Bob Stone",
+     "orcid": null
+    },
+    "institutions": []
+   }
+  ],
+  "topics": [
+   {
+    "id": "https://openalex.org/T555",
+    "display_name": "Synthetic Topic"
+   }
+  ]
+ },
+ "fetcher_code_version": "synthetic"
+}

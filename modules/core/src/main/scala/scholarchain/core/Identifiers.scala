@@ -144,6 +144,17 @@ object Doi:
         .toArray
         .forall(cp => !(cp <= 0xffff && isWs(cp.toChar)) && !isCtrl(cp))
 
+  /** True when the (whitespace-trimmed) input starts with one of the four DOI resolver URL
+    * prefixes, ASCII-case-insensitively. It says nothing about whether the DOI itself is valid:
+    * pass the input to `normalize` for that. No second DOI rule: this only reuses the prefix list.
+    */
+  def isDoiUrl(input: String): Boolean =
+    val start = input.indexWhere(c => !isWs(c)) match
+      case -1 => input.length
+      case i  => i
+    val trimmed = input.substring(start)
+    UrlPrefixes.exists(startsWithAsciiCi(trimmed, _))
+
   def normalize(input: String): Either[ValidationError, String] =
     def bad(reason: String) = Left(InvalidDoi(input, reason))
     var start               = 0
@@ -168,6 +179,183 @@ object Doi:
           if lower.isEmpty then bad("empty after normalization")
           else if shapeOk(lower) then Right(lower)
           else bad("does not match 10.<4-9 digits>/<suffix without whitespace or control>")
+
+/** Title key (frozen; it is the title component of the fallback work ID, `Ids.workIdFallback`).
+  * Rule: NFKC normalize, lowercase with `Locale.ROOT`, `String.trim` (removes characters <= U+0020
+  * at both ends), then collapse each run of Java regex `\s` characters to one U+0020. The result
+  * may be empty; `Ids.workIdFallback` rejects an empty key. Changing this function changes every
+  * fallback work ID, so it is a breaking contract change.
+  */
+object Titles:
+  def titleKey(title: String): String =
+    Normalizer
+      .normalize(title, Normalizer.Form.NFKC)
+      .toLowerCase(Locale.ROOT)
+      .trim
+      .replaceAll("\\s+", " ")
+
+/** A parsed arXiv identifier: canonical id (no version) and the version, when one was given. */
+final case class ArxivRef(id: String, version: Option[Int])
+
+/** arXiv identifier normalization (new contract, schema 1).
+  *
+  * Rule:
+  *   1. Trim with the same whitespace set as `Doi` (`Doi.isWs`).
+  *   2. Remove at most one prefix, ASCII-case-insensitively: `arxiv:` (followed by zero or more
+  *      U+0020), or `http(s)://arxiv.org/abs/`, `http(s)://arxiv.org/pdf/` (also with `www.`).
+  *      After a `/pdf/` prefix a trailing `.pdf` is removed. No percent-decoding, query or fragment
+  *      is accepted.
+  *   3. Lowercase ASCII `A-Z`.
+  *   4. The body must be one of:
+  *      - new style `YYMM.NNNN` (YYMM from 0704 to 1412) or `YYMM.NNNNN` (YYMM from 1501), with MM
+  *        01-12;
+  *      - old style `archive/YYMMNNN`, archive = `[a-z]+(-[a-z]+)*` with an optional `.xx` subject
+  *        class (two or more lowercase letters), MM 01-12, YY 91-99 or 00-07, NNN 3 digits. each
+  *        optionally followed by `v<N>` with N in 1-9999.
+  *
+  * Canonical form: lowercase, WITHOUT the version (versions are revisions of one paper, so identity
+  * linking must not depend on them). `parse` returns the version separately. Every rejection is
+  * `Left(InvalidArxiv(input, reason))` carrying the original input.
+  */
+object ArxivId:
+  private val UrlPrefixes = List(
+    "https://arxiv.org/abs/",
+    "http://arxiv.org/abs/",
+    "https://www.arxiv.org/abs/",
+    "http://www.arxiv.org/abs/",
+    "https://arxiv.org/pdf/",
+    "http://arxiv.org/pdf/",
+    "https://www.arxiv.org/pdf/",
+    "http://www.arxiv.org/pdf/",
+  )
+  private val Scheme = "arxiv:"
+
+  private val NewStyle = """^([0-9]{2})(0[1-9]|1[0-2])\.([0-9]{4,5})(?:v([1-9][0-9]{0,3}))?$""".r
+  private val OldStyle =
+    """^([a-z]+(?:-[a-z]+)*(?:\.[a-z]{2,})?)/([0-9]{2})(0[1-9]|1[0-2])([0-9]{3})(?:v([1-9][0-9]{0,3}))?$""".r
+
+  private def lower(s: String): String =
+    s.map(c => if c >= 'A' && c <= 'Z' then (c + 32).toChar else c)
+
+  private def startsWithCi(s: String, prefix: String): Boolean =
+    s.length >= prefix.length && lower(s.substring(0, prefix.length)) == prefix
+
+  private def trim(input: String): String =
+    var start = 0
+    var end   = input.length
+    while start < end && Doi.isWs(input.charAt(start)) do start += 1
+    while end > start && Doi.isWs(input.charAt(end - 1)) do end -= 1
+    input.substring(start, end)
+
+  /** True when the trimmed input starts with an arXiv abs/pdf URL prefix. */
+  def isArxivUrl(input: String): Boolean =
+    val t = trim(input)
+    UrlPrefixes.exists(startsWithCi(t, _))
+
+  def parse(input: String): Either[ValidationError, ArxivRef] =
+    def bad(reason: String) = Left(InvalidArxiv(input, reason))
+    val t                   = trim(input)
+    val body                =
+      UrlPrefixes.find(startsWithCi(t, _)) match
+        case Some(p) =>
+          val b = t.substring(p.length)
+          if p.endsWith("/pdf/") && lower(b).endsWith(".pdf") then b.dropRight(4) else b
+        case None =>
+          if startsWithCi(t, Scheme) then t.substring(Scheme.length).dropWhile(_ == ' ') else t
+    lower(body) match
+      case NewStyle(yy, mm, n, v) =>
+        val ym = yy.toInt * 100 + mm.toInt
+        if ym < 704 then bad("new-style identifiers start at 0704")
+        else if ym <= 1412 && n.length != 4 then bad("identifiers up to 1412 have 4 digits")
+        else if ym > 1412 && ym < 1501 then bad("invalid year-month")
+        else if ym >= 1501 && n.length != 5 then bad("identifiers from 1501 have 5 digits")
+        else Right(ArxivRef(s"$yy$mm.$n", Option(v).map(_.toInt)))
+      case OldStyle(archive, yy, mm, n, v) =>
+        val y = yy.toInt
+        if y >= 8 && y <= 90 then bad("old-style identifiers cover 1991 to 2007")
+        else Right(ArxivRef(s"$archive/$yy$mm$n", Option(v).map(_.toInt)))
+      case _ => bad("does not match YYMM.NNNN(N) or archive/YYMMNNN, with optional vN")
+
+  /** Canonical arXiv id (lowercase, version stripped). */
+  def normalize(input: String): Either[ValidationError, String] = parse(input).map(_.id)
+
+/** OpenAlex entity kind, by the leading letter of its ID. */
+enum OpenAlexEntity(val letter: Char, val apiPath: String):
+  case Work        extends OpenAlexEntity('W', "works")
+  case Author      extends OpenAlexEntity('A', "authors")
+  case Institution extends OpenAlexEntity('I', "institutions")
+  case Source      extends OpenAlexEntity('S', "sources")
+  case Topic       extends OpenAlexEntity('T', "topics")
+
+/** A parsed OpenAlex ID: the entity kind and the canonical ID (`W2741809807`). */
+final case class OpenAlexRef(entity: OpenAlexEntity, id: String)
+
+/** OpenAlex ID normalization (new contract, schema 1).
+  *
+  * Rule:
+  *   1. Trim with the same whitespace set as `Doi` (`Doi.isWs`).
+  *   2. Remove at most one prefix, ASCII-case-insensitively: `http(s)://openalex.org/`, or
+  *      `http(s)://api.openalex.org/<kind>/` where `<kind>` (`works`, `authors`, `institutions`,
+  *      `sources`, `topics`) must agree with the ID's letter. No query, fragment, trailing slash or
+  *      percent-decoding is accepted.
+  *   3. The body is one entity letter (W works, A authors, I institutions, S sources, T topics; any
+  *      case) followed by 1 to 12 ASCII digits, the first not 0 (so one number has one form). Other
+  *      entity kinds (concepts, funders, publishers, ...) are rejected.
+  *
+  * Canonical form: uppercase letter plus digits, no URL. Every rejection is
+  * `Left(InvalidOpenAlex(input, reason))` carrying the original input.
+  */
+object OpenAlexId:
+  private val Site = """(?i)^https?://openalex\.org/(.*)$""".r
+  private val Api  = """(?i)^https?://api\.openalex\.org/([a-z]+)/(.*)$""".r
+  private val Body = """^([A-Za-z])([1-9][0-9]{0,11})$""".r
+
+  private def trim(input: String): String =
+    var start = 0
+    var end   = input.length
+    while start < end && Doi.isWs(input.charAt(start)) do start += 1
+    while end > start && Doi.isWs(input.charAt(end - 1)) do end -= 1
+    input.substring(start, end)
+
+  def parse(input: String): Either[ValidationError, OpenAlexRef] =
+    def bad(reason: String) = Left(InvalidOpenAlex(input, reason))
+    val (body, apiKind)     =
+      trim(input) match
+        case Site(b)   => (b, None)
+        case Api(k, b) => (b, Some(k.toLowerCase(Locale.ROOT)))
+        case other     => (other, None)
+    body match
+      case Body(l, digits) =>
+        val letter = l.charAt(0).toUpper
+        OpenAlexEntity.values.find(_.letter == letter) match
+          case None         => bad("unsupported entity kind (accepted: W, A, I, S, T)")
+          case Some(entity) =>
+            if apiKind.exists(_ != entity.apiPath) then bad("API path does not match the ID letter")
+            else Right(OpenAlexRef(entity, s"$letter$digits"))
+      case _ => bad("does not match <W|A|I|S|T><1-12 digits, no leading zero>")
+
+  /** Canonical OpenAlex ID (uppercase letter plus digits). */
+  def normalize(input: String): Either[ValidationError, String] = parse(input).map(_.id)
+
+/** An external identifier found in a link. */
+final case class ExternalId(identifierType: IdentifierType, value: String)
+
+/** Extracts identifiers from bibliographic links such as a DBLP `ee` URL. It only delegates to
+  * `Doi.normalize` and `ArxivId.normalize`; it adds no identifier rule of its own.
+  */
+object ExternalLinks:
+  /** `Right(None)`: the link is neither a DOI resolver URL nor an arXiv abs/pdf URL. `Left`: the
+    * link has such a prefix but the identifier inside is invalid.
+    */
+  def fromEe(ee: String): Either[ValidationError, Option[ExternalId]] =
+    if Doi.isDoiUrl(ee) then Doi.normalize(ee).map(d => Some(ExternalId(IdentifierType.Doi, d)))
+    else if ArxivId.isArxivUrl(ee) then
+      ArxivId.normalize(ee).map(a => Some(ExternalId(IdentifierType.Arxiv, a)))
+    else Right(None)
+
+  /** The canonical DOI of a link, or `Right(None)` when it is not a DOI URL. */
+  def doiFromEe(ee: String): Either[ValidationError, Option[String]] =
+    if Doi.isDoiUrl(ee) then Doi.normalize(ee).map(Some(_)) else Right(None)
 
 /** ORCID iD handling. Canonical form `dddd-dddd-dddd-dddX` (uppercase X) with the ISO 7064 mod 11-2
   * check digit verified. Accepts an optional `https://orcid.org/` or `http://orcid.org/` prefix.
@@ -231,6 +419,31 @@ object OrderedPair:
         else if x.compareTo(y) < 0 then Right(OrderedPair(x, y))
         else Right(OrderedPair(y, x))
     yield p
+
+  /** Same canonical rule (`first` < `second` by `String.compareTo`, no self-pair) for two author
+    * mention IDs (`mention:<hex>`), regardless of argument order.
+    */
+  def canonicalMentions(x: String, y: String): Either[ValidationError, OrderedPair] =
+    for
+      _ <- Ids.checkMentionId(x)
+      _ <- Ids.checkMentionId(y)
+      p <-
+        if x == y then Left(InvalidPair(x, y, "self-pair"))
+        else if x.compareTo(y) < 0 then Right(OrderedPair(x, y))
+        else Right(OrderedPair(y, x))
+    yield p
+
+  /** Rejects a mention pair that is not already in canonical order. */
+  def validateMentions(p: OrderedPair): Either[ValidationError, OrderedPair] =
+    for
+      _ <- Ids.checkMentionId(p.first)
+      _ <- Ids.checkMentionId(p.second)
+      v <-
+        if p.first == p.second then Left(InvalidPair(p.first, p.second, "self-pair"))
+        else if p.first.compareTo(p.second) > 0 then
+          Left(InvalidPair(p.first, p.second, "not in canonical order"))
+        else Right(p)
+    yield v
 
   /** Rejects a pair that is not already in canonical order. */
   def validate(p: OrderedPair): Either[ValidationError, OrderedPair] =
@@ -336,11 +549,7 @@ object Ids:
   ): Either[ValidationError, String] =
     for
       _ <- PublicationYear.validate(year)
-      titleKey = Normalizer
-        .normalize(title, Normalizer.Form.NFKC)
-        .toLowerCase(Locale.ROOT)
-        .trim
-        .replaceAll("\\s+", " ")
+      titleKey = Titles.titleKey(title)
       _ <-
         if titleKey.isEmpty || firstAuthorKey.trim.isEmpty then
           Left(InvalidField("work", "title and first author key must be non-blank"))

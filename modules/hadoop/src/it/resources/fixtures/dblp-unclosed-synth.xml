@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dblp>
+<article key="un/A" mdate="2020-01-01"><author>U One</author><title>Unclosed record.</title><year>2020</year>
+<article key="un/B" mdate="2020-01-01"><author>U Two</author><title>Next record.</title><year>2021</year></article>
+<inproceedings key="un/C"><author>U Three</author><title>Third record.</title><year>2022</year></inproceedings>
+</dblp>

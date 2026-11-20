@@ -1,0 +1,49 @@
+{
+ "_synthetic": true,
+ "identifier": "0000-0002-1694-233X",
+ "request_url": "https://example.invalid/x",
+ "retrieved_at": "2026-02-01T00:00:00Z",
+ "http_status": 200,
+ "missing": false,
+ "response_content_type": "application/json",
+ "body_is_json": true,
+ "body": {
+  "group": [
+   {
+    "external-ids": {
+     "external-id": [
+      {
+       "external-id-type": "doi",
+       "external-id-value": "10.1000/SYNTH.ALPHA"
+      }
+     ]
+    },
+    "work-summary": [
+     {
+      "put-code": 1,
+      "title": {
+       "title": {
+        "value": "Deep Learning for Synthetic Data (revised)"
+       }
+      },
+      "external-ids": {
+       "external-id": [
+        {
+         "external-id-type": "doi",
+         "external-id-value": "10.1000/SYNTH.ALPHA"
+        }
+       ]
+      },
+      "publication-date": {
+       "year": {
+        "value": "2020"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "path": "/0000-0002-1694-233X/works"
+ },
+ "fetcher_code_version": "synthetic"
+}

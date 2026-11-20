@@ -1,0 +1,103 @@
+{
+  "runId": "run:2bfe14820cbceab4360c4c2c8df885190e3cce3ba842357afd4437a109920d2d",
+  "snapshot": "dblp-1k",
+  "codeVersion": "6335b5a+uncommitted",
+  "jobs": {
+    "hj1-dblp-extract": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 1000,
+        "INPUT_DBLP": 1000,
+        "INPUT_RECORDS": 1000,
+        "SELF_PAIR_SKIPPED": 0
+      },
+      "rows": {
+        "author-mentions": 3928,
+        "id-refs": 2286,
+        "works": 1000
+      },
+      "rejects": {}
+    },
+    "hj2-source-normalize": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 299,
+        "INPUT_CROSSREF": 100,
+        "INPUT_OPENALEX": 100,
+        "INPUT_ORCID": 100,
+        "INPUT_RECORDS": 300,
+        "MISSING_YEAR_KEPT": 7,
+        "UPSTREAM_MISSING": 1,
+        "WORK_SKIPPED": 57
+      },
+      "rows": {
+        "author-mentions": 783,
+        "id-refs": 7173,
+        "institutions": 274,
+        "topics": 300,
+        "works": 7468
+      },
+      "rejects": {}
+    },
+    "hj3-exact-identifier": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 296,
+        "DUPLICATE": 53,
+        "EXACT_LINK": 243,
+        "INPUT_RECORDS": 9459
+      },
+      "rows": {
+        "exact-identifier-evidence": 296
+      },
+      "rejects": {}
+    },
+    "hj4a-team-expand": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 1000,
+        "EMITTED_PAIRS": 8420,
+        "EXPECTED_PAIRS": 8420,
+        "INPUT_RECORDS": 4928
+      },
+      "rows": {
+        "authorship": 3928,
+        "pair-stage": 8420,
+        "teams": 1000
+      },
+      "rejects": {}
+    },
+    "hj4b-pair-dedupe": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 8420,
+        "DUPLICATE_PAIR": 0,
+        "INPUT_RECORDS": 8420
+      },
+      "rows": {
+        "pair-candidates": 8420
+      },
+      "rejects": {}
+    },
+    "hj5-graph-candidate-export": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 27106,
+        "ENTITY_MERGED": 118,
+        "INPUT_RECORDS": 27397,
+        "WORK_MERGED": 173
+      },
+      "rows": {
+        "author-mentions": 4711,
+        "authorship": 3928,
+        "exact-identifier-evidence": 296,
+        "institutions": 250,
+        "pair-candidates": 8420,
+        "teams": 1000,
+        "topics": 206,
+        "works": 8295
+      },
+      "rejects": {}
+    }
+  }
+}

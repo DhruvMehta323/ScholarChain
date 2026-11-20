@@ -1,0 +1,6 @@
+<!-- SYNTHETIC FIXTURE: a miniature DTD with the same entity declaration form as dblp.dtd. Not DBLP data. -->
+<!ENTITY % field "author|editor|title">
+<!ENTITY uuml   "&#252;">
+<!ENTITY eacute "&#233;">
+<!ENTITY ouml   "&#246;">
+<!ENTITY ndash  "&#8211;">

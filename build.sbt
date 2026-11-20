@@ -95,6 +95,11 @@ lazy val hadoop = (project in file("modules/hadoop"))
   .settings(
     name := "scholarchain-hadoop",
     libraryDependencies ++= Seq(Dependencies.hadoopClientApi, Dependencies.hadoopClientRuntime),
+    // sbt 2 has no IntegrationTest configuration: src/it (hadoop-engineer) is compiled and run
+    // with Test. Suites there MUST be named *ItSuite (for example WordCountLocalItSuite).
+    // Never use the *IntegrationSuite suffix: commonSettings filters it out (live-service tests).
+    Test / unmanagedSourceDirectories += baseDirectory.value / "src" / "it" / "scala",
+    Test / unmanagedResourceDirectories += baseDirectory.value / "src" / "it" / "resources",
   )
 
 lazy val entityResolution = (project in file("modules/entity-resolution"))

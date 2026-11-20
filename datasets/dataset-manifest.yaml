@@ -213,6 +213,29 @@ datasets:
         path: datasets/raw/dblp/derived/dblp_selection_100000.tsv
         sha256: 2a00e090923919ce94888eea0630d82c924c0e0f32c172bc09517628cfd0fdae
         observed: {selected: 100000, years_with_quota: 86, year_venue_cells_used: 64969, distinct_venues: 6254}
+    derived_artifacts:
+      - id: dblp_selection_1000_xml
+        purpose: "Phase 04 Hadoop input: the 1,000 selected DBLP records as DBLP-shaped XML (original record bytes, unresolved named entities and inline markup preserved). Hadoop never reads the full dblp.xml."
+        path: datasets/raw/dblp/derived/dblp_selection_1000.xml
+        gitignored: true
+        sha256: 3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6
+        bytes: 575598
+        record_count: 1000
+        encoding: "ISO-8859-1, doctype <!DOCTYPE dblp SYSTEM \"dblp.dtd\">; a byte-identical copy of dblp.dtd sits next to the output (datasets/raw/dblp/derived/dblp.dtd, sha256 2d864498...ef6) so the relative system id resolves locally"
+        record_order: "selection TSV order, one record per output line (record bytes unchanged)"
+        derived_from:
+          - {path: datasets/raw/dblp/dblp.xml, bytes: 5405851335, sha256: f9f1f1e19621f7b03edbe18f8e50e36af24d557a626177145965b974f1e22ef3}
+          - {path: datasets/raw/dblp/dblp.dtd, sha256: 2d864498f9eef9298662df11e3874171ff24cd4a21ab5974f1369c90acdb1ef6}
+          - {path: datasets/samples/dblp/dblp_selection_1000.tsv, sha256: 52bbb09f3d2e261c519857cbe5dea2bdaeb929b7f689a0b8e88539cfe7bc4527}
+        script: datasets/scripts/dblp_extract_subset.py
+        script_version: "1.1.0 (repair 01: comments, CDATA and processing instructions never yield records; no file written before all input checks pass)"
+        command: "python3 -I -B datasets/scripts/dblp_extract_subset.py"
+        code_version: "6335b5ac48b62f29ca572bd52535fb8fcb0b772b+uncommitted (script not yet committed)"
+        provenance_file: datasets/raw/dblp/derived/dblp_selection_1000.xml.provenance.json
+        source_hash_check: "computed in the same single sequential pass (no extra read); matched the manifest value f9f1f1e1...ef3, run 2026-11-20, scan 101.5 s on the 1.1.0 rerun, wall 1:41.7; output sha256 unchanged from 1.0.0 because dblp.xml holds no comments the old code could mis-take"
+        idempotency: "rerun with matching sidecar reports 'up to date' and rewrites nothing; a forced rebuild into another path reproduced the same sha256 byte for byte"
+        observed_validation: {parser: "lxml load_dtd=True resolve_entities=True no_network=True huge_tree=True", records_found: 1000, records_expected: 1000, missing_keys: [], duplicate_keys_in_source: [], type_agree: 1000, type_disagree: 0, year_agree: 1000, year_disagree: 0, title_agree: 1000, title_disagree: 0, n_authors_agree: 1000, n_authors_disagree: 0}
+        tests: "tests/datasets/test_dblp_extract_subset.py (23 tests, written by test-engineer). Observed 2026-11-20 by dataset-engineer: python3 -B -I -m unittest discover -s tests/datasets -p 'test_*.py' -> Ran 83 tests, OK (whole tests/datasets suite). The extraction itself was not re-run for this. The provenance sidecar carries no tests field, so it was left unchanged."
     schema_notes: datasets/schemas/dblp.md
     linkage_keys:
       primary: "dblp key (for example conf/acl/RonyKCU022)"

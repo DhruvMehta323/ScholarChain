@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SYNTHETIC FIXTURE: one record of every supported type plus www and data. Not DBLP data. -->
+<dblp>
+<article key="journals/unit/A1"><author>Ann One</author><title>Article T</title><year>2020</year></article>
+<inproceedings key="conf/unit/B1"><author>Bob Two</author><title>Inproc T</title><year>2021</year></inproceedings>
+<proceedings key="conf/unit/P1"><author>Cy Three</author><title>Proceedings T</title><year>2019</year></proceedings>
+<book key="books/unit/C1"><author>Di Four</author><title>Book T</title><year>2018</year></book>
+<incollection key="books/unit/D1"><author>Ed Five</author><title>Incoll T</title><year>2017</year></incollection>
+<phdthesis key="phd/unit/E1"><author>Flo Six</author><title>PhD T</title><year>2016</year></phdthesis>
+<mastersthesis key="ms/unit/F1"><author>Gus Seven</author><title>MSc T</title><year>2015</year></mastersthesis>
+<www key="homepages/unit/h1"><author>Ann One</author><author orcid="0000-0002-1825-0097">Ann Alias</author><url>https://example.invalid/ann</url></www>
+<data key="data/unit/d1"><author>Hal Eight</author><title>Data T</title><year>2022</year></data>
+</dblp>

@@ -1,0 +1,15 @@
+{
+ "_synthetic": true,
+ "identifier": "0000-0001-5109-3700",
+ "request_url": "https://example.invalid/x",
+ "retrieved_at": "2026-01-01T00:00:00Z",
+ "http_status": 200,
+ "missing": false,
+ "response_content_type": "application/json",
+ "body_is_json": true,
+ "body": {
+  "group": [],
+  "path": "/0000-0001-5109-3700/works"
+ },
+ "fetcher_code_version": "synthetic"
+}

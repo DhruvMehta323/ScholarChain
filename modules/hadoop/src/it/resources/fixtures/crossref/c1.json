@@ -1,0 +1,53 @@
+{
+ "_synthetic": true,
+ "identifier": "10.1000/synth.alpha",
+ "request_url": "https://example.invalid/x",
+ "retrieved_at": "2026-01-01T00:00:00Z",
+ "http_status": 200,
+ "missing": false,
+ "response_content_type": "application/json",
+ "body_is_json": true,
+ "body": {
+  "status": "ok",
+  "message": {
+   "DOI": "10.1000/SYNTH.ALPHA",
+   "title": [
+    "Deep <i>Learning</i> &amp; Data"
+   ],
+   "issued": {
+    "date-parts": [
+     [
+      2020,
+      3,
+      1
+     ]
+    ]
+   },
+   "subject": [
+    "Machine Learning",
+    "Synthetic Data"
+   ],
+   "author": [
+    {
+     "given": "Anna",
+     "family": "M\u00fcller",
+     "ORCID": "http://orcid.org/0000-0002-1825-0097",
+     "affiliation": [
+      {
+       "name": "Synthetic University"
+      }
+     ]
+    },
+    {
+     "given": "Bob",
+     "family": "Stone",
+     "affiliation": []
+    },
+    {
+     "name": "Synthetic Consortium"
+    }
+   ]
+  }
+ },
+ "fetcher_code_version": "synthetic"
+}

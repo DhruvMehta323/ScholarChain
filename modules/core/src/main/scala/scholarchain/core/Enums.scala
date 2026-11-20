@@ -66,3 +66,42 @@ enum VerificationStatus(val wire: String):
 object VerificationStatus:
   given WirePickle.ReadWriter[VerificationStatus] =
     Wire.enumRw("VerificationStatus", values.toSeq, _.wire)
+
+/** Kind of external identifier used for exact-identifier evidence. */
+enum IdentifierType(val wire: String):
+  case Doi      extends IdentifierType("doi")
+  case Arxiv    extends IdentifierType("arxiv")
+  case Orcid    extends IdentifierType("orcid")
+  case OpenAlex extends IdentifierType("openalex")
+
+object IdentifierType:
+  given WirePickle.ReadWriter[IdentifierType] =
+    Wire.enumRw("IdentifierType", values.toSeq, _.wire)
+
+/** Outcome of an exact-identifier comparison. This is evidence, not a match decision. */
+enum ExactIdentifierOutcome(val wire: String):
+  case ExactLink extends ExactIdentifierOutcome("exact_link")
+  case Duplicate extends ExactIdentifierOutcome("duplicate")
+  case Conflict  extends ExactIdentifierOutcome("conflict")
+
+object ExactIdentifierOutcome:
+  given WirePickle.ReadWriter[ExactIdentifierOutcome] =
+    Wire.enumRw("ExactIdentifierOutcome", values.toSeq, _.wire)
+
+/** Why an input record was rejected (reject-v1). Wire names are frozen. */
+enum RejectReason(val wire: String):
+  case MalformedRecord   extends RejectReason("malformed_record")
+  case EncodingError     extends RejectReason("encoding_error")
+  case MissingTitle      extends RejectReason("missing_title")
+  case MissingYear       extends RejectReason("missing_year")
+  case InvalidYear       extends RejectReason("invalid_year")
+  case MissingAuthors    extends RejectReason("missing_authors")
+  case InvalidIdentifier extends RejectReason("invalid_identifier")
+  case UnsupportedType   extends RejectReason("unsupported_type")
+  case OversizedRecord   extends RejectReason("oversized_record")
+  case PairCapExceeded   extends RejectReason("pair_cap_exceeded")
+  case DuplicateRecord   extends RejectReason("duplicate_record")
+  case SchemaViolation   extends RejectReason("schema_violation")
+
+object RejectReason:
+  given WirePickle.ReadWriter[RejectReason] = Wire.enumRw("RejectReason", values.toSeq, _.wire)

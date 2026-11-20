@@ -226,6 +226,11 @@ def main():
             rows = (REPO / s["path"]).read_text(encoding="utf-8").splitlines()[1:]
             check(len(rows) == s["size"], f"selection row count {len(rows)} != {s['size']}")
             check(len({r.split('\t')[0] for r in rows}) == s["size"], "selection keys not unique")
+    for d_art in db.get("derived_artifacts", []):
+        check(bool(SHA.match(d_art["sha256"])), f"bad sha256 syntax {d_art['path']}")
+        file_entry(d_art["path"], d_art["sha256"], d_art["bytes"], optional_if_missing=True)
+        for src in d_art["derived_from"]:
+            check(bool(SHA.match(src["sha256"])), f"bad derived_from sha256 {src['path']}")
     for e in m["exploratory_non_graded_files"]["files"]:
         file_entry(e["path"], e["sha256"], e["bytes"], optional_if_missing=e["path"].startswith("datasets/raw/"))
     sc = m["spot_check"]

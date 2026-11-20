@@ -9,6 +9,8 @@ enum ValidationError:
   case MalformedId(kind: String, value: String)
   case InvalidDoi(input: String, reason: String)
   case InvalidOrcid(input: String, reason: String)
+  case InvalidArxiv(input: String, reason: String)
+  case InvalidOpenAlex(input: String, reason: String)
   case InvalidConfidence(field: String, value: Double)
   case InvalidYear(year: Int)
   case InvalidWindow(startYear: Int, endYear: Int)
@@ -24,6 +26,8 @@ enum ValidationError:
     case _: MalformedId              => "malformed-id"
     case _: InvalidDoi               => "invalid-doi"
     case _: InvalidOrcid             => "invalid-orcid"
+    case _: InvalidArxiv             => "invalid-arxiv"
+    case _: InvalidOpenAlex          => "invalid-openalex"
     case _: InvalidConfidence        => "invalid-confidence"
     case _: InvalidYear              => "invalid-year"
     case _: InvalidWindow            => "invalid-window"
@@ -40,6 +44,8 @@ enum ValidationError:
     case MalformedId(k, v)       => s"malformed $k id '$v'"
     case InvalidDoi(i, r)        => s"invalid DOI '$i': $r"
     case InvalidOrcid(i, r)      => s"invalid ORCID '$i': $r"
+    case InvalidArxiv(i, r)      => s"invalid arXiv id '$i': $r"
+    case InvalidOpenAlex(i, r)   => s"invalid OpenAlex id '$i': $r"
     case InvalidConfidence(f, v) => s"confidence '$f'=$v is outside [0,1]"
     case InvalidYear(y)          => s"year $y is outside the four-digit range"
     case InvalidWindow(s, e)     => s"time window start year $s is greater than end year $e"

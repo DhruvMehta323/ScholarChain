@@ -1,0 +1,14 @@
+{
+ "_synthetic": true,
+ "identifier": "not-an-orcid",
+ "request_url": "https://example.invalid/x",
+ "retrieved_at": "2026-01-01T00:00:00Z",
+ "http_status": 200,
+ "missing": false,
+ "response_content_type": "application/json",
+ "body_is_json": true,
+ "body": {
+  "group": []
+ },
+ "fetcher_code_version": "synthetic"
+}
