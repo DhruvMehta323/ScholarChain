@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "er-v1",
+  "featureSetVersion": "er-features-v2",
+  "thresholdsOrigin": "calibrated-on-calibration-split-only",
+  "researcher": {
+    "accept": 0.77,
+    "reject": 0.52,
+    "llmBandLow": 0.52,
+    "llmBandHigh": 0.77
+  },
+  "work": {
+    "accept": 0.79,
+    "reject": 0.79,
+    "llmBandLow": 0.79,
+    "llmBandHigh": 0.79
+  },
+  "objective": "maximize F1 of the accepted class against MATCH on calibration rows; ties go to higher precision, then to the higher accept threshold. reject = largest 0.01 step not above the lowest score of a calibration MATCH that reached the probabilistic path (capped at accept); LLM band = [reject, accept].",
+  "grid": "accept in {0.5 .. 0.99} step 0.01",
+  "calibrationMetrics": {
+    "researcher": {
+      "precision": 0.9846153846153847,
+      "n": 134,
+      "tp": 64,
+      "f1": 0.9481481481481482,
+      "fp": 1,
+      "fn": 6,
+      "tn": 63,
+      "recall": 0.9142857142857143
+    },
+    "work": {
+      "precision": 1,
+      "n": 8,
+      "tp": 7,
+      "f1": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 1,
+      "recall": 1
+    }
+  },
+  "inputs": [
+    {
+      "inputId": "er-gold-split",
+      "version": "gold-split-v1",
+      "checksum": "1fad6c2d47aaf68c9f8d3621a53dd935f21881da8b8a9988869edce77d2f8e34"
+    },
+    {
+      "inputId": "er-candidates",
+      "version": "er-features-v2",
+      "checksum": "10cccae540fda2dc313228ed63c4aceea128fc878ef2f6fa6af1c9244ad5ca7d"
+    }
+  ],
+  "codeVersion": "74eee4e+repair04",
+  "parameters": {
+    "calibrationRows": "142",
+    "policyVersion": "er-v1"
+  },
+  "llmMinConfidence": 0.7,
+  "erEnv": {},
+  "llmModel": "claude-haiku-4-5"
+}

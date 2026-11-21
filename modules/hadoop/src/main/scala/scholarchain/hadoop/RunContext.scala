@@ -19,10 +19,24 @@ final case class RunContext(
     config: Map[String, String],
     inputs: Map[String, List[InputRef]],
     dblpCharset: String,
+    er: Map[String, String] = Map.empty,
 ) derives ReadWriter:
   def largeTeamThreshold: Int   = config("hadoop.large-team-threshold").toInt
   def pairExpansionHardCap: Int = config("hadoop.pair-expansion-hard-cap").toInt
   def maxRecordBytes: Int       = config("hadoop.dblp.max-record-bytes").toInt
+
+  /** The configuration recorded in the manifest and hashed into the run ID: the Hadoop settings
+    * plus the resolved entity-resolution settings (`er.*`, used only by HJ6 and HJ7).
+    */
+  def allConfig: Map[String, String] = config ++ er
+
+  /** The entity-resolution configuration of this run: the versioned defaults with the values the
+    * driver resolved (`er`) applied as overrides. The task environment is never consulted.
+    */
+  def erConfig: scholarchain.er.ErConfig =
+    scholarchain.er.ErConfigLoader
+      .load(Map.empty, er.map((k, v) => ModuleConfig.OverridePrefix + k -> v))
+      .fold(es => throw new IllegalStateException(es.map(_.message).mkString("; ")), identity)
 
   /** Provenance: the named inputs (plus `extraInputs`, for example the single envelope file), the
     * code version, the run parameters plus the job id, and the run ID.
@@ -34,22 +48,40 @@ final case class RunContext(
       extraInputs: List[InputRef] = Nil,
       extraParams: Map[String, String] = Map.empty,
       retrievedAt: Option[String] = None,
+      withEr: Boolean = false,
   ): Provenance =
     Provenance(
       SchemaVersion.Current,
       source,
       inputKeys.toList.flatMap(k => inputs.getOrElse(k, Nil)) ++ extraInputs,
       codeVersion,
-      config ++ extraParams + ("job" -> jobId),
+      (if withEr then allConfig else config) ++ extraParams + ("job" -> jobId),
       Some(runId),
       retrievedAt,
     )
 
   /** Provenance over every input of the run (for cross-source derived records). */
-  def provAll(jobId: String): Provenance =
-    prov(SourceType.ScholarChain, inputs.keys.toList.sorted, jobId)
+  def provAll(jobId: String, withEr: Boolean = false): Provenance =
+    prov(SourceType.ScholarChain, inputs.keys.toList.sorted, jobId, withEr = withEr)
 
 object RunContext:
+  /** The `er.*` parameters of a resolved ER configuration that decide HJ6 and HJ7 output (the LLM
+    * settings are not used in MapReduce).
+    */
+  def erParams(c: scholarchain.er.ErConfig): Map[String, String] =
+    def t(kind: String, x: scholarchain.er.Thresholds): Map[String, String] = Map(
+      s"er.$kind.threshold.accept"        -> x.accept.toString,
+      s"er.$kind.threshold.reject"        -> x.reject.toString,
+      s"er.$kind.threshold.llm-band-low"  -> x.llmBandLow.toString,
+      s"er.$kind.threshold.llm-band-high" -> x.llmBandHigh.toString,
+    )
+    Map(
+      "er.policy-version"      -> c.policyVersion,
+      "er.feature-set-version" -> c.featureSetVersion,
+      "er.decision-epoch"      -> c.decisionEpoch,
+      "er.max-block-size"      -> c.maxBlockSize.toString,
+    ) ++ t("researcher", c.researcher) ++ t("work", c.work)
+
   val ConfKey: String = "scholarchain.run.context"
 
   def toConf(conf: Configuration, c: RunContext): Unit = conf.set(ConfKey, WirePickle.write(c))

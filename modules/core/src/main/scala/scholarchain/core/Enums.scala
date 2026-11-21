@@ -105,3 +105,50 @@ enum RejectReason(val wire: String):
 
 object RejectReason:
   given WirePickle.ReadWriter[RejectReason] = Wire.enumRw("RejectReason", values.toSeq, _.wire)
+
+/** Kind of entity an entity-resolution candidate or decision is about. Wire names are frozen. */
+enum EntityKind(val wire: String):
+  case Researcher extends EntityKind("researcher")
+  case Work       extends EntityKind("work")
+
+object EntityKind:
+  given WirePickle.ReadWriter[EntityKind] = Wire.enumRw("EntityKind", values.toSeq, _.wire)
+
+/** Whether a block key is the primary key or a fallback (finer) key. */
+enum BlockKeyType(val wire: String):
+  case Primary  extends BlockKeyType("primary")
+  case Fallback extends BlockKeyType("fallback")
+
+object BlockKeyType:
+  given WirePickle.ReadWriter[BlockKeyType] = Wire.enumRw("BlockKeyType", values.toSeq, _.wire)
+
+/** How a decision was reached. */
+enum MatchPath(val wire: String):
+  case ExactId       extends MatchPath("exact_id")
+  case Deterministic extends MatchPath("deterministic")
+  case Probabilistic extends MatchPath("probabilistic")
+  case Llm           extends MatchPath("llm")
+
+object MatchPath:
+  given WirePickle.ReadWriter[MatchPath] = Wire.enumRw("MatchPath", values.toSeq, _.wire)
+
+/** Entity-resolution decision outcome (MatchDecisionV2, ResolvedMention). */
+enum ResolutionOutcome(val wire: String):
+  case Accepted   extends ResolutionOutcome("accepted")
+  case Rejected   extends ResolutionOutcome("rejected")
+  case Unresolved extends ResolutionOutcome("unresolved")
+  case Conflict   extends ResolutionOutcome("conflict")
+
+object ResolutionOutcome:
+  given WirePickle.ReadWriter[ResolutionOutcome] =
+    Wire.enumRw("ResolutionOutcome", values.toSeq, _.wire)
+
+/** Outcome of an LLM adjudication. `Abstain` is a valid, first-class answer. */
+enum AdjudicationOutcome(val wire: String):
+  case Accept  extends AdjudicationOutcome("accept")
+  case Reject  extends AdjudicationOutcome("reject")
+  case Abstain extends AdjudicationOutcome("abstain")
+
+object AdjudicationOutcome:
+  given WirePickle.ReadWriter[AdjudicationOutcome] =
+    Wire.enumRw("AdjudicationOutcome", values.toSeq, _.wire)

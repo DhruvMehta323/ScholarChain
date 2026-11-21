@@ -13,12 +13,19 @@ enum PipelineCounter extends java.lang.Enum[PipelineCounter]:
   case INPUT_DBLP, INPUT_CROSSREF, INPUT_OPENALEX, INPUT_ORCID
   case WWW_RECORDS, PERSON_ALIASES, UPSTREAM_MISSING, MISSING_YEAR_KEPT, INVALID_IDENTIFIER_SKIPPED,
     WORK_SKIPPED, WORK_MERGED, ENTITY_MERGED
+  // HJ6 / HJ7 (Phase 05)
+  case ENTITY_VIEWS, UNBLOCKED_VIEW, BLOCK_KEYS, OVERSIZE_KEY, OVERSIZE_BLOCK, BLOCK_GROUPS
+  case CANDIDATE_STAGED, CANDIDATE_DUPLICATE, CANDIDATE_CONFLICT_FLAGGED
+  case DECISIONS, LLM_ELIGIBLE
 
 object Counters:
   /** Group of the per-table row counters ("rows") and per-reason reject counters ("rejects"). */
   val RowsGroup: String    = "rows"
   val RejectsGroup: String = "rejects"
   val EnumGroup: String    = classOf[PipelineCounter].getName
+
+  /** Group of the HJ7 decision counters, named `<outcome>.<matchPath>`. */
+  val DecisionsGroup: String = "decisions"
 
   def inc(ctx: TaskInputOutputContext[?, ?, ?, ?], c: PipelineCounter, n: Long = 1L): Unit =
     ctx.getCounter(c).increment(n)

@@ -155,12 +155,18 @@ object RunSetup:
             .toRight(s"${DblpRecordReader.MaxRecordBytesKey} must be an integer >= 1")
         )
         .getOrElse(Right(DblpRecordReader.DefaultMaxRecordBytes))
-      h              = resolved.config
-      exportReducers = overrides
-        .get("scholarchain.hadoop.export-reducers")
-        .flatMap(_.toIntOption)
-        .filter(_ >= 1)
-        .getOrElse(1)
+      exportReducers <- overrides
+        .get(ExportKeys.ReducersKey)
+        .map(v =>
+          v.trim.toIntOption
+            .filter(_ >= 1)
+            .toRight(s"${ExportKeys.ReducersKey} must be an integer >= 1 (got '$v')")
+        )
+        .getOrElse(Right(1))
+      er <- ErSettings.resolve(
+        conf.iterator().asScala.map(e => e.getKey -> e.getValue).toMap
+      )
+      h      = resolved.config
       config = Map(
         "hadoop.schema-version"          -> h.schemaVersion.toString,
         "hadoop.large-team-threshold"    -> h.largeTeamThreshold.toString,
@@ -189,9 +195,10 @@ object RunSetup:
           ).flatten
       val all   = inputs.toList.sortBy(_._1).flatMap(_._2)
       val runId = Ids
-        .runId(Stage, a.codeVersion, a.attempt, config, all)
+        .runId(Stage, a.codeVersion, a.attempt, config ++ er, all)
         .fold(e => sys.error(e.message), identity)
-      val run = RunContext(runId, a.codeVersion, a.snapshot, a.attempt, config, inputs, cs.name())
+      val run =
+        RunContext(runId, a.codeVersion, a.snapshot, a.attempt, config, inputs, cs.name(), er)
       Setup(run, Layout(a.output, run), h, a)
 
 /** Runs HJ1 to HJ5 in order, checks the pair invariant, then writes the manifest, `counters.json`
@@ -243,7 +250,8 @@ class PipelineDriver extends Configured with Tool:
         step(TeamPairJob.submitPairs(conf, s)) && {
           val inputs = existing(ExportKeys.Sources.map((j, t) => s.layout.table(j, t)))
           step(Some(GraphCandidateExportJob.submit(conf, s, inputs)))
-        }
+        } &&
+        EntityResolutionJobs.runAll(conf, s, step)
     if !ok then
       System.err.println("pipeline failed; outputs under the root are left in place for inspection")
       return 1
@@ -272,7 +280,7 @@ object PipelineDriver:
       Some(s"pair stage: ACCEPTED($accepted)+DUPLICATE_PAIR($dup) != EMITTED_PAIRS($emitted)")
     else if exported != accepted then
       Some(s"export wrote $exported pair rows, pair stage accepted $accepted")
-    else None
+    else EntityResolutionJobs.invariantError(os)
 
   /** On a local file system, keep Hadoop's scratch and staging inside the output root. */
   def localScratch(conf: Configuration, s: Setup): Unit =
@@ -282,16 +290,19 @@ object PipelineDriver:
   private def countersJson(s: Setup, os: List[JobOutcome]): String =
     def obj(m: Map[String, Long]) =
       ujson.Obj.from(m.toList.sortBy(_._1).map((k, v) => k -> ujson.Num(v.toDouble)))
-    val jobs = ujson.Obj.from(
-      os.map(o =>
-        o.jobId -> ujson.Obj(
-          "success"  -> ujson.Bool(o.success),
-          "counters" -> obj(o.counters),
-          "rows"     -> obj(o.rows),
-          "rejects"  -> obj(o.rejects),
-        )
+    def job(o: JobOutcome): ujson.Obj =
+      val base: List[(String, ujson.Value)] = List(
+        "success"  -> ujson.Bool(o.success),
+        "counters" -> obj(o.counters),
+        "rows"     -> obj(o.rows),
+        "rejects"  -> obj(o.rejects),
       )
-    )
+      val dec: List[(String, ujson.Value)] =
+        if o.decisions.isEmpty then Nil else List("decisions" -> obj(o.decisions))
+      val fw: List[(String, ujson.Value)] =
+        if o.framework.isEmpty then Nil else List("framework" -> obj(o.framework))
+      ujson.Obj.from(base ++ dec ++ fw)
+    val jobs = ujson.Obj.from(os.map(o => o.jobId -> job(o)))
     ujson.write(
       ujson.Obj(
         "runId"       -> s.run.runId,
@@ -305,6 +316,7 @@ object PipelineDriver:
   private def summary(s: Setup, o: JobOutcome): JobSummary =
     val rejectCounters = o.rejects.map((k, v) => s"REJECT_$k" -> v)
     val rowCounters    = o.rows.map((k, v) => s"ROWS_$k" -> v)
+    val decCounters    = o.decisions.map((k, v) => s"DECISIONS_${k.replace('.', '_')}" -> v)
     val base           =
       if o.jobId == ExportKeys.JobId then s"curated" else s"work/${o.jobId.takeWhile(_ != '-')}"
     val outputs = o.rows.toList.sortBy(_._1).map { (t, n) =>
@@ -314,7 +326,7 @@ object PipelineDriver:
         else s"$base/$t"
       OutputRef(path, n)
     }
-    JobSummary(o.jobId, o.counters ++ rejectCounters ++ rowCounters, outputs)
+    JobSummary(o.jobId, o.counters ++ rejectCounters ++ rowCounters ++ decCounters, outputs)
 
   private def write(fs: FileSystem, p: Path, text: String): Unit =
     val out = fs.create(p, false) // never overwrite
@@ -329,7 +341,7 @@ object PipelineDriver:
       s.run.snapshot,
       s.run.codeVersion,
       inputs,
-      s.run.config,
+      s.run.allConfig,
       os.map(summary(s, _)),
     ) match
       case Left(e)  => System.err.println(s"manifest error: ${e.message}"); 1
@@ -386,6 +398,12 @@ class PublicationTeamPairTool extends JobTool:
   protected def runJob(conf: Configuration, s: Setup): Option[JobOutcome] =
     val t = TeamPairJob.submitTeams(conf, s)
     if t.success then TeamPairJob.submitPairs(conf, s).orElse(Some(t)) else Some(t)
+class BlockingCandidateTool extends JobTool:
+  protected def runJob(conf: Configuration, s: Setup): Option[JobOutcome] =
+    EntityResolutionJobs.blocking(conf, s).lastOption
+class MatchDecisionTool extends JobTool:
+  protected def runJob(conf: Configuration, s: Setup): Option[JobOutcome] =
+    MatchDecisionJob.submit(conf, s)
 class GraphCandidateExportTool extends JobTool:
   protected def runJob(conf: Configuration, s: Setup): Option[JobOutcome] =
     val fs = s.layout.root.getFileSystem(conf)

@@ -9,6 +9,7 @@ import org.apache.hadoop.mapreduce.{Mapper, Reducer}
 import org.apache.hadoop.mapreduce.lib.input.{FileInputFormat, FileSplit, TextInputFormat}
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat
 import scholarchain.core.*
+import scholarchain.core.pipeline.{LargeTeam, OversizeTeam}
 
 /** Pure pair expander. A team of `n` distinct mentions has exactly `n*(n-1)/2` unordered pairs. */
 object PairExpander:

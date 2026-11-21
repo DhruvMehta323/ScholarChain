@@ -1,0 +1,84 @@
+{
+  "tool": "BuildReviewQueue",
+  "codeVersion": "unversioned",
+  "policyVersion": "er-v1",
+  "featureSet": "er-features-v2",
+  "seed": 20260101,
+  "requested": {
+    "researcher": 227,
+    "work": 60
+  },
+  "selected": {
+    "researcher": 227,
+    "work": 13
+  },
+  "candidatesRead": 2191,
+  "candidatesNoView": 0,
+  "inputs": {
+    "candidates": "10cccae540fda2dc313228ed63c4aceea128fc878ef2f6fa6af1c9244ad5ca7d",
+    "views": "36f728d63ae6267672e27ea404b6f06db8c2063406b7114b2271526529d9ab0e"
+  },
+  "strata": {
+    "researcher": {
+      "bin0": {
+        "available": 0,
+        "selected": 0
+      },
+      "bin1": {
+        "available": 0,
+        "selected": 0
+      },
+      "bin2": {
+        "available": 1154,
+        "selected": 83
+      },
+      "bin3": {
+        "available": 35,
+        "selected": 35
+      },
+      "bin4": {
+        "available": 531,
+        "selected": 81
+      },
+      "conflict": {
+        "available": 6,
+        "selected": 6
+      },
+      "exact": {
+        "available": 237,
+        "selected": 22
+      }
+    },
+    "work": {
+      "bin0": {
+        "available": 0,
+        "selected": 0
+      },
+      "bin1": {
+        "available": 0,
+        "selected": 0
+      },
+      "bin2": {
+        "available": 0,
+        "selected": 0
+      },
+      "bin3": {
+        "available": 4,
+        "selected": 4
+      },
+      "bin4": {
+        "available": 0,
+        "selected": 0
+      },
+      "conflict": {
+        "available": 4,
+        "selected": 3
+      },
+      "exact": {
+        "available": 220,
+        "selected": 6
+      }
+    }
+  },
+  "blind": "no score, feature or predicted outcome in the CSV; row order shuffled"
+}

@@ -564,6 +564,15 @@ object Ids:
     if identityKey.trim.isEmpty then Left(InvalidField("identityKey", "must be non-blank"))
     else Right(s"researcher:sc1:${Hashing.digest("scholarchain.researcher.v1", Seq(identityKey))}")
 
+  /** Identity of a mention that entity resolution did not merge into any researcher (outcome
+    * unresolved, rejected or conflict): a singleton researcher
+    * `researcher:sc1:H("scholarchain.researcher.v1", "unresolved.v1:" + mentionId)`. The
+    * `unresolved.v1` scheme tag versions the derivation; the policy version is deliberately not an
+    * input, so the identity stays stable when a policy is re-tuned. Never a merge.
+    */
+  def researcherIdUnresolved(mentionId: String): Either[ValidationError, String] =
+    checkMentionId(mentionId).flatMap(m => researcherIdScholarChain(s"unresolved.v1:$m"))
+
   def coauthorEdgeId(
       a: String,
       b: String,

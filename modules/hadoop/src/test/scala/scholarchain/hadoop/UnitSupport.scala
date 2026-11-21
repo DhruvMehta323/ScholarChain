@@ -111,6 +111,8 @@ object UnitSupport:
       tables: Map[String, List[(String, String)]],
       counters: Map[String, Long],
       rejects: Map[String, Long],
+      decisions: Map[String, Long] = Map.empty,
+      emitted: List[(String, String)] = Nil,
   ):
     def count(c: PipelineCounter): Long          = counters.getOrElse(c.toString, 0L)
     def table(t: String): List[(String, String)] = tables.getOrElse(t, Nil)
@@ -119,14 +121,17 @@ object UnitSupport:
     * returns the rows it wrote through MultipleOutputs plus its counters.
     */
   def reduce(
-      reducer: Reducer[Text, Text, Text, Text],
+      reducer: Reducer[Text, Text, ?, ?],
       input: List[(String, String)],
+      run: RunContext = runCtx,
+      extraConf: Map[String, String] = Map.empty,
   ): Reduced =
     val out  = Files.createTempDirectory(repoRoot.resolve("modules/hadoop/target"), "unit-reduce-")
     val conf = new Configuration()
     conf.set("fs.defaultFS", "file:///")
     conf.set("mapreduce.output.fileoutputformat.outputdir", out.toString)
-    RunContext.toConf(conf, runCtx)
+    RunContext.toConf(conf, run)
+    extraConf.foreach((k, v) => conf.set(k, v))
     val job = Job.getInstance(conf, "unit")
     MultipleOutputs.addNamedOutput(
       job,
@@ -178,8 +183,9 @@ object UnitSupport:
       ): Int =
         WritableComparator.compareBytes(a, s1, l1, b, s2, l2)
       override def compare(a: Text, b: Text): Int = a.compareTo(b)
+    val direct = scala.collection.mutable.ListBuffer.empty[(String, String)]
     val writer: RecordWriter[Text, Text] = new RecordWriter[Text, Text]:
-      override def write(k: Text, v: Text): Unit                                  = ()
+      override def write(k: Text, v: Text): Unit = direct += ((k.toString, v.toString))
       override def close(c: org.apache.hadoop.mapreduce.TaskAttemptContext): Unit = ()
     val committer: OutputCommitter = new FileOutputCommitter(
       new org.apache.hadoop.fs.Path(out.toString),
@@ -199,7 +205,7 @@ object UnitSupport:
       classOf[Text],
     )
     val ctx = new WrappedReducer[Text, Text, Text, Text]().getReducerContext(rc)
-    reducer.run(ctx)
+    reducer.asInstanceOf[Reducer[Text, Text, Text, Text]].run(ctx)
     val tables = Files
       .walk(out)
       .iterator()
@@ -211,13 +217,19 @@ object UnitSupport:
         t -> ps.sorted.flatMap { p =>
           new String(Files.readAllBytes(p), Utf8).split("\n").toList.filter(_.nonEmpty).map { l =>
             val i = l.indexOf('\t')
-            (l.substring(0, i), l.substring(i + 1))
+            if i < 0 then ("", l) else (l.substring(0, i), l.substring(i + 1))
           }
         }.sorted
       }
     def group(g: String): Map[String, Long] =
       counters.getGroup(g).iterator().asScala.map(c => c.getName -> c.getValue).toMap
-    Reduced(tables, group(Counters.EnumGroup), group(Counters.RejectsGroup))
+    Reduced(
+      tables,
+      group(Counters.EnumGroup),
+      group(Counters.RejectsGroup),
+      group(Counters.DecisionsGroup),
+      direct.toList,
+    )
 
   /** Runs an HJ3 style mapper (text lines in) in-process; returns the emitted pairs and counters.
     */
@@ -229,13 +241,17 @@ object UnitSupport:
         Text,
       ],
       lines: List[String],
+      run: RunContext = runCtx,
+      extraConf: Map[String, String] = Map.empty,
+      split: org.apache.hadoop.mapreduce.InputSplit = null,
   ): (List[(String, String)], Map[String, Long]) =
     import org.apache.hadoop.io.LongWritable
     import org.apache.hadoop.mapreduce.{InputSplit, RecordReader, TaskAttemptContext}
     import org.apache.hadoop.mapreduce.lib.map.WrappedMapper
     import org.apache.hadoop.mapreduce.task.MapContextImpl
     val conf = new Configuration()
-    RunContext.toConf(conf, runCtx)
+    RunContext.toConf(conf, run)
+    extraConf.foreach((k, v) => conf.set(k, v))
     val attempt  = new TaskAttemptID("unit", 1, TaskType.MAP, 0, 0)
     val counters = new HCounters()
     val reporter = new StatusReporter:
@@ -276,7 +292,7 @@ object UnitSupport:
       writer,
       committer,
       reporter,
-      null,
+      split,
     )
     val ctx = new WrappedMapper[LongWritable, Text, Text, Text]().getMapContext(mc)
     mapper.run(ctx)

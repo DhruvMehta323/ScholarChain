@@ -32,6 +32,8 @@ def main(root, show_counters):
     print("== per-table row counts")
     data = {}
     for t in tables(root):
+        if t.startswith("work/hj6b") or t.startswith("work/hj6c"):
+            continue  # sortKey TAB json tables; the ER tables below are pure JSON
         data[t] = [json.loads(l) for l in table_lines(root, t)]
         print(f"{t:28s} {len(data[t])}")
     print("== rejects by reason code (source, reason)")

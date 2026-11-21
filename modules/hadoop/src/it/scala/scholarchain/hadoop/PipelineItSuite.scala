@@ -11,7 +11,7 @@ import ItSupport.*
   * reducer per job, a team threshold of 4, a pair hard cap of 10 and a 700-byte split size (so the
   * DBLP file is read by several mappers). Every test below asserts against that one output.
   *
-  * Job launches: 6 (hj1, hj2, hj3, hj4a, hj4b, hj5).
+  * Job launches: 11 (hj1, hj2, hj3, hj4a, hj4b, hj5, hj6a to hj6d, hj7).
   */
 class PipelineItSuite extends munit.FunSuite:
   private var root: JPath           = scala.compiletime.uninitialized
@@ -390,6 +390,11 @@ class PipelineItSuite extends munit.FunSuite:
         "hj4a-team-expand",
         "hj4b-pair-dedupe",
         "hj5-graph-candidate-export",
+        "hj6a-entity-views",
+        "hj6b-block-count",
+        "hj6c-candidates",
+        "hj6d-candidate-dedupe",
+        "hj7-match-decision",
       ),
     )
     assertEquals(
@@ -406,7 +411,7 @@ class PipelineItSuite extends munit.FunSuite:
         counters("jobs")(js.jobId)("counters").obj.map((k, v) => k -> v.num.toLong).toMap
       fromFile.foreach((k, v) => assertEquals(js.counters(k), v, k))
     }
-    val hj5 = m.jobs.last
+    val hj5 = m.jobs.find(_.jobId == "hj5-graph-candidate-export").get
     assertEquals(hj5.outputs.find(_.path.startsWith("curated/pair-candidates")).get.rowCount, 20L)
     assertEquals(rows("hj5-graph-candidate-export", "teams"), 8L)
   }
@@ -427,7 +432,7 @@ class PipelineItSuite extends munit.FunSuite:
     assertEquals(table(root, "works").size.toLong, rows(e, "works"))
   }
 
-  test("F5: two ORCID envelopes sharing a DOI give ONE works row; no provenance input is lost") {
+  test("F5/N1: two ORCID envelopes sharing a DOI give ONE works row with BOUNDED provenance") {
     val id   = "work:doi:10.1000/synth.alpha"
     val rows = table(root, "works").filter(_("workId").str == id)
     assertEquals(rows.size, 1)
@@ -436,8 +441,14 @@ class PipelineItSuite extends munit.FunSuite:
     val inputs = rows.head("provenance")("inputs").arr.toList
     val names  = inputs.map(_("inputId").str)
     assertEquals(names, names.sorted)
-    assert(names.contains("p1.json") && names.contains("p4-shared-doi.json"), names.toString)
+    // N1: the tree input and the WINNER's own envelope stay; the loser's envelope is summarized.
+    assert(names.contains("p4-shared-doi.json"), names.toString)
+    assert(!names.contains("p1.json"), s"merged-away envelope copied: $names")
     assertEquals(names.count(_ == "orcid/works"), 1)
+    val params = rows.head("provenance")("parameters")
+    assertEquals(params("merged.rows").str, "1")
+    assertEquals(params("merged.files").str, "1")
+    assert(Hashing.isSha256Hex(params("merged.inputs-digest").str))
     assertEquals(
       inputs.map(i => (i("inputId").str, i("version").str, i("checksum").str)),
       inputs.map(i => (i("inputId").str, i("version").str, i("checksum").str)).sorted,
@@ -471,6 +482,91 @@ class PipelineItSuite extends munit.FunSuite:
         "openalex/works",
         "orcid/works",
       ),
+    )
+  }
+
+  test("F7: the four moved tables keep the Phase 04 field names and field order") {
+    val frozen = Map(
+      "person-aliases" -> List(
+        "schemaVersion",
+        "aliasKey",
+        "names",
+        "orcids",
+        "urls",
+        "provenance",
+      ),
+      "duplicates" -> List(
+        "schemaVersion",
+        "source",
+        "sourceRecordId",
+        "winner",
+        "duplicate",
+        "provenance",
+      ),
+      "large-teams" -> List(
+        "schemaVersion",
+        "workId",
+        "teamSize",
+        "pairCount",
+        "threshold",
+        "provenance",
+      ),
+      "oversize-teams" -> List(
+        "schemaVersion",
+        "workId",
+        "teamSize",
+        "pairCount",
+        "hardCap",
+        "provenance",
+      ),
+    )
+    frozen.foreach { (t, keys) =>
+      val rows = table(root, t)
+      assert(rows.nonEmpty, s"$t has no rows in the synthetic run")
+      rows.foreach(r => assertEquals(r.obj.keys.toList, keys, t))
+    }
+  }
+
+  test(
+    "F7: every row of the moved tables is read and re-written byte for byte by the core records"
+  ) {
+    import scholarchain.core.WirePickle.given
+    import scholarchain.core.pipeline.*
+    def roundTrip[A: Contract](t: String)(using WirePickle.ReadWriter[A]): Unit =
+      val ls = tableLines(root, t).map(_._2)
+      assert(ls.nonEmpty, t)
+      ls.foreach { l =>
+        val rec = Wire.read[A](l).fold(e => fail(s"$t: ${e.message}"), identity)
+        assertEquals(Wire.write(rec).toOption.get, l, t)
+      }
+    roundTrip[PersonAlias]("person-aliases")
+    roundTrip[DuplicateRecord]("duplicates")
+    roundTrip[LargeTeam]("large-teams")
+    roundTrip[OversizeTeam]("oversize-teams")
+  }
+
+  test("ER: the pipeline run also wrote HJ6 and HJ7 tables whose rows add up") {
+    val e = "hj7-match-decision"
+    val c = rows("hj6d-candidate-dedupe", "match-candidates")
+    assert(c > 0)
+    assertEquals(cnt(e, "DECISIONS"), c)
+    assertEquals(rows(e, "match-decisions"), c)
+    assertEquals(
+      cnt("hj6c-candidates", "CANDIDATE_STAGED"),
+      c + cnt("hj6d-candidate-dedupe", "CANDIDATE_DUPLICATE"),
+    )
+    // counters.json keeps the split-dependent framework counters apart from the manifest
+    assert(counters("jobs")("hj6b-block-count").obj.contains("framework"))
+    val m = Wire
+      .read[PipelineRunManifest](Files.readString(runDir(root).resolve("manifest.json")))
+      .toOption
+      .get
+    assert(
+      !m.jobs.find(_.jobId == "hj6b-block-count").get.counters.keys.exists(_.startsWith("COMBINE"))
+    )
+    assertEquals(
+      m.jobs.find(_.jobId == e).get.counters.filter(_._1.startsWith("DECISIONS_")).values.sum,
+      c,
     )
   }
 end PipelineItSuite

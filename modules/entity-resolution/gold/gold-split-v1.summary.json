@@ -1,0 +1,55 @@
+{
+  "tool": "SplitGold",
+  "codeVersion": "74eee4e+repair04",
+  "seed": 20260101,
+  "fraction": 0.6,
+  "labelsChecksum": "b675ace21155eab17f4043c687479e1ba4602d3d141750d1b7dc894048935e2e",
+  "rows": 240,
+  "excludedUnsure": 3,
+  "calibration": 142,
+  "heldout": 95,
+  "counts": [
+    {
+      "kind": "researcher",
+      "label": "MATCH",
+      "split": "calibration",
+      "count": 70
+    },
+    {
+      "kind": "researcher",
+      "label": "MATCH",
+      "split": "heldout",
+      "count": 47
+    },
+    {
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "split": "calibration",
+      "count": 64
+    },
+    {
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "split": "heldout",
+      "count": 43
+    },
+    {
+      "kind": "work",
+      "label": "MATCH",
+      "split": "calibration",
+      "count": 7
+    },
+    {
+      "kind": "work",
+      "label": "MATCH",
+      "split": "heldout",
+      "count": 5
+    },
+    {
+      "kind": "work",
+      "label": "NON_MATCH",
+      "split": "calibration",
+      "count": 1
+    }
+  ]
+}

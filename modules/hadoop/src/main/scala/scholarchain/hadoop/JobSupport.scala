@@ -5,7 +5,7 @@ import scala.jdk.CollectionConverters.*
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.io.Text
 import org.apache.hadoop.io.compress.{CompressionCodec, DefaultCodec, GzipCodec, SnappyCodec}
-import org.apache.hadoop.mapreduce.{Job, Partitioner, TaskInputOutputContext}
+import org.apache.hadoop.mapreduce.{Job, Partitioner, TaskCounter, TaskInputOutputContext}
 import org.apache.hadoop.mapreduce.lib.output.{
   FileOutputFormat,
   LazyOutputFormat,
@@ -21,6 +21,8 @@ final case class JobOutcome(
     counters: Map[String, Long],
     rows: Map[String, Long],
     rejects: Map[String, Long],
+    decisions: Map[String, Long] = Map.empty,
+    framework: Map[String, Long] = Map.empty,
 ):
   def c(n: PipelineCounter): Long = counters.getOrElse(n.toString, 0L)
 
@@ -33,6 +35,23 @@ final class Tables(ctx: TaskInputOutputContext[?, ?, Text, Text]):
   def put(table: String, sortKey: String, json: String): Unit =
     mos.write(JobSupport.Named, new Text(sortKey), new Text(json), s"$table/part")
     ctx.getCounter(Counters.RowsGroup, table).increment(1)
+  def close(): Unit = mos.close()
+
+/** Writes pure JSON lines (no key) into per-table directories of the job output. Used by the jobs
+  * whose tables are consumed by the entity-resolution tools. The job must be created with
+  * `keyOut = NullWritable`.
+  */
+final class JsonTables(ctx: TaskInputOutputContext[?, ?, org.apache.hadoop.io.NullWritable, Text]):
+  private val mos =
+    new MultipleOutputs[org.apache.hadoop.io.NullWritable, Text](ctx)
+  def put(table: String, json: String): Unit =
+    mos.write(
+      JobSupport.Named,
+      org.apache.hadoop.io.NullWritable.get(),
+      new Text(json),
+      s"$table/part",
+    )
+    ctx.getCounter(Counters.RowsGroup, table.takeWhile(_ != '/')).increment(1)
   def close(): Unit = mos.close()
 
 object JobSupport:
@@ -98,12 +117,23 @@ object JobSupport:
   def outcome(jobId: String, job: Job, ok: Boolean): JobOutcome =
     def group(g: String): Map[String, Long] =
       job.getCounters.getGroup(g).iterator().asScala.map(k => k.getName -> k.getValue).toMap
+    // Framework counters are split-dependent (they depend on spills), so they are kept apart from
+    // the deterministic counters: shown in counters.json, never in the manifest.
+    val framework =
+      if job.getConfiguration.get("mapreduce.job.combine.class") == null then
+        Map.empty[String, Long]
+      else
+        List(TaskCounter.COMBINE_INPUT_RECORDS, TaskCounter.COMBINE_OUTPUT_RECORDS)
+          .map(c => c.name -> job.getCounters.findCounter(c).getValue)
+          .toMap
     JobOutcome(
       jobId,
       ok,
       group(Counters.EnumGroup),
       group(Counters.RowsGroup),
       group(Counters.RejectsGroup),
+      group(Counters.DecisionsGroup),
+      framework,
     )
 
   def run(job: Job, jobId: String): JobOutcome =

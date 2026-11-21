@@ -9,6 +9,7 @@ import org.apache.hadoop.mapreduce.{Mapper, Reducer}
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat
 import scholarchain.core.*
+import scholarchain.core.pipeline.DuplicateRecord
 
 object NormalizeKeys:
   val JobId: String = Normalizers.JobId
@@ -94,8 +95,11 @@ class NormalizeReducer extends Reducer[Text, Text, Text, Text]:
     if k.startsWith(JobSupport.RejectPrefix) then
       vs.foreach(v => tables.put("rejects", k.drop(1), v))
     else
-      val bundles =
-        vs.map(v => WirePickle.read[Bundle](v)).sortBy(b => (b.retrievedAt, b.fileSha256))
+      // N4: latest retrieved_at AS AN INSTANT, then file checksum, then the JSON text.
+      val bundles = vs
+        .map(v => (WirePickle.read[Bundle](v), v))
+        .sortBy((b, v) => (Dedupe.instantKey(Some(b.retrievedAt)), b.fileSha256, v))
+        .map(_._1)
       val win = bundles.last
       bundles.init.foreach { d =>
         JobSupport.count(ctx, PipelineCounter.DUPLICATE)

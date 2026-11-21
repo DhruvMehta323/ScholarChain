@@ -28,12 +28,18 @@ object Wire:
       all: Seq[E],
       wire: E => String,
   ): WirePickle.ReadWriter[E] =
-    WirePickle
+    val base = WirePickle
       .readwriter[String]
       .bimap[E](
         wire,
         s => all.find(e => wire(e) == s).getOrElse(throw upickle.core.Abort(s"unknown $name '$s'")),
       )
+    // A JSON null is never a valid enum value: reject it instead of reading a null reference.
+    val nullRejectingReader: WirePickle.Reader[E] =
+      new WirePickle.Reader.Delegate[Any, E](base):
+        override def visitNull(index: Int): E =
+          throw upickle.core.Abort(s"null is not a valid $name")
+    WirePickle.ReadWriter.join(nullRejectingReader, base)
 
   /** Validates, then serializes. An invalid record is never written. */
   def write[A](

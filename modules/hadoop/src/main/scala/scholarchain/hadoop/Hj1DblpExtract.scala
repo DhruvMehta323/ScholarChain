@@ -11,6 +11,7 @@ import org.apache.hadoop.mapreduce.{Mapper, Reducer}
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat
 import scholarchain.core.*
+import scholarchain.core.pipeline.{DuplicateRecord, PersonAlias}
 
 object DblpKeys:
   val DtdPath: String      = "scholarchain.hadoop.dblp.dtd-path"

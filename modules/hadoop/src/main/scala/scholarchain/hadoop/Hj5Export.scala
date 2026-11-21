@@ -13,6 +13,9 @@ import scholarchain.core.*
 object ExportKeys:
   val JobId: String = "hj5-graph-candidate-export"
 
+  /** The Hadoop-side setting for HJ5 reducers (outside the core config contract). */
+  val ReducersKey: String = "scholarchain.hadoop.export-reducers"
+
   /** Curated tables, in documented order. */
   val Tables: List[String] = List(
     "works",
@@ -113,9 +116,11 @@ class ExportReducer extends Reducer[Text, Text, NullWritable, Text]:
   private type Ctx = Reducer[Text, Text, NullWritable, Text]#Context
   private var mos: MultipleOutputs[NullWritable, Text] = scala.compiletime.uninitialized
   private var run: RunContext                          = scala.compiletime.uninitialized
+  private var known: Set[InputRef]                     = Set.empty
 
   override def setup(ctx: Ctx): Unit =
     run = RunContext.fromConf(ctx.getConfiguration)
+    known = run.inputs.values.flatten.toSet
     mos = new MultipleOutputs[NullWritable, Text](ctx)
 
   override def cleanup(ctx: Ctx): Unit = mos.close()
@@ -125,7 +130,7 @@ class ExportReducer extends Reducer[Text, Text, NullWritable, Text]:
     val dir              =
       s"$table/snapshot=${run.snapshot}/run_id=${run.runId.stripPrefix("run:")}" +
         (if part.isEmpty then "" else s"/$part")
-    val rows = Dedupe.rows(table, values.asScala.map(_.toString).toList.sorted, ctx)
+    val rows = Dedupe.rows(table, values.asScala.map(_.toString).toList.sorted, ctx, Some(known))
     rows.foreach { v =>
       mos.write(JobSupport.Named, NullWritable.get(), new Text(v), s"$dir/part")
       ctx.getCounter(Counters.RowsGroup, table).increment(1)
@@ -135,39 +140,78 @@ class ExportReducer extends Reducer[Text, Text, NullWritable, Text]:
 /** One row per entity ID for `works`, `institutions` and `topics`.
   *
   * Rule (deterministic, independent of value order): the winner is the row with the latest
-  * `provenance.retrievedAt` (absent sorts first), ties broken by the larger JSON text. The winner
-  * keeps its fields and its `provenance.parameters`; its `provenance.inputs` become the sorted
-  * union of the `inputs` of every merged row, so no provenance input is lost. Merged-away rows are
-  * counted: WORK_MERGED for works, ENTITY_MERGED for institutions and topics.
+  * `provenance.retrievedAt` COMPARED AS AN INSTANT (N4; absent or unparsable sorts first), ties
+  * broken by the larger JSON text. The winner keeps its fields and its `provenance.parameters`.
+  * Merged-away rows are counted: WORK_MERGED for works, ENTITY_MERGED for institutions and topics.
+  *
+  * Provenance inputs (N1, bounded). With `known` (the run's own inputs: the tree inputs, the DBLP
+  * XML and DTD), the merged `inputs` are the winner's own inputs (its tree input and its own
+  * envelope file) plus any known input of the merged rows. The per-file envelope inputs of the
+  * merged-away rows are NOT copied: the winner's `provenance.parameters` gain `merged.rows` (how
+  * many rows were merged into it), `merged.files` (how many distinct envelope inputs were merged
+  * away) and `merged.inputs-digest` (a digest over those inputs, sorted), so the loss is visible
+  * and checkable while the size stays bounded by the number of sources. Without `known`, the legacy
+  * rule applies (the sorted union of every row's inputs).
   */
 object Dedupe:
   private def byInput(i: InputRef) = (i.inputId, i.version, i.checksum.getOrElse(""))
+
+  /** `retrievedAt` as an instant; absent or not an ISO-8601 instant sorts first. */
+  def instantKey(t: Option[String]): java.time.Instant =
+    t.flatMap(x => scala.util.Try(java.time.Instant.parse(x)).toOption)
+      .getOrElse(java.time.Instant.MIN)
 
   private def merge[A](
       jsons: List[String],
       retrievedAt: A => Option[String],
       prov: A => Provenance,
       withProv: (A, Provenance) => A,
+      known: Option[Set[InputRef]],
   )(using Contract[A], WirePickle.ReadWriter[A]): (String, Int) =
     val parsed = jsons.map { j =>
       Wire
         .read[A](j)
         .fold(e => throw new IllegalStateException(s"unreadable row: ${e.message}"), a => (j, a))
     }
-    val (_, win) = parsed.maxBy((j, a) => (retrievedAt(a).getOrElse(""), j))
-    val inputs   = parsed.flatMap((_, a) => prov(a).inputs).distinct.sortBy(byInput)
-    val out      = withProv(win, prov(win).copy(inputs = inputs))
+    val (winJson, win) = parsed.maxBy((j, a) => (instantKey(retrievedAt(a)), j))
+    val merged         = parsed.size - 1
+    val newProv        = known match
+      case None =>
+        prov(win).copy(inputs = parsed.flatMap((_, a) => prov(a).inputs).distinct.sortBy(byInput))
+      case Some(k) =>
+        val own   = prov(win).inputs
+        val rest  = parsed.filter(_._1 != winJson).flatMap((_, a) => prov(a).inputs)
+        val keep  = (own ++ rest.filter(k.contains)).distinct.sortBy(byInput)
+        val gone  = rest.filterNot(i => k.contains(i) || own.contains(i)).distinct.sortBy(byInput)
+        val lines = gone.map(i => s"${i.inputId}:${i.version}:${i.checksum.getOrElse("")}")
+        prov(win).copy(
+          inputs = keep,
+          parameters = prov(win).parameters ++ Map(
+            "merged.rows"          -> merged.toString,
+            "merged.files"         -> gone.size.toString,
+            "merged.inputs-digest" -> Hashing.digest("scholarchain.hadoop.merged-inputs.v1", lines),
+          ),
+        )
+    val out = withProv(win, newProv)
     (
       Wire
         .write(out)
         .fold(e => throw new IllegalStateException(s"merged row invalid: ${e.message}"), identity),
-      parsed.size - 1,
+      merged,
     )
+
+  /** Legacy form (the unbounded union of inputs). Kept because DedupeUnitSuite pins it. */
+  def rows(
+      table: String,
+      sorted: List[String],
+      ctx: TaskInputOutputContext[?, ?, ?, ?],
+  ): List[String] = rows(table, sorted, ctx, None)
 
   def rows(
       table: String,
       sorted: List[String],
       ctx: TaskInputOutputContext[?, ?, ?, ?],
+      known: Option[Set[InputRef]],
   ): List[String] =
     if sorted.size <= 1 || !ExportKeys.EntityIdField.contains(table) then sorted
     else
@@ -178,6 +222,7 @@ object Dedupe:
             _.provenance.retrievedAt,
             _.provenance,
             (a, p) => a.copy(provenance = p),
+            known,
           )
         case "institutions" =>
           merge[Institution](
@@ -185,6 +230,7 @@ object Dedupe:
             _.provenance.retrievedAt,
             _.provenance,
             (a, p) => a.copy(provenance = p),
+            known,
           )
         case _ =>
           merge[Topic](
@@ -192,6 +238,7 @@ object Dedupe:
             _.provenance.retrievedAt,
             _.provenance,
             (a, p) => a.copy(provenance = p),
+            known,
           )
       JobSupport.count(
         ctx,
@@ -202,7 +249,8 @@ object Dedupe:
 
 object GraphCandidateExportJob:
   def submit(conf: Configuration, s: Setup, inputs: List[Path]): JobOutcome =
-    val reducers = conf.getInt("scholarchain.hadoop.export-reducers", 1)
+    // The value the manifest records (validated by RunSetup.prepare), never a re-read of the conf.
+    val reducers = s.run.config("hadoop.export-reducers").toInt
     val job      = JobSupport.newJob(conf, ExportKeys.JobId, s, reducers, classOf[NullWritable])
     job.setInputFormatClass(classOf[TextInputFormat])
     inputs.foreach(p => FileInputFormat.addInputPath(job, p))

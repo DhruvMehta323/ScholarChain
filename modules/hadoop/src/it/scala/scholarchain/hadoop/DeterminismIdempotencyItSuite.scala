@@ -8,7 +8,7 @@ import ItSupport.*
 /** Two complete runs of the whole pipeline into two roots (with different split sizes), a content
   * comparison of every curated table, and the idempotency refusal.
   *
-  * Job launches: 12 (two pipelines of 6 jobs). The refusal check, the F3 run-ID check and the F4
+  * Job launches: 22 (two pipelines of 11 jobs). The refusal check, the F3 run-ID check and the F4
   * missing-code-version checks launch no job (they stop before any job starts).
   */
 class DeterminismIdempotencyItSuite extends munit.FunSuite:

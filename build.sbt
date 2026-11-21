@@ -90,7 +90,7 @@ lazy val core = (project in file("modules/core"))
   )
 
 lazy val hadoop = (project in file("modules/hadoop"))
-  .dependsOn(core)
+  .dependsOn(core, entityResolution)
   .settings(commonSettings, jobAssemblySettings(dropScalaLibrary = false))
   .settings(
     name := "scholarchain-hadoop",

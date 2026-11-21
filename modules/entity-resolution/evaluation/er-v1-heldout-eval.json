@@ -1,0 +1,1246 @@
+{
+  "tool": "Evaluate",
+  "name": "er-v1",
+  "policyVersion": "er-v1",
+  "featureSetVersion": "er-features-v2",
+  "thresholdsOrigin": "calibrated-on-calibration-split-only",
+  "codeVersion": "74eee4e+repair04",
+  "disclosedReEvaluation": null,
+  "inputs": {
+    "split": "1fad6c2d47aaf68c9f8d3621a53dd935f21881da8b8a9988869edce77d2f8e34",
+    "candidates": "10cccae540fda2dc313228ed63c4aceea128fc878ef2f6fa6af1c9244ad5ca7d",
+    "policy": "b7ca1ebb4e4c010d7cf69224403eb2d09a4d4bca5cfa42c93cab8ca85e177543"
+  },
+  "heldOutRows": 95,
+  "thresholds": {
+    "researcher": {
+      "accept": 0.77,
+      "reject": 0.52,
+      "llmBandLow": 0.52,
+      "llmBandHigh": 0.77
+    },
+    "work": {
+      "accept": 0.79,
+      "reject": 0.79,
+      "llmBandLow": 0.79,
+      "llmBandHigh": 0.79
+    }
+  },
+  "llmUsed": false,
+  "llmMinConfidence": 0.7,
+  "erEnv": {},
+  "ledger": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/entity-resolution/gold/heldout-evaluations.jsonl",
+  "splitSha256": "1fad6c2d47aaf68c9f8d3621a53dd935f21881da8b8a9988869edce77d2f8e34",
+  "overrides": {},
+  "perKind": {
+    "researcher": {
+      "confusion": {
+        "n": 90,
+        "tp": 40,
+        "fp": 3,
+        "fn": 7,
+        "tn": 40,
+        "precision": 0.9302325581395349,
+        "recall": 0.851063829787234,
+        "f1": 0.888888888888889
+      },
+      "counts": {
+        "accepted": 43,
+        "rejected": 24,
+        "unresolved": 21,
+        "conflict": 2
+      },
+      "coverage": 0.7444444444444445,
+      "unresolvedRate": 0.23333333333333334,
+      "conflictRate": 0.022222222222222223,
+      "byPath": {
+        "exact_id": {
+          "n": 20,
+          "confusion": {
+            "n": 20,
+            "tp": 8,
+            "fp": 0,
+            "fn": 4,
+            "tn": 8,
+            "precision": 1,
+            "recall": 0.6666666666666666,
+            "f1": 0.8
+          }
+        },
+        "deterministic": {
+          "n": 31,
+          "confusion": {
+            "n": 31,
+            "tp": 30,
+            "fp": 1,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.967741935483871,
+            "recall": 1,
+            "f1": 0.9836065573770492
+          }
+        },
+        "probabilistic": {
+          "n": 39,
+          "confusion": {
+            "n": 39,
+            "tp": 2,
+            "fp": 2,
+            "fn": 3,
+            "tn": 32,
+            "precision": 0.5,
+            "recall": 0.4,
+            "f1": 0.4444444444444445
+          }
+        },
+        "llm": {
+          "n": 0,
+          "confusion": {
+            "n": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        }
+      },
+      "n": 90
+    },
+    "work": {
+      "confusion": {
+        "n": 5,
+        "tp": 3,
+        "fp": 0,
+        "fn": 2,
+        "tn": 0,
+        "precision": 1,
+        "recall": 0.6,
+        "f1": 0.7499999999999999
+      },
+      "counts": {
+        "accepted": 3,
+        "rejected": 0,
+        "unresolved": 0,
+        "conflict": 2
+      },
+      "coverage": 0.6,
+      "unresolvedRate": 0,
+      "conflictRate": 0.4,
+      "byPath": {
+        "exact_id": {
+          "n": 5,
+          "confusion": {
+            "n": 5,
+            "tp": 3,
+            "fp": 0,
+            "fn": 2,
+            "tn": 0,
+            "precision": 1,
+            "recall": 0.6,
+            "f1": 0.7499999999999999
+          }
+        },
+        "deterministic": {
+          "n": 0,
+          "confusion": {
+            "n": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        },
+        "probabilistic": {
+          "n": 0,
+          "confusion": {
+            "n": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        },
+        "llm": {
+          "n": 0,
+          "confusion": {
+            "n": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        }
+      },
+      "n": 5
+    }
+  },
+  "errors": [
+    {
+      "pairId": "P87d1985cb2e8",
+      "kind": "work",
+      "label": "MATCH",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "score": 0.795,
+      "error": "FN",
+      "reasonCodes": [
+        "doi_disagree"
+      ],
+      "features": {
+        "doi_agreement": 0,
+        "source_reliability": 0.9,
+        "title_exact": 1,
+        "title_sim": 1,
+        "year_distance": 0
+      }
+    },
+    {
+      "pairId": "P8c1883a86963",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.7552333333333334,
+      "error": "FN",
+      "reasonCodes": [
+        "llm_band"
+      ],
+      "features": {
+        "coauthor_overlap": 0.5,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 0,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 0.98,
+        "source_reliability": 0.75,
+        "work_title_sim": 1,
+        "year_distance": 1
+      }
+    },
+    {
+      "pairId": "P91b4c6f0a732",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.7608333333333335,
+      "error": "FN",
+      "reasonCodes": [
+        "llm_band"
+      ],
+      "features": {
+        "coauthor_overlap": 0.5,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 0,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 1,
+        "source_reliability": 0.75,
+        "work_title_sim": 1,
+        "year_distance": 1
+      }
+    },
+    {
+      "pairId": "P94343db3f8dd",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.7325632911392406,
+      "error": "FN",
+      "reasonCodes": [
+        "llm_band"
+      ],
+      "features": {
+        "coauthor_overlap": 1,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 0,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 1,
+        "source_reliability": 0.75,
+        "work_title_sim": 0.05063291139240506,
+        "year_distance": 7
+      }
+    },
+    {
+      "pairId": "Pb2c129f30845",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.7565000000000002,
+      "error": "FN",
+      "reasonCodes": [
+        "orcid_disagree"
+      ],
+      "features": {
+        "coauthor_overlap": 1,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 0,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 0.8,
+        "orcid_agreement": 0,
+        "position_agreement": 0,
+        "source_reliability": 0.85,
+        "work_title_sim": 1,
+        "year_distance": 0
+      }
+    },
+    {
+      "pairId": "Pb3d8fe2b6fbe",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "score": 0.9475000000000001,
+      "error": "FN",
+      "reasonCodes": [
+        "orcid_disagree"
+      ],
+      "features": {
+        "coauthor_overlap": 1,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 0,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 1,
+        "orcid_agreement": 0,
+        "position_agreement": 1,
+        "source_reliability": 0.75,
+        "work_title_sim": 1,
+        "year_distance": 0
+      }
+    },
+    {
+      "pairId": "Pb45697192f59",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "score": 0.9475000000000001,
+      "error": "FN",
+      "reasonCodes": [
+        "orcid_disagree"
+      ],
+      "features": {
+        "coauthor_overlap": 1,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 0,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 1,
+        "orcid_agreement": 0,
+        "position_agreement": 1,
+        "source_reliability": 0.75,
+        "work_title_sim": 1,
+        "year_distance": 0
+      }
+    },
+    {
+      "pairId": "Pb8b57a6c5c20",
+      "kind": "work",
+      "label": "MATCH",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "score": 0.795,
+      "error": "FN",
+      "reasonCodes": [
+        "doi_disagree"
+      ],
+      "features": {
+        "doi_agreement": 0,
+        "source_reliability": 0.9,
+        "title_exact": 1,
+        "title_sim": 1,
+        "year_distance": 0
+      }
+    },
+    {
+      "pairId": "Pe49d5d15b332",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.7565000000000002,
+      "error": "FN",
+      "reasonCodes": [
+        "orcid_disagree"
+      ],
+      "features": {
+        "coauthor_overlap": 1,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 1,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 0.8,
+        "orcid_agreement": 0,
+        "position_agreement": 0,
+        "source_reliability": 0.85,
+        "work_title_sim": 1,
+        "year_distance": 0
+      }
+    },
+    {
+      "pairId": "P390d92778854",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "accepted",
+      "path": "probabilistic",
+      "score": 0.7789285714285714,
+      "error": "FP",
+      "reasonCodes": [
+        "score_ge_accept"
+      ],
+      "features": {
+        "coauthor_overlap": 0.8571428571428571,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 0,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 1,
+        "source_reliability": 0.85
+      }
+    },
+    {
+      "pairId": "Pcd31c083d4d9",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001,
+      "error": "FP",
+      "reasonCodes": [
+        "same_work_same_position"
+      ],
+      "features": {
+        "coauthor_overlap": 1,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 0,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 1,
+        "position_agreement": 1,
+        "source_reliability": 0.75,
+        "work_title_sim": 1,
+        "year_distance": 0
+      }
+    },
+    {
+      "pairId": "Pf59aa783dec0",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "accepted",
+      "path": "probabilistic",
+      "score": 0.8075000000000001,
+      "error": "FP",
+      "reasonCodes": [
+        "score_ge_accept"
+      ],
+      "features": {
+        "coauthor_overlap": 1,
+        "family_exact": 1,
+        "family_jw": 1,
+        "homonym_suffix_conflict": 0,
+        "homonym_suffix_present": 0,
+        "initials_compat": 1,
+        "name_mixed_script": 0,
+        "name_sim": 1,
+        "source_reliability": 0.85
+      }
+    }
+  ],
+  "predictions": [
+    {
+      "pairId": "P00973dabf18b",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5376650165016503
+    },
+    {
+      "pairId": "P0c37e0b1f6c8",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "P0dd1ef150118",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.5105626931567329
+    },
+    {
+      "pairId": "P1114dfa5e061",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.9332454545454547
+    },
+    {
+      "pairId": "P131dddecb90d",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.8975000000000001
+    },
+    {
+      "pairId": "P144088c9bc3b",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.6102333333333334
+    },
+    {
+      "pairId": "P1978dfef0c05",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.5155625287356322
+    },
+    {
+      "pairId": "P1e41b45677e3",
+      "kind": "work",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.8975000000000001
+    },
+    {
+      "pairId": "P21c2b706869f",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "P23264caeb229",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.6140079365079365
+    },
+    {
+      "pairId": "P270f1c4ee288",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "P27315348d86b",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.8858333333333335
+    },
+    {
+      "pairId": "P27331ed6f4f2",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9327000000000001
+    },
+    {
+      "pairId": "P284b943b2129",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "P2aec0bf03452",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "P2f340b8f2aaf",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.5014201964395335
+    },
+    {
+      "pairId": "P2f768157b98a",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5639444444444445
+    },
+    {
+      "pairId": "P30668894b79e",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5616142857142857
+    },
+    {
+      "pairId": "P30d56eeb3445",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "P34878fa43808",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5245285714285715
+    },
+    {
+      "pairId": "P390d92778854",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "accepted",
+      "path": "probabilistic",
+      "score": 0.7789285714285714
+    },
+    {
+      "pairId": "P3b8d11ac1b72",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "P3c71e0cac2e4",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5272299880525687
+    },
+    {
+      "pairId": "P3d32cdfd5a87",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9292481481481483
+    },
+    {
+      "pairId": "P3dcf39294832",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.5066485573971762
+    },
+    {
+      "pairId": "P402a4f94a29f",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.6488333333333334
+    },
+    {
+      "pairId": "P439a535b30d4",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.4951119571347998
+    },
+    {
+      "pairId": "P448394e85974",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.49341452991452994
+    },
+    {
+      "pairId": "P48c887c1e9aa",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.5954780392156863
+    },
+    {
+      "pairId": "P4c2aea56512c",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "P4e9ffccbead0",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.5132854849068722
+    },
+    {
+      "pairId": "P534149aca804",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "P539c46037e33",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.6190079365079365
+    },
+    {
+      "pairId": "P58660baf2f64",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.531783950617284
+    },
+    {
+      "pairId": "P5f0ec1f0df69",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.5111009337068161
+    },
+    {
+      "pairId": "P60fb11da2fef",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.49233147077713557
+    },
+    {
+      "pairId": "P62801a988e80",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "P634aaebe58a0",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "P6a9089d5beae",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.9308333333333334
+    },
+    {
+      "pairId": "P6b407e182bac",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "P77d90601e7eb",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5515045248868778
+    },
+    {
+      "pairId": "P795bf91e1780",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.48854347826086963
+    },
+    {
+      "pairId": "P797419bd4858",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "P7afb2a74b880",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5391504854368933
+    },
+    {
+      "pairId": "P7e0742adf72e",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5622341222879685
+    },
+    {
+      "pairId": "P81d2db4edba7",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.9308333333333334
+    },
+    {
+      "pairId": "P87d1985cb2e8",
+      "kind": "work",
+      "label": "MATCH",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "score": 0.795
+    },
+    {
+      "pairId": "P88d42962dd74",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "P8935fe26001d",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "P8c1883a86963",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.7552333333333334
+    },
+    {
+      "pairId": "P91b4c6f0a732",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.7608333333333335
+    },
+    {
+      "pairId": "P9318a29c2180",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "P94343db3f8dd",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.7325632911392406
+    },
+    {
+      "pairId": "P9447ca653a42",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.6319000000000001
+    },
+    {
+      "pairId": "P95fbc2b1dfad",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "P99a928ac9a5c",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "Pa26c1431327f",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "Pa4e94b7807a5",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "Pa50003e7fe60",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "Pa8749b22fb52",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "Pa9a62720b666",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "Paa478bbb7af5",
+      "kind": "work",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.9375
+    },
+    {
+      "pairId": "Padf0e730d45d",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.51219795761079
+    },
+    {
+      "pairId": "Pae75424c0875",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.5518369881556684
+    },
+    {
+      "pairId": "Paf0d68a24fe9",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.6104931972789116
+    },
+    {
+      "pairId": "Pb2c129f30845",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.7565000000000002
+    },
+    {
+      "pairId": "Pb3d8fe2b6fbe",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "Pb45697192f59",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "Pb4dc9cf75cda",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "Pb7d429f29eb5",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "probabilistic",
+      "score": 0.8271359788359789
+    },
+    {
+      "pairId": "Pb8b57a6c5c20",
+      "kind": "work",
+      "label": "MATCH",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "score": 0.795
+    },
+    {
+      "pairId": "Pb8bbe75062ed",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5605284263959391
+    },
+    {
+      "pairId": "Pb9dfcf71037e",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5243360975609757
+    },
+    {
+      "pairId": "Pbc9b1f84cadd",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "Pc05bbd0bd878",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9437666666666669
+    },
+    {
+      "pairId": "Pc657f8fb095f",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.6395000000000001
+    },
+    {
+      "pairId": "Pccff7e3c8a56",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.5167144144144145
+    },
+    {
+      "pairId": "Pcd31c083d4d9",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9475000000000001
+    },
+    {
+      "pairId": "Pcde02a65b886",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9358333333333335
+    },
+    {
+      "pairId": "Pceb8f1ea5fbd",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.5035637958532696
+    },
+    {
+      "pairId": "Pd1313e0f60d7",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.4850157353885678
+    },
+    {
+      "pairId": "Pd387d51d00cb",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9308333333333334
+    },
+    {
+      "pairId": "Pd465accd4f9a",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.5151582809224319
+    },
+    {
+      "pairId": "Pd65300d71811",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.5126419009370817
+    },
+    {
+      "pairId": "Pdb325451f095",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5402825494205863
+    },
+    {
+      "pairId": "Pe1b0091b4aa1",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.49536339537507057
+    },
+    {
+      "pairId": "Pe49d5d15b332",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "score": 0.7565000000000002
+    },
+    {
+      "pairId": "Pe4a54ced7a4e",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.5222299880525687
+    },
+    {
+      "pairId": "Pe6af1f0c3a62",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    },
+    {
+      "pairId": "Pee1d23564737",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "score": 0.6075
+    },
+    {
+      "pairId": "Pf48bceb0f365",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "probabilistic",
+      "score": 0.8075000000000001
+    },
+    {
+      "pairId": "Pf59aa783dec0",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "accepted",
+      "path": "probabilistic",
+      "score": 0.8075000000000001
+    },
+    {
+      "pairId": "Pf7f43946e0bf",
+      "kind": "work",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "score": 0.7875000000000001
+    },
+    {
+      "pairId": "Pf9083a561777",
+      "kind": "researcher",
+      "label": "NON_MATCH",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "score": 0.5086333333333334
+    },
+    {
+      "pairId": "Pfe66ac702cf3",
+      "kind": "researcher",
+      "label": "MATCH",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "score": 0.9525000000000001
+    }
+  ]
+}
