@@ -113,6 +113,8 @@ lazy val sparkAnalytics = (project in file("modules/spark"))
   .settings(
     name := "scholarchain-spark",
     libraryDependencies ++= Seq(Dependencies.sparkSql, Dependencies.sparkGraphx),
+    // Spark suites share one local SparkSession per forked JVM, so they must not run in parallel.
+    Test / parallelExecution := false,
   )
 
 lazy val storage = (project in file("modules/storage"))
