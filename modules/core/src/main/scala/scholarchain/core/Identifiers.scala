@@ -573,6 +573,95 @@ object Ids:
   def researcherIdUnresolved(mentionId: String): Either[ValidationError, String] =
     checkMentionId(mentionId).flatMap(m => researcherIdScholarChain(s"unresolved.v1:$m"))
 
+  /** Base identity of a DBLP person key (Phase 06, scheme `dblp-person.v1`): the EXACT DBLP author
+    * string, homonym suffix included (`"Zhen Wang 0008"` and `"Zhen Wang"` are two identities), no
+    * trimming, case folding or normalization. ID:
+    * `researcher:sc1:H("scholarchain.researcher.v1", "dblp-person.v1:" + dblpName)`. It can never
+    * equal a `researcherIdUnresolved` ID (key prefix `unresolved.v1:`; the hash input differs).
+    * Rejects a blank name only.
+    */
+  def researcherIdDblpPerson(dblpName: String): Either[ValidationError, String] =
+    if dblpName.trim.isEmpty then Left(InvalidField("dblpName", "must be non-blank"))
+    else researcherIdScholarChain(s"dblp-person.v1:$dblpName")
+
+  /** Superseded for Phase 06 output by `researcherIdForClusterV2`; behavior unchanged.
+    *
+    * Identity of a MERGED cluster of base identities (scheme `merged-cluster.v1`): the base
+    * researcher IDs (each passing `checkResearcherId`) are de-duplicated and sorted by
+    * `String.compareTo`; at least two are required. ID:
+    * `researcher:sc1:H("scholarchain.researcher.v1", "merged-cluster.v1:" + n + ":" + ids.mkString("|"))`.
+    * Order-independent and deterministic.
+    */
+  def researcherIdMergedCluster(baseIds: Seq[String]): Either[ValidationError, String] =
+    val sorted = baseIds.distinct.sorted
+    for
+      _ <- sorted.foldLeft[Either[ValidationError, Unit]](Right(()))((acc, b) =>
+        acc.flatMap(_ => checkResearcherId(b).map(_ => ()))
+      )
+      _ <-
+        if sorted.size < 2 then
+          Left(InvalidField("baseIds", "a merged cluster needs at least two distinct base ids"))
+        else Right(())
+      id <- researcherIdScholarChain(s"merged-cluster.v1:${sorted.size}:${sorted.mkString("|")}")
+    yield id
+
+  /** Superseded for Phase 06 output by `researcherIdForClusterV2` (ORCID is no longer the canonical
+    * ID); behavior unchanged.
+    *
+    * Canonical researcher ID of a cluster of base identities (original Phase 06 rule):
+    *   - exactly one distinct validated ORCID among `orcids`: `researcherIdFromOrcid`;
+    *   - two or more distinct ORCIDs: `Left` (never merge; M5 cannot-link);
+    *   - none: the single base ID when the cluster has one member, otherwise
+    *     `researcherIdMergedCluster(baseIds)`.
+    * An invalid ORCID is a `Left`. `baseIds` must be non-empty. Callers apply it to clusters of any
+    * size; an unmerged identity should keep its base ID (use it only for merged clusters, or pass
+    * the base ID's own ORCID knowingly).
+    */
+  def researcherIdForCluster(
+      baseIds: Seq[String],
+      orcids: Seq[String],
+  ): Either[ValidationError, String] =
+    for
+      _ <-
+        if baseIds.isEmpty then Left(InvalidField("baseIds", "must not be empty")) else Right(())
+      parsed <- orcids.foldLeft[Either[ValidationError, List[String]]](Right(Nil))((acc, o) =>
+        acc.flatMap(done => Orcid.parse(o).map(done :+ _))
+      )
+      id <- parsed.distinct match
+        case List(one) => researcherIdFromOrcid(one)
+        case Nil       =>
+          baseIds.distinct match
+            case Seq(single) => checkResearcherId(single)
+            case _           => researcherIdMergedCluster(baseIds)
+        case _ => Left(InvalidField("orcids", "a cluster with two different ORCIDs cannot merge"))
+    yield id
+
+  /** Canonical researcher ID of a cluster under the Phase 06 repair-01 rule (human decision b): the
+    * DBLP base ID of the lexicographically smallest member DBLP person key, that is
+    * `researcherIdDblpPerson(min key)`. Order is by Unicode code point (equal to UTF-8 byte order,
+    * Spark's string order); keys are used exactly as given, de-duplicated, never normalized. A
+    * single-key cluster gives that key's base ID. An ORCID is never the canonical ID of a cluster:
+    * it is a property plus a `RESOLVES_TO` edge (`GraphEdgeTypes.ResolvesTo`).
+    *
+    * A cluster with NO DBLP person key (empty `dblpPersonKeys`) has no canonical Phase 06 ID: the
+    * result is `Left(InvalidField("dblpPersonKeys", ...))`; the caller must handle such mentions
+    * explicitly (for example `researcherIdUnresolved`), never silently. A blank key is a `Left`.
+    */
+  def researcherIdForClusterV2(dblpPersonKeys: Seq[String]): Either[ValidationError, String] =
+    if dblpPersonKeys.isEmpty then
+      Left(
+        InvalidField(
+          "dblpPersonKeys",
+          "a cluster without a DBLP person key has no canonical researcher id",
+        )
+      )
+    else
+      dblpPersonKeys
+        .foldLeft[Either[ValidationError, Unit]](Right(()))((acc, k) =>
+          acc.flatMap(_ => researcherIdDblpPerson(k).map(_ => ()))
+        )
+        .flatMap(_ => researcherIdDblpPerson(dblpPersonKeys.min(using V2Checks.codePointOrdering)))
+
   def coauthorEdgeId(
       a: String,
       b: String,
