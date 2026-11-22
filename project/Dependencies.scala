@@ -30,6 +30,22 @@ object Dependencies {
   val sparkGraphx =
     (sparkOrg % "spark-graphx" % Versions.spark % Provided).cross(CrossVersion.for3Use2_13)
 
+  // AWS SDK for Java v2 (storage adapters). All modules are aligned on Versions.awsSdkV2.
+  // The default Apache and Netty transports are excluded; exactly one HTTP client is pinned
+  // (url-connection-client, resolved by SDK service-client builders through the classpath).
+  private val awsOrg                      = "software.amazon.awssdk"
+  private def awsModule(artifact: String) =
+    (awsOrg % artifact % Versions.awsSdkV2)
+      .exclude(awsOrg, "apache-client")
+      .exclude(awsOrg, "netty-nio-client")
+  val awsS3                  = awsModule("s3")
+  val awsDynamodb            = awsModule("dynamodb")
+  val awsS3vectors           = awsModule("s3vectors")
+  val awsNeptunedata         = awsModule("neptunedata")
+  val awsSqs                 = awsModule("sqs")
+  val awsSts                 = awsModule("sts") // live profile identity check only
+  val awsUrlConnectionClient = awsOrg % "url-connection-client" % Versions.awsSdkV2
+
   // Keeps the stdlib on the version the EMR Spark runtime supplies.
   val scalaLibraryPin = "org.scala-lang" % "scala-library" % Versions.scala213
 }

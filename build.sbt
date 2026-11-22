@@ -7,6 +7,9 @@ import java.time.Instant
 // Environment input surface (the only environment variables this build reads):
 //   SCHOLARCHAIN_JAVA_HOME  Optional. JDK home used to FORK test JVMs (for example a JDK 17).
 //                           Unset: forked tests use the JVM that runs sbt.
+//   SCHOLARCHAIN_AWS_IT     Optional. Set to 1 to run live-AWS suites named *AwsItSuite.
+//                           Unset or any other value: those suites are skipped, so `sbt check`
+//                           never touches AWS.
 // All versions come from project/Versions.scala (the ledger). No secrets, cloud endpoints or
 // deployment steps are defined here.
 //
@@ -54,6 +57,10 @@ lazy val commonSettings = Seq(
   Test / javaOptions ++= jdk17Opens,
   // Tests that need AWS or other live services are named *IntegrationSuite and never run here.
   Test / testOptions += Tests.Filter(name => !name.endsWith("IntegrationSuite")),
+  // Live AWS suites (*AwsItSuite) run only when SCHOLARCHAIN_AWS_IT=1.
+  Test / testOptions += Tests.Filter(name =>
+    !name.endsWith("AwsItSuite") || sys.env.get("SCHOLARCHAIN_AWS_IT").contains("1")
+  ),
   libraryDependencies += Dependencies.munit,
 )
 
@@ -120,7 +127,26 @@ lazy val sparkAnalytics = (project in file("modules/spark"))
 lazy val storage = (project in file("modules/storage"))
   .dependsOn(core)
   .settings(commonSettings)
-  .settings(name := "scholarchain-storage")
+  .settings(
+    name := "scholarchain-storage",
+    libraryDependencies ++= Seq(
+      Dependencies.awsS3,
+      Dependencies.awsDynamodb,
+      Dependencies.awsS3vectors,
+      Dependencies.awsNeptunedata,
+      Dependencies.awsSqs,
+      Dependencies.awsSts,
+      Dependencies.awsUrlConnectionClient,
+      // Reads Phase 06 Parquet output as files; no dependency on modules/spark code.
+      Dependencies.sparkSql,
+    ),
+    // Spark suites share one local SparkSession per forked JVM, so they must not run in parallel.
+    Test / parallelExecution := false,
+    // src/it (storage-engineer) is compiled and run with Test. Suites there that touch AWS MUST be
+    // named *AwsItSuite: commonSettings filters them out unless SCHOLARCHAIN_AWS_IT=1.
+    Test / unmanagedSourceDirectories += baseDirectory.value / "src" / "it" / "scala",
+    Test / unmanagedResourceDirectories += baseDirectory.value / "src" / "it" / "resources",
+  )
 
 lazy val rag = (project in file("modules/rag"))
   .dependsOn(core)
