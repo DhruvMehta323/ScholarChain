@@ -36,6 +36,20 @@ final case class NeptuneLoaderRequest(
 )
 
 object NeptuneBulkLoad:
+  /** The only accepted bulk-load format: the files written by `NeptuneCsv` are openCypher CSV. The
+    * Gremlin `csv` format would misread them, so it (and any other value) is rejected.
+    */
+  val RequiredFormat: String = "opencypher"
+
+  def formatProblem(format: String): String =
+    s"Neptune bulk-load format must be '$RequiredFormat' (openCypher CSV); '$format' is not " +
+      "accepted because it would misread the openCypher files"
+
+  /** Checks a load configuration before any store or loader is built from it. */
+  def checkConfig(cfg: StorageNeptuneLoad): StorageResult[StorageNeptuneLoad] =
+    if cfg.format == RequiredFormat then Right(cfg)
+    else Left(StorageError.InvalidRequest(formatProblem(cfg.format)))
+
   /** Builds the loader request. `source` must lie under the configured source prefix (a caller
     * cannot point the loader at another bucket), `format` must equal the configured one, and the
     * role comes from configuration only.
@@ -51,8 +65,10 @@ object NeptuneBulkLoad:
       request: BulkLoadRequest,
       region: String,
   ): StorageResult[NeptuneLoaderRequest] =
-    if !ObjectLocation.parse(request.sourceUri).isRight || !request.sourceUri.endsWith("/") then
-      Left(StorageError.InvalidRequest("source must be an s3://<bucket>/<prefix>/ URI"))
+    if cfg.format != NeptuneBulkLoad.RequiredFormat then
+      Left(StorageError.InvalidRequest(NeptuneBulkLoad.formatProblem(cfg.format)))
+    else if !ObjectLocation.parse(request.sourceUri).isRight || !request.sourceUri.endsWith("/")
+    then Left(StorageError.InvalidRequest("source must be an s3://<bucket>/<prefix>/ URI"))
     else if !request.sourceUri.startsWith(cfg.sourceS3Uri) then
       Left(StorageError.InvalidRequest("source is outside the configured load prefix"))
     else if request.sourceUri.contains("/../") then

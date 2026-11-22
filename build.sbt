@@ -15,7 +15,8 @@ import java.time.Instant
 //
 // Module graph (an arrow means "depends on"; core depends on nothing; nothing depends on services):
 //   hadoop, entityResolution, sparkAnalytics, storage, rag -> core
-//   services -> rag, storage (and core transitively)
+//   services -> rag, storage (and core transitively); rag does NOT depend on storage
+//   rag holds the Bedrock runtime SDK (Titan embedder); services has Spark SQL in Test scope only
 
 ThisBuild / scalaVersion := Versions.scala3
 ThisBuild / organization := "io.scholarchain"
@@ -28,6 +29,15 @@ ThisBuild / dependencyOverrides += Dependencies.scalaLibraryPin
 // Bytecode and API level 17 whichever JDK runs sbt (EMR 8.1.0 default runtime is Java 17).
 ThisBuild / scalacOptions ++= Seq("-release", "17", "-deprecation", "-feature", "-unchecked")
 ThisBuild / javacOptions ++= Seq("--release", "17")
+
+// Forked test groups run one at a time across ALL modules, so Spark, Hadoop and the other test
+// JVMs never overlap (parallel module test JVMs exhausted memory and tripped timeouts).
+// sbt already limits ForkedTestGroup to 1 by default, which serializes groups, not separate modules'
+// testFull tasks; Tags.Test (carried by test, testFull and testOnly of every module) closes that gap.
+Global / concurrentRestrictions ++= Seq(
+  Tags.limit(Tags.ForkedTestGroup, 1),
+  Tags.limit(Tags.Test, 1),
+)
 
 val markTestRun = taskKey[Unit]("Write .claude/.last-test-run after all tests have passed")
 val jdkInfo     = taskKey[Unit]("Print the JDKs used by sbt and by forked tests")
@@ -55,6 +65,8 @@ lazy val commonSettings = Seq(
   Test / fork     := true,
   Test / javaHome := sys.env.get("SCHOLARCHAIN_JAVA_HOME").filter(_.nonEmpty).map(file),
   Test / javaOptions ++= jdk17Opens,
+  // Explicit heap for every forked test JVM (Spark local[2] needs headroom; one JVM runs at a time).
+  Test / javaOptions += "-Xmx2g",
   // Tests that need AWS or other live services are named *IntegrationSuite and never run here.
   Test / testOptions += Tests.Filter(name => !name.endsWith("IntegrationSuite")),
   // Live AWS suites (*AwsItSuite) run only when SCHOLARCHAIN_AWS_IT=1.
@@ -107,6 +119,8 @@ lazy val hadoop = (project in file("modules/hadoop"))
     // Never use the *IntegrationSuite suffix: commonSettings filters it out (live-service tests).
     Test / unmanagedSourceDirectories += baseDirectory.value / "src" / "it" / "scala",
     Test / unmanagedResourceDirectories += baseDirectory.value / "src" / "it" / "resources",
+    // hadoop suites, including local MapReduce *ItSuites, must not run concurrently inside one test JVM; see Phase 08 repair 03
+    Test / parallelExecution := false,
   )
 
 lazy val entityResolution = (project in file("modules/entity-resolution"))
@@ -151,7 +165,13 @@ lazy val storage = (project in file("modules/storage"))
 lazy val rag = (project in file("modules/rag"))
   .dependsOn(core)
   .settings(commonSettings)
-  .settings(name := "scholarchain-rag")
+  .settings(
+    name := "scholarchain-rag",
+    libraryDependencies ++= Seq(
+      Dependencies.awsBedrockRuntime,
+      Dependencies.awsUrlConnectionClient,
+    ),
+  )
 
 lazy val services = (project in file("modules/services"))
   .enablePlugins(JavaAppPackaging, DockerPlugin)
@@ -159,7 +179,10 @@ lazy val services = (project in file("modules/services"))
   .settings(commonSettings)
   .settings(
     name := "scholarchain-services",
-    libraryDependencies += Dependencies.logback,
+    // Spark SQL is Test scope only: the local-run test harness reads Phase 06 Parquet via storage.
+    libraryDependencies ++= Seq(Dependencies.logback, Dependencies.sparkSqlTest),
+    // Spark suites share one local SparkSession per forked JVM, so they must not run in parallel.
+    Test / parallelExecution := false,
     // Container image: pinned Java runtime, non-root user, percentage-based memory limits.
     dockerBaseImage         := s"eclipse-temurin:${Versions.temurinJreImage}",
     dockerRepository        := None,

@@ -22,7 +22,7 @@ object Versions {
   val typesafeConfig = "1.4.10"
 
   // AWS SDK for Java v2 (one version for bom, s3, dynamodb, s3vectors, neptunedata, sqs, sts,
-  // url-connection-client, apache-client). Source: https://repo1.maven.org/maven2/software/amazon/awssdk/bom/maven-metadata.xml
+  // bedrockruntime, url-connection-client, apache-client). Source: https://repo1.maven.org/maven2/software/amazon/awssdk/bom/maven-metadata.xml
   // Checked 2026-11-21. See reports/dependency-updates/phase-07-aws-sdk-v2.md.
   val awsSdkV2 = "2.59.7"
 

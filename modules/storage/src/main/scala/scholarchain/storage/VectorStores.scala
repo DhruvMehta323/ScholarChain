@@ -69,6 +69,13 @@ object VectorMetadata:
       RunId     -> r.runId,
     )
 
+  /** The metadata without the `runId` system key. A vector's identity for idempotency is (key, text
+    * hash, model ID and version, text pointer, metadata, embedding): the run that wrote it is
+    * provenance, not identity, so a reload from a new run is an idempotent no-op (carry-over Phase
+    * 07 N2). The stored vector keeps the run ID of its first writer.
+    */
+  def withoutRun(m: Map[String, String]): Map[String, String] = m - RunId
+
   /** Compact JSON of the metadata, keys sorted: what is sent to the service and measured. */
   def json(m: Map[String, String]): String =
     ujson.write(ujson.Obj.from(m.toList.sortBy(_._1).map((k, v) => k -> ujson.Str(v))))
@@ -133,11 +140,12 @@ object VectorChecks:
             else None
 
   /** Idempotency check against an already stored vector (M3). `None` = the stored vector is
-    * identical (same text hash, model ID and version, metadata and embedding): an idempotent no-op.
-    * A different text hash is `KeyCollision`. The same text hash with any other difference
-    * (embedding, model ID or version, metadata) is `EmbeddingMismatch`: it is rejected and
-    * recorded, never silently accepted and never overwritten (S3 Vectors has no conditional put,
-    * and the loader never replaces a vector).
+    * identical (same text hash, model ID and version, text pointer, metadata and embedding; the
+    * `runId` is ignored, so a reload from a new run is a no-op reported as `Accepted` without a
+    * write): an idempotent no-op. A different text hash is `KeyCollision`. The same text hash with
+    * any other difference (embedding, model ID or version, metadata) is `EmbeddingMismatch`: it is
+    * rejected and recorded, never silently accepted and never overwritten (S3 Vectors has no
+    * conditional put, and the loader never replaces a vector).
     */
   def againstStored(
       storedMetadata: Map[String, String],
@@ -146,8 +154,10 @@ object VectorChecks:
   ): Option[(VectorRejection, String)] =
     if !storedMetadata.get(VectorMetadata.TextHash).contains(e.record.textHash) then
       Some((VectorRejection.KeyCollision, "key exists with a different text hash"))
-    else if storedMetadata == VectorMetadata.encode(e.record) && storedEmbedding == e.embedding then
-      None
+    else if VectorMetadata.withoutRun(storedMetadata) ==
+        VectorMetadata.withoutRun(VectorMetadata.encode(e.record)) &&
+        storedEmbedding == e.embedding
+    then None
     else
       Some(
         (

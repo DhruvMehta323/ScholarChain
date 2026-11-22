@@ -17,6 +17,31 @@ import UnitSupport.*
   */
 class AdversarialSuite extends munit.FunSuite:
 
+  // Per-test timeout override (Phase 08 repair 03). munit 1.3.6 has only a suite-wide
+  // `munitTimeout`, so the longer limit is applied through a flag that is set only while the one
+  // named test below runs. Every other test keeps the default 30 s limit.
+  private val giantTeamTestName =
+    "adversarial: a giant team of 1,000 gives exactly 499,500 valid distinct pairs, none truncated"
+  private val giantTeamTimeoutActive = new java.util.concurrent.atomic.AtomicBoolean(false)
+
+  override def munitTimeout: scala.concurrent.duration.Duration =
+    if giantTeamTimeoutActive.get() then scala.concurrent.duration.Duration(120, "s")
+    else super.munitTimeout
+
+  override def munitTestTransforms: List[TestTransform] =
+    super.munitTestTransforms :+ new TestTransform(
+      "giant-team-timeout",
+      { t =>
+        if t.name == giantTeamTestName then
+          t.withBody { () =>
+            giantTeamTimeoutActive.set(true)
+            try t.body()
+            finally giantTeamTimeoutActive.set(false)
+          }
+        else t
+      },
+    )
+
   // ---- helpers ------------------------------------------------------------------------------
 
   private def tempFile(bytes: Array[Byte]): JPath =
@@ -317,9 +342,10 @@ class AdversarialSuite extends munit.FunSuite:
     assertEquals(exhaust(300), (44850L, 0L))
   }
 
-  test(
-    "adversarial: a giant team of 1,000 gives exactly 499,500 valid distinct pairs, none truncated"
-  ) {
+  // Timeout raised from 30 s to 120 s for this one test only (see munitTimeout override above).
+  // Reason: 499,500 pairs under a loaded laptop exceeded 30 s (32.683 s observed). The assertion
+  // and the input size are unchanged. Phase 08 repair 03.
+  test(giantTeamTestName) {
     assertEquals(PairExpander.pairCount(1000), 499500L)
     assertEquals(exhaust(1000), (499500L, 0L))
   }

@@ -100,7 +100,7 @@ final class AwsClients(
   def workQueue(queueUrls: Map[String, String]): WorkQueue = new SqsWorkQueue(sqs, queueUrls)
 
   def graphStore(cfg: StorageModuleConfig): Either[StorageError, GraphStore] =
-    neptuneData.map { c =>
+    NeptuneBulkLoad.checkConfig(cfg.neptune).flatMap(_ => neptuneData).map { c =>
       new TemplateGraphStore(
         cfg.queryBounds,
         cfg.neptune,
