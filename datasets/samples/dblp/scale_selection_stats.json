@@ -1,0 +1,74 @@
+{
+  "code_version": "baa31d5+uncommitted-scripts",
+  "counts": {
+    "distinct_keys": 50000,
+    "fill_candidates": 90000,
+    "fill_from_100k_minus_10k": 40000,
+    "from_10k": 10000,
+    "selected": 50000
+  },
+  "inputs": {
+    "selection_100k": {
+      "path": "datasets/raw/dblp/derived/dblp_selection_100000.tsv",
+      "rows": 100000,
+      "sha256": "2a00e090923919ce94888eea0630d82c924c0e0f32c172bc09517628cfd0fdae"
+    },
+    "selection_10k": {
+      "path": "datasets/raw/dblp/derived/dblp_selection_10000.tsv",
+      "rows": 10000,
+      "sha256": "851c20657c370ba1cb9ed2f4d3017252825514cc5dde31be82f82fd365a0bbca"
+    }
+  },
+  "method": "all of the 10K selection plus the 40000 works of (100K minus 10K) with the smallest sha256('<seed>|nested-50k|<key>'); output sorted by (year, venue, key)",
+  "mix": {
+    "100k": {
+      "by_type": {
+        "article": 46552,
+        "inproceedings": 53448
+      },
+      "distinct_venues": 6254,
+      "distinct_years": 86,
+      "max_year": "2027",
+      "min_year": "1938"
+    },
+    "10k": {
+      "by_type": {
+        "article": 5132,
+        "inproceedings": 4868
+      },
+      "distinct_venues": 1372,
+      "distinct_years": 86,
+      "max_year": "2027",
+      "min_year": "1938"
+    },
+    "50k": {
+      "by_type": {
+        "article": 23649,
+        "inproceedings": 26351
+      },
+      "distinct_venues": 5483,
+      "distinct_years": 86,
+      "max_year": "2027",
+      "min_year": "1938"
+    }
+  },
+  "nesting": {
+    "10k_subset_of_100k": true,
+    "10k_subset_of_50k": true,
+    "50k_subset_of_100k": true
+  },
+  "output": {
+    "bytes": 8191471,
+    "path": "datasets/raw/dblp/derived/dblp_selection_50000.tsv",
+    "sha256": "5ffdc0e1ef6c124c365f7dfd9e3f2d5c529a286dd8b3919baf8ff594d244d500"
+  },
+  "script": "datasets/scripts/dblp_nested_select.py",
+  "script_version": "1.0.0",
+  "seed": 441,
+  "selection_10k_reused": {
+    "path": "datasets/raw/dblp/derived/dblp_selection_10000.tsv",
+    "rows": 10000,
+    "sha256": "851c20657c370ba1cb9ed2f4d3017252825514cc5dde31be82f82fd365a0bbca"
+  },
+  "target": 50000
+}
