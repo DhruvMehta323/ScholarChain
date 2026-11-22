@@ -47,11 +47,11 @@ Identity: 0 merges of two or more DBLP persons and 0 cannot-link blocks on this 
 
 ## 6. My own checks
 
-- [ ] `.claude/.last-test-run` reads `exit=0`.
-- [ ] The compare tool on sparkS1r2 and sparkS2r2 prints ALL TABLES EQUAL.
-- [ ] `SPARK-CONTRACTS.md` defines every bridge measure and the community method, with limitations.
-- [ ] I read the fixture test and its hand-written expected values.
-- [ ] `git status` shows no `target/` or `datasets/raw/` files tracked.
+- [x] `.claude/.last-test-run` reads `exit=0`.
+- [x] The compare tool on sparkS1r2 and sparkS2r2 prints ALL TABLES EQUAL.
+- [x] `SPARK-CONTRACTS.md` defines every bridge measure and the community method, with limitations.
+- [x] I read the fixture test and its hand-written expected values.
+- [x] `git status` shows no `target/` or `datasets/raw/` files tracked.
 
 ## 7. Disclosures
 

@@ -27,7 +27,10 @@ object Dependencies {
   // Spark SQL, supplied by the EMR runtime.
   val sparkSql =
     (sparkOrg % "spark-sql" % Versions.spark % Provided).cross(CrossVersion.for3Use2_13)
-  val sparkGraphx =
+  // Same artifact, Test scope only: services tests read Phase 06 Parquet through storage's
+  // ParquetTables. Never on the services Compile or Runtime classpath.
+  val sparkSqlTest = sparkSql.withConfigurations(Some("test"))
+  val sparkGraphx  =
     (sparkOrg % "spark-graphx" % Versions.spark % Provided).cross(CrossVersion.for3Use2_13)
 
   // AWS SDK for Java v2 (storage adapters). All modules are aligned on Versions.awsSdkV2.
@@ -44,6 +47,7 @@ object Dependencies {
   val awsNeptunedata         = awsModule("neptunedata")
   val awsSqs                 = awsModule("sqs")
   val awsSts                 = awsModule("sts") // live profile identity check only
+  val awsBedrockRuntime      = awsModule("bedrockruntime") // rag: Titan embedder
   val awsUrlConnectionClient = awsOrg % "url-connection-client" % Versions.awsSdkV2
 
   // Keeps the stdlib on the version the EMR Spark runtime supplies.
