@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["verdicts"],
+  "properties": {
+    "verdicts": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claimId", "status", "reasonCodes"],
+        "properties": {
+          "claimId": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "status": {
+            "type": "string",
+            "enum": ["verified", "partially_supported", "unsupported", "conflicting"]
+          },
+          "reasonCodes": {
+            "type": "array",
+            "maxItems": 5,
+            "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" }
+          }
+        }
+      }
+    }
+  }
+}
