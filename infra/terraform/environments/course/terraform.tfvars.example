@@ -1,0 +1,23 @@
+# Copy to terraform.tfvars (gitignored) and fill in. No secrets belong in this file.
+# REQUIRED: the account this environment may touch (12 digits). 123456789012 is a placeholder, never a real ID.
+# Terraform refuses other accounts (provider allowed_account_ids) and scripts/plan.sh compares it with the STS caller account.
+expected_account_id = "123456789012"
+
+owner           = "your-name"
+expiration_date = "2026-12-20"
+alert_email     = "you@example.edu"
+
+# REQUIRED: who may reach the load balancer. Use your own /32 (203.0.113.10/32 is a documentation-range placeholder).
+# 0.0.0.0/0 and ::/0 are rejected by validation.
+alb_ingress_cidrs = ["203.0.113.10/32"]
+
+# Cost cuts: both default to false (nothing billed hourly for them). Turn on only for an experiment window:
+# create_neptune = true
+# create_alb     = true
+
+# Optional
+# deployment_principal_arns = ["arn:aws:iam::123456789012:user/your-user"]
+# bedrock_model_arns        = ["arn:aws:bedrock:us-east-2::foundation-model/amazon.titan-embed-text-v2:0"]
+
+# Region defaults to us-east-2 (variable aws_region); plan.sh requires AWS_REGION (or the profile region) to equal it.
+# aws_region = "us-east-2"

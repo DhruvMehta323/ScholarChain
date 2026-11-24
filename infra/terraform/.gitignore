@@ -1,0 +1,2 @@
+# Terraform variable files in JSON form can hold real values (account ID, e-mail). Never commit. (*.tfvars is ignored by the root .gitignore.)
+*.tfvars.json
