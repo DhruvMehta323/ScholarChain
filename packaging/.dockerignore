@@ -1,0 +1,5 @@
+# Deny everything, then allow only what the staged context needs. Copied into the context root.
+*
+!lib/
+!entrypoint.sh
+!Dockerfile.*

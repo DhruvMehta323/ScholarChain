@@ -17,7 +17,8 @@ Enum wire names are lowercase snake_case.
 Validation rules are in the Scaladoc of each type. Environment variables: `SCHOLARCHAIN_RAG_<KEY>`
 (for example `SCHOLARCHAIN_RAG_MODEL_PROVIDER`); override names `scholarchain.rag.<key>`. No secret
 is a config value: only the NAME of the Anthropic key variable
-(`SCHOLARCHAIN_ANTHROPIC_API_KEY`) is configured.
+(`SCHOLARCHAIN_ANTHROPIC_API_KEY`) is configured, and it must be exactly that name; any other
+value is rejected without being echoed.
 
 Retrieved text is never a system segment: `ModelRequest.validate` rejects `Data` segments in `system`.
 `ModelCall` stores hashes and counts only, never prompt or output text.

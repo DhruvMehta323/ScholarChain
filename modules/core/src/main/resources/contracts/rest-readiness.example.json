@@ -1,0 +1,1 @@
+{"status":"not_ready","service":"query-api","checks":[{"name":"dynamodb","state":"up"},{"name":"neptune","state":"down","reason":"not_configured"}]}

@@ -6,10 +6,11 @@ import ValidationError.*
   * module keys are untouched). Defaults live in `scholarchain-rag.v1.conf`. Environment variable:
   * `SCHOLARCHAIN_RAG_<KEY>`; override name: `scholarchain.rag.<key>`.
   *
-  * No secret is ever a config value. `rag.model.anthropic-api-key-env-var` holds only the NAME of
-  * the environment variable the Anthropic adapter reads its credential from (default
-  * `SCHOLARCHAIN_ANTHROPIC_API_KEY`); the credential is read by the adapter at runtime and never
-  * logged. Bedrock uses the default AWS credential chain, not a configured value.
+  * No secret is ever a config value. `rag.model.anthropic-api-key-env-var` must be exactly
+  * `SCHOLARCHAIN_ANTHROPIC_API_KEY` (the default; any other value is rejected), the NAME of the
+  * environment variable the Anthropic adapter reads its credential from; the credential is read by
+  * the adapter at runtime and never logged. Bedrock uses the default AWS credential chain, not a
+  * configured value.
   */
 object RuntimeConfigKeys:
   val Resource = "scholarchain-rag.v1.conf"
@@ -60,7 +61,8 @@ object RuntimeConfigKeys:
   *   - `bedrockModelId`, `anthropicModelId`: tokens (non-blank, no whitespace, at most 200).
   *   - `anthropicEndpoint`: an `https://` URL of at most 200 characters, no whitespace, no `@` (no
   *     embedded credentials), no `?` or `#`.
-  *   - `anthropicApiKeyEnvVar`: an environment-variable NAME (`[A-Z][A-Z0-9_]*`), never a value.
+  *   - `anthropicApiKeyEnvVar`: exactly `SCHOLARCHAIN_ANTHROPIC_API_KEY`; any other text is
+  *     rejected without being echoed.
   *   - `maxMalformedRetries` in 0..`ModelCall.MaxRetries` (2).
   *   - `contextCharacters` in 1..`MaxContextCharacters` (400,000); `inputTokens` in
   *     1..`MaxInputTokens` (200,000); `outputTokens` in 1..`ModelRequest.MaxOutputTokensCap`.
@@ -105,7 +107,7 @@ final case class ResolvedRuntimeSettings(settings: RuntimeSettings, origins: Map
 object RuntimeConfigLoader:
   import RuntimeConfigKeys.*
 
-  private val EnvName = """^[A-Z][A-Z0-9_]{0,127}$""".r
+  private val RequiredAnthropicApiKeyEnvVar = "SCHOLARCHAIN_ANTHROPIC_API_KEY"
 
   def load(
       env: Map[String, String] = sys.env,
@@ -158,8 +160,9 @@ object RuntimeConfigLoader:
     val am     = token(AnthropicModelId, v(AnthropicModelId))
     val ep     = endpoint(AnthropicEndpoint, v(AnthropicEndpoint))
     val keyVar =
-      if EnvName.matches(v(AnthropicApiKeyEnvVar)) then Right(v(AnthropicApiKeyEnvVar))
-      else bad(AnthropicApiKeyEnvVar, "must be an environment variable name, not a value")
+      if v(AnthropicApiKeyEnvVar) == RequiredAnthropicApiKeyEnvVar then
+        Right(RequiredAnthropicApiKeyEnvVar)
+      else bad(AnthropicApiKeyEnvVar, s"must be exactly $RequiredAnthropicApiKeyEnvVar")
     val mr = bounded(MaxMalformedRetries, v(MaxMalformedRetries), 0, ModelCall.MaxRetries)
     val cc =
       bounded(ContextCharacters, v(ContextCharacters), 1, RuntimeSettings.MaxContextCharacters)

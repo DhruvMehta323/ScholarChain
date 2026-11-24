@@ -90,13 +90,34 @@ class RuntimeConfigContractSuite extends ContractSupport:
     assertEquals(settings(env = Map(Provider.envName -> "  ")).provider, ModelProvider.Bedrock)
   }
 
-  test("RuntimeConfigLoader: anthropic-api-key-env-var must be an UPPER_SNAKE name, not a value") {
+  test(
+    "RuntimeConfigLoader: anthropic-api-key-env-var must be exactly SCHOLARCHAIN_ANTHROPIC_API_KEY"
+  ) {
+    val required = "SCHOLARCHAIN_ANTHROPIC_API_KEY"
     assertEquals(
-      settings(env = Map(AnthropicApiKeyEnvVar.envName -> "MY_KEY_VAR")).anthropicApiKeyEnvVar,
-      "MY_KEY_VAR",
+      settings(env = Map(AnthropicApiKeyEnvVar.envName -> required)).anthropicApiKeyEnvVar,
+      required,
     )
-    for bad <- List("lower_case", "has space", "1STARTS_WITH_DIGIT", "A-B", "sk-ant-0000000000")
-    do rejects(AnthropicApiKeyEnvVar, bad)
+    for bad <- List(
+        "MY_KEY_VAR",
+        "ANTHROPIC_API_KEY",
+        "anthropic_api_key",
+        "SCHOLARCHAIN_ANTHROPIC_API_KEY_2",
+        "scholarchain_anthropic_api_key",
+        "lower_case",
+        "has space",
+        "1STARTS_WITH_DIGIT",
+        "A-B",
+        "sk-ant-0000000000",
+      )
+    do
+      rejects(AnthropicApiKeyEnvVar, bad)
+      val errs = load(env = Map(AnthropicApiKeyEnvVar.envName -> bad)).left.toOption.get
+      val msgs = errs.collect { case InvalidConfig(n, m) if n == AnthropicApiKeyEnvVar.key => m }
+      assert(msgs.nonEmpty, s"no InvalidConfig for $bad")
+      assert(msgs.forall(_.contains(required)), s"message lacks required name: $msgs")
+      if bad.startsWith("sk-ant-") then
+        assert(errs.forall(e => !e.message.contains(bad)), s"error echoes the input: $errs")
   }
 
   test("RuntimeConfigLoader: max-malformed-retries is 0..2") {

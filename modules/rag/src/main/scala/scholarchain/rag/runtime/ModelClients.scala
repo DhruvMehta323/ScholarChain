@@ -62,6 +62,15 @@ final class AnthropicModelClient(
     transport: VoyageTransport = new JdkVoyageTransport(),
     val apiVersion: String = AnthropicModelClient.ApiVersion,
 ) extends ModelClient:
+  // L2: the only valid key-variable name is SCHOLARCHAIN_ANTHROPIC_API_KEY (an allowlist). Checked
+  // at construction, so it holds even if the config check is bypassed. The message does not echo
+  // the configured text (a key pasted into the name setting must not leak) and the environment is
+  // not read here.
+  require(
+    AnthropicModelClient.isAllowedKeyVar(apiKeyEnvVar),
+    "the configured anthropic key variable name is not allowed; only the SCHOLARCHAIN_ prefixed name for the anthropic key is valid",
+  )
+
   def provider: ModelProvider = ModelProvider.Anthropic
 
   def complete(request: ModelRequest): ModelResult[ModelResponse] =
@@ -136,6 +145,12 @@ final class AnthropicModelClient(
 
 object AnthropicModelClient:
   val ApiVersion: String = "2023-06-01"
+
+  /** The one valid key-variable name. */
+  val KeyVarName: String = "SCHOLARCHAIN_ANTHROPIC_API_KEY"
+
+  /** Exact match only: no trimming, no case folding, no other name. */
+  def isAllowedKeyVar(name: String): Boolean = name == KeyVarName
 
   /** The request body: the system text, one user message holding the labeled segments, the output
     * tool and a forced tool choice. Temperature 0.

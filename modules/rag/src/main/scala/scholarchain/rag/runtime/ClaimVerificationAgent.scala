@@ -314,6 +314,9 @@ final class ClaimVerificationAgent(
         val (hc, hm) = hopChecks(comp, asserts)
         conflict ++= hc
         missing ++= hm
+        val (cc, cm) = comparisonChecks(comp, asserts, lex)
+        conflict ++= cc
+        missing ++= cm
 
       // path hop order stated with arrows must equal the asserted hops
       val hopArrays = asserts.filter(_.field == "hops").map(a => strArray(a.value))
@@ -553,6 +556,12 @@ object ClaimVerificationAgent:
   private def ph(rx: String, dir: Dir, fields: String*): Phrase =
     Phrase(new Regex("(?i)" + rx), dir, fields.toSet)
 
+  private val JointField: String = "jointPublicationCount"
+
+  /** Lookahead: a number (digits or a number word) follows. */
+  private val NumAhead: String =
+    "(?=\\s+(?:\\d|(?:" + NumberWords.keys.mkString("|") + ")\\b))"
+
   private val Lexicon: List[Phrase] = List(
     ph("(?:average|mean) team size", Dir.Before, "avgTeamSize"),
     ph("(?:maximum|largest|max) team(?: size)?", Dir.Before, "maxTeamSize"),
@@ -568,13 +577,36 @@ object ClaimVerificationAgent:
     ph("\\bnew\\b", Dir.After, "newCoauthors"),
     ph("\\blost\\b", Dir.After, "lostCoauthors"),
     ph("\\bretained\\b", Dir.After, "retainedCoauthors"),
-    ph("publications?\\b|papers?\\b", Dir.After, "publicationCount", "jointPublicationCount"),
+    // A plain "publications" or "works" names a researcher's TOTAL; a joint (edge weight) count is
+    // named only by the joint wording below. No phrase names both kinds (N5).
     ph(
-      "\\bworks\\b",
+      "publications?\\b(?!\\s+(?:together|jointly|in common))|papers?\\b(?!\\s+(?:together|jointly|in common))",
+      Dir.After,
+      "publicationCount",
+    ),
+    ph(
+      "\\bworks\\b(?!\\s+(?:together|jointly|in common))",
       Dir.After,
       "workCount",
-      "jointPublicationCount",
       "publicationCount",
+    ),
+    ph(
+      "(?:joint|shared|common|co-?authored)\\s+(?:publications?|papers?|works?)\\b",
+      Dir.After,
+      JointField,
+    ),
+    ph(
+      "(?:publications?|papers?|works?)\\s+(?:together|jointly|in common)\\b",
+      Dir.After,
+      JointField,
+    ),
+    ph("\\bco-?(?:authored|wrote)(?:\\s+(?:together|jointly))?" + NumAhead, Dir.Before, JointField),
+    ph("(?:collaborated|worked together) on" + NumAhead, Dir.Before, JointField),
+    ph(
+      "\\b(?:edge weight|joint (?:publication )?count|collaboration weight|weight)" +
+        "(?:\\s+(?:of|is|was|equals|=))?" + NumAhead,
+      Dir.Before,
+      JointField,
     ),
     ph("researchers?\\b|nodes?\\b", Dir.After, "nodeCount"),
     ph("members?\\b", Dir.After, "maxTeamSize", "avgTeamSize"),
@@ -608,6 +640,54 @@ object ClaimVerificationAgent:
   /** The researcher the text is talking about at `start`: the nearest researcher mention before. */
   private def ownerOf(comp: Compact, start: Int): Option[String] =
     comp.ents.filter(e => e.pos < start && e.id.startsWith("researcher:")).lastOption.map(_.id)
+
+  private val ObjPrepRx: Regex =
+    """(?i)\b(?:of|with|to|from|by|for|than|versus|vs\.?|between|among|via|through|near|beside|behind)\s*$""".r
+
+  /** A mention that is the object of a preposition ("with Alan", "of Ada") is not the subject of
+    * what follows.
+    */
+  private def prepObject(comp: Compact, e: Ent): Boolean =
+    ObjPrepRx.findFirstIn(comp.text.substring(0, e.pos)).isDefined
+
+  private val OfRx: Regex =
+    """(?i)^\s+(?:of|for)\s+(?:(?:the\s+)?(?:researcher|author|scholar)\s+)?$""".r
+
+  /** The researcher named right after the number's own noun with "of"/"for" ("the 12 coauthors of
+    * Ada"): that researcher owns the number, whatever precedes it (N6).
+    */
+  private def ofOwner(comp: Compact, hits: List[Hit], t: NumTok): Option[String] =
+    val after = hits
+      .filter(h => h.phrase.dir == Dir.After && h.start >= t.end && h.start - t.end <= MaxGap)
+    if after.isEmpty then None
+    else
+      val h = after.minBy(_.start)
+      comp.ents
+        .filter(e => e.id.startsWith("researcher:") && e.pos >= h.end)
+        .headOption
+        .filter(e => OfRx.findFirstIn(comp.text.substring(h.end, e.pos)).isDefined)
+        .map(_.id)
+
+  /** The owner of a number: the researcher of an "of" phrase after it, else the nearest preceding
+    * researcher mention that is not the object of a preposition (N6).
+    */
+  private val ChainRx: Regex =
+    """(?i)^\s*(?:,|&|and|or|,\s*and|,\s*or|as well as|along with|together with)?\s*$""".r
+
+  private def numberOwner(comp: Compact, hits: List[Hit], t: NumTok): Option[String] =
+    ofOwner(comp, hits, t).orElse {
+      val rs = comp.ents.filter(e => e.id.startsWith("researcher:") && e.pos < t.start)
+      rs.filter(e => !prepObject(comp, e)).lastOption.flatMap { e =>
+        // "Ada and Alan have 2 coauthors": the number is about the group, not the nearest member;
+        // an owner is unknown, so no researcher-subject assertion binds it (fail closed)
+        val i       = rs.indexOf(e)
+        val prev    = if i > 0 then Some(rs(i - 1)) else None
+        val grouped = prev.exists(p =>
+          p.id != e.id && ChainRx.findFirstIn(comp.text.substring(p.pos + 1, e.pos)).isDefined
+        )
+        if grouped then None else Some(e.id)
+      }
+    }
 
   private def positional(
       a: ProposedAssertion,
@@ -674,6 +754,8 @@ object ClaimVerificationAgent:
     val after  = text.substring(t.end)
     val clause = before.substring(clauseStart(before, before.length))
     var out    = near
+    // joint wording binds the number to the joint count and to nothing else (N5)
+    if out.contains(JointField) then out = Set(JointField)
     if out.contains("coauthorCount") then
       val prevRole = FromRx.findFirstIn(before).isDefined && ToNumRx.findFirstIn(after).isDefined
       val curRole  = FromToRx.findFirstIn(before).isDefined
@@ -707,7 +789,7 @@ object ClaimVerificationAgent:
       windows: List[String],
   ): Boolean =
     val researchers = comp.ents.map(_.id).filter(_.startsWith("researcher:")).distinct
-    val owner       = ownerOf(comp, t.start).orElse(
+    val owner       = numberOwner(comp, hits, t).orElse(
       if researchers.size == 1 then researchers.headOption else None
     )
     val near = refineFields(nearFields(hits, t), t, comp)
@@ -808,7 +890,8 @@ object ClaimVerificationAgent:
   private val PairRx: Regex =
     ("(?i)\\bare (?:direct(?:ly)? )?(?:co-?authors|collaborators|connected|linked|colleagues)\\b|" +
       "\\bco-?authored\\b|\\bcollaborat(?:ed|es)\\b|\\bconnected\\b|\\blinked\\b|\\bpath\\b|" +
-      "\\bbetween\\b|\\bwith each other\\b|\\bco-?authors of\\b|\\bthrough\\b|\\bvia\\b").r
+      "\\bbetween\\b|\\bwith each other\\b|\\bco-?authors? (?:of|with)\\b|" +
+      "\\b(?:collaborators?|colleagues?) (?:of|with)\\b|\\bthrough\\b|\\bvia\\b").r
 
   /** Relation wording and the fact kinds whose assertions can state it. */
   private val Families: List[(Regex, Set[String])] = List(
@@ -1002,6 +1085,171 @@ object ClaimVerificationAgent:
               else missing += "ordinal_without_assertion"
     }
     (conflict.toList, missing.toList)
+
+  // ---- comparatives and change direction (N7) ------------------------------------------------
+
+  private val GreaterWords: String =
+    "more|greater|larger|higher|bigger|stronger|longer|wider|exceed(?:s|ed)?|outnumber(?:s|ed)?|" +
+      "surpass(?:es|ed)?|outperform(?:s|ed)?|outstrip(?:s|ped)?|outpace[sd]?|beat|beats|ahead of|above"
+  private val LesserWords: String =
+    "fewer|less|lower|smaller|weaker|shorter|behind|below|trails?|trailed|lags?|lagged|" +
+      "falls? short of|fell short of|under"
+  private val MultWords: Map[String, BigDecimal] = Map(
+    "twice"     -> BigDecimal(2),
+    "double"    -> BigDecimal(2),
+    "doubled"   -> BigDecimal(2),
+    "triple"    -> BigDecimal(3),
+    "tripled"   -> BigDecimal(3),
+    "thrice"    -> BigDecimal(3),
+    "quadruple" -> BigDecimal(4),
+    "half"      -> BigDecimal(0.5),
+    "halved"    -> BigDecimal(0.5),
+  )
+  private val GreaterRx: Regex = ("(?i)\\b(?:" + GreaterWords + ")\\b").r
+  private val LesserRx: Regex  = ("(?i)\\b(?:" + LesserWords + ")\\b").r
+  private val MultRx: Regex    = ("(?i)\\b(?:" + MultWords.keys.mkString("|") + ")\\b").r
+  private val TimesRx: Regex   =
+    ("(?i)\\b(?:\\d+(?:\\.\\d+)?|" + NumWordAlt + ")\\s+times\\b").r
+  private val ThanRx: Regex       = """(?i)\bthan\b""".r
+  private val RatherThanRx: Regex = """(?i)\brather than\b""".r
+  private val AsAsRx: Regex       = """(?i)\bas (?:many|much|large|big|high|strong|long)\b""".r
+
+  private val UpRx: Regex =
+    ("(?i)\\b(?:increas(?:e|es|ed|ing)|rose|rise|rises|rising|grew|grow|grows|grown|growth|" +
+      "climbed|climbs|gained|gains|expanded|surged|jumped|improved|up from|went up|goes up|go up|" +
+      "ballooned|soared|skyrocketed|boomed|rocketed|swelled|doubled|tripled)\\b").r
+  private val DownRx: Regex =
+    ("(?i)\\b(?:decreas(?:e|es|ed|ing)|fell(?!\\s+short)|fall(?!s?\\s+short)|falls(?!\\s+short)|fallen|falling|dropped|drops|" +
+      "declin(?:e|es|ed|ing)|shrank|shrunk|shrinks|reduced|reduces|down from|went down|goes down|go down|" +
+      "plunged|slumped|tumbled|dwindled|collapsed)\\b").r
+  private val FlatRx: Regex =
+    ("(?i)\\b(?:unchanged|stayed|remained|steady|constant|stable|flat)\\b").r
+
+  private def numAssert(
+      asserts: List[ProposedAssertion],
+      subject: String,
+      kind: String,
+      field: String,
+  ): List[(Option[String], BigDecimal)] =
+    asserts
+      .filter(a => a.kind == kind && a.subject == subject && a.field == field)
+      .flatMap(a => flattenNumbers(a.value).headOption.map(a.window -> _))
+
+  /** Wording that compares ("more than", "fewer", "twice", "as many as", "than") or states a
+    * direction of change ("increased", "fell", "unchanged") is true only against asserted stored
+    * values: a comparison needs a numeric assertion for BOTH researchers (same field and window) or
+    * a temporal-change pair, and the stored values must satisfy it; a direction needs a
+    * temporal-change pair of the researcher. Otherwise the claim is `unsupported`
+    * (`comparison_without_assertion`, `change_direction_without_assertion`) or, when the stored
+    * values contradict it, `conflicting` (`comparison_contradicts_assertion`,
+    * `change_direction_contradicts_assertion`).
+    */
+  private def comparisonChecks(
+      comp: Compact,
+      asserts: List[ProposedAssertion],
+      lex: List[Hit],
+  ): (List[String], List[String]) =
+    val conflict = scala.collection.mutable.ListBuffer.empty[String]
+    val missing  = scala.collection.mutable.ListBuffer.empty[String]
+    val t        = RatherThanRx.replaceAllIn(
+      BoilerRx.replaceAllIn(comp.text, m => " " * m.matched.length),
+      m => " " * m.matched.length,
+    )
+    val nums           = numberTokens(t)
+    val researcherEnts = comp.ents.filter(_.id.startsWith("researcher:"))
+    val ends           = SentEndRx.findAllMatchIn(t).map(_.end).toList
+    val starts         = 0 :: ends
+    val sentences      = starts.zip(ends :+ t.length).filter((a, b) => b > a)
+
+    def temporalPairs(subject: Option[String]) =
+      asserts
+        .filter(a => a.kind == Fact.TemporalChange && a.field == "coauthorCount")
+        .filter(a => subject.forall(_ == a.subject))
+        .flatMap { a =>
+          asserts
+            .find(b =>
+              b.kind == Fact.TemporalChange && b.field == "prevCoauthorCount" &&
+                b.subject == a.subject && b.window == a.window
+            )
+            .flatMap(b =>
+              flattenNumbers(a.value).headOption.zip(flattenNumbers(b.value).headOption)
+            )
+        }
+
+    sentences.foreach { (s0, s1) =>
+      val sent  = t.substring(s0, s1)
+      val ents  = researcherEnts.filter(e => e.pos >= s0 && e.pos < s1)
+      val ups   = UpRx.findAllMatchIn(sent).toList
+      val downs = DownRx.findAllMatchIn(sent).toList
+      val flats = FlatRx.findAllMatchIn(sent).toList
+
+      // change direction
+      if ups.nonEmpty || downs.nonEmpty || flats.nonEmpty then
+        val firstPos = (ups ++ downs ++ flats).map(_.start).min + s0
+        val owner    = ents.filter(_.pos < firstPos).lastOption.orElse(ents.headOption).map(_.id)
+        val pairs0   = temporalPairs(owner)
+        if pairs0.isEmpty then missing += "change_direction_without_assertion"
+        else
+          val okUp   = ups.isEmpty || pairs0.exists((c, p) => c > p)
+          val okDown = downs.isEmpty || pairs0.exists((c, p) => c < p)
+          val okFlat = flats.isEmpty || pairs0.exists((c, p) => c == p)
+          val mixed  = List(ups, downs, flats).count(_.nonEmpty) > 1
+          if mixed || !(okUp && okDown && okFlat) then
+            conflict += "change_direction_contradicts_assertion"
+
+      // comparison
+      val greater = GreaterRx.findAllMatchIn(sent).toList
+      val lesser  = LesserRx.findAllMatchIn(sent).toList
+      val mults   = MultRx.findAllMatchIn(sent).toList
+      val times   = TimesRx.findAllMatchIn(sent).toList
+      val than    = ThanRx.findAllMatchIn(sent).toList
+      val asas    = AsAsRx.findAllMatchIn(sent).toList
+      val trigs   = (greater ++ lesser ++ mults ++ times ++ than ++ asas).map(_.start)
+      if trigs.nonEmpty then
+        val first                    = trigs.min + s0
+        val x                        = ents.filter(_.pos < first).lastOption.map(_.id)
+        val y                        = ents.find(_.pos > first).map(_.id)
+        val mult: Option[BigDecimal] =
+          mults.headOption
+            .map(m => MultWords(m.matched.toLowerCase))
+            .orElse(
+              times.headOption.flatMap(m => numberTokens(m.matched).headOption.map(_.value))
+            )
+        val dir = if greater.nonEmpty && lesser.isEmpty then 1
+        else if lesser.nonEmpty && greater.isEmpty then -1
+        else 0
+        // (a, b): the compared values: first the one the text starts with
+        def relation(a: BigDecimal, b: BigDecimal): Boolean = mult match
+          case Some(m) => a == m * b
+          case None    => if dir > 0 then a > b else if dir < 0 then a < b else false
+        val pairs: List[(BigDecimal, BigDecimal)] = (x, y) match
+          case (Some(xi), Some(yi)) if xi != yi =>
+            val before = nums.filter(n => n.start >= s0 && n.end <= first).sortBy(_.start)
+            val named0 = before.lastOption.map(n => nearFields(lex, n)).getOrElse(Set.empty)
+            // no number before the comparison: the fields the sentence's own nouns name
+            val named =
+              if named0.nonEmpty then named0
+              else lex.filter(h => h.start >= s0 && h.end <= s1).flatMap(_.phrase.fields).toSet
+            val kinds = asserts.filter(a => a.subject == xi).map(_.kind).distinct
+            for
+              kind <- kinds
+              ax   <- asserts.filter(a =>
+                a.kind == kind && a.subject == xi && flattenNumbers(a.value).nonEmpty
+              )
+              if named.contains(ax.field)
+              ay <- asserts.find(b =>
+                b.kind == kind && b.subject == yi && b.field == ax.field && b.window == ax.window &&
+                  flattenNumbers(b.value).nonEmpty
+              )
+              vx <- flattenNumbers(ax.value).headOption
+              vy <- flattenNumbers(ay.value).headOption
+            yield (vx, vy)
+          case _ =>
+            temporalPairs(x)
+        if pairs.isEmpty then missing += "comparison_without_assertion"
+        else if !pairs.forall(relation) then conflict += "comparison_contradicts_assertion"
+    }
+    (conflict.toList.distinct, missing.toList.distinct)
 
   // ---- the edge or work stated for a hop ----------------------------------------------------
 
