@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "exp-a-baseline-10k",
+  "letter": "A",
+  "title": "Hadoop and Spark baseline at 10K works",
+  "purpose": "Baseline run of the bounded pipeline (Hadoop HJ1-HJ7 then Spark) on dblp-10k at minimum EMR capacity: input and output records, task counts, duration, shuffle, failures and estimated cost.",
+  "approved": false,
+  "approved_by": "",
+  "approval_ref": "",
+  "commit_sha": "FILL_AT_RUN_TIME",
+  "seed": 441,
+  "environment": {
+    "region": "us-east-2",
+    "approved_environments": [
+      "course"
+    ],
+    "profile_env_var": "AWS_PROFILE",
+    "region_env_var": "AWS_REGION",
+    "note": "Terraform output region; no AWS call is made by this manifest."
+  },
+  "command": [
+    "bash",
+    "scripts/run-bounded-pipeline.sh",
+    "--scale",
+    "10k",
+    "--stages",
+    "hadoop,spark"
+  ],
+  "command_notes": [
+    "Needs AWS_PROFILE, AWS_REGION=us-east-2 and a packaged release (scripts/package.sh) from a clean tree.",
+    "HUMAN APPROVAL EDIT (same step as setting approved and approved_by): append to the command array \"--dblp-xml\", \"<file>\", \"--dtd\", \"<file>\", \"--enrichment-dir\", \"<dir>\" (as in datasets/scripts/FETCH-SCALE.md) (the script exits 2 without the first three). Appending arguments to this array is a manifest edit by the human, not a change by experiment-engineer.",
+    "scripts/run-experiment.sh runs this command verbatim (no extra arguments) and does not export its run id. The pipeline script therefore generates its own run id; its record is reports/pipeline/10k/<generated id>/run.json (use that id as --run-id of the collectors). The run-experiment.sh run id names only reports/experiments/<id>/<run>/.",
+    "The load and enqueue stages are not run here (M13-2, no EMR entry point).",
+    "scripts/run-experiment.sh refuses unless approved is true and approved_by is non-empty: the human edits those two fields, and it refuses a dirty tree: commit the raw results of any previous experiment first (experiments/README.md, Between experiments)."
+  ],
+  "max_runtime_seconds": 10800,
+  "duration_cap_seconds": 10800,
+  "cost_cap_usd": 3.0,
+  "cost_estimate": {
+    "basis": "INFRA-CONTRACTS.md section 10: a 10K run is about $1.33 of EMR (cluster about $0.76 per hour, 3 nodes m5.xlarge on-demand)",
+    "expected_usd": 1.33,
+    "status": "estimate, not measurement"
+  },
+  "dataset_snapshot": {
+    "id": "dblp-10k",
+    "manifest_entry": "datasets/dataset-manifest.yaml#scale_datasets.dblp-10k",
+    "works": 10000,
+    "notes": "10K selection, policy-1 index reused unchanged (see manifest limitations)"
+  },
+  "scale": {
+    "label": "10K",
+    "dblp_works": 10000
+  },
+  "resource_limits": {
+    "emr_max_nodes": 3,
+    "emr_instance_type": "m5.xlarge",
+    "emr_core_nodes": 1,
+    "emr_managed_scaling_max_core_task": 2,
+    "ecs_max_tasks_per_service": 0,
+    "step_timeout_seconds": 3600
+  },
+  "metrics_to_collect": [
+    "emr-list-steps:step timeline (start, end, state)",
+    "emr-list-instance-groups:RequestedInstanceCount,RunningInstanceCount (sample_resources.py, 30 s)",
+    "cloudwatch:AWS/ElasticMapReduce/CoreNodesRunning,CoreNodesPending,YARNMemoryAvailablePercentage,AppsRunning,IsIdle(JobFlowId)",
+    "hadoop-counters:input records, output records, rejected records, map and reduce task counts, shuffle bytes (from step logs in the logs bucket; PipelineDriver counters)",
+    "spark-event-log:task counts, shuffle read/write bytes, failed tasks (EMR logs in the logs bucket)",
+    "cost-explorer:daily UnblendedCost by SERVICE, credits excluded (collect_cost.py)"
+  ],
+  "metric_locations": [
+    "experiments/results/exp-a-baseline-10k/<run>/",
+    "reports/pipeline/10k/<run>/run.json",
+    "s3://<logs-bucket>/emr/"
+  ],
+  "stop_conditions": [
+    "any step exceeds 3600 s (pipeline script cancels it)",
+    "cumulative cost of this run reaches the cost cap (3.00 USD): stop and report to the human",
+    "a step ends FAILED: ActionOnFailure=TERMINATE_CLUSTER; keep the failed run and report it",
+    "wall clock reaches duration_cap_seconds"
+  ],
+  "requires": {
+    "prior_runs": [],
+    "human_approval_flags": [],
+    "explicit_human_approval_required": true
+  },
+  "reproduction": "bash scripts/run-experiment.sh exp-a-baseline-10k --run-id <token> (after the human sets approved and approved_by and appends --dblp-xml/--dtd/--enrichment-dir to command); then python3 -B experiments/collect/collect_emr.py, collect_cloudwatch.py and collect_cost.py for the run window with --experiment-id exp-a-baseline-10k and the pipeline's generated run id; analysis: experiments/analysis/emr_capacity.py, scale_comparison.py"
+}

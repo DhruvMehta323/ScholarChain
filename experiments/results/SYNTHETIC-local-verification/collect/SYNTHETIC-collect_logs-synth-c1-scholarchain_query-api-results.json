@@ -1,0 +1,22 @@
+{
+  "SYNTHETIC": true,
+  "stub": "experiments/collect/testing/stub-bin/aws",
+  "status": "Complete",
+  "results": [
+    [
+      {
+        "field": "@timestamp",
+        "value": "2026-01-01 00:00:00.000"
+      },
+      {
+        "field": "@message",
+        "value": "{\"event\":\"SYNTHETIC\"}"
+      }
+    ]
+  ],
+  "statistics": {
+    "recordsMatched": 1.0,
+    "recordsScanned": 1.0,
+    "bytesScanned": 100.0
+  }
+}

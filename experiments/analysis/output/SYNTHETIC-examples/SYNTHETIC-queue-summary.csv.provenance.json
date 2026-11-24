@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "experiments/analysis/fixtures/SYNTHETIC-samples-scale.jsonl",
+    "--out-dir",
+    "experiments/analysis/output/SYNTHETIC-examples",
+    "--force"
+  ],
+  "benchmark_sha256": null,
+  "generated_at_utc": "2026-11-24T09:09:14.589Z",
+  "git_head": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "inputs": [
+    {
+      "path": "experiments/analysis/fixtures/SYNTHETIC-samples-scale.jsonl",
+      "sha256": "cf29ecbbc8afb4887c3b1fe6b7506677675f6eaaa1f840996ec9520d868f1464"
+    }
+  ],
+  "output": "SYNTHETIC-queue-summary.csv",
+  "output_sha256": "141a58f1108074ec9175f376a5f49220049eef88255103afe178f724eba1e387",
+  "parameters": {
+    "cloudwatch": null,
+    "force": true,
+    "no_plot": false,
+    "out_dir": "experiments/analysis/output/SYNTHETIC-examples",
+    "samples": "experiments/analysis/fixtures/SYNTHETIC-samples-scale.jsonl"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/analysis/queue_drain.py",
+  "synthetic": true,
+  "tree_dirty": true
+}

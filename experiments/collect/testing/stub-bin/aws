@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+"""STUB `aws` for offline tests of the collectors. SYNTHETIC output only. Makes no network call and reads no credentials.
+
+Put this directory FIRST on PATH. It answers the read-only operations used by experiments/collect/* with invented, deterministic JSON that
+carries "SYNTHETIC": true at the top level. Mutating operations (sqs send-message, ecs stop-task) are answered with a SYNTHETIC receipt and
+change nothing. Any other operation exits 2 so a test notices a collector calling something unexpected.
+State for time-varying answers: a counter file named by SC_STUB_STATE (default: stub-state in the system temp directory).
+"""
+import json
+import os
+import sys
+import tempfile
+
+
+def counter():
+    path = os.environ.get("SC_STUB_STATE") or os.path.join(tempfile.gettempdir(), "sc-aws-stub-state")
+    n = 0
+    try:
+        with open(path, "r") as f:
+            n = int(f.read().strip() or 0)
+    except (OSError, ValueError):
+        pass
+    with open(path, "w") as f:
+        f.write(str(n + 1))
+    return n
+
+
+def opt(args, name):
+    if name in args:
+        i = args.index(name)
+        return args[i + 1] if i + 1 < len(args) else None
+    return None
+
+
+def main(argv):
+    if len(argv) < 2:
+        print("usage: aws <service> <operation> ...", file=sys.stderr)
+        return 2
+    service, op, rest = argv[0], argv[1], argv[2:]
+    out = {"SYNTHETIC": True, "stub": "experiments/collect/testing/stub-bin/aws"}
+    n = counter()
+    if (service, op) == ("sts", "get-caller-identity"):
+        out.update({"Account": "000000000000", "Arn": "arn:aws:sts::000000000000:assumed-role/SYNTHETIC/stub", "UserId": "SYNTHETIC"})
+    elif (service, op) == ("cloudwatch", "get-metric-data"):
+        queries = json.loads(opt(rest, "--metric-data-queries") or "[]")
+        results = []
+        for q in queries:
+            results.append({"Id": q["Id"], "Label": q.get("Label", q["Id"]), "StatusCode": "Complete",
+                            "Timestamps": ["2026-01-01T00:0%d:00+00:00" % i for i in range(3)], "Values": [float(i + 1) for i in range(3)]})
+        out["MetricDataResults"] = results
+        out["Messages"] = []
+    elif (service, op) == ("ecs", "describe-services"):
+        names = []
+        if "--services" in rest:
+            i = rest.index("--services") + 1
+            while i < len(rest) and not rest[i].startswith("--"):
+                names.append(rest[i])
+                i += 1
+        running = [0, 0, 1, 2, 2, 1, 0][n % 7]
+        out["services"] = [{"serviceName": s, "desiredCount": running, "runningCount": running, "pendingCount": 0} for s in names]
+        out["failures"] = []
+    elif (service, op) == ("sqs", "get-queue-attributes"):
+        url = opt(rest, "--queue-url") or ""
+        dlq = url.endswith("-dlq")
+        depth = 0 if dlq else [0, 500, 400, 250, 100, 0, 0][n % 7]
+        out["Attributes"] = {"ApproximateNumberOfMessages": str(depth), "ApproximateNumberOfMessagesNotVisible": "0", "ApproximateNumberOfMessagesDelayed": "0"}
+    elif (service, op) == ("emr", "describe-cluster"):
+        out["Cluster"] = {"Id": opt(rest, "--cluster-id"), "Status": {"State": "RUNNING"}, "Name": "SYNTHETIC"}
+    elif (service, op) == ("emr", "list-instance-groups"):
+        core = [1, 1, 2, 2, 1, 1, 1][n % 7]
+        out["InstanceGroups"] = [{"InstanceGroupType": "MASTER", "RequestedInstanceCount": 1, "RunningInstanceCount": 1, "Status": {"State": "RUNNING"}},
+                                 {"InstanceGroupType": "CORE", "RequestedInstanceCount": [1, 2, 2, 1, 1, 1, 1][n % 7], "RunningInstanceCount": core, "Status": {"State": "RUNNING"}}]
+    elif (service, op) == ("emr", "list-steps"):
+        out["Steps"] = [{"Id": "s-SYNTHETIC1", "Name": "SYNTHETIC-hadoop", "Status": {"State": "COMPLETED", "Timeline": {"StartDateTime": "2026-01-01T00:00:00+00:00", "EndDateTime": "2026-01-01T00:10:00+00:00"}}}]
+    elif (service, op) == ("emr", "list-instances"):
+        out["Instances"] = [{"Id": "i-SYNTHETIC", "InstanceGroupId": "ig-SYNTHETIC", "Status": {"State": "RUNNING", "Timeline": {"CreationDateTime": "2026-01-01T00:00:00+00:00"}}}]
+    elif (service, op) == ("ce", "get-cost-and-usage"):
+        out["ResultsByTime"] = [{"TimePeriod": {"Start": "2026-01-01", "End": "2026-01-02"}, "Total": {},
+                                 "Groups": [{"Keys": ["Amazon Elastic MapReduce"], "Metrics": {"UnblendedCost": {"Amount": "0.0000", "Unit": "USD"}}},
+                                            {"Keys": ["SYNTHETIC Service"], "Metrics": {"UnblendedCost": {"Amount": "0.0000", "Unit": "USD"}}}]}]
+    elif (service, op) == ("logs", "start-query"):
+        out["queryId"] = "SYNTHETIC-query-id"
+    elif (service, op) == ("logs", "get-query-results"):
+        out.update({"status": "Complete", "results": [[{"field": "@timestamp", "value": "2026-01-01 00:00:00.000"}, {"field": "@message", "value": "{\"event\":\"SYNTHETIC\"}"}]],
+                    "statistics": {"recordsMatched": 1.0, "recordsScanned": 1.0, "bytesScanned": 100.0}})
+    elif (service, op) == ("sqs", "send-message"):
+        out.update({"MessageId": "SYNTHETIC-message-id", "note": "stub: nothing was sent"})
+    elif (service, op) == ("ecs", "stop-task"):
+        out.update({"task": {"taskArn": "SYNTHETIC", "lastStatus": "DEPROVISIONING"}, "note": "stub: nothing was stopped"})
+    elif (service, op) == ("ecs", "list-tasks"):
+        out["taskArns"] = ["arn:aws:ecs:us-east-2:000000000000:task/SYNTHETIC/0000"]
+    else:
+        print("stub aws: operation not supported by the stub: %s %s" % (service, op), file=sys.stderr)
+        return 2
+    print(json.dumps(out, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

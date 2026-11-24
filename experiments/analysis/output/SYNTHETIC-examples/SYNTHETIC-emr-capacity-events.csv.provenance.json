@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "experiments/analysis/fixtures/SYNTHETIC-samples-scale.jsonl",
+    "--out-dir",
+    "experiments/analysis/output/SYNTHETIC-examples",
+    "--force"
+  ],
+  "benchmark_sha256": null,
+  "generated_at_utc": "2026-11-24T09:09:14.961Z",
+  "git_head": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "inputs": [
+    {
+      "path": "experiments/analysis/fixtures/SYNTHETIC-samples-scale.jsonl",
+      "sha256": "cf29ecbbc8afb4887c3b1fe6b7506677675f6eaaa1f840996ec9520d868f1464"
+    }
+  ],
+  "output": "SYNTHETIC-emr-capacity-events.csv",
+  "output_sha256": "33182f5f976b9658d764d6bf6ccaeeab4c11f5cfec59a3662570c5e06c9951f1",
+  "parameters": {
+    "force": true,
+    "no_plot": false,
+    "node_hour_usd": 0.2533,
+    "out_dir": "experiments/analysis/output/SYNTHETIC-examples",
+    "samples": "experiments/analysis/fixtures/SYNTHETIC-samples-scale.jsonl"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/analysis/emr_capacity.py",
+  "synthetic": true,
+  "tree_dirty": true
+}

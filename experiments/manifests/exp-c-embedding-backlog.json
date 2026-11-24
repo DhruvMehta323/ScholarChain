@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "exp-c-embedding-backlog",
+  "letter": "C",
+  "title": "Embedding backlog and worker scaling",
+  "purpose": "Enqueue a controlled number of chunks (at most 10,000, the instructor-approved vector ceiling) on scholarchain-embedding-jobs and observe SQS depth, embedding-worker task count, throughput, retries and drain time.",
+  "approved": false,
+  "approved_by": "",
+  "approval_ref": "",
+  "commit_sha": "FILL_AT_RUN_TIME",
+  "seed": 441,
+  "environment": {
+    "region": "us-east-2",
+    "approved_environments": [
+      "course"
+    ],
+    "profile_env_var": "AWS_PROFILE",
+    "region_env_var": "AWS_REGION",
+    "note": "Terraform output region; no AWS call is made by this manifest."
+  },
+  "command": [
+    "bash",
+    "scripts/run-bounded-pipeline.sh",
+    "--scale",
+    "10k",
+    "--stages",
+    "enqueue"
+  ],
+  "command_notes": [
+    "BLOCKED until M13-2 is resolved: no EMR entry point exists yet for the embedding enqueue; SC_ENQUEUE_STEP_ARGS (JSON array) must be supplied by the human once an entry point exists (INFRA-CONTRACTS section 14).",
+    "Before the run the human raises ecs_min_tasks/ecs_max_tasks for embedding-worker (max 4) through a reviewed Terraform plan; sample_resources.py runs during the window.",
+    "scripts/run-experiment.sh runs this command verbatim (no extra arguments) and does not export its run id. The pipeline script therefore generates its own run id; its record is reports/pipeline/10k/<generated id>/run.json (use that id as --run-id of the collectors). The run-experiment.sh run id names only reports/experiments/<id>/<run>/.",
+    "scripts/run-experiment.sh refuses a dirty tree: commit the raw results of the previous experiment first (experiments/README.md, Between experiments)."
+  ],
+  "max_runtime_seconds": 5400,
+  "duration_cap_seconds": 5400,
+  "cost_cap_usd": 1.0,
+  "model_cost_cap_usd": 0.2,
+  "cost_estimate": {
+    "basis": "Titan Embed v2: 10000 chunks x 300 tokens (ASSUMED) x $0.00002 per 1K = $0.06; Fargate about $0.017 per task-hour; EMR enqueue step share about $0.3",
+    "expected_usd": 0.5,
+    "status": "estimate, assumptions in manifests/model-budget.json"
+  },
+  "dataset_snapshot": {
+    "id": "dblp-10k",
+    "manifest_entry": "datasets/dataset-manifest.yaml#scale_datasets.dblp-10k",
+    "works": 10000,
+    "notes": "chunks derive from the loaded dblp-10k graph; vector count is reported as actually enqueued"
+  },
+  "scale": {
+    "label": "up to 10000 vectors",
+    "vectors_max": 10000
+  },
+  "resource_limits": {
+    "max_queue_messages": 10000,
+    "ecs_max_tasks_per_service": 4,
+    "emr_max_nodes": 3,
+    "emr_instance_type": "m5.xlarge"
+  },
+  "metrics_to_collect": [
+    "cloudwatch:AWS/SQS/ApproximateNumberOfMessagesVisible,ApproximateNumberOfMessagesNotVisible,ApproximateAgeOfOldestMessage,NumberOfMessagesSent,NumberOfMessagesReceived,NumberOfMessagesDeleted(QueueName=scholarchain-embedding-jobs and scholarchain-embedding-jobs-dlq)",
+    "sqs-get-queue-attributes:depth sample, 15 s (sample_resources.py)",
+    "ecs-describe-services:desiredCount,runningCount for embedding-worker, 15 s (sample_resources.py)",
+    "cloudwatch:AWS/ECS/CPUUtilization,MemoryUtilization(embedding-worker)",
+    "logs-insights:/scholarchain/embedding-worker retry and dead-letter events (collect_logs.py)",
+    "cost-explorer:daily UnblendedCost by SERVICE, credits excluded"
+  ],
+  "metric_locations": [
+    "experiments/results/exp-c-embedding-backlog/<run>/"
+  ],
+  "stop_conditions": [
+    "more than 10000 messages would be enqueued",
+    "DLQ depth above 50: stop enqueueing and report",
+    "queue not drained when duration_cap_seconds is reached: report as not drained, do not extend",
+    "cost reaches the cost cap (1.00 USD)",
+    "embedding-worker desired count above 4"
+  ],
+  "requires": {
+    "prior_runs": [],
+    "human_approval_flags": [],
+    "explicit_human_approval_required": true
+  },
+  "reproduction": "bash scripts/run-experiment.sh exp-c-embedding-backlog --run-id <token> with python3 -B experiments/collect/sample_resources.py --experiment-id exp-c-embedding-backlog running for the window; analysis: queue_drain.py, scale_timeline.py"
+}

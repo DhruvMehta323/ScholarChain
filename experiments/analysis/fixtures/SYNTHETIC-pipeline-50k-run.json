@@ -1,0 +1,25 @@
+{
+  "cluster_id": "j-SYNTHETIC",
+  "run_id": "SYNTHETIC-50k",
+  "scale": "50k",
+  "started_at": "2026-11-25T09:44:40.000Z",
+  "status": "succeeded",
+  "step_timings": [
+    {
+      "end": "2026-11-25T10:26:40.000Z",
+      "id": "s-SYNTH-hadoop",
+      "name": "hadoop",
+      "start": "2026-11-25T09:46:40.000Z",
+      "state": "COMPLETED"
+    },
+    {
+      "end": "2026-11-25T10:55:10.000Z",
+      "id": "s-SYNTH-spark",
+      "name": "spark",
+      "start": "2026-11-25T10:27:10.000Z",
+      "state": "COMPLETED"
+    }
+  ],
+  "synthetic": true,
+  "updated_at": "2026-11-25T10:56:40.000Z"
+}

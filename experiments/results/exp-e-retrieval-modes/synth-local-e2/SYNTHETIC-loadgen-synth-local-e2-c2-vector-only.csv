@@ -1,0 +1,10 @@
+run_id,experiment_id,synthetic,concurrency,mode,seq,question_id,category,t_start_epoch_ms,t_start_utc,latency_ms,http_status,outcome,error_class,trace_id,query_id,response_mode,abstained,claims_count,claims_verified,returned_researcher_ids,model_calls_assumed,model_calls_observed,explain_http_status,stage_latency_ms_json,bytes
+synth-local-e2,exp-e-retrieval-modes,true,2,vector-only,1,SYNTH-Q11,shortest_path,1795510059949,2026-11-24T08:47:39.949Z,11.276,422,http_error,http_422,lt-synth-local-e2-1,,,,,,,3,,,,105
+synth-local-e2,exp-e-retrieval-modes,true,2,vector-only,2,SYNTH-Q20,coauthor_breadth,1795510059949,2026-11-24T08:47:39.949Z,11.152,422,http_error,http_422,lt-synth-local-e2-2,,,,,,,3,,,,105
+synth-local-e2,exp-e-retrieval-modes,true,2,vector-only,3,SYNTH-Q04,prompt_injection,1795510059960,2026-11-24T08:47:39.960Z,0.844,422,http_error,http_422,lt-synth-local-e2-3,,,,,,,3,,,,105
+synth-local-e2,exp-e-retrieval-modes,true,2,vector-only,4,SYNTH-Q15,coauthor_breadth,1795510059960,2026-11-24T08:47:39.960Z,1.008,422,http_error,http_422,lt-synth-local-e2-4,,,,,,,3,,,,105
+synth-local-e2,exp-e-retrieval-modes,true,2,vector-only,5,SYNTH-Q14,prompt_injection,1795510059961,2026-11-24T08:47:39.961Z,0.660,422,http_error,http_422,lt-synth-local-e2-5,,,,,,,3,,,,105
+synth-local-e2,exp-e-retrieval-modes,true,2,vector-only,6,SYNTH-Q03,community,1795510059961,2026-11-24T08:47:39.961Z,0.712,422,http_error,http_422,lt-synth-local-e2-6,,,,,,,3,,,,105
+synth-local-e2,exp-e-retrieval-modes,true,2,vector-only,7,SYNTH-Q09,prompt_injection,1795510059962,2026-11-24T08:47:39.962Z,0.739,422,http_error,http_422,lt-synth-local-e2-7,,,,,,,3,,,,105
+synth-local-e2,exp-e-retrieval-modes,true,2,vector-only,8,SYNTH-Q02,topic,1795510059962,2026-11-24T08:47:39.962Z,0.643,422,http_error,http_422,lt-synth-local-e2-8,,,,,,,3,,,,105
+synth-local-e2,exp-e-retrieval-modes,true,2,vector-only,9,SYNTH-Q19,prompt_injection,1795510059962,2026-11-24T08:47:39.962Z,0.536,422,http_error,http_422,lt-synth-local-e2-9,,,,,,,3,,,,105

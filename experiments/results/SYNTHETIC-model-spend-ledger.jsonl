@@ -1,0 +1,20 @@
+{"at": "2026-11-24T08:39:03.494Z", "event": "reserve", "key": "exp-d-query-load/synth-local-1/c1/fused", "synthetic": true, "usd": 0.10505}
+{"at": "2026-11-24T08:39:03.848Z", "event": "final", "key": "exp-d-query-load/synth-local-1/c1/fused", "status": "completed", "synthetic": true, "usd": 0.10505}
+{"at": "2026-11-24T08:39:03.972Z", "event": "reserve", "key": "exp-d-query-load/synth-local-1/c4/fused", "synthetic": true, "usd": 0.29414}
+{"at": "2026-11-24T08:39:04.437Z", "event": "final", "key": "exp-d-query-load/synth-local-1/c4/fused", "status": "completed", "synthetic": true, "usd": 0.29414}
+{"at": "2026-11-24T08:39:31.173Z", "event": "reserve", "key": "exp-d-query-load/cap-calls/c2/fused", "synthetic": true, "usd": 0.2101}
+{"at": "2026-11-24T08:39:31.232Z", "event": "final", "key": "exp-d-query-load/cap-calls/c2/fused", "status": "completed", "synthetic": true, "usd": 0.04202}
+{"at": "2026-11-24T08:39:31.371Z", "event": "reserve", "key": "exp-d-query-load/cap-dur/c1/fused", "synthetic": true, "usd": 0.8404}
+{"at": "2026-11-24T08:39:31.531Z", "event": "final", "key": "exp-d-query-load/cap-dur/c1/fused", "status": "completed", "synthetic": true, "usd": 0.04202}
+{"at": "2026-11-24T08:39:31.631Z", "event": "reserve", "key": "exp-d-query-load/cap-401/c1/fused", "synthetic": true, "usd": 0.8404}
+{"at": "2026-11-24T08:39:31.644Z", "event": "final", "key": "exp-d-query-load/cap-401/c1/fused", "status": "aborted_error_rate", "synthetic": true, "usd": 0.2101}
+{"at": "2026-11-24T08:39:31.722Z", "event": "reserve", "key": "exp-e-retrieval-modes/synth-local-e1/c2/graph-only", "synthetic": true, "usd": 0.18909}
+{"at": "2026-11-24T08:39:31.734Z", "event": "final", "key": "exp-e-retrieval-modes/synth-local-e1/c2/graph-only", "status": "completed", "synthetic": true, "usd": 0.18909}
+{"at": "2026-11-24T08:47:12.618Z", "event": "reserve", "key": "exp-d-query-load/synth-local-2/c1/fused", "synthetic": true, "usd": 0.10505}
+{"at": "2026-11-24T08:47:12.908Z", "event": "final", "key": "exp-d-query-load/synth-local-2/c1/fused", "status": "completed", "synthetic": true, "usd": 0.10505}
+{"at": "2026-11-24T08:47:13.008Z", "event": "reserve", "key": "exp-d-query-load/synth-local-2/c4/fused", "synthetic": true, "usd": 0.18909}
+{"at": "2026-11-24T08:47:16.765Z", "event": "final", "key": "exp-d-query-load/synth-local-2/c4/fused", "status": "completed", "synthetic": true, "usd": 0.18909}
+{"at": "2026-11-24T08:47:16.863Z", "event": "reserve", "key": "exp-d-query-load/synth-local-2/c8/fused", "synthetic": true, "usd": 0.25212}
+{"at": "2026-11-24T08:47:21.241Z", "event": "final", "key": "exp-d-query-load/synth-local-2/c8/fused", "status": "completed", "synthetic": true, "usd": 0.25212}
+{"at": "2026-11-24T08:47:21.345Z", "event": "reserve", "key": "exp-d-query-load/synth-local-2/c16/fused", "synthetic": true, "usd": 0.33616}
+{"at": "2026-11-24T08:47:26.036Z", "event": "final", "key": "exp-d-query-load/synth-local-2/c16/fused", "status": "completed", "synthetic": true, "usd": 0.33616}

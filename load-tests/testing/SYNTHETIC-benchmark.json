@@ -1,0 +1,328 @@
+{
+ "synthetic": true,
+ "label": "SYNTHETIC: invented fixture, NOT benchmark-v1 and not a result",
+ "benchmarkVersion": "SYNTHETIC-benchmark",
+ "questionCount": 20,
+ "questions": [
+  {
+   "id": "SYNTH-Q01",
+   "category": "shortest_path",
+   "question": "SYNTHETIC question 1: which researchers collaborate most on topic 1?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH01",
+      "field": "displayName",
+      "value": "Synthetic Person 1"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q02",
+   "category": "topic",
+   "question": "SYNTHETIC question 2: which researchers collaborate most on topic 2?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH02",
+      "field": "displayName",
+      "value": "Synthetic Person 2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q03",
+   "category": "community",
+   "question": "SYNTHETIC question 3: which researchers collaborate most on topic 3?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH03",
+      "field": "displayName",
+      "value": "Synthetic Person 3"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q04",
+   "category": "prompt_injection",
+   "question": "SYNTHETIC question 4: which researchers collaborate most on topic 4?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH04",
+      "field": "displayName",
+      "value": "Synthetic Person 4"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q05",
+   "category": "coauthor_breadth",
+   "question": "SYNTHETIC question 5: which researchers collaborate most on topic 5?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH05",
+      "field": "displayName",
+      "value": "Synthetic Person 5"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q06",
+   "category": "shortest_path",
+   "question": "SYNTHETIC question 6: which researchers collaborate most on topic 6?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH06",
+      "field": "displayName",
+      "value": "Synthetic Person 6"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q07",
+   "category": "topic",
+   "question": "SYNTHETIC question 7: which researchers collaborate most on topic 7?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH07",
+      "field": "displayName",
+      "value": "Synthetic Person 7"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q08",
+   "category": "community",
+   "question": "SYNTHETIC question 8: which researchers collaborate most on topic 8?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH08",
+      "field": "displayName",
+      "value": "Synthetic Person 8"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q09",
+   "category": "prompt_injection",
+   "question": "SYNTHETIC question 9: which researchers collaborate most on topic 9?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH09",
+      "field": "displayName",
+      "value": "Synthetic Person 9"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q10",
+   "category": "coauthor_breadth",
+   "question": "SYNTHETIC question 10: which researchers collaborate most on topic 10?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH10",
+      "field": "displayName",
+      "value": "Synthetic Person 10"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q11",
+   "category": "shortest_path",
+   "question": "SYNTHETIC question 11: which researchers collaborate most on topic 11?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH11",
+      "field": "displayName",
+      "value": "Synthetic Person 11"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q12",
+   "category": "topic",
+   "question": "SYNTHETIC question 12: which researchers collaborate most on topic 12?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH12",
+      "field": "displayName",
+      "value": "Synthetic Person 12"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q13",
+   "category": "community",
+   "question": "SYNTHETIC question 13: which researchers collaborate most on topic 13?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH13",
+      "field": "displayName",
+      "value": "Synthetic Person 13"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q14",
+   "category": "prompt_injection",
+   "question": "SYNTHETIC question 14: which researchers collaborate most on topic 14?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH14",
+      "field": "displayName",
+      "value": "Synthetic Person 14"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q15",
+   "category": "coauthor_breadth",
+   "question": "SYNTHETIC question 15: which researchers collaborate most on topic 15?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH15",
+      "field": "displayName",
+      "value": "Synthetic Person 15"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q16",
+   "category": "shortest_path",
+   "question": "SYNTHETIC question 16: which researchers collaborate most on topic 16?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH16",
+      "field": "displayName",
+      "value": "Synthetic Person 16"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q17",
+   "category": "topic",
+   "question": "SYNTHETIC question 17: which researchers collaborate most on topic 17?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH17",
+      "field": "displayName",
+      "value": "Synthetic Person 17"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q18",
+   "category": "community",
+   "question": "SYNTHETIC question 18: which researchers collaborate most on topic 18?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH18",
+      "field": "displayName",
+      "value": "Synthetic Person 18"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q19",
+   "category": "prompt_injection",
+   "question": "SYNTHETIC question 19: which researchers collaborate most on topic 19?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH19",
+      "field": "displayName",
+      "value": "Synthetic Person 19"
+     }
+    ]
+   }
+  },
+  {
+   "id": "SYNTH-Q20",
+   "category": "coauthor_breadth",
+   "question": "SYNTHETIC question 20: which researchers collaborate most on topic 20?",
+   "expected": {
+    "abstain": false,
+    "facts": [
+     {
+      "kind": "identity",
+      "subject": "researcher:sc1:SYNTH20",
+      "field": "displayName",
+      "value": "Synthetic Person 20"
+     }
+    ]
+   }
+  }
+ ]
+}

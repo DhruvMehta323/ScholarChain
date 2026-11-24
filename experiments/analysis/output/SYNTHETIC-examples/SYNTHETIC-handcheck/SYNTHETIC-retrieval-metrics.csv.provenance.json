@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "experiments/analysis/fixtures/SYNTHETIC-retrieval-handcheck.csv",
+    "--benchmark",
+    "experiments/analysis/fixtures/SYNTHETIC-retrieval-handcheck-benchmark.json",
+    "--k",
+    "1,3",
+    "--out-dir",
+    "experiments/analysis/output/SYNTHETIC-examples/SYNTHETIC-handcheck",
+    "--force"
+  ],
+  "benchmark_sha256": "a86071b709e9b8b95092f31defe6ed5bf41a180fe7cf4ce12add762d171ef17a",
+  "generated_at_utc": "2026-11-24T09:09:15.682Z",
+  "git_head": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "inputs": [
+    {
+      "path": "experiments/analysis/fixtures/SYNTHETIC-retrieval-handcheck.csv",
+      "sha256": "2685f6b35a7994f19763a693eda441806291e0ee0c739820b32e34294cc7d90b"
+    }
+  ],
+  "output": "SYNTHETIC-retrieval-metrics.csv",
+  "output_sha256": "19e27c9768bf27a83f5e8d613a5c88c35b9eeb12bfe87c012a6963cacd3c04f0",
+  "parameters": {
+    "benchmark": "experiments/analysis/fixtures/SYNTHETIC-retrieval-handcheck-benchmark.json",
+    "force": true,
+    "inputs": [
+      "experiments/analysis/fixtures/SYNTHETIC-retrieval-handcheck.csv"
+    ],
+    "k": "1,3",
+    "no_plot": false,
+    "out_dir": "experiments/analysis/output/SYNTHETIC-examples/SYNTHETIC-handcheck"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/analysis/retrieval_metrics.py",
+  "synthetic": true,
+  "tree_dirty": true
+}

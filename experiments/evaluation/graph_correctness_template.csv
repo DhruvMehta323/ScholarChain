@@ -1,0 +1,9 @@
+check_id,description,method,input_files,expected_rule,observed_value,evidence_path,verdict_pass_fail,reviewer,checked_at_utc
+GC-01,Every COAUTHORED_WITH edge connects two distinct researcher nodes (no self loops),count rows where source equals target in neptune/edges/COAUTHORED_WITH.csv,,,,,,,
+GC-02,Coauthorship edges are undirected: each pair appears once in canonical order,compare edge count with the number of distinct unordered pairs,,,,,,,
+GC-03,Distinct coauthor count in researcher-metrics equals the degree in the loaded edge set,recompute degree from the edge CSV for a seeded sample of researchers and compare,,,,,,,
+GC-04,Connected-component ids partition the researcher set (every researcher in exactly one component),count IN_COMPONENT edges per researcher,,,,,,,
+GC-05,Community membership covers every researcher exactly once,count MEMBER_OF edges per researcher,,,,,,,
+GC-06,Counts loaded into Neptune equal the counts in the Spark output files,compare row counts and checksums recorded in the load run record,,,,,,,
+GC-07,Temporal windows: an edge appears in a window only if a work in that window supports it,check coauthor-edge-works rows against window bounds for a seeded sample,,,,,,,
+GC-08,Shortest-path answers match a reference computation on the loaded graph,run an independent BFS on the edge CSV for the benchmark path questions,,,,,,,

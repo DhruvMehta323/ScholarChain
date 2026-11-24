@@ -1,0 +1,157 @@
+{
+  "SYNTHETIC": true,
+  "stub": "experiments/collect/testing/stub-bin/aws",
+  "MetricDataResults": [
+    {
+      "Id": "m1",
+      "Label": "CoreNodesRunning",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m2",
+      "Label": "CoreNodesPending",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m3",
+      "Label": "YARNMemoryAvailablePercentage",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m4",
+      "Label": "ContainerPending",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m5",
+      "Label": "AppsRunning",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m6",
+      "Label": "IsIdle",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m7",
+      "Label": "TotalNodesRequested",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m8",
+      "Label": "TotalNodesRunning",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m9",
+      "Label": "TotalUnitsRequested",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m10",
+      "Label": "TotalUnitsRunning",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    }
+  ],
+  "Messages": []
+}

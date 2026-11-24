@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "purpose": "Single source of the model-spend caps and price/token assumptions used by load-tests/loadgen.py and experiments/validate_manifests.py",
+  "global_model_cap_usd": 2.0,
+  "reserved_for_embedding_experiment_usd": 0.20,
+  "loadgen_ledger_limit_usd": 1.80,
+  "project_budget_usd": 25.0,
+  "prices_per_million_tokens_usd": {
+    "generation_input": 1.00,
+    "generation_output": 5.00,
+    "generation_model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "generation_source": "UNVERIFIED: author's recollection of the list price of Claude Haiku 4.5 (no network in this phase). Deliberately the HIGHER of two figures so that caps are conservative. infra/terraform/INFRA-CONTRACTS.md (Haiku 5.5 section) records 0.11 in / 0.55 out per million for a different model (Haiku 5.5, Standard in-region, us-east-2, file dated 2026-11-23); it does not price Haiku 4.5. Verify against the Bedrock price page before the AWS window.",
+    "embedding_input_per_1k_tokens": 0.00002,
+    "embedding_model": "amazon.titan-embed-text-v2:0",
+    "embedding_source": "infra/terraform/INFRA-CONTRACTS.md (Titan Text Embeddings V2, $0.00002 per 1K input tokens, recorded there as verified 2026-11-23); not re-verified here"
+  },
+  "per_request_assumptions": {
+    "model_calls_per_request": 3,
+    "input_tokens_per_call": 4000,
+    "output_tokens_per_call": 600,
+    "query_embedding_tokens_per_request": 500,
+    "basis": "ASSUMPTION. explain counters.modelCalls is 2 in the frozen example (rest-explain.example.json on main); 3 is used as a margin. Token counts are guesses; the loadgen --fetch-explain option records observed model call counts so the next run can replace them.",
+    "estimated_cost_usd_per_request": 0.02101
+  },
+  "embedding_experiment_assumptions": {
+    "chunks": 10000,
+    "tokens_per_chunk": 300,
+    "estimated_cost_usd": 0.06,
+    "basis": "ASSUMPTION (tokens per chunk). 10000 x 300 = 3,000K tokens x $0.00002 per 1K = $0.06"
+  },
+  "allocation_usd": {
+    "exp-c-embedding-backlog": 0.20,
+    "exp-d-query-load": 0.90,
+    "exp-e-retrieval-modes": 0.60,
+    "exp-f-failure-recovery": 0.15,
+    "total": 1.85
+  }
+}

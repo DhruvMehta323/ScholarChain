@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "name": "send-poison-message",
+      "rc": 0,
+      "response": {
+        "MessageId": "SYNTHETIC-message-id",
+        "SYNTHETIC": true,
+        "note": "stub: nothing was sent",
+        "stub": "experiments/collect/testing/stub-bin/aws"
+      },
+      "stderr": "",
+      "t_utc": "2026-11-24T08:42:10.631Z"
+    },
+    {
+      "name": "list-worker-tasks",
+      "rc": 0,
+      "response": {
+        "SYNTHETIC": true,
+        "stub": "experiments/collect/testing/stub-bin/aws",
+        "taskArns": [
+          "arn:aws:ecs:us-east-2:000000000000:task/SYNTHETIC/0000"
+        ]
+      },
+      "stderr": "",
+      "t_utc": "2026-11-24T08:42:10.661Z"
+    },
+    {
+      "name": "stop-one-worker-task",
+      "rc": 0,
+      "response": {
+        "SYNTHETIC": true,
+        "note": "stub: nothing was stopped",
+        "stub": "experiments/collect/testing/stub-bin/aws",
+        "task": {
+          "lastStatus": "DEPROVISIONING",
+          "taskArn": "SYNTHETIC"
+        }
+      },
+      "stderr": "",
+      "t_utc": "2026-11-24T08:42:10.686Z"
+    }
+  ],
+  "commit": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "experiment_id": "exp-f-failure-recovery",
+  "label": "SYNTHETIC",
+  "manifest_sha256": "f27e639e29c5b1e82a7f217c9b724c1a6231ddc74bc54eaeca55a7d3316dbe0c",
+  "region": "us-east-2",
+  "run_id": "synth-c1",
+  "synthetic": true
+}

@@ -1,0 +1,187 @@
+{
+  "SYNTHETIC": true,
+  "stub": "experiments/collect/testing/stub-bin/aws",
+  "MetricDataResults": [
+    {
+      "Id": "m1",
+      "Label": "query-api CPUUtilization Average",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m2",
+      "Label": "query-api CPUUtilization Maximum",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m3",
+      "Label": "query-api MemoryUtilization Average",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m4",
+      "Label": "query-api MemoryUtilization Maximum",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m5",
+      "Label": "retrieval CPUUtilization Average",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m6",
+      "Label": "retrieval CPUUtilization Maximum",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m7",
+      "Label": "retrieval MemoryUtilization Average",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m8",
+      "Label": "retrieval MemoryUtilization Maximum",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m9",
+      "Label": "embedding-worker CPUUtilization Average",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m10",
+      "Label": "embedding-worker CPUUtilization Maximum",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m11",
+      "Label": "embedding-worker MemoryUtilization Average",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m12",
+      "Label": "embedding-worker MemoryUtilization Maximum",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    }
+  ],
+  "Messages": []
+}

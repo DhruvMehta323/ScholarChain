@@ -1,0 +1,22 @@
+{
+  "SYNTHETIC": true,
+  "stub": "experiments/collect/testing/stub-bin/aws",
+  "InstanceGroups": [
+    {
+      "InstanceGroupType": "MASTER",
+      "RequestedInstanceCount": 1,
+      "RunningInstanceCount": 1,
+      "Status": {
+        "State": "RUNNING"
+      }
+    },
+    {
+      "InstanceGroupType": "CORE",
+      "RequestedInstanceCount": 2,
+      "RunningInstanceCount": 1,
+      "Status": {
+        "State": "RUNNING"
+      }
+    }
+  ]
+}

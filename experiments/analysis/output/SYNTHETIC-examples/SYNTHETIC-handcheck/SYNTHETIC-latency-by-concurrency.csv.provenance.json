@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "experiments/analysis/fixtures/SYNTHETIC-latency-handcheck.csv",
+    "--out-dir",
+    "experiments/analysis/output/SYNTHETIC-examples/SYNTHETIC-handcheck",
+    "--force",
+    "--no-plot"
+  ],
+  "benchmark_sha256": null,
+  "generated_at_utc": "2026-11-24T09:09:15.604Z",
+  "git_head": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "inputs": [
+    {
+      "path": "experiments/analysis/fixtures/SYNTHETIC-latency-handcheck.csv",
+      "sha256": "913959919b75742f8fc5ffff4555b9b3041dc9f195cf7b5625cab7621806ae43"
+    }
+  ],
+  "output": "SYNTHETIC-latency-by-concurrency.csv",
+  "output_sha256": "490a425881013f0397c5cd09a62eb88186b1a0157b1cbd2d4cec8254bab0766d",
+  "parameters": {
+    "force": true,
+    "inputs": [
+      "experiments/analysis/fixtures/SYNTHETIC-latency-handcheck.csv"
+    ],
+    "no_plot": true,
+    "out_dir": "experiments/analysis/output/SYNTHETIC-examples/SYNTHETIC-handcheck"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/analysis/latency_percentiles.py",
+  "synthetic": true,
+  "tree_dirty": true
+}

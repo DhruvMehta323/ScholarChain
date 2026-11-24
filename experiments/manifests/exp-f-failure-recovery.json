@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "exp-f-failure-recovery",
+  "letter": "F",
+  "title": "Failure and recovery of the embedding worker",
+  "purpose": "ONE safe failure per run: either send one poison message to the embedding queue (--action poison-message, the default plan) or stop one embedding-worker task (--action stop-task), then show retry, dead-letter, idempotency and recovery from the queue, DLQ and worker task timelines.",
+  "approved": false,
+  "approved_by": "",
+  "approval_ref": "",
+  "commit_sha": "FILL_AT_RUN_TIME",
+  "seed": 441,
+  "environment": {
+    "region": "us-east-2",
+    "approved_environments": [
+      "course"
+    ],
+    "profile_env_var": "AWS_PROFILE",
+    "region_env_var": "AWS_REGION",
+    "note": "Terraform output region; no AWS call is made by this manifest."
+  },
+  "command": [
+    "python3",
+    "-B",
+    "experiments/collect/failure_drill.py",
+    "--manifest",
+    "experiments/manifests/exp-f-failure-recovery.json",
+    "--action",
+    "poison-message",
+    "--dry-run"
+  ],
+  "command_notes": [
+    "The command above is the DRY RUN plan print (no AWS call). The run id comes from SC_RUN_ID (the human sets it to the token passed to run-experiment.sh --run-id; run-experiment.sh does not export its run id).",
+    "HUMAN APPROVAL EDIT: to perform the failure the human removes --dry-run and appends \"--queue-url\", \"<main embedding queue URL>\", \"--execute\", \"--yes\" (for --action poison-message), or changes the action to stop-task and appends \"--cluster-name\", \"<ECS cluster>\", \"--execute\", \"--yes\". The script performs exactly ONE failure per run: --action is required and the two actions are mutually exclusive. A second failure needs a new manifest approval and a new run id; the script never retries.",
+    "Write-once record: before the first AWS call the script exclusively creates failure_drill-<run>-record.jsonl (exit 3 and no AWS call when it exists), appends each action right after it runs (failures and awscli timeouts included; a timeout is recorded as outcome_unknown) and never repeats a call.",
+    "Poison message body is a non-JSON marker string: ASSUMPTION that the worker rejects it as malformed and the redrive policy (maxReceiveCount 4) dead-letters it. Not verified against the worker code on main.",
+    "Run sample_resources.py for the whole window so retry and DLQ depth are captured.",
+    "scripts/run-experiment.sh refuses a dirty tree: commit the raw results of the previous experiment first (experiments/README.md, Between experiments)."
+  ],
+  "max_runtime_seconds": 2700,
+  "duration_cap_seconds": 2700,
+  "cost_cap_usd": 0.8,
+  "model_cost_cap_usd": 0.15,
+  "cost_estimate": {
+    "basis": "one SQS message, one Fargate task for under an hour (about $0.017 per task-hour), CloudWatch reads; model reserve 0.15 USD for any embedding retries",
+    "expected_usd": 0.1,
+    "status": "estimate"
+  },
+  "dataset_snapshot": {
+    "id": "none",
+    "manifest_entry": "datasets/dataset-manifest.yaml#scale_datasets.dblp-10k",
+    "works": 0,
+    "notes": "no dataset; one synthetic poison message"
+  },
+  "scale": {
+    "label": "1 safe failure: 1 poison message OR 1 stopped task (--action, mutually exclusive)",
+    "failure_actions_max": 1,
+    "poison_messages_max": 1,
+    "stopped_tasks_max": 1,
+    "note": "at most ONE of the two per run"
+  },
+  "resource_limits": {
+    "max_queue_messages": 1,
+    "ecs_max_tasks_per_service": 4,
+    "max_requests": 0,
+    "max_model_calls": 0,
+    "max_failure_actions": 1
+  },
+  "metrics_to_collect": [
+    "sqs-get-queue-attributes:main queue and DLQ depth, 15 s (sample_resources.py)",
+    "cloudwatch:AWS/SQS/ApproximateNumberOfMessagesVisible,NumberOfMessagesReceived,NumberOfMessagesDeleted(main queue, DLQ)",
+    "ecs-describe-services:runningCount before, during and after the stop, 15 s",
+    "logs-insights:/scholarchain/embedding-worker retry, dead-letter, idempotent-skip events (collect_logs.py)"
+  ],
+  "metric_locations": [
+    "experiments/results/exp-f-failure-recovery/<run>/"
+  ],
+  "stop_conditions": [
+    "more than one failure action (one poison message or one stopped task, never both, never repeated) would be needed: stop",
+    "DLQ depth above 1 before the drill: stop (a prior failure exists)",
+    "worker not recovered 15 minutes after the failure: report, do not scale further",
+    "the write-once record already exists, or an action ends outcome_unknown: stop, check the queue and the service by hand, never retry",
+    "duration_cap_seconds reached"
+  ],
+  "requires": {
+    "prior_runs": [],
+    "human_approval_flags": [
+      "--execute",
+      "--yes"
+    ],
+    "explicit_human_approval_required": true
+  },
+  "reproduction": "SC_RUN_ID=<token> python3 -B experiments/collect/failure_drill.py --manifest experiments/manifests/exp-f-failure-recovery.json --action poison-message --dry-run (prints the plan; or run through scripts/run-experiment.sh exp-f-failure-recovery --run-id <token> with SC_RUN_ID set); the human performs it by editing the command as in command_notes; analysis: queue_drain.py, scale_timeline.py"
+}

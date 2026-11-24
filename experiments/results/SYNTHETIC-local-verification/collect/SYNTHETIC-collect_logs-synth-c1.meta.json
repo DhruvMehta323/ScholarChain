@@ -1,0 +1,43 @@
+{
+  "aws_binary_is_stub": true,
+  "collector": "collect_logs",
+  "commands": [
+    {
+      "command": "aws logs start-query --log-group-name /scholarchain/query-api --start-time 1796047200 --end-time 1796050800 --query-string fields @timestamp, @message | filter event = \"query.completed\" | sort @timestamp asc | limit 5000 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws logs get-query-results --query-id SYNTHETIC-query-id --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "dry_run": true,
+  "ended_at": "2026-11-24T08:42:09.512Z",
+  "errors": [],
+  "experiment_id": "exp-d-query-load",
+  "files": [
+    {
+      "file": "SYNTHETIC-collect_logs-synth-c1-scholarchain_query-api-start.json",
+      "sha256": "6a8a4693ba0c407f81fd325f8f681732f67be09c996e4d522c2c03c8093c9864"
+    },
+    {
+      "file": "SYNTHETIC-collect_logs-synth-c1-scholarchain_query-api-results.json",
+      "sha256": "0dace7fe299abc760dcabd219bd3f6064d6373f532814fdad24a9e6e793fcf9c"
+    }
+  ],
+  "label": "SYNTHETIC",
+  "log_group": "/scholarchain/query-api",
+  "python": "3.14.2",
+  "query_string": "fields @timestamp, @message | filter event = \"query.completed\" | sort @timestamp asc | limit 5000",
+  "region": "us-east-2",
+  "run_id": "synth-c1",
+  "started_at": "2026-11-24T08:42:09.430Z",
+  "synthetic": true,
+  "window_epoch": [
+    1796047200,
+    1796050800
+  ]
+}

@@ -1,0 +1,5 @@
+run_id,experiment_id,synthetic,concurrency,mode,seq,question_id,category,t_start_epoch_ms,t_start_utc,latency_ms,http_status,outcome,error_class,trace_id,query_id,response_mode,abstained,claims_count,claims_verified,returned_researcher_ids,model_calls_assumed,model_calls_observed,explain_http_status,stage_latency_ms_json,bytes
+synth-hand,SYNTHETIC,true,1,fused,1,HQ1,t,1795600000000,2026-11-25T09:46:40.000Z,50.000,200,ok,,SYNTHETIC-synth-hand-1,,,,,,x;a;y,3,,,,0
+synth-hand,SYNTHETIC,true,1,fused,2,HQ2,t,1795600001000,2026-11-25T09:46:41.000Z,50.000,200,ok,,SYNTHETIC-synth-hand-2,,,,,,b;x;c,3,,,,0
+synth-hand,SYNTHETIC,true,1,fused,3,HQ3,t,1795600002000,2026-11-25T09:46:42.000Z,50.000,503,http_error,http_503,SYNTHETIC-synth-hand-3,,,,,,,3,,,,0
+synth-hand,SYNTHETIC,true,1,fused,4,HQ4,t,1795600003000,2026-11-25T09:46:43.000Z,50.000,200,ok,,SYNTHETIC-synth-hand-4,,,,,,x,3,,,,0
