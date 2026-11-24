@@ -11,7 +11,7 @@ import java.time.Instant
 //                           Unset or any other value: those suites are skipped, so `sbt check`
 //                           never touches AWS.
 //   SCHOLARCHAIN_GIT_SHA    Required ONLY by `services/servicesDockerBuild` (alias dockerLocal): the Git commit
-//                           SHA (7 to 40 hex characters) used as the image tag. Unset or not hex: the
+//                           SHA (7 to 40 hex characters, optionally followed by "-dirty") used as the image tag. Unset or not hex: the
 //                           image build fails; there is no "latest". `sbt check` never reads it.
 //   SCHOLARCHAIN_ALLOW_MISSING_MAINS
 //                           Optional. 1 lets the image build proceed while a service main class is not yet
@@ -225,6 +225,10 @@ lazy val services = (project in file("modules/services"))
       IO.delete(ctx)
       IO.createDirectory(ctx)
       IO.copyDirectory(libDir, ctx / "lib")
+      // Runtime prompts and output schemas only (not prompts/README.md); read at /opt/scholarchain/prompts.
+      Seq("runtime", "schemas").foreach { d =>
+        IO.copyDirectory(root / "prompts" / d, ctx / "prompts" / d)
+      }
       IO.copyFile(root / "packaging" / "entrypoint.sh", ctx / "entrypoint.sh")
       IO.copyFile(root / "packaging" / ".dockerignore", ctx / ".dockerignore")
       (ctx / "entrypoint.sh").setExecutable(true)
@@ -263,9 +267,9 @@ lazy val services = (project in file("modules/services"))
       val log      = streams.value.log
       val classDir = (Compile / classDirectory).value
       val sha      = sys.env.get("SCHOLARCHAIN_GIT_SHA").map(_.trim.toLowerCase).getOrElse("")
-      if (!"""[0-9a-f]{7,40}""".r.matches(sha))
+      if (!"""[0-9a-f]{7,40}(-dirty)?""".r.matches(sha))
         sys.error(
-          "SCHOLARCHAIN_GIT_SHA must be set to the Git commit SHA (7 to 40 hex characters), " +
+          "SCHOLARCHAIN_GIT_SHA must be set to the Git commit SHA (7 to 40 hex characters, optional -dirty suffix), " +
             "for example: SCHOLARCHAIN_GIT_SHA=$(git rev-parse HEAD) sbt dockerLocal (run `sbt shutdown` first: a running sbt server keeps its own environment)"
         )
       val missing =

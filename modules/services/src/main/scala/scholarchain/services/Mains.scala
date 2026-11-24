@@ -3,6 +3,7 @@ package scholarchain.services
 import java.nio.file.Paths
 
 import scholarchain.core.rest.RestLimits
+import scholarchain.storage.{EmbeddingWorker, EmbeddingWorkerConfig}
 
 /** Shared start-up helpers. A start-up error is one JSON line on stderr with no value from the
   * environment, then exit code 2.
@@ -30,6 +31,9 @@ object Startup:
       app.stop()
     ))
     Thread.currentThread().join()
+
+/** A composed, not yet started HTTP service (the dry-start result of a main). */
+final case class AssembledHttp(settings: ServiceSettings, runtime: ServiceRuntime, app: HttpApp)
 
 object QueryApiApp:
   def create(
@@ -60,69 +64,109 @@ object RetrievalApp:
   * wires fakes; any other value is AWS mode and refuses to start without its required settings.
   */
 object QueryApiMain:
+  /** Composition without side effects beyond building objects: nothing is started and no network
+    * call is made. `main` calls it with the process environment and production seams.
+    */
+  def assemble(
+      env: Map[String, String],
+      seams: AwsSeams = AwsSeams.Production,
+      host: String = "0.0.0.0",
+  ): Either[String, AssembledHttp] =
+    for
+      s <- ServiceSettings.fromEnv(env)
+      _ <- Either.cond(
+        s.isLocal || s.publicApiKey.isDefined,
+        (),
+        "SCHOLARCHAIN_SERVICES_API_KEY is required outside local mode",
+      )
+      rt <-
+        if s.isLocal then
+          Composition.local(
+            s,
+            LocalFixturePaths.repoRoot.resolve("modules/services/target/local-audit"),
+          )
+        else Composition.awsQueryApi(s, env, seams)
+    yield AssembledHttp(
+      s,
+      rt,
+      QueryApiApp.create(rt, s, s.publicApiKey, new IdGen(false), new JsonLog("query-api"), host),
+    )
+
   def main(args: Array[String]): Unit =
     val service = "query-api"
-    val s       = Startup.settings(service)
-    val key     = s.publicApiKey
-    if !s.isLocal && key.isEmpty then
-      Startup.fail(service, "SCHOLARCHAIN_SERVICES_API_KEY is required outside local mode")
-    val rt =
-      (if s.isLocal then
-         Composition.local(
-           s,
-           LocalFixturePaths.repoRoot.resolve("modules/services/target/local-audit"),
-         )
-       else Composition.awsQueryApi(s, sys.env)).fold(Startup.fail(service, _), identity)
-    val log = new JsonLog(service)
-    val app = QueryApiApp.create(rt, s, key, new IdGen(false), log, "0.0.0.0")
-    val p   = app.start()
-    log.log("info", "-", "-", "startup.listening", "port" -> p.toString, "mode" -> rt.mode)
-    Startup.awaitShutdown(app, log, service)
+    val a       = assemble(sys.env).fold(Startup.fail(service, _), identity)
+    val log     = new JsonLog(service)
+    val p       = a.app.start()
+    log.log("info", "-", "-", "startup.listening", "port" -> p.toString, "mode" -> a.runtime.mode)
+    Startup.awaitShutdown(a.app, log, service)
 
 /** retrieval: internal versioned graph and vector reads, authenticated by
   * `SCHOLARCHAIN_INTERNAL_API_KEY`. Neptune is required in AWS mode.
   */
 object RetrievalMain:
+  def assemble(
+      env: Map[String, String],
+      seams: AwsSeams = AwsSeams.Production,
+      host: String = "0.0.0.0",
+  ): Either[String, AssembledHttp] =
+    for
+      s <- ServiceSettings.fromEnv(env)
+      _ <- Either.cond(
+        s.isLocal || s.internalApiKey.isDefined,
+        (),
+        "SCHOLARCHAIN_INTERNAL_API_KEY is required outside local mode",
+      )
+      rt <-
+        if s.isLocal then
+          Composition
+            .local(s, LocalFixturePaths.repoRoot.resolve("modules/services/target/local-audit"))
+            .map(r =>
+              new ServiceRuntime(
+                r.settings,
+                r.tables,
+                r.kv,
+                r.graph,
+                r.vectors,
+                r.objects,
+                r.embedder,
+                None,
+                r.mode,
+                Set("graph", "vectors"),
+              )
+            )
+        else Composition.awsRetrieval(s, env, seams)
+    yield AssembledHttp(
+      s,
+      rt,
+      RetrievalApp.create(rt, s, s.internalApiKey, new IdGen(false), new JsonLog("retrieval"), host),
+    )
+
   def main(args: Array[String]): Unit =
     val service = "retrieval"
-    val s       = Startup.settings(service)
-    if !s.isLocal && s.internalApiKey.isEmpty then
-      Startup.fail(service, "SCHOLARCHAIN_INTERNAL_API_KEY is required outside local mode")
-    val rt =
-      (if s.isLocal then
-         Composition
-           .local(s, LocalFixturePaths.repoRoot.resolve("modules/services/target/local-audit"))
-           .map(r =>
-             new ServiceRuntime(
-               r.settings,
-               r.tables,
-               r.kv,
-               r.graph,
-               r.vectors,
-               r.objects,
-               r.embedder,
-               None,
-               r.mode,
-               Set("graph", "vectors"),
-             )
-           )
-       else Composition.awsRetrieval(s, sys.env)).fold(Startup.fail(service, _), identity)
-    val log = new JsonLog(service)
-    val app = RetrievalApp.create(rt, s, s.internalApiKey, new IdGen(false), log, "0.0.0.0")
-    val p   = app.start()
-    log.log("info", "-", "-", "startup.listening", "port" -> p.toString, "mode" -> rt.mode)
-    Startup.awaitShutdown(app, log, service)
+    val a       = assemble(sys.env).fold(Startup.fail(service, _), identity)
+    val log     = new JsonLog(service)
+    val p       = a.app.start()
+    log.log("info", "-", "-", "startup.listening", "port" -> p.toString, "mode" -> a.runtime.mode)
+    Startup.awaitShutdown(a.app, log, service)
 
 /** embedding-worker: no listener. Runs the Phase 08 `EmbeddingWorker` over the SQS queue port in a
   * loop until SIGTERM. AWS mode only (the local embedding run is the Phase 08 test harness).
   */
 object EmbeddingWorkerMain:
+  def assemble(
+      env: Map[String, String],
+      seams: AwsSeams = AwsSeams.Production,
+  ): Either[String, (EmbeddingWorker, EmbeddingWorkerConfig)] =
+    for
+      s <- ServiceSettings.fromEnv(env)
+      _ <- Either.cond(!s.isLocal, (), "the embedding worker has no local mode")
+      w <- Composition.awsWorker(s, env, seams)
+    yield w
+
   def main(args: Array[String]): Unit =
-    val service = "embedding-worker"
-    val s       = Startup.settings(service)
-    if s.isLocal then Startup.fail(service, "the embedding worker has no local mode")
-    val (worker, cfg) = Composition.awsWorker(s, sys.env).fold(Startup.fail(service, _), identity)
-    val log           = new JsonLog(service)
+    val service           = "embedding-worker"
+    val (worker, cfg)     = assemble(sys.env).fold(Startup.fail(service, _), identity)
+    val log               = new JsonLog(service)
     @volatile var running = true
     Runtime.getRuntime.addShutdownHook(new Thread(() => running = false))
     log.log("info", "-", "-", "startup.running", "queue" -> cfg.queueName)

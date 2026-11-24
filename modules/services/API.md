@@ -159,9 +159,26 @@ Core loaders: `RuntimeConfigLoader`, `StorageConfigLoader`, `EmbeddingConfigLoad
 `SCHOLARCHAIN_STORAGE_NEPTUNE_ENDPOINT` (required by retrieval in AWS mode; a missing value is a start-up error),
 `SCHOLARCHAIN_AWS_REGION`, `SCHOLARCHAIN_PROMPTS_DIR` is NOT read: prompts are found by `PromptRepository.locate()`
 (system property `scholarchain.prompts.dir` or a `prompts/` folder above the working directory). The model key
-variable is `SCHOLARCHAIN_ANTHROPIC_API_KEY` only. Worker: `SCHOLARCHAIN_SERVICES_EMBEDDING_QUEUE_URL`,
+variable is `SCHOLARCHAIN_ANTHROPIC_API_KEY` only (see Model and embedder selection below). Worker: `SCHOLARCHAIN_SERVICES_EMBEDDING_QUEUE_URL`,
 `SCHOLARCHAIN_SERVICES_EMBEDDING_DLQ_URL`. Secrets arrive as environment variables injected from Secrets Manager;
 nothing here reads or logs a value.
+
+### Model and embedder selection (Bedrock-only course deployment)
+
+Stated from `Composition.scala` and the core config (`scholarchain-rag.v1.conf`, `RuntimeConfig.scala`):
+
+- Embedder (retrieval and embedding-worker): the Voyage embedder is built only when
+  `SCHOLARCHAIN_VOYAGE_API_KEY` is present and non-empty (`Composition.scala` lines 412-413 and 455-456);
+  otherwise the Bedrock embedder is built (lines 414 and 457). The course deployment uses Bedrock, so
+  `SCHOLARCHAIN_VOYAGE_API_KEY` must NOT be injected into these services.
+- Answer model (query-api): `SCHOLARCHAIN_ANTHROPIC_API_KEY` is required at start-up only when
+  `SCHOLARCHAIN_RAG_MODEL_PROVIDER=anthropic` (`Composition.scala` lines 347-349); a missing or empty value is a
+  start-up error naming the variable. The core default provider is `bedrock`. The course deployment sets
+  `SCHOLARCHAIN_RAG_MODEL_PROVIDER=bedrock` and
+  `SCHOLARCHAIN_RAG_MODEL_BEDROCK_MODEL_ID=us.anthropic.claude-haiku-4-5-20251001-v1:0`
+  (env name rule `SCHOLARCHAIN_RAG_<KEY>`, from `rag.model.provider` and `rag.model.bedrock-model-id`).
+  `SCHOLARCHAIN_ANTHROPIC_API_KEY` need not be injected.
+- `SCHOLARCHAIN_MODELS_GENERATION_MODEL_ID` is defined in core `ModelConfig` (`models.generation-model-id`, `modules/core/src/main/scala/scholarchain/core/Config.scala:36` and `:80`) but is not consumed by rag or services.
 
 ## Local mode and the local session
 

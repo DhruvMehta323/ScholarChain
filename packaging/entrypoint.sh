@@ -14,6 +14,7 @@ exec java \
   -XX:MaxMetaspaceSize=96m \
   -XX:+ExitOnOutOfMemoryError \
   -Djava.security.egd=file:/dev/urandom \
+  -Dscholarchain.prompts.dir=/opt/scholarchain/prompts \
   ${JAVA_OPTS:-} \
   -cp "/opt/scholarchain/lib/*" \
   "${SERVICE_MAIN}"

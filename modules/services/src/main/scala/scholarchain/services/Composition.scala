@@ -5,7 +5,7 @@ import java.nio.file.{Files, Path, Paths}
 
 import scala.util.Try
 
-import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider
+import software.amazon.awssdk.auth.credentials.{AwsCredentialsProvider, DefaultCredentialsProvider}
 import software.amazon.awssdk.regions.Region
 
 import scholarchain.core.*
@@ -80,9 +80,12 @@ final class ServiceRuntime(
     val model: Option[ModelClient],
     val mode: String,
     val needs: Set[String] = Set("key_value", "graph", "vectors"),
+    val promptSource: () => Either[RuntimeError, PromptRepository] = () =>
+      PromptRepository.locate(),
+    val missingConfig: () => List[String] = () => Nil,
 ):
   private lazy val prompts: PromptRepository =
-    PromptRepository.locate().fold(e => throw new IllegalStateException(e.message), identity)
+    promptSource().fold(e => throw new IllegalStateException(e.message), identity)
 
   /** A new workflow on every call: its resolver keeps an unsynchronized cache, so each run (and
     * each thread) gets its own instance. Construction only wires objects together.
@@ -131,9 +134,41 @@ final class ServiceRuntime(
           .map(Downstream.reasonCode)
           .map(_ => ())
       ),
+      "prompts" -> (() => Readiness.promptsCheck(promptSource)),
+      "config"  -> (() =>
+        if missingConfig().isEmpty then Right(()) else Left(Readiness.ConfigMissing)
+      ),
     ).filter((n, _) => needs.contains(n))
 
 object Readiness:
+  /** Stable reason codes of the `prompts` and `config` readiness checks. */
+  val PromptsDirMissing: String    = "prompts_dir_missing"
+  val PromptVersionMissing: String = "prompt_version_missing"
+  val PromptInvalid: String        = "prompt_invalid"
+  val ConfigMissing: String        = "config_missing"
+
+  /** The prompt IDs (all at `PromptRepository.Version`) a query-api needs to answer. */
+  val RequiredPrompts: List[(String, String)] =
+    List(PromptRepository.PlannerId, PromptRepository.SynthesisId, PromptRepository.VerificationId)
+      .map(_ -> PromptRepository.Version)
+
+  /** `Right` when the prompts-and-schemas folder is found and every required prompt version loads
+    * (prompt text, schema text, schema parses). Otherwise a stable reason code, never a path.
+    */
+  def promptsCheck(
+      source: () => Either[RuntimeError, PromptRepository],
+      required: List[(String, String)] = RequiredPrompts,
+  ): Either[String, Unit] =
+    source() match
+      case Left(_)     => Left(PromptsDirMissing)
+      case Right(repo) =>
+        required.iterator
+          .map((id, v) => repo.load(id, v))
+          .collectFirst { case Left(e) => e }
+          .fold[Either[String, Unit]](Right(()))(e =>
+            Left(if e.code == "invalid-schema" then PromptInvalid else PromptVersionMissing)
+          )
+
   /** `GET /readyz`: 200 when every dependency answers, 503 with the failing names otherwise. */
   def respond(service: String, rt: ServiceRuntime): Either[ApiFailure, Resp] =
     val checks = rt.checks.map { (name, probe) =>
@@ -144,6 +179,21 @@ object Readiness:
     val view = ReadinessView.of(service, checks)
     val code = if view.status == ReadinessState.Ready then 200 else 503
     Respond.json(code, view, RestContracts.Health)
+
+/** Test seam for the AWS compositions. Production passes `AwsSeams.Production`: the default
+  * credentials provider and no endpoint override. A test injects a static provider and a loopback
+  * Neptune endpoint so the composition code runs up to the first network call. (`AwsClients`
+  * accepts an endpoint override for Neptune only.)
+  */
+final case class AwsSeams(
+    credentials: Option[AwsCredentialsProvider] = None,
+    neptuneEndpoint: Option[URI] = None,
+):
+  def provider: AwsCredentialsProvider =
+    credentials.getOrElse(DefaultCredentialsProvider.builder().build())
+
+object AwsSeams:
+  val Production: AwsSeams = AwsSeams()
 
 object Composition:
   private def guards(rt: ServiceSettings): () => DownstreamGuard =
@@ -170,6 +220,8 @@ object Composition:
       model: Option[ModelClient],
       mode: String,
       needs: Set[String] = Set("key_value", "graph", "vectors"),
+      promptSource: () => Either[RuntimeError, PromptRepository] = () => PromptRepository.locate(),
+      missingConfig: () => List[String] = () => Nil,
   ): ServiceRuntime =
     val g = guards(s)
     new ServiceRuntime(
@@ -183,6 +235,8 @@ object Composition:
       model,
       mode,
       needs,
+      promptSource,
+      missingConfig,
     )
 
   /** Local mode: fakes loaded from the Phase 07 L4 output and the Phase 08 vectors, the rag fake
@@ -213,36 +267,82 @@ object Composition:
             st.embedder,
             Some(new FakeModelClient(responder = Some(LocalPlannerResponder.responder))),
             "local",
+            Set("key_value", "graph", "vectors", "prompts"),
           )
         }
 
   private def configErrors(what: String, es: List[ValidationError]): String =
     s"$what configuration is invalid: " + es.map(_.toString).mkString("; ").take(400)
 
-  private def tablesOf(cfg: StorageModuleConfig): RuntimeTables =
-    val rag    = cfg.s3.rag.stripPrefix("s3://")
-    val bucket = rag.takeWhile(_ != '/')
-    val prefix = rag.drop(bucket.length + 1).stripSuffix("/")
-    RuntimeTables(
-      cfg.tables.querySession,
-      cfg.tables.evidenceBundle,
-      cfg.tables.analytics,
-      bucket,
-      if prefix.isEmpty then "audit" else s"$prefix/audit",
+  /** Where the query audit documents go: the curated bucket (bare name from
+    * `SCHOLARCHAIN_STORAGE_CURATED_BUCKET`) and the key prefix `<rag-prefix>/audit` (no trailing
+    * slash, as `RuntimeTables.auditPrefix` is joined with `/`). A relative prefix is never parsed
+    * as a bucket: a prefix that looks like a URI or an absolute path is refused.
+    */
+  def auditLocation(curatedBucket: String, ragPrefix: String): Either[String, (String, String)] =
+    val b = curatedBucket.trim
+    val p = ragPrefix.trim
+    if b.isEmpty || b.contains("/") || b.toLowerCase.startsWith("s3:") then
+      Left("the curated bucket must be a bare bucket name")
+    else if p.isEmpty || p.startsWith("/") || p.toLowerCase.startsWith("s3:") || p.contains("..")
+    then Left("the rag prefix must be a relative key prefix")
+    else Right((b, p.stripSuffix("/") + "/audit"))
+
+  private def tablesOf(
+      cfg: StorageModuleConfig,
+      curatedBucket: String,
+  ): Either[String, RuntimeTables] =
+    auditLocation(curatedBucket, cfg.s3.rag).map((bucket, prefix) =>
+      RuntimeTables(
+        cfg.tables.querySession,
+        cfg.tables.evidenceBundle,
+        cfg.tables.analytics,
+        bucket,
+        prefix,
+      )
     )
+
+  val CuratedBucketEnv: String = ConfigKeys.CuratedBucket.envName
+
+  private def curated(env: Map[String, String]): Either[String, String] =
+    require(CuratedBucketEnv, env.get(CuratedBucketEnv).map(_.trim).filter(_.nonEmpty))
+
+  /** Names of the required environment values that are missing (or malformed) for an AWS role
+    * (`query-api` or `retrieval`). Names only, never values.
+    */
+  def missingConfig(role: String, s: ServiceSettings, env: Map[String, String]): List[String] =
+    val common = List(
+      "SCHOLARCHAIN_AWS_REGION" -> s.region.isDefined,
+      CuratedBucketEnv -> curated(env).exists(b => !b.contains("/") && !b.startsWith("s3:")),
+    )
+    val specific =
+      if role == "retrieval" then
+        List("SCHOLARCHAIN_STORAGE_NEPTUNE_ENDPOINT" -> s.neptuneEndpoint.isDefined)
+      else
+        List(
+          "SCHOLARCHAIN_SERVICES_RETRIEVAL_URL" -> s.retrievalUrl.isDefined,
+          "SCHOLARCHAIN_INTERNAL_API_KEY"       -> s.internalApiKey.isDefined,
+        )
+    (common ++ specific).collect { case (n, false) => n }
 
   private def require(name: String, v: Option[String]): Either[String, String] =
     v.toRight(s"$name is required and is not set")
 
   /** AWS query-api: Dynamo and S3 directly, graph, vectors and embeddings through retrieval. */
-  def awsQueryApi(s: ServiceSettings, env: Map[String, String]): Either[String, ServiceRuntime] =
+  def awsQueryApi(
+      s: ServiceSettings,
+      env: Map[String, String],
+      seams: AwsSeams = AwsSeams.Production,
+  ): Either[String, ServiceRuntime] =
     for
       region <- require("SCHOLARCHAIN_AWS_REGION", s.region)
       url    <- require("SCHOLARCHAIN_SERVICES_RETRIEVAL_URL", s.retrievalUrl)
       key    <- require("SCHOLARCHAIN_INTERNAL_API_KEY", s.internalApiKey)
+      cb     <- curated(env)
       rs     <- RuntimeConfigLoader.load(env).left.map(configErrors("runtime", _))
       sc     <- StorageConfigLoader.load(env).left.map(configErrors("storage", _))
       es     <- EmbeddingConfigLoader.load(env).left.map(configErrors("embedding", _))
+      tables <- tablesOf(sc.config, cb)
       _      <-
         if rs.settings.provider == ModelProvider.Anthropic &&
           !env.get(rs.settings.anthropicApiKeyEnvVar).exists(_.nonEmpty)
@@ -255,19 +355,19 @@ object Composition:
             rs.settings,
             region,
             liveProfile = true,
-            DefaultCredentialsProvider.builder().build(),
+            seams.provider,
           ),
           None,
         )
         .left
         .map(_ => "the model client could not be built")
     yield
-      val clients = new AwsClients(DefaultCredentialsProvider.builder().build(), Region.of(region))
+      val clients = new AwsClients(seams.provider, Region.of(region))
       val remote  = new RetrievalClient(url, key, math.max(100L, s.downstreamTimeoutMillis - 500L))
       guarded(
         s,
         rs.settings,
-        tablesOf(sc.config),
+        tables,
         clients.keyValueStore,
         new RemoteGraphStore(remote),
         new RemoteVectorStore(remote),
@@ -280,21 +380,30 @@ object Composition:
         ),
         Some(model),
         "aws",
+        Set("key_value", "graph", "vectors", "prompts", "config"),
+        promptSource = () => PromptRepository.locate(),
+        missingConfig = () => missingConfig("query-api", s, env),
       )
 
   /** AWS retrieval: Neptune (required), S3 Vectors and the embedder. Neptune is never optional. */
-  def awsRetrieval(s: ServiceSettings, env: Map[String, String]): Either[String, ServiceRuntime] =
+  def awsRetrieval(
+      s: ServiceSettings,
+      env: Map[String, String],
+      seams: AwsSeams = AwsSeams.Production,
+  ): Either[String, ServiceRuntime] =
     for
       region   <- require("SCHOLARCHAIN_AWS_REGION", s.region)
       endpoint <- require("SCHOLARCHAIN_STORAGE_NEPTUNE_ENDPOINT", s.neptuneEndpoint)
       uri      <- Try(URI.create(endpoint)).toOption
         .filter(_.getHost != null || endpoint.nonEmpty)
         .toRight("SCHOLARCHAIN_STORAGE_NEPTUNE_ENDPOINT is not a valid URI")
-      rs <- RuntimeConfigLoader.load(env).left.map(configErrors("runtime", _))
-      sc <- StorageConfigLoader.load(env).left.map(configErrors("storage", _))
-      es <- EmbeddingConfigLoader.load(env).left.map(configErrors("embedding", _))
-      creds   = DefaultCredentialsProvider.builder().build()
-      clients = new AwsClients(creds, Region.of(region), Some(uri))
+      cb     <- curated(env)
+      rs     <- RuntimeConfigLoader.load(env).left.map(configErrors("runtime", _))
+      sc     <- StorageConfigLoader.load(env).left.map(configErrors("storage", _))
+      es     <- EmbeddingConfigLoader.load(env).left.map(configErrors("embedding", _))
+      tables <- tablesOf(sc.config, cb)
+      creds   = seams.provider
+      clients = new AwsClients(creds, Region.of(region), Some(seams.neptuneEndpoint.getOrElse(uri)))
       graph <- clients
         .graphStore(sc.config)
         .left
@@ -307,7 +416,7 @@ object Composition:
     yield guarded(
       s,
       rs.settings,
-      tablesOf(sc.config),
+      tables,
       clients.keyValueStore,
       graph,
       clients.vectorStore(
@@ -318,13 +427,15 @@ object Composition:
       embedder,
       None,
       "aws",
-      Set("graph", "vectors"),
+      Set("graph", "vectors", "config"),
+      missingConfig = () => missingConfig("retrieval", s, env),
     )
 
   /** The worker's ports (AWS only). */
   def awsWorker(
       s: ServiceSettings,
       env: Map[String, String],
+      seams: AwsSeams = AwsSeams.Production,
   ): Either[String, (EmbeddingWorker, EmbeddingWorkerConfig)] =
     for
       region <- require("SCHOLARCHAIN_AWS_REGION", s.region)
@@ -338,7 +449,7 @@ object Composition:
       )
       sc <- StorageConfigLoader.load(env).left.map(configErrors("storage", _))
       es <- EmbeddingConfigLoader.load(env).left.map(configErrors("embedding", _))
-      creds   = DefaultCredentialsProvider.builder().build()
+      creds   = seams.provider
       clients = new AwsClients(creds, Region.of(region))
       embedder <-
         (if env.get("SCHOLARCHAIN_VOYAGE_API_KEY").exists(_.nonEmpty) then
