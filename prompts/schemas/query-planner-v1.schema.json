@@ -1,0 +1,75 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operations"],
+  "properties": {
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "rank_researchers_by_metric",
+          "max_team_size",
+          "direct_coauthors",
+          "shortest_path",
+          "component_lookup",
+          "community_comparison",
+          "bridge_ranking",
+          "temporal_comparison",
+          "entity_filter",
+          "semantic_explanation",
+          "researcher_metrics_lookup"
+        ]
+      }
+    },
+    "researcherNames": {
+      "type": "array",
+      "maxItems": 10,
+      "items": { "type": "string", "minLength": 1, "maxLength": 200 }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startYear", "endYear"],
+      "properties": {
+        "startYear": { "type": "integer", "minimum": 1000, "maximum": 9999 },
+        "endYear": { "type": "integer", "minimum": 1000, "maximum": 9999 }
+      }
+    },
+    "comparisonWindow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startYear", "endYear"],
+      "properties": {
+        "startYear": { "type": "integer", "minimum": 1000, "maximum": 9999 },
+        "endYear": { "type": "integer", "minimum": 1000, "maximum": 9999 }
+      }
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "topic": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:\\-]{0,63}$" },
+        "venue": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:\\-]{0,63}$" },
+        "institution": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:\\-]{0,63}$" }
+      }
+    },
+    "metric": {
+      "type": "string",
+      "enum": [
+        "degree",
+        "weighted_degree",
+        "betweenness",
+        "pagerank",
+        "clustering_coefficient",
+        "bridge_score",
+        "community_id"
+      ]
+    },
+    "resultCount": { "type": "integer", "minimum": 1, "maximum": 100 },
+    "pathDepth": { "type": "integer", "minimum": 1, "maximum": 6 }
+  }
+}

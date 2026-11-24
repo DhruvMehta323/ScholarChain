@@ -10,6 +10,12 @@ import java.time.Instant
 //   SCHOLARCHAIN_AWS_IT     Optional. Set to 1 to run live-AWS suites named *AwsItSuite.
 //                           Unset or any other value: those suites are skipped, so `sbt check`
 //                           never touches AWS.
+//   SCHOLARCHAIN_GIT_SHA    Required ONLY by `services/servicesDockerBuild` (alias dockerLocal): the Git commit
+//                           SHA (7 to 40 hex characters, optionally followed by "-dirty") used as the image tag. Unset or not hex: the
+//                           image build fails; there is no "latest". `sbt check` never reads it.
+//   SCHOLARCHAIN_ALLOW_MISSING_MAINS
+//                           Optional. 1 lets the image build proceed while a service main class is not yet
+//                           compiled (bootstrap only; such an image cannot start). Default: build fails.
 // All versions come from project/Versions.scala (the ledger). No secrets, cloud endpoints or
 // deployment steps are defined here.
 //
@@ -41,6 +47,19 @@ Global / concurrentRestrictions ++= Seq(
 
 val markTestRun = taskKey[Unit]("Write .claude/.last-test-run after all tests have passed")
 val jdkInfo     = taskKey[Unit]("Print the JDKs used by sbt and by forked tests")
+
+// Service images: ONE sbt module (services), three independently deployable images.
+val serviceImages = Seq(
+  ServiceImage("query-api", "scholarchain.services.QueryApiMain", Some(8080)),
+  ServiceImage("retrieval", "scholarchain.services.RetrievalMain", Some(8080)),
+  ServiceImage("embedding-worker", "scholarchain.services.EmbeddingWorkerMain", None),
+)
+val servicesClasspathGuard =
+  taskKey[Unit]("Fail if a Spark or Hadoop jar is on the services runtime classpath")
+val servicesDockerStage =
+  taskKey[File]("Render the Docker build context for the three service images")
+val servicesDockerBuild =
+  taskKey[Unit]("Build the three linux/amd64 service images tagged with SCHOLARCHAIN_GIT_SHA")
 
 // Flags that Spark and Hadoop need to reflect into the JDK 17 module system.
 val jdk17Opens = Seq(
@@ -174,7 +193,7 @@ lazy val rag = (project in file("modules/rag"))
   )
 
 lazy val services = (project in file("modules/services"))
-  .enablePlugins(JavaAppPackaging, DockerPlugin)
+  .enablePlugins(JavaAppPackaging)
   .dependsOn(rag, storage)
   .settings(commonSettings)
   .settings(
@@ -183,20 +202,105 @@ lazy val services = (project in file("modules/services"))
     libraryDependencies ++= Seq(Dependencies.logback, Dependencies.sparkSqlTest),
     // Spark suites share one local SparkSession per forked JVM, so they must not run in parallel.
     Test / parallelExecution := false,
-    // Container image: pinned Java runtime, non-root user, percentage-based memory limits.
-    dockerBaseImage         := s"eclipse-temurin:${Versions.temurinJreImage}",
-    dockerRepository        := None,
-    dockerUpdateLatest      := false,
-    Docker / packageName    := "scholarchain-services",
-    Docker / daemonUser     := "scholarchain",
-    Docker / daemonUserUid  := Some("10001"),
-    Docker / daemonGroup    := "scholarchain",
-    Docker / daemonGroupGid := Some("10001"),
-    Universal / javaOptions ++= Seq(
-      "-J-XX:MaxRAMPercentage=75.0",
-      "-J-XX:InitialRAMPercentage=50.0",
-      "-J-XX:+ExitOnOutOfMemoryError",
-    ),
+    // Three images from this one module; see packaging/README.md. The runtime classpath is guarded.
+    servicesClasspathGuard := Def.uncached {
+      val conv  = fileConverter.value
+      val names = (Runtime / fullClasspath).value.map(a => conv.toPath(a.data).getFileName.toString)
+      val bad   = names.filter(n => """(^|[-.])(spark|hadoop)-""".r.findFirstIn(n).isDefined)
+      if (bad.nonEmpty)
+        sys.error(s"Spark/Hadoop on services Runtime classpath (forbidden): ${bad.mkString(", ")}")
+      streams.value.log.info(
+        s"servicesClasspathGuard: OK, ${names.size} runtime classpath entries, none match spark-* or hadoop-*"
+      )
+    },
+    servicesDockerStage := Def.uncached {
+      servicesClasspathGuard.value
+      (Universal / stage).value
+      val log    = streams.value.log
+      val root   = (ThisBuild / baseDirectory).value
+      val libDir =
+        (Universal / com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.stagingDirectory).value / "lib"
+      val classDir = (Compile / classDirectory).value
+      val ctx      = target.value / "docker-services"
+      IO.delete(ctx)
+      IO.createDirectory(ctx)
+      IO.copyDirectory(libDir, ctx / "lib")
+      // Runtime prompts and output schemas only (not prompts/README.md); read at /opt/scholarchain/prompts.
+      Seq("runtime", "schemas").foreach { d =>
+        IO.copyDirectory(root / "prompts" / d, ctx / "prompts" / d)
+      }
+      IO.copyFile(root / "packaging" / "entrypoint.sh", ctx / "entrypoint.sh")
+      IO.copyFile(root / "packaging" / ".dockerignore", ctx / ".dockerignore")
+      (ctx / "entrypoint.sh").setExecutable(true)
+      val template = IO.read(root / "packaging" / "Dockerfile.template")
+      serviceImages.foreach { svc =>
+        val (expose, check) = svc.port match {
+          case Some(p) =>
+            (
+              s"EXPOSE $p",
+              s"HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 " +
+                s"CMD curl --fail --silent --max-time 3 http://127.0.0.1:$p/healthz > /dev/null || exit 1",
+            )
+          case None =>
+            (
+              "# no port: this service accepts no inbound traffic",
+              "HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 " +
+                s"CMD grep -qa ${svc.mainClass.split('.').last} /proc/1/cmdline || exit 1",
+            )
+        }
+        val rendered = template
+          .replace("@BASE_IMAGE@", s"eclipse-temurin:${Versions.temurinJreImage}")
+          .replace("@SERVICE@", svc.name)
+          .replace("@SERVICE_MAIN@", svc.mainClass)
+          .replace("@EXPOSE@", expose)
+          .replace("@HEALTHCHECK@", check)
+        IO.write(ctx / s"Dockerfile.${svc.name}", rendered)
+        val classFile = classDir / (svc.mainClass.replace('.', '/') + ".class")
+        if (!classFile.exists)
+          log.warn(s"main class ${svc.mainClass} is not compiled yet (${svc.name})")
+      }
+      log.info(s"servicesDockerStage: context at ${ctx.getPath}")
+      ctx
+    },
+    servicesDockerBuild := Def.uncached {
+      val ctx      = servicesDockerStage.value
+      val log      = streams.value.log
+      val classDir = (Compile / classDirectory).value
+      val sha      = sys.env.get("SCHOLARCHAIN_GIT_SHA").map(_.trim.toLowerCase).getOrElse("")
+      if (!"""[0-9a-f]{7,40}(-dirty)?""".r.matches(sha))
+        sys.error(
+          "SCHOLARCHAIN_GIT_SHA must be set to the Git commit SHA (7 to 40 hex characters, optional -dirty suffix), " +
+            "for example: SCHOLARCHAIN_GIT_SHA=$(git rev-parse HEAD) sbt dockerLocal (run `sbt shutdown` first: a running sbt server keeps its own environment)"
+        )
+      val missing =
+        serviceImages.filterNot(s => (classDir / (s.mainClass.replace('.', '/') + ".class")).exists)
+      if (missing.nonEmpty && !sys.env.get("SCHOLARCHAIN_ALLOW_MISSING_MAINS").contains("1"))
+        sys.error(
+          s"main class not compiled: ${missing.map(_.mainClass).mkString(", ")}. " +
+            "Set SCHOLARCHAIN_ALLOW_MISSING_MAINS=1 only for a bootstrap build that cannot start."
+        )
+      serviceImages.foreach { svc =>
+        val tag = s"scholarchain/${svc.name}:$sha"
+        val cmd = Seq(
+          "docker",
+          "build",
+          "--platform",
+          "linux/amd64",
+          "--label",
+          s"org.opencontainers.image.revision=$sha",
+          "--label",
+          s"org.opencontainers.image.title=scholarchain-${svc.name}",
+          "--tag",
+          tag,
+          "--file",
+          (ctx / s"Dockerfile.${svc.name}").getPath,
+          ctx.getPath,
+        )
+        log.info(s"building $tag")
+        val code = scala.sys.process.Process(cmd).!
+        if (code != 0) sys.error(s"docker build failed for $tag (exit $code)")
+      }
+    },
   )
 
 lazy val root = (project in file("."))
@@ -240,4 +344,6 @@ addCommandAlias(
   "scalafmtCheckAll; scalafmtSbtCheck; Test/compile; Test/testFull; contractTest; markTestRun",
 )
 addCommandAlias("packageJobs", "hadoop/assembly; sparkAnalytics/assembly")
-addCommandAlias("dockerLocal", "services/Docker/publishLocal")
+addCommandAlias("dockerLocal", "services/servicesDockerBuild")
+addCommandAlias("dockerStage", "services/servicesDockerStage")
+addCommandAlias("servicesGuard", "services/servicesClasspathGuard")

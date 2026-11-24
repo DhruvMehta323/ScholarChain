@@ -16,6 +16,10 @@ import org.apache.spark.sql.functions as F
   * loop ends; it also stops at `maxRounds` (then the still remaining nodes get the current level
   * `k` of their window, a lower bound, and `Convergence.converged` is false). Every round is
   * checkpointed.
+  *
+  * Input robustness: arcs are made a simple graph first (self arcs dropped, duplicate arcs
+  * collapsed), so a repeated or self arc never inflates a degree. A node that only has a self arc
+  * keeps coreness 0. The pipeline never emits either, so its outputs are unchanged.
   */
 object KCore:
   val AlgorithmName = "k_core_peeling"
@@ -27,9 +31,10 @@ object KCore:
       ck: Checkpointer,
   ): (DataFrame, Convergence) =
     var remaining = ck(nodes.select("window", "id"))
-    var live      = ck(arcs.select("window", "src", "dst"))
-    var levels    = ck(remaining.select("window").distinct().withColumn("k", F.lit(0)))
-    var result    =
+    var live      =
+      ck(arcs.select("window", "src", "dst").where(F.col("src") =!= F.col("dst")).distinct())
+    var levels = ck(remaining.select("window").distinct().withColumn("k", F.lit(0)))
+    var result =
       ck(remaining.limit(0).withColumn("coreness", F.lit(0)))
     var rounds = 0
     while !DriverCollect.isEmpty(remaining) && rounds < maxRounds do

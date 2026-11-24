@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["claims", "uncertainty", "missingEvidence"],
+  "properties": {
+    "claims": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "evidenceIds", "assertions"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1, "maxLength": 600 },
+          "evidenceIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 20,
+            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^evidence:[0-9a-f]{64}$" }
+          },
+          "assertions": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["kind", "subject", "field", "value"],
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "metrics",
+                    "window_summary",
+                    "identity",
+                    "coauthor_edge",
+                    "path",
+                    "component",
+                    "community",
+                    "degree_vs_bridge",
+                    "ranking",
+                    "temporal_change",
+                    "neighborhood"
+                  ]
+                },
+                "subject": { "type": "string", "minLength": 1, "maxLength": 400 },
+                "window": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$" },
+                "field": { "type": "string", "minLength": 1, "maxLength": 64 },
+                "value": { "type": ["string", "number", "boolean", "array"] }
+              }
+            }
+          }
+        }
+      }
+    },
+    "uncertainty": {
+      "type": "array",
+      "maxItems": 10,
+      "items": { "type": "string", "minLength": 1, "maxLength": 300 }
+    },
+    "missingEvidence": {
+      "type": "array",
+      "maxItems": 10,
+      "items": { "type": "string", "minLength": 1, "maxLength": 300 }
+    }
+  }
+}

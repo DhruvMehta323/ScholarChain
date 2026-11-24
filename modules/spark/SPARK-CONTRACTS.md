@@ -183,7 +183,7 @@ Common frames: `nodes(window, id)` and `arcs(window, src, dst)` (both directions
   of one class still update simultaneously (the self-vote removes the swap case but convergence is not guaranteed); no resolution parameter; no overlap;
   community IDs are not comparable across windows. Singleton communities are isolated researchers.
 - **K-core** (`KCore.coreness`): batch peeling per window. Level `k` starts at 0; each round compute degrees in the remaining graph, raise `k` to `max(k,
-  min degree)`, remove every node of degree <= `k` with `coreness = k`. This gives the standard core number. Isolated nodes get 0. Cap `k-core-max-iterations`
+  min degree)`, remove every node of degree <= `k` with `coreness = k`. This gives the standard core number. Isolated nodes get 0. Input arcs are deduplicated and self arcs dropped first (robustness only; the pipeline emits neither). Cap `k-core-max-iterations`
   (50 rounds); on the cap the remaining nodes get the current level (a lower bound) and `converged = false`.
 - **Shortest paths** (`ShortestPaths.bfs`, `.evidence`): bounded BFS by iterative joins from SELECTED sources only (never all-pairs): per depth a join of the frontier with
   the arcs, an anti-join against visited, and a min-parent aggregation (so the chosen parent, hence the path, is deterministic: the smallest parent ID wins).

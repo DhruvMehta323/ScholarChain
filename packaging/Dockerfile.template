@@ -1,0 +1,25 @@
+# Image template for one ScholarChain service. Rendered by `sbt dockerStage` into the services
+# module's docker-services context directory as Dockerfile.<service>; do not build it directly.
+# The base image comes from Versions.temurinJreImage. No secret, endpoint, AWS setting or build
+# argument is baked in.
+FROM @BASE_IMAGE@
+
+RUN groupadd --system --gid 10001 scholarchain \
+ && useradd --system --uid 10001 --gid 10001 --no-create-home \
+      --home-dir /nonexistent --shell /usr/sbin/nologin scholarchain
+
+WORKDIR /opt/scholarchain
+COPY --chown=root:root lib/ /opt/scholarchain/lib/
+COPY --chown=root:root prompts/ /opt/scholarchain/prompts/
+COPY --chown=root:root entrypoint.sh /opt/scholarchain/entrypoint.sh
+RUN chmod 0555 /opt/scholarchain/entrypoint.sh \
+ && chmod -R a-w,a+rX /opt/scholarchain/prompts
+
+# Non-secret identity only. All other configuration arrives as environment variables at run time.
+ENV SERVICE_NAME=@SERVICE@ \
+    SERVICE_MAIN=@SERVICE_MAIN@
+@EXPOSE@
+USER 10001:10001
+
+@HEALTHCHECK@
+ENTRYPOINT ["/opt/scholarchain/entrypoint.sh"]
