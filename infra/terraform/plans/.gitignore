@@ -1,0 +1,3 @@
+# Plan output (plan files, checksums, summaries with account IDs, untracked lists). Never commit.
+*
+!.gitignore
