@@ -41,7 +41,7 @@ Note: Phases 15a, 15b and 15c are separate work orders now and are combined into
 
 - [x] `git status --short` shows only the phase folder, `experiments/`, `load-tests/`, `tests/experiments/` (and Phase 13 `commit.txt`).
 - [x] No synthetic fixture file is presented as a result.
-- [x] No API key or account ID in the new files: `grep -rn "477139661165" experiments load-tests tests/experiments` prints nothing.
+- [x] No API key or account ID in the new files: `grep -rn "<account-id>" experiments load-tests tests/experiments` prints nothing.
 
 Accepted commit: see `commit.txt`.
 
