@@ -14,8 +14,9 @@ import scholarchain.core.pipeline.DuplicateRecord
 object NormalizeKeys:
   val JobId: String = Normalizers.JobId
 
-/** Shared HJ2 map: one envelope file in, one bundle (keyed by source and source record ID) out. A
-  * Crossref, OpenAlex or ORCID mapper is a subclass that only picks the normalizer.
+/** Shared HJ2 map: one envelope (a file, or one line of a packed `.envelopes.jsonl` file) in, one
+  * bundle (keyed by source and source record ID) out. A Crossref, OpenAlex or ORCID mapper is a
+  * subclass that only picks the normalizer.
   */
 abstract class NormalizeMapper(
     source: SourceType,
@@ -30,7 +31,14 @@ abstract class NormalizeMapper(
   override def map(path: Text, value: BytesWritable, ctx: Ctx): Unit =
     JobSupport.count(ctx, PipelineCounter.INPUT_RECORDS)
     JobSupport.count(ctx, inputCounter)
-    val name  = new Path(path.toString).getName
+    // single file: the file name. Packed line: `<file name>#<line number>` (the file name is the part
+    // of the key before `#`, so no Path parsing of the fragment is involved).
+    val key  = path.toString
+    val hash = key.lastIndexOf('#')
+    val name =
+      if hash > 0 && key.substring(0, hash).endsWith(EnvelopeFiles.PackedSuffix) then
+        new Path(key.substring(0, hash)).getName + key.substring(hash)
+      else new Path(key).getName
     val bytes = value.copyBytes()
     normalize(name, bytes, run) match
       case Left(f) =>
@@ -139,7 +147,7 @@ object SourceNormalizeJob:
       val job = JobSupport.newJob(conf, NormalizeKeys.JobId, s, s.hadoop.reducers.normalize)
       sources.foreach((p, m) =>
         org.apache.hadoop.mapreduce.lib.input.MultipleInputs
-          .addInputPath(job, p, classOf[WholeFileInputFormat], m)
+          .addInputPath(job, p, classOf[EnvelopeInputFormat], m)
       )
       FileInputFormat.setInputPathFilter(job, classOf[JsonFileFilter])
       job.setReducerClass(classOf[NormalizeReducer])

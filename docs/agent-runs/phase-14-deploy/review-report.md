@@ -71,3 +71,32 @@ No HIGH. Three MEDIUMs go into the single repair round, so under the speed amend
 - Human approval needed for the ops-role IAM (with the narrowed M1) and the ops security-group rules (security-change rule).
 - Human decision needed on the H1 ordering for `image_tag` (M3).
 - Keep `artifacts.json` uncommitted until after the deploy (L9).
+
+# C4 review (code-reviewer, diff only, single pass; stored by the orchestrator)
+
+## Verdict: APPROVE WITH NOTES. No HIGH, so no reread.
+
+## MEDIUM
+- **M1. The golden's pre-change origin cannot be verified from the repository.** The test points to "the report of the run that created them".
+  - Mitigation in place: the single-file path delegates to the unchanged WholeFileRecordReader (`InputFormats.scala:287-347`), the mapper name is unchanged (`Hj2SourceNormalize.scala:41`), and the golden contents fit the fixtures.
+  - Orchestrator action: the generation commands and all 9 golden SHA-256 values are now recorded in agent-report.md (C4 checkpoint), and the on-disk hashes were verified.
+- **M2. `datasets/scripts/pack_enrichment.py` has no automated test.** Owner test-engineer (`tests/datasets/test_pack_enrichment.py`). Open, for a human decision.
+
+## LOW (deferred)
+- L1. The DOI de-duplication loop is re-implemented (`pack_enrichment.py:38-53`, compare `scale_enrichment_stats.py:77-84`). It agrees today (digests equal).
+- L2. Packed lines are re-serialized, so the line checksum is not the original envelope checksum. There is no per-line map back to the source file. `JOB-CONTRACTS.md:180` wording.
+- L3. A lone surrogate would crash the script and leave `.partial` behind (`pack_enrichment.py:74`).
+- L4. The packed reader has no line-length cap (`InputFormats.scala:311-327`).
+- L5. CRLF is not normalized; a blank `\r` line is rejected (as documented).
+- L6. Packed rejects record offset 0 (`Hj2SourceNormalize.scala:50`).
+- L7. The `JOB-CONTRACTS.md` example numbers files from 00000 but the script from 00001. provenance.json has `code_version` `f5cc5f1+uncommitted-scripts`.
+- L8. The exact .gz SHA-256 assertion may be non-portable across deflate implementations (`Hj2PackedInputSuite.scala:106`).
+- Ownership gap: `reports/pipeline/` and `reports/release/` match no row in docs/agents.md section 1 (factory-engineer).
+
+## Passed
+- Single-file behaviour is unchanged.
+- Reader correctness: line numbers, last line, empty file, UTF-8 safety, about 156 KB lines, non-splittable, 9 mappers.
+- Reduce determinism, rejects and counters.
+- Pack script: deterministic, refuses overwrite, staging, only packed files in the source folders, digests equal.
+- Ownership.
+- AWS path: `run-bounded-pipeline.sh:265-289` uploads 2, 3 and 4 files and passes `--crossref/--openalex/--orcid`.

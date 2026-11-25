@@ -167,9 +167,20 @@ REJECTED = reject rows.
 - Fixtures: `dblp-synth.xml`, `dblp-synth.dtd`, `dblp-edge-synth.xml` (all synthetic).
 
 ### HJ2 SourceNormalizeJob
-- Input: `MultipleInputs`, one `WholeFileInputFormat` per source (key = file path, value = file bytes), path filter `JsonFileFilter` (`*.json` and
-  extension-less names; skips `errors.jsonl`). The driver's input checksum uses the very same filter (`RunSetup.JsonFilter`), so it covers exactly the
-  files the job processes. Mappers: `CrossrefNormalizeMapper`, `OpenAlexNormalizeMapper`, `OrcidNormalizeMapper`.
+- Input: `MultipleInputs`, one `EnvelopeInputFormat` per source (key = file path, value = bytes), path filter `JsonFileFilter` (`*.json`,
+  `*.envelopes.jsonl` and extension-less names; skips `errors.jsonl`). A source directory may hold single-file envelopes, packed files, or both.
+  A single-file envelope (`*.json` or extension-less) is read whole, exactly as before (key = file path, value = file bytes). A packed file
+  (`<name>.envelopes.jsonl`, UTF-8, `\n` line endings, one compact envelope per non-empty line, no header, lines sorted by original envelope file
+  name) yields one record per non-empty line (key = `<file path>#<line number>`, value = the line bytes without `\n`). Packed files are not split
+  (`isSplitable` false), so line numbers are deterministic whatever the split size; files are about 64 MB at most and are streamed line by line.
+  The driver's input checksum uses the very same filter (`RunSetup.JsonFilter`), so it covers exactly the files the job processes (the packed
+  files are hashed whole, in the same `name:sha256` list sorted by file name; an input with no packed file gives the same value as before).
+  Mappers: `CrossrefNormalizeMapper`, `OpenAlexNormalizeMapper`, `OrcidNormalizeMapper`; a packed line goes through the same normalizer as a file.
+- Identity of a packed record: the "file name" is `<file name>#<line number>` (line number is 1-based and counts empty lines, e.g.
+  `crossref-10k-00000.envelopes.jsonl#17`) and the "file checksum" is the SHA-256 of the line bytes (exactly the envelope text, as a single-file
+  envelope's checksum is the SHA-256 of the file bytes). They fill `Bundle.fileName`/`fileSha256`, the `InputRef` in provenance, the
+  duplicates record and the reject key. The reduce tie-break (latest `retrieved_at`, then checksum, then bundle JSON text) is unchanged, so it is
+  deterministic.
 - Format read (Phase 03 raw envelope, `datasets/schemas/*.md`): `{identifier, request_url, retrieved_at, http_status, missing, body_is_json, body, ...}`.
   Chosen because it is what the fetchers store (it carries `retrieved_at` for provenance and `missing` for 404s); the committed samples hold no
   names or IDs. A `missing:true` envelope is counted (UPSTREAM_MISSING) and is not a record.
@@ -184,7 +195,8 @@ REJECTED = reject rows.
   institutions (`institution:openalex:I..`, country), topics (`topic:openalex:T..`).
 - ORCID (works section): per work group a `WorkRecord` (`work:doi:<doi>`, else `Ids.workIdFallback(title, year, orcid)`), id references for DOI and
   arXiv; the iD itself is an id reference `orcid:<id>`. A group with no year is skipped and counted (WORK_SKIPPED). No person data beyond the iD is kept.
-- Rejects: `malformed_record` (not JSON, no `message`), `schema_violation` (bad `retrieved_at`, contract refusal), `invalid_identifier` (bad DOI,
+- Rejects (a bad packed line is rejected alone, reject key `!<source>|<file name>#<line number>`, original line text in the payload; the other lines
+  of the file are processed): `malformed_record` (not JSON, no `message`), `schema_violation` (bad `retrieved_at`, contract refusal), `invalid_identifier` (bad DOI,
   OpenAlex id or ORCID), `missing_title`.
 - Counters: INPUT_CROSSREF, INPUT_OPENALEX, INPUT_ORCID, UPSTREAM_MISSING, MISSING_YEAR_KEPT, WORK_SKIPPED, INVALID_IDENTIFIER_SKIPPED, DUPLICATE.
 - Fixtures: `crossref/*`, `openalex/*`, `orcid/*` (synthetic; ORCID iDs are public documentation examples).

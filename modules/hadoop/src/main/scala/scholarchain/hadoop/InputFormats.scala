@@ -266,11 +266,92 @@ class WholeFileRecordReader extends RecordReader[Text, BytesWritable]:
   override def getProgress: Float             = if done then 1f else 0f
   override def close(): Unit                  = ()
 
+/** HJ2 envelope input: a `*.json` / extension-less file is read whole exactly like
+  * `WholeFileInputFormat` (key = file path); a packed `*.envelopes.jsonl` file yields one record
+  * per non-empty line (key = `<file path>#<1-based physical line number>`, value = the line bytes
+  * without the `\n`). Never splits a file, so line numbers are deterministic whatever the split
+  * settings.
+  */
+class EnvelopeInputFormat extends FileInputFormat[Text, BytesWritable]:
+  override def isSplitable(context: JobContext, file: Path): Boolean = false
+  override def createRecordReader(
+      split: InputSplit,
+      context: TaskAttemptContext,
+  ): RecordReader[Text, BytesWritable] = new EnvelopeRecordReader
+
+object EnvelopeFiles:
+  val PackedSuffix               = ".envelopes.jsonl"
+  def isPacked(p: Path): Boolean = p.getName.endsWith(PackedSuffix)
+
+class EnvelopeRecordReader extends RecordReader[Text, BytesWritable]:
+  private val whole                   = new WholeFileRecordReader
+  private var packed                  = false
+  private var path: Path              = scala.compiletime.uninitialized
+  private var in: java.io.InputStream = scala.compiletime.uninitialized
+  private var lineNo                  = 0L
+  private var eof                     = false
+  private var length                  = 0L
+  private var consumed                = 0L
+  private val k                       = new Text
+  private val v                       = new BytesWritable
+
+  override def initialize(s: InputSplit, ctx: TaskAttemptContext): Unit =
+    val split = s.asInstanceOf[FileSplit]
+    path = split.getPath
+    packed = EnvelopeFiles.isPacked(path)
+    if packed then
+      length = split.getLength
+      in = new java.io.BufferedInputStream(
+        path.getFileSystem(ctx.getConfiguration).open(path),
+        1 << 16,
+      )
+    else whole.initialize(s, ctx)
+
+  /** The next line's bytes (without `\n`), or null at end of file. */
+  private def readLine(): Array[Byte] =
+    if eof then null
+    else
+      val out = new java.io.ByteArrayOutputStream
+      var b   = in.read()
+      if b < 0 then
+        eof = true
+        null
+      else
+        while b >= 0 && b != '\n' do
+          out.write(b)
+          consumed += 1
+          b = in.read()
+        consumed += 1
+        if b < 0 then eof = true
+        lineNo += 1
+        out.toByteArray
+
+  override def nextKeyValue(): Boolean =
+    if !packed then whole.nextKeyValue()
+    else
+      var line = readLine()
+      while line != null && line.isEmpty do line = readLine()
+      if line == null then false
+      else
+        k.set(s"${path.toString}#$lineNo")
+        v.set(line, 0, line.length)
+        true
+
+  override def getCurrentKey: Text            = if packed then k else whole.getCurrentKey
+  override def getCurrentValue: BytesWritable = if packed then v else whole.getCurrentValue
+  override def getProgress: Float             =
+    if !packed then whole.getProgress
+    else if eof || length == 0 then 1f
+    else math.min(1f, consumed.toFloat / length.toFloat)
+  override def close(): Unit = if packed then { if in != null then in.close() }
+  else whole.close()
+
 /** Accepts `*.json` files and extension-less names. The extension-less rule is needed because the
   * filter is also applied to the input path itself (a directory such as `works`); it still skips
-  * the fetcher's `errors.jsonl` and any other file with a different extension.
+  * the fetcher's `errors.jsonl` and any other file with a different extension. It also accepts
+  * packed `*.envelopes.jsonl` files (one envelope per line).
   */
 class JsonFileFilter extends PathFilter:
   override def accept(p: Path): Boolean =
     val n = p.getName
-    n.endsWith(".json") || !n.contains('.')
+    n.endsWith(".json") || n.endsWith(EnvelopeFiles.PackedSuffix) || !n.contains('.')

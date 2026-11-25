@@ -473,6 +473,20 @@ scale_datasets:
       - {path: datasets/raw/dblp/derived/dblp_selection_10000.tsv, role: selection, gitignored: true, bytes: 1662301, sha256: 851c20657c370ba1cb9ed2f4d3017252825514cc5dde31be82f82fd365a0bbca, hash_command: "shasum -a 256 datasets/raw/dblp/derived/dblp_selection_10000.tsv"}
       - {path: datasets/raw/dblp/derived/dblp_selection_10000.xml, role: extracted DBLP records, gitignored: true, bytes: 5778232, sha256: af3e079f8d69ea2406ec5542f65378c022e1b01b3a43ab92a7d6f1ee7ec5f5a3, hash_command: "shasum -a 256 datasets/raw/dblp/derived/dblp_selection_10000.xml", record_count: 10000, extractor: "datasets/scripts/dblp_extract_subset.py 1.1.0"}
     enrichment_cache_digests: {crossref: "7e55f02be044bbd53628a752cd69f9b357d2acb84b9a565f2e58cb2e78be51f5", openalex: "5997dfa5886eadb7b2ad4b30403d6ef8e2f7ef7744d31f87303395eaefc834c2", orcid: "636c1cba6e35a5c8b0b87ec2151b85b486f884fff1e9bbaaa59c861cc7a1354e", digest_definition: "sha256 over sorted lines '<envelope file name> <sha256 of envelope file>' of the envelopes belonging to this scale (scale_enrichment_stats.py digest())"}
+    packed_enrichment:
+      path: datasets/raw/dblp/derived/enrichment-10k/
+      gitignored: true
+      purpose: "Phase 14 C4: the dblp-10k envelopes packed into few large JSONL files for scripts/run-bounded-pipeline.sh --enrichment-dir (limit 200 files per folder) and the Hadoop packed reader."
+      generator: "python3 -I -B datasets/scripts/pack_enrichment.py"
+      generator_version: "1.0.0"
+      format: "datasets/raw/dblp/derived/enrichment-10k/{crossref,openalex,orcid}/<source>-10k-NNNNN.envelopes.jsonl; UTF-8, one compact JSON envelope per line, envelope key order kept, sorted by original envelope file name, rolled at 64 MiB; checksums.sha256 and provenance.json at the top level only"
+      envelope_counts: {crossref: 10000, openalex: 10000, orcid: 1384}
+      file_counts: {crossref: 2, openalex: 3, orcid: 4}
+      total_bytes: {crossref: 93432110, openalex: 172057534, orcid: 215797563}
+      cache_digests_equal_enrichment_cache_digests: true
+      checksums_file: {path: datasets/raw/dblp/derived/enrichment-10k/checksums.sha256, sha256: 8d74a80ccd6c77f1bffa2f5e261c943d201afeb1a6a8e53f372e7f6a6038e9fe, hash_command: "shasum -a 256 datasets/raw/dblp/derived/enrichment-10k/checksums.sha256"}
+      overwrite_rule: "Refuses (exit 2) when the output directory is non-empty; --verify repacks to a temporary directory and compares byte for byte."
+      derived_from: "selection TSV (files[0] sha256) and the raw envelope caches datasets/raw/{crossref/works,openalex/works,orcid}, read only; membership from scale_enrichment_stats.py"
     enrichment_coverage:
       works_with_doi: 10000
       crossref: {requested: 10000, retrieved_200: 9865, missing_404: 135, errors: 0, hit_rate: 0.9865, body_doi_differs_from_requested: 3}
