@@ -67,7 +67,8 @@ case "${svc} ${op}" in
     [[ "${t}" == arn:* ]] || t="${ARNP}/${t}"
     fam="${t##*/}"; fam="${fam%%:*}"
     if [[ "${STUB_MISSING_TD:-0}" == 1 && "${t}" == *":99" ]]; then exit 254; fi
-    img="old:1"; if [[ "${t}" == *":2" && -f "${STUB_STATE}/reg-${fam}.json" ]]; then img="$(jq -r '.containerDefinitions[0].image' "${STUB_STATE}/reg-${fam}.json")"; fi
+    img="old:1"; [[ "${fam}" != scholarchain-ops ]] || img="123456789012.dkr.ecr.us-east-2.amazonaws.com/scholarchain/embedding-worker:${STUB_OPS_TAG:-unset}"
+    if [[ "${t}" == *":2" && -f "${STUB_STATE}/reg-${fam}.json" ]]; then img="$(jq -r '.containerDefinitions[0].image' "${STUB_STATE}/reg-${fam}.json")"; fi
     case "${q}" in
       taskDefinitionArn | *taskDefinitionArn) echo "${t}" ;;
       *"containerDefinitions[0].image"*) echo "${img}" ;;
@@ -85,7 +86,12 @@ case "${svc} ${op}" in
     [[ -z "${d}" ]] || printf '%s' "${d}" > "${STUB_STATE}/desired-${s}"
     echo '{}' ;;
   "ecs list-tasks") s="$(opt --service-name)"; if [[ "$(cur_desired "${s}")" -gt 0 ]]; then echo '["arn:aws:ecs:us-east-2:123456789012:task/c/1"]'; else echo '[]'; fi ;;
-  "ecs describe-tasks") echo "[\"${STUB_TASK_DIGEST:-${DIGEST}}\"]" ;;
+  "ecs describe-tasks")
+    if [[ "${q}" == *lastStatus* ]]; then
+      n=$(($(cat "${STUB_STATE}/ops-poll-n" 2> /dev/null || echo 0) + 1)); echo "${n}" > "${STUB_STATE}/ops-poll-n"
+      if [[ "${STUB_OPS_NEVER_STOP:-0}" == 1 || ${n} -lt 3 ]]; then echo '{"status":"RUNNING","stoppedReason":null,"stopCode":null,"exitCode":null,"reason":null}'
+      else printf '{"status":"STOPPED","stoppedReason":"Essential container in task exited","stopCode":"EssentialContainerExited","exitCode":%s,"reason":null}\n' "${STUB_OPS_EXIT-0}"; fi
+    else echo "[\"${STUB_TASK_DIGEST:-${DIGEST}}\"]"; fi ;;
   "emr create-cluster")
     f="$(opt --steps)"; cp "${f#file://}" "${STUB_STATE}/emr-steps.json"; echo j-STUB1 ;;
   "emr list-steps")
@@ -107,8 +113,21 @@ case "${svc} ${op}" in
   "emr list-clusters") echo 0 ;;
   "emr "*) echo '{}' ;;
   "neptune describe-db-clusters" | "dynamodb list-tables") echo 0 ;;
-  "s3api list-objects-v2") echo 3 ;;
+  "s3api list-objects-v2")
+    if [[ -n "$(opt --prefix)" ]]; then
+      case "$(opt --prefix)" in
+        graph/runs/*) if [[ "${STUB_NO_SPARK_OUT:-0}" == 1 ]]; then echo 0; else echo 1; fi ;;
+        *) if [[ "${STUB_S3_NONEMPTY:-0}" == 1 ]]; then echo 1; else echo 0; fi ;;
+      esac
+    else echo 3; fi ;;
   "s3 cp") ;;
+  "s3 sync")
+    # download of the Spark output: the two load manifests LocalLoad needs
+    d="${clean[3]}"; mkdir -p "${d}/load-manifests"; echo '{}' > "${d}/load-manifests/neptune.json"; echo '{}' > "${d}/load-manifests/dynamodb.json" ;;
+  "ecs run-task")
+    n="$(opt --overrides)"; cp "${n#file://}" "${STUB_STATE}/run-task-overrides.json"
+    printf '%s\n' "${STUB_RUN_TASK_ARN-arn:aws:ecs:us-east-2:123456789012:task/scholarchain-cluster/abc123}" ;;
+  "ecs stop-task") : > "${STUB_STATE}/task-stopped" ;;
   "cloudwatch get-metric-statistics") echo '{"Datapoints":[]}' ;;
   *) echo "aws stub: unhandled ${svc} ${op}" >&2; echo "UNHANDLED aws ${svc} ${op}" >> "${STUB_LOG}"; exit 97 ;;
 esac
@@ -133,7 +152,15 @@ cat > "${STUBS}/docker" << 'EOF'
 printf 'docker %s\n' "$*" >> "${STUB_LOG}"
 case "${1:-}" in
   images) echo 'scholarchain-services:0.1.0-SNAPSHOT' ;;
-  image) echo "${STUB_DOCKER_ID:-sha256:$(printf '%064d' 0 | tr 0 b)}" ;;
+  image)
+    # `docker image inspect --format <fmt> <ref>`: the revision label of a ref is its tag unless STUB_LABEL_REV overrides it;
+    # STUB_MISSING_IMAGE=<service> makes that service's image absent (exit 1).
+    ref="${!#}"
+    if [[ -n "${STUB_MISSING_IMAGE:-}" && "${ref}" == *"/${STUB_MISSING_IMAGE}:"* ]]; then exit 1; fi
+    case "$*" in
+      *Labels*) echo "${STUB_LABEL_REV:-${ref##*:}}" ;;
+      *) echo "${STUB_DOCKER_ID:-sha256:$(printf '%064d' 0 | tr 0 b)}" ;;
+    esac ;;
   login) cat > /dev/null ;;
   push) r="${2##*/}"; r="${r%%:*}"; : > "${STUB_STATE}/pushed-${r}" ;;
   tag) ;;
@@ -143,7 +170,26 @@ EOF
 
 cat > "${STUBS}/sbt" << 'EOF'
 #!/usr/bin/env bash
-printf 'sbt %s\n' "$*" >> "${STUB_LOG}"
+printf 'sbt %s [SCHOLARCHAIN_GIT_SHA=%s]\n' "$*" "${SCHOLARCHAIN_GIT_SHA:-unset}" >> "${STUB_LOG}"
+case "$*" in
+  *LocalLoad*)
+    [[ "${STUB_SBT_FAIL:-0}" != 1 ]] || exit 1
+    od="${*#*--out-dir }"; od="${od%% *}"
+    mkdir -p "${od}/neptune/vertices" "${od}/neptune/edges" "${od}/dynamodb/items"
+    printf 'id,label\nr1,Researcher\n' > "${od}/neptune/vertices/Researcher.csv"
+    printf 'id,from,to\ne1,r1,r2\n' > "${od}/neptune/edges/COAUTHORED_WITH.csv"
+    printf '{"pk":"a"}\n' > "${od}/dynamodb/items/analytics-bridges.jsonl"
+    printf '{"input":{"sparkRunId":"spark-run-1"},"codeVersion":"x"}\n' > "${od}/load-manifest.json"
+    if [[ "${STUB_EMBEDDING_INPUTS:-0}" == 1 ]]; then mkdir -p "${od}/embedding-inputs"; printf '{"w":1}\n' > "${od}/embedding-inputs/works.jsonl"; fi
+    (cd "${od}" && for f in neptune/vertices/Researcher.csv neptune/edges/COAUTHORED_WITH.csv dynamodb/items/analytics-bridges.jsonl; do printf '%s  %s\n' "$(shasum -a 256 "$f" | cut -d' ' -f1)" "$f"; done) > "${od}/checksums.sha256"
+    [[ "${STUB_BAD_CHECKSUM:-0}" != 1 ]] || printf '%s  %s\n' "$(printf '%064d' 0)" "load-manifest.json" >> "${od}/checksums.sha256" ;;
+esac
+EOF
+
+cat > "${STUBS}/pgrep" << 'EOF'
+#!/usr/bin/env bash
+printf 'pgrep %s\n' "$*" >> "${STUB_LOG}"
+[[ "${STUB_SBT_CHECK_RUNNING:-0}" == 1 ]]
 EOF
 
 cat > "${STUBS}/curl" << 'EOF'
@@ -213,10 +259,11 @@ jq -n '{
   raw_bucket: {value: "b-raw"}, curated_bucket: {value: "b-curated"}, reports_bucket: {value: "b-reports"}, logs_bucket: {value: "b-logs"}, artifacts_bucket: {value: "b-artifacts"},
   ecs_cluster_name: {value: "scholarchain-cluster"},
   ecr_repository_urls: {value: {"query-api": "123456789012.dkr.ecr.us-east-2.amazonaws.com/scholarchain/query-api", retrieval: "123456789012.dkr.ecr.us-east-2.amazonaws.com/scholarchain/retrieval", "embedding-worker": "123456789012.dkr.ecr.us-east-2.amazonaws.com/scholarchain/embedding-worker"}},
-  secret_arns: {value: {a: "arn:aws:secretsmanager:us-east-2:123456789012:secret:SCHOLARCHAIN_SERVICES_API_KEY-AbCdEf", b: "arn:aws:secretsmanager:us-east-2:123456789012:secret:scholarchain/voyage-api-key-GhIjKl"}},
+  secret_arns: {value: {"services-api-key": "arn:aws:secretsmanager:us-east-2:123456789012:secret:SCHOLARCHAIN_SERVICES_API_KEY-AbCdEf", "internal-api-key": "arn:aws:secretsmanager:us-east-2:123456789012:secret:SCHOLARCHAIN_INTERNAL_API_KEY-GhIjKl", "voyage-api-key": "arn:aws:secretsmanager:us-east-2:123456789012:secret:scholarchain/voyage-api-key-MnOpQr", "anthropic-api-key": "arn:aws:secretsmanager:us-east-2:123456789012:secret:SCHOLARCHAIN_ANTHROPIC_API_KEY-StUvWx"}},
   emr_service_role_arn: {value: "arn:aws:iam::123456789012:role/scholarchain-emr-service"}, emr_instance_profile_arn: {value: "arn:aws:iam::123456789012:instance-profile/scholarchain-emr-ec2"},
   public_subnet_ids: {value: ["subnet-1", "subnet-2"]}, vpc_id: {value: "vpc-1"},
-  neptune_endpoint: {value: "https://n.example:8182"}, query_api_url: {value: "http://alb.example"}, embedding_queue_url: {value: "https://sqs.us-east-2.amazonaws.com/123456789012/scholarchain-embedding-jobs"}
+  neptune_endpoint: {value: "https://n.example:8182"},
+  ops_task_definition_family: {value: "scholarchain-ops"}, ops_security_group_id: {value: "sg-0ops1234"}, ops_log_group_name: {value: "/scholarchain/embedding-worker"}, query_api_url: {value: "http://alb.example"}, embedding_queue_url: {value: "https://sqs.us-east-2.amazonaws.com/123456789012/scholarchain-embedding-jobs"}
 }' > "${TFOUT}"
 KEYFILE="${SCRATCH}/keyfile"
 printf '%s\n' "${SENTINEL}" > "${KEYFILE}"
@@ -278,10 +325,15 @@ reset_state
 run package-real 0 bash scripts/package.sh
 expect_in "package builds jobs" "${LOG}" "sbt packageJobs"
 expect_in "package builds image" "${LOG}" "sbt dockerLocal"
+expect_in "package passes the commit tag as SCHOLARCHAIN_GIT_SHA" "${LOG}" "sbt dockerLocal [SCHOLARCHAIN_GIT_SHA=$(git -C "${REPO}" rev-parse --short=12 HEAD)]"
+expect_not_in "package re-tags nothing (M13-1)" "${LOG}" "docker tag"
+for svc in query-api retrieval embedding-worker; do expect_in "package inspected the ${svc} image" "${LOG}" "docker image inspect --format {{.Id}} scholarchain/${svc}:$(git -C "${REPO}" rev-parse --short=12 HEAD)"; done
 ART="${REPO}/reports/release/${SHA}/artifacts.json"
 [[ -f "${ART}" ]] && ok "artifacts.json written" || bad "artifacts.json missing"
 if [[ -f "${ART}" ]]; then
-  [[ "$(jq '.images | length' "${ART}")" == 3 ]] && ok "artifacts.json lists three images (M13-1 re-tag)" || bad "artifacts.json image count"
+  [[ "$(jq '.images | length' "${ART}")" == 3 ]] && ok "artifacts.json lists three images" || bad "artifacts.json image count"
+  [[ "$(jq -c '[.images[].service] | sort' "${ART}")" == '["embedding-worker","query-api","retrieval"]' ]] && ok "artifacts.json names the three services" || bad "artifacts.json services"
+  [[ "$(jq '[.images[] | select(.image_id | test("^sha256:[0-9a-f]{64}$")) | select(.local_ref == "scholarchain/" + .service + ":" + .tag)] | length' "${ART}")" == 3 ]] && ok "each image has an image_id and the build's scholarchain/<service>:<tag> name" || bad "artifacts.json image fields"
   [[ "$(jq '.jars | length' "${ART}")" == 2 ]] && ok "artifacts.json lists two jars" || bad "artifacts.json jar count"
   [[ "$(jq -c '[.release, .dirty]' "${ART}")" == "[true,false]" ]] && ok "clean run records release:true dirty:false" || bad "release flags"
 fi
@@ -295,9 +347,9 @@ reset_state
 run package-skip-build-refused 3 bash scripts/package.sh --skip-build
 expect_in "skip-build refusal message" "${OUT}/package-skip-build-refused.err" "--skip-build"
 expect_not_in "refused skip-build ran no build" "${LOG}" "sbt "
-EXTRA_ENV="SC_LOCAL_IMAGE=somebody/else:1" run package-local-image-refused 3 bash scripts/package.sh
+EXTRA_ENV="SC_LOCAL_IMAGE=somebody/else:1" run package-local-image-refused 2 bash scripts/package.sh
 expect_in "SC_LOCAL_IMAGE refusal message" "${OUT}/package-local-image-refused.err" "SC_LOCAL_IMAGE"
-EXTRA_ENV="SC_IMAGE_SOURCE_RETRIEVAL=somebody/else:1" run package-source-refused 3 bash scripts/package.sh --skip-build
+EXTRA_ENV="SC_IMAGE_SOURCE_RETRIEVAL=somebody/else:1" run package-source-refused 2 bash scripts/package.sh --allow-dirty --skip-build
 expect_in "SC_IMAGE_SOURCE_* refusal message" "${OUT}/package-source-refused.err" "SC_IMAGE_SOURCE_RETRIEVAL"
 # M7: free-form build commands are gone.
 reset_state
@@ -306,11 +358,19 @@ expect_in "free-form build command message" "${OUT}/package-free-cmd-refused.err
 expect_not_in "no build command ran" "${LOG}" "touch-evil"
 # M2/L9: a local run goes to a separate, non-release path and never touches the release record.
 reset_state
-EXTRA_ENV="SC_LOCAL_IMAGE=local/test:1" run package-local-ok 0 bash scripts/package.sh --allow-dirty --skip-build
+run package-local-ok 0 bash scripts/package.sh --allow-dirty --skip-build
 LOC="${REPO}/reports/release-local/${SHA}/artifacts.json"
 [[ "$(jq -c '[.release, .dirty]' "${LOC}" 2> /dev/null)" == "[false,true]" ]] && ok "local run records release:false dirty:true under release-local/" || bad "local run record"
 [[ "$(shasum -a 256 "${ART}" | cut -d' ' -f1)" == "${ART_SUM}" ]] && ok "the release artifacts.json was not overwritten by the local run" || bad "release artifacts.json was overwritten"
 [[ "$(jq -r '.images[0].tag' "${LOC}" 2> /dev/null)" == *-dirty ]] && ok "local images are tagged -dirty" || bad "local image tag"
+# M13-1: a missing image, or an image whose revision label is not the tag, fails the package run (no partial record).
+reset_state
+rm -rf -- "${REPO:?}/reports/release-local"
+EXTRA_ENV="STUB_MISSING_IMAGE=retrieval" run package-missing-image 1 bash scripts/package.sh --allow-dirty --skip-build
+expect_in "missing image message" "${OUT}/package-missing-image.err" "did not produce"
+[[ ! -e "${REPO}/reports/release-local/${SHA}/artifacts.json" ]] && ok "no record written when an image is missing" || bad "record written despite missing image"
+EXTRA_ENV="STUB_LABEL_REV=deadbeefdead" run package-stale-label 1 bash scripts/package.sh --allow-dirty --skip-build
+expect_in "stale label message" "${OUT}/package-stale-label.err" "revision label"
 
 echo "== T4 deploy =="
 APPR="APPROVED_PLAN_SHA256=${PLAN_SHA}"
@@ -390,6 +450,12 @@ expect_not_in "no service was updated before the in-progress record existed" "${
 [[ "$(jq '[.verification[] | select(.verified)] | length' "${RECF}" 2> /dev/null)" == 3 ]] && ok "3 services verified (task definition and digest)" || bad "verification entries"
 [[ "$(jq '[.services[] | select(.previous_task_definition != "" and .task_definition != "")] | length' "${RECF}" 2> /dev/null)" == 3 ]] && ok "record holds previous and new task definitions for 3 services" || bad "record task definitions"
 expect_not_in "no forbidden terraform call during deploy" "${LOG}" "FORBIDDEN"
+for svc in query-api retrieval embedding-worker; do expect_in "deploy pushed the ${svc} image" "${LOG}" "docker push 123456789012.dkr.ecr.us-east-2.amazonaws.com/scholarchain/${svc}:"; done
+[[ "$(count_in "${LOG}" "docker push")" == 3 ]] && ok "deploy pushed exactly three images" || bad "docker push count"
+# MERGE-2: only the two injected secrets are checked for a value (the Voyage and Anthropic secrets stay empty and unused).
+[[ "$(count_in "${LOG}" "secretsmanager describe-secret")" == 2 ]] && ok "deploy checked exactly two secrets" || bad "secret check count"
+expect_not_in "deploy did not check the Voyage secret" "${LOG}" "voyage-api-key"
+expect_not_in "deploy did not check the Anthropic secret" "${LOG}" "SCHOLARCHAIN_ANTHROPIC_API_KEY"
 # M6: a stabilisation timeout leaves a FAILED record with the previous task definitions and a rollback hint that names it.
 rm -rf -- "${REPO:?}/reports/deployments"
 reset_state
@@ -545,7 +611,166 @@ reset_state
 EXTRA_ENV="STUB_STEP_RUNNING=old-east" run pipe-tz-old-step 0 bash scripts/run-bounded-pipeline.sh --smoke --run-id rt-east
 expect_in "an old step printed with a UTC+5:30 offset is cancelled" "${LOG}" "cancel-steps"
 reset_state
-EXTRA_ENV="STUB_TF_EMPTY=0" run pipe-load-unconfigured 7 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rtest2
+rm -rf -- "${REPO}/reports/pipeline"
+
+echo "== T7b run-bounded-pipeline: convert and load (M13-2, option D) =="
+SHORT12="$(git -C "${REPO}" rev-parse --short=12 HEAD)"
+reset_state
+run pipe-old-stage-enqueue 2 bash scripts/run-bounded-pipeline.sh --scale 1k --stages enqueue --run-id rc0 --dry-run
+run pipe-postonly-needs-run-id 2 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert,load --dry-run
+run pipe-cap-refused 3 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc1 --max-vectors 10001 --dry-run
+expect_in "cap above 10000 message" "${OUT}/pipe-cap-refused.err" "hard cap of 10000"
+expect_not_in "cap refusal happens before any AWS call" "${LOG}" "aws "
+run pipe-cap-zero 2 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc1 --max-vectors 0 --dry-run
+run pipe-neptune-timeout-bad 2 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc1 --neptune-timeout-seconds 5 --dry-run
+# Neptune off: exit 6, no run-task
+reset_state
+jq 'del(.neptune_endpoint)' "${TFOUT}" > "${SCRATCH}/tf-noneptune.json"
+cp "${TFOUT}" "${SCRATCH}/tf-outputs.keep"; cp "${SCRATCH}/tf-noneptune.json" "${TFOUT}"
+run pipe-load-neptune-off 6 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc2
+expect_in "Neptune-off message" "${OUT}/pipe-load-neptune-off.err" "needs Neptune"
+expect_not_in "no task started while Neptune is off" "${LOG}" "run-task"
+cp "${SCRATCH}/tf-outputs.keep" "${TFOUT}"
+# ops outputs missing (Terraform change not applied): exit 6
+jq 'del(.ops_task_definition_family)' "${TFOUT}" > "${SCRATCH}/tf-noops.json"; cp "${SCRATCH}/tf-noops.json" "${TFOUT}"
+run pipe-load-no-ops-outputs 6 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc3
+expect_in "ops outputs message" "${OUT}/pipe-load-no-ops-outputs.err" "ops task outputs"
+cp "${SCRATCH}/tf-outputs.keep" "${TFOUT}"
+# dry run of convert and load (post-only): plans, no mutation
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-post-dry 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert,load --run-id rc4 --dry-run
+expect_in "dry run shows the LocalLoad command" "${OUT}/pipe-post-dry.out" "scholarchain.storage.LocalLoad --run-root"
+expect_in "dry run shows the code version" "${OUT}/pipe-post-dry.out" "--code-version ${SHORT12}"
+expect_in "dry run shows the Neptune target prefix" "${OUT}/pipe-post-dry.out" "s3://b-curated/graph/neptune-load/1k/rc4/"
+expect_in "dry run shows the items target prefix" "${OUT}/pipe-post-dry.out" "s3://b-curated/curated/loads/1k/rc4/"
+expect_in "dry run shows run-task on FARGATE" "${OUT}/pipe-post-dry.out" "ecs run-task --cluster scholarchain-cluster"
+expect_in "dry run: public subnet, ops SG, public IP enabled" "${OUT}/pipe-post-dry.out" "subnets=[subnet-1],securityGroups=[sg-0ops1234],assignPublicIp=ENABLED"
+expect_in "dry run: SERVICE_MAIN override" "${OUT}/pipe-post-dry.out" "scholarchain.services.OpsLoadMain"
+expect_in "dry run: max vectors argument 10000" "${OUT}/pipe-post-dry.out" '"value": "10000"'
+expect_not_in "dry run starts no task" "${LOG}" "ecs run-task"
+expect_not_in "dry run runs no sbt" "${LOG}" "sbt "
+expect_not_in "dry run uploads nothing" "${LOG}" "s3 cp"
+[[ ! -e "${REPO}/reports/pipeline/1k/rc4" ]] && ok "dry run writes no record" || bad "dry run wrote a record"
+# real convert (no load): uploads, checksums, records
+reset_state
+EXTRA_ENV="STUB_EMBEDDING_INPUTS=1" run pipe-convert-real 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc5
+expect_in "convert syncs the Spark output" "${LOG}" "s3 sync s3://b-curated/graph/runs/1k/rc5/spark/ "
+expect_in "convert runs LocalLoad through sbt Test with the code version" "${LOG}" "sbt storage/Test/runMain scholarchain.storage.LocalLoad --run-root "
+expect_in "convert passes the 12-hex code version" "${LOG}" "--code-version ${SHORT12}"
+expect_in "convert checked sbt check is not running" "${LOG}" "pgrep -f"
+expect_in "vertex CSV uploaded under the Neptune prefix" "${LOG}" "s3://b-curated/graph/neptune-load/1k/rc5/vertices/Researcher.csv"
+expect_in "edge CSV uploaded under the Neptune prefix" "${LOG}" "s3://b-curated/graph/neptune-load/1k/rc5/edges/COAUTHORED_WITH.csv"
+expect_in "items JSONL uploaded under the items prefix" "${LOG}" "s3://b-curated/curated/loads/1k/rc5/dynamodb/items/analytics-bridges.jsonl"
+expect_not_in "nothing but vertices/ and edges/ under the Neptune prefix (no neptune/ path)" "${LOG}" "graph/neptune-load/1k/rc5/neptune/"
+run pipe-runid-too-long 2 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id "$(printf 'a%.0s' $(seq 1 129))" --dry-run
+expect_in "load manifest uploaded" "${LOG}" "s3://b-curated/curated/loads/1k/rc5/load-manifest.json"
+expect_in "checksums file uploaded" "${LOG}" "s3://b-curated/curated/loads/1k/rc5/checksums.sha256"
+expect_in "embedding-inputs uploaded when LocalLoad emits them" "${LOG}" "s3://b-curated/curated/loads/1k/rc5/embedding-inputs/works.jsonl"
+expect_not_in "no run-task in a convert-only run" "${LOG}" "run-task"
+CJ="${REPO}/reports/pipeline/1k/rc5/convert.json"
+[[ "$(jq -r '.source_s3_run.run_id' "${CJ}" 2> /dev/null)" == rc5 ]] && ok "convert.json records the S3 source run id" || bad "convert.json source run id"
+[[ "$(jq -r '.source_s3_run.spark_run_id_in_load_manifest' "${CJ}" 2> /dev/null)" == spark-run-1 ]] && ok "convert.json records the Spark run id found in load-manifest.json" || bad "convert.json spark run id"
+[[ "$(jq '.uploads | length' "${CJ}" 2> /dev/null)" == 6 ]] && ok "convert.json lists 6 uploaded files" || bad "convert.json upload count"
+[[ "$(jq '[.uploads[] | select(.sha256 | test("^[0-9a-f]{64}$"))] | length' "${CJ}" 2> /dev/null)" == 6 ]] && ok "every uploaded file has a SHA-256" || bad "upload SHA-256 values"
+LMSHA="$(shasum -a 256 "${REPO}/reports/pipeline/1k/rc5/load-manifest.json" | cut -d' ' -f1)"
+[[ "$(jq -r '.load_manifest_sha256' "${CJ}" 2> /dev/null)" == "${LMSHA}" ]] && ok "convert.json holds the SHA-256 of the load-manifest.json copy" || bad "load manifest checksum"
+[[ -f "${REPO}/reports/pipeline/1k/rc5/checksums.sha256" ]] && ok "checksums.sha256 copied to the run records" || bad "checksums copy"
+[[ "$(jq -r '.[] | select(.Name == "convert-local-load") | .status' "${REPO}/reports/pipeline/1k/rc5/steps.json" 2> /dev/null)" == succeeded ]] && ok "steps.json records the convert step" || bad "steps.json convert"
+# no-overwrite and the sbt check guard
+reset_state
+run pipe-convert-again 3 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc5
+expect_in "convert never overwrites its record" "${OUT}/pipe-convert-again.err" "never overwritten"
+reset_state
+EXTRA_ENV="STUB_S3_NONEMPTY=1" run pipe-convert-nonempty-prefix 3 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc6
+expect_in "non-empty target prefix refused" "${OUT}/pipe-convert-nonempty-prefix.err" "is not empty"
+expect_not_in "no upload into a non-empty prefix" "${LOG}" "s3 cp"
+expect_not_in "no sbt run into a non-empty prefix" "${LOG}" "sbt "
+reset_state
+EXTRA_ENV="STUB_SBT_CHECK_RUNNING=1" run pipe-convert-sbt-check-running 6 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc7
+expect_in "sbt check guard says why" "${OUT}/pipe-convert-sbt-check-running.err" "another 'sbt check' is running"
+expect_not_in "no sbt while sbt check runs" "${LOG}" "sbt storage"
+reset_state
+EXTRA_ENV="STUB_NO_SPARK_OUT=1" run pipe-convert-no-spark-output 4 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc8
+reset_state
+EXTRA_ENV="STUB_SBT_FAIL=1" run pipe-convert-sbt-fails 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc9
+expect_not_in "nothing uploaded when LocalLoad fails" "${LOG}" "s3 cp"
+reset_state
+EXTRA_ENV="STUB_BAD_CHECKSUM=1" run pipe-convert-bad-checksum 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc10
+expect_in "checksum mismatch message" "${OUT}/pipe-convert-bad-checksum.err" "checksum mismatch"
+expect_not_in "nothing uploaded on a checksum mismatch" "${LOG}" "s3 cp"
+# optional local hook (unconfigured by default): a hook that adds files under its own prefix
+HOOK="${SCRATCH}/render-hook.sh"
+cat > "${HOOK}" << 'EOF'
+#!/usr/bin/env bash
+mkdir -p "$2/embedding-docs"
+echo '{"d":1}' > "$2/embedding-docs/docs.jsonl"
+EOF
+chmod +x "${HOOK}"
+reset_state
+EXTRA_ENV="SC_CONVERT_EXTRA_CMD=${HOOK} SC_CONVERT_EXTRA_PREFIX=embedding-docs" run pipe-convert-hook 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc11
+expect_in "hook output uploaded under the extra prefix" "${LOG}" "s3://b-curated/curated/loads/1k/rc11/embedding-docs/docs.jsonl"
+reset_state
+run pipe-convert-no-hook-by-default 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc12
+expect_not_in "no extra prefix without the hook" "${LOG}" "embedding-docs"
+EXTRA_ENV="SC_CONVERT_EXTRA_CMD=${HOOK}" run pipe-convert-hook-needs-prefix 2 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc13 --dry-run
+# real load: run-task arguments, wait, exit-code mapping
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-load-real 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc20
+expect_in "run-task uses the pinned ops task definition revision" "${LOG}" "--task-definition arn:aws:ecs:us-east-2:123456789012:task-definition/scholarchain-ops"
+expect_in "run-task launch type FARGATE" "${LOG}" "--launch-type FARGATE"
+expect_in "run-task network: public subnet, ops SG, public IP" "${LOG}" "subnets=[subnet-1],securityGroups=[sg-0ops1234],assignPublicIp=ENABLED"
+[[ "$(count_in "${LOG}" "ecs run-task")" == 1 ]] && ok "run-task called exactly once (never retried)" || bad "run-task call count"
+OV="${STATE}/run-task-overrides.json"
+[[ "$(jq -r '.containerOverrides[0].name' "${OV}" 2> /dev/null)" == ops ]] && ok "override targets the ops container" || bad "override container name"
+ovv() { jq -r --arg n "$1" '.containerOverrides[0].environment[] | select(.name == $n) | .value' "${OV}" 2> /dev/null; }
+[[ "$(ovv SERVICE_MAIN)" == scholarchain.services.OpsLoadMain ]] && ok "SERVICE_MAIN override" || bad "SERVICE_MAIN override"
+[[ "$(ovv SCHOLARCHAIN_OPS_NEPTUNE_SOURCE)" == s3://b-curated/graph/neptune-load/1k/rc20/ ]] && ok "neptune source argument" || bad "neptune source argument"
+[[ "$(ovv SCHOLARCHAIN_OPS_ITEMS_SOURCE)" == s3://b-curated/curated/loads/1k/rc20/ ]] && ok "items source argument" || bad "items source argument"
+[[ "$(ovv SCHOLARCHAIN_OPS_RUN_ID)" == rc20 && "$(ovv SCHOLARCHAIN_OPS_CODE_VERSION)" == "${SHORT12}" ]] && ok "run id and code version arguments" || bad "run id or code version argument"
+[[ "$(ovv SCHOLARCHAIN_OPS_MAX_VECTORS)" == 10000 && "$(ovv SCHOLARCHAIN_OPS_NEPTUNE_TIMEOUT_SECONDS)" == 1800 && "$(ovv SCHOLARCHAIN_OPS_DRY_RUN)" == false ]] && ok "max vectors 10000, Neptune timeout 1800, not a dry run" || bad "max vectors, timeout or dry-run argument"
+[[ "$(jq -r '.[] | select(.Name == "ops-load") | .exit_code' "${REPO}/reports/pipeline/1k/rc20/steps.json" 2> /dev/null)" == 0 ]] && ok "steps.json records exit code 0" || bad "steps.json exit code"
+[[ "$(jq -r '.log.stream' "${REPO}/reports/pipeline/1k/rc20/load.json" 2> /dev/null)" == ops/ops/abc123 ]] && ok "load.json records the log stream" || bad "load.json log stream"
+[[ "$(jq -r '.log.group' "${REPO}/reports/pipeline/1k/rc20/load.json" 2> /dev/null)" == /scholarchain/embedding-worker ]] && ok "load.json records the log group" || bad "load.json log group"
+[[ "$(count_in "${LOG}" "ecs describe-tasks")" -ge 3 ]] && ok "the script polled until STOPPED" || bad "poll count"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-load-tuned 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc21 --max-vectors 500 --neptune-timeout-seconds 600 --ops-task-dry-run
+OV="${STATE}/run-task-overrides.json"
+[[ "$(ovv SCHOLARCHAIN_OPS_MAX_VECTORS)" == 500 && "$(ovv SCHOLARCHAIN_OPS_NEPTUNE_TIMEOUT_SECONDS)" == 600 && "$(ovv SCHOLARCHAIN_OPS_DRY_RUN)" == true ]] && ok "tuned arguments reach the task" || bad "tuned arguments"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12} STUB_OPS_EXIT=1" run pipe-load-exit1 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc22
+expect_in "a failed ops task is reported with its log location" "${OUT}/pipe-load-exit1.err" "exited with code 1"
+[[ "$(jq -r .status "${REPO}/reports/pipeline/1k/rc22/load.json" 2> /dev/null)" == failed ]] && ok "load.json status failed on exit 1" || bad "load.json status on failure"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12} STUB_OPS_EXIT=3" run pipe-load-exit3 3 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc23
+expect_in "ops exit 3 (cap or invariant refusal) is reported as a refusal" "${OUT}/pipe-load-exit3.err" "exited with code 3"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12} STUB_OPS_EXIT=null" run pipe-load-no-exit-code 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc24
+expect_in "a task that stopped without an exit code is a failure" "${OUT}/pipe-load-no-exit-code.err" "exited with code none"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12} STUB_OPS_NEVER_STOP=1 SC_LOAD_TIMEOUT=1" run pipe-load-timeout 5 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc25
+expect_in "timeout asks ECS to stop the task" "${LOG}" "ecs stop-task"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=oldsha000000" run pipe-load-wrong-image 6 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc26
+expect_in "image tag from another commit refused" "${OUT}/pipe-load-wrong-image.err" "not this commit"
+expect_not_in "no task with the wrong image" "${LOG}" "ecs run-task"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12} STUB_RUN_TASK_ARN=None" run pipe-load-no-task 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc27
+[[ "$(count_in "${LOG}" "ecs run-task")" == 1 ]] && ok "a failed run-task start is not retried" || bad "run-task retried"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-load-again 3 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rc20
+expect_in "load never overwrites its record" "${OUT}/pipe-load-again.err" "never overwritten"
+expect_not_in "no second task for the same run id" "${LOG}" "ecs run-task"
+# integrated run: EMR stages then convert and load
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-integrated 0 bash scripts/run-bounded-pipeline.sh --scale 1k --run-id rc30 --dblp-xml "${KEYFILE}" --dtd "${KEYFILE}"
+[[ "$(jq -r .status "${REPO}/reports/pipeline/1k/rc30/run.json" 2> /dev/null)" == succeeded ]] && ok "integrated run.json succeeded" || bad "integrated run.json status"
+[[ "$(jq '.post_steps | length' "${REPO}/reports/pipeline/1k/rc30/run.json" 2> /dev/null)" == 2 ]] && ok "run.json lists the two post steps" || bad "run.json post steps"
+[[ "$(jq -r '[.[].Name] | join(",")' "${REPO}/reports/pipeline/1k/rc30/steps.json" 2> /dev/null)" == "hadoop-pipeline-HJ1-HJ7,spark-graph-analytics,convert-local-load,ops-load" ]] && ok "steps.json: EMR steps then convert then ops-load" || bad "steps.json order"
+expect_not_in "EMR steps hold no load or enqueue placeholder" "${STATE}/emr-steps.json" "UNCONFIGURED"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-integrated-dry 0 bash scripts/run-bounded-pipeline.sh --scale 1k --run-id rc31 --dblp-xml "${KEYFILE}" --dtd "${KEYFILE}" --dry-run
+expect_in "integrated dry run plans the convert stage" "${OUT}/pipe-integrated-dry.out" "scholarchain.storage.LocalLoad"
+expect_in "integrated dry run plans the load stage" "${OUT}/pipe-integrated-dry.out" "ecs run-task"
 rm -rf -- "${REPO}/reports/pipeline"
 
 echo "== T8 env-window =="
@@ -574,8 +799,19 @@ echo "== T10 archive-evidence =="
 reset_state
 run archive-dry 0 bash scripts/archive-evidence.sh --dry-run
 reset_state
+AR_DIR="${REPO}/reports/pipeline/zz-archtest/run-1"
+mkdir -p "${AR_DIR}"
+for n in run.json steps.json convert.json load.json load-manifest.json checksums.sha256; do printf '{}\n' > "${AR_DIR}/${n}"; done
+run archive-dry-pipeline 0 bash scripts/archive-evidence.sh --dry-run
+expect_in "dry run lists convert.json" "${OUT}/archive-dry-pipeline.out" "convert.json"
+expect_in "dry run lists load.json" "${OUT}/archive-dry-pipeline.out" "load.json"
 run archive-real 0 bash scripts/archive-evidence.sh
 [[ -f "${REPO}/reports/evidence/${SHA}/MANIFEST.json" ]] && ok "MANIFEST.json written" || bad "MANIFEST.json"
+for n in convert.json load.json load-manifest.json checksums.sha256; do
+  [[ -f "${REPO}/reports/evidence/${SHA}/runs/pipeline__zz-archtest__run-1__${n}" ]] && ok "archived ${n}" || bad "archived ${n}"
+done
+grep -q 'pipeline__zz-archtest__run-1__load.json' "${REPO}/reports/evidence/${SHA}/MANIFEST.json" && ok "MANIFEST lists load.json" || bad "MANIFEST lists load.json"
+rm -rf -- "${REPO}/reports/pipeline/zz-archtest"
 run archive-twice-refused 3 bash scripts/archive-evidence.sh
 rm -rf -- "${REPO}/reports/evidence" "${REPO}/reports/release"
 

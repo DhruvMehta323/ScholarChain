@@ -167,3 +167,26 @@ output "live_suite_environment" {
     SCHOLARCHAIN_IT_EMBEDDING_DLQ_URL             = module.platform.embedding_dlq_url
   }
 }
+
+output "ops_task_definition_family" {
+  description = "Family of the one-off ops task (run-task by scripts/run-bounded-pipeline.sh, load stage). Uses the embedding-worker image and image_tag."
+  value       = module.compute.ops_task_definition_family
+}
+
+output "ops_task_definition_arn" {
+  value = module.compute.ops_task_definition_arn
+}
+
+output "ops_security_group_id" {
+  description = "Security group of the ops task (egress 443 and 8182 to Neptune; no inbound)."
+  value       = module.network.security_group_ids["ops"]
+}
+
+output "ops_task_role_arn" {
+  value = module.iam.ops_task_role_arn
+}
+
+output "ops_log_group_name" {
+  description = "CloudWatch log group of the ops task (the embedding-worker group; stream prefix ops, stream name ops/ops/<task-id>)."
+  value       = module.logs.log_group_names["embedding-worker"]
+}

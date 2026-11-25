@@ -163,7 +163,10 @@ object LocalLoad:
               .map(List(_))
           )
         reload <- reloadItems(items)
-        out    <- write(
+        // Snapshot BEFORE the embedding tables are read: `provenanceDocuments` must stay identical.
+        baseTables = cache.values.flatMap(_.toOption).toList
+        emb <- embeddingInputs(a, source)
+        out <- write(
           a,
           nep,
           ddb,
@@ -173,11 +176,128 @@ object LocalLoad:
           trace,
           items,
           metrics,
-          cache.values.flatMap(_.toOption).toList,
+          baseTables,
+          emb,
         )
       yield out
     catch case NonFatal(e) => Left(List(s"load failed (${e.getClass.getSimpleName})"))
     finally spark.stop()
+
+  /** The tables the embedding renderer needs, as JSONL (one object per line: every column of the
+    * table, keys in ascending order, rows in the deterministic table order, UTF-8, LF), plus what
+    * is needed to rebuild their Phase 06 provenance without Spark.
+    */
+  final case class EmbeddingFile(
+      table: String,
+      ref: TableRef,
+      columns: Vector[Column],
+      rows: Long,
+      bytes: Array[Byte],
+      partFilesDigest: String,
+      partFiles: Int,
+      provenanceFileSha256: String,
+      provenanceDocument: ujson.Value,
+  ):
+    def sha256: String = Cells.sha256(bytes)
+
+  final case class EmbeddingInputs(
+      sparkRunId: String,
+      sparkCodeVersion: String,
+      files: List[EmbeddingFile],
+  )
+
+  val EmbeddingTables: List[String] = List("semantic-summaries", "topics", "venues", "works")
+
+  private def embeddingRefs(
+      runRoot: Path
+  ): Either[String, Option[(String, String, Map[String, TableRef])]] =
+    val dir = runRoot.resolve("load-manifests")
+    if !Files.exists(dir.resolve("s3-vectors.json")) then Right(None)
+    else
+      for
+        vec <- Manifests.readJson(dir.resolve("s3-vectors.json"))
+        s3  <- Manifests.readJson(dir.resolve("s3.json"))
+        run <- vec.obj.get("runId").flatMap(_.strOpt).toRight("s3-vectors.json: no runId")
+        cv  <- vec.obj
+          .get("codeVersion")
+          .flatMap(_.strOpt)
+          .toRight("s3-vectors.json: no codeVersion")
+        docs <- vec.obj.get("documents").flatMap(_.arrOpt).toRight("s3-vectors.json: no documents")
+        tabs <- s3.obj.get("tables").flatMap(_.arrOpt).toRight("s3.json: no tables")
+      yield
+        def ref(v: ujson.Value): Option[TableRef] =
+          for
+            o     <- v.objOpt
+            table <- o.value.get("table").flatMap(_.strOpt)
+            path  <- o.value.get("path").flatMap(_.strOpt)
+            fmt   <- o.value.get("format").flatMap(_.strOpt)
+            parts <- o.value
+              .get("partitionColumns")
+              .flatMap(_.arrOpt)
+              .map(_.toList.flatMap(_.strOpt))
+            rows <- o.value.get("rowCount").flatMap(_.numOpt).map(_.toLong)
+          yield TableRef(table, path, fmt, parts, rows)
+        Some((run, cv, (docs.toList ++ tabs.toList).flatMap(ref).map(r => r.table -> r).toMap))
+
+  private def embeddingInputs(
+      a: Args,
+      source: NeptuneLoader.TableSource,
+  ): Either[List[String], Option[EmbeddingInputs]] =
+    embeddingRefs(a.runRoot).left.map(List(_)).flatMap {
+      case None                    => Right(None)
+      case Some((runId, cv, refs)) =>
+        val absent = EmbeddingTables.filterNot(refs.contains)
+        if absent.nonEmpty then Left(absent.map(t => s"manifest has no table $t"))
+        else
+          sequence(EmbeddingTables.map { name =>
+            val ref = refs(name)
+            for
+              t    <- source(ref)
+              sum  <- tableChecksum(ParquetTables.tableDir(a.runRoot, ref))
+              prov <- Manifests.readJson(ParquetTables.provenancePath(a.runRoot, ref))
+            yield
+              val names = t.columns.map(_.name).zipWithIndex.sortBy(_._1)
+              val text  = t.rows
+                .map(r => ujson.write(ujson.Obj.from(names.map((n, i) => n -> r(i).toJson))) + "\n")
+                .mkString
+              EmbeddingFile(
+                name,
+                ref,
+                t.columns,
+                t.rows.size.toLong,
+                text.getBytes(StandardCharsets.UTF_8),
+                sum._1,
+                sum._2,
+                sha(ParquetTables.provenancePath(a.runRoot, ref)),
+                prov,
+              )
+          }).map(fs => Some(EmbeddingInputs(runId, cv, fs)))
+    }
+
+  private def embeddingManifest(e: EmbeddingInputs): ujson.Value =
+    ujson.Obj(
+      "files" -> ujson.Arr.from(
+        e.files.map(f =>
+          ujson.Obj(
+            "columns" -> ujson.Arr.from(
+              f.columns
+                .sortBy(_.name)
+                .map(c => ujson.Obj("name" -> c.name, "sparkType" -> c.sparkType))
+            ),
+            "partFiles"            -> f.partFiles.toDouble,
+            "partFilesDigest"      -> f.partFilesDigest,
+            "path"                 -> s"embedding-inputs/${f.table}.jsonl",
+            "provenanceDocument"   -> f.provenanceDocument,
+            "provenanceFileSha256" -> f.provenanceFileSha256,
+            "rows"                 -> f.rows.toDouble,
+            "sha256"               -> f.sha256,
+            "table"                -> f.table,
+          )
+        )
+      ),
+      "sparkCodeVersion" -> e.sparkCodeVersion,
+      "sparkRunId"       -> e.sparkRunId,
+    )
 
   private def sequence[A](xs: List[Either[String, A]]): Either[List[String], List[A]] =
     val errs = xs.collect { case Left(e) => e }
@@ -262,6 +382,7 @@ object LocalLoad:
       items: List[AnalyticsItems.ItemFile],
       metricsChecked: Long,
       allTables: List[TableData],
+      emb: Option[EmbeddingInputs],
   ): Either[List[String], String] =
     val manifestDir = a.runRoot.resolve("load-manifests")
     val tableInputs = prep.tableInputs
@@ -276,6 +397,7 @@ object LocalLoad:
         Files.write(p, bytes)
       build.files.foreach(f => put(s"neptune/${f.relativePath}", f.bytes))
       items.foreach(f => put(s"dynamodb/${f.path}", f.bytes))
+      emb.foreach(e => e.files.foreach(f => put(s"embedding-inputs/${f.table}.jsonl", f.bytes)))
 
       // Full provenance behind every digest: row-level texts (digest of the row `provenance`
       // string) and, for Neptune tables without that column, the table `_provenance.json`.
@@ -316,6 +438,7 @@ object LocalLoad:
           "secondPassWritten"   -> reload._2.written.toDouble,
         ),
       )
+      emb.foreach(e => manifest("embeddingInputs") = embeddingManifest(e))
       manifest("input") = ujson.Obj(
         "manifests" -> ujson.Arr.from(
           List("neptune.json", "dynamodb.json").map(n =>

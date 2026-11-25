@@ -37,3 +37,9 @@ variable "neptune_port" {
   type    = number
   default = 8182
 }
+
+variable "neptune_enabled" {
+  description = "Whether Neptune exists. Gates only the ops-to-Neptune security group rules."
+  type        = bool
+  default     = false
+}

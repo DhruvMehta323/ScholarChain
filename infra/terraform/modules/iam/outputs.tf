@@ -30,3 +30,7 @@ output "deployer_role_arn" {
   description = "Empty until deployment_principal_arns is set."
   value       = try(aws_iam_role.deployer[0].arn, "")
 }
+
+output "ops_task_role_arn" {
+  value = aws_iam_role.ops.arn
+}

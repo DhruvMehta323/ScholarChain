@@ -39,10 +39,11 @@ enum Cell:
 
   /** Plain JSON form: arrays and objects nested, doubles as numbers. */
   def toJson: ujson.Value = this match
-    case Null       => ujson.Null
-    case S(v)       => ujson.Str(v)
-    case I(v)       => ujson.Num(v.toDouble)
-    case L(v)       => if v.abs < (1L << 53) then ujson.Num(v.toDouble) else ujson.Str(v.toString)
+    case Null => ujson.Null
+    case S(v) => ujson.Str(v)
+    case I(v) => ujson.Num(v.toDouble)
+    case L(v) =>
+      if v > -(1L << 53) && v < (1L << 53) then ujson.Num(v.toDouble) else ujson.Str(v.toString)
     case D(v)       => if v.isNaN || v.isInfinity then ujson.Str(v.toString) else ujson.Num(v)
     case B(v)       => ujson.Bool(v)
     case Arr(vs)    => ujson.Arr.from(vs.map(_.toJson))

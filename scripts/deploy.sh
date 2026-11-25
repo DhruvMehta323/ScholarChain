@@ -125,11 +125,12 @@ CLUSTER="$(sc_out ecs_cluster_name)"
 
 sc_stage secrets-present
 # Existence of a stored value is read from metadata only (VersionIdsToStages); no secret value is read.
+# Phase 14 MERGE-2: only the two secrets the services still inject are required; the Voyage and Anthropic secrets stay empty and unused.
 while IFS= read -r arn; do
   n="$(sc_retry sc_aws secretsmanager describe-secret --secret-id "${arn}" --query 'length(VersionIdsToStages || `{}`)' --output text)" || sc_die "cannot describe a secret"
-  [[ "${n}" =~ ^[1-9][0-9]*$ ]] || sc_die "a service secret has no value yet (a human sets all four secret values before deploy)"
-done < <(printf '%s' "${TF_OUT}" | jq -r '.secret_arns.value | to_entries[] | .value')
-sc_ok "all secrets have a stored value"
+  [[ "${n}" =~ ^[1-9][0-9]*$ ]] || sc_die "an injected service secret has no value yet (a human sets the services and internal API key secrets before deploy)"
+done < <(printf '%s' "${TF_OUT}" | jq -r '.secret_arns.value | to_entries[] | select(.key == "services-api-key" or .key == "internal-api-key") | .value')
+sc_ok "the two injected secrets (services and internal API keys) have a stored value"
 
 sc_stage release-artifacts
 ARTIFACTS="${ROOT}/reports/release/${SHA}/artifacts.json"

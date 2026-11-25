@@ -58,6 +58,12 @@ variable "service_secrets" {
   type = map(list(string))
 }
 
+variable "service_env" {
+  description = "Per-service extra environment variables (service name to map). Values only, never secrets. Applied after common_env and the built-in per-service variables."
+  type        = map(map(string))
+  default     = {}
+}
+
 variable "secret_env_names" {
   description = "Internal secret key to the environment variable name injected into the task."
   type        = map(string)
@@ -157,4 +163,32 @@ variable "enable_container_insights" {
 variable "service_discovery_namespace" {
   description = "Private DNS namespace for internal service calls (retrieval)."
   type        = string
+}
+
+variable "ops_task_role_arn" {
+  description = "Task role of the ops task definition (least privilege, iam module)."
+  type        = string
+}
+
+variable "ops_main_class" {
+  description = "SERVICE_MAIN of the ops task (the entrypoint runs this class)."
+  type        = string
+  default     = "scholarchain.services.OpsLoadMain"
+}
+
+variable "ops_java_opts" {
+  description = "JAVA_OPTS of the ops task (appended by entrypoint.sh, so it can override the 512 MiB defaults). 1 GiB task: about 700 MiB heap."
+  type        = string
+  default     = "-XX:MaxRAMPercentage=75.0"
+}
+
+variable "ops_cpu" {
+  type    = number
+  default = 512
+}
+
+variable "ops_memory" {
+  description = "MiB. 1024 (twice the service size) gives the load and render step heap room; cost is a few cents per run."
+  type        = number
+  default     = 1024
 }

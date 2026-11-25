@@ -85,7 +85,7 @@ resource "aws_ecs_task_definition" "this" {
       containerPort = each.value.port
       protocol      = "tcp"
     }] : []
-    environment = [for k, v in merge(var.common_env, each.value.extra_env) : { name = k, value = v }]
+    environment = [for k, v in merge(var.common_env, each.value.extra_env, lookup(var.service_env, each.key, {})) : { name = k, value = v }]
     secrets     = [for k in var.service_secrets[each.key] : { name = var.secret_env_names[k], valueFrom = var.secret_arns[k] }]
     logConfiguration = {
       logDriver = "awslogs"
@@ -93,6 +93,51 @@ resource "aws_ecs_task_definition" "this" {
         "awslogs-group"         = var.log_group_names[each.key]
         "awslogs-region"        = var.region
         "awslogs-stream-prefix" = each.key
+      }
+    }
+  }])
+}
+
+# Ops task definition: run-task only (no service, no autoscaling, no health check). Same embedding-worker image and tag as the service.
+# packaging/entrypoint.sh runs `java ... "${SERVICE_MAIN}"` and does not forward arguments, and RunTask cannot override the entryPoint, so
+# there is no command: SERVICE_MAIN selects OpsLoadMain and the arguments are SCHOLARCHAIN_OPS_* environment variables, set per run through
+# containerOverrides.environment by scripts/run-bounded-pipeline.sh. The defaults below make a run-task WITHOUT an override harmless (dry run,
+# no sources). Logs go to the embedding-worker log group, stream prefix "ops" (stream ops/ops/<task-id>).
+locals {
+  ops_env = merge(var.common_env, local.services["embedding-worker"].extra_env, {
+    SERVICE_NAME                 = "ops"
+    SERVICE_MAIN                 = var.ops_main_class
+    SCHOLARCHAIN_OPS_DRY_RUN     = "true"
+    SCHOLARCHAIN_OPS_MAX_VECTORS = "0"
+    JAVA_OPTS                    = var.ops_java_opts
+  })
+}
+
+resource "aws_ecs_task_definition" "ops" {
+  family                   = "${var.name}-ops"
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  cpu                      = var.ops_cpu
+  memory                   = var.ops_memory
+  execution_role_arn       = var.execution_role_arns["embedding-worker"]
+  task_role_arn            = var.ops_task_role_arn
+
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture        = var.cpu_architecture
+  }
+
+  container_definitions = jsonencode([{
+    name        = "ops"
+    image       = "${var.ecr_repository_urls["embedding-worker"]}:${var.image_tag}"
+    essential   = true
+    environment = [for k, v in local.ops_env : { name = k, value = v }]
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        "awslogs-group"         = var.log_group_names["embedding-worker"]
+        "awslogs-region"        = var.region
+        "awslogs-stream-prefix" = "ops"
       }
     }
   }])

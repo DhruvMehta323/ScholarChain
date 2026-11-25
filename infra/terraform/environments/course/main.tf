@@ -35,10 +35,30 @@ locals {
 
   # Secrets each service may read (execution role scoped to exactly these ARNs) and receives as environment variables.
   service_secrets = {
-    "query-api"        = ["anthropic-api-key", "services-api-key", "internal-api-key"]
-    "retrieval"        = ["voyage-api-key", "services-api-key", "internal-api-key"]
-    "embedding-worker" = ["voyage-api-key"]
+    # MERGE-2: SCHOLARCHAIN_ANTHROPIC_API_KEY and SCHOLARCHAIN_VOYAGE_API_KEY are no longer injected (Bedrock only; the Voyage
+    # embedder is built only when its variable is present, so absence selects Bedrock Titan). The two secret resources stay, empty and unused.
+    "query-api"        = ["services-api-key", "internal-api-key"]
+    "retrieval"        = ["services-api-key", "internal-api-key"]
+    "embedding-worker" = []
   }
+
+  # MERGE-1: generation model, Bedrock only. Env names follow SCHOLARCHAIN_RAG_<KEY> for core keys rag.model.provider and
+  # rag.model.bedrock-model-id. Only query-api builds a model client (Composition.scala awsQueryApi); retrieval and
+  # embedding-worker do not, so they do not get these variables.
+  service_env = {
+    "query-api" = {
+      SCHOLARCHAIN_RAG_MODEL_PROVIDER         = "bedrock"
+      SCHOLARCHAIN_RAG_MODEL_BEDROCK_MODEL_ID = var.generation_inference_profile_id
+    }
+  }
+
+  # IAM resources for query-api generation: the account-scoped inference profile plus the Haiku 4.5 foundation model in every Region
+  # the profile routes to (inference-profiles-prereq). Titan is granted separately to retrieval and embedding-worker by the iam module.
+  generation_model_arns = concat(
+    ["arn:aws:bedrock:${var.aws_region}:${local.account_id}:inference-profile/${var.generation_inference_profile_id}"],
+    [for r in var.generation_profile_regions : "arn:aws:bedrock:${r}::foundation-model/${var.generation_foundation_model_id}"],
+    var.bedrock_model_arns,
+  )
 
   bucket_names = {
     for role in ["raw", "curated", "reports", "logs", "artifacts"] :
@@ -80,7 +100,6 @@ locals {
     SCHOLARCHAIN_EMBEDDING_MODEL_ID                      = var.embedding_model_id
     SCHOLARCHAIN_EMBEDDING_CLAIMS_TABLE_NAME             = module.data.table_names["embedding-key-claims"]
     SCHOLARCHAIN_MODELS_EMBEDDING_MODEL_ID               = var.embedding_model_id
-    SCHOLARCHAIN_MODELS_GENERATION_MODEL_ID              = var.generation_model_id
     SCHOLARCHAIN_STORAGE_VECTORS_BUCKET_NAME             = module.data.vector_bucket_name
     SCHOLARCHAIN_STORAGE_NEPTUNE_BULK_LOAD_FORMAT        = "opencypher"
     SCHOLARCHAIN_STORAGE_NEPTUNE_BULK_LOAD_SOURCE_S3_URI = "s3://${module.data.bucket_names["curated"]}/graph/neptune-load/"
@@ -98,6 +117,7 @@ module "network" {
   azs               = slice(data.aws_availability_zones.available.names, 0, 2)
   alb_ingress_cidrs = var.alb_ingress_cidrs
   alb_https_enabled = var.certificate_arn != ""
+  neptune_enabled   = var.create_neptune
 }
 
 module "data" {
@@ -168,7 +188,7 @@ module "iam" {
   log_group_arns              = module.logs.log_group_arns
   neptune_enabled             = var.create_neptune
   neptune_cluster_resource_id = module.neptune.cluster_resource_id
-  bedrock_model_arns          = var.bedrock_model_arns
+  bedrock_model_arns          = local.generation_model_arns
   embedding_provider          = var.embedding_provider
   embedding_model_id          = var.embedding_model_id
   deployment_principal_arns   = var.deployment_principal_arns
@@ -189,6 +209,7 @@ module "compute" {
   cpu_architecture            = var.ecs_cpu_architecture
   execution_role_arns         = module.iam.ecs_execution_role_arns
   task_role_arns              = module.iam.task_role_arns
+  ops_task_role_arn           = module.iam.ops_task_role_arn
   log_group_names             = module.logs.log_group_names
   common_env                  = local.app_environment
   embedding_queue_url         = module.platform.embedding_queue_url
@@ -198,6 +219,7 @@ module "compute" {
   embedding_max_attempts      = var.embedding_max_attempts
   secret_arns                 = module.platform.secret_arns
   service_secrets             = local.service_secrets
+  service_env                 = local.service_env
   secret_env_names            = { for k, v in var.secrets : k => v.env }
   min_tasks                   = var.ecs_min_tasks
   max_tasks                   = var.ecs_max_tasks

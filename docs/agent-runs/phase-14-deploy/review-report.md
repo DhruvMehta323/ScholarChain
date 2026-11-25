@@ -1,0 +1,73 @@
+# Phase 14: review report (code-reviewer, Part D, single pass over Part A)
+
+Stored by the orchestrator. Read-only review of the uncommitted Part A changes on main (HEAD a375c00). Part C had not run, so no Part C evidence was reviewed in this pass.
+
+## Verdict: REQUEST CHANGES
+
+No HIGH. Three MEDIUMs go into the single repair round, so under the speed amendment no reread is needed. The reviewer says the remaining findings support APPROVE WITH NOTES once the MEDIUMs are fixed.
+
+## MEDIUM
+
+- **M1. The ops role's S3 write is broader than the code needs, and the docs say the opposite.**
+  - `infra/terraform/modules/iam/main.tf:272-279` (`WriteManifestAndTexts`) grants `s3:PutObject` on `curated/loads/*`, which allows overwriting the uploaded load files.
+  - The code writes only `<items-source>ops-manifest.json` with putIfAbsent (`OpsLoad.scala:450-459`). `OpsLoad.scala:281-284` and `modules/services/API.md:289-290` claim the narrow scope.
+  - `INFRA-CONTRACTS.md:658` gives a wrong justification.
+  - Fix (infra-engineer): narrow the resource to `curated/loads/*/ops-manifest.json` and correct the text. This is a security change, so it needs human approval.
+- **M2. The traceability records are neither committable nor archived.**
+  - `convert.json`, `load.json` and the copied `load-manifest.json` and `checksums.sha256` are written under `reports/pipeline/<scale>/<run>/` (`run-bounded-pipeline.sh:401-411, 474-478`).
+  - `.gitignore:60-64` ignores everything there except `run.json` and `steps.json`, and `scripts/archive-evidence.sh:11,70` archives only those two.
+  - Fix:
+    - build-engineer: un-ignore `convert.json` and `load.json`.
+    - infra-engineer: archive them in `archive-evidence.sh`.
+- **M3. The load stage will refuse in Part C as H1 is written.**
+  - The ops task image comes from Terraform `var.image_tag` (`modules/compute/main.tf:132`; default `bootstrap`, `variables.tf:288-292`).
+  - `deploy.sh` does not re-register the ops task (`:208-226`), and the load stage exits 6 unless the tag equals the release commit (`run-bounded-pipeline.sh:438-441`).
+  - Neither the apply checklist (`INFRA-CONTRACTS.md:594-605`) nor `terraform.tfvars.example` says to set `image_tag`.
+  - Fix (infra-engineer): document an explicit step: commit, then set `image_tag=<sha12>`, then plan and apply.
+
+## LOW (deferred per the repair policy)
+
+- **L1. Stale text:**
+  - `INFRA-CONTRACTS.md:568`: OpsLoadMain and LiveLoad "do not exist".
+  - `INFRA-CONTRACTS.md:667` item (2): the loadId is in ops-manifest. On a LiveLoad failure no manifest is written.
+  - `INFRA-CONTRACTS.md:510`: still calls the Voyage key the "ECS secret injection name".
+  - `API.md:265`: garbled phrase.
+- **L2.** No Terraform sets `SCHOLARCHAIN_IMAGE_TAG`, so the manifest's `imageTag` is null (`OpsLoad.scala:719, 844`).
+- **L3.** An OpsLoad rerun starts a new Neptune bulk load before it checks for an existing `ops-manifest.json` (`OpsLoad.scala:355-365`). Only the script's `load.json` check prevents it. Neptune re-load idempotency is NOT VERIFIED.
+- **L4.** `SC_LOAD_TIMEOUT` (3600 s) equals the maximum Neptune timeout, so `stop-task` could interrupt the DynamoDB puts (`run-bounded-pipeline.sh:116, 119`).
+- **L5.** A partial convert upload leaves the prefixes non-empty, and the same run ID is then refused (`:334, :352-353`). Recovery needs a human deletion or a new Spark run. Document it.
+- **L6.** The query-api foundation-model grants allow direct Haiku invocation in 3 Regions as well as through the profile (`iam/main.tf:129-137`). A `bedrock:InferenceProfileArn` condition could tighten this (condition key not verified).
+- **L7.** The byte-identity suites skip through `assume` if `sparkS1r2` is absent (`LocalLoadEmbeddingInputsSuite.scala:24-27`). The CHECK reader should confirm no skips.
+- **L8.** The script header says records are "never overwritten", but the post stages append to `steps.json` (`:320-325`).
+- **L9.** Committing `reports/release/<sha>/artifacts.json` moves HEAD and breaks `deploy.sh:136-139`. Keep it uncommitted until after the deploy. The clean-tree check excludes it (`scripts/lib/common.sh:312`).
+
+## Passed checks (reviewer evidence, summarized)
+
+1. **Bedrock IAM and model variables:**
+   - query-api gets the profile ARN plus Haiku 4.5 foundation models in us-east-1, us-east-2 and us-west-2 (`environments/course/main.tf:57-61`, `variables.tf:147-151`). Titan stays on retrieval and the worker only (`iam/main.tf:166-173, 219-226`).
+   - The env names match core naming (`Config.scala:21-22`, `RuntimeConfig.scala:20-21`). Only `awsQueryApi` builds a model client (`Composition.scala:342-363`).
+   - Removing `SCHOLARCHAIN_MODELS_GENERATION_MODEL_ID` is safe.
+2. **Unused secrets:** not injected (`main.tf:37-43`, `compute/main.tf:89`). The execution-role grant is dynamic (`iam/main.tf:61-69`). `deploy.sh:129-133` checks only the two used keys.
+3. **Three-image packaging:** `package.sh:88, 107-115` match `build.sbt:269-298`. `deploy.sh:141-173` pushes all three. No re-tag path is left.
+4. **Loader path:**
+   - The neptune-source prefix is satisfied by the ops env (`main.tf:105`, `compute/main.tf:107`).
+   - LiveLoad: checksum chain and prefix exactness before any write; one start with no retry; conditional puts (`LiveLoad.scala:289-421, 604-608, 645-672`).
+   - LocalLoad extension: gated and listed in the manifest and checksums (`LocalLoad.scala:215, 441, 544-557`).
+   - OpsLoad: hard cap 10000; plan before write; putIfAbsent manifest; exit codes; no Spark; no values in errors (`OpsLoad.scala:31, 91, 355-365, 455, 520-545, 803-895`).
+   - Ops task definition, security group and outputs correct (`compute/main.tf:106-144`, `network/main.tf:302-340`, `outputs.tf:171-192`).
+   - Script stages correct (`run-bounded-pipeline.sh:344-353, 382-389, 418-428, 453, 463-467, 481-486`).
+5. **.gitignore:** correct apart from M2 and L9.
+6. **Ownership:** every changed path is within its owner's row. No changes to `CLAUDE.md`, `docs/agents.md`, `.claude/**`, `build.sbt`, `project/**` or `packaging/**`. Module boundaries kept (`OpsLoad.scala:10-11`, `LiveLoad.scala:7`). The reviewer had no shell or git diff, and the untracked list was truncated and filled in with Glob.
+7. **Tests exercise real behavior** (spot-checked): `OpsLoadCapSuite.scala:26-262`, `OpsLoadRunSuite.scala:252-288, 437-478`, `LocalLoadEmbeddingInputsSuite.scala:53-152`, `test-scripts.sh:616-773`.
+8. **Honesty:** results are labelled agent-reported or orchestrator-observed. No terraform plan or AWS run is claimed, and CHECK 1's failure is recorded.
+
+## Reviewer risks and manual items
+
+- Not verified anywhere:
+  - Bedrock Converse with the profile ID
+  - Neptune IAM and loader behavior, including rerun idempotency
+  - the 1 GiB ops task size
+  - Fargate pricing
+- Human approval needed for the ops-role IAM (with the narrowed M1) and the ops security-group rules (security-change rule).
+- Human decision needed on the H1 ordering for `image_tag` (M3).
+- Keep `artifacts.json` uncommitted until after the deploy (L9).

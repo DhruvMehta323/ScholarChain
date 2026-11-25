@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 # scripts/run-bounded-pipeline.sh --scale 1k|10k|50k [options]      or      --smoke
 #
-# One bounded pipeline run on a self-terminating EMR cluster. Uploads the DBLP XML, DTD and enrichment cache to the raw bucket (a few
-# large objects), uploads the job jars to the artifacts bucket, creates ONE cluster from the Phase 12 configuration (1 primary + at
-# most 2 core/task nodes = 3 nodes, on-demand m5.xlarge, idle auto-termination, logs to S3) and runs, one step at a time:
-#   hadoop (HJ1 to HJ7) -> spark (graph and analytics) -> load (storage loader) -> enqueue (embedding jobs)
-# Every step has ActionOnFailure=TERMINATE_CLUSTER and a 1-hour limit (enforced twice: `timeout 3600` inside the step, and a watcher
+# One bounded pipeline run. Stages, in order:
+#   hadoop (HJ1 to HJ7) -> spark (graph and analytics)      on ONE self-terminating EMR cluster (1 primary + at most 2 core/task = 3 nodes,
+#                                                           on-demand m5.xlarge, idle auto-termination, logs to S3)
+#   convert   (operator machine) sync the Spark output from S3, run the unchanged LocalLoad through sbt (Test classpath), upload the Neptune
+#             CSV (vertices/, edges/ only) to s3://<curated>/graph/neptune-load/<scale>/<run>/ and the DynamoDB item files, load-manifest.json and checksums.sha256
+#             to s3://<curated>/curated/loads/<scale>/<run>/ (never overwrites), record the SHA-256 of every uploaded file
+#   load      (AWS, one ECS Fargate ops task, run-task once, never retried) Neptune bulk load, DynamoDB puts, render and enqueue at most
+#             10000 embedding jobs (OpsLoadMain); the script waits for STOPPED and records the exit code and the log location
+# DISCLOSURE: the Parquet-to-load-file conversion runs on the OPERATOR MACHINE, not in AWS, because the service images exclude Spark by
+# design (build.sbt servicesClasspathGuard) and LocalLoad reads Parquet through Spark SQL (Test classpath only).
+# Every EMR step has ActionOnFailure=TERMINATE_CLUSTER and a 1-hour limit (enforced twice: `timeout 3600` inside the step, and a watcher
 # here that cancels a step still running after 1 hour plus a grace period and shortens the idle timeout). The script never calls
 # terminate-clusters and never touches Terraform: EMR terminates the cluster itself.
-# Records go to reports/pipeline/<scale>/<run>/ (run.json, steps.json, config).
+# Records go to reports/pipeline/<scale>/<run>/ (run.json, steps.json, convert.json, load.json, load-manifest.json, checksums.sha256).
+# Post-only run: --stages convert,load (or either one) with --run-id <the Spark run id already in S3> skips EMR; existing records are kept,
+# convert.json and load.json are never overwritten.
 #
 # 50K RULE: refused unless a 10K run record with status "succeeded" exists under reports/pipeline/10k/ AND --approve-50k is passed.
 # --smoke: a tiny MapReduce job (hadoop-mapreduce-examples pi) on the chosen release, to confirm MapReduce works before real work.
@@ -19,21 +27,29 @@
 #                          --approve-instance-class and a --gate-file (docs/agent-runs/<phase>/human-gate.md containing the type) are given.
 #   SC_EMR_IDLE_TIMEOUT    default 900, allowed 60 to 900 (seconds; Terraform uses 900)
 #   SC_STEP_TIMEOUT        default and maximum 3600
-#   SC_LOADER_STEP_ARGS    JSON array: the command-runner arguments of the load step (no EMR entry point exists on lane2: M13-2)
-#   SC_ENQUEUE_STEP_ARGS   JSON array: the command-runner arguments of the embedding-enqueue step (M13-2)
+#   SC_CONVERT_TIMEOUT     default 3600 seconds (60 to 7200): the sbt LocalLoad run
+#   SC_CONVERT_EXTRA_CMD   optional hook, unset by default: path of an executable run as <cmd> <run-root> <out-dir> after LocalLoad (a possible
+#   SC_CONVERT_EXTRA_PREFIX  local render step). Its output must be files under <out-dir>/<SC_CONVERT_EXTRA_PREFIX>/ (one path segment, for example
+#                          embedding-docs); they are uploaded to s3://<curated>/curated/loads/<scale>/<run>/<prefix>/ and checksummed
+#   SC_LOAD_TIMEOUT        default 3600 seconds (1 to 7200): how long to wait for the ops task to stop (then it is stopped, exit 5)
+#   SC_OPS_MAIN            default scholarchain.services.OpsLoadMain (SERVICE_MAIN of the ops task; one place to adjust)
+#   SC_OPS_JAVA_OPTS       optional JAVA_OPTS override of the ops task (heap sizing)
 #   SC_SPARK_SET           extra "--set key=value" pairs for the Spark job, space separated, no quotes inside
 #   SC_EXTRA_TAGS          extra EMR tags "k=v k=v" (course, owner, expiration-date are not Terraform outputs; add them here)
 # Options:
 #   --scale 1k|10k|50k      --smoke      --approve-50k      --hadoop-fallback (emr-7.14.0 + Hadoop; MapReduce stages only)
-#   --stages hadoop,spark,load,enqueue (default all)      --hadoop-mode driver (the only mode: ONE PipelineDriver step runs HJ1 to HJ7;
+#   --stages hadoop,spark,convert,load (default all)      --hadoop-mode driver (the only mode: ONE PipelineDriver step runs HJ1 to HJ7;
 #                          the per-job *Tool classes have no main, modules/hadoop/JOB-CONTRACTS.md; the old "tools" mode was removed)
 #   --approve-instance-class --gate-file <file>   see SC_EMR_INSTANCE_TYPE
+#   --max-vectors N (default 10000, hard cap 10000; more is refused, exit 3)      --neptune-timeout-seconds N (default 1800, 60 to 3600)
+#   --ops-task-dry-run (the ops task runs with SCHOLARCHAIN_OPS_DRY_RUN=true: no write)
 #   --core-count 1|2 (default 1)      --run-id <token>      --env <name> (default course)
 #   --dblp-xml <file> --dtd <file> --enrichment-dir <dir with crossref/ openalex/ orcid/>      --skip-upload
 #   --dry-run (no AWS write, no cluster; prints the exact plan and step definitions)      --help
 # Exit codes: 0 ok, 1 failure or step failed, 2 usage, 3 refused (50K rule, dirty tree), 4 outputs missing, 5 timeout, 6 precondition (Neptune off,
-# no jar), 7 unconfigured step (M13-2). 3 also covers an existing --run-id (records are never overwritten) and an unapproved instance class.
-# shellcheck disable=SC2015,SC2329 # intentional: literal text in single quotes, JMESPath backticks, A && B || C status idiom, trap handler
+# no jar, ops task definition not applied, another `sbt check` running), 7 unused (was: unconfigured step). 3 also covers an existing --run-id (records are
+# never overwritten), a non-empty S3 target prefix, --max-vectors above 10000, an ops task that exited 3 (its own refusal) and an unapproved instance class.
+# shellcheck disable=SC2015,SC2016,SC2329 # intentional: literal text in single quotes, JMESPath backticks, A && B || C status idiom, trap handler
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -44,8 +60,8 @@ export TZ=UTC # the step-timing parser below also accepts any +-HH:MM offset (re
 
 usage() { sed -n '2,/^[^#]/p' "${BASH_SOURCE[0]}" | sed '$d' | grep -v '^# shellcheck' | sed 's/^# \{0,1\}//'; }
 
-SCALE="" SMOKE=0 APPROVE_50K=0 FALLBACK=0 STAGES="hadoop,spark,load,enqueue" HMODE=driver CORE=1 APPROVE_ITYPE=0 GATE_FILE="" RUN_ID="" ENV_NAME=course
-DBLP_XML="" DTD="" ENRICH_DIR="" SKIP_UPLOAD=0
+SCALE="" SMOKE=0 APPROVE_50K=0 FALLBACK=0 STAGES="hadoop,spark,convert,load" HMODE=driver CORE=1 APPROVE_ITYPE=0 GATE_FILE="" RUN_ID="" ENV_NAME=course
+DBLP_XML="" DTD="" ENRICH_DIR="" SKIP_UPLOAD=0 MAX_VECTORS=10000 NEPTUNE_TIMEOUT=1800 OPS_TASK_DRY=0 RUN_ID_GIVEN=0
 while (($#)); do
   case "$1" in
     --help | -h) usage; exit 0 ;;
@@ -59,7 +75,10 @@ while (($#)); do
     --approve-instance-class) APPROVE_ITYPE=1 ;;
     --gate-file) GATE_FILE="${2:?}"; shift ;;
     --core-count) CORE="${2:?}"; shift ;;
-    --run-id) RUN_ID="${2:?}"; shift ;;
+    --run-id) RUN_ID="${2:?}"; RUN_ID_GIVEN=1; shift ;;
+    --max-vectors) MAX_VECTORS="${2:?}"; shift ;;
+    --neptune-timeout-seconds) NEPTUNE_TIMEOUT="${2:?}"; shift ;;
+    --ops-task-dry-run) OPS_TASK_DRY=1 ;;
     --env) ENV_NAME="${2:?}"; shift ;;
     --dblp-xml) DBLP_XML="${2:?}"; shift ;;
     --dtd) DTD="${2:?}"; shift ;;
@@ -88,13 +107,39 @@ if [[ "${ITYPE}" != m5.xlarge ]]; then
   sc_require_gate_file "${ROOT}" "${GATE_FILE}" "${ITYPE}"
   sc_warn "instance class ${ITYPE} approved by the gate file (cost impact: recorded in the human decision)"
 fi
-for st in $(printf '%s' "${STAGES}" | tr ',' ' '); do [[ "${st}" =~ ^(hadoop|spark|load|enqueue)$ ]] || { echo "unknown stage: ${st}" >&2; exit 2; }; done
+for st in $(printf '%s' "${STAGES}" | tr ',' ' '); do [[ "${st}" =~ ^(hadoop|spark|convert|load)$ ]] || { echo "unknown stage: ${st} (stages: hadoop, spark, convert, load)" >&2; exit 2; }; done
+[[ "${MAX_VECTORS}" =~ ^[0-9]+$ ]] && ((MAX_VECTORS >= 1)) || { echo "--max-vectors must be a positive integer" >&2; exit 2; }
+if ((MAX_VECTORS > 10000)); then
+  printf 'SC-WARN REFUSED: --max-vectors %s is above the hard cap of 10000 embedding jobs per run (bounded runs only)\n' "${MAX_VECTORS}" >&2
+  exit 3
+fi
+[[ "${NEPTUNE_TIMEOUT}" =~ ^[0-9]+$ ]] && ((NEPTUNE_TIMEOUT >= 60 && NEPTUNE_TIMEOUT <= 3600)) || { echo "--neptune-timeout-seconds must be 60 to 3600" >&2; exit 2; }
+CONV_TIMEOUT="${SC_CONVERT_TIMEOUT:-3600}"
+[[ "${CONV_TIMEOUT}" =~ ^[0-9]+$ ]] && ((CONV_TIMEOUT >= 60 && CONV_TIMEOUT <= 7200)) || { echo "SC_CONVERT_TIMEOUT must be 60 to 7200 seconds" >&2; exit 2; }
+LOAD_TIMEOUT="${SC_LOAD_TIMEOUT:-3600}"
+[[ "${LOAD_TIMEOUT}" =~ ^[0-9]+$ ]] && ((LOAD_TIMEOUT >= 1 && LOAD_TIMEOUT <= 7200)) || { echo "SC_LOAD_TIMEOUT must be 1 to 7200 seconds" >&2; exit 2; }
+OPS_MAIN="${SC_OPS_MAIN:-scholarchain.services.OpsLoadMain}"
+[[ "${OPS_MAIN}" =~ ^[A-Za-z0-9_.]+$ ]] || { echo "SC_OPS_MAIN is not a class name" >&2; exit 2; }
+EXTRA_CMD="${SC_CONVERT_EXTRA_CMD:-}" EXTRA_PREFIX="${SC_CONVERT_EXTRA_PREFIX:-}"
+if [[ -n "${EXTRA_CMD}" || -n "${EXTRA_PREFIX}" ]]; then
+  [[ -x "${EXTRA_CMD}" && -f "${EXTRA_CMD}" ]] || { echo "SC_CONVERT_EXTRA_CMD must be an executable file (set together with SC_CONVERT_EXTRA_PREFIX)" >&2; exit 2; }
+  [[ "${EXTRA_PREFIX}" =~ ^[a-z0-9][a-z0-9._-]*$ ]] || { echo "SC_CONVERT_EXTRA_PREFIX must be one path segment such as embedding-docs" >&2; exit 2; }
+fi
 STEP_TIMEOUT="${SC_STEP_TIMEOUT:-3600}"
 [[ "${STEP_TIMEOUT}" =~ ^[0-9]+$ ]] && ((STEP_TIMEOUT >= 60 && STEP_TIMEOUT <= 3600)) || { echo "SC_STEP_TIMEOUT must be 60 to 3600 seconds (the limit is one hour)" >&2; exit 2; }
 [[ -n "${RUN_ID}" ]] || RUN_ID="r$(sc_utc)-$$"
 sc_valid_token "${RUN_ID}"
+((${#RUN_ID} <= 128)) || { echo "--run-id is longer than 128 characters (the ops task accepts ^[A-Za-z0-9_.-]{1,128}$)" >&2; exit 2; }
 has_stage() { case ",${STAGES}," in *",$1,"*) return 0 ;; *) return 1 ;; esac; }
-if [[ "${FALLBACK}" == 1 && "${SMOKE}" != 1 ]] && { has_stage spark || has_stage load || has_stage enqueue; }; then
+# EMR_MODE: an EMR cluster is created (smoke, hadoop or spark). Without it only convert and/or load run (post-only, needs the Spark run id).
+[[ "${SMOKE}" != 1 ]] || STAGES="smoke" # a smoke run has no pipeline stages
+EMR_MODE=0
+if [[ "${SMOKE}" == 1 ]] || has_stage hadoop || has_stage spark; then EMR_MODE=1; fi
+if [[ "${SMOKE}" != 1 && "${EMR_MODE}" != 1 && "${RUN_ID_GIVEN}" != 1 ]]; then
+  echo "--stages without hadoop and spark (post-only run) needs --run-id <the Spark run id that is already in S3>" >&2
+  exit 2
+fi
+if [[ "${FALLBACK}" == 1 && "${SMOKE}" != 1 ]] && { has_stage spark || has_stage convert || has_stage load; }; then
   echo "--hadoop-fallback (emr-7.14.0, Spark 3.5.8) is for MapReduce only: use --stages hadoop (Spark jobs are built for Spark 4.1.1)" >&2
   exit 2
 fi
@@ -132,24 +177,33 @@ sc_load_outputs "${ROOT}" "${ENV_NAME}"
 sc_guard_account_region
 RAW="$(sc_out raw_bucket)" CURATED="$(sc_out curated_bucket)" ARTIFACTS="$(sc_out artifacts_bucket)" LOGS="$(sc_out logs_bucket)"
 for v in RAW CURATED ARTIFACTS LOGS; do [[ -n "${!v}" ]] || sc_die "Terraform output for ${v} bucket is empty"; done
-SERVICE_ROLE="$(basename "$(sc_out emr_service_role_arn)")"
-PROFILE_NAME="$(basename "$(sc_out emr_instance_profile_arn)")"
 SUBNET="$(sc_out_f public_subnet_ids '.[0]')"
 VPC="$(sc_out vpc_id)"
-[[ -n "${SERVICE_ROLE}" && -n "${PROFILE_NAME}" && "${SUBNET}" != null && -n "${SUBNET}" ]] || sc_die "EMR roles or subnet missing from the Terraform outputs"
-# The EMR security group is not a Terraform output (gap, reported): find it by name in the VPC (read-only).
-EMR_SG="$(sc_retry sc_aws ec2 describe-security-groups --filters "Name=vpc-id,Values=${VPC}" "Name=group-name,Values=*-emr" --query 'SecurityGroups[0].GroupId' --output text)" || sc_die "cannot look up the EMR security group"
-[[ "${EMR_SG}" =~ ^sg-[0-9a-f]+$ ]] || sc_die "EMR security group not found in the VPC"
-if has_stage load && [[ "${SMOKE}" != 1 ]]; then
+SERVICE_ROLE="" PROFILE_NAME="" EMR_SG=""
+if [[ "${EMR_MODE}" == 1 ]]; then
+  SERVICE_ROLE="$(basename "$(sc_out emr_service_role_arn)")"
+  PROFILE_NAME="$(basename "$(sc_out emr_instance_profile_arn)")"
+  [[ -n "${SERVICE_ROLE}" && -n "${PROFILE_NAME}" && "${SUBNET}" != null && -n "${SUBNET}" ]] || sc_die "EMR roles or subnet missing from the Terraform outputs"
+  # The EMR security group is not a Terraform output (gap, reported): find it by name in the VPC (read-only).
+  EMR_SG="$(sc_retry sc_aws ec2 describe-security-groups --filters "Name=vpc-id,Values=${VPC}" "Name=group-name,Values=*-emr" --query 'SecurityGroups[0].GroupId' --output text)" || sc_die "cannot look up the EMR security group"
+  [[ "${EMR_SG}" =~ ^sg-[0-9a-f]+$ ]] || sc_die "EMR security group not found in the VPC"
+fi
+OPS_FAMILY="" OPS_SG="" ECS_CLUSTER="" OPS_LOG_GROUP=""
+if has_stage load; then
   [[ -n "$(sc_out neptune_endpoint)" ]] || { sc_warn "the load stage needs Neptune: neptune_endpoint is empty (create_neptune = false). See: bash scripts/env-window.sh up"; exit 6; }
+  OPS_FAMILY="$(sc_out ops_task_definition_family)" OPS_SG="$(sc_out ops_security_group_id)" ECS_CLUSTER="$(sc_out ecs_cluster_name)" OPS_LOG_GROUP="$(sc_out ops_log_group_name)"
+  if [[ -z "${OPS_FAMILY}" || -z "${OPS_SG}" || -z "${ECS_CLUSTER}" || -z "${OPS_LOG_GROUP}" || "${SUBNET}" == null || -z "${SUBNET}" ]]; then
+    sc_warn "the load stage needs the ops task outputs (ops_task_definition_family, ops_security_group_id, ops_log_group_name): the Terraform change for the ops task is not applied from this checkout"
+    exit 6
+  fi
 fi
 
 # --- Cluster configuration (matches modules/pipeline: release label, 3-node cap, idle timeout). -----------------------------------
 if [[ "${FALLBACK}" == 1 ]]; then RELEASE="emr-7.14.0" APPS=(Name=Hadoop Name=Spark); else RELEASE="emr-spark-8.1.0" APPS=(Name=Spark); fi
 NODES=$((1 + CORE))
 ((NODES <= 3)) || sc_die "refusing: more than 3 EMR nodes"
-sc_info "EMR release=${RELEASE} nodes=${NODES} (1 primary + ${CORE} core; managed scaling max 2 core/task) type=${ITYPE} idle_timeout=${IDLE}s step_timeout=${STEP_TIMEOUT}s"
-case "${SCALE}" in
+[[ "${EMR_MODE}" != 1 ]] || sc_info "EMR release=${RELEASE} nodes=${NODES} (1 primary + ${CORE} core; managed scaling max 2 core/task) type=${ITYPE} idle_timeout=${IDLE}s step_timeout=${STEP_TIMEOUT}s"
+[[ "${EMR_MODE}" != 1 ]] || case "${SCALE}" in
   50k) sc_info "cost note (INFRA-CONTRACTS section 10): one 50K run is about \$2.47 of EMR; cluster about \$0.76 per hour" ;;
   10k) sc_info "cost note: a 10K run is about \$1.33 of EMR" ;;
   smoke) sc_info "cost note: a smoke run is about \$0.95 of EMR" ;;
@@ -161,7 +215,7 @@ JAR_PREFIX="s3://${ARTIFACTS}/jars/${SHORT}"
 OUT_ROOT="s3://${CURATED}/curated/runs/${SCALE}/${RUN_ID}"
 SPARK_OUT="s3://${CURATED}/graph/runs/${SCALE}/${RUN_ID}/spark"
 REPORT_DIR="${ROOT}/reports/pipeline/${SCALE}/${RUN_ID}"
-if [[ "${SC_DRY_RUN}" != 1 && -e "${REPORT_DIR}" ]]; then
+if [[ "${EMR_MODE}" == 1 && "${SC_DRY_RUN}" != 1 && -e "${REPORT_DIR}" ]]; then
   sc_warn "REFUSED: run id ${RUN_ID} already has records at reports/pipeline/${SCALE}/${RUN_ID}/ (and S3 inputs/results under it): records are never overwritten, use a new --run-id"
   exit 3
 fi
@@ -172,6 +226,8 @@ SNAPSHOT="dblp-${SCALE}"
 HJAR="scholarchain-hadoop-assembly.jar" SJAR="scholarchain-spark-assembly.jar"
 HJAR_LOCAL="" SJAR_LOCAL=""
 UPLOADS='[]'
+if [[ "${EMR_MODE}" != 1 ]]; then sc_info "post-only run (no EMR stage): jars and raw inputs are not needed"; fi
+if [[ "${EMR_MODE}" == 1 ]]; then
 sc_stage jars
 ART="${ROOT}/reports/release/${SHA}/artifacts.json"
 if [[ -f "${ART}" ]]; then
@@ -217,6 +273,7 @@ if [[ "${SMOKE}" != 1 ]] && has_stage hadoop; then
     fi
   fi
 fi
+fi
 
 # --- Step definitions. -------------------------------------------------------------------------------------------------------------
 STEPS='[]'
@@ -243,35 +300,216 @@ else
     add_step "spark-graph-analytics" spark-submit --deploy-mode client --class scholarchain.spark.Run "${JAR_PREFIX}/${SJAR}" \
       --output-root "${SPARK_OUT}" --checkpoint-dir "s3://${CURATED}/tmp/spark-checkpoints/${RUN_ID}" --code-version "${SHORT}" "${SPARK_SET[@]}"
   fi
-  if has_stage load; then
-    if [[ -z "${SC_LOADER_STEP_ARGS:-}" ]]; then
-      if [[ "${SC_DRY_RUN}" == 1 ]]; then sc_warn "load stage UNCONFIGURED (SC_LOADER_STEP_ARGS unset; merge item M13-2): dry run shows a placeholder"; LOADER_JSON='["UNCONFIGURED"]'; else sc_warn "load stage has no EMR entry point on lane2: set SC_LOADER_STEP_ARGS (JSON array) or drop the stage with --stages (merge item M13-2)"; exit 7; fi
-    else LOADER_JSON="${SC_LOADER_STEP_ARGS}"; fi
-    printf '%s' "${LOADER_JSON}" | jq -e 'type == "array" and all(type == "string")' > /dev/null || sc_die "SC_LOADER_STEP_ARGS is not a JSON array of strings"
-    STEPS="$(printf '%s' "${STEPS}" | jq -c --arg t "${STEP_TIMEOUT}" --argjson a "${LOADER_JSON}" '. + [{Type: "CUSTOM_JAR", Name: "storage-load", ActionOnFailure: "TERMINATE_CLUSTER", Jar: "command-runner.jar", Args: (["timeout", "--kill-after=60", $t] + $a)}]')"
-  fi
-  if has_stage enqueue; then
-    if [[ -z "${SC_ENQUEUE_STEP_ARGS:-}" ]]; then
-      if [[ "${SC_DRY_RUN}" == 1 ]]; then sc_warn "enqueue stage UNCONFIGURED (SC_ENQUEUE_STEP_ARGS unset; merge item M13-2): dry run shows a placeholder"; ENQ_JSON='["UNCONFIGURED"]'; else sc_warn "enqueue stage has no EMR entry point on lane2: set SC_ENQUEUE_STEP_ARGS (JSON array) or drop the stage (merge item M13-2)"; exit 7; fi
-    else ENQ_JSON="${SC_ENQUEUE_STEP_ARGS}"; fi
-    printf '%s' "${ENQ_JSON}" | jq -e 'type == "array" and all(type == "string")' > /dev/null || sc_die "SC_ENQUEUE_STEP_ARGS is not a JSON array of strings"
-    STEPS="$(printf '%s' "${STEPS}" | jq -c --arg t "${STEP_TIMEOUT}" --argjson a "${ENQ_JSON}" '. + [{Type: "CUSTOM_JAR", Name: "embedding-enqueue", ActionOnFailure: "TERMINATE_CLUSTER", Jar: "command-runner.jar", Args: (["timeout", "--kill-after=60", $t] + $a)}]')"
-  fi
 fi
 N_STEPS="$(printf '%s' "${STEPS}" | jq 'length')"
-((N_STEPS > 0)) || sc_die "no steps selected"
-printf '%s' "${STEPS}" | jq -e 'all(.ActionOnFailure == "TERMINATE_CLUSTER")' > /dev/null || sc_die "internal error: a step lacks TERMINATE_CLUSTER"
+if [[ "${EMR_MODE}" == 1 ]]; then
+  ((N_STEPS > 0)) || sc_die "no steps selected"
+  printf '%s' "${STEPS}" | jq -e 'all(.ActionOnFailure == "TERMINATE_CLUSTER")' > /dev/null || sc_die "internal error: a step lacks TERMINATE_CLUSTER"
+fi
+# --- Post-Spark stages: convert (operator machine) and load (one ECS ops task). Never retried: run-task and the uploads are mutating. ----
+NEPTUNE_LOAD_URI="s3://${CURATED}/graph/neptune-load/${SCALE}/${RUN_ID}"
+ITEMS_URI="s3://${CURATED}/curated/loads/${SCALE}/${RUN_ID}"
+POST_STEPS='[]'
+POST_UPLOADS='[]'
+
+post_fail() { # post_fail <stage> <exit code> <message>: record and exit (an integrated run's run.json is finalised as failed)
+  sc_warn "$3"
+  if [[ "${EMR_MODE}" == 1 && "${SC_DRY_RUN}" != 1 ]]; then write_run failed "$1" "${FINAL_STEPS}"; fi
+  exit "$2"
+}
+steps_json_append() { # steps_json_append <json object>: adds a summary of a post stage to steps.json (the EMR step definitions stay as they are)
+  local f="${REPORT_DIR}/steps.json" cur='[]'
+  POST_STEPS="$(printf '%s' "${POST_STEPS}" | jq -c --argjson s "$1" '. + [$s]')"
+  [[ ! -f "${f}" ]] || cur="$(cat "${f}")"
+  sc_json_write "${f}" "$(printf '%s' "${cur}" | jq -c --argjson s "$1" '. + [$s]')"
+}
+s3_prefix_empty() { # s3_prefix_empty <prefix>: success when nothing exists under the prefix in the curated bucket (read-only call)
+  local n
+  n="$(sc_retry sc_aws s3api list-objects-v2 --bucket "${CURATED}" --prefix "$1" --max-items 1 --query 'length(Contents || `[]`)' --output text)" || sc_die "cannot list s3://${CURATED}/$1"
+  [[ "${n}" == 0 ]]
+}
+upload_load_file() { # upload_load_file <local file> <relative name> <target uri prefix>: one object, SHA-256 recorded (never overwrites: the prefix was empty)
+  local f="$1" rel="$2" uri="$3/$2" h
+  h="$(sc_sha256 "${f}")"
+  sc_mut sc_aws s3 cp "${f}" "${uri}" --only-show-errors --no-progress || post_fail convert 1 "upload failed: ${uri}"
+  POST_UPLOADS="$(printf '%s' "${POST_UPLOADS}" | jq -c --arg f "${rel}" --arg u "${uri}" --arg h "${h}" --argjson b "$(wc -c < "${f}" | tr -d ' ')" '. + [{file: $f, uri: $u, sha256: $h, bytes: $b}]')"
+}
+
+stage_convert() {
+  sc_stage convert
+  local rec="${REPORT_DIR}/convert.json" started tmpd rr od rc=0 f rel n_v n_e n_i line want have path extra_json
+  started="$(sc_utc_iso)"
+  if [[ "${SC_DRY_RUN}" != 1 && -e "${rec}" ]]; then post_fail convert 3 "REFUSED: ${rec} exists: records are never overwritten"; fi
+  # sbt must not run while lane 2 runs `sbt check` (two sbt processes on the same target directories corrupt each other).
+  if pgrep -f 'sbt.*[[:space:]]check([[:space:];]|$)' > /dev/null 2>&1; then
+    if [[ "${SC_DRY_RUN}" == 1 ]]; then
+      sc_warn "another 'sbt check' is running: a real run would be refused (exit 6) because two sbt processes must not share the target directories"
+    else
+      post_fail convert 6 "REFUSED: another 'sbt check' is running (lane 2 owns sbt while it runs; a second sbt on the same target directories corrupts both). Wait until it ends, then run: bash scripts/run-bounded-pipeline.sh --scale ${SCALE} --run-id ${RUN_ID} --stages convert,load"
+    fi
+  fi
+  # Never overwrite: both target prefixes must be empty (read-only listing).
+  s3_prefix_empty "graph/neptune-load/${SCALE}/${RUN_ID}/" || post_fail convert 3 "REFUSED: ${NEPTUNE_LOAD_URI}/ is not empty: load files are never overwritten, use a new --run-id"
+  s3_prefix_empty "curated/loads/${SCALE}/${RUN_ID}/" || post_fail convert 3 "REFUSED: ${ITEMS_URI}/ is not empty: load files are never overwritten, use a new --run-id"
+  if [[ "${SC_DRY_RUN}" == 1 ]]; then
+    printf 'SC-DRYRUN aws s3 sync %s/ <tmp>/run-root/\n' "${SPARK_OUT}"
+    printf 'SC-DRYRUN (cd repo && sbt "storage/Test/runMain scholarchain.storage.LocalLoad --run-root <tmp>/run-root --out-dir <tmp>/load-out --code-version %s")\n' "${SHORT}"
+    [[ -z "${EXTRA_CMD}" ]] || printf 'SC-DRYRUN %s <tmp>/run-root <tmp>/load-out  (extra hook; output under <out-dir>/%s/)\n' "${EXTRA_CMD}" "${EXTRA_PREFIX}"
+    printf 'SC-DRYRUN aws s3 cp <out-dir>/neptune/{vertices,edges}/*.csv %s/{vertices,edges}/ (only these files under this prefix)\n' "${NEPTUNE_LOAD_URI}"
+    printf 'SC-DRYRUN aws s3 cp <out-dir>/dynamodb/items/*.jsonl, load-manifest.json, checksums.sha256 (and embedding-inputs/ if present) %s/\n' "${ITEMS_URI}"
+    [[ -z "${EXTRA_PREFIX}" ]] || printf 'SC-DRYRUN aws s3 cp <out-dir>/%s/* %s/%s/\n' "${EXTRA_PREFIX}" "${ITEMS_URI}" "${EXTRA_PREFIX}"
+    printf 'SC-DRYRUN record %s: source run id %s, SHA-256 of every uploaded file, copy of load-manifest.json and checksums.sha256\n' "reports/pipeline/${SCALE}/${RUN_ID}/convert.json" "${RUN_ID}"
+    return 0
+  fi
+  [[ -n "$(sc_retry sc_aws s3api list-objects-v2 --bucket "${CURATED}" --prefix "graph/runs/${SCALE}/${RUN_ID}/spark/" --max-items 1 --query 'length(Contents || `[]`)' --output text | grep -v '^0$' || true)" ]] \
+    || post_fail convert 4 "the Spark output ${SPARK_OUT}/ does not exist in S3 (was the spark stage run for this run id?)"
+  tmpd="$(mktemp -d)"
+  [[ "${tmpd}" != *[[:space:]]* ]] || post_fail convert 1 "the temporary directory path contains whitespace"
+  rr="${tmpd}/run-root" od="${tmpd}/load-out"
+  mkdir -p "${rr}"
+  sc_info "downloading ${SPARK_OUT}/ to ${rr} (read only)"
+  sc_aws s3 sync "${SPARK_OUT}/" "${rr}/" --only-show-errors --no-progress || post_fail convert 1 "s3 sync of the Spark output failed (temporary files kept in ${tmpd})"
+  [[ -f "${rr}/load-manifests/neptune.json" && -f "${rr}/load-manifests/dynamodb.json" ]] || post_fail convert 4 "the Spark output lacks load-manifests/neptune.json or dynamodb.json (temporary files kept in ${tmpd})"
+  sc_info "running LocalLoad on the operator machine (sbt Test classpath; the service images exclude Spark)"
+  (cd "${ROOT}" && sc_timeout "${CONV_TIMEOUT}" sbt "storage/Test/runMain scholarchain.storage.LocalLoad --run-root ${rr} --out-dir ${od} --code-version ${SHORT}") || rc=$?
+  ((rc == 0)) || post_fail convert "$([[ "${rc}" == 124 ]] && echo 5 || echo 1)" "LocalLoad failed or timed out (exit ${rc}); nothing was uploaded (temporary files kept in ${tmpd})"
+  n_v="$(find "${od}/neptune/vertices" -name '*.csv' -type f 2> /dev/null | wc -l | tr -d ' ')"
+  n_e="$(find "${od}/neptune/edges" -name '*.csv' -type f 2> /dev/null | wc -l | tr -d ' ')"
+  n_i="$(find "${od}/dynamodb/items" -name '*.jsonl' -type f 2> /dev/null | wc -l | tr -d ' ')"
+  { [[ "${n_v}" -ge 1 && "${n_e}" -ge 1 && "${n_i}" -ge 1 && -f "${od}/load-manifest.json" && -f "${od}/checksums.sha256" ]]; } \
+    || post_fail convert 4 "LocalLoad output incomplete (vertex files ${n_v}, edge files ${n_e}, item files ${n_i}, load-manifest.json, checksums.sha256): nothing was uploaded (kept in ${tmpd})"
+  # Verify LocalLoad's own checksums before anything leaves this machine: lines are "<sha256>  <path relative to the out dir>".
+  while IFS= read -r line || [[ -n "${line}" ]]; do
+    [[ -n "${line}" ]] || continue
+    [[ "${line}" =~ ^([0-9a-f]{64})[[:space:]]+\*?(.+)$ ]] || post_fail convert 1 "unrecognised line in checksums.sha256 (kept in ${tmpd})"
+    want="${BASH_REMATCH[1]}" path="${BASH_REMATCH[2]}"
+    [[ "${path}" != /* && "${path}" != *..* && -f "${od}/${path}" ]] || post_fail convert 1 "checksums.sha256 names a file that is not in the output: ${path}"
+    have="$(sc_sha256 "${od}/${path}")"
+    [[ "${have}" == "${want}" ]] || post_fail convert 1 "checksum mismatch for ${path}: nothing was uploaded (kept in ${tmpd})"
+  done < "${od}/checksums.sha256"
+  if [[ -n "${EXTRA_CMD}" ]]; then
+    sc_info "running the extra local hook ${EXTRA_CMD}"
+    "${EXTRA_CMD}" "${rr}" "${od}" || post_fail convert 1 "the extra local hook failed: nothing was uploaded (kept in ${tmpd})"
+    [[ -d "${od}/${EXTRA_PREFIX}" ]] || post_fail convert 4 "the extra hook produced no ${od}/${EXTRA_PREFIX}/ directory"
+  fi
+  # LiveLoad's layout: the Neptune prefix holds ONLY vertices/<Label>.csv and edges/<TYPE>.csv ("neptune/" stripped; LiveLoad refuses extra
+  # objects there). The items prefix keeps LocalLoad's relative paths (dynamodb/items/<table>.jsonl, embedding-inputs/<table>.jsonl,
+  # load-manifest.json, checksums.sha256 unmodified).
+  while IFS= read -r f; do rel="${f#"${od}"/neptune/}"; upload_load_file "${f}" "${rel}" "${NEPTUNE_LOAD_URI}"; done < <(find "${od}/neptune/vertices" "${od}/neptune/edges" -name '*.csv' -type f | LC_ALL=C sort)
+  while IFS= read -r f; do rel="${f#"${od}"/}"; upload_load_file "${f}" "${rel}" "${ITEMS_URI}"; done < <({ find "${od}/dynamodb/items" -name '*.jsonl' -type f; printf '%s\n%s\n' "${od}/load-manifest.json" "${od}/checksums.sha256"; \
+    [[ ! -d "${od}/embedding-inputs" ]] || find "${od}/embedding-inputs" -type f; [[ -z "${EXTRA_PREFIX}" ]] || find "${od}/${EXTRA_PREFIX}" -type f; } | LC_ALL=C sort)
+  mkdir -p "${REPORT_DIR}"
+  cp -n "${od}/load-manifest.json" "${REPORT_DIR}/load-manifest.json" && cp -n "${od}/checksums.sha256" "${REPORT_DIR}/checksums.sha256" \
+    || post_fail convert 3 "REFUSED: load-manifest.json or checksums.sha256 already exists in ${REPORT_DIR}"
+  extra_json="$(jq -n --arg c "${EXTRA_CMD}" --arg p "${EXTRA_PREFIX}" 'if $p == "" then null else {command: $c, prefix: $p} end')"
+  sc_json_write "${rec}" "$(jq -n --arg scale "${SCALE}" --arg run "${RUN_ID}" --arg src "${SPARK_OUT}/" --arg cv "${SHORT}" --arg sha "${SHA}" --arg started "${started}" --arg ended "$(sc_utc_iso)" \
+    --arg nu "${NEPTUNE_LOAD_URI}/" --arg iu "${ITEMS_URI}/" --arg lm "$(sc_sha256 "${od}/load-manifest.json")" --arg ck "$(sc_sha256 "${od}/checksums.sha256")" \
+    --arg spark "$(jq -r '.input.sparkRunId // empty' "${od}/load-manifest.json")" --argjson up "${POST_UPLOADS}" --argjson extra "${extra_json}" \
+    '{scale: $scale, run_id: $run, status: "succeeded", runs_on: "operator machine (sbt Test classpath: the service images exclude Spark by design)", tool: "sbt storage/Test/runMain scholarchain.storage.LocalLoad",
+      source_s3_run: {run_id: $run, uri: $src, spark_run_id_in_load_manifest: (if $spark == "" then null else $spark end)}, code_version: $cv, commit: $sha,
+      targets: {neptune_load_prefix: $nu, items_prefix: $iu}, load_manifest_sha256: $lm, checksums_file_sha256: $ck, local_copies: ["load-manifest.json", "checksums.sha256"],
+      extra_hook: $extra, uploads: $up, started_at: $started, ended_at: $ended}')"
+  steps_json_append "$(jq -n --arg n "convert-local-load" --arg r "reports/pipeline/${SCALE}/${RUN_ID}/convert.json" --argjson c "$(printf '%s' "${POST_UPLOADS}" | jq 'length')" \
+    '{Type: "LOCAL_CONVERT", Name: $n, status: "succeeded", uploaded_files: $c, record: $r}')"
+  sc_ok "convert done: $(printf '%s' "${POST_UPLOADS}" | jq 'length') files uploaded; record reports/pipeline/${SCALE}/${RUN_ID}/convert.json"
+  rm -rf -- "${tmpd:?}"
+}
+
+ops_overrides_json() { # the run-time arguments of the ops task (one place to adjust; entrypoint.sh forwards no arguments, so they are environment variables)
+  local dry=false
+  [[ "${OPS_TASK_DRY}" != 1 ]] || dry=true
+  jq -n --arg main "${OPS_MAIN}" --arg ns "${NEPTUNE_LOAD_URI}/" --arg is "${ITEMS_URI}/" --arg run "${RUN_ID}" --arg cv "${SHORT}" --arg mv "${MAX_VECTORS}" --arg nt "${NEPTUNE_TIMEOUT}" \
+    --arg dry "${dry}" --arg jo "${SC_OPS_JAVA_OPTS:-}" \
+    '{containerOverrides: [{name: "ops", environment: ([
+      {name: "SERVICE_MAIN", value: $main}, {name: "SCHOLARCHAIN_OPS_NEPTUNE_SOURCE", value: $ns}, {name: "SCHOLARCHAIN_OPS_ITEMS_SOURCE", value: $is},
+      {name: "SCHOLARCHAIN_OPS_RUN_ID", value: $run}, {name: "SCHOLARCHAIN_OPS_CODE_VERSION", value: $cv}, {name: "SCHOLARCHAIN_OPS_MAX_VECTORS", value: $mv},
+      {name: "SCHOLARCHAIN_OPS_NEPTUNE_TIMEOUT_SECONDS", value: $nt}, {name: "SCHOLARCHAIN_OPS_DRY_RUN", value: $dry}]
+      + (if $jo == "" then [] else [{name: "JAVA_OPTS", value: $jo}] end))}]}'
+}
+
+stage_load() {
+  sc_stage load
+  local rec="${REPORT_DIR}/load.json" started td img tarn task_id st stopped="" code="" reason="" scode="" log_stream start_s=$SECONDS desc ov netcfg status=failed rc=0
+  started="$(sc_utc_iso)"
+  if [[ "${SC_DRY_RUN}" != 1 && -e "${rec}" ]]; then post_fail load 3 "REFUSED: ${rec} exists: records are never overwritten (one ops task per run id)"; fi
+  # The task definition must carry this commit's image: the tag is the 12-hex commit (scripts/lib/images.sh sc_release_tag).
+  td="$(sc_retry sc_aws ecs describe-task-definition --task-definition "${OPS_FAMILY}" --query 'taskDefinition.taskDefinitionArn' --output text)" || post_fail load 6 "cannot read the ops task definition ${OPS_FAMILY}: apply the Terraform change that adds it"
+  img="$(sc_retry sc_aws ecs describe-task-definition --task-definition "${td}" --query 'taskDefinition.containerDefinitions[0].image' --output text)" || post_fail load 6 "cannot read the image of ${td}"
+  if [[ "${img##*:}" != "${SHORT}" ]]; then
+    if [[ "${SC_DRY_RUN}" == 1 ]]; then sc_warn "the ops task definition image tag (${img##*:}) is not this commit (${SHORT}): a real run would be refused (exit 6)"
+    else post_fail load 6 "REFUSED: the ops task definition ${td##*/} runs image tag ${img##*:}, not this commit ${SHORT}. Set Terraform image_tag to ${SHORT} and have the human apply it (the ops task uses the embedding-worker image and image_tag)"; fi
+  fi
+  ov="$(ops_overrides_json)"
+  netcfg="awsvpcConfiguration={subnets=[${SUBNET}],securityGroups=[${OPS_SG}],assignPublicIp=ENABLED}"
+  if [[ "${SC_DRY_RUN}" == 1 ]]; then
+    printf 'SC-DRYRUN aws ecs run-task --cluster %s --task-definition %s --launch-type FARGATE --count 1 --network-configuration %s --started-by sc-%s --overrides <below>\n' "${ECS_CLUSTER}" "${td}" "${netcfg}" "${RUN_ID:0:30}"
+    printf '%s\n' "${ov}" | jq -S .
+    printf 'SC-DRYRUN wait for STOPPED (at most %ss), record exit code, stop reason and log stream %s/ops/ops/<task-id> in steps.json and load.json; non-zero exit fails the run\n' "${LOAD_TIMEOUT}" "${OPS_LOG_GROUP}"
+    return 0
+  fi
+  mkdir -p "${REPORT_DIR}"
+  sc_json_write "${REPORT_DIR}/ops-overrides.json" "${ov}"
+  # ONE call, never retried (a second run-task would start a second load).
+  tarn="$(sc_aws ecs run-task --cluster "${ECS_CLUSTER}" --task-definition "${td}" --launch-type FARGATE --count 1 --network-configuration "${netcfg}" \
+    --started-by "sc-${RUN_ID:0:30}" --overrides "file://${REPORT_DIR}/ops-overrides.json" --query 'tasks[0].taskArn' --output text)" || post_fail load 1 "ecs run-task failed (not retried)"
+  [[ "${tarn}" =~ ^arn:aws:ecs:[a-z0-9-]+:[0-9]{12}:task/.+ ]] || post_fail load 1 "run-task started no task (the response had no task ARN; check capacity and the subnet)"
+  task_id="${tarn##*/}"
+  sc_ok "ops task ${task_id} started (cluster ${ECS_CLUSTER}); waiting for STOPPED (limit ${LOAD_TIMEOUT}s)"
+  while :; do
+    desc="$(sc_retry sc_aws ecs describe-tasks --cluster "${ECS_CLUSTER}" --tasks "${tarn}" \
+      --query 'tasks[0].{status:lastStatus,stoppedReason:stoppedReason,stopCode:stopCode,exitCode:containers[0].exitCode,reason:containers[0].reason}' --output json)" || post_fail load 1 "cannot describe the ops task ${task_id}"
+    st="$(printf '%s' "${desc}" | jq -r '.status // "UNKNOWN"')"
+    [[ "${st}" != STOPPED ]] || break
+    if ((SECONDS - start_s >= LOAD_TIMEOUT)); then
+      sc_aws ecs stop-task --cluster "${ECS_CLUSTER}" --task "${tarn}" --reason "sc pipeline wait limit ${LOAD_TIMEOUT}s" > /dev/null 2>&1 || sc_warn "stop-task failed: stop the task by hand: ${tarn}"
+      steps_json_append "$(jq -n --arg t "${tarn}" '{Type: "ECS_RUN_TASK", Name: "ops-load", status: "timeout", task_arn: $t}')"
+      post_fail load 5 "the ops task ${task_id} did not stop within ${LOAD_TIMEOUT}s: a stop was requested; check ${OPS_LOG_GROUP} and the Neptune loader status"
+    fi
+    sleep "${SC_POLL_SECONDS:-15}"
+  done
+  code="$(printf '%s' "${desc}" | jq -r '.exitCode // empty')" stopped="$(printf '%s' "${desc}" | jq -r '.stoppedReason // empty')"
+  scode="$(printf '%s' "${desc}" | jq -r '.stopCode // empty')" reason="$(printf '%s' "${desc}" | jq -r '.reason // empty')"
+  log_stream="ops/ops/${task_id}"
+  [[ "${code}" == 0 ]] && status=succeeded
+  sc_json_write "${rec}" "$(jq -n --arg scale "${SCALE}" --arg run "${RUN_ID}" --arg status "${status}" --arg td "${td}" --arg img "${img}" --arg t "${tarn}" --arg code "${code}" --arg sr "${stopped}" --arg sc "${scode}" --arg cr "${reason}" \
+    --arg lg "${OPS_LOG_GROUP}" --arg ls "${log_stream}" --arg ns "${NEPTUNE_LOAD_URI}/" --arg is "${ITEMS_URI}/" --arg mv "${MAX_VECTORS}" --arg cv "${SHORT}" --arg started "${started}" --arg ended "$(sc_utc_iso)" --arg region "$(sc_out region)" \
+    '{scale: $scale, run_id: $run, status: $status, task_definition: $td, image: $img, task_arn: $t, exit_code: (if $code == "" then null else ($code | tonumber) end), stopped_reason: $sr, stop_code: $sc, container_reason: $cr,
+      log: {region: $region, group: $lg, stream: $ls}, sources: {neptune: $ns, items: $is}, max_vectors: ($mv | tonumber), code_version: $cv,
+      manifest_expected_at: ($is + "ops-manifest.json"), started_at: $started, ended_at: $ended}')"
+  steps_json_append "$(jq -n --arg st "${status}" --arg t "${tarn}" --arg code "${code}" --arg sr "${stopped}" --arg lg "${OPS_LOG_GROUP}" --arg ls "${log_stream}" \
+    '{Type: "ECS_RUN_TASK", Name: "ops-load", status: $st, task_arn: $t, exit_code: (if $code == "" then null else ($code | tonumber) end), stopped_reason: $sr, log_group: $lg, log_stream: $ls}')"
+  if [[ "${status}" != succeeded ]]; then
+    # The ops entry point: 3 = its own cap or invariant refusal (mapped to this script's refusal code); anything else, or no exit code, is a failure.
+    rc=1
+    [[ "${code}" != 3 ]] || rc=3
+    post_fail load "${rc}" "the ops task exited with code ${code:-none} (stopped reason: ${stopped:-none}); log ${OPS_LOG_GROUP} stream ${log_stream}; record reports/pipeline/${SCALE}/${RUN_ID}/load.json"
+  fi
+  sc_ok "ops task succeeded (exit 0); log ${OPS_LOG_GROUP} stream ${log_stream}"
+}
+
+run_post_stages() {
+  if has_stage convert; then stage_convert; fi
+  if has_stage load; then stage_load; fi
+  return 0
+}
 
 TAGS=("for-use-with-amazon-emr-managed-policies=true" "project=scholarchain" "environment=${ENV_NAME}" "run-id=${RUN_ID}")
 for t in ${SC_EXTRA_TAGS:-}; do TAGS+=("${t}"); done
 
 sc_stage cluster-plan
+if [[ "${EMR_MODE}" != 1 ]]; then
+  printf 'SC-PLAN scale=%s run_id=%s post-only stages=%s (no EMR cluster)\n' "${SCALE}" "${RUN_ID}" "${STAGES}"
+  run_post_stages
+  if [[ "${SC_DRY_RUN}" == 1 ]]; then sc_ok "dry run complete: nothing was uploaded and no task was started"; else sc_ok "post-only run ${SCALE}/${RUN_ID} succeeded: reports/pipeline/${SCALE}/${RUN_ID}/"; fi
+  exit 0
+fi
 printf 'SC-PLAN scale=%s run_id=%s release=%s steps=%s nodes=%s\n' "${SCALE}" "${RUN_ID}" "${RELEASE}" "${N_STEPS}" "${NODES}"
 printf '%s' "${STEPS}" | jq -r '.[] | "SC-PLAN step \(.Name) ActionOnFailure=\(.ActionOnFailure) timeout=\(.Args[2])s"'
 if [[ "${SC_DRY_RUN}" == 1 ]]; then
   printf '%s\n' "${STEPS}" | jq -S .
   printf 'SC-DRYRUN aws emr create-cluster --release-label %s --applications %s --instance-groups MASTER x1 + CORE x%s (%s, ON_DEMAND) --managed-scaling-policy max 2 --auto-termination-policy IdleTimeout=%s --no-auto-terminate --steps file://<steps.json>\n' "${RELEASE}" "${APPS[*]}" "${CORE}" "${ITYPE}" "${IDLE}"
-  sc_ok "dry run complete: no cluster was created, nothing was uploaded"
+  run_post_stages
+  sc_ok "dry run complete: no cluster was created, nothing was uploaded, no task was started"
   exit 0
 fi
 
@@ -284,11 +522,11 @@ write_run() { # write_run <status> [failed-step-name] [steps-json]
   out="$(jq -n --arg scale "${SCALE}" --arg run "${RUN_ID}" --arg status "$1" --arg failed "${2:-}" --arg cid "${CID}" --arg sha "${SHA}" --arg started "${started}" \
     --arg ended "$(sc_utc_iso)" --arg rel "${RELEASE}" --arg itype "${ITYPE}" --argjson core "${CORE}" --argjson idle "${IDLE}" --argjson st "${STEP_TIMEOUT}" \
     --arg region "$(sc_out region)" --arg root "${OUT_ROOT}" --arg spark "${SPARK_OUT}" --arg raw "${RAW_PREFIX}" --arg jars "${JAR_PREFIX}" --arg stages "${STAGES}" --arg hmode "${HMODE}" \
-    --argjson uploads "${UPLOADS}" --argjson stepdef "${STEPS}" --argjson timings "${3:-[]}" \
+    --argjson uploads "${UPLOADS}" --argjson stepdef "${STEPS}" --argjson timings "${3:-[]}" --argjson post "${POST_STEPS}" \
     '{scale: $scale, run_id: $run, status: $status, failed_step: (if $failed == "" then null else $failed end), cluster_id: $cid, commit: $sha, started_at: $started, updated_at: $ended, region: $region,
       configuration: {release_label: $rel, instance_type: $itype, primary_nodes: 1, core_nodes: $core, managed_scaling_max_core_task: 2, idle_timeout_seconds: $idle,
                       step_timeout_seconds: $st, action_on_failure: "TERMINATE_CLUSTER", market: "ON_DEMAND", stages: $stages, hadoop_mode: $hmode},
-      outputs: {hadoop_root: $root, spark_root: $spark, raw_inputs: $raw, jars: $jars}, uploads: $uploads, steps: $stepdef, step_timings: $timings}')"
+      outputs: {hadoop_root: $root, spark_root: $spark, raw_inputs: $raw, jars: $jars}, uploads: $uploads, steps: $stepdef, step_timings: $timings, post_steps: $post}')"
   sc_json_write "${REPORT_DIR}/run.json" "${out}"
 }
 write_run starting
@@ -355,6 +593,7 @@ FAILED_STEP="$(printf '%s' "${FINAL_STEPS}" | jq -r '[.[] | select(.state == "FA
 OK="$(printf '%s' "${FINAL_STEPS}" | jq --argjson n "${N_STEPS}" '[.[] | select(.state == "COMPLETED")] | length == $n')"
 sc_stage record
 if [[ "${OK}" == true && -z "${FAILED_STEP}" ]]; then
+  run_post_stages
   write_run succeeded "" "${FINAL_STEPS}"
   sc_ok "pipeline ${SCALE}/${RUN_ID} succeeded: reports/pipeline/${SCALE}/${RUN_ID}/run.json"
   exit 0

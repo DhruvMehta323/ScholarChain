@@ -44,3 +44,29 @@ crash.log
 crash.*.log
 *.tfvars
 !*.tfvars.example
+
+# Script output under reports/ (Phase 13 scripts). Raw, bulky or machine-local output is ignored; small summary JSON stays committable.
+# Machine-local or archival: never committed.
+reports/release-local/
+reports/evidence/
+reports/cleanup/
+reports/env-window/
+# Release metadata: only artifacts.json is committable.
+reports/release/**
+!reports/release/
+!reports/release/*/
+!reports/release/*/artifacts.json
+# Pipeline and experiment runs: only run.json (and pipeline steps.json) are committable; logs, configs and dumps are ignored.
+reports/pipeline/**
+!reports/pipeline/
+!reports/pipeline/**/
+!reports/pipeline/*/*/run.json
+!reports/pipeline/*/*/steps.json
+!reports/pipeline/*/*/convert.json
+!reports/pipeline/*/*/load.json
+reports/experiments/**
+!reports/experiments/
+!reports/experiments/**/
+!reports/experiments/*/*/run.json
+# Deployment records (reports/deployments/**/*.json, smoke-test.json) and reports/smoke/*.json stay committable; raw logs are caught by *.log above.
+reports/**/*.log

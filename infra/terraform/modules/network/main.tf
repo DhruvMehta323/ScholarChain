@@ -299,6 +299,46 @@ resource "aws_vpc_security_group_egress_rule" "emr_to_neptune" {
   ip_protocol                  = "tcp"
 }
 
+# --- ops (one-off run-task for the Neptune bulk load and the embedding enqueue; no inbound at all) ---
+resource "aws_security_group" "ops" {
+  name        = "${var.name}-ops"
+  description = "Ops one-off task (bulk load, enqueue): no inbound"
+  vpc_id      = aws_vpc.this.id
+  tags        = { Name = "${var.name}-ops" }
+}
+
+# Justified exception AWS-0104: same NAT-free reasoning as embedding_worker_https. The ops task reaches ECR, S3, DynamoDB, SQS and CloudWatch Logs
+# over the internet gateway; the destinations are not enumerable, so egress is port-scoped to 443. No inbound is open.
+#trivy:ignore:AWS-0104
+resource "aws_vpc_security_group_egress_rule" "ops_https" {
+  security_group_id = aws_security_group.ops.id
+  description       = "ECR, S3, DynamoDB, SQS, CloudWatch Logs (HTTPS)"
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 443
+  to_port           = 443
+  ip_protocol       = "tcp"
+}
+
+resource "aws_vpc_security_group_egress_rule" "ops_to_neptune" {
+  count                        = var.neptune_enabled ? 1 : 0
+  security_group_id            = aws_security_group.ops.id
+  description                  = "Neptune loader and status calls"
+  referenced_security_group_id = aws_security_group.neptune.id
+  from_port                    = var.neptune_port
+  to_port                      = var.neptune_port
+  ip_protocol                  = "tcp"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "neptune_from_ops" {
+  count                        = var.neptune_enabled ? 1 : 0
+  security_group_id            = aws_security_group.neptune.id
+  description                  = "ops one-off load task"
+  referenced_security_group_id = aws_security_group.ops.id
+  from_port                    = var.neptune_port
+  to_port                      = var.neptune_port
+  ip_protocol                  = "tcp"
+}
+
 # --- Neptune: only the three runtime roles that talk to it ---
 resource "aws_vpc_security_group_ingress_rule" "neptune_from_query_api" {
   security_group_id            = aws_security_group.neptune.id

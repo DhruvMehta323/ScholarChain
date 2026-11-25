@@ -132,14 +132,26 @@ variable "embedding_model_id" {
   default     = "amazon.titan-embed-text-v2:0"
 }
 
-variable "generation_model_id" {
-  description = "SCHOLARCHAIN_MODELS_GENERATION_MODEL_ID. PLACEHOLDER default: set the model ID you actually use (Bedrock or Anthropic API)."
+variable "generation_inference_profile_id" {
+  description = "Bedrock inference profile ID used as SCHOLARCHAIN_RAG_MODEL_BEDROCK_MODEL_ID (query-api only). Claude Haiku 4.5 through the US cross-region profile (human decision, Phase 11 MERGE-1)."
+  type        = string
+  default     = "us.anthropic.claude-haiku-4-5-20251001-v1:0"
+}
+
+variable "generation_foundation_model_id" {
+  description = "Foundation model the inference profile routes to; one foundation-model ARN is granted per Region in generation_profile_regions."
   type        = string
   default     = "anthropic.claude-haiku-4-5-20251001-v1:0"
 }
 
+variable "generation_profile_regions" {
+  description = "Regions the US cross-region profile routes to (us-east-1, us-east-2, us-west-2): confirmed by the human with aws bedrock get-inference-profile, 2026-11-24. A missing Region causes AccessDenied on some invocations; an extra Region only widens an invoke grant on the same single model."
+  type        = list(string)
+  default     = ["us-east-1", "us-east-2", "us-west-2"]
+}
+
 variable "embedding_provider" {
-  description = "bedrock (default): embedding-worker and retrieval may invoke exactly the model embedding_model_id. voyage: no Bedrock embedding grant (key injected as SCHOLARCHAIN_VOYAGE_API_KEY)."
+  description = "bedrock (default): embedding-worker and retrieval may invoke exactly the model embedding_model_id. voyage: no Bedrock embedding grant. Since MERGE-2 no task definition injects a Voyage or Anthropic key, so voyage only removes the Bedrock grant; the application then has no embedder unless a key is supplied by other means."
   type        = string
   default     = "bedrock"
   validation {
@@ -149,7 +161,7 @@ variable "embedding_provider" {
 }
 
 variable "bedrock_model_arns" {
-  description = "Bedrock GENERATION model or inference-profile ARNs, granted to query-api only. Never used for embeddings. Empty (default): query-api has no Bedrock permission."
+  description = "EXTRA Bedrock generation model or inference-profile ARNs, added to the Haiku 4.5 profile and foundation-model ARNs built from the generation_* variables (query-api only). Titan is not listed here: retrieval and embedding-worker get it from embedding_model_id. Default empty."
   type        = list(string)
   default     = []
 }

@@ -26,3 +26,11 @@ output "target_group_arn_suffix" {
 output "retrieval_internal_url" {
   value = "http://retrieval.${var.service_discovery_namespace}:${var.service_port}"
 }
+
+output "ops_task_definition_family" {
+  value = aws_ecs_task_definition.ops.family
+}
+
+output "ops_task_definition_arn" {
+  value = aws_ecs_task_definition.ops.arn
+}

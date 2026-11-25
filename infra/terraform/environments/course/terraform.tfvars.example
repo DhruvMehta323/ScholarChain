@@ -17,7 +17,14 @@ alb_ingress_cidrs = ["203.0.113.10/32"]
 
 # Optional
 # deployment_principal_arns = ["arn:aws:iam::123456789012:user/your-user"]
-# bedrock_model_arns        = ["arn:aws:bedrock:us-east-2::foundation-model/amazon.titan-embed-text-v2:0"]
+# Generation model (Haiku 4.5 US profile) and its IAM ARNs are built from generation_* variables (defaults set; see INFRA-CONTRACTS.md
+# section 9, HUMAN CHECK on generation_profile_regions). bedrock_model_arns is only for EXTRA ARNs; leave it empty.
+# bedrock_model_arns        = []
 
 # Region defaults to us-east-2 (variable aws_region); plan.sh requires AWS_REGION (or the profile region) to equal it.
 # aws_region = "us-east-2"
+
+# REQUIRED before the pipeline load stage (Part C): the 12-hex commit that scripts/package.sh will build (git rev-parse --short=12 HEAD),
+# set AFTER the Part A changes are committed and BEFORE scripts/plan.sh and the human apply. The ops task definition uses this tag, and
+# scripts/run-bounded-pipeline.sh refuses the load stage (exit 6) unless it equals the release commit. Default "bootstrap" is refused.
+# image_tag = "0123456789ab"

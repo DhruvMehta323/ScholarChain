@@ -246,3 +246,49 @@ paths:
 - The model client and the embedder are not behind the guard (the rag clients enforce their own timeouts); the
   four storage-backed ports are.
 - The service image does not contain `prompts/`: AWS mode needs the prompts folder supplied (packaging).
+
+## ops task: OpsLoadMain (Phase 14)
+
+`scholarchain.services.OpsLoadMain` (file `OpsLoad.scala`) is a one-shot task, not a service: no listener, no loop. It
+runs in the embedding-worker image. `packaging/entrypoint.sh` forwards no arguments and RunTask cannot override the
+entry point, so the main is selected by the `SERVICE_MAIN` environment variable and every argument is a
+`SCHOLARCHAIN_OPS_*` environment variable (`scripts/run-bounded-pipeline.sh` sets them per run through
+`containerOverrides.environment`):
+
+| Variable (flag) | Meaning |
+|---|---|
+| `SERVICE_MAIN=scholarchain.services.OpsLoadMain` | selects the main (image setting, not read by the program) |
+| `SCHOLARCHAIN_OPS_NEPTUNE_SOURCE` (`--neptune-source`) | `s3://bucket/prefix/<runId>/` holding the Neptune CSVs (required) |
+| `SCHOLARCHAIN_OPS_ITEMS_SOURCE` (`--items-source`) | `s3://bucket/prefix/<runId>/` holding `load-manifest.json`, `checksums.sha256`, `dynamodb/`, `embedding-inputs/` (required) |
+| `SCHOLARCHAIN_OPS_RUN_ID` (`--run-id`) | last path segment of both sources (required) |
+| `SCHOLARCHAIN_OPS_CODE_VERSION` (`--code-version`) | code version recorded in the provenance (required) |
+| `SCHOLARCHAIN_OPS_MAX_VECTORS` (`--max-vectors`) | cap on rendered embedding documents, default and hard maximum 10000, 0 or above is exit 2 |
+| `SCHOLARCHAIN_OPS_NEPTUNE_TIMEOUT_SECONDS` (`--neptune-timeout-seconds`) | default 1800, at most 21600 |
+| `SCHOLARCHAIN_OPS_MAX_ITEMS` (`--max-items`) | optional cap on DynamoDB items, default and maximum 1000000 |
+| `SCHOLARCHAIN_OPS_DRY_RUN` (`--dry-run [true\|false]`) | `true`: verify, render, count; send and write nothing |
+| `SCHOLARCHAIN_IMAGE_TAG` | optional, recorded in the manifest when it is a valid token |
+
+An argv flag wins over its variable. Settings come from the core loaders and the same variables the embedding worker
+uses (`SCHOLARCHAIN_AWS_REGION`, `SCHOLARCHAIN_STORAGE_NEPTUNE_ENDPOINT`, `SCHOLARCHAIN_STORAGE_CURATED_BUCKET`,
+`SCHOLARCHAIN_SERVICES_EMBEDDING_QUEUE_URL`, the storage and embedding configuration). The task role supplies the
+credentials; nothing secret is read or printed.
+
+Flow: (1) plan, reads only: verify the four `embedding-inputs/*.jsonl` files (SHA-256 against `checksums.sha256` and
+the manifest, line count against the manifest), convert them without Spark exactly as the test-scope `ParquetInput`
+does (rejects counted by a short reason, never content), render with `EmbeddingDocumentRenderer` and apply the cap
+(summaries first, then `paperLimit = cap - summaryDocs`, papers by ascending work id; still over is a refusal); (2)
+`LiveLoad.run` (Neptune bulk load, DynamoDB items); (3) `EmbeddingProducer.enqueue` (texts to
+`s3://<curated>/rag/text/<sha256>.txt` with putIfAbsent, jobs to the embedding queue); (4) `ops-manifest.json` to
+`<items-source>ops-manifest.json` with putIfAbsent: never overwritten. The manifest holds the inputs and their checksums,
+source run id and code version, parameters, image tag, counts by type, skip and reject reasons, the producer report and
+the LiveLoad provenance. It is the completion record: a failed or refused run writes none (its record is the JSON line
+on stdout, CloudWatch), so a corrected rerun of the same run id can still write it. A rerun repeats the idempotent steps
+(items unchanged, texts unchanged, same job ids) and leaves an existing manifest as it is.
+
+Dry run: nothing is written to S3 and nothing is sent. The manifest (`dryRun: true`) is one JSON line
+(`event: ops.manifest.dry-run`) on stdout. It is not persisted because the ops role may write only
+`.../ops-manifest.json`, and a dry-run object at that key would block the real run.
+
+Exit codes: 0 completed or dry-run verified; 1 runtime failure (Neptune, store, queue, manifest write); 2 usage or
+configuration (bad argument, missing setting, bad source URI); 3 refusal (checksum or source invalid, cap exceeded, no
+documents, a rendered number absent from its source row, documents rejected by the producer).

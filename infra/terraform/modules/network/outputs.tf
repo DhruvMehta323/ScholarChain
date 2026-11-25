@@ -18,6 +18,7 @@ output "security_group_ids" {
     embedding_worker = aws_security_group.embedding_worker.id
     emr              = aws_security_group.emr.id
     neptune          = aws_security_group.neptune.id
+    ops              = aws_security_group.ops.id
   }
 }
 

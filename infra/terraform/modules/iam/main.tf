@@ -58,10 +58,14 @@ data "aws_iam_policy_document" "ecs_execution" {
     actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
     resources = ["${var.log_group_arns[each.value]}:*"]
   }
-  statement {
-    sid       = "ReadInjectedSecrets"
-    actions   = ["secretsmanager:GetSecretValue"]
-    resources = [for k in var.service_secrets[each.value] : var.secret_arns[k]]
+  # MERGE-2: embedding-worker injects no secret, so it gets no statement (an empty resource list is invalid IAM).
+  dynamic "statement" {
+    for_each = length(var.service_secrets[each.value]) > 0 ? [1] : []
+    content {
+      sid       = "ReadInjectedSecrets"
+      actions   = ["secretsmanager:GetSecretValue"]
+      resources = [for k in var.service_secrets[each.value] : var.secret_arns[k]]
+    }
   }
 }
 
@@ -125,7 +129,8 @@ data "aws_iam_policy_document" "query_api" {
   dynamic "statement" {
     for_each = local.bedrock_enabled ? [1] : []
     content {
-      sid       = "BedrockInvoke"
+      sid = "BedrockInvoke"
+      # The Converse and ConverseStream APIs are authorised by bedrock:InvokeModel and bedrock:InvokeModelWithResponseStream (no separate action).
       actions   = ["bedrock:InvokeModel", "bedrock:InvokeModelWithResponseStream"]
       resources = var.bedrock_model_arns
     }
@@ -236,6 +241,74 @@ resource "aws_iam_role_policy" "task" {
   name   = "runtime"
   role   = aws_iam_role.task[each.key].id
   policy = each.value
+}
+
+############################ ops task role (one-off Neptune bulk load and embedding enqueue) ############################
+# Sources: INFRA-CONTRACTS.md section 14.6. Used only by the ops task definition (run-task, no service). No Bedrock, no S3 Vectors,
+# no Secrets Manager, no deletes, no wildcard action. Neptune statements exist only when Neptune exists.
+data "aws_iam_policy_document" "ops" {
+  # Source: storage-engineer's LiveLoad (reads <neptune source> and <items source>), service-engineer's EmbeddingProducer (rag/text/*).
+  statement {
+    sid     = "ReadLoadFiles"
+    actions = ["s3:GetObject"]
+    resources = [
+      "${var.bucket_arns["curated"]}/graph/neptune-load/*",
+      "${var.bucket_arns["curated"]}/curated/loads/*",
+      "${var.bucket_arns["curated"]}/rag/text/*", # EmbeddingProducer.storeText: put-if-absent, HeadObject/GetObject on an existing text object
+    ]
+  }
+  statement {
+    sid       = "ListLoadPrefixes"
+    actions   = ["s3:ListBucket"]
+    resources = [var.bucket_arns["curated"]]
+    condition {
+      test     = "StringLike"
+      variable = "s3:prefix"
+      values   = ["graph/neptune-load/*", "curated/loads/*"]
+    }
+  }
+  # ops-manifest.json only (OpsLoadMain writes <items-source>ops-manifest.json with putIfAbsent = PutObject with If-None-Match: *, OpsLoad.scala:450-459;
+  # LiveLoad.writeProvenance is not called), so the uploaded load files cannot be overwritten; and the content-addressed embedding
+  # texts s3://<curated>/rag/text/<sha256>.txt (INFRA-CONTRACTS 3a). No DeleteObject anywhere. The bucket is SSE-S3 (AES256), so no kms:* is needed.
+  statement {
+    sid     = "WriteManifestAndTexts"
+    actions = ["s3:PutObject"]
+    resources = [
+      "${var.bucket_arns["curated"]}/curated/loads/*/ops-manifest.json",
+      "${var.bucket_arns["curated"]}/rag/text/*",
+    ]
+  }
+  # LiveLoad writes the ten analytics item tables (cfg.tables.analytics) with put and get; nothing else.
+  statement {
+    sid       = "LoadAnalyticsItems"
+    actions   = ["dynamodb:PutItem", "dynamodb:GetItem"]
+    resources = local.analytics_table_arns
+  }
+  # WorkQueues.scala SqsWorkQueue.send = SendMessage; GetQueueUrl for a name-to-URL lookup. The embedding queue only, not the DLQ.
+  statement {
+    sid       = "EnqueueEmbeddingJobs"
+    actions   = ["sqs:SendMessage", "sqs:GetQueueUrl"]
+    resources = [var.embedding_queue_arn]
+  }
+  dynamic "statement" {
+    for_each = local.neptune_enabled ? [1] : []
+    content {
+      sid       = "NeptuneBulkLoad"
+      actions   = ["neptune-db:StartLoaderJob", "neptune-db:GetLoaderJobStatus"]
+      resources = [local.neptune_db_arn]
+    }
+  }
+}
+
+resource "aws_iam_role" "ops" {
+  name               = "${var.name}-task-ops"
+  assume_role_policy = data.aws_iam_policy_document.ecs_tasks_trust.json
+}
+
+resource "aws_iam_role_policy" "ops" {
+  name   = "ops-load"
+  role   = aws_iam_role.ops.id
+  policy = data.aws_iam_policy_document.ops.json
 }
 
 ############################ EMR roles ############################
