@@ -100,3 +100,18 @@ No HIGH. Three MEDIUMs go into the single repair round, so under the speed amend
 - Pack script: deterministic, refuses overwrite, staging, only packed files in the source folders, digests equal.
 - Ownership.
 - AWS path: `run-bounded-pipeline.sh:265-289` uploads 2, 3 and 4 files and passes `--crossref/--openalex/--orcid`.
+
+# C5 review (code-reviewer, diff only, single pass; stored by the orchestrator)
+
+## Verdict: APPROVE WITH NOTES. No HIGH or MEDIUM.
+- **Passed:**
+  - Staging sets 0755 on dirs and 0644 on files, and fails if a file lacks OTHERS_READ (`build.sbt:232-256`). The stage runs before every image build (`build.sbt:295`).
+  - The image `chmod -R a-w,a+rX` runs as root before `USER 10001` (`Dockerfile.template:16, 22`), so jars end up 0444 and dirs 0555, with no jar made executable.
+  - Both `Files.walk` streams are closed.
+  - Ownership is build-engineer.
+- **LOW (deferred):**
+  - L1: the check runs right after the modes are set, so it is close to a tautology, and it does not assert that dirs have OTHERS_EXECUTE.
+  - L2: on a non-POSIX filesystem the stage throws UnsupportedOperationException rather than a clear error.
+  - L3: the separate `chmod -R` layer roughly doubles the lib bytes in the image. `COPY --chmod` would avoid it.
+  - L4: setting the permissions follows symlinks; there are none today.
+- **Not verified:** that the image and a container started as uid 10001 load QueryApiMain. This is verified at the next deploy, through the circuit breaker and the smoke run.

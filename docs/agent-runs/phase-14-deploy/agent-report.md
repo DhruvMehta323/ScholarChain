@@ -553,3 +553,37 @@ Note: every Part C script from step 2 on was executed by the HUMAN in their own 
   - Orchestrator-observed: marker `exit=0`, mtime 2026-11-25 03:05:42 CST, with no source file newer.
   - The agent-reported per-module totals (sum 2,953) are NOT reconciled with CHECK 2's 3,891 tests; the log was not kept.
 - **Review** (code-reviewer, diff only, single pass): APPROVE WITH NOTES, no HIGH. Details in review-report.md (C4 section).
+
+## F14-4: C4 deploy failed, automatic ECS rollback (incident)
+
+All Part C commands here were run by the human in their own terminal (F14-3). The evidence was gathered read-only by the human and checked by the orchestrator where noted.
+- **What happened:** the human ran `deploy.sh` for release `c334a9adc55d` with the P1 plan record pinned, and it exited 5.
+  - The record `reports/deployments/c334a9adc55da950fcdbd2aa6cfa53d6fa3563c7/deployment.json` has `"status":"failed"` (orchestrator-observed).
+  - Deploy log `reports/deployments/2026-11-25-deploy-c334a9adc55d.log:50` reads: "SC-WARN deployment FAILED after the services were changed" (orchestrator-observed).
+- **Symptom:** the C4 query-api tasks crashed with "Could not find or load main class scholarchain.services.QueryApiMain". Source: CloudWatch `/scholarchain/query-api`, 15:58 to 16:08 UTC (human-reported).
+- **Automatic recovery** (human-reported):
+  - The ECS deployment circuit breaker rolled query-api back to task definition `:2` (C3), and it is healthy.
+  - retrieval stayed on `:2` (C3) and was never updated.
+  - embedding-worker is on `:3` (C4) with desired count 0, so it runs no tasks.
+  - `rollback.sh` was not run, because the services were already back on C3. P2 was not planned, and `image_tag` was not added to tfvars.
+- **Root cause** (human-reported):
+  - In the C4 images, every scholarchain jar in `/opt/scholarchain/lib` has mode 0600 root:root. In the C3 images they were 0644.
+  - The container runs as uid 10001, so it cannot read the jars. The jar contents are identical to C3 (same size, and QueryApiMain is present).
+  - The staged Docker context `docker-services/lib/` also holds 0600 files dated 03:57.
+  - `packaging/Dockerfile.template` applies `chmod -R a-w,a+rX` to `prompts/` but not to `lib/`, so the image inherits the host file modes.
+- **Impact:** no C4 service ever served traffic. query-api and retrieval kept serving C3.
+- **Fix:** C5, a new commit, because ECR tags are IMMUTABLE (`modules/platform/main.tf:7`) and `c334a9adc55d` cannot be re-pushed.
+  - build-engineer changes the Dockerfile template and the staging mode check.
+  - Then one CHECK and a diff-only review. The human commits.
+- **Follow-up:** incident-responder writes the incident record under `docs/incidents/` later. This is the phase's real incident.
+- **C5 agent work** (build-engineer, agent-reported unless marked):
+  - Changed files: `packaging/Dockerfile.template`, where the RUN now applies `chmod -R a-w,a+rX` to both `lib` and `prompts`.
+  - Changed files: `build.sbt` `servicesDockerStage`, which normalises the staged lib to 0644 files and 0755 dirs and fails the stage if any staged lib file is not world-readable.
+  - Cause found:
+    - The source jars in `universal/stage/lib` are 0644 with their original mtimes. The `docker-services/lib` copies were 0600 with a fresh mtime of 03:57.
+    - So `IO.copyDirectory` did not preserve modes. The agent inferred a copy through a temp file, but did not confirm it in the sbt-io source.
+  - After the fix, `sbt dockerStage` produced 58 staged lib files, all `-rw-r--r--`. No docker build was run.
+- **C5 CHECK:**
+  - Run 1 failed in 1 s at scalafmtSbtCheck (build.sbt unformatted). The agent then ran `sbt scalafmtSbt`.
+  - Run 2 was canonical: `[success]` in 1788 s (agent-reported).
+  - Orchestrator-observed: marker `exit=0`, mtime 2026-11-25 11:02:30. No file under modules/, tests/, project/ or build.sbt is newer.

@@ -225,6 +225,35 @@ lazy val services = (project in file("modules/services"))
       IO.delete(ctx)
       IO.createDirectory(ctx)
       IO.copyDirectory(libDir, ctx / "lib")
+      // F14-4: the copy can yield 0600 files (temp-file based copy); the image runs as uid 10001, so
+      // normalise to 0644 files and 0755 dirs and fail the stage if anything is not world-readable.
+      import java.nio.file.{Files, Path}
+      import java.nio.file.attribute.PosixFilePermissions
+      val libStaged = (ctx / "lib").toPath
+      val walk      = Files.walk(libStaged)
+      try
+        walk.forEach { (p: Path) =>
+          Files.setPosixFilePermissions(
+            p,
+            PosixFilePermissions.fromString(if (Files.isDirectory(p)) "rwxr-xr-x" else "rw-r--r--"),
+          )
+        }
+      finally walk.close()
+      val unreadable = Files.walk(libStaged)
+      try {
+        val bad = unreadable
+          .filter(p =>
+            !Files.isDirectory(p) && !Files
+              .getPosixFilePermissions(p)
+              .contains(java.nio.file.attribute.PosixFilePermission.OTHERS_READ)
+          )
+          .toArray
+          .toSeq
+        if (bad.nonEmpty)
+          sys.error(
+            s"servicesDockerStage: staged lib files not world-readable: ${bad.mkString(", ")}"
+          )
+      } finally unreadable.close()
       // Runtime prompts and output schemas only (not prompts/README.md); read at /opt/scholarchain/prompts.
       Seq("runtime", "schemas").foreach { d =>
         IO.copyDirectory(root / "prompts" / d, ctx / "prompts" / d)

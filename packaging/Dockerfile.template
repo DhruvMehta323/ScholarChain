@@ -13,7 +13,7 @@ COPY --chown=root:root lib/ /opt/scholarchain/lib/
 COPY --chown=root:root prompts/ /opt/scholarchain/prompts/
 COPY --chown=root:root entrypoint.sh /opt/scholarchain/entrypoint.sh
 RUN chmod 0555 /opt/scholarchain/entrypoint.sh \
- && chmod -R a-w,a+rX /opt/scholarchain/prompts
+ && chmod -R a-w,a+rX /opt/scholarchain/lib /opt/scholarchain/prompts
 
 # Non-secret identity only. All other configuration arrives as environment variables at run time.
 ENV SERVICE_NAME=@SERVICE@ \
