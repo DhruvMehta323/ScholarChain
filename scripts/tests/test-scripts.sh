@@ -171,7 +171,18 @@ EOF
 cat > "${STUBS}/sbt" << 'EOF'
 #!/usr/bin/env bash
 printf 'sbt %s [SCHOLARCHAIN_GIT_SHA=%s]\n' "$*" "${SCHOLARCHAIN_GIT_SHA:-unset}" >> "${STUB_LOG}"
+# sbt 2 thin client: a background server keeps the environment of the call that started it (F14-1). Simulated in ${STUB_STATE}/sbt-server.
+SRV="${STUB_STATE}/sbt-server"
 case "$*" in
+  shutdown) rm -f "${SRV}"; exit 0 ;;
+  packageJobs | dockerLocal)
+    [[ -f "${SRV}" ]] || printf '%s' "${SCHOLARCHAIN_GIT_SHA:-unset}" > "${SRV}"
+    printf 'sbt-server-env SCHOLARCHAIN_GIT_SHA=%s\n' "$(cat "${SRV}")" >> "${STUB_LOG}"
+    if [[ "$*" == dockerLocal && "$(cat "${SRV}")" != "${SCHOLARCHAIN_GIT_SHA:-unset}" ]]; then
+      echo "SCHOLARCHAIN_GIT_SHA must be set: a running sbt server keeps its own environment" >&2
+      exit 1
+    fi
+    exit 0 ;;
   *LocalLoad*)
     [[ "${STUB_SBT_FAIL:-0}" != 1 ]] || exit 1
     od="${*#*--out-dir }"; od="${od%% *}"
@@ -219,15 +230,17 @@ chmod +x "${STUBS}"/*
 # ---------------------------------------------------------------------------------------------------------------------------------
 # Fixture repository (a copy of the scripts in a throw-away git repository)
 # ---------------------------------------------------------------------------------------------------------------------------------
-mkdir -p "${REPO}/scripts" "${REPO}/infra/terraform/environments/course" "${REPO}/infra/terraform/plans" "${REPO}/.claude/hooks" "${REPO}/modules/hadoop/target/scala-2.13" "${REPO}/modules/spark/target/scala-2.13"
+mkdir -p "${REPO}/scripts" "${REPO}/infra/terraform/environments/course" "${REPO}/infra/terraform/plans" "${REPO}/.claude/hooks" "${REPO}/target/out/jvm/scala-3.3.9/scholarchain-hadoop" "${REPO}/target/out/jvm/scala-3.3.9/scholarchain-spark"
 cp -R "${SRC_ROOT}/scripts/." "${REPO}/scripts/"
 printf '# fixture\n' > "${REPO}/infra/terraform/environments/course/main.tf"
 printf 'exit 0\n' > "${REPO}/.claude/hooks/validate-agent-files.sh"
 printf '{}\n' > "${REPO}/.mcp.json"
 printf '{}\n' > "${REPO}/.claude/settings.json"
 printf 'target/\n.claude/.last-test-run\n' > "${REPO}/.gitignore"
-printf 'jar-h' > "${REPO}/modules/hadoop/target/scala-2.13/hadoop-0.1-assembly.jar"
-printf 'jar-s' > "${REPO}/modules/spark/target/scala-2.13/spark-0.1-assembly.jar"
+JAR_H="target/out/jvm/scala-3.3.9/scholarchain-hadoop/scholarchain-hadoop-0.1.0-SNAPSHOT-assembly.jar"
+JAR_S="target/out/jvm/scala-3.3.9/scholarchain-spark/scholarchain-spark-0.1.0-SNAPSHOT-assembly.jar"
+printf 'jar-h' > "${REPO}/${JAR_H}"
+printf 'jar-s' > "${REPO}/${JAR_S}"
 printf 'plan-bytes' > "${REPO}/infra/terraform/plans/tfplan-course-abc-20261124T000000Z.tfplan"
 PLAN_SHA="$(shasum -a 256 "${REPO}/infra/terraform/plans/tfplan-course-abc-20261124T000000Z.tfplan" | cut -d' ' -f1)"
 printf '%s  tfplan-course-abc-20261124T000000Z.tfplan\n' "${PLAN_SHA}" > "${REPO}/infra/terraform/plans/tfplan-course-abc-20261124T000000Z.sha256"
@@ -337,6 +350,28 @@ if [[ -f "${ART}" ]]; then
   [[ "$(jq '.jars | length' "${ART}")" == 2 ]] && ok "artifacts.json lists two jars" || bad "artifacts.json jar count"
   [[ "$(jq -c '[.release, .dirty]' "${ART}")" == "[true,false]" ]] && ok "clean run records release:true dirty:false" || bad "release flags"
 fi
+if [[ -f "${ART}" ]]; then
+  [[ "$(jq -r '.jars[] | select(.module == "hadoop") | .path' "${ART}")" == "${JAR_H}" ]] && ok "F14-2 hadoop jar path (sbt 2 layout)" || bad "F14-2 hadoop jar path"
+  [[ "$(jq -r '.jars[] | select(.module == "spark") | .path' "${ART}")" == "${JAR_S}" ]] && ok "F14-2 spark jar path (sbt 2 layout)" || bad "F14-2 spark jar path"
+  [[ "$(jq -r '.jars[] | select(.module == "hadoop") | .sha256' "${ART}")" == "$(shasum -a 256 "${REPO}/${JAR_H}" | cut -d' ' -f1)" ]] && ok "F14-2 hadoop jar sha256" || bad "F14-2 hadoop jar sha256"
+  [[ "$(jq -r '.jars[] | select(.module == "spark") | .sha256' "${ART}")" == "$(shasum -a 256 "${REPO}/${JAR_S}" | cut -d' ' -f1)" ]] && ok "F14-2 spark jar sha256" || bad "F14-2 spark jar sha256"
+  [[ "$(jq -c '[.jars[].bytes]' "${ART}")" == "[5,5]" ]] && ok "F14-2 jar bytes" || bad "F14-2 jar bytes"
+fi
+
+# F14-1: SCHOLARCHAIN_GIT_SHA reaches EVERY sbt call, `sbt shutdown` runs first, and a stale server left by an earlier run is replaced.
+PTAG="$(git -C "${REPO}" rev-parse --short=12 HEAD)"
+expect_in "F14-1 packageJobs sees the tag" "${LOG}" "sbt packageJobs [SCHOLARCHAIN_GIT_SHA=${PTAG}]"
+expect_in "F14-1 shutdown sees the tag" "${LOG}" "sbt shutdown [SCHOLARCHAIN_GIT_SHA=${PTAG}]"
+expect_not_in "F14-1 no sbt call without the tag" "${LOG}" "SCHOLARCHAIN_GIT_SHA=unset"
+[[ "$(grep -n '^sbt shutdown' "${LOG}" | cut -d: -f1)" -lt "$(grep -n '^sbt packageJobs' "${LOG}" | cut -d: -f1)" ]] && ok "F14-1 sbt shutdown runs before packageJobs" || bad "F14-1 shutdown ordering"
+expect_in "F14-1 the server the build used holds the tag" "${LOG}" "sbt-server-env SCHOLARCHAIN_GIT_SHA=${PTAG}"
+expect_not_in "F14-1 the server never held another value" "${LOG}" "sbt-server-env SCHOLARCHAIN_GIT_SHA=stale"
+reset_state
+printf 'stale' > "${STATE}/sbt-server"
+run package-stale-server 0 bash scripts/package.sh --allow-dirty
+expect_in "F14-1 a pre-existing server with another environment is shut down and replaced" "${LOG}" "sbt-server-env SCHOLARCHAIN_GIT_SHA=${PTAG}-dirty"
+expect_not_in "F14-1 stale server value never used" "${LOG}" "sbt-server-env SCHOLARCHAIN_GIT_SHA=stale"
+reset_state
 ART_SUM="$(shasum -a 256 "${ART}" | cut -d' ' -f1)"
 touch "${REPO}/dirty-file.txt"
 run package-dirty-refused 3 bash scripts/package.sh
@@ -371,6 +406,25 @@ expect_in "missing image message" "${OUT}/package-missing-image.err" "did not pr
 [[ ! -e "${REPO}/reports/release-local/${SHA}/artifacts.json" ]] && ok "no record written when an image is missing" || bad "record written despite missing image"
 EXTRA_ENV="STUB_LABEL_REV=deadbeefdead" run package-stale-label 1 bash scripts/package.sh --allow-dirty --skip-build
 expect_in "stale label message" "${OUT}/package-stale-label.err" "revision label"
+
+# F14-2 negative cases (build skipped; jars arranged by hand, then restored).
+JD="${REPO}/target/out/jvm"
+mv "${JD}/scala-3.3.9/scholarchain-hadoop/$(basename "${JAR_H}")" "${REPO}/hadoop-jar.keep"
+run package-jar-zero 1 bash scripts/package.sh --allow-dirty --skip-build
+expect_in "F14-2 zero jars message names directory and count" "${OUT}/package-jar-zero.err" "target/out/jvm/scala-*/scholarchain-hadoop/, found 0"
+mkdir -p "${JD}/scala-3.3.8/scholarchain-hadoop"
+printf 'a' > "${JD}/scala-3.3.8/scholarchain-hadoop/scholarchain-hadoop-0.1.0-SNAPSHOT-assembly.jar"
+printf 'b' > "${JD}/scala-3.3.9/scholarchain-hadoop/scholarchain-hadoop-0.1.0-SNAPSHOT-assembly.jar"
+run package-jar-two 1 bash scripts/package.sh --allow-dirty --skip-build
+expect_in "F14-2 stale jar in a second scala dir fails (found 2)" "${OUT}/package-jar-two.err" "scholarchain-hadoop/, found 2"
+rm -rf -- "${JD:?}/scala-3.3.8"
+rm -f -- "${JD:?}/scala-3.3.9/scholarchain-hadoop/scholarchain-hadoop-0.1.0-SNAPSHOT-assembly.jar"
+mkdir -p "${REPO}/modules/hadoop/target/scala-2.13"
+cp "${REPO}/hadoop-jar.keep" "${REPO}/modules/hadoop/target/scala-2.13/hadoop-0.1-assembly.jar"
+run package-jar-old-layout 1 bash scripts/package.sh --allow-dirty --skip-build
+expect_in "F14-2 old modules/<mod>/target layout is not found" "${OUT}/package-jar-old-layout.err" "scholarchain-hadoop/, found 0"
+rm -rf -- "${REPO:?}/modules/hadoop/target"
+mv "${REPO}/hadoop-jar.keep" "${REPO}/${JAR_H}"
 
 echo "== T4 deploy =="
 APPR="APPROVED_PLAN_SHA256=${PLAN_SHA}"

@@ -6,7 +6,8 @@
 # Images: `SCHOLARCHAIN_GIT_SHA=<tag> sbt dockerLocal` (build.sbt servicesDockerBuild) builds scholarchain/<service>:<tag> for all three
 # services, where <tag> = the 12-character commit (plus -dirty on a local run). package.sh re-tags nothing; it inspects the three images
 # the build produced, checks each carries the revision label equal to <tag>, and records each image ID in artifacts.json. A running sbt
-# server keeps its own environment (build.sbt): run `sbt shutdown` first if one is running.
+# server keeps its own environment (build.sbt), so the script exports SCHOLARCHAIN_GIT_SHA before the first sbt call and runs `sbt shutdown`
+# first. Assembly jars are read from target/out/jvm/scala-*/scholarchain-<mod>/ (sbt 2 layout); exactly one per module or exit 1.
 #
 # RELEASE RUN (default): clean tree required (exit 3), fixed build commands (`sbt packageJobs`, `sbt dockerLocal`), jars and images are
 # freshly built, record written to reports/release/<sha>/artifacts.json with release:true, dirty:false.
@@ -80,27 +81,42 @@ if [[ "${DIRTY}" == true ]]; then RELEASE=false REC_DIR="reports/release-local";
 sc_info "commit=${SHA} image_tag=${TAG} dirty=${DIRTY}"
 
 sc_stage build-jobs
+# F14-1: SCHOLARCHAIN_GIT_SHA (the image tag, build.sbt servicesDockerBuild: 7 to 40 hex, optional -dirty) is exported BEFORE the first sbt
+# call, so every sbt call sees it. The sbt 2 launcher is a thin client that attaches to a background server, and a server keeps the
+# environment of the process that started it (build.sbt refuses otherwise). A server that was already running before this script started
+# may hold a different or absent value, so `sbt shutdown` runs first: the next call then starts a fresh server from this environment.
+# (`sbt --help` confirms no per-call environment option; `shutdown` is the sbt command that stops the server. Its failure is only a warning.)
+export SCHOLARCHAIN_GIT_SHA="${TAG}"
 JOBS_CMD=(sbt packageJobs)
-if [[ "${SKIP_BUILD}" == 1 ]]; then sc_info "skipped (--skip-build)"; else (cd "${ROOT}" && sc_mut sc_timeout "${SC_BUILD_TIMEOUT:-3000}" "${JOBS_CMD[@]}"); fi
+IMG_CMD=(sbt dockerLocal)
+if [[ "${SKIP_BUILD}" == 1 ]]; then
+  sc_info "skipped (--skip-build)"
+else
+  (cd "${ROOT}" && sc_mut sc_timeout 300 sbt shutdown) || sc_warn "sbt shutdown failed or no server was running; continuing"
+  (cd "${ROOT}" && sc_mut sc_timeout "${SC_BUILD_TIMEOUT:-3000}" "${JOBS_CMD[@]}")
+fi
 
 sc_stage build-images
-# SCHOLARCHAIN_GIT_SHA is the image tag the build applies to all three images (build.sbt servicesDockerBuild): 7 to 40 hex, optional -dirty.
-IMG_CMD=(env "SCHOLARCHAIN_GIT_SHA=${TAG}" sbt dockerLocal)
 if [[ "${SKIP_BUILD}" == 1 ]]; then sc_info "skipped (--skip-build)"; else (cd "${ROOT}" && sc_mut sc_timeout "${SC_BUILD_TIMEOUT:-3000}" "${IMG_CMD[@]}"); fi
 
 sc_stage record-artifacts
 JARS='[]'
 if [[ "${SC_DRY_RUN}" == 1 ]]; then
-  printf 'SC-DRYRUN would locate modules/hadoop and modules/spark assembly jars, checksum them, inspect the three images built by sbt dockerLocal and write %s/%s/artifacts.json\n' "${REC_DIR}" "${SHA}"
+  printf 'SC-DRYRUN would locate the hadoop and spark assembly jars under target/out/jvm/scala-*/, checksum them, inspect the three images built by sbt dockerLocal and write %s/%s/artifacts.json\n' "${REC_DIR}" "${SHA}"
   for svc in "${SC_SERVICES[@]}"; do
     printf 'SC-DRYRUN docker image inspect %s (built by sbt dockerLocal; no re-tagging)\n' "$(sc_local_tag "${svc}" "${TAG}")"
   done
   exit 0
 fi
+# F14-2: sbt 2 writes assemblies to <repo>/target/out/jvm/scala-<ver>/scholarchain-<mod>/scholarchain-<mod>-<version>-assembly.jar. A jar in a
+# second scala-* directory (stale build) counts toward "more than one" and fails; nothing is picked silently. The old
+# modules/<mod>/target layout is not searched.
 for mod in hadoop spark; do
-  found=()
-  while IFS= read -r f; do found+=("${f}"); done < <(find "${ROOT}/modules/${mod}/target" -maxdepth 3 -name '*-assembly.jar' -type f 2> /dev/null | LC_ALL=C sort)
-  ((${#found[@]} == 1)) || sc_die "expected exactly one assembly jar under modules/${mod}/target, found ${#found[@]}"
+  shopt -s nullglob
+  found=("${ROOT}/target/out/jvm"/scala-*/"scholarchain-${mod}"/*-assembly.jar)
+  shopt -u nullglob
+  ((${#found[@]} == 1)) || sc_die "expected exactly one assembly jar under target/out/jvm/scala-*/scholarchain-${mod}/, found ${#found[@]}"
+  [[ -f "${found[0]}" ]] || sc_die "assembly jar is not a regular file: ${found[0]#"${ROOT}/"}"
   JARS="$(printf '%s' "${JARS}" | jq --arg m "${mod}" --arg p "${found[0]#"${ROOT}/"}" --arg h "$(sc_sha256 "${found[0]}")" --argjson b "$(wc -c < "${found[0]}" | tr -d ' ')" '. + [{module: $m, path: $p, sha256: $h, bytes: $b}]')"
 done
 IMAGES='[]'
@@ -114,7 +130,7 @@ for svc in "${SC_SERVICES[@]}"; do
   sc_ok "${svc}: ${local_ref} (${id})"
 done
 OUT="$(jq -n --arg sha "${SHA}" --arg tag "${TAG}" --argjson dirty "${DIRTY}" --arg at "$(sc_utc_iso)" \
-  --arg jobs "${JOBS_CMD[*]}" --arg img "${IMG_CMD[*]}" --argjson release "${RELEASE}" --argjson skip "$([[ "${SKIP_BUILD}" == 1 ]] && echo true || echo false)" \
+  --arg jobs "${JOBS_CMD[*]}" --arg img "SCHOLARCHAIN_GIT_SHA=${TAG} ${IMG_CMD[*]}" --argjson release "${RELEASE}" --argjson skip "$([[ "${SKIP_BUILD}" == 1 ]] && echo true || echo false)" \
   --arg overrides "${OVERRIDES}" --argjson jars "${JARS}" --argjson images "${IMAGES}" \
   '{commit: $sha, image_tag: $tag, dirty: $dirty, release: $release, packaged_at: $at, build_commands: {jobs: $jobs, images: $img}, skip_build: $skip,
     local_overrides: ($overrides | split(" ") | map(select(. != ""))), jars: $jars, images: $images,
