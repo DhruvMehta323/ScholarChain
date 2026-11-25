@@ -11,6 +11,9 @@
 #             10000 embedding jobs (OpsLoadMain); the script waits for STOPPED and records the exit code and the log location
 # DISCLOSURE: the Parquet-to-load-file conversion runs on the OPERATOR MACHINE, not in AWS, because the service images exclude Spark by
 # design (build.sbt servicesClasspathGuard) and LocalLoad reads Parquet through Spark SQL (Test classpath only).
+# DISCLOSURE: Spark runs in local mode on the EMR primary node (F14-5 workaround); distributed Spark I/O is deferred to 17b. The Spark step
+# copies the jars and the HJ outputs to local disk, runs FinalDecisions (policy only) to make match-decisions-final.jsonl, runs spark-submit
+# --master local[*] on local paths, and copies the output to s3://<curated>/graph/runs/<scale>/<run>/spark/ (provenance/ holds the decisions file).
 # Every EMR step has ActionOnFailure=TERMINATE_CLUSTER and a 1-hour limit (enforced twice: `timeout 3600` inside the step, and a watcher
 # here that cancels a step still running after 1 hour plus a grace period and shortens the idle timeout). The script never calls
 # terminate-clusters and never touches Terraform: EMR terminates the cluster itself.
@@ -214,6 +217,7 @@ RAW_PREFIX="s3://${RAW}/raw/${SCALE}/${RUN_ID}"
 JAR_PREFIX="s3://${ARTIFACTS}/jars/${SHORT}"
 OUT_ROOT="s3://${CURATED}/curated/runs/${SCALE}/${RUN_ID}"
 SPARK_OUT="s3://${CURATED}/graph/runs/${SCALE}/${RUN_ID}/spark"
+POLICY_URI="${RAW_PREFIX}/er-v1-frozen-policy.json"
 REPORT_DIR="${ROOT}/reports/pipeline/${SCALE}/${RUN_ID}"
 if [[ "${EMR_MODE}" == 1 && "${SC_DRY_RUN}" != 1 && -e "${REPORT_DIR}" ]]; then
   sc_warn "REFUSED: run id ${RUN_ID} already has records at reports/pipeline/${SCALE}/${RUN_ID}/ (and S3 inputs/results under it): records are never overwritten, use a new --run-id"
@@ -252,9 +256,12 @@ upload() { # upload <local-file> <s3-uri>: one object; recorded with its SHA-256
   fi
   UPLOADS="$(printf '%s' "${UPLOADS}" | jq --arg f "$(basename "${f}")" --arg u "${uri}" --arg h "${h}" '. + [{file: $f, uri: $u, sha256: $h}]')"
 }
+POLICY_LOCAL="${ROOT}/modules/entity-resolution/evaluation/er-v1-frozen-policy.json"
 if [[ "${SKIP_UPLOAD}" != 1 ]]; then
   [[ -z "${HJAR_LOCAL}" ]] || upload "${HJAR_LOCAL}" "${JAR_PREFIX}/${HJAR}"
   [[ -z "${SJAR_LOCAL}" ]] || upload "${SJAR_LOCAL}" "${JAR_PREFIX}/${SJAR}"
+  # the frozen ER policy (read by FinalDecisions inside the Spark step), recorded with its SHA-256 like every upload
+  if [[ "${SMOKE}" != 1 ]] && has_stage spark; then upload "${POLICY_LOCAL}" "${POLICY_URI}"; fi
 fi
 if [[ "${SMOKE}" != 1 ]] && has_stage hadoop; then
   sc_stage upload-inputs
@@ -283,6 +290,14 @@ add_step() { # add_step <name> <command and args...>: always TERMINATE_CLUSTER a
   STEPS="$(printf '%s' "${STEPS}" | jq -c --arg n "${name}" --arg t "${STEP_TIMEOUT}" --argjson a "$(printf '%s\0' "$@" | jq -Rsc 'split("\u0000")[:-1]')" \
     '. + [{Type: "CUSTOM_JAR", Name: $n, ActionOnFailure: "TERMINATE_CLUSTER", Jar: "command-runner.jar", Args: (["timeout", "--kill-after=60", $t] + $a)}]')"
 }
+# F14-5: `hadoop jar` and `spark-submit` need a LOCAL jar. add_jar_step copies the S3 jar to the primary node (EMRFS, instance profile) and
+# then execs the command, all inside the one `timeout` step, so ActionOnFailure=TERMINATE_CLUSTER and the 1-hour kill still cover copy and run.
+LOCAL_JARS="/tmp/scholarchain-${RUN_ID}"
+add_jar_step() { # add_jar_step <name> <s3 jar uri> <command and args...> (the command refers to ${LOCAL_JARS}/<jar basename>)
+  local name="$1" uri="$2"
+  shift 2
+  add_step "${name}" bash -c 'set -euo pipefail; mkdir -p "$1"; hadoop fs -copyToLocal "$2" "$1/"; shift 2; exec "$@"' copy-then-run "${LOCAL_JARS}" "${uri}" "$@"
+}
 COMMON=(--dblp "${RAW_PREFIX}/dblp.xml" --dtd "${RAW_PREFIX}/dblp.dtd" --output "${OUT_ROOT}" --snapshot "${SNAPSHOT}" --code-version "${SHORT}" --attempt 1)
 if [[ -n "${ENRICH_DIR}" || "${SKIP_UPLOAD}" == 1 || "${SC_DRY_RUN}" == 1 ]]; then
   COMMON+=(--crossref "${RAW_PREFIX}/enrichment/crossref" --openalex "${RAW_PREFIX}/enrichment/openalex" --orcid "${RAW_PREFIX}/enrichment/orcid")
@@ -291,14 +306,36 @@ if [[ "${SMOKE}" == 1 ]]; then
   add_step "smoke-mapreduce-pi" hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar pi 2 100
 else
   if has_stage hadoop; then
-    add_step "hadoop-pipeline-HJ1-HJ7" hadoop jar "${JAR_PREFIX}/${HJAR}" scholarchain.hadoop.PipelineDriver "${COMMON[@]}"
+    add_jar_step "hadoop-pipeline-HJ1-HJ7" "${JAR_PREFIX}/${HJAR}" hadoop jar "${LOCAL_JARS}/${HJAR}" scholarchain.hadoop.PipelineDriver "${COMMON[@]}"
   fi
   if has_stage spark; then
-    SPARK_SET=(--set "input.root-i-dir=${OUT_ROOT}/curated" --set "input.hj6a-entity-views-dir=${OUT_ROOT}/work/hj6a/entity-views" --set "input.match-decisions-final-path=${OUT_ROOT}/work/hj7/match-decisions-final.jsonl")
+    # F14-5 WORKAROUND: the Spark job reads and writes the LOCAL filesystem only (java.nio in modules/spark Inputs, Export, LoadManifests,
+    # RunMetrics), so ONE step stages everything on the primary node and copies the result back. The decisions file is produced here
+    # from the HJ6d candidates by FinalDecisions (policy only: no --views/--cache, deterministic). No s3:// path reaches FinalDecisions
+    # or spark-submit. Refuses (exit 3) when the S3 Spark output prefix already exists. Extra SC_SPARK_SET pairs follow as --set args.
+    SPARK_LOCAL_SH='set -euo pipefail
+id=$1 hj=$2 sj=$3 out=$4 pol=$5 so=$6 cv=$7 hn=$8 sn=$9
+shift 9
+if hadoop fs -test -e "${so}"; then echo "REFUSED: ${so} already exists (the Spark output is never overwritten)" >&2; exit 3; fi
+L=""
+for b in /mnt /tmp; do if mkdir -p "${b}/scholarchain-${id}" 2> /dev/null; then L="${b}/scholarchain-${id}"; break; fi; done
+[ -n "${L}" ] || { echo "no writable local directory" >&2; exit 1; }
+echo "staging in ${L}"
+mkdir -p "${L}/jars" "${L}/in" "${L}/work" "${L}/spark-tmp"
+hadoop fs -copyToLocal "${hj}" "${sj}" "${L}/jars/"
+hadoop fs -copyToLocal "${out}/curated" "${L}/in/curated"
+hadoop fs -copyToLocal "${out}/work/hj6a/entity-views" "${L}/in/entity-views"
+hadoop fs -copyToLocal "${out}/work/hj6d/match-candidates" "${L}/in/match-candidates"
+hadoop fs -copyToLocal "${pol}" "${L}/in/er-v1-frozen-policy.json"
+java -cp "${L}/jars/${hn}" scholarchain.er.tools.FinalDecisions --candidates "${L}/in/match-candidates" --policy "${L}/in/er-v1-frozen-policy.json" --out "${L}/work/match-decisions-final.jsonl" --summary "${L}/work/match-decisions-final.summary.json" --code-version "${cv}"
+spark-submit --master "local[*]" --driver-memory 8g --conf spark.hadoop.fs.defaultFS=file:/// --conf "spark.local.dir=${L}/spark-tmp" --conf spark.eventLog.enabled=false --conf spark.dynamicAllocation.enabled=false --conf spark.shuffle.service.enabled=false --class scholarchain.spark.Run "${L}/jars/${sn}" --output-root "${L}/spark-out" --checkpoint-dir "${L}/checkpoints" --code-version "${cv}" --set "input.root-i-dir=${L}/in/curated" --set "input.hj6a-entity-views-dir=${L}/in/entity-views" --set "input.match-decisions-final-path=${L}/work/match-decisions-final.jsonl" "$@"
+hadoop fs -copyFromLocal -d "${L}/spark-out" "${so}"
+hadoop fs -mkdir -p "${so}/provenance"
+hadoop fs -copyFromLocal -d "${L}/work/match-decisions-final.jsonl" "${L}/work/match-decisions-final.summary.json" "${so}/provenance/"'
+    SPARK_EXTRA=()
     # shellcheck disable=SC2206
-    [[ -z "${SC_SPARK_SET:-}" ]] || { extra=(${SC_SPARK_SET}); for kv in "${extra[@]}"; do SPARK_SET+=(--set "${kv}"); done; }
-    add_step "spark-graph-analytics" spark-submit --deploy-mode client --class scholarchain.spark.Run "${JAR_PREFIX}/${SJAR}" \
-      --output-root "${SPARK_OUT}" --checkpoint-dir "s3://${CURATED}/tmp/spark-checkpoints/${RUN_ID}" --code-version "${SHORT}" "${SPARK_SET[@]}"
+    [[ -z "${SC_SPARK_SET:-}" ]] || { extra=(${SC_SPARK_SET}); for kv in "${extra[@]}"; do SPARK_EXTRA+=(--set "${kv}"); done; }
+    add_step "spark-graph-analytics" bash -c "${SPARK_LOCAL_SH}" spark-local-run "${RUN_ID}" "${JAR_PREFIX}/${HJAR}" "${JAR_PREFIX}/${SJAR}" "${OUT_ROOT}" "${POLICY_URI}" "${SPARK_OUT}" "${SHORT}" "${HJAR}" "${SJAR}" ${SPARK_EXTRA[@]+"${SPARK_EXTRA[@]}"}
   fi
 fi
 N_STEPS="$(printf '%s' "${STEPS}" | jq 'length')"

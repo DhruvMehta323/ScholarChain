@@ -115,3 +115,34 @@ No HIGH. Three MEDIUMs go into the single repair round, so under the speed amend
   - L3: the separate `chmod -R` layer roughly doubles the lib bytes in the image. `COPY --chmod` would avoid it.
   - L4: setting the permissions follows symlinks; there are none today.
 - **Not verified:** that the image and a container started as uid 10001 load QueryApiMain. This is verified at the next deploy, through the circuit breaker and the smoke run.
+
+# C6 review (code-reviewer, diff only, single pass with HIGH rereads; stored by the orchestrator)
+
+## Verdict
+- **Pass 1:** REQUEST CHANGES. H1: on EMR, bare local paths resolve to HDFS through the cluster's defaultFS, so the Spark step would fail.
+- **Reread 1:** H1 resolved by `spark.hadoop.fs.defaultFS=file:///`. New HIGH N1: EMR's default Spark event log dir (`hdfs:///…`) has no authority under that override, so SparkContext init would fail.
+- **Fix N1:** `spark.eventLog.enabled=false`, plus dynamicAllocation and the shuffle service off as local-mode hardening.
+- **Final check:** orchestrator-verified at `scripts/run-bounded-pipeline.sh:331-334`. Harness 414/0, observed.
+- No HIGH open.
+
+## MEDIUM (open, noted)
+- M1: FinalDecisions builds its output in O(n²) (`GoldTools.scala:551-563`, owner entity-resolution-engineer). The 10K candidate count is unknown; the 1K run gave 2,191 decisions. It shares the 3600 s step budget with Spark.
+- M2: driver memory reduced to 8g on the 16 GiB primary. Addressed.
+- M3: no test runs the inner step script with stub binaries; the harness checks text only. Real behaviour is first verified by the 10K run.
+
+## LOW
+- L1 addressed (staging echo).
+- L2: run-manifest `outputRoot` records the ephemeral primary path.
+- L3 addressed (`-d`).
+- L4: `SC_SPARK_SET` glob expansion (pre-existing).
+
+## Passed
+- Positional args and quoting.
+- Copy semantics, and the SPARK_OUT layout matching the convert stage and LocalLoad (`LocalLoad.scala:102`).
+- HJ input paths match `RunContext.scala:95-97`.
+- FinalDecisions flags; directory and `.gz` input.
+- Spark `--set` keys.
+- Exit-code propagation, timeout and TERMINATE_CLUSTER kept.
+- No silent-success path.
+- EMR EC2 role covers the jars, raw, and curated Get/Put/List (`iam/main.tf:380-423`, infra-engineer audit).
+- Ownership: scripts/** belongs to infra-engineer.

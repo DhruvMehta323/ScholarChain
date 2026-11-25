@@ -587,3 +587,66 @@ All Part C commands here were run by the human in their own terminal (F14-3). Th
   - Run 1 failed in 1 s at scalafmtSbtCheck (build.sbt unformatted). The agent then ran `sbt scalafmtSbt`.
   - Run 2 was canonical: `[success]` in 1788 s (agent-reported).
   - Orchestrator-observed: marker `exit=0`, mtime 2026-11-25 11:02:30. No file under modules/, tests/, project/ or build.sbt is newer.
+
+## C5 release, P2, and F14-5: the 10K run failed at the first EMR step
+
+All commands in this section were run by the human in their own terminal (F14-3).
+- **C5 `dc20d0fa23df`** was packaged and deployed with exit 0 (human-reported).
+- **P2:**
+  - plan_sha256 `9312a25e4704d7060626914e569ae0041b722ccb4a3cd4a860ce2b49c9280447`, with image_tag set to C5. Summary: add 0, change 3, destroy 0, replace 4, iam 0, no stateful destroy or replace.
+  - The only change beyond the expected table was the removal of hostPort 8080 drift (human-reported).
+  - The human applied P2.
+- **10K run** `r20261125T183800Z-79065`, cluster `j-000270910KZDB65AYWRX`. The cluster has auto-terminated (human-reported).
+  - Records: `reports/pipeline/10k/r20261125T183800Z-79065/{run.json,steps.json}`. They are kept as evidence of the failure.
+  - Orchestrator-observed in run.json: `status` failed, `commit` dc20d0fa23df…, started 18:39:07Z, updated 18:45:27Z.
+  - Step `hadoop-pipeline-HJ1-HJ7` failed, ret 255, with stderr (human-reported): "JAR does not exist or is not a normal file: /mnt/var/lib/hadoop/steps/s-09742161FYVRNKKDIME8/s3:/…/jars/dc20d0fa23df/scholarchain-hadoop-0.1.0-SNAPSHOT-assembly.jar".
+  - `spark-graph-analytics` was CANCELLED. No data was processed, and nothing was written to Neptune, DynamoDB or SQS.
+  - Orchestrator-observed: the steps.json step 1 Args are `timeout --kill-after=60 3600 hadoop jar s3://…/scholarchain-hadoop-0.1.0-SNAPSHOT-assembly.jar scholarchain.hadoop.PipelineDriver …` run through `command-runner.jar`.
+- **Root cause:** `hadoop jar` needs a local file path, and the script gave it an S3 URI (`scripts/run-bounded-pipeline.sh:294`). The smoke run used the local built-in pi jar (`:291`), so this path was never exercised on EMR. The script harness stubs EMR, so it could not catch the problem either.
+- **LOW, observed:** run.json records `failed_step` as `spark-graph-analytics`, but the step that failed was the Hadoop step. Spark was cancelled. This is deferred (not part of the C6 scope).
+- **Cost** (orchestrator, Cost Explorer, before credits): $0.4520255489 month-to-date at 19:04:33Z, under the $12 stop. Billing lags, so this may not include the EMR minutes yet.
+- **Fix:** C6, an infra-engineer change limited to `scripts/run-bounded-pipeline.sh` and its harness `scripts/tests/test-scripts.sh`. It is gated by `bash -n`, the harness and the dry-run step definitions.
+  - `sbt check` is NOT run for C6. The `check` alias (`build.sbt:370-373`) covers formatting, compile and tests of the sbt modules, and runs no `scripts/` tests. C6 changes no sbt input.
+  - The final clean `sbt check` in Phase 17b covers it. CLAUDE.md's definition of done has no explicit exemption for script-only changes, and this choice to skip is recorded here for the human gate.
+
+## Human decision: Phase 14 finish delegated to the orchestrator (recorded in substance)
+
+The human handed the rest of Phase 14 to the orchestrator to run autonomously. The authority granted for this session:
+- **Commits:** the orchestrator may commit. This is a human-owned decision, delegated, and every delegated commit is disclosed.
+  - Before every commit, `git diff --cached | grep -c <account id>` must return 0.
+  - `reports/` is never staged.
+- **The orchestrator may run:** `package.sh`, `plan.sh`, `run-bounded-pipeline.sh --dry-run`, smoke checks, and read-only AWS calls.
+- **The orchestrator may not run:** `deploy.sh` or the Terraform apply (guard and spec). These go into ONE runner script, `/tmp/finish-phase14.sh`, which the human executes.
+- **Apply approval is a pre-stated rule.** The runner applies the new plan only if its summary shows all of the following. Any mismatch prints the mismatch and exits without applying.
+  - resources_to_add=0, resources_to_change=3, resources_to_destroy=0, resources_to_replace=4, iam_changes=0;
+  - both stateful lists empty;
+  - every image at the C6 tag.
+
+  The human stated this rule as their approval for the apply.
+- **Failure handling:** on a runner failure, diagnose read-only, fix once (same gates, commit, new runner from the failed step), and stop after a second failure.
+- **The human retains:** signing `human-gate.md`, which the orchestrator only drafts, never writes. Lane 2 is not merged.
+
+## C6 checkpoint (F14-5 fix and 10K-path audit)
+- **Agent work** (infra-engineer; files `scripts/run-bounded-pipeline.sh`, `scripts/tests/test-scripts.sh`):
+  - The Hadoop step copies its jar from S3 to local disk and runs it, inside the same `timeout --kill-after=60 3600` with TERMINATE_CLUSTER.
+- **Audit blocker b4, orchestrator-confirmed:**
+  - The Spark job uses java.nio local paths only (`modules/spark/.../Inputs.scala:122-158`, `Run.scala:70-100`).
+  - It needs a single `match-decisions-final.jsonl`, which no EMR stage produced (HJ7 writes partitioned decisions; locally the file came from `scholarchain.er.tools.FinalDecisions`).
+- **Orchestrator decision, under the human's delegated authority:** a script-only workaround. The proper Hadoop-FS Spark I/O fix is deferred to 17b (spark-engineer, with entity-resolution-engineer).
+  - One Spark step on the EMR primary copies to local disk: HJ curated, `work/hj6a/entity-views`, `work/hj6d/match-candidates`, and the frozen policy (`modules/entity-resolution/evaluation/er-v1-frozen-policy.json`, uploaded with its SHA-256).
+  - It runs FinalDecisions from the hadoop assembly with no LLM cache, which gives deterministic policy-only decisions.
+  - It runs `spark-submit --master local[*]` with `fs.defaultFS=file:///` and the event log off.
+  - It copies the output and the decisions provenance back to SPARK_OUT.
+  - **DISCLOSURE:** Spark runs in local mode on the EMR primary node, not distributed. It is not a valid basis for a Spark elasticity claim.
+- **Audit results** (infra-engineer, agent-reported):
+  - PASS: jar names vs artifacts.json; the Spark main class and flags; the HJ2 enrichment upload, flags and file filter; PipelineDriver args.
+  - PASS: convert stage (LocalLoad invocation, sync, exit-6 guard).
+  - PASS: load stage (OpsLoadMain and entrypoint, env names, ops role S3, DynamoDB, SQS and Neptune loader, ops SG to Neptune, image-tag check).
+  - PASS: EMR EC2 role on artifacts, raw and curated.
+  - Residual notes (not fixed): a `*.json` inside an enrichment source dir would be parsed as an envelope; a missing source dir is still passed as a flag.
+- **Gate:**
+  - `bash -n` OK and shellcheck info-only (SC1091), agent-reported.
+  - Harness `RESULT passed=414 failed=0`, observed by the orchestrator twice, after the last change.
+  - Dry-run step Args shown by the agent.
+  - `sbt check` skipped (reason recorded in the F14-5 section).
+- **Review:** see review-report.md (C6). Two HIGHs (H1, N1) were found and fixed in rereads. No HIGH is open.
