@@ -85,14 +85,14 @@ sc_stage build-jobs
 # call, so every sbt call sees it. The sbt 2 launcher is a thin client that attaches to a background server, and a server keeps the
 # environment of the process that started it (build.sbt refuses otherwise). A server that was already running before this script started
 # may hold a different or absent value, so `sbt shutdown` runs first: the next call then starts a fresh server from this environment.
-# (`sbt --help` confirms no per-call environment option; `shutdown` is the sbt command that stops the server. Its failure is only a warning.)
+# (`sbt --help` confirms no per-call environment option; `shutdown` is the sbt command that stops the server. It exits 0 when no server is running; a failure stops the script.)
 export SCHOLARCHAIN_GIT_SHA="${TAG}"
 JOBS_CMD=(sbt packageJobs)
 IMG_CMD=(sbt dockerLocal)
 if [[ "${SKIP_BUILD}" == 1 ]]; then
   sc_info "skipped (--skip-build)"
 else
-  (cd "${ROOT}" && sc_mut sc_timeout 300 sbt shutdown) || sc_warn "sbt shutdown failed or no server was running; continuing"
+  (cd "${ROOT}" && sc_mut sc_timeout 300 sbt shutdown) || sc_die "sbt shutdown failed: a running sbt server may hold another SCHOLARCHAIN_GIT_SHA; stop it and rerun"
   (cd "${ROOT}" && sc_mut sc_timeout "${SC_BUILD_TIMEOUT:-3000}" "${JOBS_CMD[@]}")
 fi
 
