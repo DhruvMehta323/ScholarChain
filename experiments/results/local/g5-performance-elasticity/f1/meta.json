@@ -1,0 +1,25 @@
+{
+  "evidence_class": "none (skeleton)",
+  "file_evidence_class": {
+    "README.md": "none (skeleton)",
+    "performance-elasticity-PENDING.csv": "none (skeleton)"
+  },
+  "generated_at_utc": "2026-11-25T00:43:21.389Z",
+  "git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "group": "g5",
+  "inputs": [
+    {
+      "path": "experiments/evaluation/performance_elasticity_template.csv",
+      "sha256": "02f3e36ed85ae9acf97e3bde0a80c995d8fb948516ba2e46eeb7aa28c767437e"
+    }
+  ],
+  "not_available_inputs": [],
+  "notes": [],
+  "parameters": {},
+  "python": "3.14.2",
+  "run_id": "f1",
+  "script": "experiments/evaluation/local_eval.py",
+  "script_sha256": "a49c6df57ca6394758656cb1da7c31077de91fdeb83747a43f8a5ed6978c9119",
+  "synthetic": false,
+  "tree_dirty": true
+}

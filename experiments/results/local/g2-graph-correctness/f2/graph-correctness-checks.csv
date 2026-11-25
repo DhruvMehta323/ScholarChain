@@ -1,0 +1,9 @@
+check,observed,verdict
+GC-01 self loops in COAUTHORED_WITH,0 of 15107,PASS
+"GC-02 duplicate unordered (pair, window) rows / ordered duplicates",0 / 0,PASS
+GC-03 researcher-metrics coauthorCount != degree in loaded edges (rows),0 of 6937,PASS
+"GC-04 IN_COMPONENT: (researcher, window) with count != 1 / distinct researchers covered",0 of 6937 / 3893 of 3893,PASS
+"GC-05 MEMBER_OF: (researcher, window) with count != 1 / distinct researchers covered",0 of 6937 / 3893 of 3893,PASS
+GC-06 load-manifest row counts differ from rows read (labels),none,PASS
+GC-07 edges whose evidence works lie outside the edge window (or window mismatch),0 of 15107,PASS
+GC-08 stored shortest paths disagreeing with independent BFS,0 of 63,PASS

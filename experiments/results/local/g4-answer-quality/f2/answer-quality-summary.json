@@ -1,0 +1,160 @@
+{
+  "abstention": {
+    "ambiguous_candidate_ids_expected": 10,
+    "ambiguous_candidate_ids_listed": 10,
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tn": 40,
+    "tp": 4
+  },
+  "claim_status_counts": {
+    "partially_supported": 15,
+    "verified": 213
+  },
+  "claim_support_rate": 0.9342105263157895,
+  "claims_not_verified_by_category_and_status": {
+    "institution": {
+      "partially_supported": 6
+    },
+    "prompt_injection": {
+      "partially_supported": 3
+    },
+    "topic": {
+      "partially_supported": 6
+    }
+  },
+  "claims_total": 228,
+  "claims_verified": 213,
+  "contradiction": {
+    "caveat": "zero is an observation over these 44 fixture-model answers (all claims are verified or partially_supported); it is not a measured detection rate for contradictions",
+    "claims_with_status_other_than_verified_or_partially_supported": 0,
+    "rate": 0.0
+  },
+  "evidence_class": "F (fixture model: BenchmarkResponders with fake-model-v1; no real LLM, no real embedder)",
+  "forbidden_in_answer": {
+    "strings_checked": 18,
+    "violations": 0
+  },
+  "harness_all_checks_passed": 44,
+  "human_rating_sheet": "EMPTY (left for the human; see human-rating-sheet-EMPTY.csv)",
+  "identifier_accuracy": {
+    "identity_facts": 46,
+    "identity_facts_with_id_and_name_in_answer_and_resolved": 46,
+    "rate": 1.0
+  },
+  "numerical_accuracy": {
+    "harness_assert_checks_failed": 0,
+    "harness_assert_checks_ok": 250,
+    "harness_fact_checks_failed": 0,
+    "harness_fact_checks_ok": 250,
+    "note": "fact:/assert: checks are the committed benchmark harness verdicts stored in the raw question files; the number of fact checks differs from numeric facts because path/component facts are non-numeric or composite",
+    "numeric_metric_facts_in_benchmark": 45
+  },
+  "questions": 44,
+  "questions_with_unverified_claims_by_category": {
+    "institution": [
+      "institution-01 (3 of 3 claims not verified)",
+      "institution-02 (3 of 3 claims not verified)"
+    ],
+    "prompt_injection": [
+      "prompt_injection-04 (3 of 3 claims not verified)"
+    ],
+    "topic": [
+      "topic-01 (3 of 3 claims not verified)",
+      "topic-02 (3 of 3 claims not verified)"
+    ]
+  },
+  "reason_code_counts": {
+    "deterministic_checks_passed": 213,
+    "semantic_context_only": 15
+  },
+  "reason_codes_by_category_status": [
+    {
+      "category": "bridge_ranking",
+      "claims": 48,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "coauthor_breadth",
+      "claims": 16,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "community",
+      "claims": 36,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "component",
+      "claims": 15,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "direct_collaboration",
+      "claims": 26,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "evidence_lookup",
+      "claims": 12,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "homonym_suffix",
+      "claims": 8,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "institution",
+      "claims": 6,
+      "reason_code": "semantic_context_only",
+      "status": "partially_supported"
+    },
+    {
+      "category": "max_team_size",
+      "claims": 3,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "prompt_injection",
+      "claims": 3,
+      "reason_code": "semantic_context_only",
+      "status": "partially_supported"
+    },
+    {
+      "category": "prompt_injection",
+      "claims": 12,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "shortest_path",
+      "claims": 22,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "temporal_change",
+      "claims": 15,
+      "reason_code": "deterministic_checks_passed",
+      "status": "verified"
+    },
+    {
+      "category": "topic",
+      "claims": 6,
+      "reason_code": "semantic_context_only",
+      "status": "partially_supported"
+    }
+  ],
+  "run": "modules/services/target/phase09-benchmark/R2 (R1 identical per Phase 09 report)"
+}

@@ -1,0 +1,1010 @@
+{
+  "edges_fully_traced": 25,
+  "edges_sampled": 25,
+  "evidence_class": "R",
+  "evidence_rows_audited": 25,
+  "evidence_rows_failed": 0,
+  "population": "all COAUTHORED_WITH edge ids (all windows), sorted, random.Random(seed).sample",
+  "population_size": 15107,
+  "rows": [
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:ca1539a12ed2ed2e9419a6b206d13def314bd01b77bf338009231e598ea77f3b",
+      "pass": true,
+      "researcher_a": "researcher:sc1:089ee0454ee5751473953919448dd31f20c2dcb904c4f54d4475287a7ae0fdf7",
+      "researcher_b": "researcher:sc1:61c87bdfa12dfce10cc72180d7e44ea78b53c13514b73b967d28a9626e12b9a8",
+      "source_trace_a": [
+        {
+          "byte_offset": 132017,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:b9c89afe9d82aa4aa403233eed920f001f2f2d06d76b33a925a96e178632de58",
+          "position": 1,
+          "raw_name": "Christian Schleberger",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/bioinformatics/RichterSBS10"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 132017,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:ace8313b42a37a64108da0f9cd63f15c774a96aec09b99d8676192bdcbc550c9",
+          "position": 0,
+          "raw_name": "Andreas S. Richter",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/bioinformatics/RichterSBS10"
+        }
+      ],
+      "title": "Seed-based INTARNA prediction combined with GFP-reporter system identifies mRNA targets of the small RNA Yfr1.",
+      "traced_to_source_record": true,
+      "window": "1000-9999",
+      "work_id": "work:dblp:journals/bioinformatics/RichterSBS10",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:21e7ffaad31dd0f66620f6dee85bdacfaa69c01463069318838dfd745d96aa12",
+      "pass": true,
+      "researcher_a": "researcher:sc1:bd3da7366c45d30e0d89f43f7f71103be8ee377310d876e24165a0c62fb52830",
+      "researcher_b": "researcher:sc1:ebed9834b98b3da25b7eabadb462e4cbe09d6fff7f85c28ebe5cd268d76f97c7",
+      "source_trace_a": [
+        {
+          "byte_offset": 251515,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:33cdfceecc2f1ad4faa5171dd1f3a34abf66070b64d996963173366dc26a107d",
+          "position": 4,
+          "raw_name": "Danda B. Rawat",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/access/BoukSEAR17"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 251515,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:0335a8544d1f9a8f1ef5ce6063a76c64aba8a5aaee9488d23e156ab2b8ce40a4",
+          "position": 0,
+          "raw_name": "Safdar Hussain Bouk",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/access/BoukSEAR17"
+        }
+      ],
+      "title": "IEEE Access Special Section Editorial: Future Networks: Architectures, Protocols, and Applications.",
+      "traced_to_source_record": true,
+      "window": "1000-9999",
+      "work_id": "work:dblp:journals/access/BoukSEAR17",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:be0c29fbb40f2f517a827ad4ee0a124aeb7fa8a0986d9b5cf749d47b9cfb1a07",
+      "pass": true,
+      "researcher_a": "researcher:sc1:45fd3b177159b43507dd2c7ae88f7b60c632af5ec721b417fe2aaf6802cd76f5",
+      "researcher_b": "researcher:sc1:a58612a418049cce7e37aded07d199603152546b952eb9209f5d48486d570628",
+      "source_trace_a": [
+        {
+          "byte_offset": 169750,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:05f209abe2a07682680a8027f00940742f9db9c10b712bf6f624991564cfe15d",
+          "position": 2,
+          "raw_name": "Harish Viswanathan",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/globecom/DhillonHVV13"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 169750,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:2e7fd75985d559d30ea9f01cdf7397a926933fe8fde1fe9558a380b3b18be1b6",
+          "position": 0,
+          "raw_name": "Harpreet S. Dhillon",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/globecom/DhillonHVV13"
+        }
+      ],
+      "title": "Throughput optimal communication strategy for wireless random access channel.",
+      "traced_to_source_record": true,
+      "window": "1000-9999",
+      "work_id": "work:dblp:conf/globecom/DhillonHVV13",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:0a630183bfe731cbba747e90217592befa6695a55618a2d06264f365f362cfb9",
+      "pass": true,
+      "researcher_a": "researcher:sc1:bad93bca5b1a8ed8c41c36deef68f20740363dde20238c256b2242e13beb55ce",
+      "researcher_b": "researcher:sc1:bd846dd2851e0648bd68ed86330c6ba821b6772d7d119ab0bc15e50e07954e8b",
+      "source_trace_a": [
+        {
+          "byte_offset": 369377,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:a747238a06db1427e5c3345bb7237e5c7021476baca731d5067b9bea9824ba75",
+          "position": 27,
+          "raw_name": "Fengxiang Wang",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/neuroimage/LucaILPSZANFBZF21"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 369377,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:8b3db368f59ad4c3beeb31e27379d6ecc9c25fef8a05b73452b561e054e1a2ea",
+          "position": 18,
+          "raw_name": "Maryam Afzali",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/neuroimage/LucaILPSZANFBZF21"
+        }
+      ],
+      "title": "On the generalizability of diffusion MRI signal representations across acquisition parameters, sequences and tissue types: Chronicles of the MEMENTO challenge.",
+      "traced_to_source_record": true,
+      "window": "2020-2024",
+      "work_id": "work:dblp:journals/neuroimage/LucaILPSZANFBZF21",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:1a5282f2fd38c20b9ac6f85ba4c5b646bc4cd4e7a783a379c7cbf7c3d65b3e6c",
+      "pass": true,
+      "researcher_a": "researcher:sc1:43b7cf8f0676a0d2705d59651803b884a522178ffebf083076f14b6c0ff6f356",
+      "researcher_b": "researcher:sc1:d17a2b1d929aa48827010b7b1d4ee0e9ceaf7cc6588379c0f14b2f7142e60e2c",
+      "source_trace_a": [
+        {
+          "byte_offset": 236478,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:1a94e2406da9228b633f75089d53e4910521e26655df3a3baa2e0c6b4ed7da59",
+          "position": 7,
+          "raw_name": "Giovanna Mollo",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/neuroimage/Krieger-Redwood16"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 236478,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:aa8a88e5e91028e7232f3d7705a3d14d89e95051366c0c872f396128e5c4cd0e",
+          "position": 3,
+          "raw_name": "Robert A. Seymour",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/neuroimage/Krieger-Redwood16"
+        }
+      ],
+      "title": "Down but not out in posterior cingulate cortex: Deactivation yet functional coupling with prefrontal cortex during demanding semantic cognition.",
+      "traced_to_source_record": true,
+      "window": "1000-9999",
+      "work_id": "work:dblp:journals/neuroimage/Krieger-Redwood16",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:bf83fefba341647cb03409750a4e4b2c27cb9e4f29822bba9da9db9a8100bcfc",
+      "pass": true,
+      "researcher_a": "researcher:sc1:706967c039ffd7b49090b2d1a605c57397799873de4ccb320c5c964475883186",
+      "researcher_b": "researcher:sc1:f5e746401164e5c76f16aaaae20a1cd64ba7be1fe518d9f48efa7794b47ace29",
+      "source_trace_a": [
+        {
+          "byte_offset": 207516,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:04122fac48831533c163ec71c8a038338965ea0d047cbc0a643b895f9432adc0",
+          "position": 1,
+          "raw_name": "Anna Balenzano",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/igarss/SatalinoBMRMA15"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 207516,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:40fd19a836626fcb7e66bc774c58c354e43e335a2e480095872ca95feb3b5065",
+          "position": 4,
+          "raw_name": "Carmen Maddaluno",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/igarss/SatalinoBMRMA15"
+        }
+      ],
+      "title": "Retrieval of wheat biomass from multitemporal dual polarised SAR observations.",
+      "traced_to_source_record": true,
+      "window": "2015-2019",
+      "work_id": "work:dblp:conf/igarss/SatalinoBMRMA15",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:20b9889a5ff05f8ec9c2369d91fe11fb76877e78d681442c4d371d5148bbae4b",
+      "pass": true,
+      "researcher_a": "researcher:sc1:4b225b82c0ba02d92d244d63eb515390aa45708ace93b48ad79382dccdf10f8c",
+      "researcher_b": "researcher:sc1:807b2c940c182332a4312ea4f0477171273b33d453395ef993bffb771e1b9d55",
+      "source_trace_a": [
+        {
+          "byte_offset": 437213,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:7752c84ef8a2da0bc24e2d4a681a4c34c59525be311e3715d0a7a73fad5064a7",
+          "position": 0,
+          "raw_name": "Igor Duric",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/jaihc/DuricBBLR23"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 437213,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:47ed577126b879c27db03b88c6aa7f3e11cc89bbfdd9c0b8887aa5398ff8b1a1",
+          "position": 4,
+          "raw_name": "Bozidar Radenkovic",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/jaihc/DuricBBLR23"
+        }
+      ],
+      "title": "Model of an intelligent smart home system based on ambient intelligence and user profiling.",
+      "traced_to_source_record": true,
+      "window": "2020-2024",
+      "work_id": "work:dblp:journals/jaihc/DuricBBLR23",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:36376f2f3086f5cd401bdd84195bf0b2f0b999b52b7341ff06efdcd737cd02de",
+      "pass": true,
+      "researcher_a": "researcher:sc1:4219cf66ef84fb53f4a2a7264ab73a8d0844de819cd3b1c5b46297390cacb6b4",
+      "researcher_b": "researcher:sc1:cf64353cf3ba6e7f985b8b204bb66fbaee6423702480ffeb2f46377595798a8a",
+      "source_trace_a": [
+        {
+          "byte_offset": 350270,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:0b4f1ce0560eedbc2e02ed68eaa241553dab511a617a0768398e13f54b7110ce",
+          "position": 9,
+          "raw_name": "Sube Banerjee",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/icassp/VenkateshMKSBFO21"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 350270,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:4db777b9cebca96d3997dbb2a679d517bff31005f2d9f24d32ee9b953046109d",
+          "position": 2,
+          "raw_name": "Alexis Kirke",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/icassp/VenkateshMKSBFO21"
+        }
+      ],
+      "title": "Artificially Synthesising Data for Audio Classification and Segmentation to Improve Speech and Music Detection in Radio Broadcast.",
+      "traced_to_source_record": true,
+      "window": "2020-2024",
+      "work_id": "work:dblp:conf/icassp/VenkateshMKSBFO21",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:c224792c5b4e29e363552f1849870bbfadb65951c4db5a233177e18663220ca7",
+      "pass": true,
+      "researcher_a": "researcher:sc1:19b0e601c5fced768b4eda1ff180cebe542d2b75c39342850eb3a4180bd0d7f8",
+      "researcher_b": "researcher:sc1:374131af231d7dd8fe1b99ae55a3b0a678c65aa996e066539fa705b5e15c5caf",
+      "source_trace_a": [
+        {
+          "byte_offset": 399242,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:56d3968cd75394cf43c793c1894d1becb8bab9093dcdc1dfce1ab9537e36221b",
+          "position": 3,
+          "raw_name": "Meng Han",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/ijon/TengZHHL22"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 399242,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:b4f79c5c6239b5e54c7ecbebaf9127c939d1b61edd9b5db476b61e40ee4031ec",
+          "position": 2,
+          "raw_name": "Meilin He",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/ijon/TengZHHL22"
+        }
+      ],
+      "title": "A two-stage deep learning model based on feature combination effects.",
+      "traced_to_source_record": true,
+      "window": "1000-9999",
+      "work_id": "work:dblp:journals/ijon/TengZHHL22",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:7a2086793ff7a1ac669684fca692b3159e12621fa3bf824bf017e91dfac5727d",
+      "pass": true,
+      "researcher_a": "researcher:sc1:0ce32654bfd85c5d86fddfaf90bc9f4ce1344f81d815216439746f892dccf307",
+      "researcher_b": "researcher:sc1:f01ffb87e1b2ffe7227257c24f7f5a8da05318b18488e4672b3bc3c52058b807",
+      "source_trace_a": [
+        {
+          "byte_offset": 336152,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:3d9bc4e460a177c76e4358d0fcbc1ac78177cbfd30e786dbf44b20492cb1e277",
+          "position": 6,
+          "raw_name": "Akihiko Ito",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/remotesensing/JanardananMTWTV20"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 336152,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:f00659c228d54a03ffc974cb1759ffc0c8d405fe853ffd0c7878b86924ece5fd",
+          "position": 5,
+          "raw_name": "Vinu Valsala",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/remotesensing/JanardananMTWTV20"
+        }
+      ],
+      "title": "Country-Scale Analysis of Methane Emissions with a High-Resolution Inverse Model Using GOSAT and Surface Observations.",
+      "traced_to_source_record": true,
+      "window": "1000-9999",
+      "work_id": "work:dblp:journals/remotesensing/JanardananMTWTV20",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:d947916227a805bace03edd146c5a91cefe7c1580fad3a67ba96fcfe17c04158",
+      "pass": true,
+      "researcher_a": "researcher:sc1:7492172bf09502976857bbecdce9b3d09c07c9586eadbe9afe3d8d8fe3d066e0",
+      "researcher_b": "researcher:sc1:f4f1016c85af681d41e528891bef8d83356ca4d35d0edc3af0cd7999649e7caf",
+      "source_trace_a": [
+        {
+          "byte_offset": 359013,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:eea2721ae8ca584a298b06d191132c62f45ce0e93b25db80a7e24797afa0ce44",
+          "position": 9,
+          "raw_name": "Gaurav Ahuja",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/bib/GautamMKMGRNMSA21"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 359013,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:a46a54d91dc017047c361472332dd9828c674277d82de7bd3429189f70115e53",
+          "position": 1,
+          "raw_name": "Aayushi Mittal",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/bib/GautamMKMGRNMSA21"
+        }
+      ],
+      "title": "EcTracker: Tracking and elucidating ectopic expression leveraging large-scale scRNA-seq studies.",
+      "traced_to_source_record": true,
+      "window": "2020-2024",
+      "work_id": "work:dblp:journals/bib/GautamMKMGRNMSA21",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:cc4d39494eaca04cb552505c91379158830c1a7703dd9478328a5df3530bf663",
+      "pass": true,
+      "researcher_a": "researcher:sc1:19209ded24764ec30ca8cad19ea60e39cf963e880398b816c8e3ae06858f4fd0",
+      "researcher_b": "researcher:sc1:9889f782040cd1ed863804857f845c34f164be244c0b2d14943fd00083c4fec1",
+      "source_trace_a": [
+        {
+          "byte_offset": 173592,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:8b245e668e639bb3e239d1aca6d4027122f9e83e3f25082137e8386329191dc6",
+          "position": 0,
+          "raw_name": "Errico Armandillo",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/igarss/ArmandilloTHWS13"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 173592,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:13f02f34b657b0cb7cff6babdcbb8000163739c336a1ab464101e210c30e45e7",
+          "position": 4,
+          "raw_name": "Anne Grete Straume",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/igarss/ArmandilloTHWS13"
+        }
+      ],
+      "title": "ESA lidar space missions and supporting activities.",
+      "traced_to_source_record": true,
+      "window": "2010-2014",
+      "work_id": "work:dblp:conf/igarss/ArmandilloTHWS13",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:492434649c21992dc8fa1d3fce9bec1c4a754a1a2aab3c58f779dcf4b587a60e",
+      "pass": true,
+      "researcher_a": "researcher:sc1:bd94338bc235eb679e68d86dffba25d75b2e0a9c8aa177e775465f4bd60f7788",
+      "researcher_b": "researcher:sc1:d1d6ea2957f4c4ff5b80673f1cf54ebcc4a473ca558b8a559218bd714e079c90",
+      "source_trace_a": [
+        {
+          "byte_offset": 328849,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:9a8bfa13edf1b8778b9f7f950b311a816365f5653408bcbcde103e9103ea86d9",
+          "position": 1,
+          "raw_name": "Ping Zhang 0003",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/complexity/YuZYSH20"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 328849,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:0267c543fc3448b6b8bfa52018caf7fc4f61deb2f83f76a97d5efd17fe54bca8",
+          "position": 2,
+          "raw_name": "Yang Yu 0016",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/complexity/YuZYSH20"
+        }
+      ],
+      "title": "An Adaptive Large Neighborhood Search for the Larger-Scale Instances of Green Vehicle Routing Problem with Time Windows.",
+      "traced_to_source_record": true,
+      "window": "2020-2024",
+      "work_id": "work:dblp:journals/complexity/YuZYSH20",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:f72f9451c5df32ec5775d3e20e162eb040f38a3151ae4c6ba4c82fb43050f45e",
+      "pass": true,
+      "researcher_a": "researcher:sc1:23a08eb61fafcd261fdec926e1909a2f0910ac4acd41a06a030ce22f4dd80332",
+      "researcher_b": "researcher:sc1:48693363e47b75485856017b0a5ce27c0b14fe6d9aa0ac70a3d29b3956e6c9fc",
+      "source_trace_a": [
+        {
+          "byte_offset": 169184,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:17e88da7d6db180a078f7c876efa1ad5ee9212a88b44334a6a653ef474827da1",
+          "position": 3,
+          "raw_name": "Jan F. M. Van Impe",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/eucc/HuyckBMIL13"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 169184,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:9f3e65c479ea569173d401be2f4a5c31cf723c73bd053a24e7888c6bd4c35940",
+          "position": 0,
+          "raw_name": "Bart Huyck",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/eucc/HuyckBMIL13"
+        }
+      ],
+      "title": "Model predictive control of a pilot-scale distillation column using a programmable automation controller.",
+      "traced_to_source_record": true,
+      "window": "1000-9999",
+      "work_id": "work:dblp:conf/eucc/HuyckBMIL13",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:64518d6af08d5547678c7c6ba977217757291b903687ebc5b32c7f948c978072",
+      "pass": true,
+      "researcher_a": "researcher:sc1:0aa13f5f30144915e6dfe091bfb882a652dd536e046443a66d180a792c010284",
+      "researcher_b": "researcher:sc1:180e15ce40a2ff6d538cf2fcf9450c1a23ec812eac1cc1b482e1ab2e7d5f7766",
+      "source_trace_a": [
+        {
+          "byte_offset": 351833,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:d73f501b89f385c13716d6a8c5bff2d8a6093a62fb7cbde39588db6d8f08faea",
+          "position": 3,
+          "raw_name": "Hilde Kuehne",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/iccv/ChenRDK0BPKFHGP21"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 351833,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:27c43a7d49b319855f6ca3d20e996e279c54686073c0d3c16ac7a75ffc5647d1",
+          "position": 2,
+          "raw_name": "Kevin Duarte",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/iccv/ChenRDK0BPKFHGP21"
+        }
+      ],
+      "title": "Multimodal Clustering Networks for Self-supervised Learning from Unlabeled Videos.",
+      "traced_to_source_record": true,
+      "window": "2020-2024",
+      "work_id": "work:dblp:conf/iccv/ChenRDK0BPKFHGP21",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:6e6a034df8513dd4be88a7d442888c87bcb8de358b4d1028f6a71072f5970a70",
+      "pass": true,
+      "researcher_a": "researcher:sc1:0ab0d56ad4be4998b8df74f3c3ff646fb905776b1a390be073a9906601349e0d",
+      "researcher_b": "researcher:sc1:380fb36f5b5b6ca6ef96501c6a2a4bd674cfcb4d125f30930bcd99800737bd8f",
+      "source_trace_a": [
+        {
+          "byte_offset": 208675,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:88559a45e9f28ef0c4f248fa7186fd83afca0c736590668b5f9630668f46e0e8",
+          "position": 0,
+          "raw_name": "Aaron M. Bestick",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/iros/BestickBWNSB15"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 208675,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:b5b61ab1e5986ba678b19babb9f729734822b0816d2bc96e3b6fc409ee14d242",
+          "position": 1,
+          "raw_name": "Samuel A. Burden",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/iros/BestickBWNSB15"
+        }
+      ],
+      "title": "Personalized kinematics for human-robot collaborative manipulation.",
+      "traced_to_source_record": true,
+      "window": "2015-2019",
+      "work_id": "work:dblp:conf/iros/BestickBWNSB15",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:eda72dbab1e4514e2f5201753299e7a0d46ba6719afd7d54172c321129612b78",
+      "pass": true,
+      "researcher_a": "researcher:sc1:97abd4f46b900b47b2eff888d1d07298b676517b5e861e6bc15e8d308c463da0",
+      "researcher_b": "researcher:sc1:9a6c185913cbd2415ebfdbc5650c867787bfc927dc60a383c214a45c1f8308a8",
+      "source_trace_a": [
+        {
+          "byte_offset": 425562,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:efdc470ba02c63d5156a3f177fd3c8f8e24fbda00b85c6f2fe16b15c327b1b13",
+          "position": 2,
+          "raw_name": "Chunna Tian",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/miccai/ZhangRTZLYJ23"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 425562,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:0d7c7652ef8d55586e55852bb8f38b676a7079cd30c011025b415152c94cb05a",
+          "position": 3,
+          "raw_name": "Heng Zhou 0006",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/miccai/ZhangRTZLYJ23"
+        }
+      ],
+      "title": "Self-aware and Cross-Sample Prototypical Learning for Semi-supervised Medical Image Segmentation.",
+      "traced_to_source_record": true,
+      "window": "2020-2024",
+      "work_id": "work:dblp:conf/miccai/ZhangRTZLYJ23",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:4aa747147b1ce167a055f0bb09e8e51cc175f323ba0a8bae6aae013e745daaf6",
+      "pass": true,
+      "researcher_a": "researcher:sc1:4768adfca27e8c036fc9671a568f83e0873325906434b3699ab5dafa140f7268",
+      "researcher_b": "researcher:sc1:5f464b06a3deffa50be4c109ae85a263236069c6f93f455c7626a0f36107efd8",
+      "source_trace_a": [
+        {
+          "byte_offset": 96214,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:94b24326280ddba94cff8e756e35084ff994800ef8d86b8dcd3e991507f5bae1",
+          "position": 1,
+          "raw_name": "Jaime Ram\u00edrez-Angulo",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/iscas/PadillaRCL07"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 96214,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:fef587067032b5ee100a2517f9a027d1acda422d2065491a684fab24af60b92c",
+          "position": 3,
+          "raw_name": "Antonio J. L\u00f3pez-Mart\u00edn",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/iscas/PadillaRCL07"
+        }
+      ],
+      "title": "Highly Linear V/I Converter with Programmable Current Mirrors.",
+      "traced_to_source_record": true,
+      "window": "1000-9999",
+      "work_id": "work:dblp:conf/iscas/PadillaRCL07",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:eea0367b913e46bb85143a171f3b930bf681c6c694e86ce646cc6e390d6a2de7",
+      "pass": true,
+      "researcher_a": "researcher:sc1:a1a8e22a19731871bbc4bcd24530cfa30b5c20d2de853dcc97b0f21410e4fa8f",
+      "researcher_b": "researcher:sc1:e2561576fd1945e61b3acaab800eb9091a8eaa2b1f574647b1bab00747b830db",
+      "source_trace_a": [
+        {
+          "byte_offset": 430582,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:f155d257611c4be1715eade87ccc0f1387eb409ee4772ae126e793a6186c77be",
+          "position": 0,
+          "raw_name": "Leonard Dervishi",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/bioinformatics/DervishiLHJVA23"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 430582,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:8866fdc3a7818709568d27b143e7c1d8b94f4d08c4498073d977f5ca6516d120",
+          "position": 3,
+          "raw_name": "Xiaoqian Jiang 0001",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/bioinformatics/DervishiLHJVA23"
+        }
+      ],
+      "title": "Privacy preserving identification of population stratification for collaborative genomic research.",
+      "traced_to_source_record": true,
+      "window": "2020-2024",
+      "work_id": "work:dblp:journals/bioinformatics/DervishiLHJVA23",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:0b9effb39d4eacab536a533d53238911a638b32cefe12234d60a8cea91d9a7d2",
+      "pass": true,
+      "researcher_a": "researcher:sc1:47dcc91fcde648890e583982c523f11004845d86f62c70ef461b9d5df6f496db",
+      "researcher_b": "researcher:sc1:a649f31af2ce23fa0d4881b5b703654df9dfa6ee141953718901f7341ed650d3",
+      "source_trace_a": [
+        {
+          "byte_offset": 501059,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:1c992d71710600c1c0e40f49cebcd72282f04d28380492d0b73c0a5d683c3c4b",
+          "position": 0,
+          "raw_name": "Jinyang Song",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/icic/SongQG25"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 501059,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:da04fc0b6210a1d6ef9467e973ef7b80237abf2b32cdfc13b9ea2624a495a4c8",
+          "position": 1,
+          "raw_name": "Jing Qi",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/icic/SongQG25"
+        }
+      ],
+      "title": "A Grasp Detection Network Based on Channel-Spatial Adaptive Fusion Strategy.",
+      "traced_to_source_record": true,
+      "window": "1000-9999",
+      "work_id": "work:dblp:conf/icic/SongQG25",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:b491fba2568114bae161c65a86a31d1f14bba056af934c0bdf99fc545e7b1b5a",
+      "pass": true,
+      "researcher_a": "researcher:sc1:c9668f3948add278efa33c8500a942159fcdc7b40d565637015f86c2faa3fcaf",
+      "researcher_b": "researcher:sc1:e8dcd19b7afc1ae8a84165ffcd0f937096461e8d6423c25655e9e58041fe5fc2",
+      "source_trace_a": [
+        {
+          "byte_offset": 336152,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:fdbd43873d66cc88d7ba932fc1c6569f108eeef562053db2e67d02597c5373c1",
+          "position": 1,
+          "raw_name": "Shamil Maksyutov",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/remotesensing/JanardananMTWTV20"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 336152,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:5cec7bbdaf121542aa2e7a98821dc304a31b2d3f6aab433c2f89c0618a206ef8",
+          "position": 11,
+          "raw_name": "Motoki Sasakawa",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/remotesensing/JanardananMTWTV20"
+        }
+      ],
+      "title": "Country-Scale Analysis of Methane Emissions with a High-Resolution Inverse Model Using GOSAT and Surface Observations.",
+      "traced_to_source_record": true,
+      "window": "2020-2024",
+      "work_id": "work:dblp:journals/remotesensing/JanardananMTWTV20",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:07128f55fd19265010804f2e70f43a5901b6e1f7ba61cfa9f2c17c4049115a49",
+      "pass": true,
+      "researcher_a": "researcher:sc1:3449674f9aa0d010311d8e0e9c0974b7a682572da8ee5ad45f36833f6c6deff5",
+      "researcher_b": "researcher:sc1:9149261473083ca8d1cdf8c898970740cd155c503df48fbbbf32888a7da6a716",
+      "source_trace_a": [
+        {
+          "byte_offset": 135338,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:db87ea2ef2ebdd34d8f2e5171454399c889fd8d7979ec5cc9d058fcaedc2974c",
+          "position": 5,
+          "raw_name": "L. Jaap Kappelle",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/neuroimage/OersVZWHKRD10"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 135338,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:2102f1966db24e9f5a747c97d51270e78c9619b37dfcc068114f7e2b385fba38",
+          "position": 0,
+          "raw_name": "Casper A. M. M. van Oers",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/neuroimage/OersVZWHKRD10"
+        }
+      ],
+      "title": "Contribution of the left and right inferior frontal gyrus in recovery from aphasia. A functional MRI study in stroke patients with preserved hemodynamic responsiveness.",
+      "traced_to_source_record": true,
+      "window": "2010-2014",
+      "work_id": "work:dblp:journals/neuroimage/OersVZWHKRD10",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:13042bb774b437a12adb3ace98a886b560d5dfd949b2dbe18d92cea69230f91f",
+      "pass": true,
+      "researcher_a": "researcher:sc1:eb248a640fadfe9b8e096aad1aa3a875ee968b2ed06d9fde65ec58936a27445c",
+      "researcher_b": "researcher:sc1:ee093635af4bfe2e5e7a2a615decb4d1a69c8d6854d7a5f30bce24426e8ff3cd",
+      "source_trace_a": [
+        {
+          "byte_offset": 246350,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:a7504f41e92355c53f792ee9bc729c2c86d1968c1e72886a43773fee0db289d3",
+          "position": 1,
+          "raw_name": "Dah-Jye Lee",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/icip/ChouLZH17"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 246350,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:cb589de85981f9bbc2282e5e1464dfc8f02f039c3b279145c389d5885393c5b1",
+          "position": 2,
+          "raw_name": "Dong Zhang 0002",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/icip/ChouLZH17"
+        }
+      ],
+      "title": "A parallel convolutional neural network architecture for stereo vision estimation.",
+      "traced_to_source_record": true,
+      "window": "2015-2019",
+      "work_id": "work:dblp:conf/icip/ChouLZH17",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:e21d76d51a5d28efba0605764a5a8eeab749559862a29886e0321242d5983b43",
+      "pass": true,
+      "researcher_a": "researcher:sc1:48b8a00482730a5937832d0c6df3c22f5e5f51d8d8465d40965a1aa2dd4541e9",
+      "researcher_b": "researcher:sc1:cfacffe5d04667f4b4eec5229912aa267d6bddb071b53a8f39d0627dadbfd8d3",
+      "source_trace_a": [
+        {
+          "byte_offset": 240679,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:0520c9443efb201a72eed01a13c036c058de713778c6e7c35b391c95918558d3",
+          "position": 0,
+          "raw_name": "Sahand Sabet",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/amcc/SabetDAP17"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 240679,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:034770f117632cab3fb5a3d7d74b1128594a6d723c27a06ce1f73b2289798f1a",
+          "position": 3,
+          "raw_name": "Mohammad Poursina",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "conf/amcc/SabetDAP17"
+        }
+      ],
+      "title": "Computed Torque Control of the Stewart platform with uncertainty for lower extremity robotic rehabilitation.",
+      "traced_to_source_record": true,
+      "window": "2015-2019",
+      "work_id": "work:dblp:conf/amcc/SabetDAP17",
+      "work_in_Work_csv": true
+    },
+    {
+      "a_authored_work": true,
+      "b_authored_work": true,
+      "edge_id": "edge:coauthor:67cb03139ad74ba0b65fec76e409882c2cb63116821c13d4500696926df70292",
+      "pass": true,
+      "researcher_a": "researcher:sc1:101b6b2577267a3b47eb9de0402aa67c5a82b6bf6e6760bed66750848c2f5b83",
+      "researcher_b": "researcher:sc1:75df73229ee8acba6e338b23ae09ea3d19e12e57da7edcb519d8f400732a2c31",
+      "source_trace_a": [
+        {
+          "byte_offset": 259645,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:591a1bc252d69cb729585f30e2e83a0ab28aa95d6fb830aa3a206512f4070d2b",
+          "position": 6,
+          "raw_name": "Juha J. Pyrh\u00f6nen",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/tie/LindhPJGMSP17"
+        }
+      ],
+      "source_trace_b": [
+        {
+          "byte_offset": 259645,
+          "hadoop_run_id": "run:89884d8902295f7e95b51215ddd7c159bee24caa182d5e233bddc1a9b2fe6610",
+          "mention_id": "mention:8a1549887f89d312bb604152f5811daf7f641b0b46127db28533f8c5f1eb32f5",
+          "position": 3,
+          "raw_name": "Aki Gronman",
+          "record_key_matches_work_id": true,
+          "source_checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+          "source_file": "dblp/dblp_selection_1000.xml",
+          "xml_record_key_at_offset": "journals/tie/LindhPJGMSP17"
+        }
+      ],
+      "title": "Direct Liquid Cooling Method Verified With an Axial-Flux Permanent-Magnet Traction Machine Prototype.",
+      "traced_to_source_record": true,
+      "window": "2015-2019",
+      "work_id": "work:dblp:journals/tie/LindhPJGMSP17",
+      "work_in_Work_csv": true
+    }
+  ],
+  "sample_size": 25,
+  "seed": 160101,
+  "xml_provenance_inputs0_recorded_in_hadoop_author_mentions": [
+    {
+      "checksum": "ccb99d712180e2476f8444ad2c048238d18447874203bd8375b968253e4f8c40",
+      "inputId": "crossref/works",
+      "mention_rows": 390,
+      "version": "dblp-1k;files=100"
+    },
+    {
+      "checksum": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6",
+      "inputId": "dblp/dblp_selection_1000.xml",
+      "mention_rows": 3928,
+      "version": "dblp-1k"
+    },
+    {
+      "checksum": "ea65dc90b38f7fa99fec13d772309ee66325d96782e35b070205a4779332dbe6",
+      "inputId": "openalex/works",
+      "mention_rows": 393,
+      "version": "dblp-1k;files=100"
+    }
+  ],
+  "xml_sha256_matches_recorded": false,
+  "xml_sha256_observed": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6"
+}

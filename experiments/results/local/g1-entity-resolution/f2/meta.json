@@ -1,0 +1,51 @@
+{
+  "evidence_class": "R",
+  "file_evidence_class": {
+    "crosscheck-eval-vs-results-json.csv": "R",
+    "crosscheck-eval-vs-results-md.csv": "R",
+    "er-by-path.csv": "R",
+    "er-gold-split-counts.csv": "R",
+    "er-heldout-metrics.csv": "R",
+    "er-summary.json": "R"
+  },
+  "generated_at_utc": "2026-11-25T00:45:09.070Z",
+  "git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "group": "g1",
+  "inputs": [
+    {
+      "path": "modules/entity-resolution/evaluation/er-v1-heldout-eval.json",
+      "sha256": "81525378e930cc2574033c27a085e735a7e076ed1b6bc7728f88cec867622622"
+    },
+    {
+      "path": "modules/entity-resolution/evaluation/er-v1-results.json",
+      "sha256": "88a625c8ce7334390c97f3aacf1e18d193111a8834a2bbd43202faa3c2995cae"
+    },
+    {
+      "path": "modules/entity-resolution/evaluation/er-v1-results.md",
+      "sha256": "4eb32dab8e2acd890ae7933a925e43a136893340660ea4b9552d763e7d5c82a1"
+    },
+    {
+      "path": "modules/entity-resolution/gold/gold-split-v1.summary.json",
+      "sha256": "ef19a034e49b1c57f07b05f7163dfde8c56213bc3c047c4d60423a9908dcd2dc"
+    },
+    {
+      "path": "docs/agent-runs/phase-05-entity-resolution/human-gate.md",
+      "sha256": "eb5c53444d1de9d6339f9b0abe41a17bc3101d3f7472e2fdac1acdbfa100fb06"
+    },
+    {
+      "path": "docs/agent-runs/instructor-approvals.md",
+      "sha256": "1ecba9f767ca08dc2e26803944a9c0ed6c0a0a3526c6535f4fc0ed25434eb76c"
+    }
+  ],
+  "not_available_inputs": [],
+  "notes": [
+    "crosscheck-eval-vs-results-json.csv lists every differing key between the two committed files"
+  ],
+  "parameters": {},
+  "python": "3.14.2",
+  "run_id": "f2",
+  "script": "experiments/evaluation/local_eval.py",
+  "script_sha256": "7080fa8758abefa4a3264c97556a02dba908ee983018b4c7c2748e8a5744e1eb",
+  "synthetic": false,
+  "tree_dirty": true
+}

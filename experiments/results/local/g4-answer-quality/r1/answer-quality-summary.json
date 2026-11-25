@@ -1,0 +1,51 @@
+{
+  "abstention": {
+    "ambiguous_candidate_ids_expected": 10,
+    "ambiguous_candidate_ids_listed": 10,
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tn": 40,
+    "tp": 4
+  },
+  "claim_status_counts": {
+    "partially_supported": 15,
+    "verified": 213
+  },
+  "claim_support_rate": 0.9342105263157895,
+  "claims_not_verified_note": "partially_supported claims are semantic_context_only (topic and institution questions); none verified by design",
+  "claims_total": 228,
+  "claims_verified": 213,
+  "contradiction": {
+    "caveat": "the verifier in this run has no contradicted status path exercised by the benchmark; a zero is not evidence of detection power",
+    "claims_with_status_other_than_verified_or_partially_supported": 0,
+    "rate": 0.0
+  },
+  "evidence_class": "F (fixture model: BenchmarkResponders with fake-model-v1; no real LLM, no real embedder)",
+  "forbidden_in_answer": {
+    "strings_checked": 18,
+    "violations": 0
+  },
+  "harness_all_checks_passed": 44,
+  "human_rating_sheet": "EMPTY (left for the human; see human-rating-sheet-EMPTY.csv)",
+  "identifier_accuracy": {
+    "identity_facts": 46,
+    "identity_facts_with_id_and_name_in_answer_and_resolved": 46,
+    "rate": 1.0
+  },
+  "numerical_accuracy": {
+    "harness_assert_checks_failed": 0,
+    "harness_assert_checks_ok": 250,
+    "harness_fact_checks_failed": 0,
+    "harness_fact_checks_ok": 250,
+    "note": "fact:/assert: checks are the committed benchmark harness verdicts stored in the raw question files; the number of fact checks differs from numeric facts because path/component facts are non-numeric or composite",
+    "numeric_metric_facts_in_benchmark": 45
+  },
+  "questions": 44,
+  "reason_code_counts": {
+    "deterministic_checks_passed": 213,
+    "semantic_context_only": 15
+  },
+  "run": "modules/services/target/phase09-benchmark/R2 (R1 identical per Phase 09 report)"
+}

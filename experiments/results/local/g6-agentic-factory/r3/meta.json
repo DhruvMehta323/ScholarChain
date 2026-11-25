@@ -1,0 +1,377 @@
+{
+  "evidence_class": "R",
+  "generated_at_utc": "2026-11-24T23:38:18.159Z",
+  "git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "group": "g6",
+  "inputs": [
+    {
+      "path": "docs/agent-runs/phase-00-seed-agent/agent_report.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/agent-runs/phase-00-seed-agent/human-gate.md",
+      "sha256": "6b7a72a4eaf48f722d9d08d0665c8a43d636e16af174da57b746e92feaa0b69d"
+    },
+    {
+      "path": "docs/agent-runs/phase-00-seed-agent/prompt.md",
+      "sha256": "06014a7bdb6bb68cae90983f24c7b5babd80c9c38f91090501e87b315dc64bd8"
+    },
+    {
+      "path": "docs/agent-runs/phase-00-seed-agent/repair-01.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/agent-runs/phase-01-agent-factory/agent-report.md",
+      "sha256": "a6890ffe62f168d9d5fb2e413314f11c0188adf6f23a4c1d341b32206fedfb99"
+    },
+    {
+      "path": "docs/agent-runs/phase-01-agent-factory/human-gate.md",
+      "sha256": "39460c4b9422ec728a378ece7e3f7d54f01675508fb52cb6bdf34dcae55f7ce8"
+    },
+    {
+      "path": "docs/agent-runs/phase-01-agent-factory/probe-report.md",
+      "sha256": "ae0023d392cca65c02d08a394ece3d7cc4c60d6fbe43d34cd6e16b9a92d778e1"
+    },
+    {
+      "path": "docs/agent-runs/phase-01-agent-factory/prompt.md",
+      "sha256": "fc9c0e6fc303098d65d797cc7c053ea911d51248bfe6548528b21307d59e7377"
+    },
+    {
+      "path": "docs/agent-runs/phase-01-agent-factory/repair-01.md",
+      "sha256": "461e3ba5c17ad6a01980507a986e7cdc750e7d6fe6863884119d0051212c2c86"
+    },
+    {
+      "path": "docs/agent-runs/phase-01-agent-factory/repair-02.md",
+      "sha256": "fb156d6f50a453eb285932a09397a36d0dc87c7a3e0ef95864ab3a4ecf090c55"
+    },
+    {
+      "path": "docs/agent-runs/phase-01-agent-factory/review-report.md",
+      "sha256": "2de1bea770e648b5701477080bf1c74e0a143c3a083f84b738def354977a11d9"
+    },
+    {
+      "path": "docs/agent-runs/phase-02-build-skeleton/agent-report.md",
+      "sha256": "2f9ecef0c55f8657a6eecdd31e64c152a68ee92e6785d9907f5d9eb4c0b0489d"
+    },
+    {
+      "path": "docs/agent-runs/phase-02-build-skeleton/human-gate.md",
+      "sha256": "6940e45d04db121a5bdaae26ebc1be536e537e5ebc3c06d03eda6b6ae9272242"
+    },
+    {
+      "path": "docs/agent-runs/phase-02-build-skeleton/prompt.md",
+      "sha256": "0c6f7e58dca0d1f81ce5567e93567696e3e8e4e1bdef76e48da5c26892f22f92"
+    },
+    {
+      "path": "docs/agent-runs/phase-02-build-skeleton/review-report.md",
+      "sha256": "bc11cf92142f95a4555376ec8e4f99f1a2ab45850c7abfcb0af9f40fcd4e5d45"
+    },
+    {
+      "path": "docs/agent-runs/phase-03-contracts-datasets/agent-report.md",
+      "sha256": "3a8536a4fc5b751826ea79bc6468968dad9513aa227794d4c7f5b85a32931c36"
+    },
+    {
+      "path": "docs/agent-runs/phase-03-contracts-datasets/human-gate.md",
+      "sha256": "5c296f7453c78c324611d4af70fe4e5fe43f1e8d7bf4989944aa0cc837133993"
+    },
+    {
+      "path": "docs/agent-runs/phase-03-contracts-datasets/prompt.md",
+      "sha256": "df0e30e82d3df062200576a1daa445935b3045dbd9f183fb6a60c8c016a517f1"
+    },
+    {
+      "path": "docs/agent-runs/phase-03-contracts-datasets/repair-01.md",
+      "sha256": "4f7e73a615ad5775ac1e80561cde890cf43fa0dc303027dc1d0cb9e5007a765d"
+    },
+    {
+      "path": "docs/agent-runs/phase-03-contracts-datasets/repair-02.md",
+      "sha256": "dfb1020d9a43b1eb7c7da376d2b770eb52a196b86044bd1c6e3943cb5d115265"
+    },
+    {
+      "path": "docs/agent-runs/phase-03-contracts-datasets/review-report.md",
+      "sha256": "a95f2e38b6d9f342b1644d4145a89c59a083dccfe608ffc55c36f7a0d61fd23d"
+    },
+    {
+      "path": "docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md",
+      "sha256": "e59c4da59dd8be8eac5ecd8f944cbdfdcbf3f23c0e38b9c3597e9f55471e338d"
+    },
+    {
+      "path": "docs/agent-runs/phase-04-hadoop-mapreduce/human-gate.md",
+      "sha256": "bf642c843661fb87d64d44b7ef326a8fc16a043c4e492ca4f621031b665ac459"
+    },
+    {
+      "path": "docs/agent-runs/phase-04-hadoop-mapreduce/prompt.md",
+      "sha256": "466f351ec415b25cd39447aaa54e1446b619865a4b59cdbf861dd6af3cec6f1e"
+    },
+    {
+      "path": "docs/agent-runs/phase-04-hadoop-mapreduce/repair-01.md",
+      "sha256": "d6dc13725ba9b8fe348a504cb4fc539e1200c3a27a201358bcd1b2c057b1b9ec"
+    },
+    {
+      "path": "docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md",
+      "sha256": "1e26fd4b1b9fb8bf2162ccfbfbc68fdfba9a2b5ba0431e28a15427828ec12a5a"
+    },
+    {
+      "path": "docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md",
+      "sha256": "c141bfba679f7dd67c4565c4532ee9e427f66802f8c17bffec4148540163e5c4"
+    },
+    {
+      "path": "docs/agent-runs/phase-04-hadoop-mapreduce/test-report.md",
+      "sha256": "71f541e0db6b1a4ca7afff72e2f9abd3be864a5b74ad4e2f5c76992580a39ab6"
+    },
+    {
+      "path": "docs/agent-runs/phase-05-entity-resolution/agent-report.md",
+      "sha256": "2ebc1638928fca99ec27179cbc0bb071d92eca6360b4cc11de13970180fee5d6"
+    },
+    {
+      "path": "docs/agent-runs/phase-05-entity-resolution/human-gate.md",
+      "sha256": "eb5c53444d1de9d6339f9b0abe41a17bc3101d3f7472e2fdac1acdbfa100fb06"
+    },
+    {
+      "path": "docs/agent-runs/phase-05-entity-resolution/prompt.md",
+      "sha256": "0a480e8b37009a2684620d103d1ad74722880484284f7261d530f7b3149ebf0c"
+    },
+    {
+      "path": "docs/agent-runs/phase-05-entity-resolution/repair-01.md",
+      "sha256": "d960f82f240e5949fadbde612445147d3d4696abf4b31d3242d928202c56b879"
+    },
+    {
+      "path": "docs/agent-runs/phase-05-entity-resolution/repair-02.md",
+      "sha256": "526a1a58574e99952ee60ca1df7adda5b2979923cf82b3fe52c5f6aa28cd7d55"
+    },
+    {
+      "path": "docs/agent-runs/phase-05-entity-resolution/repair-03.md",
+      "sha256": "3a6742a56a5b26f5ed6e28a55ff388839412fd5011da7e863543a3304732c6a5"
+    },
+    {
+      "path": "docs/agent-runs/phase-05-entity-resolution/repair-04.md",
+      "sha256": "9a5982f0a44b2918f09582f2b3b7db1e358f93b55af15029a64f554b40d9a179"
+    },
+    {
+      "path": "docs/agent-runs/phase-05-entity-resolution/review-report.md",
+      "sha256": "47b0eb3d03ff00fc3379b665d46249606e2c40db4752a5f7df60ff6ebf2e5628"
+    },
+    {
+      "path": "docs/agent-runs/phase-06-spark-analytics/agent-report.md",
+      "sha256": "493681af389c16a3588c1884a563ea550a695a085234250f9d63bfb1591b8999"
+    },
+    {
+      "path": "docs/agent-runs/phase-06-spark-analytics/human-gate.md",
+      "sha256": "54feb910b3d6f7d12ffe19b5c2fac4d29ecfa9f37a48716cc16d43d149f34a09"
+    },
+    {
+      "path": "docs/agent-runs/phase-06-spark-analytics/prompt.md",
+      "sha256": "ec87c85059462ac064988595ed48453c4af15c2dfe13f009785707689e75de03"
+    },
+    {
+      "path": "docs/agent-runs/phase-06-spark-analytics/repair-01.md",
+      "sha256": "1572581fd2edfda69ec29e7dc5d1fa4b3de9ec4c879c8e1d37475e50081a8dfd"
+    },
+    {
+      "path": "docs/agent-runs/phase-06-spark-analytics/repair-02.md",
+      "sha256": "a28f16181ae12920072251242756d15618c3690cf5630568bdb5695447f7211e"
+    },
+    {
+      "path": "docs/agent-runs/phase-06-spark-analytics/review-report.md",
+      "sha256": "29ef527392da96c5a77e8f1c35899f901cb9cdaf7dcb2e73d4186d0c0b3fefb1"
+    },
+    {
+      "path": "docs/agent-runs/phase-07-storage/agent-report.md",
+      "sha256": "04d5a6c9b4d54c5c083c7360d6d2fe7ad2c51245c55107103fd504030a500185"
+    },
+    {
+      "path": "docs/agent-runs/phase-07-storage/human-gate.md",
+      "sha256": "f0f4cbf3a86219d434153df2645d351b83859feefe3ab347999081c4ada453e0"
+    },
+    {
+      "path": "docs/agent-runs/phase-07-storage/prompt.md",
+      "sha256": "31ee702a8d70e8ef1acea2b01d80556583403d88ae5c6c42733a5d29a47ebf42"
+    },
+    {
+      "path": "docs/agent-runs/phase-07-storage/repair-01.md",
+      "sha256": "2877d61b7f0ba8dcf4840c43295bc6a5a14e6d20a12e4a26e04caed4ac355639"
+    },
+    {
+      "path": "docs/agent-runs/phase-07-storage/review-report.md",
+      "sha256": "0166f22f237d5336e1400cca464469b0aedb0c12bca6d651db2d33b5f80f8485"
+    },
+    {
+      "path": "docs/agent-runs/phase-08-embeddings-vectors/agent-report.md",
+      "sha256": "3a96eab4c8cebd9564251f46cecac29a19dcd57609eace036c9e5035a779e3ec"
+    },
+    {
+      "path": "docs/agent-runs/phase-08-embeddings-vectors/human-gate.md",
+      "sha256": "e366c9f6dfb50713b600f895a66e226b2deb6e6ebf1e9322267aba99ab336523"
+    },
+    {
+      "path": "docs/agent-runs/phase-08-embeddings-vectors/prompt.md",
+      "sha256": "5d1b94634e39134d2d50deab5957455a15998056a351d05dfc71034677c08e9f"
+    },
+    {
+      "path": "docs/agent-runs/phase-08-embeddings-vectors/repair-01.md",
+      "sha256": "23fecf0402ec2f54c7602cf37fa795763f206a45ca68126bd1a7b3292f501a5a"
+    },
+    {
+      "path": "docs/agent-runs/phase-08-embeddings-vectors/repair-02.md",
+      "sha256": "f2e15ce82f0c335b1d48da0be42328c12177cb48f762b933fd3277df81c499e9"
+    },
+    {
+      "path": "docs/agent-runs/phase-08-embeddings-vectors/repair-03.md",
+      "sha256": "c8b590af7ecd4a2a2f554b0250e6d418e6ba3976a296c199894f3522c8c99dd9"
+    },
+    {
+      "path": "docs/agent-runs/phase-08-embeddings-vectors/review-report.md",
+      "sha256": "de26832a97acb9deab36b2b9f905b56b8acd72db0b4b8002fbbb8b5a4cd0a5ea"
+    },
+    {
+      "path": "docs/agent-runs/phase-09-runtime-agents/agent-report.md",
+      "sha256": "4a4098234023a8b3050b520db43dcbbe63b406895ab1e7cbd008809b1ab93dd4"
+    },
+    {
+      "path": "docs/agent-runs/phase-09-runtime-agents/human-gate.md",
+      "sha256": "79febc055c90ed5fd88a126529e44aa2efede7262ffa38e83733b0e7eb9707d4"
+    },
+    {
+      "path": "docs/agent-runs/phase-09-runtime-agents/prompt.md",
+      "sha256": "0cba8b9cdd7caaf9e2656fd52d85c0517ac632c1a2e8722e1e7201317a6068da"
+    },
+    {
+      "path": "docs/agent-runs/phase-09-runtime-agents/repair-01.md",
+      "sha256": "170af1e18c449c40b8252260da01358c37d5a619eb92340410d9cd1161d2cac6"
+    },
+    {
+      "path": "docs/agent-runs/phase-09-runtime-agents/repair-02.md",
+      "sha256": "8fa9e75b30d378bcc9e55363e88d0fb607049bc36729c489bdb4182f486ed9b6"
+    },
+    {
+      "path": "docs/agent-runs/phase-09-runtime-agents/review-report.md",
+      "sha256": "c38defaf5b7b1fc3ed391b42485518ce630f056359e2db421ea8d256800bc12c"
+    },
+    {
+      "path": "docs/agent-runs/phase-10-services/agent-report.md",
+      "sha256": "f4b39fa0694dbd0bc101d77135864374d735cf08f0f9f49df0c48e5b62c2c076"
+    },
+    {
+      "path": "docs/agent-runs/phase-10-services/human-gate.md",
+      "sha256": "152527e85712329e1a3106ce5263448ac70ad8448a099a9afa09ad8d3b1bbe28"
+    },
+    {
+      "path": "docs/agent-runs/phase-10-services/prompt.md",
+      "sha256": "17eaf44dc3f085ecaaf5168f3752670dc7bedbca7766409ff836359dcc8061e5"
+    },
+    {
+      "path": "docs/agent-runs/phase-10-services/repair-01.md",
+      "sha256": "acf6a1bff1eed9c3f6080a0268cb4008de460223f73fef11314fddb9fc9bec3a"
+    },
+    {
+      "path": "docs/agent-runs/phase-10-services/review-report.md",
+      "sha256": "0bc6edb88cb8a59cb604484989a74743b6e5a67a0f88ab383f66fc4d57785377"
+    },
+    {
+      "path": "docs/agent-runs/phase-10-services/spec-excerpt.md",
+      "sha256": "6b5310be86dc1897e428de89ca3d09b65b2482f986617567c7f5a482cdb07d03"
+    },
+    {
+      "path": "docs/agent-runs/phase-11-adversarial-review/agent-report.md",
+      "sha256": "791123b3e43effce1952b09443534e25ae950e607af69555907595529d80b927"
+    },
+    {
+      "path": "docs/agent-runs/phase-11-adversarial-review/human-gate.md",
+      "sha256": "00c8c3d7d10be2332fb1eeb6501a22b5ef5f684d4b1e07363d3d1fe8a1ec8be7"
+    },
+    {
+      "path": "docs/agent-runs/phase-11-adversarial-review/prompt.md",
+      "sha256": "94b1fee334209af06491e58e431381ec470c0c6b6b9c537c34bb40d819634f10"
+    },
+    {
+      "path": "docs/agent-runs/phase-11-adversarial-review/repair-01.md",
+      "sha256": "9d39e40997f73c232a345fd0c3a19861f59ae21dacc0aa7a46f561bf34093632"
+    },
+    {
+      "path": "docs/agent-runs/phase-11-adversarial-review/review-report.md",
+      "sha256": "14adecb91678b59536b256662c91b66c73c21b55194652625f62935be848d693"
+    },
+    {
+      "path": "docs/agent-runs/phase-12-terraform/agent-report.md",
+      "sha256": "78fbcf4559614aed58be7046ef8160c7334f17c9483dfb92eba83450ea777ed0"
+    },
+    {
+      "path": "docs/agent-runs/phase-12-terraform/human-gate.md",
+      "sha256": "91c84f26d5415787c606c8e5c6ddb2eaf03cbc3b537d31f3882abcb008a9e3a1"
+    },
+    {
+      "path": "docs/agent-runs/phase-12-terraform/prompt.md",
+      "sha256": "d0d2aa8fe025efafcfff0466bbbf89593c69ac296eeaf1a7eaa471e2b98e5c4a"
+    },
+    {
+      "path": "docs/agent-runs/phase-12-terraform/review-report.md",
+      "sha256": "349294300270af1a41e77b6eb5d1629e5f95f7718d2289258744486253a6f911"
+    },
+    {
+      "path": "docs/agent-runs/phase-13-automation/agent-report.md",
+      "sha256": "ee0603e61718290e6a5da6dcfc6bb23dd95b8d0054d90699bd5aadd5e02e81f4"
+    },
+    {
+      "path": "docs/agent-runs/phase-13-automation/human-gate.md",
+      "sha256": "3ab8efefeda2e9703294b978d7aac1e9547bfac42cba257ba01fb21a4f766399"
+    },
+    {
+      "path": "docs/agent-runs/phase-13-automation/prompt.md",
+      "sha256": "50daeb075f9a2ecc5e09a987fc76e7df051b2c4cb7964121aad1a11ababf7d64"
+    },
+    {
+      "path": "docs/agent-runs/phase-13-automation/review-report.md",
+      "sha256": "69fd3323bea93facb900e82e4326ebeeca119476d755f55011d66d34e28b51bd"
+    },
+    {
+      "path": "docs/agent-runs/phase-15a-dataset-scale/agent-report.md",
+      "sha256": "8d76774d61a909b1c93b0076f3869eb21546c350a1a1e57a887a79f79f3595eb"
+    },
+    {
+      "path": "docs/agent-runs/phase-15a-dataset-scale/human-gate.md",
+      "sha256": "334c2eaea8ceb06b2e6f2808e2f0fb9f73698e486b111dbca645bc5ea1cec81e"
+    },
+    {
+      "path": "docs/agent-runs/phase-15a-dataset-scale/prompt.md",
+      "sha256": "a3fc197359af5a1139b0ab5f68add9ae790c4224eb218a0af55b3abab7b36ebb"
+    },
+    {
+      "path": "docs/agent-runs/phase-15a-dataset-scale/review-report.md",
+      "sha256": "ce3b6e9381c9c6dba8f8ea139b415c62658f47d205113b90d7edd6e9945fb0d5"
+    },
+    {
+      "path": "docs/agent-runs/phase-15b-experiment-harness/agent-report.md",
+      "sha256": "efd29c007aadd8d88a53dcbd97bfac7e8aeda136b9b1b069f6f70e6e734729e5"
+    },
+    {
+      "path": "docs/agent-runs/phase-15b-experiment-harness/human-gate.md",
+      "sha256": "c12b12ed9bc4a3f95fc16b354fcaff3ee0bfd50b5c643ee01c89703dcede70d0"
+    },
+    {
+      "path": "docs/agent-runs/phase-15b-experiment-harness/prompt.md",
+      "sha256": "f35179c4e99e82bcc1830df1e30c5468508bfdb6ee26c4dffa323520b1d68ff9"
+    },
+    {
+      "path": "docs/agent-runs/phase-15b-experiment-harness/repair-01.md",
+      "sha256": "dabe5d8d607b09dc13fd8e7b04485052a033e1227c1c4f9e61fc561eda790ea0"
+    },
+    {
+      "path": "docs/agent-runs/phase-15b-experiment-harness/review-report.md",
+      "sha256": "2768f73c59e551ed4e54998b07d683d8186a939a0560cc0323aaba3653639564"
+    },
+    {
+      "path": "docs/agent-runs/phase-17a-docs-draft/human-gate.md",
+      "sha256": "e8c9b86bb8c1572dc19ccbae9c3543dcbbbd578ad33cf30a8d9cb3014df41841"
+    },
+    {
+      "path": "docs/agent-runs/phase-17a-docs-draft/prompt.md",
+      "sha256": "1b2af1af77431218a1fec6d59e4d5031172c34b00c904845965578f54ba3d25e"
+    }
+  ],
+  "not_available_inputs": [],
+  "notes": [],
+  "parameters": {},
+  "python": "3.14.2",
+  "run_id": "r3",
+  "script": "experiments/evaluation/local_eval.py",
+  "script_sha256": "3c47178d9233659b6206e44401aa04bec348826fe0b3d0e4f1d29743c91ab0c8",
+  "synthetic": false,
+  "tree_dirty": true
+}

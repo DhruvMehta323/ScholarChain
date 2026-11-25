@@ -1,0 +1,14 @@
+# Group 6 ambiguous or non-derivable items (listed, not guessed)
+
+- phase-00-seed-agent: no review-report.md (no reviewer verdict; first-pass acceptance by reviewer not derivable)
+- phase-01-agent-factory: review-report.md holds the repair-02 review (line 1 verdict) and an earlier review; only the first stored verdict line is used
+- phase-02-build-skeleton: review-report.md:3 is a re-review after a review repair; the first review is not stored, so first-pass acceptance (APPROVE WITH NOTES at the stored review) may overstate
+- phase-17a-docs-draft: no review-report.md (no reviewer verdict; first-pass acceptance by reviewer not derivable)
+- BLOCKED-ON counts: STATUS lines of the form 'STATUS: BLOCKED-ON' in any non-prompt .md file; a progress checkpoint or re-stated report may repeat one event, and phase-12 shows several human cost/gate stops. Each line is in events.csv (blocked_on_event).
+- Ownership violations caught: the only matching line is docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md:140 (second-hand: 'DS records that guard-writes refused one cross-owner write'). The DS report itself is not in the stored files; confirmed events = 0, candidate = 1. docs/agent-runs/phase-01-agent-factory/probe-report.md:17 states the ownership fence was not exercised by any probe.
+- Guard, hook and stop-hook counts are MATCHING LINES, not distinct events: one block can be described in several files, and many guard blocks are false positives (text .key), which prevented nothing unsafe; classification is by the reader, see events.csv.
+- Reviewer findings by severity: tagged lines (bold id then (SEVERITY)) are a lower bound; formats differ between phases; stated counts on first matching line are in phase-table.csv; multi-round reports re-mention findings.
+- First-pass acceptance by agent is NOT directly recorded. by-agent.csv gives (a) STATUS lines with an OWNER line per agent, and (b) a heuristic: phases in which the agent is named in an agent or test report and also named in a repair file (upper bound on being repaired) -> lower bound on first-pass rate.
+- Repair iterations per phase = number of repair-NN.md files; repair files may cover orchestrator-routed build or test fixes, not only agent defects.
+- Artifacts that needed substantial human rewrite: no stored line states one. Candidate lines (human correction / rewrite wording) are in events.csv under human_rewrite_or_correction; docs/agent-runs/phase-04-hadoop-mapreduce/human-gate.md:73 says 'No human edits to code, tests, contracts or agent reports'. Count of confirmed substantial rewrites: not derivable.
+- Manual interventions: human-gate.md files are written by the human at every accepted phase (human_gate_md_present); category manual_intervention lists lines naming human decisions or authorizations inside agent and repair files.

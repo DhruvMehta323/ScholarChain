@@ -1,0 +1,20 @@
+{
+  "code_version": "74eee4e+repair04",
+  "eval_file": "modules/entity-resolution/evaluation/er-v1-heldout-eval.json",
+  "eval_sha256": "81525378e930cc2574033c27a085e735a7e076ed1b6bc7728f88cec867622622",
+  "feature_set": "er-features-v2",
+  "held_out_rows": 95,
+  "instructor_requirement": "at least 170 reviewed pairs; 60/40 into 102 calibration and 68 held-out; both with positives and hard negatives (docs/agent-runs/instructor-approvals.md item 3)",
+  "llm_used": false,
+  "policy": "er-v1",
+  "source": "committed Phase 05 results, copied unchanged",
+  "split_calibration": 142,
+  "split_excluded_unsure": 3,
+  "split_file": "modules/entity-resolution/gold/gold-split-v1.summary.json",
+  "split_heldout": 95,
+  "split_rows_total": 240,
+  "split_seed": 20260101,
+  "split_sha256": "ef19a034e49b1c57f07b05f7163dfde8c56213bc3c047c4d60423a9908dcd2dc",
+  "synthetic": false,
+  "thresholds_origin": "calibrated-on-calibration-split-only"
+}

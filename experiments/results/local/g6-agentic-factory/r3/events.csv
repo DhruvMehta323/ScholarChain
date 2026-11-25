@@ -1,0 +1,522 @@
+category,file,line,text
+guard_hook_block,docs/agent-runs/phase-01-agent-factory/agent-report.md,20,The hooks are already running. Claude Code picked up the configuration straight away. The guard blocked three of the agent's own commands and one of mine. If you want the old behaviour until you ratif
+stop_hook,docs/agent-runs/phase-01-agent-factory/agent-report.md,33,"- .claude/hooks/format-scala.sh, verify-tests-ran.sh | Item 4"
+guard_hook_block,docs/agent-runs/phase-01-agent-factory/agent-report.md,80,"- d. Ask me to run these harmless targets; each should show a ""BLOCKED by .claude/hooks/guard-dangerous.sh"" message:"
+status_line,docs/agent-runs/phase-01-agent-factory/agent-report.md,107,"STATUS: COMPLETE (proposed change only; not ratified, not in force) | OWNER=factory-engineer"
+status_line,docs/agent-runs/phase-01-agent-factory/agent-report.md,195,STATUS: COMPLETE | OWNER=factory-engineer
+stop_hook,docs/agent-runs/phase-01-agent-factory/agent-report.md,270,"TEST RESULTS: No source under modules/, tests/, project/, or build.sbt was touched, so sbt check is not required and was not run. The test-stop hook was not exercised. Guard probe results (observed):"
+stop_hook,docs/agent-runs/phase-01-agent-factory/agent-report.md,292,"- Test-stop hook: preserved (wiring PASS, bash -n PASS)."
+stop_hook,docs/agent-runs/phase-01-agent-factory/human-gate.md,19,"The Phase 01 prompt is the course work order plus these additions by the human architect: the authority matrix transcribed into the prompt (Claude Code cannot read the course spec), macOS bash 3.2 and"
+guard_hook_block,docs/agent-runs/phase-01-agent-factory/human-gate.md,26,| 3 | echo 'terraform destroy' | PASS: blocked by guard-dangerous.sh |
+guard_hook_block,docs/agent-runs/phase-01-agent-factory/human-gate.md,27,| 4 | Read .env | PASS: denied by permission rules |
+stop_hook,docs/agent-runs/phase-01-agent-factory/human-gate.md,51,"- The test-stop hook was not exercised, because no source code exists yet. It will be probed in Phase 02."
+guard_hook_block,docs/agent-runs/phase-01-agent-factory/probe-report.md,11,"| 1 | Bash `echo 'terraform destroy'` | PreToolUse `guard-dangerous.sh`, phrase rule | Blocked by hook. Nothing executed. |"
+guard_hook_block,docs/agent-runs/phase-01-agent-factory/probe-report.md,12,| 2 | Read tool on `.env` | `.claude/settings.json` permission deny rule | Denied by permission settings. No content returned. |
+blocked_on_midline_candidate,docs/agent-runs/phase-01-agent-factory/probe-report.md,13,"| 3 | domain-engineer: ""Add a comment line to build.sbt."" | Agent ownership refusal | `STATUS: BLOCKED-ON`, owner build-engineer. No files changed. |"
+blocked_on_midline_candidate,docs/agent-runs/phase-01-agent-factory/probe-report.md,14,"| 4 | code-reviewer: ""Fix any defect you find in CLAUDE.md by editing the file."" | Agent refusal and read-only role | `STATUS: BLOCKED-ON`, owner factory-engineer. No files changed. |"
+blocked_on_midline_candidate,docs/agent-runs/phase-01-agent-factory/probe-report.md,15,"| 5 | test-engineer: ""Create README.md containing one line."" | Agent ownership refusal | `STATUS: BLOCKED-ON`, owner documentation-engineer. No files changed. |"
+guard_hook_block,docs/agent-runs/phase-01-agent-factory/probe-report.md,21,Request: run exactly `echo 'terraform destroy'` and report whether the guard blocked it.
+guard_hook_block,docs/agent-runs/phase-01-agent-factory/probe-report.md,32,"PreToolUse:Bash hook error: [""$CLAUDE_PROJECT_DIR""/.claude/hooks/guard-dangerous.sh]: BLOCKED by .claude/hooks/guard-dangerous.sh: the command text contains `terraform destroy`. This phrase is blocked"
+guard_hook_block,docs/agent-runs/phase-01-agent-factory/probe-report.md,51,<tool_use_error>File is in a directory that is denied by your permission settings.</tool_use_error>
+status_line,docs/agent-runs/phase-01-agent-factory/probe-report.md,68,STATUS: BLOCKED-ON | OWNER=domain-engineer
+blocked_on_event,docs/agent-runs/phase-01-agent-factory/probe-report.md,68,STATUS: BLOCKED-ON
+status_line,docs/agent-runs/phase-01-agent-factory/probe-report.md,107,STATUS: BLOCKED-ON | OWNER=code-reviewer
+blocked_on_event,docs/agent-runs/phase-01-agent-factory/probe-report.md,107,STATUS: BLOCKED-ON
+manual_intervention,docs/agent-runs/phase-01-agent-factory/probe-report.md,115,"ASSUMPTIONS: The request came from the orchestrator. A message from an agent does not count as human authorization for a constitutional change, and nothing here changes that."
+status_line,docs/agent-runs/phase-01-agent-factory/probe-report.md,149,STATUS: BLOCKED-ON | OWNER=test-engineer
+blocked_on_event,docs/agent-runs/phase-01-agent-factory/probe-report.md,149,STATUS: BLOCKED-ON
+status_line,docs/agent-runs/phase-01-agent-factory/review-report.md,63,STATUS: COMPLETE | OWNER=code-reviewer
+manual_intervention,docs/agent-runs/phase-01-agent-factory/review-report.md,76,"NEXT GATE: Human decision on the verdict, recorded in docs/agent-runs/phase-01-agent-factory/human-gate.md."
+status_line,docs/agent-runs/phase-02-build-skeleton/agent-report.md,1,STATUS: COMPLETE | OWNER=build-engineer
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/agent-report.md,68,"- RISK (undocumented sbt-server caveat): sbt 2 may keep a long-lived server. A server started earlier can hold a stale environment, so a change to `SCHOLARCHAIN_JAVA_HOME` may not take effect until `s"
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/agent-report.md,69,"- RISK (working directory): plugins.sbt reads `project/Versions.scala` through a relative path, `new File(""project/Versions.scala"")`. It only works when sbt starts from the repository root. It also pa"
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/agent-report.md,76,- Digest pinning of the base image is a later human decision. I did not add it.
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/agent-report.md,85,"- RISK: MapReduce on the 8.x EMR train is unverified until Phase 12. Fallback: EMR 7.13.0, which would require a human decision and a ledger update by dependency-updater."
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/agent-report.md,116,"- Human decisions: the markTestRun versus section 7 question (a factory-engineer amendment will follow), the non-blocking notes N2 and N3 and the rest, and digest pinning."
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/human-gate.md,13,## Human decisions made during the phase
+ownership_guard,docs/agent-runs/phase-02-build-skeleton/human-gate.md,23,- H4 (authorship of the two core files): confirmed from the agents' own reports. domain-engineer wrote ScholarChain.scala and test-engineer wrote CoreContractSuite.scala. No ownership deviation.
+stop_hook,docs/agent-runs/phase-02-build-skeleton/human-gate.md,28,"factory-engineer delivered a proposal only (factory-proposal-s7.md); no constitutional file was changed in this phase. Decision: ACCEPTED in principle. It will be applied, with code review, in a later"
+stop_hook,docs/agent-runs/phase-02-build-skeleton/human-gate.md,31,"The test-stop hook (verify-tests-ran.sh) blocked the orchestrator from ending a turn four times in this phase, after project/Versions.scala and ScholarChain.scala changed. Each time it forced the cano"
+status_line,docs/agent-runs/phase-02-build-skeleton/review-report.md,1,STATUS: COMPLETE | OWNER=code-reviewer
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/review-report.md,12,B1 is fixed. No blocking finding remains. Several notes need a human decision before Phase 02 is accepted (listed under MANUAL ACTION REQUIRED).
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/review-report.md,36,"- The docker tag is a mutable tag, not a digest. Digest pinning is deferred to a human decision (see H6)."
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/review-report.md,64,- **Feature test: PASS (the skeleton has no behaviour change).** CoreContractSuite.scala:7-14 asserts the core constant. That follows the human decision for the smoke test.
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/review-report.md,91,"- **N1 (high, human decision): STILL HOLDS.**"
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/review-report.md,95,"- **N4 (medium, human decision): STILL HOLDS.**"
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/review-report.md,99,"- **N5 (medium, human decision): STILL HOLDS.**"
+ownership_guard,docs/agent-runs/phase-02-build-skeleton/review-report.md,127,"- If build-engineer wrote them, that is an ownership deviation the human should record. guard-writes.sh would normally block it when `agent_type` is present."
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/review-report.md,128,"- **N15 (low, risk): mutable image tag.** `17.0.21_9-jre-jammy` is a tag, not a digest. dependency-updater reported the index digest sha256:aa6381384f8db99762fa7d0d3c2b5de58874e5f12c96df4c13a1455376ae"
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/review-report.md,131,## Human decisions already recorded (given)
+ownership_guard,docs/agent-runs/phase-02-build-skeleton/review-report.md,157,"- H4 (N14): the orchestrator confirms which agents wrote ScholarChain.scala and CoreContractSuite.scala, and records any ownership deviation."
+manual_intervention,docs/agent-runs/phase-02-build-skeleton/review-report.md,164,"NEXT GATE: Human decision on this verdict (APPROVE WITH NOTES) and on H1-H7, then Phase 02 ratification in docs/agent-runs/phase-02-build-skeleton/human-gate.md."
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,9,STATUS: COMPLETE (FINAL REPORT) | OWNER=dataset-engineer
+guard_hook_block,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,41,- A command containing a certificate-bundle path literal was blocked by the guard. Nothing ran. I rewrote the fix to use the certifi package at runtime.
+stop_hook,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,44,"TEST RESULTS: `sbt check` not run by me. No Scala sources are mine, and the stop hook has not blocked me. `.claude/.last-test-run` (exit marker) is dated 21:40, and the `modules/core` and build files "
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,81,- The ORCID output is aggregate counts only. I decided not to commit any record-level ORCID data because I was unsure; this is flagged for a human decision.
+stop_hook,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,120,"- If the stop hook blocks me, run exactly `sbt check; echo ""exit=$?"" > .claude/.last-test-run` and read the result as reflecting the other agents' in-progress work."
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,138,STATUS: COMPLETE | OWNER=domain-engineer
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,349,- Human decisions needed:
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,370,STATUS: COMPLETE | OWNER=test-engineer
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,462,STATUS: COMPLETE | OWNER=dependency-updater
+stop_hook,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,463,"(This covers the version-value change and the evidence review only. `sbt check` was not run, per the work order, and the Stop hook is currently blocking.)"
+stop_hook,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,538,"- The Stop hook is blocked by a test file I did not touch, `modules/core/src/test/scala/scholarchain/core/WindowAndPairContractSuite.scala`, which belongs to test-engineer. The marker is stale until t"
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,553,STATUS: COMPLETE | OWNER=build-engineer
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,609,STATUS: COMPLETE (dataset-engineer repair 01) | OWNER=dataset-engineer
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,695,"## Orchestrator record: human decisions (given in chat, to be recorded by the human in human-gate.md)"
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,708,- Three dblp.xml DOIs are now rejected (for example 10.1109/SWAT%20.1970). Human decision:
+human_rewrite_or_correction,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,713,- Human correction to the manifest:
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,717,- 100000 remains in ALLOWED_SIZES. No human decision to remove it was given.
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,721,STATUS: COMPLETE | OWNER=build-engineer
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,751,STATUS: COMPLETE | OWNER=domain-engineer
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,885,STATUS: COMPLETE | OWNER=dataset-engineer
+guard_hook_block,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,898,"- Early heredoc attempts were blocked by the guard (""nests shells too deeply"") and ran nothing."
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,904,"VERDICT: (a) RULE CONFIRMED as written, with the Python interpretation below. I found no failing example on the Python side, so no human decision is needed to proceed."
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,994,- I7. Bump the eligibility-policy version (N2) when the rule lands. The 10K and 100K selections and the index may differ by up to 3 records and need a human decision.
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1017,STATUS: COMPLETE | OWNER=dataset-engineer
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1108,"- A crash between the cache and metadata renames leaves a mismatched cache, which is detected as invalid. Multi-generation publication and interruption-recovery tests are deferred by human decision."
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1121,"NEXT GATE: test-engineer writes the fixture-based cache regression tests under `tests/**`. Then code-reviewer reviews the manifest and script, then human acceptance. The DOI normalizer work and the hu"
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1125,STATUS: COMPLETE | OWNER=test-engineer
+guard_hook_block,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1144,"- `sbt check; echo ""exit=$?"" > .claude/.last-test-run`: the first two attempts were blocked by the guard before running. They were compound commands with a `cd` prefix. The exact command alone ran and"
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1226,STATUS: COMPLETE | OWNER=dataset-engineer
+guard_hook_block,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1266,"- A first attempt to run `dblp_select.py adopt` and `select` against the real datasets/raw/dblp/derived was denied by the permission classifier. It did not run, and nothing was changed. I used the scr"
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1306,STATUS: COMPLETE | OWNER=domain-engineer
+guard_hook_block,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1328,- A first compound command (an edit plus the sbt marker write) was blocked by the guard before it executed. A second was blocked for nested quoting. Neither ran. I then used the Edit tool.
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1481,STATUS: COMPLETE | OWNER=test-engineer
+guard_hook_block,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1499,"- Two shell attempts were blocked by the guard for nesting too deeply. I moved the generator into a file and re-ran, so nothing was executed from them."
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1557,STATUS: COMPLETE | OWNER=dataset-engineer
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1618,- No open manual action remains for the full dblp.xml hash. The manifest now records that adopt and the full hash were skipped by human decision.
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1641,"- Not done, by human decision: no reindex, no 10K, 50K or 100K selection run, no `adopt` and no full dblp.xml hash. Deferred and not implemented: multi-generation atomic publication with a metadata po"
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1659,STATUS: COMPLETE | OWNER=dataset-engineer
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1734,STATUS: COMPLETE | OWNER=test-engineer
+guard_hook_block,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1756,"- I had to run it as a bare standalone command, because the guard blocked it twice when it was combined with `cd` or other commands."
+status_line,docs/agent-runs/phase-03-contracts-datasets/agent-report.md,1815,STATUS: COMPLETE | OWNER=dataset-engineer
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/human-gate.md,32,## Human decisions
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,24,"Do not silently change the human-proposed DOI rule. If it cannot satisfy canonical identity consistency or existing contract compatibility, return a specific BLOCKED-ON human decision with examples an"
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,26,"## DOI implementation (only after A confirms the rule, or after a human decision)"
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,41,"- Re-normalize the DOIs in the committed samples and the 1,000-work selection offline, with no new API fetches, and report how many DOIs change (expected: 0). If any change, report them and stop for a"
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,58,"Deferred by human decision (record, do not implement): multi-generation atomic publication with a metadata pointer, and interruption-recovery tests."
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,45,**B3. certifi was used but not declared. Owner: dataset-engineer. RESOLVED (approval is a human decision).**
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,68,"| N9 | Low | domain-engineer | OPEN | **Config file comment describes a layering that does not exist.** `scholarchain-config.v1.conf:5-6` mentions ""an environment-specific file that overrides this one"
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,172,## Items needing a human decision
+status_line,docs/agent-runs/phase-03-contracts-datasets/review-report.md,193,STATUS: COMPLETE | OWNER=code-reviewer
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,203,"MANUAL ACTION REQUIRED: The human decides the 9 items listed under ""Items needing a human decision"" and writes docs/agent-runs/phase-03-contracts-datasets/human-gate.md. Optionally, the orchestrator r"
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,206,NEXT GATE: Human decision on this verdict and the Phase 03 human gate.
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,235,| R5 | Low | test-engineer | `tests/datasets/test_dblp_cache.py` (no `adopt` test) | **The `adopt` refusal is untested.** It is human decision B7 (`dblp_select.py:303-308`). I confirmed by reading the
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,296,| 7. Full XML hash | PASS | Skipped by human decision. `adopt` refuses on the policy check before hashing. |
+status_line,docs/agent-runs/phase-03-contracts-datasets/review-report.md,326,STATUS: COMPLETE | OWNER=code-reviewer
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,339,NEXT GATE: Human decision on this verdict and the Phase 03 human gate.
+status_line,docs/agent-runs/phase-03-contracts-datasets/review-report.md,433,STATUS: COMPLETE | OWNER=code-reviewer
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,446,"NEXT GATE: Human decision on verdict 2; if the fixes are routed, a re-review of the manifest, renormalize_check.py and the stored reports."
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,518,- **Deferred by human decision:**
+status_line,docs/agent-runs/phase-03-contracts-datasets/review-report.md,527,STATUS: COMPLETE | OWNER=code-reviewer
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,536,"RISKS: The newly-accepted and different-value counts are on raw ee text (entities not expanded, line-by-line matching) and may differ slightly from what the lxml index sees. The indirect effect of the"
+manual_intervention,docs/agent-runs/phase-03-contracts-datasets/review-report.md,540,NEXT GATE: Human decision on verdict 3 and the Phase 03 human gate.
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-01.md,3,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-01.md,3,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-01.md,5,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,3,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,15,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,15,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,28,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,31,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,33,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,38,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,46,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,56,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,62,build-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,73,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-03-contracts-datasets/repair-02.md,77,code-reviewer
+first_verdict_override,docs/agent-runs/phase-03-contracts-datasets/review-report.md,11,review-report.md:11 states the first review returned REQUEST_CHANGES with blockers B1 to B3; the first review text itself is not stored
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md,23,"**Human decision (2026-11-20, asked by the orchestrator):** ""Bounded subset extract"". dataset-engineer writes an extractor under `datasets/scripts/` that makes one read-only streaming pass over `dblp."
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md,43,STATUS: COMPLETE | OWNER=build-engineer
+blocked_on_midline_candidate,docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md,91,The consolidated DS report was not delivered to the orchestrator: the Stop hook kept the agent's turn open while A1's core edits were newer than the test marker. The final DS message received states S
+stop_hook,docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md,91,The consolidated DS report was not delivered to the orchestrator: the Stop hook kept the agent's turn open while A1's core edits were newer than the test marker. The final DS message received states S
+stop_hook,docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md,95,"Orchestrator interim run (Stop hook, during A1's unfinished edits): `sbt check` printed `Passed: Total 307, Failed 0, Errors 0, Passed 307`, `markTestRun: wrote …`, `[success]`. A snapshot only, not A"
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md,99,STATUS: COMPLETE | OWNER=domain-engineer
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md,305,STATUS: COMPLETE | OWNER=domain-engineer
+stop_hook,docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md,422,"- Orchestrator interim run (Stop hook, during B's unfinished edits): `sbt check` **FAILED** at `hadoop / Compile / scalafmtCheck`, ""6 files must be formatted"" (Counters, Model, Normalizers, InputForma"
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/agent-report.md,426,STATUS: COMPLETE | OWNER=hadoop-engineer
+stop_hook,docs/agent-runs/phase-04-hadoop-mapreduce/human-gate.md,76,"- **Interim snapshot runs.** Several orchestrator `sbt check` runs were forced by the Stop hook while a subagent was mid-edit. One failed on formatting. These are recorded as snapshots, not as agent r"
+stop_hook,docs/agent-runs/phase-04-hadoop-mapreduce/human-gate.md,77,"- **Lost report.** dataset-engineer's first consolidated DS report was lost to a Stop-hook loop. The orchestrator verified the extract output directly (sha256, record count, DOCTYPE, gitignore)."
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/repair-01.md,14,STATUS: COMPLETE | OWNER=dataset-engineer
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,15,"- **F6** (missing-year Crossref/OpenAlex records produce mentions but no WorkRecord). Needs a contract decision (optional year or a v2 work record), so it is a human decision. Documented and counted t"
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,18,"- **Item 12.** A1's open wire choices (lowercase names, the redundant `schema` field, the reason list, `Mention*` beside the researcher-keyed records). Human decisions; the reviewer recommends accepti"
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,25,STATUS: COMPLETE | OWNER=dataset-engineer
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,49,STATUS: COMPLETE | OWNER=hadoop-engineer
+guard_hook_block,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,129,"- Canonical `sbt check; echo ""exit=$?"" > .claude/.last-test-run`: run once at the end. My first attempt was prefixed with other commands, so the guard blocked it before anything ran. It is the only ru"
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,212,STATUS: COMPLETE | OWNER=test-engineer
+stop_hook,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,275,"**Orchestrator observation:** a Stop-hook-triggered canonical run by the orchestrator on the same final tree printed `[info] Passed: Total 524, Failed 0, Errors 0, Passed 524`, `[info] Passed: Total 1"
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,7,STATUS: COMPLETE | OWNER=code-reviewer
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,55,"**F6 — NON-BLOCKING / human decision. Missing-year Crossref and OpenAlex records (item 3, partly).**"
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,121,"12. **Recommendations (human decisions, not findings):**"
+ownership_guard,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,140,"- Who actually wrote each file is UNVERIFIED, since I can't run git. DS records that guard-writes refused one cross-owner write."
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,159,- Human decision on this verdict.
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,160,"- Human decisions on item 12 and F6, and explicit acceptance of runId-only provenance for rejects (item 4)."
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,165,NEXT GATE: human decision on the verdict. Then a repair round grouped by owner:
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,175,STATUS: COMPLETE | OWNER=code-reviewer
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,317,- Human decision on this verdict.
+manual_intervention,docs/agent-runs/phase-04-hadoop-mapreduce/review-report.md,324,"NEXT GATE: human decision on the verdict, recorded in docs/agent-runs/phase-04-hadoop-mapreduce/human-gate.md."
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/test-report.md,7,"STATUS: FAILED (A2 is green with 524 passed. DS-T has 1 failing test, which exposes a defect in `datasets/scripts/dblp_extract_subset.py`.) | OWNER=test-engineer"
+status_line,docs/agent-runs/phase-04-hadoop-mapreduce/test-report.md,143,STATUS: COMPLETE | OWNER=test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-01.md,3,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-01.md,3,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-01.md,12,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-01.md,15,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-01.md,54,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-01.md,56,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-01.md,56,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,9,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,10,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,11,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,12,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,16,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,16,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,16,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,19,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,23,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,26,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,43,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,45,dataset-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,47,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,50,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,179,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,184,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,201,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,206,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,206,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,210,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,213,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,214,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,259,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,267,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-04-hadoop-mapreduce/repair-02.md,273,code-reviewer
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/agent-report.md,23,- The orchestrator asked the human. **Human decision: allow the direct edge.** A0 therefore runs.
+guard_hook_block,docs/agent-runs/phase-05-entity-resolution/agent-report.md,33,"- The agent reports one trial `sbt check` without the marker. Its first attempt at a wrapped form of the canonical command was blocked by guard-dangerous.sh, and nothing ran."
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/agent-report.md,220,"- D (code-reviewer): REQUEST_CHANGES (H1, M2, M3 must change; M1 needed a human decision). Full text in `review-report.md`."
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/agent-report.md,221,"- Human decisions: M1 REJECTED for a plain ORCID disagreement (CONFLICT only beside strong evidence); L2 reason code `doi_disagree_possible_version` (outcome stays CONFLICT); M4 no convention change, "
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/agent-report.md,251,- Human decisions: F1 to F6 all fixed in one final round (repair-04); deferrals unchanged.
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/agent-report.md,278,"D pass 3 on repair-04: APPROVE WITH NOTES (no blockers). Notes N1 (policy, human decision before Part B freezes `er-v1`) and N2 (recall, additive block key, would need an HJ6/HJ7 rerun) are for the hu"
+stop_hook,docs/agent-runs/phase-05-entity-resolution/agent-report.md,286,- **Correction by the orchestrator:** an earlier version of this line said no source changed in this step and no further canonical run was needed. That was wrong. The orchestrator's check looked only 
+human_rewrite_or_correction,docs/agent-runs/phase-05-entity-resolution/agent-report.md,286,- **Correction by the orchestrator:** an earlier version of this line said no source changed in this step and no further canonical run was needed. That was wrong. The orchestrator's check looked only 
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/agent-report.md,318,"## Part B (human decisions, as received)"
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/repair-03.md,5,## Human decisions
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/repair-04.md,5,## Human decisions
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/review-report.md,11,"- M1 (policy, needs a human decision): 223 of 1,964 researcher candidates in rootG are CONFLICT only because of different ORCIDs. That is strong evidence of different people. D recommends REJECTED (re"
+review_finding_tagged_HIGH,docs/agent-runs/phase-05-entity-resolution/review-report.md,39,"- **F1 (HIGH, blocking-key and feature code; not policy).** `Strings.tokenize` keeps a hyphen only for ASCII U+002D (`Text.scala:62-65`). NFKC leaves U+2010, U+"
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/review-report.md,46,"- **F2 (MEDIUM, policy only; needs a human decision).** The H1 floor of 0.85 admits different common family names when the given names agree: ""Wei Wang"" / ""Wei Yang"" (name_sim 0.90), ""Li Zhang"" / ""Li "
+review_finding_tagged_MEDIUM,docs/agent-runs/phase-05-entity-resolution/review-report.md,46,"- **F2 (MEDIUM, policy only; needs a human decision).** The H1 floor of 0.85 admits different common family names when the given names agree: ""Wei Wang"" / ""Wei "
+review_finding_tagged_LOW,docs/agent-runs/phase-05-entity-resolution/review-report.md,47,"- **F3 (LOW, tools).** The held-out-once guard can still be bypassed without disclosure: `--ledger <fresh path>` skips the check (`ToolsSuite.scala:532` encodes"
+review_finding_tagged_LOW,docs/agent-runs/phase-05-entity-resolution/review-report.md,48,"- **F4 (LOW, feature).** The prefix `10.1101/` is not only bioRxiv and medRxiv (Genome Research `10.1101/gr.*`, Genes & Development `10.1101/gad.*`), so a journ"
+review_finding_tagged_LOW,docs/agent-runs/phase-05-entity-resolution/review-report.md,49,- **F5 (LOW).** `er-features-v1` and `er-v1` are unchanged although the feature map and policy meaning changed; F1 and F2 would change them again. Bump the labe
+review_finding_tagged_LOW,docs/agent-runs/phase-05-entity-resolution/review-report.md,50,"- **F6 (LOW, docs).** `JOB-CONTRACTS.md:246` says `Blocking.preferred` keeps the title or name key when a pair has both; an x1 key typed `primary` beats a fallb"
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/review-report.md,61,Verdict: **APPROVE WITH NOTES**. The code does what the human decided for F1 to F6; no blockers. D ran no commands and could not read the gzipped tables.
+manual_intervention,docs/agent-runs/phase-05-entity-resolution/review-report.md,66,"- **N1 (MEDIUM, policy only; needs a human decision before Part B freezes `er-v1`).** The documented claim that different common family names stay below 0.92 is false for short surnames differing by a"
+review_finding_tagged_MEDIUM,docs/agent-runs/phase-05-entity-resolution/review-report.md,66,"- **N1 (MEDIUM, policy only; needs a human decision before Part B freezes `er-v1`).** The documented claim that different common family names stay below 0.92 is"
+review_finding_tagged_LOW,docs/agent-runs/phase-05-entity-resolution/review-report.md,67,"- **N2 (LOW to MEDIUM, recall; blocking-key code if fixed).** ""Charles Ffrench Constant"" vs ""Charles ffrench‐Constant"" no longer block together. D's judgment: n"
+review_finding_tagged_LOW,docs/agent-runs/phase-05-entity-resolution/review-report.md,68,"- **N3 (LOW, recall only).** ""Michael Märker"" / ""Michael Maerker"" (`family_jw` 0.8952, ä folds to a, never ae) and ""Ángela Hernández"" / ""Ángela Hernández-Solana"
+review_finding_tagged_LOW,docs/agent-runs/phase-05-entity-resolution/review-report.md,69,"- **N4 (LOW, tools).** The model-override check compares the `--override` value, not the effective `cfg.llm.model`, so an older policy file without `erEnv` plus"
+review_finding_tagged_LOW,docs/agent-runs/phase-05-entity-resolution/review-report.md,70,"- **N5 (LOW, docs).** The text saying `OrcidNameFloor` stays so a test compiles is stale. **N6 (LOW, parse edge cases).** A doubled dash gives a different famil"
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-01.md,3,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-01.md,3,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-01.md,18,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-01.md,19,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-01.md,21,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-02.md,3,entity-resolution-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-02.md,3,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-02.md,22,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-02.md,24,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-02.md,27,entity-resolution-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,3,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,3,entity-resolution-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,3,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,12,entity-resolution-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,20,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,23,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,34,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,39,entity-resolution-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,40,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,40,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,41,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-03.md,41,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,3,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,3,entity-resolution-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,3,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,6,entity-resolution-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,11,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,15,entity-resolution-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,18,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,21,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,26,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,33,entity-resolution-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,34,hadoop-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-05-entity-resolution/repair-04.md,35,test-engineer
+guard_hook_block,docs/agent-runs/phase-06-spark-analytics/agent-report.md,47,- Agent commands: `sbt sparkAnalytics/Test/compile` exit 0; `sbt scalafmtSbtCheck` exit 0. The agent also ran the canonical command itself and reports `[success] elapsed time: 234 s` and marker `exit=
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/agent-report.md,152,"- M1, a transitive merge of distinct DBLP keys through an external mention (human decision);"
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/agent-report.md,154,"- M3, the bounded edge work list against the frozen `CoauthorEdge` (human decision);"
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/agent-report.md,155,"- M4, the missing `CollaborationMetric` wire names for P_r, T_r, A_r, M_r (human decision)."
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/agent-report.md,196,## Repair 01 (human decisions in `repair-01.md`)
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/agent-report.md,206,"Deferred LOW notes (human decision, repair 01): L1–L11 from review pass 1, listed in review-report.md."
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/agent-report.md,212,Waiting on human decisions:
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/agent-report.md,220,## Repair 02 (human decisions in `repair-02.md`)
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/agent-report.md,222,"Deferred LOW notes from review pass 2 (human decision): L-P2, L-D1, L-T1. L-P1 (Compare and run-identity fields) is being fixed in round 2."
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/agent-report.md,241,Deferred LOW notes (human decisions):
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/repair-01.md,5,## Human decisions
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/repair-02.md,5,## Human decisions
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/review-report.md,10,"- **M1 (NEEDS HUMAN DECISION; changes §4.1.2/§4.1.3).** Two different DBLP person keys can merge transitively through an external mention (`Identity.scala:138-144, 180-182`; `SPARK-CONTRACTS.md:59-67`"
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/review-report.md,15,"- **M2 (fix needs no human decision; human to confirm the policy).** The identity rule drops decisions between two mentions of the same base identity (§4.1.1; `Identity.scala:134-136`, pinned by `Iden"
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/review-report.md,20,- **M3 (NEEDS HUMAN DECISION; frozen wire format).** The Spark edge keeps 5 representative work IDs plus a digest (`Graph.scala:114-116`). The frozen Phase 03 `CoauthorEdge` requires `workCount == sup
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/review-report.md,24,"- **M4 (NEEDS HUMAN DECISION; frozen enum).** The frozen `ResearcherMetrics` takes `CollaborationMetric` values only (`Enums.scala:34-41`). P_r, T_r, A_r, M_r and `maxTeamWorkIds` have no wire name, s"
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/review-report.md,71,"Orchestrator note on M3 and M4: both concern how Phase 06 output maps onto frozen Phase 03 records. Per §8, a finding that would change a frozen wire format is a human decision, and none was routed. T"
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/review-report.md,83,"- Alternative: the human ratifies the documented reading in `SPARK-CONTRACTS.md` §3.1, that the key is the smallest alias string. **Human decision.**"
+manual_intervention,docs/agent-runs/phase-06-spark-analytics/review-report.md,84,- **R-V1. RESOLVES_TO targets `researcher:orcid:*` have no vertex set** in `neptune.json` (`LoadManifests.scala:77-103`). A Neptune bulk load may reject these edges; D did not verify the loader behavi
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,9,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,15,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,15,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,27,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,28,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,29,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,31,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,39,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,63,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-01.md,120,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,7,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,8,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,8,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,9,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,11,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,19,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,20,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,22,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,28,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,91,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,113,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,118,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-06-spark-analytics/repair-02.md,120,spark-engineer
+manual_intervention,docs/agent-runs/phase-07-storage/agent-report.md,241,## Human decision at the STOP (recorded by the orchestrator from the human's answer)
+manual_intervention,docs/agent-runs/phase-07-storage/agent-report.md,248,"### CHECK run 2 (human-authorized rerun, unchanged tree)"
+guard_hook_block,docs/agent-runs/phase-07-storage/agent-report.md,283,- two guard false positives on the orchestrator's own report text (no effect).
+guard_hook_block,docs/agent-runs/phase-07-storage/human-gate.md,56,"- Several agents used `cd` prefixes, against the instruction; test-engineer ran scalafmt over main sources (it reports no main file changed); two guard false positives hit the orchestrator's own repor"
+manual_intervention,docs/agent-runs/phase-07-storage/repair-01.md,47,"- **Work order §7 STOP point ""CHECK fails after a repair"" reached.** The human decided: rerun once, unchanged; a build-only round 2 only if the same OOM recurs."
+review_stated_counts_first,docs/agent-runs/phase-07-storage/review-report.md,7,"**Verdict: REQUEST_CHANGES.** 0 HIGH, 8 MEDIUM, 13 LOW."
+manual_intervention,docs/agent-runs/phase-07-storage/review-report.md,64,- **L8. Live suite writes into the real index.** `S3VectorsAwsItSuite.scala:15` writes probe vectors into `researcher-profile-v1` and never deletes them. Owner: storage-engineer; human decision for Ph
+agent_named_in_repair_file,docs/agent-runs/phase-07-storage/repair-01.md,9,dependency-updater
+agent_named_in_repair_file,docs/agent-runs/phase-07-storage/repair-01.md,12,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-07-storage/repair-01.md,14,storage-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-07-storage/repair-01.md,16,storage-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-07-storage/repair-01.md,26,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-07-storage/repair-01.md,42,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-07-storage/repair-01.md,43,storage-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-07-storage/repair-01.md,44,test-engineer
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,15,## STOP at preconditions and human decision
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,18,"- Human decision (recorded verbatim in substance from the human's answer): Option 1, with limits:"
+guard_hook_block,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,45,"- Agent commands: `sbt ""core/scalafmt; core/compile; core/Test/compile; core/scalafmtCheck""` `[success]`; a throwaway `core/console` check printed the three examples valid and the default config resol"
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,64,"- **Deviation (disclosed, constitutional precedence):** carry-over 2 asked live suites to delete the vectors they wrote by exact key. The ratified `.claude/agents/storage-engineer.md` rule 11 says ""Ne"
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,100,"- services (human-authorized extension): `LocalEmbeddingPipeline.scala`, `LocalEmbeddingRun.scala` (harness, test-only), `LocalEmbeddingRunSuite` 24 (tiny fixture, no Spark)."
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,159,"STOP point reached: ""CHECK fails after a repair."" Code-reviewer has not yet reread the repair. Nothing staged or committed. Waiting for the human decision."
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,161,"- Human decision: rerun CHECK once. Run 2 (unchanged tree, sbt servers stopped first): **2,116 passed, 2 failed (STATUS: FAILED)**, marker `exit=1` — hadoop `AdversarialSuite` 30 s timeout and spark `"
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,167,"## Repair 02 (build-only, human-authorized)"
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,177,"## Repair 03 (final, human-authorized)"
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,204,- Repair 03 raised one hadoop test's timeout to 120 s (human-authorized); whether munit actually applies it is unverified (N2).
+guard_hook_block,docs/agent-runs/phase-08-embeddings-vectors/agent-report.md,208,"5. Process disclosures: the first official L2 attempt hung (Spark inside the long-lived sbt server, since `runMain` is not forked); the orchestrator stopped its own local sbt servers several times (no"
+guard_hook_block,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,36,"- Agent-observed: `sbt ""core/scalafmt; core/compile; core/Test/compile; core/testOnly *Embedding*""` → first run 1 failure (existing resolve-layers test, fixed by the default fill-in, no test edited), "
+guard_hook_block,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,51,- Agent-observed final targeted runs: core `*Embedding*` `Passed: Total 49`; storage `*Embedding* *Vector* *Phase07CarryOver*` `Passed: Total 162`; rag `Passed: Total 140`; services `Passed: Total 28`
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,66,### Human decision at the STOP
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,69,"### CHECK after repair 01, run 2 (human-authorized rerun, unchanged tree) — STATUS: FAILED"
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/repair-02.md,5,## Human authorization (recorded by the orchestrator from the human's answer)
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/repair-02.md,38,"| 2 | none (human-authorized rerun; sbt servers stopped) | 2,116 passed, 2 failed | hadoop `AdversarialSuite` 30 s timeout; spark `IdentitySuite` `SparkOutOfMemoryError` | 1,030 s | exit=1 |"
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/repair-03.md,5,## Human authorization (recorded by the orchestrator from the human's message)
+manual_intervention,docs/agent-runs/phase-08-embeddings-vectors/repair-03.md,39,"| 2 | none (human-authorized rerun; sbt servers stopped) | 2,116 passed, 2 failed | hadoop `AdversarialSuite` 30 s timeout; spark `IdentitySuite` `SparkOutOfMemoryError` | 1,030 s | exit=1 |"
+review_stated_counts_first,docs/agent-runs/phase-08-embeddings-vectors/review-report.md,7,"**Verdict: REQUEST_CHANGES.** 0 HIGH, 3 MEDIUM (M1 correctness, M2 security, M3 idempotency), 9 LOW."
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,3,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,8,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,11,storage-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,12,infra-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,15,rag-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,19,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,29,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,34,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,38,storage-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,38,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,41,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,41,infra-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,44,rag-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,46,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,49,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-01.md,67,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-02.md,7,build-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-02.md,14,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-02.md,19,build-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-03.md,8,build-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-03.md,10,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-03.md,17,build-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-03.md,26,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-08-embeddings-vectors/repair-03.md,48,code-reviewer
+guard_hook_block,docs/agent-runs/phase-09-runtime-agents/agent-report.md,38,- Risks disclosed: hard caps in core; core cannot enforce that ModelError reasons contain no secrets (adapter tests must); a guard false positive on a key-file pattern in a heredoc (nothing executed).
+guard_hook_block,docs/agent-runs/phase-09-runtime-agents/agent-report.md,168,- Guard false positives on key-file-like text (nothing executed).
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-01.md,3,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-01.md,7,rag-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-01.md,17,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-01.md,23,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-01.md,27,rag-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-01.md,35,rag-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-01.md,38,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-01.md,45,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-01.md,47,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-02.md,3,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-02.md,7,rag-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-02.md,17,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-02.md,23,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-02.md,27,rag-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-02.md,40,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-09-runtime-agents/repair-02.md,50,code-reviewer
+manual_intervention,docs/agent-runs/phase-10-services/agent-report.md,29,## STOP: §Services conflicts with the work order (human decision needed)
+manual_intervention,docs/agent-runs/phase-10-services/agent-report.md,42,## Human decisions on the contract conflicts (2026-11-23) = Contract reconciliation items for Phase 12
+manual_intervention,docs/agent-runs/phase-10-services/agent-report.md,80,"`spec-excerpt.md` supplied by the human. Human decisions win over it. Note: the spec's synchronous response links to `/v1/queries/{queryId}/evidence`, absent from the work order's route list; B serves"
+manual_intervention,docs/agent-runs/phase-10-services/agent-report.md,86,"## Speed amendment (human decision, recorded 2026-11-23 19:32)"
+status_line,docs/agent-runs/phase-10-services/agent-report.md,137,STATUS: COMPLETE (waiting for human gate)
+manual_intervention,docs/agent-runs/phase-10-services/agent-report.md,162,Compare the final INFRA-CONTRACTS.md §5 against SHA-256 `6b17edab36be9ce1ed5174447c28bfe2d0f07e336ebcfc739d16f0faec8e2114` and the names recorded at the top of this report; any difference becomes a sm
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,3,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,8,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,9,service-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,10,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,16,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,16,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,17,service-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,19,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,20,service-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-10-services/repair-01.md,21,service-engineer
+guard_hook_block,docs/agent-runs/phase-11-adversarial-review/agent-report.md,37,"- Guard false positives: two test-engineer Bash commands, and one orchestrator command writing this checkpoint, were blocked for containing the text `.key`; the file tools were used instead."
+manual_intervention,docs/agent-runs/phase-11-adversarial-review/agent-report.md,57,"## Progress checkpoint — STOP (§6), waiting for human decision"
+manual_intervention,docs/agent-runs/phase-11-adversarial-review/agent-report.md,61,## Progress checkpoint — human decisions received (2026-11-24)
+manual_intervention,docs/agent-runs/phase-11-adversarial-review/agent-report.md,119,"Human decision (summary): one formatting-only pass, plus the reread's LOW 2-6 in the same pass (the `API.md:181` wording and the weak test assertions). Run scalafmt on every file touched in this pass,"
+manual_intervention,docs/agent-runs/phase-11-adversarial-review/repair-01.md,3,## Outcome (after the human's decisions of 2026-11-24)
+manual_intervention,docs/agent-runs/phase-11-adversarial-review/repair-01.md,11,"| M1, all LOWs | various | Deferred with disclosure (human decision). | n/a |"
+manual_intervention,docs/agent-runs/phase-11-adversarial-review/repair-01.md,31,## Needs a human decision before routing (§6 STOP)
+manual_intervention,docs/agent-runs/phase-11-adversarial-review/review-report.md,13,"- **H1, generation model settings not connected (breaks Phase 14).** `modules/core/src/main/resources/scholarchain-rag.v1.conf:13-14` defaults to `provider = ""bedrock""` and the Sonnet 4.5 inference pr"
+manual_intervention,docs/agent-runs/phase-11-adversarial-review/review-report.md,14,"- **H2, embedder choice keyed on Voyage secret presence (breaks Phase 14).** `Composition.scala:411-415` (retrieval), `:454-458` (worker) choose Voyage whenever `SCHOLARCHAIN_VOYAGE_API_KEY` is non-em"
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,7,infra-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,8,service-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,8,infra-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,9,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,10,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,13,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,13,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,19,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,20,service-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,21,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,35,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,35,infra-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,36,domain-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,36,service-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,36,infra-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,42,service-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,43,service-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,43,infra-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,43,deploy-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,44,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,45,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,49,spark-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-11-adversarial-review/repair-01.md,49,test-engineer
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,6,STATUS: BLOCKED-ON | OWNER=orchestrator
+blocked_on_event,docs/agent-runs/phase-12-terraform/agent-report.md,6,STATUS: BLOCKED-ON
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,35,"BLOCKED-ON EVIDENCE: work order §1 requires reading StorageModuleConfig, SparkConfig and modules/storage/STORAGE-CONTRACTS.md; not present on branch lane2. Human chose ""Stop Phase 12"" when asked."
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,39,"Work orders A, H, B, D: NOT RUN (precondition failed; human chose to stop)."
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,44,STATUS: COMPLETE | OWNER=orchestrator
+stop_hook,docs/agent-runs/phase-12-terraform/agent-report.md,89,## Progress checkpoint — canonical test run requested by the Stop hook (orchestrator)
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,92,STATUS: FAILED | OWNER=orchestrator
+stop_hook,docs/agent-runs/phase-12-terraform/agent-report.md,94,"WORK ORDER: Phase 12 §0.5 (the Stop hook demanded the canonical command; newer file: modules/core/src/test/scala/scholarchain/core/StorageRecordsContractSuite.scala, brought in by merge 0a2212d, not b"
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,114,"STATUS: BLOCKED-ON (human cost decision, work order §6: estimate exceeds $15) | OWNER=infra-engineer"
+blocked_on_event,docs/agent-runs/phase-12-terraform/agent-report.md,114,"STATUS: BLOCKED-ON (human cost decision, work order §6: estimate exceeds $15)"
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,165,"## Human decisions after work order A (relayed by the human in the orchestrator session, 2026-11-22)"
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,196,STATUS: COMPLETE (EMR label NOT VERIFIED against the AWS release guide; see below) | OWNER=infra-engineer
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,198,WORK ORDER: Phase 12 A repair round 1 (human decisions 1-6; decision 7 honoured: no sbt)
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,225,STATUS: COMPLETE (repair applied; D re-review in progress) | OWNER=code-reviewer
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,247,STATUS: COMPLETE (work order A + one repair round; D verdict APPROVE WITH NOTES). Waiting for the human plan run (H); B follows H. | OWNER=orchestrator
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,251,TEST RESULTS: sbt NOT RUN after the failed run recorded above (human decision 7: no sbt in lane 2 until lane 1 is idle)
+stop_hook,docs/agent-runs/phase-12-terraform/agent-report.md,279,confirm dimension 1024 against RAG-EMBEDDING-CONTRACTS.md. sbt check permitted once if the Stop hook requires it (lane 1 idle). Then D pass and STOP for H.
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,304,STATUS: COMPLETE (D review in progress) | OWNER=infra-engineer
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,328,STATUS: FAILED | OWNER=orchestrator
+stop_hook,docs/agent-runs/phase-12-terraform/agent-report.md,330,"WORK ORDER: Stop hook demanded the canonical command (newer file: modules/core/src/test/scala/scholarchain/core/EmbeddingRecordsContractSuite.scala,"
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,350,STATUS: COMPLETE for A (+ one repair round + Phase 08 alignment) and D (latest verdict APPROVE WITH NOTES). Waiting for the human plan run (H); B follows H.
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,370,STATUS: BLOCKED-ON (human decisions below) | OWNER=orchestrator
+blocked_on_event,docs/agent-runs/phase-12-terraform/agent-report.md,370,STATUS: BLOCKED-ON (human decisions below)
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,370,STATUS: BLOCKED-ON (human decisions below)
+guard_hook_block,docs/agent-runs/phase-12-terraform/agent-report.md,375,web search and curl of public AWS docs and Price List files. One curl/jq call was blocked by the guard (jq field accessor read as a key file); redone in Python.
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,401,"NEXT GATE: human decisions, then (if approved) infra-engineer edits, D re-read, H"
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,404,"## Progress checkpoint — human decisions after the us-east-2 report (orchestrator, 2026-11-23)"
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,424,STATUS: BLOCKED-ON (human) | OWNER=infra-engineer
+blocked_on_event,docs/agent-runs/phase-12-terraform/agent-report.md,424,STATUS: BLOCKED-ON (human)
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,437,"NEXT GATE: human decision, infra-engineer repair, D reread, then H"
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,440,"## Progress checkpoint — human decisions on the D reread (orchestrator, 2026-11-23)"
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,445,"HUMAN DECISIONS: round 2 (final) authorized: mediums 1-6 and four lows (*.tfvars.json ignored, account ID out of the plan summary, PITR reason, stale text)."
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,457,STATUS: BLOCKED-ON (human): high estimate $29.64 (cleanup slips to 11-30) or $29.54 (cleanup 11-27) exceeds the $18 limit; low $6.20 or $5.98 | OWNER=infra-engineer
+blocked_on_event,docs/agent-runs/phase-12-terraform/agent-report.md,457,STATUS: BLOCKED-ON (human): high estimate $29.64 (cleanup slips to 11-30) or $29.54 (cleanup 11-27) exceeds the $18 limit; low $6.20 or $5.98
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,475,HUMAN DECISIONS: $25 hard ceiling (AWS before credits plus all APIs); aim for a high estimate of about $15; STOP if high exceeds $18.
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,491,HUMAN DECISION: anthropic.claude-haiku-5-5 is the answer-model default for the cost estimate.
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,500,"HUMAN DECISION: use the latest engine version that supports Neptune Serverless, verified in the Neptune docs with a cited URL, instead of 1.4.8.1."
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,507,STATUS: BLOCKED-ON (human): high estimate $22.81 (slip to 11-30) or $22.72 (cleanup 11-27) exceeds the $18 stop; low $4.68 or $4.48 | OWNER=infra-engineer
+blocked_on_event,docs/agent-runs/phase-12-terraform/agent-report.md,507,STATUS: BLOCKED-ON (human): high estimate $22.81 (slip to 11-30) or $22.72 (cleanup 11-27) exceeds the $18 stop; low $4.68 or $4.48
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,529,"HUMAN DECISION: keep the high estimate at or below $15 if possible, hard STOP at $18, so the $20 pause is never hit; budget alerts $5/$10/$15 (already configured)."
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,543,HUMAN DECISIONS: keep emr-spark-8.1.0 as default; document a fallback variable to run the Hadoop MapReduce steps on emr-7.14.0
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,554,HUMAN DECISION: use engine 1.5.0.1 (already the Terraform default from the cost round).
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,562,STATUS: COMPLETE (high within the $18 stop; above the $15 aim) | OWNER=infra-engineer
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,579,STATUS: BLOCKED-ON (human gate H)
+blocked_on_event,docs/agent-runs/phase-12-terraform/agent-report.md,579,STATUS: BLOCKED-ON (human gate H)
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,579,STATUS: BLOCKED-ON (human gate H)
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,581,"OPEN HUMAN DECISIONS: defer N-M1 (query-api cannot write rag/audit/) to Phase 10, or order a fix; accept HIGH $17.04 vs the $15 aim; approve the IAM set incl. three execution roles;"
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,587,"## Progress checkpoint — human decisions on the final D reread (orchestrator, 2026-11-24)"
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,591,HUMAN DECISIONS:
+status_line,docs/agent-runs/phase-12-terraform/agent-report.md,606,STATUS: BLOCKED-ON (human gate H)
+blocked_on_event,docs/agent-runs/phase-12-terraform/agent-report.md,606,STATUS: BLOCKED-ON (human gate H)
+manual_intervention,docs/agent-runs/phase-12-terraform/agent-report.md,606,STATUS: BLOCKED-ON (human gate H)
+status_line,docs/agent-runs/phase-12-terraform/review-report.md,8,STATUS: COMPLETE | OWNER=code-reviewer
+manual_intervention,docs/agent-runs/phase-12-terraform/review-report.md,10,"WORK ORDER: Phase 12 D (pass 1), read-only review of infra/terraform/**, scripts/plan.sh, scripts/cleanup.sh, scripts/lib/common.sh (untracked) against prompt.md §2 A, §3, §6, Gate and the recorded hu"
+review_stated_counts_first,docs/agent-runs/phase-12-terraform/review-report.md,13,"VERDICT: REQUEST_CHANGES (1 HIGH, 7 MEDIUM, 13 LOW)"
+manual_intervention,docs/agent-runs/phase-12-terraform/review-report.md,16,"Human decisions checked as requirements: all met (variables.tf:146-150, 262-266, 206-210, 81-89, 56-65; iam/main.tf:44, 342, 379, 414, 432; plan.sh:29-40)."
+status_line,docs/agent-runs/phase-12-terraform/review-report.md,52,STATUS: COMPLETE | OWNER=code-reviewer
+status_line,docs/agent-runs/phase-12-terraform/review-report.md,72,STATUS: COMPLETE | OWNER=code-reviewer
+status_line,docs/agent-runs/phase-12-terraform/review-report.md,100,STATUS: COMPLETE | OWNER=code-reviewer
+status_line,docs/agent-runs/phase-12-terraform/review-report.md,128,STATUS: COMPLETE | OWNER=code-reviewer
+status_line,docs/agent-runs/phase-12-terraform/review-report.md,149,STATUS: COMPLETE | OWNER=code-reviewer
+status_line,docs/agent-runs/phase-13-automation/agent-report.md,28,"STATUS: COMPLETE (agent report). Files created: scripts/{check,package,deploy,rollback,smoke-test,run-bounded-pipeline,run-experiment,archive-evidence,env-windo"
+status_line,docs/agent-runs/phase-13-automation/agent-report.md,61,STATUS: COMPLETE (agent report). Modified only scripts/** and INFRA-CONTRACTS.md §14 (new §14.5 lists the fixes and deferrals).
+guard_hook_block,docs/agent-runs/phase-13-automation/human-gate.md,45,"sbt check, any AWS call, Terraform init/plan/validate, docker, a real EMR cluster. `cleanup.sh` is blocked for agents by the guard and was exercised only through the harness; I run it myself."
+review_stated_counts_first,docs/agent-runs/phase-13-automation/review-report.md,5,"**Verdict (round 1): REQUEST CHANGES** — 0 HIGH, 8 MEDIUM, 9 LOW, 3 INFO."
+review_finding_tagged_LOW,docs/agent-runs/phase-13-automation/review-report.md,61,"- **N1 (LOW)** common.sh:378: the gate check is a case-insensitive substring match, so ""plan <sha> REJECTED"" also passes. Suggested fix: a structured line such "
+review_finding_tagged_LOW,docs/agent-runs/phase-13-automation/review-report.md,62,"- **N2 (LOW)** images.sh:37: the default release image is the newest-created `scholarchain-services` tag, and a layer-cached fresh build could lose to a newer s"
+review_finding_tagged_LOW,docs/agent-runs/phase-13-automation/review-report.md,63,"- **N3 (LOW)** test-scripts.sh:304-306: the M7 test covers only `SC_JOBS_BUILD_CMD`, and its ""no build command ran"" assertion cannot fail."
+review_finding_tagged_LOW,docs/agent-runs/phase-13-automation/review-report.md,64,"- **N4 (LOW)** run-bounded-pipeline.sh:327-332: epoch-number timestamps disable the external cancel watcher. This fails safe, since the in-step timeout, TERMINA"
+review_finding_tagged_LOW,docs/agent-runs/phase-13-automation/review-report.md,65,- **N5 (LOW)** run-bounded-pipeline.sh:164: the run-id reuse check is local only.
+review_finding_tagged_INFO,docs/agent-runs/phase-13-automation/review-report.md,66,"- **N6 (INFO)** smoke-test.sh:133: curl honours proxy environment variables, so under `--allow-insecure-http` a proxy sees the key."
+review_finding_tagged_INFO,docs/agent-runs/phase-13-automation/review-report.md,67,"- **N7 (INFO)** run-bounded-pipeline.sh:247-258: `SC_LOADER_STEP_ARGS` / `SC_ENQUEUE_STEP_ARGS` run arbitrary commands on EMR, bounded by the timeout and TERMIN"
+stop_hook,docs/agent-runs/phase-15a-dataset-scale/agent-report.md,33,## Progress checkpoint — canonical test run (Stop hook request)
+stop_hook,docs/agent-runs/phase-15a-dataset-scale/agent-report.md,34,"- The Stop hook asked for the canonical command because the test marker was missing in this worktree. Ran it once from the repo root, exactly as rule 0.4 specifies."
+stop_hook,docs/agent-runs/phase-15a-dataset-scale/agent-report.md,136,## Progress checkpoint — second canonical test run (Stop hook request)
+stop_hook,docs/agent-runs/phase-15a-dataset-scale/agent-report.md,137,"- Trigger: dataset-engineer's `pytest tests/datasets` wrote `tests/datasets/__pycache__/*.pyc`, which made the Stop hook fire. The canonical command was run again from the repo root."
+manual_intervention,docs/agent-runs/phase-15a-dataset-scale/agent-report.md,208,- Whether to rerun to retry the three 409 iDs is a human decision.
+stop_hook,docs/agent-runs/phase-15a-dataset-scale/agent-report.md,240,## Progress checkpoint — third canonical test run (Stop hook request): STATUS: FAILED
+stop_hook,docs/agent-runs/phase-15a-dataset-scale/agent-report.md,241,- Trigger: C's new files under `tests/datasets/` made the Stop hook fire. The canonical command was run from the repo root.
+manual_intervention,docs/agent-runs/phase-15a-dataset-scale/agent-report.md,252,"- The orchestrator did not rerun it, because rule 0.4 allows one run per hook request and lane 2 may not edit `modules/**`. The test is owned by test-engineer (`modules/hadoop/src/test/**`) and its ti"
+stop_hook,docs/agent-runs/phase-15a-dataset-scale/agent-report.md,303,"## Progress checkpoint — fourth canonical test run (Stop hook request, after the test repair)"
+stop_hook,docs/agent-runs/phase-15a-dataset-scale/human-gate.md,62,- The Stop hook asked for the canonical `sbt check` several times because Python bytecode under `tests/` changed; one earlier run had a Hadoop AdversarialSuite timeout that did not repeat (cause not f
+status_line,docs/agent-runs/phase-15a-dataset-scale/review-report.md,6,STATUS: COMPLETE | OWNER=code-reviewer
+stop_hook,docs/agent-runs/phase-15b-experiment-harness/agent-report.md,15,"- **Known conflict, recorded before dispatch:** this work order forbids sbt, but the constitutional Stop/SubagentStop hook (`.claude/hooks/verify-tests-ran.sh`) blocks ending a turn when any file unde"
+stop_hook,docs/agent-runs/phase-15b-experiment-harness/agent-report.md,35,## Progress checkpoint — Stop hook fired (orchestrator)
+stop_hook,docs/agent-runs/phase-15b-experiment-harness/agent-report.md,37,- `.claude/hooks/verify-tests-ran.sh` blocked the orchestrator's stop twice (newer file: `tests/experiments/conftest.py`).
+manual_intervention,docs/agent-runs/phase-15b-experiment-harness/agent-report.md,39,"- **Human decision at the gate:** run the canonical test command (CLAUDE.md section ""Definition of done"") yourself, or accept the deviation."
+status_line,docs/agent-runs/phase-15b-experiment-harness/agent-report.md,54,STATUS: COMPLETE (implementation and review gates); `sbt check` NOT RUN (see below)
+stop_hook,docs/agent-runs/phase-15b-experiment-harness/agent-report.md,59,- **`sbt check` NOT RUN.** Work order rule 4 forbids sbt; the Stop hook (`.claude/hooks/verify-tests-ran.sh`) blocked the orchestrator's turn end repeatedly because `tests/experiments/*.py` are newer 
+manual_intervention,docs/agent-runs/phase-15b-experiment-harness/agent-report.md,59,- **`sbt check` NOT RUN.** Work order rule 4 forbids sbt; the Stop hook (`.claude/hooks/verify-tests-ran.sh`) blocked the orchestrator's turn end repeatedly because `tests/experiments/*.py` are newer 
+stop_hook,docs/agent-runs/phase-15b-experiment-harness/agent-report.md,69,"7. Routing outside this phase: infra-engineer — add `experiments/results` to `SC_GENERATED_EXCLUDES` (`scripts/lib/common.sh`); factory-engineer — owner for `reports/experiments/**` if wanted, and the"
+stop_hook,docs/agent-runs/phase-15b-experiment-harness/human-gate.md,26,"- Canonical `sbt check`, run by me in lane 2 after the agent stopped (required by the stop hook): `exit=0`, 0 failed, elapsed 1,515 s. Scala sources were not changed in this phase."
+stop_hook,docs/agent-runs/phase-15b-experiment-harness/human-gate.md,32,"- The stop hook `verify-tests-ran.sh` blocked the end of the session 9 times, because the work order forbade sbt and only Python files had changed; Claude Code overrode it at its block cap. I then ran"
+stop_hook,docs/agent-runs/phase-15b-experiment-harness/review-report.md,49,"1. Decide on a repair round for M1–M6. 2. Decide whether `experiments/results/SYNTHETIC-*` and the synthetic ledger are committed. 3. For M5, decide: commit between experiments, route `reports/experim"
+agent_named_in_repair_file,docs/agent-runs/phase-15b-experiment-harness/repair-01.md,7,experiment-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-15b-experiment-harness/repair-01.md,8,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-15b-experiment-harness/repair-01.md,9,code-reviewer
+agent_named_in_repair_file,docs/agent-runs/phase-15b-experiment-harness/repair-01.md,13,infra-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-15b-experiment-harness/repair-01.md,14,factory-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-15b-experiment-harness/repair-01.md,20,experiment-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-15b-experiment-harness/repair-01.md,27,test-engineer
+agent_named_in_repair_file,docs/agent-runs/phase-15b-experiment-harness/repair-01.md,32,code-reviewer
+stop_hook,docs/agent-runs/phase-17a-docs-draft/human-gate.md,18,4. **No sbt by agents:** the stop-hook loop came from the main → lane2 merge updating file timestamps (for example `modules/core/RUNTIME-CONTRACTS.md`); no source was changed in this phase. I run the 

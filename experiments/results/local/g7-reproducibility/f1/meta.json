@@ -1,0 +1,48 @@
+{
+  "evidence_class": "L",
+  "file_evidence_class": {
+    "clean-checkout-info.json": "L",
+    "clean-checkout-results.csv": "L",
+    "raw-INWORKTREE-dataset-manifest-validator.stderr.txt": "L",
+    "raw-INWORKTREE-dataset-manifest-validator.stdout.txt": "L",
+    "raw-INWORKTREE-experiment-manifest-validator.stderr.txt": "L",
+    "raw-INWORKTREE-experiment-manifest-validator.stdout.txt": "L",
+    "raw-dataset-manifest-validator.stderr.txt": "L",
+    "raw-dataset-manifest-validator.stdout.txt": "L",
+    "raw-experiment-manifest-validator.stderr.txt": "L",
+    "raw-experiment-manifest-validator.stdout.txt": "L",
+    "raw-pytest-tests-datasets.stderr.txt": "L",
+    "raw-pytest-tests-datasets.stdout.txt": "L",
+    "raw-pytest-tests-experiments.stderr.txt": "L",
+    "raw-pytest-tests-experiments.stdout.txt": "L",
+    "raw-script-harness.stderr.txt": "L",
+    "raw-script-harness.stdout.txt": "L",
+    "raw-validate-agent-files.stderr.txt": "L",
+    "raw-validate-agent-files.stdout.txt": "L",
+    "reproducibility-pending.csv": "L"
+  },
+  "generated_at_utc": "2026-11-25T00:44:41.617Z",
+  "git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "group": "g7",
+  "inputs": [],
+  "not_available_inputs": [],
+  "notes": [],
+  "parameters": {
+    "checks": [
+      "validate-agent-files",
+      "dataset-manifest-validator",
+      "experiment-manifest-validator",
+      "pytest-tests-datasets",
+      "pytest-tests-experiments",
+      "script-harness",
+      "INWORKTREE-dataset-manifest-validator",
+      "INWORKTREE-experiment-manifest-validator"
+    ]
+  },
+  "python": "3.14.2",
+  "run_id": "f1",
+  "script": "experiments/evaluation/local_eval.py",
+  "script_sha256": "a49c6df57ca6394758656cb1da7c31077de91fdeb83747a43f8a5ed6978c9119",
+  "synthetic": false,
+  "tree_dirty": true
+}

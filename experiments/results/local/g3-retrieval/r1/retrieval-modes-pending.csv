@@ -1,0 +1,5 @@
+mode,category,recall@K,precision@K,mrr,ndcg,n_scored,note
+graph-only,ALL,[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],Phase 15c/16: service must accept the mode; AWS S3 Vectors and Neptune/DynamoDB needed
+fused (graph + vector),ALL,[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],Phase 15c/16: service must accept the mode; AWS S3 Vectors and Neptune/DynamoDB needed
+"vector-only (real embedder, S3 Vectors)",ALL,[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],Phase 15c/16: service must accept the mode; AWS S3 Vectors and Neptune/DynamoDB needed
+optional OpenSearch comparison,ALL,[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],[[PENDING-AWS]],Phase 15c/16: service must accept the mode; AWS S3 Vectors and Neptune/DynamoDB needed

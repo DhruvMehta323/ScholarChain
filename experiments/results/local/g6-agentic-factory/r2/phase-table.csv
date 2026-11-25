@@ -1,0 +1,18 @@
+phase,repair_files,repair_file_names,blocked_on_status_lines,review_verdict_sequence,first_stored_verdict,first_pass_accepted_by_reviewer,human_gate_md_present,commit_txt_present,first_stated_review_counts_HIGH/MED/LOW
+phase-00-seed-agent,1,repair-01.md,0,,,n/a (no review report),True,True,@L0: 
+phase-01-agent-factory,2,repair-01.md;repair-02.md,3,APPROVE_WITH_NOTES@L1,APPROVE_WITH_NOTES,yes,True,True,@L0: 
+phase-02-build-skeleton,0,,0,APPROVE_WITH_NOTES@L10,APPROVE_WITH_NOTES,yes,True,True,@L0: 
+phase-03-contracts-datasets,2,repair-01.md;repair-02.md,0,APPROVE_WITH_NOTES@L1 > APPROVE_WITH_NOTES@L9 > APPROVE_WITH_NOTES@L221 > REQUEST_CHANGES@L348,REQUEST_CHANGES,no,True,True,@L0: 
+phase-04-hadoop-mapreduce,2,repair-01.md;repair-02.md,0,REQUEST_CHANGES@L16 > APPROVE_WITH_NOTES@L184,REQUEST_CHANGES,no,True,True,@L0: 
+phase-05-entity-resolution,4,repair-01.md;repair-02.md;repair-03.md;repair-04.md,0,REQUEST_CHANGES@L5 > REQUEST_CHANGES@L37 > APPROVE_WITH_NOTES@L61,REQUEST_CHANGES,no,True,True,@L0: 
+phase-06-spark-analytics,2,repair-01.md;repair-02.md,0,APPROVE_WITH_NOTES@L5 > REQUEST_CHANGES@L75 > APPROVE_WITH_NOTES@L115,APPROVE_WITH_NOTES,yes,True,True,@L0: 
+phase-07-storage,1,repair-01.md,0,REQUEST_CHANGES@L7 > APPROVE_WITH_NOTES@L84,REQUEST_CHANGES,no,True,True,review-report.md@L7: 0/8/13
+phase-08-embeddings-vectors,3,repair-01.md;repair-02.md;repair-03.md,0,REQUEST_CHANGES@L7 > APPROVE_WITH_NOTES@L46,REQUEST_CHANGES,no,True,True,review-report.md@L7: 0/3/0
+phase-09-runtime-agents,2,repair-01.md;repair-02.md,0,REQUEST_CHANGES@L5 > REQUEST_CHANGES@L45 > APPROVE_WITH_NOTES@L84,REQUEST_CHANGES,no,True,True,@L0: 
+phase-10-services,1,repair-01.md,0,REQUEST_CHANGES@L5 > APPROVE_WITH_NOTES@L56,REQUEST_CHANGES,no,True,True,@L0: 
+phase-11-adversarial-review,1,repair-01.md,0,REQUEST_CHANGES@L5 > REQUEST_CHANGES@L42,REQUEST_CHANGES,no,True,True,@L0: 
+phase-12-terraform,0,,8,REQUEST_CHANGES@L13 > APPROVE_WITH_NOTES@L55 > APPROVE_WITH_NOTES@L75 > REQUEST_CHANGES@L103 > APPROVE_WITH_NOTES@L131 > APPROVE_WITH_NOTES@L152,REQUEST_CHANGES,no,True,True,review-report.md@L13: 1/7/13
+phase-13-automation,0,,0,REQUEST_CHANGES@L5 > APPROVE_WITH_NOTES@L48,REQUEST_CHANGES,no,True,True,review-report.md@L5: 0/8/9
+phase-15a-dataset-scale,0,,0,REQUEST_CHANGES@L10,REQUEST_CHANGES,no,True,True,@L0: 
+phase-15b-experiment-harness,1,repair-01.md,0,REQUEST_CHANGES@L7 > APPROVE_WITH_NOTES@L53,REQUEST_CHANGES,no,True,True,@L0: 
+phase-17a-docs-draft,0,,0,,,n/a (no review report),True,True,@L0: 

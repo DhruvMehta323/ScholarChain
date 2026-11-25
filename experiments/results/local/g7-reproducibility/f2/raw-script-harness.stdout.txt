@@ -1,0 +1,268 @@
+== T1 syntax and shellcheck (on the repository sources) ==
+PASS bash -n scripts/archive-evidence.sh
+PASS bash -n scripts/check.sh
+PASS bash -n scripts/cleanup.sh
+PASS bash -n scripts/deploy.sh
+PASS bash -n scripts/env-window.sh
+PASS bash -n scripts/package.sh
+PASS bash -n scripts/plan.sh
+PASS bash -n scripts/rollback.sh
+PASS bash -n scripts/run-bounded-pipeline.sh
+PASS bash -n scripts/run-experiment.sh
+PASS bash -n scripts/smoke-test.sh
+PASS bash -n scripts/lib/common.sh
+PASS bash -n scripts/lib/ecs.sh
+PASS bash -n scripts/lib/images.sh
+PASS bash -n scripts/tests/test-scripts.sh
+PASS shellcheck clean
+== T2 --help ==
+PASS help-check: exit 0
+PASS help-check prints exit codes
+PASS help-package: exit 0
+PASS help-package prints exit codes
+PASS help-deploy: exit 0
+PASS help-deploy prints exit codes
+PASS help-rollback: exit 0
+PASS help-rollback prints exit codes
+PASS help-smoke-test: exit 0
+PASS help-smoke-test prints exit codes
+PASS help-run-bounded-pipeline: exit 0
+PASS help-run-bounded-pipeline prints exit codes
+PASS help-run-experiment: exit 0
+PASS help-run-experiment prints exit codes
+PASS help-archive-evidence: exit 0
+PASS help-archive-evidence prints exit codes
+PASS help-env-window: exit 0
+PASS help-env-window prints exit codes
+PASS help-cleanup: exit 0
+PASS help-cleanup prints exit codes
+== T3 package ==
+PASS package-dry: exit 0
+PASS package --dry-run does not call sbt
+PASS package-real: exit 0
+PASS package builds jobs
+PASS package builds image
+PASS artifacts.json written
+PASS artifacts.json lists three images (M13-1 re-tag)
+PASS artifacts.json lists two jars
+PASS clean run records release:true dirty:false
+PASS package-dirty-refused: exit 3
+PASS package dirty message
+PASS package-skip-build-refused: exit 3
+PASS skip-build refusal message
+PASS refused skip-build ran no build
+PASS package-local-image-refused: exit 3
+PASS SC_LOCAL_IMAGE refusal message
+PASS package-source-refused: exit 3
+PASS SC_IMAGE_SOURCE_* refusal message
+PASS package-free-cmd-refused: exit 2
+PASS free-form build command message
+PASS no build command ran
+PASS package-local-ok: exit 0
+PASS local run records release:false dirty:true under release-local/
+PASS the release artifacts.json was not overwritten by the local run
+PASS local images are tagged -dirty
+== T4 deploy ==
+PASS deploy-dirty-refused: exit 3
+PASS deploy dirty message
+PASS deploy-wrong-checksum: exit 3
+PASS deploy checksum message
+PASS deploy-missing-checksum: exit 3
+PASS deploy missing-approval message
+PASS deploy-record-outside-plans: exit 3
+PASS record outside plans/ message
+PASS deploy-record-symlink-escape: exit 3
+PASS record symlink escaping plans/ message
+PASS deploy-missing-tfplan: exit 3
+PASS missing .tfplan message
+PASS deploy-tampered-tfplan: exit 3
+PASS tampered .tfplan message
+PASS deploy-no-gate-file: exit 3
+PASS missing gate file message
+PASS deploy-gate-mismatch: exit 3
+PASS gate file without the approved hash message
+PASS deploy-gate-wrong-dir: exit 3
+PASS gate file outside docs/agent-runs message
+PASS deploy-gate-symlink-escape: exit 3
+PASS gate file symlink escaping docs/agent-runs message
+PASS refusals happen before any AWS call
+PASS deploy-outputs-missing: exit 4
+PASS deploy prints the human apply command
+PASS deploy-account-mismatch: exit 1
+PASS deploy account mismatch is printed without the id
+PASS deploy never prints the account id
+PASS deploy-nonrelease-artifacts: exit 3
+PASS non-release artifacts message
+PASS deploy-artifacts-without-release-flag: exit 3
+PASS deploy-dry: exit 0
+PASS deploy dry-run prints account_check=match
+PASS deploy dry-run registers nothing
+PASS deploy dry-run updates nothing
+PASS deploy dry-run pushes nothing
+PASS deploy dry-run writes no record
+PASS deploy-image-mismatch: exit 1
+PASS image mismatch message
+PASS deploy-real: exit 0
+PASS no service was updated before the in-progress record existed
+PASS deploy registered 3 task definitions
+PASS deploy updated 3 services
+PASS worker desired count is 0 (--desired-count 0 reached the API)
+PASS query-api and retrieval desired counts are 1
+PASS update-service for the worker carries --desired-count 0
+PASS deployment.json status succeeded
+PASS 3 services verified (task definition and digest)
+PASS record holds previous and new task definitions for 3 services
+PASS no forbidden terraform call during deploy
+PASS deploy-not-stable: exit 5
+PASS timeout message names the service
+PASS rollback hint names the record that exists
+PASS timeout leaves status failed
+PASS failure_reason says why
+PASS failed record holds the previous task definition ARN of 3 services
+PASS services had been updated (the failed record matters)
+PASS deploy-digest-mismatch: exit 1
+PASS digest mismatch message
+PASS digest mismatch leaves status failed
+PASS failure_reason holds the sc_die message
+== T5 rollback ==
+PASS rollback-no-approval: exit 3
+PASS rollback approval message
+PASS rollback-dry: exit 0
+PASS rollback dry-run changes nothing
+PASS rollback-real: exit 0
+PASS rollback updated 3 services
+PASS rollback never changes desired counts
+== T6 smoke-test ==
+PASS smoke-dry: exit 0
+PASS smoke dry-run makes no HTTP call
+PASS smoke-dry-http-refused: exit 3
+PASS http refusal message
+PASS smoke-http-refused: exit 3
+PASS http refusal message (real run)
+PASS refused http run makes no HTTP call
+PASS smoke-host-mismatch: exit 3
+PASS foreign host refusal message
+PASS smoke-host-mismatch-insecure: exit 3
+PASS foreign host refused even with the insecure flag
+PASS no HTTP call to a foreign host
+PASS smoke-https-same-host: exit 0
+PASS https to the Terraform host needs no flag
+PASS smoke-loopback-stub: exit 0
+PASS smoke-real: exit 0
+PASS smoke prints the loud insecure warning
+PASS smoke-test.json all_passed
+PASS 401 without a key was observed
+PASS key not in stub argument log
+PASS key not on stdout
+PASS key not on stderr
+PASS key not in the JSON result
+PASS smoke-loose-key-refused: exit 6
+PASS loose key mode message
+PASS smoke-keyfile-in-repo-relative: exit 6
+PASS relative in-repo key file message
+PASS smoke-keyfile-in-repo-dotdot: exit 6
+PASS smoke-keyfile-in-repo-symlink: exit 6
+PASS symlinked in-repo key file message
+PASS refused key file run makes no HTTP call
+== T7 run-bounded-pipeline ==
+PASS pipe-50k-no-record: exit 3
+PASS 50K refusal message (no 10K record)
+PASS pipe-50k-no-flag: exit 3
+PASS 50K refusal message (no approval flag)
+PASS pipe-50k-failed-10k: exit 3
+PASS 50K refusal message (10K record failed)
+PASS 50K refusal happens before any AWS call
+PASS pipe-50k-ok-dry: exit 0
+PASS 50K allowed with record and flag
+PASS pipe-core-count-3: exit 2
+PASS pipe-fallback-needs-hadoop-only: exit 2
+PASS pipe-10k-dry: exit 0
+PASS dry-run plan: 2 steps (PipelineDriver, Spark), all TERMINATE_CLUSTER, 3600s
+PASS default hadoop mode is the PipelineDriver (review M3)
+PASS no per-job *Tool class (they have no main)
+PASS pipe-hadoop-mode-tools-refused: exit 2
+PASS tools mode refusal message
+PASS pipe-itype-refused: exit 3
+PASS larger instance class refusal message
+PASS refused instance class made no AWS call
+PASS pipe-itype-no-gate: exit 3
+PASS approved class without a gate file message
+PASS pipe-itype-wrong-gate: exit 3
+PASS gate file that does not name the class message
+PASS pipe-itype-approved: exit 0
+PASS approved class reaches the cluster plan
+PASS pipe-idle-too-long: exit 2
+PASS idle timeout cap message
+PASS pipe-idle-900-ok: exit 0
+PASS dry-run creates no cluster
+PASS dry-run uploads nothing
+PASS pipe-smoke-real: exit 0
+PASS smoke uses the default release label
+PASS smoke job is a tiny MapReduce job
+PASS pipe-fallback-smoke: exit 0
+PASS fallback flag selects emr-7.14.0
+PASS pipe-1k-real: exit 0
+PASS 2 steps submitted (PipelineDriver HJ1-HJ7 + spark)
+PASS the Hadoop step runs PipelineDriver
+PASS EVERY submitted EMR step has ActionOnFailure=TERMINATE_CLUSTER
+PASS EVERY submitted EMR step carries the 3600 s (1 hour) timeout
+PASS cluster has idle auto-termination
+PASS cluster stays up only for steps (no-auto-terminate + idle policy)
+PASS managed scaling max 2 core/task (3 nodes)
+PASS core group of 1 (1 primary + 1 core)
+PASS pipeline never terminates a cluster itself
+PASS run.json status succeeded
+PASS pipe-run-id-reused: exit 3
+PASS reused run id message
+PASS reused run id created no cluster
+PASS pipe-tz-recent-step: exit 0
+PASS a recent step printed with a UTC-5 offset is not cancelled
+PASS no timestamp parse warning
+PASS run.json is finalised after a RUNNING step with a non-UTC offset
+PASS pipe-tz-old-step: exit 0
+PASS an old step printed with a UTC+5:30 offset is cancelled
+PASS pipe-load-unconfigured: exit 7
+== T8 env-window ==
+PASS env-up: exit 0
+PASS up prints create_neptune
+PASS up prints create_alb
+PASS up prints the cost estimate
+PASS up makes no AWS call
+PASS env-down-needs-yes: exit 2
+PASS env-down-dry: exit 0
+PASS down --dry-run changes nothing
+PASS env-down: exit 0
+PASS down scaled all three services to 0
+PASS down prints how to remove Neptune and the ALB
+PASS no forbidden terraform call
+== T9 run-experiment ==
+PASS experiment-no-dir: exit 6
+PASS clear error without experiments/manifests
+== T10 archive-evidence ==
+PASS archive-dry: exit 0
+PASS archive-real: exit 0
+PASS MANIFEST.json written
+PASS archive-twice-refused: exit 3
+== T11 cleanup (a copy with the image-deletion token renamed so the stub can be called; the real file is human-executed) ==
+PASS cleanup-list-only: exit 0
+PASS cleanup lists only by default
+PASS cleanup prints the secret recovery note (G12-4)
+PASS cleanup prints the force-delete commands (never runs them)
+PASS cleanup does not run secret deletion
+PASS cleanup-empty-needs-confirm: exit 2
+PASS cleanup-empty-dry: exit 0
+PASS cleanup dry-run lists what would be deleted
+PASS cleanup dry-run deletes nothing
+PASS cleanup-empty-real: exit 0
+PASS ECR emptying called once per repository (3)
+PASS inventory before and after written
+PASS no forbidden terraform call during cleanup
+== T12 check.sh ==
+PASS check-ok: exit 0
+PASS check-bad-json: exit 1
+== T13 no guarded phrase in any script text ==
+PASS no script (outside this harness) contains the guarded apply/destroy phrase
+PASS no terminate-clusters command
+PASS the stubbed infrastructure tool never received an apply or destroy subcommand
+
+RESULT passed=253 failed=0 scratch=/var/folders/h2/9kvthml17sl7246t67dn14t40000gn/T/tmp.NGLsdgKfml

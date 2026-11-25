@@ -1,0 +1,39 @@
+{
+  "evidence_class": "R (restricted: local hash embedder, known-item smoke set)",
+  "generated_at_utc": "2026-11-24T23:34:24.816Z",
+  "git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "group": "g3",
+  "inputs": [
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/embedding-runs/L1/smoke.json",
+      "sha256": "05627e72e855b8e0bd18896b4befb6291eefedc369edff0d6dad0e29fb465faf"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/embedding-runs/L2/smoke.json",
+      "sha256": "05627e72e855b8e0bd18896b4befb6291eefedc369edff0d6dad0e29fb465faf"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/embedding-runs/L3/smoke.json",
+      "sha256": "05627e72e855b8e0bd18896b4befb6291eefedc369edff0d6dad0e29fb465faf"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/embedding-runs/L4/smoke.json",
+      "sha256": "05627e72e855b8e0bd18896b4befb6291eefedc369edff0d6dad0e29fb465faf"
+    }
+  ],
+  "not_available_inputs": [],
+  "notes": [],
+  "parameters": {
+    "ks": [
+      1,
+      3,
+      5
+    ]
+  },
+  "python": "3.14.2",
+  "run_id": "r1",
+  "script": "experiments/evaluation/local_eval.py",
+  "script_sha256": "6bc30127fba6cf772e27ddc928ec6aab177efea798150f22e647be5c1ad1b6f0",
+  "synthetic": false,
+  "tree_dirty": true
+}

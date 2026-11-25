@@ -1,0 +1,15 @@
+category,claim_status,reason_code,claims
+bridge_ranking,verified,deterministic_checks_passed,48
+coauthor_breadth,verified,deterministic_checks_passed,16
+community,verified,deterministic_checks_passed,36
+component,verified,deterministic_checks_passed,15
+direct_collaboration,verified,deterministic_checks_passed,26
+evidence_lookup,verified,deterministic_checks_passed,12
+homonym_suffix,verified,deterministic_checks_passed,8
+institution,partially_supported,semantic_context_only,6
+max_team_size,verified,deterministic_checks_passed,3
+prompt_injection,partially_supported,semantic_context_only,3
+prompt_injection,verified,deterministic_checks_passed,12
+shortest_path,verified,deterministic_checks_passed,22
+temporal_change,verified,deterministic_checks_passed,15
+topic,partially_supported,semantic_context_only,6
