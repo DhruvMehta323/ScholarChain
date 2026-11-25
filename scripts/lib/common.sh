@@ -210,6 +210,32 @@ sc_aws() {
   aws --cli-connect-timeout "${SC_AWS_CONNECT_TIMEOUT:-15}" --cli-read-timeout "${SC_AWS_READ_TIMEOUT:-60}" "$@"
 }
 
+# sc_put_verified <local-file> <s3://bucket/key>: F14-7. One single-PUT object (put-object, no multipart; the object must be under 5 GB),
+# then head-object must report ContentLength equal to the local byte size. The AWS CLI `s3 cp` was seen to exit 0 and print nothing while the
+# object never landed, so a successful exit code is not trusted. Up to 3 attempts, SC_UPLOAD_RETRY_SLEEP (default 5) seconds apart; returns 1 when
+# all fail (the caller decides how to die). Overwriting the same key with the same bytes is idempotent. stdin is /dev/null for every call.
+sc_put_verified() {
+  local f="$1" uri="$2" rest bucket key want got rc n=1
+  [[ "${uri}" == s3://*/* ]] || { sc_warn "not an s3://bucket/key URI: ${uri}"; return 2; }
+  rest="${uri#s3://}" bucket="${rest%%/*}" key="${rest#*/}"
+  want="$(wc -c < "${f}" | tr -d ' ')"
+  while :; do
+    rc=0
+    sc_aws s3api put-object --bucket "${bucket}" --key "${key}" --body "${f}" --query ETag --output text < /dev/null > /dev/null || rc=$?
+    if ((rc == 0)); then
+      got=""
+      got="$(sc_aws s3api head-object --bucket "${bucket}" --key "${key}" --query ContentLength --output text < /dev/null 2> /dev/null)" || got=""
+      [[ "${got}" != "${want}" ]] || return 0
+      sc_warn "upload attempt ${n}/3 of $(basename "${f}"): put-object exit 0 but head-object reports '${got:-missing}', expected ${want} bytes (${uri})"
+    else
+      sc_warn "upload attempt ${n}/3 of $(basename "${f}"): put-object exit ${rc} (${uri})"
+    fi
+    ((n < 3)) || return 1
+    n=$((n + 1))
+    sleep "${SC_UPLOAD_RETRY_SLEEP:-5}"
+  done
+}
+
 # sc_retry <command...>: up to 3 attempts, prints the successful stdout. ONLY for idempotent reads (describe, list, get).
 sc_retry() {
   local n=1 out rc

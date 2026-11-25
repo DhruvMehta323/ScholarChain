@@ -113,8 +113,20 @@ case "${svc} ${op}" in
   "emr list-clusters") echo 0 ;;
   "emr "*) echo '{}' ;;
   "neptune describe-db-clusters" | "dynamodb list-tables") echo 0 ;;
+  "s3api put-object")
+    # STUB_S3_LOSE=N: the first N put-object calls PER KEY exit 0 and print nothing but store nothing (the F14-7 silent loss).
+    b="$(opt --bucket)"; k="$(opt --key)"; body="$(opt --body)"; ck="${STUB_STATE}/s3tries/$(printf '%s' "${b}/${k}" | tr '/' '_')"
+    mkdir -p "${STUB_STATE}/s3tries" "${STUB_STATE}/s3/${b}/$(dirname "${k}")"
+    t=$(($(cat "${ck}" 2> /dev/null || echo 0) + 1)); echo "${t}" > "${ck}"
+    if [[ "${t}" -le "${STUB_S3_LOSE:-0}" ]]; then :; else cp "${body}" "${STUB_STATE}/s3/${b}/${k}"; fi ;;
+  "s3api head-object")
+    f="${STUB_STATE}/s3/$(opt --bucket)/$(opt --key)"
+    if [[ -f "${f}" ]]; then wc -c < "${f}" | tr -d ' '; else exit 254; fi ;;
   "s3api list-objects-v2")
-    if [[ -n "$(opt --prefix)" ]]; then
+    if [[ "$(opt --prefix)" == */enrichment/* && -n "${STUB_S3_ENRICH_COUNT:-}" ]]; then echo "${STUB_S3_ENRICH_COUNT}"
+    elif [[ "$(opt --prefix)" == */enrichment/* && "${STUB_S3_ENRICH_REAL:-1}" == 1 && "${STUB_S3_NONEMPTY:-0}" != 1 ]]; then
+      d="${STUB_STATE}/s3/$(opt --bucket)/$(opt --prefix)"; if [[ -d "${d}" ]]; then find "${d}" -type f | wc -l | tr -d ' '; else echo 0; fi
+    elif [[ -n "$(opt --prefix)" ]]; then
       case "$(opt --prefix)" in
         graph/runs/*) if [[ "${STUB_NO_SPARK_OUT:-0}" == 1 ]]; then echo 0; else echo 1; fi ;;
         *) if [[ "${STUB_S3_NONEMPTY:-0}" == 1 ]]; then echo 1; else echo 0; fi ;;
@@ -631,7 +643,7 @@ EXTRA_ENV="SC_EMR_IDLE_TIMEOUT=3600" run pipe-idle-too-long 2 bash scripts/run-b
 expect_in "idle timeout cap message" "${OUT}/pipe-idle-too-long.err" "60 to 900"
 EXTRA_ENV="SC_EMR_IDLE_TIMEOUT=900" run pipe-idle-900-ok 0 bash scripts/run-bounded-pipeline.sh --scale 10k --dry-run --stages hadoop --dblp-xml "${KEYFILE}" --dtd "${KEYFILE}"
 expect_not_in "dry-run creates no cluster" "${LOG}" "create-cluster"
-expect_not_in "dry-run uploads nothing" "${LOG}" "s3 cp"
+expect_not_in "dry-run uploads nothing" "${LOG}" "s3api put-object"
 reset_state
 run pipe-smoke-real 0 bash scripts/run-bounded-pipeline.sh --smoke
 expect_in "smoke uses the default release label" "${LOG}" "--release-label emr-spark-8.1.0"
@@ -659,6 +671,50 @@ expect_in "managed scaling max 2 core/task (3 nodes)" "${LOG}" "MaximumCapacityU
 expect_in "core group of 1 (1 primary + 1 core)" "${LOG}" "InstanceGroupType=CORE,InstanceCount=1"
 expect_not_in "pipeline never terminates a cluster itself" "${LOG}" "terminate-clusters"
 [[ "$(jq -r .status "${REPO}/reports/pipeline/1k/rtest/run.json" 2> /dev/null)" == succeeded ]] && ok "run.json status succeeded" || bad "run.json status"
+# F14-7: uploads are single PUTs verified by head-object; a silent loss is retried, then fatal; enrichment prefixes are counted.
+ENR="${SCRATCH}/enrich"
+rm -rf -- "${ENR:?}"
+mkdir -p "${ENR}/crossref" "${ENR}/openalex" "${ENR}/orcid"
+printf 'a\n' > "${ENR}/crossref/c1.jsonl"
+printf 'bb\n' > "${ENR}/crossref/c2.jsonl"
+printf 'ccc\n' > "${ENR}/openalex/o1.jsonl"
+BP=(bash scripts/run-bounded-pipeline.sh --scale 1k --stages "hadoop,spark" --dblp-xml "${KEYFILE}" --dtd "${KEYFILE}" --enrichment-dir "${ENR}")
+reset_state
+run pipe-f7-ok 0 "${BP[@]}" --run-id f7ok
+expect_in "F14-7 uploads use put-object (single PUT)" "${LOG}" "s3api put-object --bucket b-raw --key raw/1k/f7ok/enrichment/crossref/c1.jsonl"
+expect_not_in "F14-7 no s3 cp in the pipeline" "${LOG}" "aws s3 cp"
+expect_in "F14-7 each upload is verified with head-object" "${LOG}" "s3api head-object --bucket b-raw --key raw/1k/f7ok/enrichment/crossref/c2.jsonl"
+expect_in "F14-7 enrichment prefix counted before the cluster" "${OUT}/pipe-f7-ok.out" "verified enrichment/crossref: 2 of 2"
+[[ "$(jq -r '[.uploads[] | select(.file == "c2.jsonl")][0].bytes' "${REPO}/reports/pipeline/1k/f7ok/run.json" 2> /dev/null)" == 3 ]] && ok "F14-7 run.json records the uploaded bytes" || bad "F14-7 run.json bytes"
+expect_in "F14-7 --crossref passed (dir has files)" "${STATE}/emr-steps.json" "--crossref"
+expect_in "F14-7 --openalex passed (dir has files)" "${STATE}/emr-steps.json" "--openalex"
+expect_not_in "F14-7 --orcid not passed (empty dir)" "${STATE}/emr-steps.json" "--orcid"
+reset_state
+EXTRA_ENV="STUB_S3_LOSE=1 SC_UPLOAD_RETRY_SLEEP=0" run pipe-f7-lose-once 0 "${BP[@]}" --run-id f7a
+expect_in "F14-7 a silent loss is detected and retried" "${OUT}/pipe-f7-lose-once.err" "upload attempt 1/3 of c1.jsonl: put-object exit 0 but head-object reports 'missing'"
+[[ "$(count_in "${LOG}" "s3api put-object --bucket b-raw --key raw/1k/f7a/enrichment/crossref/c1.jsonl")" == 2 ]] && ok "F14-7 lost object put twice (loss, then success)" || bad "F14-7 retry put count"
+[[ "$(jq -r .status "${REPO}/reports/pipeline/1k/f7a/run.json" 2> /dev/null)" == succeeded ]] && ok "F14-7 run succeeds after the retry" || bad "F14-7 status after retry"
+reset_state
+EXTRA_ENV="STUB_S3_LOSE=3 SC_UPLOAD_RETRY_SLEEP=0" run pipe-f7-lose-thrice 1 "${BP[@]}" --run-id f7b
+expect_in "F14-7 three losses are fatal and name the file" "${OUT}/pipe-f7-lose-thrice.err" "failed or was not found with"
+[[ "$(count_in "${LOG}" "s3api put-object")" == 3 ]] && grep -q "bytes after 3 attempts: s3://" "${OUT}/pipe-f7-lose-thrice.err" && ok "F14-7 exactly 3 attempts, then sc_die names the file" || bad "F14-7 attempt count"
+expect_not_in "F14-7 no cluster after a lost upload" "${LOG}" "create-cluster"
+reset_state
+EXTRA_ENV="STUB_S3_ENRICH_COUNT=1" run pipe-f7-count-mismatch 1 "${BP[@]}" --run-id f7c
+expect_in "F14-7 prefix count mismatch is fatal" "${OUT}/pipe-f7-count-mismatch.err" "S3 holds 1 objects"
+expect_not_in "F14-7 no cluster after a count mismatch" "${LOG}" "create-cluster"
+reset_state
+run pipe-f7-skip-empty 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages hadoop,spark --dblp-xml "${KEYFILE}" --dtd "${KEYFILE}" --skip-upload --run-id f7d
+expect_not_in "F14-7 --skip-upload with empty S3 prefixes passes no enrichment flag" "${STATE}/emr-steps.json" "--crossref"
+reset_state
+EXTRA_ENV="STUB_S3_ENRICH_COUNT=2" run pipe-f7-skip-full 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages hadoop,spark --dblp-xml "${KEYFILE}" --dtd "${KEYFILE}" --skip-upload --run-id f7e
+expect_in "F14-7 --skip-upload with non-empty S3 prefixes passes the flags" "${STATE}/emr-steps.json" "--crossref"
+reset_state
+EXTRA_ENV="STUB_S3_LOSE=1 SC_UPLOAD_RETRY_SLEEP=0" run pipe-f7-convert-lose-once 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id f7f
+[[ "$(jq '.uploads | length' "${REPO}/reports/pipeline/1k/f7f/convert.json" 2> /dev/null)" == 5 ]] && ok "F14-7 convert recovers from one silent loss per file" || bad "F14-7 convert retry"
+reset_state
+EXTRA_ENV="STUB_S3_LOSE=3 SC_UPLOAD_RETRY_SLEEP=0" run pipe-f7-convert-lose-thrice 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id f7g
+expect_in "F14-7 convert: three losses fail the stage" "${OUT}/pipe-f7-convert-lose-thrice.err" "after 3 attempts"
 # L4: a reused --run-id is refused and creates no cluster.
 reset_state
 run pipe-run-id-reused 3 bash scripts/run-bounded-pipeline.sh --scale 1k --stages hadoop,spark --run-id rtest --dblp-xml "${KEYFILE}" --dtd "${KEYFILE}"
@@ -713,7 +769,7 @@ expect_in "dry run: SERVICE_MAIN override" "${OUT}/pipe-post-dry.out" "scholarch
 expect_in "dry run: max vectors argument 10000" "${OUT}/pipe-post-dry.out" '"value": "10000"'
 expect_not_in "dry run starts no task" "${LOG}" "ecs run-task"
 expect_not_in "dry run runs no sbt" "${LOG}" "sbt "
-expect_not_in "dry run uploads nothing" "${LOG}" "s3 cp"
+expect_not_in "dry run uploads nothing" "${LOG}" "s3api put-object"
 [[ ! -e "${REPO}/reports/pipeline/1k/rc4" ]] && ok "dry run writes no record" || bad "dry run wrote a record"
 # real convert (no load): uploads, checksums, records
 reset_state
@@ -722,14 +778,14 @@ expect_in "convert syncs the Spark output" "${LOG}" "s3 sync s3://b-curated/grap
 expect_in "convert runs LocalLoad through sbt Test with the code version" "${LOG}" "sbt storage/Test/runMain scholarchain.storage.LocalLoad --run-root "
 expect_in "convert passes the 12-hex code version" "${LOG}" "--code-version ${SHORT12}"
 expect_in "convert checked sbt check is not running" "${LOG}" "pgrep -f"
-expect_in "vertex CSV uploaded under the Neptune prefix" "${LOG}" "s3://b-curated/graph/neptune-load/1k/rc5/vertices/Researcher.csv"
-expect_in "edge CSV uploaded under the Neptune prefix" "${LOG}" "s3://b-curated/graph/neptune-load/1k/rc5/edges/COAUTHORED_WITH.csv"
-expect_in "items JSONL uploaded under the items prefix" "${LOG}" "s3://b-curated/curated/loads/1k/rc5/dynamodb/items/analytics-bridges.jsonl"
+expect_in "vertex CSV uploaded under the Neptune prefix" "${LOG}" "--bucket b-curated --key graph/neptune-load/1k/rc5/vertices/Researcher.csv"
+expect_in "edge CSV uploaded under the Neptune prefix" "${LOG}" "--bucket b-curated --key graph/neptune-load/1k/rc5/edges/COAUTHORED_WITH.csv"
+expect_in "items JSONL uploaded under the items prefix" "${LOG}" "--bucket b-curated --key curated/loads/1k/rc5/dynamodb/items/analytics-bridges.jsonl"
 expect_not_in "nothing but vertices/ and edges/ under the Neptune prefix (no neptune/ path)" "${LOG}" "graph/neptune-load/1k/rc5/neptune/"
 run pipe-runid-too-long 2 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id "$(printf 'a%.0s' $(seq 1 129))" --dry-run
-expect_in "load manifest uploaded" "${LOG}" "s3://b-curated/curated/loads/1k/rc5/load-manifest.json"
-expect_in "checksums file uploaded" "${LOG}" "s3://b-curated/curated/loads/1k/rc5/checksums.sha256"
-expect_in "embedding-inputs uploaded when LocalLoad emits them" "${LOG}" "s3://b-curated/curated/loads/1k/rc5/embedding-inputs/works.jsonl"
+expect_in "load manifest uploaded" "${LOG}" "--bucket b-curated --key curated/loads/1k/rc5/load-manifest.json"
+expect_in "checksums file uploaded" "${LOG}" "--bucket b-curated --key curated/loads/1k/rc5/checksums.sha256"
+expect_in "embedding-inputs uploaded when LocalLoad emits them" "${LOG}" "--bucket b-curated --key curated/loads/1k/rc5/embedding-inputs/works.jsonl"
 expect_not_in "no run-task in a convert-only run" "${LOG}" "run-task"
 CJ="${REPO}/reports/pipeline/1k/rc5/convert.json"
 [[ "$(jq -r '.source_s3_run.run_id' "${CJ}" 2> /dev/null)" == rc5 ]] && ok "convert.json records the S3 source run id" || bad "convert.json source run id"
@@ -747,7 +803,7 @@ expect_in "convert never overwrites its record" "${OUT}/pipe-convert-again.err" 
 reset_state
 EXTRA_ENV="STUB_S3_NONEMPTY=1" run pipe-convert-nonempty-prefix 3 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc6
 expect_in "non-empty target prefix refused" "${OUT}/pipe-convert-nonempty-prefix.err" "is not empty"
-expect_not_in "no upload into a non-empty prefix" "${LOG}" "s3 cp"
+expect_not_in "no upload into a non-empty prefix" "${LOG}" "s3api put-object"
 expect_not_in "no sbt run into a non-empty prefix" "${LOG}" "sbt "
 reset_state
 EXTRA_ENV="STUB_SBT_CHECK_RUNNING=1" run pipe-convert-sbt-check-running 6 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc7
@@ -757,11 +813,11 @@ reset_state
 EXTRA_ENV="STUB_NO_SPARK_OUT=1" run pipe-convert-no-spark-output 4 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc8
 reset_state
 EXTRA_ENV="STUB_SBT_FAIL=1" run pipe-convert-sbt-fails 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc9
-expect_not_in "nothing uploaded when LocalLoad fails" "${LOG}" "s3 cp"
+expect_not_in "nothing uploaded when LocalLoad fails" "${LOG}" "s3api put-object"
 reset_state
 EXTRA_ENV="STUB_BAD_CHECKSUM=1" run pipe-convert-bad-checksum 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc10
 expect_in "checksum mismatch message" "${OUT}/pipe-convert-bad-checksum.err" "checksum mismatch"
-expect_not_in "nothing uploaded on a checksum mismatch" "${LOG}" "s3 cp"
+expect_not_in "nothing uploaded on a checksum mismatch" "${LOG}" "s3api put-object"
 # optional local hook (unconfigured by default): a hook that adds files under its own prefix
 HOOK="${SCRATCH}/render-hook.sh"
 cat > "${HOOK}" << 'EOF'
@@ -772,7 +828,7 @@ EOF
 chmod +x "${HOOK}"
 reset_state
 EXTRA_ENV="SC_CONVERT_EXTRA_CMD=${HOOK} SC_CONVERT_EXTRA_PREFIX=embedding-docs" run pipe-convert-hook 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc11
-expect_in "hook output uploaded under the extra prefix" "${LOG}" "s3://b-curated/curated/loads/1k/rc11/embedding-docs/docs.jsonl"
+expect_in "hook output uploaded under the extra prefix" "${LOG}" "--bucket b-curated --key curated/loads/1k/rc11/embedding-docs/docs.jsonl"
 reset_state
 run pipe-convert-no-hook-by-default 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages convert --run-id rc12
 expect_not_in "no extra prefix without the hook" "${LOG}" "embedding-docs"

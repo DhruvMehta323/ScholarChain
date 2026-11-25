@@ -245,16 +245,22 @@ else
   exit 6
 fi
 if [[ "${SKIP_UPLOAD}" == 1 ]]; then sc_info "uploads skipped (--skip-upload): the objects must already exist"; fi
-upload() { # upload <local-file> <s3-uri>: one object; recorded with its SHA-256
-  local f="$1" uri="$2" h=""
+upload() { # upload <local-file> <s3-uri>: one object (single PUT, size verified by head-object, F14-7); recorded with its SHA-256 and bytes
+  local f="$1" uri="$2" h="" b=0
   if [[ "${SC_DRY_RUN}" == 1 || ! -f "${f}" ]]; then
-    printf 'SC-DRYRUN aws s3 cp %s %s\n' "${f}" "${uri}"
+    printf 'SC-DRYRUN aws s3api put-object --body %s %s (then head-object ContentLength check)\n' "${f}" "${uri}"
     [[ "${SC_DRY_RUN}" == 1 ]] || sc_die "missing input file: ${f}"
   else
     h="$(sc_sha256 "${f}")"
-    sc_mut sc_aws s3 cp "${f}" "${uri}" --only-show-errors --no-progress
+    b="$(wc -c < "${f}" | tr -d ' ')"
+    sc_put_verified "${f}" "${uri}" || sc_die "upload of $(basename "${f}") failed or was not found with ${b} bytes after 3 attempts: ${uri}"
   fi
-  UPLOADS="$(printf '%s' "${UPLOADS}" | jq --arg f "$(basename "${f}")" --arg u "${uri}" --arg h "${h}" '. + [{file: $f, uri: $u, sha256: $h}]')"
+  UPLOADS="$(printf '%s' "${UPLOADS}" | jq --arg f "$(basename "${f}")" --arg u "${uri}" --arg h "${h}" --argjson b "${b}" '. + [{file: $f, uri: $u, sha256: $h, bytes: $b}]')"
+}
+s3_count() { # s3_count <bucket> <prefix>: number of objects under the prefix (read-only list, retried)
+  local out
+  out="$(sc_retry sc_aws s3api list-objects-v2 --bucket "$1" --prefix "$2" --query 'length(Contents || `[]`)' --output text < /dev/null)" || sc_die "cannot list s3://$1/$2"
+  printf '%s\n' "${out}" | awk '{n += $1} END {print n + 0}'
 }
 POLICY_LOCAL="${ROOT}/modules/entity-resolution/evaluation/er-v1-frozen-policy.json"
 if [[ "${SKIP_UPLOAD}" != 1 ]]; then
@@ -277,6 +283,16 @@ if [[ "${SMOKE}" != 1 ]] && has_stage hadoop; then
         ((n <= ${SC_MAX_UPLOAD_OBJECTS:-200})) || sc_die "enrichment/${src} has ${n} files: pack it into a few large archives first (INFRA-CONTRACTS Rule F)"
         while IFS= read -r f; do upload "${f}" "${RAW_PREFIX}/enrichment/${src}/$(basename "${f}")"; done < <(find "${ENRICH_DIR}/${src}" -type f | LC_ALL=C sort)
       done
+      # F14-7: the objects under each enrichment prefix must equal the local files (a lost upload must stop the run before a cluster exists).
+      if [[ "${SC_DRY_RUN}" != 1 ]]; then
+        for src in crossref openalex orcid; do
+          [[ -d "${ENRICH_DIR}/${src}" ]] || continue
+          want="$(find "${ENRICH_DIR}/${src}" -type f | wc -l | tr -d ' ')"
+          have="$(s3_count "${RAW}" "raw/${SCALE}/${RUN_ID}/enrichment/${src}/")"
+          [[ "${have}" == "${want}" ]] || sc_die "enrichment/${src}: S3 holds ${have} objects under ${RAW_PREFIX}/enrichment/${src}/ but ${want} local files were uploaded"
+          sc_info "verified enrichment/${src}: ${have} of ${want} objects in S3"
+        done
+      fi
     fi
   fi
 fi
@@ -299,9 +315,22 @@ add_jar_step() { # add_jar_step <name> <s3 jar uri> <command and args...> (the c
   add_step "${name}" bash -c 'set -euo pipefail; mkdir -p "$1"; hadoop fs -copyToLocal "$2" "$1/"; shift 2; exec "$@"' copy-then-run "${LOCAL_JARS}" "${uri}" "$@"
 }
 COMMON=(--dblp "${RAW_PREFIX}/dblp.xml" --dtd "${RAW_PREFIX}/dblp.dtd" --output "${OUT_ROOT}" --snapshot "${SNAPSHOT}" --code-version "${SHORT}" --attempt 1)
-if [[ -n "${ENRICH_DIR}" || "${SKIP_UPLOAD}" == 1 || "${SC_DRY_RUN}" == 1 ]]; then
-  COMMON+=(--crossref "${RAW_PREFIX}/enrichment/crossref" --openalex "${RAW_PREFIX}/enrichment/openalex" --orcid "${RAW_PREFIX}/enrichment/orcid")
-fi
+# F14-7 (review MEDIUM): an enrichment flag is passed only for a source that has data. Local run: the directory exists and holds a file. With
+# --skip-upload: the S3 prefix is non-empty (read-only list). Dry run without --enrichment-dir: all three, as before.
+for src in crossref openalex orcid; do
+  pass=0
+  if [[ "${SC_DRY_RUN}" == 1 && -z "${ENRICH_DIR}" ]]; then
+    pass=1
+  elif [[ "${SKIP_UPLOAD}" == 1 ]]; then
+    if [[ "${SC_DRY_RUN}" == 1 ]]; then pass=1
+    elif [[ "${EMR_MODE}" == 1 && "${SMOKE}" != 1 ]] && has_stage hadoop; then
+      if [[ "$(s3_count "${RAW}" "raw/${SCALE}/${RUN_ID}/enrichment/${src}/")" -gt 0 ]]; then pass=1; else sc_warn "--skip-upload: no objects under ${RAW_PREFIX}/enrichment/${src}/: --${src} not passed"; fi
+    fi
+  elif [[ -n "${ENRICH_DIR}" && -d "${ENRICH_DIR}/${src}" ]]; then
+    if [[ "$(find "${ENRICH_DIR}/${src}" -type f | wc -l | tr -d ' ')" -gt 0 ]]; then pass=1; fi
+  fi
+  [[ "${pass}" != 1 ]] || COMMON+=("--${src}" "${RAW_PREFIX}/enrichment/${src}")
+done
 if [[ "${SMOKE}" == 1 ]]; then
   add_step "smoke-mapreduce-pi" hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar pi 2 100
 else
@@ -370,7 +399,8 @@ s3_prefix_empty() { # s3_prefix_empty <prefix>: success when nothing exists unde
 upload_load_file() { # upload_load_file <local file> <relative name> <target uri prefix>: one object, SHA-256 recorded (never overwrites: the prefix was empty)
   local f="$1" rel="$2" uri="$3/$2" h
   h="$(sc_sha256 "${f}")"
-  sc_mut sc_aws s3 cp "${f}" "${uri}" --only-show-errors --no-progress || post_fail convert 1 "upload failed: ${uri}"
+  # F14-7: single PUT verified by head-object (see sc_put_verified); the plain `s3 cp` was seen to lose files silently
+  sc_mut sc_put_verified "${f}" "${uri}" || post_fail convert 1 "upload of ${rel} failed or was not found with the local byte size after 3 attempts: ${uri}"
   POST_UPLOADS="$(printf '%s' "${POST_UPLOADS}" | jq -c --arg f "${rel}" --arg u "${uri}" --arg h "${h}" --argjson b "$(wc -c < "${f}" | tr -d ' ')" '. + [{file: $f, uri: $u, sha256: $h, bytes: $b}]')"
 }
 
@@ -394,9 +424,9 @@ stage_convert() {
     printf 'SC-DRYRUN aws s3 sync %s/ <tmp>/run-root/\n' "${SPARK_OUT}"
     printf 'SC-DRYRUN (cd repo && sbt "storage/Test/runMain scholarchain.storage.LocalLoad --run-root <tmp>/run-root --out-dir <tmp>/load-out --code-version %s")\n' "${SHORT}"
     [[ -z "${EXTRA_CMD}" ]] || printf 'SC-DRYRUN %s <tmp>/run-root <tmp>/load-out  (extra hook; output under <out-dir>/%s/)\n' "${EXTRA_CMD}" "${EXTRA_PREFIX}"
-    printf 'SC-DRYRUN aws s3 cp <out-dir>/neptune/{vertices,edges}/*.csv %s/{vertices,edges}/ (only these files under this prefix)\n' "${NEPTUNE_LOAD_URI}"
-    printf 'SC-DRYRUN aws s3 cp <out-dir>/dynamodb/items/*.jsonl, load-manifest.json, checksums.sha256 (and embedding-inputs/ if present) %s/\n' "${ITEMS_URI}"
-    [[ -z "${EXTRA_PREFIX}" ]] || printf 'SC-DRYRUN aws s3 cp <out-dir>/%s/* %s/%s/\n' "${EXTRA_PREFIX}" "${ITEMS_URI}" "${EXTRA_PREFIX}"
+    printf 'SC-DRYRUN aws s3api put-object (verified by head-object) <out-dir>/neptune/{vertices,edges}/*.csv %s/{vertices,edges}/ (only these files under this prefix)\n' "${NEPTUNE_LOAD_URI}"
+    printf 'SC-DRYRUN aws s3api put-object (verified by head-object) <out-dir>/dynamodb/items/*.jsonl, load-manifest.json, checksums.sha256 (and embedding-inputs/ if present) %s/\n' "${ITEMS_URI}"
+    [[ -z "${EXTRA_PREFIX}" ]] || printf 'SC-DRYRUN aws s3api put-object (verified by head-object) <out-dir>/%s/* %s/%s/\n' "${EXTRA_PREFIX}" "${ITEMS_URI}" "${EXTRA_PREFIX}"
     printf 'SC-DRYRUN record %s: source run id %s, SHA-256 of every uploaded file, copy of load-manifest.json and checksums.sha256\n' "reports/pipeline/${SCALE}/${RUN_ID}/convert.json" "${RUN_ID}"
     return 0
   fi
