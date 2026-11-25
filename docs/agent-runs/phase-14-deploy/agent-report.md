@@ -650,3 +650,38 @@ The human handed the rest of Phase 14 to the orchestrator to run autonomously. T
   - Dry-run step Args shown by the agent.
   - `sbt check` skipped (reason recorded in the F14-5 section).
 - **Review:** see review-report.md (C6). Two HIGHs (H1, N1) were found and fixed in rereads. No HIGH is open.
+
+## C6 runner execution and F14-6 (orchestrator-observed unless marked)
+The runner `/tmp/finish-phase14.sh` was prepared by the orchestrator and executed by the human.
+
+**Runner attempts:**
+- **Attempt 1:** the orchestrator wrote zsh code and told the human to run it with `bash`, so `setopt` and `print` were not found and pipefail was off. This is an orchestrator error, disclosed here.
+  - `deploy.sh` failed at push-images, on the Docker Desktop proxy "broken pipe" via 192.168.65.1:3128.
+  - No C6 deployment record was written and no service changed. Read-only check: all three services on `:5`, C5 image; no `a1af7b048639` tag in ECR.
+- **Attempt 2:** the runner was rewritten in bash (`set -Eeuo pipefail`, an ERR trap, deploy retry on push-images, resume).
+  - query-api and retrieval were pushed. The embedding-worker push hung after a broken pipe; the human pressed Ctrl+C.
+  - Read-only check: no deployment record, services unchanged, no leftover `docker push`.
+- **Attempt 3:**
+  - The human set Docker Engine `max-concurrent-uploads: 1`.
+  - The runner gained a deploy watchdog: its own process group, killed after 20 min, or 60 s after "failed to copy".
+  - Results:
+    - **Deploy:** `reports/deployments/a1af7b0486392569f7919183a454581cb24331c9/deployment.json` status `succeeded`, approved plan P1 `4bd8164d…`.
+    - **P3 plan:** `tfplan-course-a1af7b048639-20261125T201750Z`, sha256 `a2bf56da5687bf272675835ff31eac83e9d7b1f5dd64585980da08da33fa09c9`. add 0 / change 3 / destroy 0 / replace 4, iam 0, both stateful lists empty, 4/4 task-definition images at `:a1af7b048639`.
+    - **Apply:** applied under the human's pre-stated rule (record `reports/deployments/2026-11-25-P3-approved-by-rule-a1af7b048639.txt`). The apply log shows "Apply complete! Resources: 4 added, 3 changed, 4 destroyed."
+    - **Services after the apply:** query-api, retrieval and embedding-worker all on task definition `:7`, image `:a1af7b048639` (describe-services and describe-task-definition, read-only).
+
+**10K run** `r20261125T202037Z-43602`, cluster `j-04871873UKQURPR2CNIQ`:
+- run.json `status` failed. Started 20:21:43Z, updated 20:28:04Z.
+- The cluster is `TERMINATED_WITH_ERRORS` ("Shut down as step failed").
+- Step `hadoop-pipeline-HJ1-HJ7` (`s-028544213QCSBPGH1I5K`) FAILED after 10 s, 20:26:32Z to 20:26:42Z. `spark-graph-analytics` was CANCELLED.
+- The C6 jar copy worked: the jar ran.
+
+**F14-6 root cause:**
+- stderr (`s3://<logs>/emr/j-04871873UKQURPR2CNIQ/steps/s-028544213QCSBPGH1I5K/stderr.gz`): "odd number of arguments. usage: --dblp <xml> --dtd …", ret 2.
+- The hadoop assembly MANIFEST has `Main-Class: scholarchain.hadoop.PipelineDriver`. So `hadoop jar <jar> scholarchain.hadoop.PipelineDriver --dblp …` passes the class name as args[0].
+- Never exercised before: the local and harness runs never went through `hadoop jar`.
+- Again run.json labels `failed_step` as spark-graph-analytics. This is the LOW recorded under F14-5.
+
+**Cost:** $0.4520255489 month-to-date before credits at 20:29:02Z. Billing lags.
+
+**Fix (fix-once rule):** C7, an infra-engineer change. It drops the class argument from the `hadoop jar` invocation and updates the harness. It is followed by a new resumable runner from the deploy step, because the load stage requires the ops image tag to equal HEAD.

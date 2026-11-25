@@ -306,7 +306,9 @@ if [[ "${SMOKE}" == 1 ]]; then
   add_step "smoke-mapreduce-pi" hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar pi 2 100
 else
   if has_stage hadoop; then
-    add_jar_step "hadoop-pipeline-HJ1-HJ7" "${JAR_PREFIX}/${HJAR}" hadoop jar "${LOCAL_JARS}/${HJAR}" scholarchain.hadoop.PipelineDriver "${COMMON[@]}"
+    # F14-6: no main-class argument. The assembly MANIFEST sets Main-Class: scholarchain.hadoop.PipelineDriver and RunJar would pass a class
+    # name through as args[0] (odd argument count). The args start directly with --dblp.
+    add_jar_step "hadoop-pipeline-HJ1-HJ7" "${JAR_PREFIX}/${HJAR}" hadoop jar "${LOCAL_JARS}/${HJAR}" "${COMMON[@]}"
   fi
   if has_stage spark; then
     # F14-5 WORKAROUND: the Spark job reads and writes the LOCAL filesystem only (java.nio in modules/spark Inputs, Export, LoadManifests,

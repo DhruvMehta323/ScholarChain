@@ -146,3 +146,22 @@ No HIGH. Three MEDIUMs go into the single repair round, so under the speed amend
 - No silent-success path.
 - EMR EC2 role covers the jars, raw, and curated Get/Put/List (`iam/main.tf:380-423`, infra-engineer audit).
 - Ownership: scripts/** belongs to infra-engineer.
+
+# C7 review (code-reviewer, diff only, single pass; stored by the orchestrator)
+
+## Verdict: APPROVE (recommended), no HIGH.
+- **Passed:**
+  - Without the class argument, the step args start with `--dblp`, which the parser takes as the first flag.
+  - PipelineDriver sees an even arg count, and every flag is known (`PipelineDriver.scala:35-69`).
+  - All required flags are present and no value can be empty.
+  - No startup refusal before HJ1 for a new run root (`:137-227`).
+  - The harness asserts the class is absent and that `.[12]=="--dblp"`.
+  - Orchestrator-observed:
+    - the assembly MANIFEST has `Main-Class: scholarchain.hadoop.PipelineDriver`;
+    - the harness gives `RESULT passed=415 failed=0`;
+    - `bash -n` OK.
+- **MEDIUM (pre-existing, not triggered):** a missing enrichment source folder still makes the script pass its `--<src>` flag. PipelineDriver's `listStatus` then throws before HJ1 (`run-bounded-pipeline.sh:274, 303`; `PipelineDriver.scala:105-106`). Not triggered here: crossref, openalex and orcid all exist under enrichment-10k.
+- **LOW, deferred:**
+  - L1: `modules/hadoop/JOB-CONTRACTS.md:64` still shows the class argument (hadoop-engineer).
+  - L2: `infra/terraform/INFRA-CONTRACTS.md:555` the same (infra-engineer).
+  - L3: pin `assembly / mainClass` in build.sbt (build-engineer).
