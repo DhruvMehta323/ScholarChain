@@ -133,7 +133,7 @@ class OpsLoadEndToEndSuite extends munit.FunSuite:
     val d       = manifestOf(out)("documents")
     assertEquals(d("uncappedTotal").num.toInt, refDocs.size)
     if refDocs.size <= 10000 then
-      assertEquals(d("paperLimit"), ujson.Null)
+      assertEquals(d("selection")("selected").num.toInt, refDocs.size)
       assertEquals(
         r.queue.documents.map(_.documentId).sorted,
         refDocs.map(_.document.documentId).sorted,
@@ -274,7 +274,7 @@ class OpsLoadEndToEndSuite extends munit.FunSuite:
   }
 
   test(
-    "a cap below the real total is applied: summaries first, then limited papers, total within the cap"
+    "a cap below the real total is applied: stratified selection, exactly the cap, within the cap"
   ) {
     val r       = uploaded()
     val summary = referenceDocs.documents.count(_.document.documentType != "paper_abstract")
@@ -282,12 +282,16 @@ class OpsLoadEndToEndSuite extends munit.FunSuite:
     val out     = r.run(a().copy(maxVectors = cap))
     assertEquals(out.exitCode, 0, out.detail)
     val d = manifestOf(out)("documents")
-    assertEquals(d("paperLimit").num.toInt, 10)
     assertEquals(d("total").num.toInt, cap)
+    assertEquals(d("selection")("selected").num.toInt, cap)
+    assertEquals(d("selection")("available").num.toInt, referenceDocs.documents.size)
     assertEquals(r.queue.documents.size, cap)
-    val expectedPapers = reference.works.map(_.workId).sorted.take(10)
+    val (expected, stats) = OpsLoad.selectStratified(referenceDocs.documents, cap)
     assertEquals(
-      r.queue.documents.filter(_.documentType == "paper_abstract").map(_.entityId).sorted,
-      expectedPapers,
+      r.queue.documents.map(_.documentId).sorted,
+      expected.map(_.document.documentId).sorted,
+    )
+    stats.selectedByIndex.foreach((idx, k) =>
+      assertEquals(d("selection")("selectedByType")(idx).num.toInt, k, idx)
     )
   }

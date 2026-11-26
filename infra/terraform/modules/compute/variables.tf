@@ -183,12 +183,23 @@ variable "ops_java_opts" {
 }
 
 variable "ops_cpu" {
-  type    = number
-  default = 512
+  description = "Fargate vCPU units for the ops task. 1024 pairs with 4096 MiB (valid Fargate pair)."
+  type        = number
+  default     = 1024
+
+  validation {
+    condition     = contains([256, 512, 1024, 2048, 4096], var.ops_cpu)
+    error_message = "ops_cpu must be a valid Fargate CPU value."
+  }
 }
 
 variable "ops_memory" {
-  description = "MiB. 1024 (twice the service size) gives the load and render step heap room; cost is a few cents per run."
+  description = "MiB. 4096 gives OpsLoadMain heap room for rendering about 87K summary documents (estimated peak 600-700 MiB vs about 750 MiB heap at 1 GiB); pairs with 1024 CPU."
   type        = number
-  default     = 1024
+  default     = 4096
+
+  validation {
+    condition     = var.ops_memory >= 1024 && var.ops_memory <= 8192
+    error_message = "ops_memory must be between 1024 and 8192 MiB (valid for 1024 CPU Fargate)."
+  }
 }

@@ -266,8 +266,19 @@ class OpsLoadRunSuite extends munit.FunSuite:
     assertEquals(r.event("ops.refused")("exitCode").num.toInt, exit)
     out
 
-  test("plan: the cap refuses before any loader, items, queue or text call") {
-    refused(rigWith(sized(6, 2)), args(maxVectors = 5), 3, "cap-exceeded")
+  test("plan: a summary count above the cap no longer refuses; it selects exactly the cap") {
+    val r   = rigWith(sized(6, 2))
+    val out = r.run(args(maxVectors = 5))
+    assertEquals(out.exitCode, 0, out.detail)
+    assertEquals(out.status, "completed")
+    assertEquals(r.events("ops.refused"), Nil)
+    val d = manifest(out)("documents")
+    assertEquals(d("total").num.toInt, 5)
+    assertEquals(d("uncappedTotal").num.toInt, 8)
+    assertEquals(d("selection")("rule").str, "stratified-round-robin-by-index-v1")
+    assertEquals(d("selection")("selected").num.toInt, 5)
+    assertEquals(d("selection")("available").num.toInt, 8)
+    assertEquals(r.queue.documents.size, 5)
   }
 
   test("plan: a tampered embedding file is a checksum mismatch with no effect") {
@@ -725,9 +736,18 @@ class OpsLoadRunSuite extends munit.FunSuite:
     assertEquals(d("entitiesByType")("researcher_profile").num.toInt, 3)
     assertEquals(d("total").num.toInt, 6)
     assertEquals(d("uncappedTotal").num.toInt, 6)
-    assertEquals(d("summaryDocuments").num.toInt, 4)
-    assertEquals(d("paperLimit"), ujson.Null)
-    assertEquals(d("papersDroppedByCap").num.toInt, 0)
+    List("summaryDocuments", "paperLimit", "papersDroppedByCap").foreach(k =>
+      assert(!d.obj.contains(k), s"removed key still present: $k")
+    )
+    val sel = d("selection")
+    assertEquals(sel("rule").str, "stratified-round-robin-by-index-v1")
+    assertEquals(sel("available").num.toInt, 6)
+    assertEquals(sel("selected").num.toInt, 6)
+    assertEquals(sel("cap").num.toInt, 10000)
+    assertEquals(sel("availableByType")(VectorIndexes.ResearcherProfile).num.toInt, 3)
+    assertEquals(sel("availableByType")(VectorIndexes.CollaborationCommunity).num.toInt, 1)
+    assertEquals(sel("availableByType")(VectorIndexes.PaperAbstract).num.toInt, 2)
+    assertEquals(sel("selectedByType"), sel("availableByType"))
   }
 
   test("manifest: the producer report is complete and sorted") {

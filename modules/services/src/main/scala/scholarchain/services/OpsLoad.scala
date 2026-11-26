@@ -283,14 +283,71 @@ object EmbeddingJsonl:
   *      the ops role may write only `.../ops-manifest.json` and a dry-run object there would block
   *      the real run.
   *
-  * Cap: at most `maxVectors` (hard 10000) rendered documents. Summaries first, then
-  * `paperLimit = cap - summaryDocs` papers (sorted by work id), re-rendered; still over is a
-  * refusal.
+  * Cap and selection (F14-12): Neptune and DynamoDB load in full. The embedding set is a
+  * deterministic stratified subset of exactly `min(maxVectors, total)` rendered documents (hard cap
+  * 10000): every document (papers included) is rendered once, then `selectStratified` groups them
+  * by vector index (`VectorIndexes.all` order), sorts each group by document id and takes one from
+  * each non-empty group in that order, round after round, until the cap or exhaustion. Every index
+  * that has documents therefore gets vectors. The rule name, per-index available and selected
+  * counts and the cap go in `ops-manifest.json`. A selection above the cap is impossible and is
+  * still refused as a safety assert.
   */
 object OpsLoad:
   val ManifestSchema: String = "scholarchain.ops-manifest.v1"
   val Tool: String           = "scholarchain.services.OpsLoadMain"
   val ManifestName: String   = "ops-manifest.json"
+
+  val SelectionRule: String            = "stratified-round-robin-by-index-v1"
+  val SelectionRuleDescription: String =
+    "Render all documents; group by vector index (fixed order: " +
+      VectorIndexes.all.mkString(", ") +
+      "); sort each group by document id; take one document from each non-empty group in that " +
+      "order, repeating until exactly min(cap, total) are selected or all are exhausted."
+
+  /** Per-index (vector index name) counts; keys follow `indexOrder`. */
+  final case class SelectionStats(
+      rule: String,
+      cap: Int,
+      indexOrder: List[String],
+      available: Int,
+      selected: Int,
+      availableByIndex: Map[String, Int],
+      selectedByIndex: Map[String, Int],
+  )
+
+  private def indexOf(d: scholarchain.rag.RenderedDocument): String =
+    EmbeddingDocumentTypes.indexFor(d.document.documentType).getOrElse(d.document.documentType)
+
+  /** Pure and deterministic: the result depends only on the document set (not its input order) and
+    * the cap. Returns `min(max(cap, 0), docs.size)` documents in selection order.
+    */
+  def selectStratified(
+      docs: List[scholarchain.rag.RenderedDocument],
+      cap: Int,
+  ): (List[scholarchain.rag.RenderedDocument], SelectionStats) =
+    val groups = docs.groupBy(indexOf)
+    val order = VectorIndexes.all ++ groups.keys.filterNot(VectorIndexes.all.contains).toList.sorted
+    val sorted =
+      order.map(i => i -> groups.getOrElse(i, Nil).sortBy(_.document.documentId).toVector)
+    val limit  = math.max(cap, 0)
+    val maxLen = sorted.map(_._2.size).maxOption.getOrElse(0)
+    val picked = (0 until maxLen).iterator
+      .flatMap(r => sorted.iterator.collect { case (_, v) if r < v.size => v(r) })
+      .take(limit)
+      .toList
+    val sel = picked.groupBy(indexOf).view.mapValues(_.size).toMap
+    (
+      picked,
+      SelectionStats(
+        SelectionRule,
+        cap,
+        order,
+        docs.size,
+        picked.size,
+        order.map(i => i -> groups.get(i).map(_.size).getOrElse(0)).toMap,
+        order.map(i => i -> sel.getOrElse(i, 0)).toMap,
+      ),
+    )
 
   private final case class Fail(exit: Int, status: String, detail: String)
   private type R[A] = Either[Fail, A]
@@ -310,10 +367,9 @@ object OpsLoad:
       rows: Map[String, Int],
       rejects: Map[String, Map[String, Int]],
       records: Map[String, Int],
-      uncapped: RenderResult,
+      uncappedTotal: Int,
       capped: RenderResult,
-      paperLimit: Option[Int],
-      summaryDocs: Int,
+      selection: SelectionStats,
       sources: List[EmbeddingSource],
   )
 
@@ -358,9 +414,9 @@ object OpsLoad:
         log(
           "info",
           "ops.plan",
-          "documents"  -> n(plan.capped.documents.size.toLong),
-          "uncapped"   -> n(plan.uncapped.documents.size.toLong),
-          "paperLimit" -> plan.paperLimit.map(p => n(p.toLong)).getOrElse(ujson.Null),
+          "documents" -> n(plan.capped.documents.size.toLong),
+          "uncapped"  -> n(plan.uncappedTotal.toLong),
+          "selection" -> ujson.Str(plan.selection.rule),
         )
         val live = LiveLoad.run(
           ports.live,
@@ -505,44 +561,27 @@ object OpsLoad:
       cv <- table(meta, byTable, "venues")(EmbeddingJsonl.venues)
       ct <- table(meta, byTable, "topics")(EmbeddingJsonl.topics)
       uriFor = TextUris.contentAddressed(ctx.textBucket, ctx.textPrefix)
-      render = (works: List[WorkRecord], limit: Option[Int]) =>
-        EmbeddingDocumentRenderer.renderDetailed(
-          cs.records,
-          works,
-          cv.records,
-          ct.records,
-          meta.sparkRunId,
-          uriFor,
-          paperLimit = limit,
-        )
-      full = render(cw.records, None)
-      cap  = args.maxVectors
-      picked <-
-        if full.documents.size <= cap then
-          Right((full, Option.empty[Int], full.documents.count(isSummary)))
+      full   = EmbeddingDocumentRenderer.renderDetailed(
+        cs.records,
+        cw.records,
+        cv.records,
+        ct.records,
+        meta.sparkRunId,
+        uriFor,
+      )
+      cap                 = args.maxVectors
+      (chosen, selection) = selectStratified(full.documents, cap)
+      capped              = RenderResult(chosen, full.skipped)
+      _ <-
+        if chosen.size <= cap then Right(())
         else
-          val summaryDocs = render(Nil, None).documents.size
-          if summaryDocs > cap then
-            Left(
-              Fail(
-                3,
-                "cap-exceeded",
-                s"summary documents ($summaryDocs) exceed the cap $cap; nothing was written",
-              )
+          Left(
+            Fail(
+              3,
+              "cap-exceeded",
+              s"${chosen.size} documents exceed the cap $cap; nothing was written",
             )
-          else
-            val limit  = cap - summaryDocs
-            val capped = render(cw.records, Some(limit))
-            if capped.documents.size > cap then
-              Left(
-                Fail(
-                  3,
-                  "cap-exceeded",
-                  s"${capped.documents.size} documents exceed the cap $cap after limiting papers to $limit; nothing was written",
-                )
-              )
-            else Right((capped, Some(limit), summaryDocs))
-      (capped, limit, summaryDocs) = picked
+          )
       numberFailures = capped.documents.count(d => scholarchain.rag.NumberCheck.check(d).isLeft)
       _ <-
         if numberFailures == 0 then Right(())
@@ -581,15 +620,11 @@ object OpsLoad:
         "venues"             -> cv.records.size,
         "topics"             -> ct.records.size,
       ),
-      full,
+      full.documents.size,
       capped,
-      limit,
-      summaryDocs,
+      selection,
       sources,
     )
-
-  private def isSummary(d: scholarchain.rag.RenderedDocument): Boolean =
-    d.document.documentType != EmbeddingDocumentTypes.PaperAbstract
 
   private def table[A](
       meta: Meta,
@@ -642,13 +677,10 @@ object OpsLoad:
       )
       manSha = Hashing.sha256Hex(manB)
       sumSha = Hashing.sha256Hex(sumB)
-      listed = new String(sumB, StandardCharsets.UTF_8).linesIterator.collectFirst {
-        case l
-            if l.endsWith(
-              "  load-manifest.json"
-            ) && l.length == 64 + 2 + "load-manifest.json".length =>
-          l.take(64)
-      }
+      listed = new String(sumB, StandardCharsets.UTF_8).linesIterator
+        .filter(l => l.endsWith("  load-manifest.json") && l.length == 64 + 2 + 18)
+        .map(_.take(64))
+        .nextOption()
       _ <-
         if listed.contains(manSha) then Right(())
         else Left(Fail(3, "checksum-mismatch", "load-manifest.json differs from checksums.sha256"))
@@ -705,8 +737,6 @@ object OpsLoad:
       status: String,
       exit: Int,
   ): ujson.Value =
-    val papers = (r: RenderResult) =>
-      r.documents.count(_.document.documentType == EmbeddingDocumentTypes.PaperAbstract)
     canonical(
       ujson.Obj(
         "schema"      -> ManifestSchema,
@@ -761,15 +791,22 @@ object OpsLoad:
             )
         ),
         "documents" -> ujson.Obj(
-          "cap"                -> n(args.maxVectors.toLong),
-          "total"              -> n(plan.capped.documents.size.toLong),
-          "uncappedTotal"      -> n(plan.uncapped.documents.size.toLong),
-          "summaryDocuments"   -> n(plan.summaryDocs.toLong),
-          "paperLimit"         -> plan.paperLimit.map(p => n(p.toLong)).getOrElse(ujson.Null),
-          "papersDroppedByCap" -> n((papers(plan.uncapped) - papers(plan.capped)).toLong),
-          "byType"             -> countsJson(plan.capped.documentsByType),
-          "entitiesByType"     -> countsJson(plan.capped.entitiesByType),
-          "skippedByReason"    -> countsJson(
+          "cap"           -> n(args.maxVectors.toLong),
+          "total"         -> n(plan.capped.documents.size.toLong),
+          "uncappedTotal" -> n(plan.uncappedTotal.toLong),
+          "selection"     -> ujson.Obj(
+            "rule"            -> ujson.Str(plan.selection.rule),
+            "description"     -> ujson.Str(SelectionRuleDescription),
+            "indexOrder"      -> ujson.Arr.from(plan.selection.indexOrder.map(ujson.Str(_))),
+            "cap"             -> n(plan.selection.cap.toLong),
+            "available"       -> n(plan.selection.available.toLong),
+            "selected"        -> n(plan.selection.selected.toLong),
+            "availableByType" -> countsJson(plan.selection.availableByIndex),
+            "selectedByType"  -> countsJson(plan.selection.selectedByIndex),
+          ),
+          "byType"          -> countsJson(plan.capped.documentsByType),
+          "entitiesByType"  -> countsJson(plan.capped.entitiesByType),
+          "skippedByReason" -> countsJson(
             plan.capped.skipped.groupBy(_.reason).view.mapValues(_.size).toMap
           ),
         ),

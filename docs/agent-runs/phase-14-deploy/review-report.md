@@ -165,3 +165,38 @@ No HIGH. Three MEDIUMs go into the single repair round, so under the speed amend
   - L1: `modules/hadoop/JOB-CONTRACTS.md:64` still shows the class argument (hadoop-engineer).
   - L2: `infra/terraform/INFRA-CONTRACTS.md:555` the same (infra-engineer).
   - L3: pin `assembly / mainClass` in build.sbt (build-engineer).
+
+# C8 review (diff only): APPROVE-RECOMMENDED
+- **Change:** verified single-PUT uploads (`sc_put_verified`), a per-source S3 count check, and flags passed only for present sources.
+- **M1:** `s3_count` failure hidden in `[[ ]]` (`run-bounded-pipeline.sh:327`). Fixed in C9.
+- **LOW:** L1 empty key (fixed in C9); L2 convert failure message omits tmpd; L3 head-object stderr discarded.
+
+# C9 review (diff only): APPROVE-RECOMMENDED, no HIGH or MEDIUM
+- **Change:** linear-time streaming `FinalDecisions` (`Io.writeLinesNew`), Java 17 or newer selection, a 9g FinalDecisions heap, and the M1/L1 fixes.
+- **LOW:**
+  - L-a: the output file is mode 0600.
+  - L-b: the no-replace move is not atomic.
+  - L-c: an orphan temp file on a fatal error.
+  - L-d: no direct `writeLinesNew` test (test-engineer, 17b).
+  - L-e: `SC_FD_HEAP` is not passed into the EMR step.
+  - L-f: no Java 21 path candidate.
+
+# C10 review (diff only): APPROVE-RECOMMENDED, no HIGH
+- **Change:**
+  - stratified 10K embedding selection (`OpsLoad.selectStratified`, rule `stratified-round-robin-by-index-v1`);
+  - manifest `selection` block;
+  - INFO `logback.xml` (F14-13);
+  - ops task 1024 CPU / 4096 MiB.
+- **Passed:** determinism; partial chunks are safe downstream (`EmbeddingQueue.scala:111-139`, `EmbeddingWorker.scala:534-535`, `SemanticContext.scala:85-112`); safety semantics unchanged; removed manifest keys read nowhere; readMeta rewrite equivalent; AWS SDK at WARN silences the SigV4 lines.
+- **MEDIUM (deferred to 17b):**
+  - M1: `ops_memory` validation is not tied to `ops_cpu` (`variables.tf:202-203`; infra-engineer).
+  - M2: `modules/services/API.md:279` still describes the removed rule (service-engineer).
+- **LOW:**
+  - L1: chunk ids sort as text.
+  - L2: `...ByType` keys hold index names.
+  - L3: the number check covers selected docs only.
+  - L4: stale sizing text (`variables.tf:180, 197`; `INFRA-CONTRACTS.md:646, 668`).
+  - L5: duplicate comment.
+  - L6: one end-to-end test uses the function under test.
+  - L7: `reports/pipeline/**` and `reports/release/**` have no owner (factory-engineer).
+- **CHECK (orchestrator-run canonical command):** `[success]` in 2208 s, marker `exit=0` at 2026-11-26 05:27:22 CST. Every module: Failed 0, Errors 0. services: 926 passed.

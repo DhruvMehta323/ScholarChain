@@ -685,3 +685,117 @@ The runner `/tmp/finish-phase14.sh` was prepared by the orchestrator and execute
 **Cost:** $0.4520255489 month-to-date before credits at 20:29:02Z. Billing lags.
 
 **Fix (fix-once rule):** C7, an infra-engineer change. It drops the class argument from the `hadoop jar` invocation and updates the harness. It is followed by a new resumable runner from the deploy step, because the load stage requires the ops image tag to equal HEAD.
+
+## Part C continued: C7 to C9, Spark-local fallback, convert, load refusal
+
+## C7 `8ce398029bf7` (F14-6 fix)
+- Committed by the orchestrator under delegated authority. Then packaged.
+- The human ran the runner for steps a to d:
+  - deploy record succeeded;
+  - plan sha `783f62f0fb84adf28871d1a2dcf09b9924881fab24ad6aafcf723d07f15d6525` (0/3/0, 4 replace) matched the rule and was applied;
+  - services on `:9`, ops task on `:4`, all at `8ce398029bf7`.
+- The runner then failed at step e, line 175. Cause: `find_run` ended with `[[ ]] && RJ=`, which returned 1 under `set -E`. An orchestrator bug, fixed in /tmp.
+
+## F14-7: silent S3 upload loss
+- Run `r20261125T212220Z-3950`, cluster `j-01130268UIH8G6H5ZEA`. The Hadoop step failed with: "FileNotFoundException: … enrichment/crossref".
+- Versioned raw bucket, no delete markers. Enrichment objects present per run:
+
+  | Run | Present |
+  |---|---|
+  | `…79065` | 9 of 9 |
+  | `…43602` | 5 of 9 |
+  | `…3950` | 2 of 9 |
+
+- In every case, `run.json` recorded all 9 as uploaded. `aws s3 cp` exited 0 silently.
+- **Fix C8 `e88061f48631`** (infra-engineer):
+  - `sc_put_verified`: put-object plus a head-object size check, 3 attempts, then die.
+  - A per-source S3 count check before cluster creation.
+  - Flags passed only for sources that are present.
+  - Harness 443/0. Review: APPROVE, with M1 in `--skip-upload`, fixed in C9.
+
+## F14-8: Java 8 on the EMR primary
+- Run `r20261125T214348Z-63958`, cluster `j-0072517WQADTWOIR2LO`.
+- The C8 verification worked: an exit 255 was retried, and S3 showed 9/9 enrichment objects.
+- Hadoop HJ1-HJ7 COMPLETED on EMR, 21:49:46Z to 22:05:24Z.
+- The Spark step FAILED after 38 s: "UnsupportedClassVersionError … class file version 61.0 … up to 52.0". Plain `java` on the primary is Java 8.
+- `run.json` for this run is stale at `running`. infra-engineer edited `run-bounded-pipeline.sh` while the run was executing it. The result was "-ids: command not found" at line 661 and "syntax error near fi" at line 664 during wait-steps. The cluster terminated correctly ("Shut down as step failed").
+
+## F14-9: FinalDecisions out of memory and O(n²)
+- HJ6d gave 920,620 candidates at 10K, against 2,191 decisions at 1K. That is a blocking blow-up (ER finding for 17b).
+- FinalDecisions ran out of heap at 4 GiB.
+- HJ7's policy decisions are NOT equivalent to FinalDecisions with the frozen policy. At 1K: HJ7 has accepted 999 / rejected 712 / unresolved 470; FinalDecisions has 968 / 219 / 994. So HJ7 output was not substituted.
+- **Fix C9 `378d12e0fb70`:**
+  - entity-resolution-engineer: Vector fold and streaming `Io.writeLinesNew`. Byte-identical output and summary on 1K (cmp). 10K: 920,620 decisions in 60 s, about 3.5 GB RSS.
+  - infra-engineer: a Java 17 or newer selection, JAVA_HOME, `-Xmx9g` for FinalDecisions, and the M1 and L1 fixes.
+  - First `sbt check` failed on scalafmt; the second passed (`[success]` in 1900 s). Marker `exit=0` at 2026-11-25 16:44:37 CST, orchestrator-observed.
+  - Harness 453/0, orchestrator-observed. Review: APPROVE, LOWs only (L-a to L-f).
+- C9 packaged: `reports/release/378d12e0fb70…/artifacts.json`.
+
+## Spark-local fallback (pre-authorized by the human; disclose)
+- Spark ran on the OPERATOR MAC, not on EMR, on the EMR Hadoop outputs of run `r20261125T214348Z-63958`. Downloaded: curated 181, entity-views 2, match-candidates 2.
+- FinalDecisions:
+  - C9 hadoop assembly, sha256 `694b2d9ae6a3dac8f78d8a3fbc624f053a4583b59e706ecde21256af7a73243b`;
+  - frozen policy, no LLM cache;
+  - 920,620 decisions, sha256 `56cac9d9a6d364c2d6d27b74cdc2403a74e8337480fa9fedb26320fc59f9fa7a`.
+- `sbt sparkAnalytics/Test/runMain scholarchain.spark.Run --master local[*]`, code version `378d12e0fb70+spark-local-fallback`: `[success]` in 200 s, 837 output files, `load-manifests/neptune.json` and `dynamodb.json` present.
+- Local path: `~/scholarchain-local/r20261125T214348Z-63958/spark-out/`. NOT yet uploaded.
+
+## Blocked
+- The AWS session for profile `scholarchain` expired by 04:00:49Z: "Your session has expired. Please reauthenticate using 'aws login'".
+- EMR attempt 2 at C9 stopped at preflight: "cannot read caller identity". No cluster was created.
+- The waiter for upload and convert gave up at 05:22Z, with credentials still expired.
+
+## Load-stage read-only checks (C8 image; services code unchanged in C9)
+- `OpsLoadMain` is present in `io.scholarchain.scholarchain-services-0.1.0-SNAPSHOT.jar`.
+- 58/58 jars are world-readable, uid 10001.
+- The ops task definition sets `SERVICE_MAIN=scholarchain.services.OpsLoadMain`, with no command override, awsvpc, role `scholarchain-task-ops`.
+- IAM, SG and network: PASS in the C6 audit. That Terraform is unchanged since.
+
+## Cost
+- Cost Explorer, before credits: $2.6921107157 at 21:32:25Z. No later reading, because credentials expired.
+
+## C9 deploy (human-executed runner `/tmp/deploy-c9.sh`)
+- **Deploy:** `reports/deployments/378d12e0fb70f4ddbc3325de230093aa511a764c/deployment.json` status `succeeded`.
+- **Plan P5:** `tfplan-course-378d12e0fb70-20261126T085712Z`, sha256 `7dcbe15014da7b55606cceef8f133c60c9369b7b2b3d1ba88373646fd0f69362`. add 0 / change 3 / destroy 0 / replace 4, iam 0, both stateful lists empty.
+- **Apply:** under the human's pre-stated rule (`reports/deployments/2026-11-26-P4-approved-by-rule-378d12e0fb70.txt`). "Apply complete! Resources: 4 added, 3 changed, 4 destroyed."
+- **After the apply** (read-only, orchestrator): query-api and retrieval on `:11`, 1/1 running; embedding-worker `:11` at 0/0; ops `scholarchain-ops:5`, all at `378d12e0fb70`.
+- **Timing note:** the human pasted "PHASE14-DEPLOY-DONE" while the runner was still in deploy.sh wait-stable (record `in-progress`, no C9 plan yet). The orchestrator waited for the real records before running load.
+
+## Upload of the local Spark output and convert
+- **Run `r20261125T214348Z-63958`:**
+  - 837 Spark files uploaded. The 1.58 GB decisions jsonl was silently lost again (F14-7 class). It was re-uploaded as gzip (76,773,821 bytes, sha256 `4fa15e414d0b40cec1fc04187d8997b1092a51e53ef6acb258c740f4d34c302d`) with put-object and a head-object size check.
+  - **Convert attempt 1:** LocalLoad `OutOfMemoryError: Java heap space`. The forked test JVMs are fixed at `-Xmx2g` (`build.sbt:88`).
+  - **F14-10 workaround, no tracked change:** the approved hook `SCHOLARCHAIN_JAVA_HOME` (`build.sbt:8, 85`) points at a scratch wrapper JDK that starts temurin-17 with `-Xmx10g` in place of `-Xmx2g`.
+  - **Convert attempt 2:** LocalLoad succeeded. The upload of `edges/COAUTHORED_WITH.csv` (102,094,931 bytes) failed 3 times: "Connection was closed before we received a valid response" (F14-11, network).
+  - The script correctly refused afterwards. The partial object `graph/neptune-load/10k/r20261125T214348Z-63958/edges/AUTHORED.csv` is kept, because deletion is human-only.
+- **Run `r20261125T214348Z-63958-s2`:** a post-only run ID with the same local Spark output, re-uploaded.
+  - Upload: 837/837 plus 2 provenance objects, verified.
+  - Env: `SC_AWS_READ_TIMEOUT=600`, `AWS_MAX_ATTEMPTS=10`, `AWS_RETRY_MODE=adaptive`, plus the heap hook.
+  - **Convert succeeded:** `reports/pipeline/10k/r20261125T214348Z-63958-s2/convert.json` status `succeeded`, 32 uploads. LocalLoad 72 s. analyticsReload firstPass written=687359, secondPass unchanged=687359, conflicts=0. evidenceTrace ok.
+  - **Operational:** a hung `sbt shutdown` (sbtn client with no server) and a wedged sbt server cost about 60 min. Both were orchestrator processes, killed. A `tee` held open by the sbt server's inherited pipe also needed ending. Load was then run with plain file redirection.
+
+## F14-12: load refused by the embedding cap (nothing written)
+- Load for s2: ops task `af628b0851d647dfb12f4e9b1d956e9b` passed the image-tag check (`378d12e0fb70`) and exited 3: "summary documents (86781) exceed the cap 10000; nothing was written".
+- `load.json` status `failed`. OpsLoad's cap rule (summaries first, then papers, else refuse; `OpsLoad.scala:505-545`) cannot meet the 10K bound at this scale.
+- **Human decision:** a deterministic stratified subset of 10,000. Round-robin across the five vector indexes, sorted by document id within each, with per-type counts and the rule in ops-manifest. Neptune and DynamoDB load in full. Routed to service-engineer as C10.
+
+## F14-13 (security): temporary credentials in ops task logs
+- The ops task logs at DEBUG (no logback config in services). The AWS SDK SigV4 canonical-request lines, including the task role's temporary `x-amz-security-token`, were written to CloudWatch `/scholarchain/embedding-worker` (stream `ops/ops/af628b0851d647dfb12f4e9b1d956e9b`).
+- The token is temporary and expires. It is not reproduced in any report.
+- Fix in C10: a logback config at INFO with the AWS SDK at WARN.
+- Human action to consider: restrict or expire that log stream (log deletion is human-only).
+
+## Cost (Cost Explorer, before credits)
+- $4.8460846681 at 08:56:49Z.
+- $4.8460846681 at 10:16:25Z (billing lag).
+- The human reported about $8 actual. Human budget rule: stop if month-to-date passes $15. No new EMR without approval, and none was created after cluster `j-0072517WQADTWOIR2LO`.
+
+## C10 checkpoint (F14-12, F14-13)
+- **Agent work:**
+  - service-engineer: `OpsLoad.selectStratified` plus the manifest selection block, `logback.xml`, and a scalafmt-parseable readMeta rewrite.
+  - test-engineer: `OpsLoadSelectionSuite` (11 tests), plus updated Cap, Run and EndToEnd suites.
+  - infra-engineer: `ops_cpu` 1024, `ops_memory` 4096 (`modules/compute/variables.tf`).
+- **CHECK:**
+  - test-engineer's run failed at scalafmtCheck (`OpsLoad.scala:680` parse error) and wrote marker exit=1 at 04:45:02. service-engineer fixed it.
+  - The orchestrator then ran the canonical command: `[success]` in 2208 s, marker `exit=0` at 05:27:22 CST, all modules Failed 0.
+- **Review:** APPROVE-RECOMMENDED. MEDIUMs M1 and M2 are deferred to 17b; see review-report.md.

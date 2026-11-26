@@ -1,0 +1,16 @@
+<configuration>
+  <!-- F14-13: the app prints its own JSON lines; this only keeps SDK and HTTP-client DEBUG
+       (SigV4 canonical requests, x-amz-security-token) out of CloudWatch. -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.out</target>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="software.amazon.awssdk" level="WARN"/>
+  <logger name="org.apache.http" level="WARN"/>
+  <logger name="io.netty" level="WARN"/>
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

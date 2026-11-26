@@ -6,10 +6,9 @@ import scholarchain.core.*
 
 import OpsFx.*
 
-/** The render-and-enqueue cap of `OpsLoadMain` (human condition of Phase 14 Part A): at most
-  * `maxVectors` (hard 10000) documents. Summaries first, then `paperLimit = cap - summaryDocs`
-  * papers by ascending work id; still over, or summaries alone over, is a refusal (exit 3) before
-  * any write.
+/** The render-and-enqueue cap of `OpsLoadMain` (F14-12): every document is rendered, then a
+  * deterministic stratified round-robin selection by vector index takes exactly
+  * `min(maxVectors, total)` (hard 10000). There is no refusal for a type over the cap.
   */
 class OpsLoadCapSuite extends munit.FunSuite:
   override val munitTimeout: Duration = 10.minutes
@@ -21,9 +20,18 @@ class OpsLoadCapSuite extends munit.FunSuite:
     assertEquals(r.effects, (0, 0, 0, 0, 0))
     assertEquals(r.manifestStored, None)
 
+  private val Researcher = VectorIndexes.ResearcherProfile
+  private val Paper      = VectorIndexes.PaperAbstract
+
+  private def selectedBy(d: ujson.Value, idx: String): Int =
+    d("selection")("selectedByType")(idx).num.toInt
+
+  private def availableBy(d: ujson.Value, idx: String): Int =
+    d("selection")("availableByType")(idx).num.toInt
+
   // ---- at the cap ------------------------------------------------------------------------------
 
-  test("exactly 10000 documents: all enqueued, paperLimit null, papersDroppedByCap 0") {
+  test("exactly 10000 documents: all enqueued, selection selects all, no old keys") {
     val r   = rigWith(sized(100, 9900))
     val out = r.run(args())
     assertEquals(out.exitCode, 0, out.detail)
@@ -32,9 +40,15 @@ class OpsLoadCapSuite extends munit.FunSuite:
     assertEquals(d("cap").num.toInt, 10000)
     assertEquals(d("total").num.toInt, 10000)
     assertEquals(d("uncappedTotal").num.toInt, 10000)
-    assertEquals(d("summaryDocuments").num.toInt, 100)
-    assertEquals(d("paperLimit"), ujson.Null)
-    assertEquals(d("papersDroppedByCap").num.toInt, 0)
+    assertEquals(d("selection")("rule").str, "stratified-round-robin-by-index-v1")
+    assertEquals(d("selection")("available").num.toInt, 10000)
+    assertEquals(d("selection")("selected").num.toInt, 10000)
+    assertEquals(d("selection")("cap").num.toInt, 10000)
+    assertEquals(selectedBy(d, Paper), 9900)
+    assertEquals(selectedBy(d, Researcher), 100)
+    List("summaryDocuments", "paperLimit", "papersDroppedByCap").foreach(k =>
+      assert(!d.obj.contains(k), s"removed key still present: $k")
+    )
     assertEquals(d("byType")("paper_abstract").num.toInt, 9900)
     assertEquals(d("byType")("researcher_profile").num.toInt, 100)
     val p = manifest(out)("producer")
@@ -46,21 +60,20 @@ class OpsLoadCapSuite extends munit.FunSuite:
     assertEquals(out.manifestStatus, "written")
   }
 
-  test("10001 documents: paperLimit = 10000 - summaryDocs, total <= 10000, papers dropped") {
+  test("10001 documents: exactly 10000 selected, the largest paper id is the one left out") {
     val r   = rigWith(sized(100, 9901))
     val out = r.run(args())
     assertEquals(out.exitCode, 0, out.detail)
     val d = manifest(out)("documents")
     assertEquals(d("uncappedTotal").num.toInt, 10001)
-    assertEquals(d("summaryDocuments").num.toInt, 100)
-    assertEquals(d("paperLimit").num.toInt, 9900)
     assertEquals(d("total").num.toInt, 10000)
-    assert(d("total").num <= 10000)
-    assertEquals(d("papersDroppedByCap").num.toInt, 1)
-    assert(d("papersDroppedByCap").num > 0)
+    assertEquals(d("selection")("available").num.toInt, 10001)
+    assertEquals(d("selection")("selected").num.toInt, 10000)
+    assertEquals(availableBy(d, Paper), 9901)
+    assertEquals(selectedBy(d, Paper), 9900)
+    assertEquals(selectedBy(d, Researcher), 100)
     val enqueued = r.queue.documents
     assertEquals(enqueued.size, 10000)
-    // papers are taken by ascending work id: the last one is the one dropped
     val papers = enqueued.filter(_.documentType == EmbeddingDocumentTypes.PaperAbstract)
     assertEquals(papers.size, 9900)
     assert(papers.exists(_.entityId == workId(9900)))
@@ -68,14 +81,16 @@ class OpsLoadCapSuite extends munit.FunSuite:
     assertEquals(r.store.textObjects.size, 10000)
   }
 
-  test("a cap of 1: one summary fits, everything else is dropped or refused as the rules say") {
+  test("a cap of 1: exactly one document, the first non-empty index (researcher)") {
     val r   = rigWith(sized(1, 5))
     val out = r.run(args(maxVectors = 1))
     assertEquals(out.exitCode, 0, out.detail)
     val d = manifest(out)("documents")
-    assertEquals(d("paperLimit").num.toInt, 0)
     assertEquals(d("total").num.toInt, 1)
-    assertEquals(d("papersDroppedByCap").num.toInt, 5)
+    assertEquals(d("selection")("selected").num.toInt, 1)
+    assertEquals(selectedBy(d, Researcher), 1)
+    assertEquals(selectedBy(d, Paper), 0)
+    assertEquals(r.queue.documents.size, 1)
   }
 
   test("the cap is the --max-vectors value, not only the hard maximum") {
@@ -84,74 +99,98 @@ class OpsLoadCapSuite extends munit.FunSuite:
     assertEquals(out.exitCode, 0, out.detail)
     val d = manifest(out)("documents")
     assertEquals(d("cap").num.toInt, 20)
-    assertEquals(d("paperLimit").num.toInt, 17)
     assertEquals(d("total").num.toInt, 20)
-    assertEquals(d("papersDroppedByCap").num.toInt, 23)
+    assertEquals(d("selection")("cap").num.toInt, 20)
+    assertEquals(selectedBy(d, Researcher), 3)
+    assertEquals(selectedBy(d, Paper), 17)
     assertEquals(r.queue.documents.size, 20)
   }
 
-  test("under the cap nothing is limited") {
+  test("under the cap everything is selected") {
     val r   = rigWith(sized(3, 40))
     val out = r.run(args(maxVectors = 43))
     assertEquals(out.exitCode, 0, out.detail)
     val d = manifest(out)("documents")
-    assertEquals(d("paperLimit"), ujson.Null)
     assertEquals(d("total").num.toInt, 43)
+    assertEquals(d("selection")("selected").num.toInt, 43)
+    assertEquals(d("selection")("available").num.toInt, 43)
   }
 
-  // ---- summaries alone over the cap ----------------------------------------------------------------
+  test("the selection block lists all five indexes, zeros where empty, in the fixed order") {
+    val r   = rigWith(sized(3, 4))
+    val out = r.run(args(maxVectors = 5))
+    assertEquals(out.exitCode, 0, out.detail)
+    val s = manifest(out)("documents")("selection")
+    assertEquals(s("indexOrder").arr.toList.map(_.str), VectorIndexes.all)
+    assert(s("description").str.nonEmpty)
+    assertEquals(s("availableByType").obj.keySet.toSet, VectorIndexes.all.toSet)
+    assertEquals(s("selectedByType").obj.keySet.toSet, VectorIndexes.all.toSet)
+    assertEquals(s("availableByType")(VectorIndexes.CollaborationPath).num.toInt, 0)
+    assertEquals(s("selectedByType")(VectorIndexes.TopicInstitutionSummary).num.toInt, 0)
+  }
 
-  test("summaries alone over the cap (10001 of them): exit 3 cap-exceeded, nothing enqueued") {
+  // ---- a type over the cap no longer refuses -------------------------------------------------------
+
+  test("summaries alone over the cap (10001 of them): selects exactly the cap, no refusal") {
     val r   = rigWith(sized(10001, 0))
     val out = r.run(args())
-    assertEquals(out.exitCode, 3)
-    assertEquals(out.status, "cap-exceeded")
-    assert(out.detail.contains("summary documents"), out.detail)
-    assertNothingHappened(r)
-    assertEquals(out.manifestStatus, "not-written")
-    assertEquals(out.manifestJson, None)
-    assertEquals(out.producer, None)
+    assertEquals(out.exitCode, 0, out.detail)
+    assertEquals(out.status, "completed")
+    val d = manifest(out)("documents")
+    assertEquals(d("uncappedTotal").num.toInt, 10001)
+    assertEquals(d("total").num.toInt, 10000)
+    assertEquals(d("selection")("available").num.toInt, 10001)
+    assertEquals(d("selection")("selected").num.toInt, 10000)
+    assertEquals(r.queue.documents.size, 10000)
   }
 
-  test("summaries over the cap with papers present: exit 3, no text object, no queue send") {
+  test("summaries over the cap with papers present: selects exactly cap, papers get a share") {
     val r   = rigWith(sized(6, 4))
     val out = r.run(args(maxVectors = 5))
-    assertEquals(out.exitCode, 3)
-    assertEquals(out.status, "cap-exceeded")
-    assertNothingHappened(r)
+    assertEquals(out.exitCode, 0, out.detail)
+    assertNotEquals(out.status, "cap-exceeded")
+    val d = manifest(out)("documents")
+    assertEquals(d("total").num.toInt, 5)
+    assertEquals(d("selection")("selected").num.toInt, 5)
+    assertEquals(selectedBy(d, Researcher), 3)
+    assertEquals(selectedBy(d, Paper), 2)
+    assertEquals(r.queue.documents.size, 5)
+    assertEquals(r.store.textObjects.size, 5)
+  }
+
+  test("summaries over the cap in dry-run: verified, manifest has the selection, nothing written") {
+    val r   = rigWith(sized(6, 4))
+    val out = r.run(args(maxVectors = 5, dry = true))
+    assertEquals(out.exitCode, 0, out.detail)
+    assertEquals(out.status, "dry-run-verified")
+    assertEquals(out.manifestStatus, "dry-run-not-persisted")
+    val d = manifest(out)("documents")
+    assertEquals(d("selection")("selected").num.toInt, 5)
+    assertEquals(d("selection")("available").num.toInt, 10)
     assertEquals(r.queue.sends, 0)
     assertEquals(r.store.textObjects, Nil)
   }
 
-  test("summaries over the cap in dry-run are refused too") {
-    val r   = rigWith(sized(6, 4))
-    val out = r.run(args(maxVectors = 5, dry = true))
-    assertEquals(out.exitCode, 3)
-    assertEquals(out.status, "cap-exceeded")
-    assertNothingHappened(r)
-  }
-
-  test("summaries exactly at the cap with papers present: paperLimit 0, no paper enqueued") {
+  test("10000 summaries and 3 papers at the hard cap: the papers still get vectors") {
     val r   = rigWith(sized(10000, 3))
     val out = r.run(args())
     assertEquals(out.exitCode, 0, out.detail)
     val d = manifest(out)("documents")
-    assertEquals(d("paperLimit").num.toInt, 0)
-    assertEquals(d("summaryDocuments").num.toInt, 10000)
     assertEquals(d("total").num.toInt, 10000)
-    assertEquals(d("papersDroppedByCap").num.toInt, 3)
+    assertEquals(selectedBy(d, Paper), 3)
+    assertEquals(selectedBy(d, Researcher), 9997)
     assertEquals(r.queue.documents.size, 10000)
-    assert(!r.queue.documents.exists(_.documentType == EmbeddingDocumentTypes.PaperAbstract))
+    assertEquals(r.queue.documents.count(_.documentType == EmbeddingDocumentTypes.PaperAbstract), 3)
   }
 
-  test("summaries exactly at a small cap: paperLimit 0") {
+  test("5 summaries and 3 papers at a cap of 5: 3 researchers and 2 papers") {
     val r   = rigWith(sized(5, 3))
     val out = r.run(args(maxVectors = 5))
     assertEquals(out.exitCode, 0, out.detail)
     val d = manifest(out)("documents")
-    assertEquals(d("paperLimit").num.toInt, 0)
     assertEquals(d("total").num.toInt, 5)
-    assertEquals(d("papersDroppedByCap").num.toInt, 3)
+    assertEquals(selectedBy(d, Researcher), 3)
+    assertEquals(selectedBy(d, Paper), 2)
   }
 
   // ---- multi-chunk papers --------------------------------------------------------------------------
@@ -161,14 +200,18 @@ class OpsLoadCapSuite extends munit.FunSuite:
   private def longPapers(n: Int): List[ujson.Obj] =
     (1 to n).toList.map(i => workRow(i, Some(LongTitle)))
 
-  test("multi-chunk papers still over the cap after limiting: exit 3, nothing enqueued") {
+  test("multi-chunk papers over the cap: exactly cap chunk documents selected, no refusal") {
     val src = Src(summaries = (1 to 2).toList.map(summaryN), works = longPapers(20))
     val r   = rigWith(src)
     val out = r.run(args(maxVectors = 10))
-    assertEquals(out.exitCode, 3, out.detail)
-    assertEquals(out.status, "cap-exceeded")
-    assert(out.detail.contains("limiting papers"), out.detail)
-    assertNothingHappened(r)
+    assertEquals(out.exitCode, 0, out.detail)
+    val d = manifest(out)("documents")
+    assertEquals(d("total").num.toInt, 10)
+    assertEquals(d("selection")("selected").num.toInt, 10)
+    assert(d("selection")("available").num.toInt > 10)
+    assertEquals(selectedBy(d, Researcher), 2)
+    assertEquals(selectedBy(d, Paper), 8)
+    assertEquals(r.queue.documents.size, 10)
   }
 
   test("multi-chunk papers are counted per chunk: the same input fits a larger cap") {
@@ -179,26 +222,29 @@ class OpsLoadCapSuite extends munit.FunSuite:
     val d = manifest(out)("documents")
     assertEquals(d("entitiesByType")("paper_abstract").num.toInt, 4)
     assert(d("byType")("paper_abstract").num.toInt > 4, d.toString)
-    assertEquals(d("paperLimit"), ujson.Null)
+    assertEquals(
+      d("selection")("selected").num.toInt,
+      d("selection")("available").num.toInt,
+    )
     assertEquals(r.queue.documents.size, d("total").num.toInt)
   }
 
-  test("multi-chunk papers over a cap that is met exactly after limiting are accepted") {
+  test("multi-chunk papers: a cap of 3n over 1 summary and 3n paper chunks selects exactly 3n") {
     val one = rigWith(Src(summaries = List(summaryN(1)), works = longPapers(1)))
     val n   = manifest(one.run(args()))("documents")("byType")("paper_abstract").num.toInt
     assert(n > 1, s"fixture paper must have several chunks, got $n")
-    // 1 summary + 3 papers of n chunks; cap = 1 + n -> limit = n papers... would exceed; cap = 1 + 3n fits
     val r   = rigWith(Src(summaries = List(summaryN(1)), works = longPapers(3)))
     val out = r.run(args(maxVectors = 1 + 3 * n))
     assertEquals(out.exitCode, 0, out.detail)
     assertEquals(manifest(out)("documents")("total").num.toInt, 1 + 3 * n)
-    // one document short of the need: papers are limited by count, the chunks still exceed the cap
     val r2   = rigWith(Src(summaries = List(summaryN(1)), works = longPapers(3)))
     val out2 = r2.run(args(maxVectors = 3 * n))
-    assertEquals(out2.exitCode, 3, out2.detail)
-    assertEquals(out2.status, "cap-exceeded")
-    assertEquals(r2.effects, (0, 0, 0, 0, 0))
+    assertEquals(out2.exitCode, 0, out2.detail)
+    assertEquals(manifest(out2)("documents")("total").num.toInt, 3 * n)
+    assertEquals(r2.queue.documents.size, 3 * n)
   }
+
+  // ---- determinism -----------------------------------------------------------------------------------
 
   // ---- determinism -----------------------------------------------------------------------------------
 
@@ -209,7 +255,7 @@ class OpsLoadCapSuite extends munit.FunSuite:
     val r = rigWith(src)
     (r, r.run(args(maxVectors = cap)))
 
-  test("paperLimit is deterministic: shuffled works and summaries select the same documents") {
+  test("selection is deterministic: shuffled works and summaries select the same documents") {
     val summaries = (1 to 10).toList.map(summaryN)
     val works     = (1 to 200).toList.map(i => workRow(i))
     val (r1, o1)  = runOf(Src(summaries = summaries, works = works), 50)
@@ -220,7 +266,8 @@ class OpsLoadCapSuite extends munit.FunSuite:
     val (r3, o3) = runOf(Src(summaries = summaries.reverse, works = works.reverse), 50)
     List(o1, o2, o3).foreach(o => assertEquals(o.exitCode, 0, o.detail))
     val d1 = manifest(o1)("documents")
-    assertEquals(d1("paperLimit").num.toInt, 40)
+    assertEquals(selectedBy(d1, Paper), 40)
+    assertEquals(selectedBy(d1, Researcher), 10)
     assertEquals(d1("total").num.toInt, 50)
 
     def selected(r: Rig) =
