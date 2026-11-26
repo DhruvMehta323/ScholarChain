@@ -1,0 +1,43 @@
+# Orchestrator read-only AWS observations, 2026-11-26T22:48:17Z. The account id is masked as ACCT.
+## S3 Vectors counts (s3vectors list-vectors, bucket scholarchain-course-vectors; single page, no nextToken)
+researcher-profile-v1 2638 nextToken=none
+paper-abstract-v1 2637 nextToken=none
+collaboration-community-v1 2653 nextToken=none
+collaboration-path-v1 84 nextToken=none
+topic-institution-summary-v1 1956 nextToken=none
+## Embedding-worker batch events since 2026-11-26T22:05Z (logs filter-log-events, aggregated)
+{"batches":258,"written":9968,"retried":54,"deadLettered":2}
+## SQS (visible, in-flight)
+scholarchain-embedding-jobs 0	0
+scholarchain-embedding-jobs-dlq 2	0
+## ECS services (name, taskDefinition, running, desired)
+query-api	arn:aws:ecs:us-east-2:ACCT:task-definition/scholarchain-query-api:15	1	1
+retrieval	arn:aws:ecs:us-east-2:ACCT:task-definition/scholarchain-retrieval:15	1	1
+embedding-worker	arn:aws:ecs:us-east-2:ACCT:task-definition/scholarchain-embedding-worker:15	3	3
+## Task definitions (family, revision, cpu, memory, image)
+scholarchain-query-api	15	256	512	ACCT.dkr.ecr.us-east-2.amazonaws.com/scholarchain/query-api:38f2160a6e95
+scholarchain-retrieval	15	256	512	ACCT.dkr.ecr.us-east-2.amazonaws.com/scholarchain/retrieval:38f2160a6e95
+scholarchain-embedding-worker	15	256	512	ACCT.dkr.ecr.us-east-2.amazonaws.com/scholarchain/embedding-worker:38f2160a6e95
+scholarchain-ops	7	1024	4096	ACCT.dkr.ecr.us-east-2.amazonaws.com/scholarchain/embedding-worker:38f2160a6e95
+## ECR digests at tag 38f2160a6e95
+query-api sha256:c7563a20f3524a3e058152706362e571b4c0bc0dc86ce561db1804d57986e079
+retrieval sha256:1f9bce2794e5734d76282190870fd34d1834e1af9c600d9336e18457b617aac3
+embedding-worker sha256:bf9a106530f4d17d08c1f4020d3dddc0bd62e688e61febf8b2ad048e091e6e32
+## embedding-worker scalable target (min, max)
+1	4
+## Neptune SG egress
+tcp	443	443	pl-7ba54012
+## Neptune LoaderRequestsPerSec, 5-minute maximum (timestamps in CST)
+2026-11-26T15:30:00-06:00	0.0
+2026-11-26T15:35:00-06:00	0.08332083520805213
+2026-11-26T15:40:00-06:00	0.10011012113324658
+2026-11-26T15:45:00-06:00	0.1002740824921452
+2026-11-26T15:50:00-06:00	0.10015356880550176
+2026-11-26T15:55:00-06:00	0.10015189704384984
+2026-11-26T16:00:00-06:00	0.06674230794900887
+2026-11-26T16:05:00-06:00	0.0
+2026-11-26T16:10:00-06:00	0.0
+## readyz
+{"status":"ready","service":"query-api","checks":[{"name":"key_value","state":"up"},{"name":"graph","state":"up"},{"name":"vectors","state":"up"},{"name":"prompts","state":"up"},{"name":"config","state":"up"}]} http=200
+## Cost Explorer month-to-date, before credits (UnblendedCost excluding Credit and Refund)
+8.9448050448

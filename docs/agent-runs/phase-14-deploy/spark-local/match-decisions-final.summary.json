@@ -1,0 +1,87 @@
+{
+  "tool": "FinalDecisions",
+  "policyVersion": "er-v1",
+  "runId": "run:dc1aafba43b6956ab162b4dd016bac09ad400392c6c44904b489bddb378320fc",
+  "codeVersion": "378d12e0fb70+spark-local-fallback",
+  "decisions": 920620,
+  "byOutcome": {
+    "accepted": 97765,
+    "conflict": 777,
+    "rejected": 532910,
+    "unresolved": 289168
+  },
+  "byPath": {
+    "deterministic": 54337,
+    "exact_id": 173466,
+    "probabilistic": 692817
+  },
+  "byKindOutcomePath": [
+    {
+      "kind": "researcher",
+      "outcome": "accepted",
+      "path": "deterministic",
+      "count": 54337
+    },
+    {
+      "kind": "researcher",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "count": 20747
+    },
+    {
+      "kind": "researcher",
+      "outcome": "accepted",
+      "path": "probabilistic",
+      "count": 2704
+    },
+    {
+      "kind": "researcher",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "count": 650
+    },
+    {
+      "kind": "researcher",
+      "outcome": "rejected",
+      "path": "exact_id",
+      "count": 132017
+    },
+    {
+      "kind": "researcher",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "count": 400878
+    },
+    {
+      "kind": "researcher",
+      "outcome": "unresolved",
+      "path": "probabilistic",
+      "count": 289168
+    },
+    {
+      "kind": "work",
+      "outcome": "accepted",
+      "path": "exact_id",
+      "count": 19925
+    },
+    {
+      "kind": "work",
+      "outcome": "accepted",
+      "path": "probabilistic",
+      "count": 52
+    },
+    {
+      "kind": "work",
+      "outcome": "conflict",
+      "path": "exact_id",
+      "count": 127
+    },
+    {
+      "kind": "work",
+      "outcome": "rejected",
+      "path": "probabilistic",
+      "count": 15
+    }
+  ],
+  "llmDecisions": 0
+}
