@@ -64,6 +64,8 @@ reports/pipeline/**
 !reports/pipeline/*/*/steps.json
 !reports/pipeline/*/*/convert.json
 !reports/pipeline/*/*/load.json
+!reports/pipeline/*/*/ops-manifest.json
+!reports/pipeline/*/*/embeddings.json
 reports/experiments/**
 !reports/experiments/
 !reports/experiments/**/

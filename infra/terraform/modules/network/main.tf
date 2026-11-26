@@ -339,7 +339,7 @@ resource "aws_vpc_security_group_ingress_rule" "neptune_from_ops" {
   ip_protocol                  = "tcp"
 }
 
-# --- Neptune: only the three runtime roles that talk to it ---
+# --- Neptune: ingress only from the runtime roles that talk to it; egress only HTTPS to S3 (bulk loader) ---
 resource "aws_vpc_security_group_ingress_rule" "neptune_from_query_api" {
   security_group_id            = aws_security_group.neptune.id
   description                  = "query-api"
@@ -365,4 +365,15 @@ resource "aws_vpc_security_group_ingress_rule" "neptune_from_emr" {
   from_port                    = var.neptune_port
   to_port                      = var.neptune_port
   ip_protocol                  = "tcp"
+}
+
+# The Neptune bulk loader reads the load files from S3 through the S3 gateway endpoint. Terraform strips AWS's default
+# allow-all egress, so this is the only egress Neptune has: TCP 443 to the S3 managed prefix list, nothing else.
+resource "aws_vpc_security_group_egress_rule" "neptune_to_s3" {
+  security_group_id = aws_security_group.neptune.id
+  description       = "Neptune bulk loader to S3 via gateway endpoint"
+  prefix_list_id    = aws_vpc_endpoint.s3.prefix_list_id
+  from_port         = 443
+  to_port           = 443
+  ip_protocol       = "tcp"
 }

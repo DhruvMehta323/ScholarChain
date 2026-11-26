@@ -200,3 +200,46 @@ No HIGH. Three MEDIUMs go into the single repair round, so under the speed amend
   - L6: one end-to-end test uses the function under test.
   - L7: `reports/pipeline/**` and `reports/release/**` have no owner (factory-engineer).
 - **CHECK (orchestrator-run canonical command):** `[success]` in 2208 s, marker `exit=0` at 2026-11-26 05:27:22 CST. Every module: Failed 0, Errors 0. services: 926 passed.
+
+---
+
+# C11 reviews (code-reviewer, read-only)
+
+## C11 audit before the last deploy: CHANGES-REQUIRED
+- **HIGH:**
+  - H1: `storeText` sends a HEAD on a missing key, which returns 403 under the ops role, so every text is rejected.
+  - H2: the smoke default query returns 422 (topic with a space, window not stored).
+  - H3: the 3600 s load wait is too short for 687K sequential PutItems (estimate).
+- **MEDIUM:**
+  - M1: the worker minimum is 0 and scale-out from 0 is unverified.
+  - M2: the ops task definition changes only through the Terraform image_tag (handled by the runner).
+  - M3: startLoaderJob retries left in place on the ops path (fixed).
+  - M4: retry hazards after a partial Neptune load (runbook: same HEAD, new run id).
+  - M5: ops-manifest and embedding results not archived.
+- **LOW:** L1 the table-wide retry undercounts writes (fixed); L2 a missing source object is reported as store-error.
+- IAM cross-check against the ops, loader and worker roles: no un-granted calls apart from H1.
+
+## C11 diff review: CHANGES-REQUIRED
+- **M-1 (blocking):** `putAllParallel` could return Right with short counts after a fatal error in a worker.
+- **M-2:** the smoke query depends on Bedrock and can abstain; the `query` check accepted empty claims.
+- **M-3:** ops-manifest.json and embeddings.json were gitignored.
+- **S-1, security (F14-14 `neptune_to_s3`):** acceptable. Residual: no S3 endpoint policy.
+- **Passed:**
+  - thread-safety of `putAllParallel`;
+  - counts for NonFatal outcomes;
+  - storeText idempotency;
+  - ops IAM coverage;
+  - wait-embeddings.sh;
+  - run-bounded-pipeline changes;
+  - module boundaries;
+  - secrets.
+- **LOW, deferred:** L-1 to L-7 (see agent-report.md, C11).
+
+## C11 re-review of the fixes: APPROVE-RECOMMENDED, conditional on `sbt check`
+- **M-1 resolved.** A crash is rethrown as the same instance. A store error comes next. Right is returned only when written + unchanged + conflicts equals the item count. No deadlock, bounded post-crash work, tests 180-234 and 341-372.
+- **M-2, M-3 and L-4 resolved.**
+- **Residual LOW:**
+  - L-1 is still open.
+  - The caller's interrupt flag is set even when it was a worker that was interrupted (harmless).
+  - A fatal error leaves no LiveLoad provenance; the failure is visible through the ECS exit code.
+- **Observation for the human:** the `*-approved-by-rule-*.txt` files record rule matches under the human's delegated pre-stated rules. Confirm them in human-gate.md.

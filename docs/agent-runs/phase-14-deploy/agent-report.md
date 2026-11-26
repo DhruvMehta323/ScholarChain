@@ -799,3 +799,66 @@ The runner `/tmp/finish-phase14.sh` was prepared by the orchestrator and execute
   - test-engineer's run failed at scalafmtCheck (`OpsLoad.scala:680` parse error) and wrote marker exit=1 at 04:45:02. service-engineer fixed it.
   - The orchestrator then ran the canonical command: `[success]` in 2208 s, marker `exit=0` at 05:27:22 CST, all modules Failed 0.
 - **Review:** APPROVE-RECOMMENDED. MEDIUMs M1 and M2 are deferred to 17b; see review-report.md.
+
+## C10 deploy (human-executed runner `/tmp/deploy-c10.sh`, 2026-11-26)
+- Deploy record `reports/deployments/e7235971d22b453c11dece10924066e7e1447516/deployment.json` status `succeeded`. Push attempts 1 and 2 hit "broken pipe"; attempt 3 succeeded.
+- Plan `01b00aeeb438ad9c88ca5df5404350c4355ab89f680339a3d2b511af1de09ba6`: add 0, change 3, destroy 0, replace 4, iam 0, stateful lists empty. It matched the pre-stated rule (`reports/deployments/2026-11-26-P4-approved-by-rule-e7235971d22b.txt`). Apply log: "Apply complete! Resources: 4 added, 3 changed, 4 destroyed."
+- Verified by the orchestrator:
+  - query-api, retrieval and embedding-worker on `:13` at `e7235971d22b`, rollouts COMPLETED;
+  - ops task `:6` at 1024 CPU / 4096 MiB, `e7235971d22b`.
+
+## Run s3 `r20261125T214348Z-63958-s3` (post-only, local Spark output)
+- **Upload:** 837/837 on attempt 1, 839 objects with provenance, at 18:25:11Z.
+- **Convert attempt 1:** OutOfMemoryError in the LocalLoad fork. Cause (orchestrator error): the s3 script left out `sbt shutdown`, so a stale sbt server from the C10 CHECK ran without `SCHOLARCHAIN_JAVA_HOME`. Nothing was uploaded and no record was written.
+- **Convert retry:** `succeeded`, 32 uploads, at 18:30:44Z.
+- **Load:** `failed` exit 1 (ops task `cb761b29b4fd470e9a0887a3045856d2`).
+  - C10 worked: `ops.plan documents=10000 uncapped=96781 selection=stratified-round-robin-by-index-v1`, with INFO logs only.
+  - Then "bulk load start failed (unavailable)" after 98.6 s. Nothing was written: DynamoDB `written {}`, no jobs, no vectors.
+
+## F14-14: Neptune bulk loader cannot reach S3
+- **Evidence:**
+  - Neptune is `available`.
+  - Neptune metrics show about 3 loader requests at 18:32-18:33Z and no 4xx or 5xx, consistent with 3 SDK attempts each hitting a 30 s socket timeout.
+  - The Neptune SG has no egress at all: `infra/terraform/modules/network/main.tf:138`, and Terraform strips AWS's default egress.
+- **Ruled out:**
+  - ops-to-Neptune 8182 in both directions;
+  - the S3 gateway route on Neptune's subnets;
+  - the open endpoint policy;
+  - bucket encryption (SSE-S3, so no KMS);
+  - the loader role prefix (`graph/neptune-load/*`, role ACTIVE).
+- **Human-approved fix (security change, §4):** one `aws_vpc_security_group_egress_rule.neptune_to_s3`, TCP 443, to `aws_vpc_endpoint.s3.prefix_list_id`. Code-review verdict S-1: acceptable. Residual: the S3 endpoint has no endpoint policy.
+- **Not proven before the fix:** that the missing egress was the cause.
+
+## F14-15: SDK retries on the non-idempotent `startLoaderJob`
+- The SDK default (3 attempts) applied, contrary to `LiveLoad.scala` intent. Up to 3 loader jobs may exist in Neptune from run s3.
+- **Human decision:** do not list stale jobs, because that needs `neptune-db:ListLoaderJobs` and the plan rule is iam 0. The new load tracks only its own loadId.
+- **Fix:** a dedicated loader-start client with `doNotRetry`, 120 s attempt/call timeout and 125 s socket timeout, wired into both `graphStore` and `LiveLoad.awsPorts`. The first version missed awsPorts; the orchestrator caught that by grep.
+
+## C11 final read-only audit (code-reviewer) and fixes, all in one commit
+- **H1:** `EmbeddingProducer.storeText` sent a HEAD before writing. Under the ops role's prefix-conditioned ListBucket, a missing key returns 403, so all 10,000 texts would be rejected. Fix: write first with If-None-Match, then HEAD only on AlreadyExists.
+- **H2:** the smoke default query had a topic with a space (422) and a window that is not stored.
+  - New default: "largest team size in 2020 to 2024" over window 2020-2024.
+  - `query` passes only with claims; `explain` runs whenever a queryId exists.
+  - The planner and synthesis call Bedrock first, so the outcome is model-dependent and can abstain.
+- **H3:** 687,359 sequential conditional PutItems could exceed the 3600 s load wait.
+  - Bounded parallel PutItem (default 16, clamped to 1..64, recorded in the provenance parameters), with per-item retry (fixes L1).
+  - Load wait default 7200 s.
+  - Review M-1, a short count returned as success after a fatal worker error, is fixed: crash rethrow and an accounting invariant.
+- **M1:** the embedding-worker autoscaling minimum is 0 with target tracking on raw visible messages, and scale-out from 0 is unverified. Human-approved: `ecs_min_tasks` embedding-worker = 1 (one in-place update of `min_capacity`). Scale it back after the window (INFRA-CONTRACTS §9b).
+- **M5 / M-3:** `ops-manifest.json` is fetched into the run report dir, and the new `scripts/wait-embeddings.sh` (read-only SQS drain wait) writes `embeddings.json`. Both are archived and un-ignored in `.gitignore`.
+- **Deferred (17b):**
+  - L-1: caller interrupt during join.
+  - L-2: keep-alive cache of 5 connections.
+  - L-3: retry without jitter.
+  - L-5: a missing source object is reported as store-error.
+  - L-6: a transient start failure fails the run.
+  - L-7: the suite costs about 40 s.
+  - `reports/pipeline/**` and `reports/release/**` are unowned in docs/agents.md (factory-engineer).
+  - The openCypher executor's socket timeout (30 s default) is below its api-call bound.
+- **Preview plan** (orchestrator, `scripts/plan.sh` on the dirty tree at e7235971d22b): add 1 (`neptune_to_s3`: sg Neptune, pl-…, tcp 443-443, no CIDR), change 1 (embedding-worker target `min_capacity` 0 to 1 only), destroy 0, replace 0, iam 0, stateful empty.
+- **Tests:**
+  - test-engineer: NeptuneLoaderStartOnceSuite (11), EmbeddingStoreTextSuite (7), AnalyticsParallelSuite (22), plus updates to AwsOffByDefaultSuite, LiveLoadFx and LiveLoadSuite. Targeted run 231/231.
+  - infra-engineer: script harness 502/0, shellcheck clean, terraform validate OK. fmt flags only the untracked tfvars (pre-existing).
+- **CHECK, first run:** FAILED at scalafmtCheck on 8 storage files, because the agents edited via scripts that bypass the format hook. Marker exit=1 at 13:32 CST. The owners reformatted.
+- **Review:** CHANGES-REQUIRED (M-1), then the fixes, then the re-review: APPROVE-RECOMMENDED, conditional on CHECK.
+- **CHECK, second run (orchestrator, canonical command):** `[success]` in 1754 s (0:29:14). Every module reported Failed 0, Errors 0 (largest totals: 955, 926, 492, 383, 368, 299, 290, 210). Marker `exit=0` at 2026-11-26 14:48 CST.

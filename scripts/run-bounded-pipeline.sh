@@ -34,7 +34,7 @@
 #   SC_CONVERT_EXTRA_CMD   optional hook, unset by default: path of an executable run as <cmd> <run-root> <out-dir> after LocalLoad (a possible
 #   SC_CONVERT_EXTRA_PREFIX  local render step). Its output must be files under <out-dir>/<SC_CONVERT_EXTRA_PREFIX>/ (one path segment, for example
 #                          embedding-docs); they are uploaded to s3://<curated>/curated/loads/<scale>/<run>/<prefix>/ and checksummed
-#   SC_LOAD_TIMEOUT        default 3600 seconds (1 to 7200): how long to wait for the ops task to stop (then it is stopped, exit 5)
+#   SC_LOAD_TIMEOUT        default 7200 seconds (1 to 7200): how long to wait for the ops task to stop (then it is stopped, exit 5)
 #   SC_OPS_MAIN            default scholarchain.services.OpsLoadMain (SERVICE_MAIN of the ops task; one place to adjust)
 #   SC_OPS_JAVA_OPTS       optional JAVA_OPTS override of the ops task (heap sizing)
 #   SC_SPARK_SET           extra "--set key=value" pairs for the Spark job, space separated, no quotes inside
@@ -119,7 +119,7 @@ fi
 [[ "${NEPTUNE_TIMEOUT}" =~ ^[0-9]+$ ]] && ((NEPTUNE_TIMEOUT >= 60 && NEPTUNE_TIMEOUT <= 3600)) || { echo "--neptune-timeout-seconds must be 60 to 3600" >&2; exit 2; }
 CONV_TIMEOUT="${SC_CONVERT_TIMEOUT:-3600}"
 [[ "${CONV_TIMEOUT}" =~ ^[0-9]+$ ]] && ((CONV_TIMEOUT >= 60 && CONV_TIMEOUT <= 7200)) || { echo "SC_CONVERT_TIMEOUT must be 60 to 7200 seconds" >&2; exit 2; }
-LOAD_TIMEOUT="${SC_LOAD_TIMEOUT:-3600}"
+LOAD_TIMEOUT="${SC_LOAD_TIMEOUT:-7200}"
 [[ "${LOAD_TIMEOUT}" =~ ^[0-9]+$ ]] && ((LOAD_TIMEOUT >= 1 && LOAD_TIMEOUT <= 7200)) || { echo "SC_LOAD_TIMEOUT must be 1 to 7200 seconds" >&2; exit 2; }
 OPS_MAIN="${SC_OPS_MAIN:-scholarchain.services.OpsLoadMain}"
 [[ "${OPS_MAIN}" =~ ^[A-Za-z0-9_.]+$ ]] || { echo "SC_OPS_MAIN is not a class name" >&2; exit 2; }
@@ -509,6 +509,22 @@ ops_overrides_json() { # the run-time arguments of the ops task (one place to ad
       + (if $jo == "" then [] else [{name: "JAVA_OPTS", value: $jo}] end))}]}'
 }
 
+# M5 provenance: copy the ops task's ops-manifest.json (written by OpsLoadMain next to the items) into the run's report dir. Read-only
+# get-object, never overwrites an existing local copy, never fails the stage (the object may legitimately not exist after a failure).
+fetch_ops_manifest() {
+  local dest="${REPORT_DIR}/ops-manifest.json" key="curated/loads/${SCALE}/${RUN_ID}/ops-manifest.json" tmpf
+  [[ "${SC_DRY_RUN}" != 1 ]] || return 0
+  if [[ -e "${dest}" ]]; then sc_info "ops-manifest.json already in ${REPORT_DIR}: not overwritten"; return 0; fi
+  mkdir -p "${REPORT_DIR}"
+  tmpf="$(mktemp "${REPORT_DIR}/.ops-manifest.XXXXXX")"
+  if sc_aws s3api get-object --bucket "${CURATED}" --key "${key}" "${tmpf}" > /dev/null 2>&1 && [[ -s "${tmpf}" ]] && jq -e . "${tmpf}" > /dev/null 2>&1; then
+    mv -n "${tmpf}" "${dest}" && sc_ok "ops manifest saved: reports/pipeline/${SCALE}/${RUN_ID}/ops-manifest.json (sha256 $(sc_sha256 "${dest}"))"
+  else
+    sc_warn "no readable ops-manifest.json at s3://${CURATED}/${key} (not written by the task, or the task failed early)"
+  fi
+  rm -f -- "${tmpf:?}"
+}
+
 stage_load() {
   sc_stage load
   local rec="${REPORT_DIR}/load.json" started td img tarn task_id st stopped="" code="" reason="" scode="" log_stream start_s=$SECONDS desc ov netcfg status=failed rc=0
@@ -545,6 +561,7 @@ stage_load() {
     if ((SECONDS - start_s >= LOAD_TIMEOUT)); then
       sc_aws ecs stop-task --cluster "${ECS_CLUSTER}" --task "${tarn}" --reason "sc pipeline wait limit ${LOAD_TIMEOUT}s" > /dev/null 2>&1 || sc_warn "stop-task failed: stop the task by hand: ${tarn}"
       steps_json_append "$(jq -n --arg t "${tarn}" '{Type: "ECS_RUN_TASK", Name: "ops-load", status: "timeout", task_arn: $t}')"
+      fetch_ops_manifest
       post_fail load 5 "the ops task ${task_id} did not stop within ${LOAD_TIMEOUT}s: a stop was requested; check ${OPS_LOG_GROUP} and the Neptune loader status"
     fi
     sleep "${SC_POLL_SECONDS:-15}"
@@ -553,6 +570,7 @@ stage_load() {
   scode="$(printf '%s' "${desc}" | jq -r '.stopCode // empty')" reason="$(printf '%s' "${desc}" | jq -r '.reason // empty')"
   log_stream="ops/ops/${task_id}"
   [[ "${code}" == 0 ]] && status=succeeded
+  fetch_ops_manifest
   sc_json_write "${rec}" "$(jq -n --arg scale "${SCALE}" --arg run "${RUN_ID}" --arg status "${status}" --arg td "${td}" --arg img "${img}" --arg t "${tarn}" --arg code "${code}" --arg sr "${stopped}" --arg sc "${scode}" --arg cr "${reason}" \
     --arg lg "${OPS_LOG_GROUP}" --arg ls "${log_stream}" --arg ns "${NEPTUNE_LOAD_URI}/" --arg is "${ITEMS_URI}/" --arg mv "${MAX_VECTORS}" --arg cv "${SHORT}" --arg started "${started}" --arg ended "$(sc_utc_iso)" --arg region "$(sc_out region)" \
     '{scale: $scale, run_id: $run, status: $status, task_definition: $td, image: $img, task_arn: $t, exit_code: (if $code == "" then null else ($code | tonumber) end), stopped_reason: $sr, stop_code: $sc, container_reason: $cr,

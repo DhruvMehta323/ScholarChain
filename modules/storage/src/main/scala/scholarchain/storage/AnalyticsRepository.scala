@@ -70,6 +70,75 @@ final class AnalyticsRepository(kv: KeyValueStore, tableNames: Map[String, Strin
           if ex.size < 5 then ex = ex :+ s"${i.table}: $r"
     failure.toLeft(AnalyticsLoadReport(w, u, c, ex))
 
+  /** Same semantics as `putAll` (one conditional `put` per item, never an overwrite, conflicts
+    * counted, the first store error aborts) with a fixed pool of `parallelism` threads. `attempt`
+    * wraps each single `put` (the caller passes its bounded retry); every item is therefore counted
+    * once, by its final outcome, so the totals are exact. The counts are independent of thread
+    * order; the conflict examples are the five lowest item positions. Which store error is reported
+    * when several threads fail at once is not deterministic.
+    */
+  def putAllParallel(
+      items: IndexedSeq[AnalyticsItem],
+      parallelism: Int,
+      attempt: (=> StorageResult[WriteResult]) => StorageResult[WriteResult],
+  ): StorageResult[AnalyticsLoadReport] =
+    val n              = math.max(1, math.min(parallelism, items.size))
+    val next           = new java.util.concurrent.atomic.AtomicInteger(0)
+    val w, u, c        = new java.util.concurrent.atomic.AtomicLong(0L)
+    val failure        = new java.util.concurrent.atomic.AtomicReference[Option[StorageError]](None)
+    val crash          = new java.util.concurrent.atomic.AtomicReference[Throwable](null)
+    val lock           = new Object
+    var ex             = List.empty[(Int, String)]
+    def worker(): Unit =
+      var go = true
+      while go && failure.get().isEmpty && crash.get() == null do
+        val idx = next.getAndIncrement()
+        if idx >= items.size then go = false
+        else
+          val i = items(idx)
+          try
+            attempt(put(i)) match
+              case Left(e)                        => failure.compareAndSet(None, Some(e))
+              case Right(WriteResult.Written)     => w.incrementAndGet()
+              case Right(WriteResult.Unchanged)   => u.incrementAndGet()
+              case Right(WriteResult.Conflict(r)) =>
+                c.incrementAndGet()
+                lock.synchronized {
+                  ex = ((idx, s"${i.table}: $r") :: ex).sortBy(_._1).take(5)
+                }
+          catch
+            case scala.util.control.NonFatal(e) =>
+              failure.compareAndSet(
+                None,
+                Some(StorageError.Failed(s"item write: ${e.getClass.getSimpleName}")),
+              )
+              go = false
+            // Fatal errors and interrupts: stop every worker, rethrown after the join.
+            case t: Throwable =>
+              crash.compareAndSet(null, t)
+              go = false
+    val threads = (0 until n).map { k =>
+      val t = new Thread(() => worker(), s"analytics-put-$k")
+      t.setDaemon(true)
+      t.start()
+      t
+    }
+    threads.foreach(_.join())
+    Option(crash.get()).foreach {
+      case ie: InterruptedException =>
+        Thread.currentThread().interrupt()
+        throw ie
+      case t => throw t
+    }
+    failure.get() match
+      case Some(e) => Left(e)
+      case None    =>
+        val done = w.get + u.get + c.get
+        // Every item must be accounted for: a short count is never reported as success.
+        if done != items.size.toLong then
+          Left(StorageError.Failed(s"item write: ${done} of ${items.size} items accounted for"))
+        else Right(AnalyticsLoadReport(w.get, u.get, c.get, ex.sortBy(_._1).map(_._2)))
+
   private def decode(i: KvItem): StorageResult[ujson.Value] =
     i.attributes
       .get(ItemWrites.Payload)

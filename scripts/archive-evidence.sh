@@ -8,7 +8,7 @@
 #   plan checksum       the newest infra/terraform/plans/tfplan-*.sha256 and its .summary.txt (the plan file itself is not copied)
 #   release metadata    reports/release/<sha>/artifacts.json (jar checksums, image IDs)
 #   deployment records  reports/deployments/<sha>/ (image digests, smoke-test.json, rollback records)
-#   run manifests       reports/pipeline/*/*/run.json, steps.json, convert.json, load.json (traceability records), and the copied load-manifest.json and checksums.sha256
+#   run manifests       reports/pipeline/*/*/run.json, steps.json, convert.json, load.json, ops-manifest.json, embeddings.json (traceability records), and the copied load-manifest.json and checksums.sha256
 #   experiment outputs  reports/experiments/*/*/run.json (command.log files are NOT copied: they can be large)
 #   metric exports      with --metrics-hours N: CloudWatch statistics for the embedding queue and the three ECS services (read-only calls)
 # Environment (names only): AWS_PROFILE and AWS_REGION, needed only with --metrics-hours or --to-s3.
@@ -67,7 +67,7 @@ fi
 while IFS= read -r f; do
   rel="${f#"${ROOT}"/reports/}"
   add "${f}" "runs/${rel//\//__}"
-done < <(find "${ROOT}/reports/pipeline" -mindepth 3 -maxdepth 3 \( -name run.json -o -name steps.json -o -name convert.json -o -name load.json -o -name load-manifest.json -o -name checksums.sha256 \) -type f 2> /dev/null | LC_ALL=C sort)
+done < <(find "${ROOT}/reports/pipeline" -mindepth 3 -maxdepth 3 \( -name run.json -o -name steps.json -o -name convert.json -o -name load.json -o -name ops-manifest.json -o -name embeddings.json -o -name load-manifest.json -o -name checksums.sha256 \) -type f 2> /dev/null | LC_ALL=C sort)
 while IFS= read -r f; do
   rel="${f#"${ROOT}"/reports/}"
   add "${f}" "experiments/${rel//\//__}"

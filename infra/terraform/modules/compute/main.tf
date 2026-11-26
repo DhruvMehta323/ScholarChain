@@ -189,7 +189,8 @@ resource "aws_ecs_service" "this" {
     }
   }
 
-  # desired_count is owned by Application Auto Scaling (minimum = var.min_tasks, default 0).
+  # desired_count is owned by Application Auto Scaling (minimum = var.min_tasks; the course environment defaults embedding-worker to 1, others 0).
+  # Raising the minimum updates the scalable target only; Application Auto Scaling then raises the running desired count to it.
   lifecycle {
     ignore_changes = [desired_count]
   }

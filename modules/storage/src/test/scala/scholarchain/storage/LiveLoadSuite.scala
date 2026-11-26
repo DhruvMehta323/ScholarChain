@@ -659,7 +659,7 @@ class LiveLoadSuite extends munit.FunSuite:
 
   test("10. a non-retryable DynamoDB error: StoreError, exit 1, Neptune already completed") {
     val r   = ready(putError = Some(StorageError.Failed("denied")))
-    val rep = r.run(params())
+    val rep = r.run(params().copy(itemParallelism = 1))
     assertEquals(rep.status, LiveLoadStatus.StoreError, rep.detail)
     assertEquals(rep.exitCode, 1)
     assertEquals(r.kv.puts, 1, "a non-retryable error is not retried and stops the load")
@@ -667,11 +667,26 @@ class LiveLoadSuite extends munit.FunSuite:
     checkNoLeaks(rep)
   }
 
+  test("10a. with parallel puts every worker may have one put in flight before the load stops") {
+    val r   = ready(putError = Some(StorageError.Failed("denied")))
+    val rep = r.run(params().copy(itemParallelism = 4))
+    assertEquals(rep.status, LiveLoadStatus.StoreError, rep.detail)
+    assert(r.kv.puts >= 1 && r.kv.puts <= 4, s"puts=${r.kv.puts}: not retried, at most 4 in flight")
+  }
+
   test("10b. a retryable DynamoDB error that persists: StoreError after the configured attempts") {
     val r   = ready(putError = Some(StorageError.Throttled("slow")))
-    val rep = r.run(params())
+    val rep = r.run(params().copy(itemParallelism = 1))
     assertEquals(rep.status, LiveLoadStatus.StoreError, rep.detail)
     assertEquals(r.kv.puts, cfg.retry.maxAttempts)
+  }
+
+  test("10d. parallel puts with a persistent retryable error: each worker retries its own item") {
+    val r   = ready(putError = Some(StorageError.Throttled("slow")))
+    val rep = r.run(params().copy(itemParallelism = 4))
+    assertEquals(rep.status, LiveLoadStatus.StoreError, rep.detail)
+    assert(r.kv.puts >= cfg.retry.maxAttempts, s"puts=${r.kv.puts}")
+    assert(r.kv.puts <= 4 * cfg.retry.maxAttempts, s"puts=${r.kv.puts}")
   }
 
   test("10c. an object-store read error is a StoreError, not a source error") {

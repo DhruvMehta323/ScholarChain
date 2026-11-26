@@ -188,11 +188,17 @@ class AwsOffByDefaultSuite extends munit.FunSuite:
     val text     = new String(Files.readAllBytes(src), StandardCharsets.UTF_8)
     val builders =
       """(S3|DynamoDb|S3Vectors|Sqs|Neptunedata)Client\s*\.builder\(\)""".r.findAllIn(text).size
-    assertEquals(builders, 5, "expected the five client builders")
+    // five hermetic clients plus the dedicated no-retry Neptune bulk-load start client
+    assertEquals(builders, 6, "expected the six client builders")
     assertEquals(
       "overrideConfiguration\\(hermetic\\)".r.findAllIn(text).size,
-      builders,
-      "every client builder must use overrideConfiguration(hermetic)",
+      5,
+      "every client builder except the loader-start client must use overrideConfiguration(hermetic)",
+    )
+    assertEquals(
+      "overrideConfiguration\\(AwsClients\\.loaderStartOverride\\)".r.findAllIn(text).size,
+      1,
+      "the loader-start client must use AwsClients.loaderStartOverride (hermetic plus no retry)",
     )
     assertEquals("credentialsProvider\\(credentials\\)".r.findAllIn(text).size, builders)
     assertEquals("\\.region\\(region\\)".r.findAllIn(text).size, builders)

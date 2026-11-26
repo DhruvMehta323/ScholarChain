@@ -297,9 +297,9 @@ variable "ecs_cpu_architecture" {
 }
 
 variable "ecs_min_tasks" {
-  description = "Autoscaling minimum per service (the way to scale up for an experiment). 0 = nothing is kept running. Default 0 for all three services: they cost money per task-hour and nothing needs to run outside experiment windows. To stop everything after a scale-up set min AND ecs_max_tasks to 0 (INFRA-CONTRACTS.md section 9b)."
+  description = "Autoscaling minimum per service (the way to scale up for an experiment). 0 = nothing is kept running. Default 0 for query-api and retrieval: they cost money per task-hour and nothing needs to run outside experiment windows. Default 1 for embedding-worker (C11/M1): target tracking on the raw SQS visible-messages metric is not confirmed to scale out from 0, and the 10,000 embedding jobs of the bounded load must be consumed. Application Auto Scaling enforces the minimum by raising the service desired count to it (the service resource ignores desired_count, so it does not change in the plan). To stop everything after a scale-up set min AND ecs_max_tasks to 0 (INFRA-CONTRACTS.md section 9b)."
   type        = map(number)
-  default     = { "query-api" = 0, "retrieval" = 0, "embedding-worker" = 0 }
+  default     = { "query-api" = 0, "retrieval" = 0, "embedding-worker" = 1 }
   validation {
     condition     = alltrue([for v in values(var.ecs_min_tasks) : v >= 0])
     error_message = "ecs_min_tasks values must not be negative."

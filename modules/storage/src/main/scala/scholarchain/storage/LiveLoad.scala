@@ -25,8 +25,10 @@ final case class LiveLoadPorts(
 )
 
 /** Caller parameters. `maxItems` caps the TOTAL number of DynamoDB items (refused before any write,
-  * Neptune included). `neptuneSource` / `itemsSource` are `s3://bucket/prefix/` URIs whose last
-  * path segment is `runId`.
+  * Neptune included). `itemParallelism` is the size of the fixed thread pool that writes one
+  * table's items (conditional puts, 1 to 64; values outside are clamped; the clamped value is
+  * recorded in the provenance parameters). `neptuneSource` / `itemsSource` are
+  * `s3://bucket/prefix/` URIs whose last path segment is `runId`.
   */
 final case class LiveLoadParams(
     neptuneSource: String,
@@ -37,6 +39,7 @@ final case class LiveLoadParams(
     neptuneTimeoutSeconds: Long,
     pollIntervalSeconds: Long = 10L,
     dryRun: Boolean = false,
+    itemParallelism: Int = 16,
 )
 
 /** Distinct outcomes. `exitCode`: 0 ok, 1 failure, 2 usage, 3 cap or invariant refusal. */
@@ -90,17 +93,19 @@ object LiveLoad:
   private type R[A] = Either[Fail, A]
 
   /** Ports over the real AWS clients. Builds nothing until a port is used; `Left` when no Neptune
-    * endpoint was configured.
+    * endpoint was configured. The bulk-load start goes through the no-retry
+    * `clients.neptuneLoaderStart` client.
     */
   def awsPorts(clients: AwsClients): StorageResult[LiveLoadPorts] =
-    clients.neptuneData.map(n =>
-      LiveLoadPorts(
-        clients.objectStore,
-        NeptuneAws.loader(n),
-        clients.keyValueStore,
-        Sleeper.System,
-        LiveClock.Real,
-      )
+    for
+      n <- clients.neptuneData
+      s <- clients.neptuneLoaderStart
+    yield LiveLoadPorts(
+      clients.objectStore,
+      NeptuneAws.loader(n, s),
+      clients.keyValueStore,
+      Sleeper.System,
+      LiveClock.Real,
     )
 
   /** Writes the provenance JSON once (`putIfAbsent`): never overwrites. */
@@ -173,7 +178,7 @@ object LiveLoad:
       _      <- cap(p, items, f)
       _ = f.verifyMillis = ports.clock.nowMillis() - t0
       _ <- if p.dryRun then Right(()) else loadNeptune(ports, cfg, request, p, f)
-      _ <- if p.dryRun then Right(()) else putItems(ports, cfg, items, f)
+      _ <- if p.dryRun then Right(()) else putItems(ports, cfg, items, p.itemParallelism, f)
     yield ()
 
   // ---- validation ----------------------------------------------------------------------------
@@ -642,17 +647,30 @@ object LiveLoad:
 
   // ---- DynamoDB ------------------------------------------------------------------------------
 
+  /** The pool size actually used (and recorded in the provenance): `itemParallelism` clamped to
+    * 1..64.
+    */
+  private def clampParallelism(requested: Int): Int = math.max(1, math.min(requested, 64))
+
   private def putItems(
       ports: LiveLoadPorts,
       cfg: StorageModuleConfig,
       items: List[(String, List[AnalyticsItems.AnalyticsItem])],
+      parallelism: Int,
       f: Facts,
   ): R[Unit] =
     val t0   = ports.clock.nowMillis()
     val repo = AnalyticsRepository.fromConfig(ports.items, cfg.tables)
     val res  = items.foldLeft[R[Unit]](Right(())) { (acc, e) =>
       acc.flatMap { _ =>
-        val retried = Retry.run(cfg.retry, ports.sleeper)(repo.putAll(e._2))
+        // Each item is retried on its own (idempotent conditional put), so every item is counted
+        // once by its final outcome. Edge: a put that succeeded unseen and is retried reports
+        // `unchanged`, not `written`.
+        val retried = repo.putAllParallel(
+          e._2.toVector,
+          clampParallelism(parallelism),
+          op => Retry.run(cfg.retry, ports.sleeper)(op),
+        )
         retried match
           case Left(err) => Left((LiveLoadStatus.StoreError, s"${e._1}: put failed (${err.code})"))
           case Right(r)  => f.itemReports = f.itemReports.updated(e._1, r); Right(())
@@ -692,6 +710,7 @@ object LiveLoad:
     o("detail") = detail
     o("parameters") = ujson.Obj(
       "dryRun"                -> p.dryRun,
+      "itemParallelism"       -> n(clampParallelism(p.itemParallelism).toLong),
       "itemsSource"           -> p.itemsSource,
       "maxItems"              -> n(p.maxItems),
       "neptuneFormat"         -> NeptuneBulkLoad.RequiredFormat,

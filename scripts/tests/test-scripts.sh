@@ -132,6 +132,17 @@ case "${svc} ${op}" in
         *) if [[ "${STUB_S3_NONEMPTY:-0}" == 1 ]]; then echo 1; else echo 0; fi ;;
       esac
     else echo 3; fi ;;
+  "s3api get-object")
+    # read-only download of an object the test placed under STATE/s3 (otherwise NoSuchKey, exit 254)
+    f="${STUB_STATE}/s3/$(opt --bucket)/$(opt --key)"
+    if [[ -f "${f}" ]]; then cp "${f}" "${clean[${#clean[@]}-1]}"; echo '{}'; else exit 254; fi ;;
+  "sqs get-queue-attributes")
+    u="$(opt --queue-url)"
+    if [[ "${u}" == *dlq* ]]; then printf '%s\t0\t0\n' "${STUB_DLQ:-0}"
+    else
+      n=$(($(cat "${STUB_STATE}/sqs-poll-n" 2> /dev/null || echo 0) + 1)); echo "${n}" > "${STUB_STATE}/sqs-poll-n"
+      if [[ "${STUB_SQS_NEVER_DRAIN:-0}" == 1 || ${n} -lt 3 ]]; then printf '10\t3\t0\n'; else printf '0\t0\t0\n'; fi
+    fi ;;
   "s3 cp") ;;
   "s3 sync")
     # download of the Spark output: the two load manifests LocalLoad needs
@@ -228,7 +239,8 @@ authed=0; if [[ -n "${hdr}" ]] && grep -q "${STUB_EXPECT_KEY}" "${hdr}"; then au
 code=200 body='{"status":"ok"}'
 case "${method} ${path}" in
   "GET /healthz" | "GET /readyz") ;;
-  "POST /v1/query") if [[ ${authed} == 1 ]]; then body='{"queryId":"query:abc","mode":"synchronous","claims":[{"claimId":"c1","evidenceIds":["evidence:e1"]}],"abstained":false,"links":{}}'; else code=401 body='{"error":"UNAUTHORIZED"}'; fi ;;
+  "POST /v1/query") if [[ ${authed} == 1 && "${STUB_EMPTY_CLAIMS:-0}" == 1 ]]; then body='{"queryId":"query:abc","mode":"synchronous","claims":[],"abstained":true,"abstainReason":"no_verified_claims","links":{}}'
+    elif [[ ${authed} == 1 ]]; then body='{"queryId":"query:abc","mode":"synchronous","claims":[{"claimId":"c1","evidenceIds":["evidence:e1"]}],"abstained":false,"links":{}}'; else code=401 body='{"error":"UNAUTHORIZED"}'; fi ;;
   "GET /v1/evidence/"*) body='{"evidenceId":"evidence:e1"}' ;;
   "GET /v1/queries/"*"/evidence") body='{"items":[{}]}' ;;
   "GET /v1/explain/"*) body='{"queryId":"query:abc"}' ;;
@@ -290,7 +302,7 @@ jq -n '{
   emr_service_role_arn: {value: "arn:aws:iam::123456789012:role/scholarchain-emr-service"}, emr_instance_profile_arn: {value: "arn:aws:iam::123456789012:instance-profile/scholarchain-emr-ec2"},
   public_subnet_ids: {value: ["subnet-1", "subnet-2"]}, vpc_id: {value: "vpc-1"},
   neptune_endpoint: {value: "https://n.example:8182"},
-  ops_task_definition_family: {value: "scholarchain-ops"}, ops_security_group_id: {value: "sg-0ops1234"}, ops_log_group_name: {value: "/scholarchain/embedding-worker"}, query_api_url: {value: "http://alb.example"}, embedding_queue_url: {value: "https://sqs.us-east-2.amazonaws.com/123456789012/scholarchain-embedding-jobs"}
+  ops_task_definition_family: {value: "scholarchain-ops"}, ops_security_group_id: {value: "sg-0ops1234"}, ops_log_group_name: {value: "/scholarchain/embedding-worker"}, query_api_url: {value: "http://alb.example"}, embedding_queue_url: {value: "https://sqs.us-east-2.amazonaws.com/123456789012/scholarchain-embedding-jobs"}, embedding_dlq_url: {value: "https://sqs.us-east-2.amazonaws.com/123456789012/scholarchain-embedding-dlq"}
 }' > "${TFOUT}"
 KEYFILE="${SCRATCH}/keyfile"
 printf '%s\n' "${SENTINEL}" > "${KEYFILE}"
@@ -338,7 +350,7 @@ else
 fi
 
 echo "== T2 --help =="
-for s in check package deploy rollback smoke-test run-bounded-pipeline run-experiment archive-evidence env-window cleanup; do
+for s in check package deploy rollback smoke-test wait-embeddings run-bounded-pipeline run-experiment archive-evidence env-window cleanup; do
   reset_state
   run "help-${s}" 0 bash "scripts/${s}.sh" --help
   expect_in "help-${s} prints exit codes" "${OUT}/help-${s}.out" "Exit codes"
@@ -585,6 +597,15 @@ expect_not_in "key not in stub argument log" "${LOG}" "${SENTINEL}"
 expect_not_in "key not on stdout" "${OUT}/smoke-real.out" "${SENTINEL}"
 expect_not_in "key not on stderr" "${OUT}/smoke-real.err" "${SENTINEL}"
 expect_not_in "key not in the JSON result" "${REPO}/reports/deployments/${SHA}/smoke-test.json" "${SENTINEL}"
+chmod 644 "${KEYFILE}"
+chmod 600 "${KEYFILE}"
+# M-2: an empty claims array fails the query check with the abstention reason recorded, and explain still runs for the queryId
+EXTRA_ENV="SC_SMOKE_API_KEY_FILE=${KEYFILE} STUB_EMPTY_CLAIMS=1" run smoke-empty-claims 1 bash scripts/smoke-test.sh --allow-insecure-http
+SJ="${REPO}/reports/deployments/${SHA}/smoke-test.json"
+[[ "$(jq -r '.checks[] | select(.check == "query") | .passed' "${SJ}" 2> /dev/null)" == false ]] && ok "M-2 empty claims fail the query check" || bad "M-2 empty claims check"
+[[ "$(jq -r '.checks[] | select(.check == "query") | .note' "${SJ}" 2> /dev/null)" == *"claims=0 abstained=true abstain_reason=no_verified_claims"* ]] && ok "M-2 abstention reason recorded in the note" || bad "M-2 abstention note"
+[[ "$(jq -r '.checks[] | select(.check == "explain") | .passed' "${SJ}" 2> /dev/null)" == true ]] && ok "M-2 explain runs whenever a queryId exists" || bad "M-2 explain with empty claims"
+[[ "$(jq -r '.checks[] | select(.check == "evidence-by-id") | .passed' "${SJ}" 2> /dev/null)" == false ]] && ok "M-2 evidence-by-id fails without a claim evidence id" || bad "M-2 evidence-by-id"
 chmod 644 "${KEYFILE}"
 EXTRA_ENV="SC_SMOKE_API_KEY_FILE=${KEYFILE}" run smoke-loose-key-refused 6 bash scripts/smoke-test.sh --allow-insecure-http
 expect_in "loose key mode message" "${OUT}/smoke-loose-key-refused.err" "mode 600 or 400"
@@ -915,19 +936,81 @@ echo "== T9 run-experiment =="
 run experiment-no-dir 6 bash scripts/run-experiment.sh exp-1
 expect_in "clear error without experiments/manifests" "${OUT}/experiment-no-dir.err" "manifest directory"
 
+echo "== T9b C11: smoke default query, load wait default, ops-manifest, wait-embeddings =="
+# H2: the default smoke body is valid for the service (no filter token, a stored window, a deterministic operation) and needs no vectors.
+DQ="$(sed -n "s/^DEFAULT_QUERY='\(.*\)'\$/\1/p" "${SRC_ROOT}/scripts/smoke-test.sh")"
+[[ -n "${DQ}" ]] && printf '%s' "${DQ}" | jq -e . > /dev/null 2>&1 && ok "H2 default smoke query is valid JSON" || bad "H2 default smoke query JSON"
+[[ "$(printf '%s' "${DQ}" | jq -r '.constraints.topics | length')" == 0 && "$(printf '%s' "${DQ}" | jq -r '(.constraints.venues + .constraints.institutions) | length')" == 0 ]] && ok "H2 no topic, venue or institution filter (a 422 risk)" || bad "H2 filters"
+[[ "$(printf '%s' "${DQ}" | jq -r '"\(.constraints.yearFrom)-\(.constraints.yearTo)"')" == 2020-2024 ]] && ok "H2 window 2020-2024 is a stored window" || bad "H2 window"
+printf '%s' "${DQ}" | jq -r .question | grep -qi "largest team" && ok "H2 question contains the planner keyword \"largest team\" (the operation chosen is model-dependent and NOT verified here)" || bad "H2 question keyword"
+[[ "$(printf '%s' "${DQ}" | jq -r '.analysis.includeTeamSize, .output.includeEvidence' | tr '\n' ' ')" == "false true " ]] && ok "H2 options accepted by checkOptions" || bad "H2 options"
+# H3: default wait for the ops task is 7200 s
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-load-default-wait 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rcw1
+expect_in "H3 default load wait is 7200 s" "${OUT}/pipe-load-default-wait.out" "limit 7200s"
+EXTRA_ENV="SC_LOAD_TIMEOUT=7201" run pipe-load-wait-over-max 2 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rcw2 --dry-run
+# M5: ops-manifest.json fetched read-only on success, on failure and on timeout; never overwritten; absent object is not fatal
+OPSKEY="b-curated/curated/loads/1k"
+put_ops_manifest() { mkdir -p "${STATE}/s3/${OPSKEY}/$1"; printf '{"vectors":42}\n' > "${STATE}/s3/${OPSKEY}/$1/ops-manifest.json"; }
+reset_state; put_ops_manifest rcm1
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-load-manifest-ok 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rcm1
+[[ "$(jq -r .vectors "${REPO}/reports/pipeline/1k/rcm1/ops-manifest.json" 2> /dev/null)" == 42 ]] && ok "M5 ops-manifest.json copied after a successful load" || bad "M5 success copy"
+expect_in "M5 fetch uses read-only get-object" "${LOG}" "s3api get-object --bucket b-curated --key curated/loads/1k/rcm1/ops-manifest.json"
+expect_not_in "M5 fetch makes no put or delete" "${LOG}" "s3api delete-object"
+reset_state; put_ops_manifest rcm2
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12} STUB_OPS_EXIT=1" run pipe-load-manifest-fail 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rcm2
+[[ "$(jq -r .vectors "${REPO}/reports/pipeline/1k/rcm2/ops-manifest.json" 2> /dev/null)" == 42 ]] && ok "M5 ops-manifest.json copied after a FAILED load" || bad "M5 failure copy"
+reset_state; put_ops_manifest rcm3
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12} STUB_OPS_NEVER_STOP=1 SC_LOAD_TIMEOUT=1" run pipe-load-manifest-timeout 5 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rcm3
+[[ -f "${REPO}/reports/pipeline/1k/rcm3/ops-manifest.json" ]] && ok "M5 ops-manifest.json copied after a timeout" || bad "M5 timeout copy"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12} STUB_OPS_EXIT=1" run pipe-load-manifest-absent 1 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rcm4
+[[ ! -e "${REPO}/reports/pipeline/1k/rcm4/ops-manifest.json" ]] && expect_in "M5 an absent object is a warning, not a new failure" "${OUT}/pipe-load-manifest-absent.err" "no readable ops-manifest.json" || bad "M5 absent object"
+ls "${REPO}"/reports/pipeline/1k/rcm4/.ops-manifest.* > /dev/null 2>&1 && bad "M5 temp file left behind" || ok "M5 no temp file left behind"
+# no overwrite: a pre-existing local copy stays, and no get-object is issued
+reset_state; put_ops_manifest rcm5
+mkdir -p "${REPO}/reports/pipeline/1k/rcm5"; printf '{"vectors":1}\n' > "${REPO}/reports/pipeline/1k/rcm5/ops-manifest.json"
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-load-manifest-keep 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rcm5
+[[ "$(jq -r .vectors "${REPO}/reports/pipeline/1k/rcm5/ops-manifest.json")" == 1 ]] && expect_not_in "M5 an existing copy is never overwritten" "${LOG}" "s3api get-object" || bad "M5 overwrite"
+reset_state
+EXTRA_ENV="STUB_OPS_TAG=${SHORT12}" run pipe-load-manifest-dry 0 bash scripts/run-bounded-pipeline.sh --scale 1k --stages load --run-id rcm6 --dry-run
+expect_not_in "M5 a dry run fetches nothing" "${LOG}" "s3api get-object"
+# wait-embeddings: read-only SQS polling, drain detection, DLQ recording, timeout, no overwrite
+reset_state
+run wait-emb-dry 0 bash scripts/wait-embeddings.sh --dry-run
+expect_not_in "wait-embeddings dry run makes no AWS queue call" "${LOG}" "sqs "
+run wait-emb-bad-quiet 2 bash scripts/wait-embeddings.sh --quiet-seconds 0
+run wait-emb-scale-only 2 bash scripts/wait-embeddings.sh --scale 1k
+reset_state
+run wait-emb-ok 0 bash scripts/wait-embeddings.sh --quiet-seconds 1 --scale 1k --run-id rce1
+[[ "$(jq -r '.status, .dlq_messages' "${REPO}/reports/pipeline/1k/rce1/embeddings.json" 2> /dev/null | tr '\n' ' ')" == "drained 0 " ]] && ok "wait-embeddings records drained and DLQ 0" || bad "wait-embeddings record"
+expect_in "wait-embeddings polls the queue read-only" "${LOG}" "sqs get-queue-attributes --queue-url https://sqs.us-east-2.amazonaws.com/123456789012/scholarchain-embedding-jobs"
+expect_not_in "wait-embeddings never sends, deletes or purges" "${LOG}" "sqs send-message"
+expect_not_in "wait-embeddings never purges" "${LOG}" "purge-queue"
+run wait-emb-twice 3 bash scripts/wait-embeddings.sh --quiet-seconds 1 --scale 1k --run-id rce1
+reset_state
+EXTRA_ENV="STUB_DLQ=4" run wait-emb-dlq 1 bash scripts/wait-embeddings.sh --quiet-seconds 1 --scale 1k --run-id rce2
+[[ "$(jq -r .dlq_messages "${REPO}/reports/pipeline/1k/rce2/embeddings.json" 2> /dev/null)" == 4 ]] && ok "wait-embeddings records the DLQ count and exits 1" || bad "wait-embeddings DLQ record"
+reset_state
+EXTRA_ENV="STUB_SQS_NEVER_DRAIN=1" run wait-emb-timeout 5 bash scripts/wait-embeddings.sh --quiet-seconds 1 --timeout-seconds 1 --scale 1k --run-id rce3
+[[ "$(jq -r .status "${REPO}/reports/pipeline/1k/rce3/embeddings.json" 2> /dev/null)" == timeout ]] && ok "wait-embeddings records a timeout" || bad "wait-embeddings timeout record"
+reset_state
+
 echo "== T10 archive-evidence =="
 reset_state
 run archive-dry 0 bash scripts/archive-evidence.sh --dry-run
 reset_state
 AR_DIR="${REPO}/reports/pipeline/zz-archtest/run-1"
 mkdir -p "${AR_DIR}"
-for n in run.json steps.json convert.json load.json load-manifest.json checksums.sha256; do printf '{}\n' > "${AR_DIR}/${n}"; done
+for n in run.json steps.json convert.json load.json ops-manifest.json embeddings.json load-manifest.json checksums.sha256; do printf '{}\n' > "${AR_DIR}/${n}"; done
 run archive-dry-pipeline 0 bash scripts/archive-evidence.sh --dry-run
 expect_in "dry run lists convert.json" "${OUT}/archive-dry-pipeline.out" "convert.json"
 expect_in "dry run lists load.json" "${OUT}/archive-dry-pipeline.out" "load.json"
+expect_in "M5 dry run lists ops-manifest.json" "${OUT}/archive-dry-pipeline.out" "ops-manifest.json"
+expect_in "M-3 dry run lists embeddings.json" "${OUT}/archive-dry-pipeline.out" "embeddings.json"
 run archive-real 0 bash scripts/archive-evidence.sh
 [[ -f "${REPO}/reports/evidence/${SHA}/MANIFEST.json" ]] && ok "MANIFEST.json written" || bad "MANIFEST.json"
-for n in convert.json load.json load-manifest.json checksums.sha256; do
+for n in convert.json load.json ops-manifest.json embeddings.json load-manifest.json checksums.sha256; do
   [[ -f "${REPO}/reports/evidence/${SHA}/runs/pipeline__zz-archtest__run-1__${n}" ]] && ok "archived ${n}" || bad "archived ${n}"
 done
 grep -q 'pipeline__zz-archtest__run-1__load.json' "${REPO}/reports/evidence/${SHA}/MANIFEST.json" && ok "MANIFEST lists load.json" || bad "MANIFEST lists load.json"

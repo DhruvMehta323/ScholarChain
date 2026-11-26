@@ -197,24 +197,20 @@ final class EmbeddingProducer(
         ObjectLocation.parse(d.textS3Uri) match
           case Left(_)    => Left(Left(ProducerRejection.InvalidDocument))
           case Right(loc) =>
-            objects.head(loc) match
-              case Right(Some(m)) if m.contentHash == d.textHash => Right(Some(false))
-              case Right(Some(_))                                =>
-                Left(Left(ProducerRejection.TextConflict))
-              case Right(None) =>
-                objects.putIfAbsent(
-                  loc,
-                  bytes,
-                  Some("text/plain; charset=utf-8"),
-                  Some(d.textHash),
-                ) match
-                  case Right(_)                            => Right(Some(true))
-                  case Left(StorageError.AlreadyExists(_)) =>
-                    // lost a race: same content is fine, different content is a conflict
-                    objects.head(loc) match
-                      case Right(Some(m)) if m.contentHash == d.textHash => Right(Some(false))
-                      case Right(_) => Left(Left(ProducerRejection.TextConflict))
-                      case Left(e)  => Left(Right(e))
+            // Write first (If-None-Match): a HEAD of a missing key returns 403, not 404, under a
+            // role without a bucket-wide s3:ListBucket. HEAD only runs once the object exists.
+            objects.putIfAbsent(
+              loc,
+              bytes,
+              Some("text/plain; charset=utf-8"),
+              Some(d.textHash),
+            ) match
+              case Right(_)                            => Right(Some(true))
+              case Left(StorageError.AlreadyExists(_)) =>
+                // already there: same content is fine, different content is a conflict
+                objects.head(loc) match
+                  case Right(Some(m)) if m.contentHash == d.textHash => Right(Some(false))
+                  case Right(_)               => Left(Left(ProducerRejection.TextConflict))
                   case Left(e) if e.retryable => Left(Right(e))
                   case Left(_)                => Left(Left(ProducerRejection.StoreFailed))
               case Left(e) if e.retryable => Left(Right(e))

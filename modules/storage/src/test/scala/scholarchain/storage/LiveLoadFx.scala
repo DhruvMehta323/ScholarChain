@@ -130,29 +130,38 @@ object LiveLoadFx:
     def scripted(statuses: List[StorageResult[BulkLoadStatus]]): FakeLoader =
       FakeLoader(Right(BulkLoadHandle(LoadId)), statuses)
 
+  /** Thread-safe: parallel item puts reach the sleeper (retry) and the clock. */
   final class FakeClock:
-    var now: Long        = StartMillis
-    val clock: LiveClock = () => now
+    private val t                   = new java.util.concurrent.atomic.AtomicLong(StartMillis)
+    def now: Long                   = t.get
+    def now_=(v: Long): Unit        = t.set(v)
+    def advance(millis: Long): Unit = t.addAndGet(millis)
+    val clock: LiveClock            = () => now
 
-  /** Records every wait and advances the fake clock by it (so a poll loop terminates). */
+  /** Records every wait and advances the fake clock by it (so a poll loop terminates). Thread-safe.
+    */
   final class RecordingSleeper(clock: FakeClock) extends Sleeper:
-    var sleeps: List[Long]        = Nil
+    private val log        = new java.util.concurrent.CopyOnWriteArrayList[Long]()
+    def sleeps: List[Long] = scala.jdk.CollectionConverters.ListHasAsScala(log).asScala.toList
     def sleep(millis: Long): Unit =
-      sleeps = sleeps :+ millis
-      clock.now += millis
+      log.add(millis)
+      clock.advance(millis)
 
-  /** Counts every call and can fail every `put`. */
+  /** Counts every call and can fail every `put`. Thread-safe counters (puts run in parallel). */
   final class RecordingKv(inner: KeyValueStore, val putError: Option[StorageError] = None)
       extends KeyValueStore:
-    var puts: Int    = 0
-    var gets: Int    = 0
-    var queries: Int = 0
+    private val p    = new java.util.concurrent.atomic.AtomicInteger(0)
+    private val g    = new java.util.concurrent.atomic.AtomicInteger(0)
+    private val q    = new java.util.concurrent.atomic.AtomicInteger(0)
+    def puts: Int    = p.get
+    def gets: Int    = g.get
+    def queries: Int = q.get
     def calls: Int   = puts + gets + queries
     def put(table: String, item: KvItem, condition: PutCondition): StorageResult[PutOutcome] =
-      puts += 1
+      p.incrementAndGet()
       putError.map(Left(_)).getOrElse(inner.put(table, item, condition))
     def get(table: String, key: KvKey): StorageResult[Option[KvItem]] =
-      gets += 1
+      g.incrementAndGet()
       inner.get(table, key)
     def query(
         table: String,
@@ -162,7 +171,7 @@ object LiveLoadFx:
         ascending: Boolean,
         continuationToken: Option[String],
     ): StorageResult[KvPage] =
-      queries += 1
+      q.incrementAndGet()
       inner.query(table, partition, sort, limit, ascending, continuationToken)
 
   /** One wired set of fakes. */

@@ -38,54 +38,63 @@ object NeptuneAws:
         }
         .map(r => rows(r.results()))
 
-  def loader(client: NeptunedataClient): BulkLoader = new BulkLoader:
-    def start(request: NeptuneLoaderRequest): StorageResult[BulkLoadHandle] =
-      AwsErrors
-        .guard("neptune bulk load start")(
-          client.startLoaderJob(
-            StartLoaderJobRequest
-              .builder()
-              .source(request.source)
-              .format(request.format)
-              .iamRoleArn(request.iamRoleArn)
-              .s3BucketRegion(request.s3BucketRegion)
-              .mode(request.mode)
-              .failOnError(request.failOnError)
-              .parallelism(request.parallelism)
-              .updateSingleCardinalityProperties(request.updateSingleCardinalityProperties)
-              .queueRequest(request.queueRequest)
-              .build()
-          )
-        )
-        .flatMap(r =>
-          Option(r.payload())
-            .flatMap(m => Option(m.get("loadId")))
-            .map(id => BulkLoadHandle(id))
-            .toRight(StorageError.Failed("neptune bulk load: no loadId in the response"))
-        )
+  def loader(client: NeptunedataClient): BulkLoader = loader(client, client)
 
-    def status(handle: BulkLoadHandle): StorageResult[BulkLoadStatus] =
-      AwsErrors
-        .guard("neptune bulk load status")(
-          client.getLoaderJobStatus(
-            GetLoaderJobStatusRequest.builder().loadId(handle.loadId).build()
+  /** `startClient` serves only `startLoaderJob` and must be built with no SDK retries (see
+    * `AwsClients.neptuneLoaderStart`); `client` serves the status poll. The one-argument form uses
+    * `client` for both, so it RETRIES the start: production wiring must not use it.
+    */
+  def loader(client: NeptunedataClient, startClient: NeptunedataClient): BulkLoader =
+    new BulkLoader:
+      def start(request: NeptuneLoaderRequest): StorageResult[BulkLoadHandle] =
+        AwsErrors
+          .guard("neptune bulk load start")(
+            startClient.startLoaderJob(
+              StartLoaderJobRequest
+                .builder()
+                .source(request.source)
+                .format(request.format)
+                .iamRoleArn(request.iamRoleArn)
+                .s3BucketRegion(request.s3BucketRegion)
+                .mode(request.mode)
+                .failOnError(request.failOnError)
+                .parallelism(request.parallelism)
+                .updateSingleCardinalityProperties(request.updateSingleCardinalityProperties)
+                .queueRequest(request.queueRequest)
+                .build()
+            )
           )
-        )
-        .map { r =>
-          val overall =
-            Option(r.payload()).filter(_.isMap).flatMap(p => Option(p.asMap().get("overallStatus")))
-          val st = overall
-            .filter(_.isMap)
-            .flatMap(o => Option(o.asMap().get("status")))
-            .filter(_.isString)
-            .map(_.asString())
-          val total = overall
-            .filter(_.isMap)
-            .flatMap(o => Option(o.asMap().get("totalRecords")))
-            .filter(_.isNumber)
-            .map(_.asNumber().longValue())
-          mapStatus(st.getOrElse(Option(r.status()).getOrElse("")), total)
-        }
+          .flatMap(r =>
+            Option(r.payload())
+              .flatMap(m => Option(m.get("loadId")))
+              .map(id => BulkLoadHandle(id))
+              .toRight(StorageError.Failed("neptune bulk load: no loadId in the response"))
+          )
+
+      def status(handle: BulkLoadHandle): StorageResult[BulkLoadStatus] =
+        AwsErrors
+          .guard("neptune bulk load status")(
+            client.getLoaderJobStatus(
+              GetLoaderJobStatusRequest.builder().loadId(handle.loadId).build()
+            )
+          )
+          .map { r =>
+            val overall =
+              Option(r.payload())
+                .filter(_.isMap)
+                .flatMap(p => Option(p.asMap().get("overallStatus")))
+            val st = overall
+              .filter(_.isMap)
+              .flatMap(o => Option(o.asMap().get("status")))
+              .filter(_.isString)
+              .map(_.asString())
+            val total = overall
+              .filter(_.isMap)
+              .flatMap(o => Option(o.asMap().get("totalRecords")))
+              .filter(_.isNumber)
+              .map(_.asNumber().longValue())
+            mapStatus(st.getOrElse(Option(r.status()).getOrElse("")), total)
+          }
 
   /** Maps a Neptune loader status string (for example `LOAD_COMPLETED`). */
   def mapStatus(s: String, total: Option[Long]): BulkLoadStatus = s match

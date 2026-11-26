@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # scripts/smoke-test.sh [options]
 #
-# Smoke test of the deployed query-api: /healthz, /readyz, one bounded researcher query (POST /v1/query), evidence and explain for the
+# Smoke test of the deployed query-api: /healthz, /readyz, one bounded query (POST /v1/query, see DEFAULT_QUERY below), evidence and explain for the
 # returned claim, an idempotent repeat, and one expected error (401 without a key). Writes reports/deployments/<sha>/smoke-test.json.
 # The JSON holds check names, HTTP statuses and latencies only: never the key, never a response body.
 #
@@ -61,8 +61,16 @@ done
 AUTH_HEADER="${SC_SMOKE_AUTH_HEADER:-X-API-Key}"
 [[ "${AUTH_HEADER}" =~ ^[A-Za-z0-9-]+$ ]] || { echo "SC_SMOKE_AUTH_HEADER must be a header name" >&2; exit 2; }
 
-# The default body respects API.md (main): includeEvidence true, no bridge/community/path/team-size options (those are refused with 422).
-DEFAULT_QUERY='{"question":"Which researchers have the most distinct coauthors in distributed systems since 2015?","constraints":{"yearFrom":2015,"yearTo":2026,"topics":["distributed systems"],"institutions":[],"venues":[]},"analysis":{"rankingMetric":"DISTINCT_COAUTHOR_COUNT","includeTeamSize":false,"includeBridgeMetrics":false,"includeCommunities":false,"includePaths":false},"retrieval":{"graphLimit":10,"vectorLimit":30,"maxPathDepth":3},"output":{"includeEvidence":true,"includeScores":true,"includeUncertainty":true}}'
+# The default body respects API.md (main): includeEvidence true, no bridge/community/path/team-size options (those are refused with 422), and
+# no topic/venue/institution filter (each must be ONE token matching ^[A-Za-z0-9][A-Za-z0-9._:-]{0,63}$ and exist in the data).
+# It is meant to select the MaxTeamSize operation (the planner keyword fallback picks it from "largest team"): a stored window summary
+# read from DynamoDB, needing no researcher name and no S3 Vectors ONLY IF the planner picks max_team_size. The window must be a STORED
+# one (2000-2004 ... 2020-2024; "2015-2026" is not stored).
+# MODEL DEPENDENCE: the deployed query goes through the planner and the answer synthesis, which call Bedrock first
+# (Composition.scala:351-361, QueryPlannerAgent.scala:115-125, AnswerSynthesisAgent.scala:97-112). The chosen operation is therefore
+# model-dependent, and the answer can abstain (for example no_verified_claims). The `query` check passes only with a non-empty claims array;
+# an abstention is recorded in its note (claims, abstained and the abstain reason), and `explain` runs whenever a queryId exists.
+DEFAULT_QUERY='{"question":"What was the largest team size in 2020 to 2024?","constraints":{"yearFrom":2020,"yearTo":2024,"topics":[],"institutions":[],"venues":[]},"analysis":{"includeTeamSize":false,"includeBridgeMetrics":false,"includeCommunities":false,"includePaths":false},"retrieval":{"graphLimit":10,"vectorLimit":30,"maxPathDepth":3},"output":{"includeEvidence":true,"includeScores":true,"includeUncertainty":true}}'
 
 sc_stage preflight
 sc_require_cmd git terraform aws jq curl
@@ -163,7 +171,15 @@ if [[ "${HTTP_CODE}" == 200 ]] && jq -e '.queryId and (.claims | type == "array"
   QUERY_ID="$(jq -r '.queryId' "${TMP}/body")"
   CLAIM_EVID="$(jq -r '[.claims[]?.evidenceIds[]?] | first // empty' "${TMP}/body")"
   cp -- "${TMP}/body" "${TMP}/first.body"
-  record "query" true 200 "claims=$(jq '.claims | length' "${TMP}/body") abstained=$(jq -r '.abstained' "${TMP}/body")"
+  NCLAIMS="$(jq '.claims | length' "${TMP}/body")"
+  QNOTE="claims=${NCLAIMS} abstained=$(jq -r '.abstained' "${TMP}/body")"
+  if ((NCLAIMS > 0)); then
+    record "query" true 200 "${QNOTE}"
+  else
+    # an empty claims array is a failed check, but the reason is recorded (a token of at most 64 characters, see RestViews abstainReason)
+    ABSTAIN="$(jq -r '.abstainReason // empty' "${TMP}/body" | tr -cd 'A-Za-z0-9._:-' | cut -c1-64)"
+    record "query" false 200 "${QNOTE}${ABSTAIN:+ abstain_reason=${ABSTAIN}} (no claims)"
+  fi
 else
   record "query" false 200 "no usable synchronous answer"
 fi
@@ -171,17 +187,21 @@ fi
 [[ "${CLAIM_EVID}" =~ ^[A-Za-z0-9:._-]+$ ]] || CLAIM_EVID=""
 
 sc_stage evidence-and-explain
-if [[ -n "${QUERY_ID}" && -n "${CLAIM_EVID}" ]]; then
+if [[ -n "${CLAIM_EVID}" ]]; then
   call GET "/v1/evidence/${CLAIM_EVID}" yes
   [[ "${HTTP_CODE}" == 200 ]] && record evidence-by-id true 200 "" || record evidence-by-id false 200 ""
+else
+  HTTP_CODE="n/a"; LATENCY=0
+  record evidence-by-id false 200 "no claim evidence id to fetch (the query returned no claim, or abstained)"
+fi
+if [[ -n "${QUERY_ID}" ]]; then
   call GET "/v1/queries/${QUERY_ID}/evidence" yes
   [[ "${HTTP_CODE}" == 200 ]] && record query-evidence true 200 "items=$(jq '.items | length' "${TMP}/body" 2> /dev/null || echo 0)" || record query-evidence false 200 ""
   call GET "/v1/explain/${QUERY_ID}" yes
   [[ "${HTTP_CODE}" == 200 ]] && record explain true 200 "" || record explain false 200 ""
 else
   HTTP_CODE="n/a"; LATENCY=0
-  record evidence-by-id false 200 "no claim evidence id to fetch (the query returned no claim, or abstained)"
-  record explain false 200 "no query id"
+  record explain false 200 "no query id (the query call returned no usable answer)"
 fi
 
 sc_stage idempotent-repeat

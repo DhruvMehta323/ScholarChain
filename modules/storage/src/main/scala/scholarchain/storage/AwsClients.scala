@@ -2,10 +2,12 @@ package scholarchain.storage
 
 import java.io.ByteArrayInputStream
 import java.net.URI
+import java.time.Duration
 
 import scholarchain.core.*
 
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider
+import software.amazon.awssdk.awscore.retry.AwsRetryStrategy
 import software.amazon.awssdk.core.client.config.ClientOverrideConfiguration
 import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient
 import software.amazon.awssdk.profiles.ProfileFile
@@ -33,6 +35,13 @@ import software.amazon.awssdk.services.sqs.SqsClient
   *     shared `~/.aws/config` or `~/.aws/credentials` for client defaults, plus an explicit region
   *     and the injected credentials provider. (Environment variables the SDK reads for client
   *     defaults, such as `AWS_ENDPOINT_URL*`, are not files and are not suppressed.)
+  *   - the Neptune bulk-load START call uses a second, dedicated client (`neptuneLoaderStart`)
+  *     built with the same injected credentials, region, endpoint and hermetic configuration but
+  *     with NO SDK retries (`AwsRetryStrategy.doNotRetry()`: exactly one attempt) and an explicit
+  *     `AwsClients.LoaderStartTimeout` (120 s) api-call-attempt and api-call timeout, with the HTTP
+  *     socket timeout set just above it. A start can legitimately take tens of seconds while
+  *     Neptune validates the S3 source, and a retried start after an unseen success could queue a
+  *     duplicate job. The openCypher executor and the status poll keep the default client.
   */
 final class AwsClients(
     credentials: AwsCredentialsProvider,
@@ -81,6 +90,25 @@ final class AwsClients(
       .toRight(StorageError.InvalidRequest("no Neptune endpoint was configured"))
       .map(_ => neptuneClient)
 
+  /** Same as `neptuneData` but for the bulk-load start only: one attempt, no SDK retry. */
+  def neptuneLoaderStart: Either[StorageError, NeptunedataClient] =
+    neptuneEndpoint
+      .toRight(StorageError.InvalidRequest("no Neptune endpoint was configured"))
+      .map(_ => neptuneLoaderStartClient)
+
+  private lazy val neptuneLoaderStartClient: NeptunedataClient = NeptunedataClient
+    .builder()
+    .credentialsProvider(credentials)
+    .region(region)
+    .overrideConfiguration(AwsClients.loaderStartOverride)
+    .httpClientBuilder(
+      UrlConnectionHttpClient
+        .builder()
+        .socketTimeout(AwsClients.LoaderStartSocketTimeout)
+    )
+    .endpointOverride(neptuneEndpoint.get)
+    .build()
+
   private lazy val neptuneClient: NeptunedataClient = NeptunedataClient
     .builder()
     .credentialsProvider(credentials)
@@ -100,14 +128,16 @@ final class AwsClients(
   def workQueue(queueUrls: Map[String, String]): WorkQueue = new SqsWorkQueue(sqs, queueUrls)
 
   def graphStore(cfg: StorageModuleConfig): Either[StorageError, GraphStore] =
-    NeptuneBulkLoad.checkConfig(cfg.neptune).flatMap(_ => neptuneData).map { c =>
-      new TemplateGraphStore(
-        cfg.queryBounds,
-        cfg.neptune,
-        region.id(),
-        NeptuneAws.executor(c),
-        NeptuneAws.loader(c),
-      )
+    NeptuneBulkLoad.checkConfig(cfg.neptune).flatMap(_ => neptuneData).flatMap { c =>
+      neptuneLoaderStart.map { s =>
+        new TemplateGraphStore(
+          cfg.queryBounds,
+          cfg.neptune,
+          region.id(),
+          NeptuneAws.executor(c),
+          NeptuneAws.loader(c, s),
+        )
+      }
     }
 
 object AwsClients:
@@ -130,4 +160,20 @@ object AwsClients:
       .builder()
       .defaultProfileFile(emptyProfileFile)
       .defaultProfileName(HermeticProfileName)
+      .build()
+
+  /** Attempt and total timeout of the bulk-load start call (one attempt, so they coincide). */
+  val LoaderStartTimeout: Duration = Duration.ofSeconds(120)
+
+  /** HTTP socket (read) timeout of the start client: above `LoaderStartTimeout`, so the SDK's own
+    * timeout fires first and is reported as `Unavailable` rather than a raw socket error.
+    */
+  val LoaderStartSocketTimeout: Duration = Duration.ofSeconds(125)
+
+  /** `hermetic` plus no retries and the explicit start timeouts. Makes no AWS call. */
+  def loaderStartOverride: ClientOverrideConfiguration =
+    hermetic.toBuilder
+      .retryStrategy(AwsRetryStrategy.doNotRetry())
+      .apiCallAttemptTimeout(LoaderStartTimeout)
+      .apiCallTimeout(LoaderStartTimeout)
       .build()
