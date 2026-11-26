@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "experiments/analysis/fixtures/SYNTHETIC-samples-scale.jsonl",
+    "--loadgen",
+    "experiments/analysis/fixtures/SYNTHETIC-loadgen-c4-fused.csv",
+    "--out-dir",
+    "experiments/analysis/output/SYNTHETIC-examples",
+    "--force"
+  ],
+  "benchmark_sha256": null,
+  "generated_at_utc": "2026-11-24T09:09:14.168Z",
+  "git_head": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "inputs": [
+    {
+      "path": "experiments/analysis/fixtures/SYNTHETIC-samples-scale.jsonl",
+      "sha256": "cf29ecbbc8afb4887c3b1fe6b7506677675f6eaaa1f840996ec9520d868f1464"
+    },
+    {
+      "path": "experiments/analysis/fixtures/SYNTHETIC-loadgen-c4-fused.csv",
+      "sha256": "7b66272c71c25c359e5561870bb5bffd2acfe795e1ac6ffe6942bf8300a4edf5"
+    }
+  ],
+  "output": "SYNTHETIC-scale-events.csv",
+  "output_sha256": "f04f234b350f859af9023eef2e1997b78d8586084dba544c0d9846dd37da3023",
+  "parameters": {
+    "force": true,
+    "loadgen": [
+      "experiments/analysis/fixtures/SYNTHETIC-loadgen-c4-fused.csv"
+    ],
+    "no_plot": false,
+    "out_dir": "experiments/analysis/output/SYNTHETIC-examples",
+    "samples": "experiments/analysis/fixtures/SYNTHETIC-samples-scale.jsonl"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/analysis/scale_timeline.py",
+  "synthetic": true,
+  "tree_dirty": true
+}

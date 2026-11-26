@@ -1,0 +1,37 @@
+{
+  "SYNTHETIC": true,
+  "stub": "experiments/collect/testing/stub-bin/aws",
+  "ResultsByTime": [
+    {
+      "TimePeriod": {
+        "Start": "2026-01-01",
+        "End": "2026-01-02"
+      },
+      "Total": {},
+      "Groups": [
+        {
+          "Keys": [
+            "Amazon Elastic MapReduce"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "SYNTHETIC Service"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000",
+              "Unit": "USD"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

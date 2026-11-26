@@ -1,0 +1,122 @@
+{
+  "checks": {
+    "GC-01 self loops in COAUTHORED_WITH": [
+      "0 of 15107",
+      "PASS"
+    ],
+    "GC-02 duplicate unordered (pair, window) rows / ordered duplicates": [
+      "0 / 0",
+      "PASS"
+    ],
+    "GC-03 researcher-metrics coauthorCount != degree in loaded edges (rows)": [
+      "0 of 6937",
+      "PASS"
+    ],
+    "GC-04 IN_COMPONENT: (researcher, window) with count != 1 / distinct researchers covered": [
+      "0 of 6937 / 3893 of 3893",
+      "PASS"
+    ],
+    "GC-05 MEMBER_OF: (researcher, window) with count != 1 / distinct researchers covered": [
+      "0 of 6937 / 3893 of 3893",
+      "PASS"
+    ],
+    "GC-06 load-manifest row counts differ from rows read (labels)": [
+      "none",
+      "PASS"
+    ],
+    "GC-07 edges whose evidence works lie outside the edge window (or window mismatch)": [
+      "0 of 15107",
+      "PASS"
+    ],
+    "GC-08 stored shortest paths disagreeing with independent BFS": [
+      "0 of 63",
+      "PASS"
+    ]
+  },
+  "coauthor_edge_support": {
+    "edges": 15107,
+    "evidence_in_window": 15107,
+    "expected_missing_from_load": 0,
+    "failure_reasons": {},
+    "fully_supported": 15107,
+    "independent_alltime_pairs_from_AUTHORED": 8416,
+    "jointPublicationCount_equals_evidence_rows_when_not_truncated": 15107,
+    "loaded_alltime_pairs": 8416,
+    "loaded_not_expected": 0,
+    "support_rate": 1.0,
+    "with_evidence_rows": 15107
+  },
+  "duplicates": {
+    "dup_evidence_pk_sk": 0,
+    "dup_unordered_pair_window_rows": 0,
+    "duplicate_rate": 0.0,
+    "edge_dup_ids_by_type": {
+      "AUTHORED": 0,
+      "COAUTHORED_WITH": 0,
+      "COMMUNITY_LINK": 0,
+      "HAS_TOPIC": 0,
+      "IN_COMPONENT": 0,
+      "MEMBER_OF": 0,
+      "PUBLISHED_IN": 0,
+      "RESOLVES_TO": 0
+    },
+    "edge_rows": 35649,
+    "ordered_duplicates": 0,
+    "vertex_dup_ids_by_label": {
+      "Community": 0,
+      "Component": 0,
+      "ExternalIdentity": 0,
+      "Institution": 0,
+      "Researcher": 0,
+      "Topic": 0,
+      "Venue": 0,
+      "Work": 0
+    },
+    "vertex_ids_in_more_than_one_label": 0,
+    "vertex_rows": 10417
+  },
+  "evidence_class": "R",
+  "input_load": "modules/storage/target/loads/L5 (main checkout, untracked), neptune CSV and dynamodb jsonl; spark run sparkS1r2, snapshot dblp-1k",
+  "orphans": {
+    "overall_no_incident_edge_rate": 0.024287222808870117,
+    "researcher_orphan_rate": 0.0,
+    "researchers": 3893,
+    "researchers_without_AUTHORED": 0,
+    "vertex_count_by_label": {
+      "Community": 1755,
+      "Component": 1735,
+      "ExternalIdentity": 1423,
+      "Institution": 250,
+      "Researcher": 3893,
+      "Topic": 206,
+      "Venue": 155,
+      "Work": 1000
+    },
+    "vertices_with_no_incident_edge_by_label": {
+      "Community": 0,
+      "Component": 0,
+      "ExternalIdentity": 0,
+      "Institution": 250,
+      "Researcher": 0,
+      "Topic": 3,
+      "Venue": 0,
+      "Work": 0
+    },
+    "work_orphan_rate": 0.0,
+    "works": 1000,
+    "works_without_AUTHORED": 0
+  },
+  "provenance_audit": {
+    "edges_fully_traced": 25,
+    "evidence_rows_audited": 25,
+    "evidence_rows_failed": 0,
+    "sample": 25,
+    "seed": 160101,
+    "xml_sha256_observed": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6"
+  },
+  "referential_integrity": {
+    "dangling_rate": 0.0,
+    "dangling_total": 0,
+    "edges_total": 35649
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "ResultsByTime": [
+    {
+      "Groups": [
+        {
+          "Keys": [
+            "Amazon Elastic MapReduce"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.5000",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0100",
+              "Unit": "USD"
+            }
+          }
+        }
+      ],
+      "TimePeriod": {
+        "End": "2026-11-26",
+        "Start": "2026-11-25"
+      }
+    }
+  ],
+  "SYNTHETIC": true
+}

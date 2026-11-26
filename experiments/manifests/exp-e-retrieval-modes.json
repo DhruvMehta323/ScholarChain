@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "id": "exp-e-retrieval-modes",
+  "letter": "E",
+  "title": "Retrieval modes: graph-only, vector-only, fused",
+  "purpose": "Run the same benchmark questions through fused (default), graph-only (vectorLimit 0) and vector-only (graphLimit 0) retrieval and compare recall@K, MRR and nDCG against the benchmark labels.",
+  "approved": false,
+  "approved_by": "",
+  "approval_ref": "",
+  "commit_sha": "FILL_AT_RUN_TIME",
+  "seed": 441,
+  "environment": {
+    "region": "us-east-2",
+    "approved_environments": [
+      "course"
+    ],
+    "profile_env_var": "AWS_PROFILE",
+    "region_env_var": "AWS_REGION",
+    "note": "Terraform output region; no AWS call is made by this manifest."
+  },
+  "command": [
+    "python3",
+    "-B",
+    "load-tests/run_suite.py",
+    "--manifest",
+    "experiments/manifests/exp-e-retrieval-modes.json"
+  ],
+  "command_notes": [
+    "KNOWN GAP: modules/services/API.md (main) refuses graphLimit 0 and any vectorLimit other than 30 with 422 UNSUPPORTED_RETRIEVAL_MODE, so graph-only and vector-only cannot run through the public API as deployed. The suite still sends them: the 422 responses are recorded as failed rows (no model call is made on a 422), never dropped. Real graph-only and vector-only numbers need a service or rag change (owners service-engineer / rag-engineer) or an internal-route runner.",
+    "Environment names (set by the human before run-experiment.sh): SC_LOADTEST_API_KEY_FILE (mode 600 file outside the repository), SC_LOADTEST_BASE_URL (Terraform output query_api_url), SC_LOADTEST_EXPECT_HOST (its host), SC_LOADTEST_BENCHMARK (path of benchmark-v1.json obtained with git show main:..., outside the repository), SC_RUN_ID (the same token passed to run-experiment.sh --run-id; run-experiment.sh does not export its run id).",
+    "HUMAN APPROVAL EDIT (Phase 13 decision 2): the ALB is HTTP only, so the human appends \"--allow-insecure-http\" to the command array when approving the manifest (ingress limited to the human's /32; rotate the key afterwards). Without it the generator refuses (exit 3) before any request.",
+    "Non-loopback rules enforced by loadgen.py and run_suite.py: the manifest must pass validate_manifests.py and be approved, --ledger and --budget-file are refused, and the benchmark SHA-256 must equal loadgen.benchmark.sha256.",
+    "scripts/run-experiment.sh refuses a dirty tree: commit the raw results of experiment D first (experiments/README.md, Between experiments)."
+  ],
+  "max_runtime_seconds": 3600,
+  "duration_cap_seconds": 3600,
+  "cost_cap_usd": 1.2,
+  "model_cost_cap_usd": 0.6,
+  "cost_estimate": {
+    "basis": "model: 27 requests x $0.02101 = $0.57 if every request reaches the model (upper bound; 422 rows cost nothing); window cost as experiment D",
+    "expected_usd": 0.8,
+    "status": "estimate"
+  },
+  "dataset_snapshot": {
+    "id": "dblp-10k",
+    "manifest_entry": "datasets/dataset-manifest.yaml#scale_datasets.dblp-10k",
+    "works": 10000,
+    "notes": "labels are benchmark-v1 expected facts (researcher subject ids)"
+  },
+  "scale": {
+    "label": "9 questions x 3 modes",
+    "questions_per_mode": 9,
+    "modes": [
+      "fused",
+      "graph-only",
+      "vector-only"
+    ]
+  },
+  "resource_limits": {
+    "ecs_max_tasks_per_service": 4,
+    "max_requests": 27,
+    "max_model_calls": 81,
+    "max_concurrency": 2
+  },
+  "loadgen": {
+    "max_requests_per_run": 27,
+    "max_model_calls_per_run": 81,
+    "max_duration_seconds": 1200,
+    "max_concurrency": 2,
+    "model_cost_cap_usd": 0.6,
+    "request_timeout_seconds": 60,
+    "ramp_seconds": 0,
+    "modes": [
+      "fused",
+      "graph-only",
+      "vector-only"
+    ],
+    "question_limit": 9,
+    "levels": [
+      {
+        "concurrency": 2,
+        "requests": 9,
+        "duration_seconds": 400,
+        "mode": "fused"
+      },
+      {
+        "concurrency": 2,
+        "requests": 9,
+        "duration_seconds": 400,
+        "mode": "graph-only"
+      },
+      {
+        "concurrency": 2,
+        "requests": 9,
+        "duration_seconds": 400,
+        "mode": "vector-only"
+      }
+    ],
+    "benchmark": {
+      "source_ref": "main",
+      "source_commit_at_authoring": "932fd2f21ec0abcc5cbe3a31a07c1536be3b5242",
+      "source_path": "modules/rag/src/main/resources/benchmarks/benchmark-v1.json",
+      "sha256": "e511d17530823374bfeec5683d2ac25c6980d5a31f49b470e47d62f561a721e6",
+      "benchmarkVersion": "benchmark-v1",
+      "questionCount": 44,
+      "how_to_obtain": "git show main:<source_path> > <file outside the repository>; pass the file with --benchmark (not copied into this repository)"
+    }
+  },
+  "metrics_to_collect": [
+    "loadgen raw CSV including returned_researcher_ids and mode",
+    "benchmark labels: expected.facts[].subject (kind identity) as the relevant set",
+    "explain retrievalModes and indexesQueried per query (loadgen --fetch-explain)",
+    "recall@K, MRR, nDCG@K by mode and category (retrieval_metrics.py)"
+  ],
+  "metric_locations": [
+    "experiments/results/exp-e-retrieval-modes/<run>/"
+  ],
+  "stop_conditions": [
+    "request cap (27), model-call cap (81) or model cost cap (0.60 USD) reached",
+    "ledger of model spend at the loadgen limit (1.80 USD): refuse to start",
+    "duration_cap_seconds reached"
+  ],
+  "requires": {
+    "prior_runs": [],
+    "human_approval_flags": [
+      "--allow-insecure-http"
+    ],
+    "explicit_human_approval_required": true
+  },
+  "reproduction": "export SC_RUN_ID=<token> SC_LOADTEST_BENCHMARK=<file> SC_LOADTEST_API_KEY_FILE=<key file> SC_LOADTEST_BASE_URL=<query_api_url> SC_LOADTEST_EXPECT_HOST=<its host>; bash scripts/run-experiment.sh exp-e-retrieval-modes --run-id $SC_RUN_ID (approved and --allow-insecure-http added by the human, as for D); analysis: retrieval_metrics.py"
+}

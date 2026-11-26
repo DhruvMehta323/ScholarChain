@@ -1,0 +1,17 @@
+{
+  "SYNTHETIC": true,
+  "stub": "experiments/collect/testing/stub-bin/aws",
+  "Steps": [
+    {
+      "Id": "s-SYNTHETIC1",
+      "Name": "SYNTHETIC-hadoop",
+      "Status": {
+        "State": "COMPLETED",
+        "Timeline": {
+          "StartDateTime": "2026-01-01T00:00:00+00:00",
+          "EndDateTime": "2026-01-01T00:10:00+00:00"
+        }
+      }
+    }
+  ]
+}

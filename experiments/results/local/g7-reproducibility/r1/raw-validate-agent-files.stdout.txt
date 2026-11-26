@@ -1,0 +1,62 @@
+== Agents (.claude/agents) ==
+PASS build-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS code-reviewer.md: reviewer tool fence (Read, Grep, Glob only)
+PASS code-reviewer.md: frontmatter ok (tools: Read, Grep, Glob; model: opus); report contract complete
+PASS dataset-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS dependency-updater.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS deploy-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Bash; model: sonnet); report contract complete
+PASS documentation-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS domain-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS entity-resolution-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS experiment-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+INFO factory-engineer.md has no model field (inherits); file is out of scope for this phase
+PASS factory-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: inherit); report contract complete
+PASS hadoop-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS incident-responder.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS infra-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS rag-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS service-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS spark-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS storage-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+PASS test-engineer.md: frontmatter ok (tools: Read, Grep, Glob, Write, Edit, Bash; model: sonnet); report contract complete
+== Roster ==
+PASS roster: 18 agent definitions match the 18-agent matrix; names unique
+PASS CLAUDE.md imports @docs/agents.md
+== Routing collision (description overlap) ==
+PASS max description overlap 0.24 (service-engineer vs spark-engineer); threshold 0.50
+== Commands (.claude/commands) ==
+PASS deploy.md -> deploy-engineer (args, gates present)
+PASS experiment.md -> experiment-engineer (args, gates present)
+PASS incident.md -> incident-responder (args, gates present)
+PASS rollback.md -> deploy-engineer (args, gates present)
+PASS run-pipeline.md -> deploy-engineer (args, gates present)
+== settings.json and hooks ==
+PASS .claude/settings.json parses as JSON
+PASS PreToolUse[Bash] -> guard-dangerous.sh exists and is executable
+PASS PreToolUse[mcp__.*] -> guard-dangerous.sh exists and is executable
+PASS PreToolUse[Write|Edit|MultiEdit|NotebookEdit] -> guard-writes.sh exists and is executable
+PASS PostToolUse[Write|Edit] -> format-scala.sh exists and is executable
+PASS Stop[*] -> verify-tests-ran.sh exists and is executable
+PASS SubagentStop[*] -> verify-tests-ran.sh exists and is executable
+PASS required wiring PreToolUse[Bash] -> guard-dangerous.sh
+PASS required wiring PreToolUse[Write|Edit|MultiEdit|NotebookEdit] -> guard-writes.sh
+PASS required wiring PostToolUse[Write|Edit] -> format-scala.sh
+PASS required wiring Stop[*] -> verify-tests-ran.sh
+PASS required wiring SubagentStop[*] -> verify-tests-ran.sh
+PASS bash -n format-scala.sh
+PASS bash -n guard-dangerous.sh
+PASS bash -n guard-writes.sh
+INFO validate-agent-files.py is the logic module of validate-agent-files.sh (not a hook)
+PASS bash -n validate-agent-files.sh
+INFO validate-agent-files.sh is a manual validation tool, intentionally not wired as a hook
+PASS bash -n verify-tests-ran.sh
+PASS required deny rules present (26 checked)
+PASS no rule is both allowed and denied
+== .mcp.json ==
+PASS .mcp.json parses as JSON
+PASS MCP server 'github': env uses variable names only; documented in docs/agents.md
+PASS MCP server 'aws-api': env uses variable names only; documented in docs/agents.md
+PASS MCP server 'terraform': env uses variable names only; documented in docs/agents.md
+PASS MCP server 'aws-docs': env uses variable names only; documented in docs/agents.md
+== Summary ==
+FAILURES: 0

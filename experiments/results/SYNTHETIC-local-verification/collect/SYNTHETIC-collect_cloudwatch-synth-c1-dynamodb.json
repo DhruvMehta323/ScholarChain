@@ -1,0 +1,277 @@
+{
+  "SYNTHETIC": true,
+  "stub": "experiments/collect/testing/stub-bin/aws",
+  "MetricDataResults": [
+    {
+      "Id": "m1",
+      "Label": "QuerySession ReadThrottleEvents",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m2",
+      "Label": "QuerySession WriteThrottleEvents",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m3",
+      "Label": "QuerySession UserErrors",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m4",
+      "Label": "QuerySession SystemErrors",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m5",
+      "Label": "QuerySession ConsumedReadCapacityUnits",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m6",
+      "Label": "QuerySession ConsumedWriteCapacityUnits",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m7",
+      "Label": "QuerySession SuccessfulRequestLatency GetItem",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m8",
+      "Label": "QuerySession SuccessfulRequestLatency Query",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m9",
+      "Label": "QuerySession SuccessfulRequestLatency PutItem",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m10",
+      "Label": "EvidenceBundle ReadThrottleEvents",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m11",
+      "Label": "EvidenceBundle WriteThrottleEvents",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m12",
+      "Label": "EvidenceBundle UserErrors",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m13",
+      "Label": "EvidenceBundle SystemErrors",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m14",
+      "Label": "EvidenceBundle ConsumedReadCapacityUnits",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m15",
+      "Label": "EvidenceBundle ConsumedWriteCapacityUnits",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m16",
+      "Label": "EvidenceBundle SuccessfulRequestLatency GetItem",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m17",
+      "Label": "EvidenceBundle SuccessfulRequestLatency Query",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m18",
+      "Label": "EvidenceBundle SuccessfulRequestLatency PutItem",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    }
+  ],
+  "Messages": []
+}

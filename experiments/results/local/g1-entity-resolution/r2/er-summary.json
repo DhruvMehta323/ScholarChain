@@ -1,0 +1,56 @@
+{
+  "code_version": "74eee4e+repair04",
+  "crosscheck_json_differences": 24,
+  "crosscheck_md_differences": 0,
+  "crosscheck_md_items_checked": 9,
+  "evidence_class": "R",
+  "findings": [
+    "FINDING: 24 key(s) differ between er-v1-heldout-eval.json perKind and er-v1-results.json heldout (see crosscheck-eval-vs-results-json.csv); not corrected.",
+    "FINDING (reading aid, for the human): committed split is calibration 142 / held-out 95 from 240 labelled rows (3 UNSURE excluded); the instructor requirement printed in er_report.py is at least 170 pairs, 102/68. Reported, not changed.",
+    "NOTE: heldout work has 5 MATCH and 0 NON_MATCH; the committed results say precision and F1 are not measurable for work (workMetricsNote in er-v1-results.json). The tool's work precision 1 / F1 0.7499999999999999 are shown in er-heldout-metrics.csv as in the tool output and must not be read as a precision result.",
+    "NOTE: llm path has n=0 held-out rows (LLM not executed: er-v1-results.json evaluation.llmPath). Unresolved rate counts the probabilistic band, which would go to the LLM."
+  ],
+  "gate_table_row": [
+    31,
+    "| researcher | 90 | 40 / 3 / 7 / 40 | 0.930 | 0.851 | 0.889 |"
+  ],
+  "held_out_rows": 95,
+  "llm_used": false,
+  "per_kind": {
+    "researcher": {
+      "conflict_rate": 0.022222222222222223,
+      "coverage": 0.7444444444444445,
+      "f1": 0.888888888888889,
+      "fn": 7,
+      "fp": 3,
+      "n": 90,
+      "precision": 0.9302325581395349,
+      "recall": 0.851063829787234,
+      "tn": 40,
+      "tp": 40,
+      "unresolved_rate": 0.23333333333333334
+    },
+    "work": {
+      "conflict_rate": 0.4,
+      "coverage": 0.6,
+      "f1": 0.7499999999999999,
+      "fn": 2,
+      "fp": 0,
+      "n": 5,
+      "precision": 1,
+      "recall": 0.6,
+      "tn": 0,
+      "tp": 3,
+      "unresolved_rate": 0
+    }
+  },
+  "policy": "er-v1",
+  "source": "committed Phase 05 files, copied unchanged, no recomputation of the policy",
+  "split": {
+    "calibration": 142,
+    "excluded_unsure": 3,
+    "heldout": 95,
+    "rows": 240,
+    "seed": 20260101
+  }
+}

@@ -1,0 +1,18 @@
+phase,stated_counts_source_file:line,stated_counts_on_first_line_that_states_counts (round not identified: some reports store the newest round first; severities not listed are not stated on that line),that_line_text,enumerated_finding_lines_all_rounds_not_deduplicated
+phase-00-seed-agent,,NO STATED COUNT,,
+phase-01-agent-factory,docs/agent-runs/phase-01-agent-factory/review-report.md:70,HIGH=0,"VALIDATION RESULTS: Read-only verified verdict: APPROVE WITH NOTES. Claims 1, 2, 4 CONFIRMED; 5 CONFIRMED with caveat; 3 and 6 CANNOT VERIFY. No High/Medium findings; Low findings L1-L5 above.",
+phase-02-build-skeleton,,NO STATED COUNT,,
+phase-03-contracts-datasets,docs/agent-runs/phase-03-contracts-datasets/review-report.md:534,INFO=4;LOW=5,"VALIDATION RESULTS: Verdict APPROVE WITH NOTES. V2-1 resolved (manifest:145,146,148). V2-2 resolved (manifest:159-176). V2-3 resolved: renormalize_check.py:29,32-38 exactly match the recorded policy-1 rule; URLs with a percent-encoded 10.NNNN/ prefix or slash ",
+phase-04-hadoop-mapreduce,,NO STATED COUNT,,
+phase-05-entity-resolution,,NO STATED COUNT,,HIGH lines=1 (first at review-report.md:39); LOW lines=8 (first at review-report.md:47); MEDIUM lines=2 (first at review-report.md:46)
+phase-06-spark-analytics,docs/agent-runs/phase-06-spark-analytics/review-report.md:5,HIGH=0,"Verdict: **APPROVE WITH NOTES**. There is no HIGH finding, and the reviewer found no over-merge under §4.1 as written. D ran no commands (Read, Grep and Glob only), so it could not read the Parquet or gzipped tables. A static count of `test(` declarations matc",
+phase-07-storage,docs/agent-runs/phase-07-storage/review-report.md:7,HIGH=0;MEDIUM=8;LOW=13,"**Verdict: REQUEST_CHANGES.** 0 HIGH, 8 MEDIUM, 13 LOW.",
+phase-08-embeddings-vectors,docs/agent-runs/phase-08-embeddings-vectors/review-report.md:7,HIGH=0;MEDIUM=3;LOW=9,"**Verdict: REQUEST_CHANGES.** 0 HIGH, 3 MEDIUM (M1 correctness, M2 security, M3 idempotency), 9 LOW.",
+phase-09-runtime-agents,,NO STATED COUNT,,HIGH lines=5 (first at review-report.md:27); LOW lines=9 (first at review-report.md:34); MEDIUM lines=7 (first at review-report.md:30)
+phase-10-services,docs/agent-runs/phase-10-services/review-report.md:5,MEDIUM=9;HIGH=0,"**Verdict: REQUEST_CHANGES.** Nine MEDIUM findings on failure handling, idempotency, concurrency, grounding visibility and test strength. No HIGH.",MEDIUM lines=9 (first at review-report.md:21)
+phase-11-adversarial-review,,NO STATED COUNT,,
+phase-12-terraform,docs/agent-runs/phase-12-terraform/review-report.md:13,HIGH=1;MEDIUM=7;LOW=13,"VERDICT: REQUEST_CHANGES (1 HIGH, 7 MEDIUM, 13 LOW)",
+phase-13-automation,docs/agent-runs/phase-13-automation/review-report.md:5,HIGH=0;MEDIUM=8;LOW=9;INFO=3,"**Verdict (round 1): REQUEST CHANGES** — 0 HIGH, 8 MEDIUM, 9 LOW, 3 INFO.",INFO lines=2 (first at review-report.md:66); LOW lines=5 (first at review-report.md:61)
+phase-15a-dataset-scale,,NO STATED COUNT,,LOW lines=6 (first at review-report.md:54); MEDIUM lines=3 (first at review-report.md:42)
+phase-15b-experiment-harness,docs/agent-runs/phase-15b-experiment-harness/review-report.md:7,HIGH=0;MEDIUM=6;LOW=12,"**Verdict: REQUEST CHANGES.** HIGH 0, MEDIUM 6, LOW 12.",
+phase-17a-docs-draft,docs/agent-runs/phase-17a-docs-draft/human-gate.md:10,MEDIUM=3;LOW=11;LOW=3,"- `prompt.md` (my work order) and my amendments during the phase (section 2), the orchestrator's checkpoints, the documentation-engineer reports (work order A and repair round 1), and the code-reviewer reports (review 1: CHANGES-REQUIRED with 3 MEDIUM and 11 L",

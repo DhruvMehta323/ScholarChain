@@ -1,0 +1,48 @@
+{
+  "argv": [
+    "experiments/analysis/fixtures/SYNTHETIC-modes-fused.csv",
+    "experiments/analysis/fixtures/SYNTHETIC-modes-graph-only.csv",
+    "experiments/analysis/fixtures/SYNTHETIC-modes-vector-only.csv",
+    "--benchmark",
+    "load-tests/testing/SYNTHETIC-benchmark.json",
+    "--out-dir",
+    "experiments/analysis/output/SYNTHETIC-examples",
+    "--force"
+  ],
+  "benchmark_sha256": "db26ed2997e68c4175d8499a1abff33e10f4b03ad52700f44429873cb3c5d01d",
+  "generated_at_utc": "2026-11-24T09:09:15.418Z",
+  "git_head": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "inputs": [
+    {
+      "path": "experiments/analysis/fixtures/SYNTHETIC-modes-fused.csv",
+      "sha256": "f5f6b9c5f4dbefe1eb81a3671803b89ffb7c91b5aaae88d88fe72006e1a889de"
+    },
+    {
+      "path": "experiments/analysis/fixtures/SYNTHETIC-modes-graph-only.csv",
+      "sha256": "8e54be725a0065c476824d9503c981abdcb496b9ae7ed7563de275439ab8a964"
+    },
+    {
+      "path": "experiments/analysis/fixtures/SYNTHETIC-modes-vector-only.csv",
+      "sha256": "4824bb31a3798fbfc891bcaf532bf2c1f2522e7b429f48019380b092007f5162"
+    }
+  ],
+  "output": "SYNTHETIC-retrieval-metrics.csv",
+  "output_sha256": "7f4ff8a0a32fb41bb301fc785a65f7dcd98dd96d77ab3a843ba1b57d4e79bcfb",
+  "parameters": {
+    "benchmark": "load-tests/testing/SYNTHETIC-benchmark.json",
+    "force": true,
+    "inputs": [
+      "experiments/analysis/fixtures/SYNTHETIC-modes-fused.csv",
+      "experiments/analysis/fixtures/SYNTHETIC-modes-graph-only.csv",
+      "experiments/analysis/fixtures/SYNTHETIC-modes-vector-only.csv"
+    ],
+    "k": "1,3,5,10",
+    "no_plot": false,
+    "out_dir": "experiments/analysis/output/SYNTHETIC-examples"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/analysis/retrieval_metrics.py",
+  "synthetic": true,
+  "tree_dirty": true
+}

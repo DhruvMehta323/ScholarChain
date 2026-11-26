@@ -1,0 +1,21 @@
+{
+  "evidence_class": "none (skeleton)",
+  "generated_at_utc": "2026-11-24T23:34:24.983Z",
+  "git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "group": "g5",
+  "inputs": [
+    {
+      "path": "experiments/evaluation/performance_elasticity_template.csv",
+      "sha256": "02f3e36ed85ae9acf97e3bde0a80c995d8fb948516ba2e46eeb7aa28c767437e"
+    }
+  ],
+  "not_available_inputs": [],
+  "notes": [],
+  "parameters": {},
+  "python": "3.14.2",
+  "run_id": "r1",
+  "script": "experiments/evaluation/local_eval.py",
+  "script_sha256": "6bc30127fba6cf772e27ddc928ec6aab177efea798150f22e647be5c1ad1b6f0",
+  "synthetic": false,
+  "tree_dirty": true
+}

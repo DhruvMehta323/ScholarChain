@@ -1,0 +1,3 @@
+doi vectors: 121 rows pass (sha256 4b669451655aa283f27cad0b9f0b61c1072d4acfd1e4162e350075465e4a370d)
+validate_manifest 1.2.0
+checks passed: 346; failed: 0

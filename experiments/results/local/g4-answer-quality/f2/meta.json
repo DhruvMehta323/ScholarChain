@@ -1,0 +1,212 @@
+{
+  "evidence_class": "F",
+  "file_evidence_class": {
+    "README.md": "F",
+    "answer-quality-summary.json": "F",
+    "claims-by-category-status.csv": "F",
+    "human-rating-sheet-EMPTY.csv": "F",
+    "per-question.csv": "F"
+  },
+  "generated_at_utc": "2026-11-25T00:45:09.637Z",
+  "git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "group": "g4",
+  "inputs": [
+    {
+      "path": "modules/rag/src/main/resources/benchmarks/benchmark-v1.json",
+      "sha256": "e511d17530823374bfeec5683d2ac25c6980d5a31f49b470e47d62f561a721e6"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/summary.json",
+      "sha256": "9bfb9da3ae1faa507910094b8e2ac9d4702e64aa0ef648fb1e24f1719cd136cd"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R1/summary.json",
+      "sha256": "9bfb9da3ae1faa507910094b8e2ac9d4702e64aa0ef648fb1e24f1719cd136cd"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/ambiguous_name-01.json",
+      "sha256": "2d71217eedbee618a03455436b47cdb49f9cfa5c9fdb8c986a3c1c41af05905f"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/ambiguous_name-02.json",
+      "sha256": "cb575b7290548355a73a28a718938530a5ba4b1faac42d33f6e980ec844772d2"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/ambiguous_name-03.json",
+      "sha256": "a2e526ad443947cab201d9992afdfac4c51dde76d79cff0e92f0cc3b197d4d53"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/ambiguous_name-04.json",
+      "sha256": "a4f9542a84aef5bc95aa84857c3e26635885ac5b73044f4fb75a1707a2fe09e8"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/bridge_ranking-01.json",
+      "sha256": "e5a5dfaadd6fc6c13c04e762a9f82093da0fc2ce5d8f7b04af092950ffcc1377"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/bridge_ranking-02.json",
+      "sha256": "d755713fa8f9d4efae7fdc8f728291e3d903b8a446e178b3ab09f01c005cb9df"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/bridge_ranking-03.json",
+      "sha256": "3788994bfbd854ffe98d5b599c36c7e6b3dd6ddd1efeca08c851ff15b9cc1a5b"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/coauthor_breadth-01.json",
+      "sha256": "3932181eca416fb9c8eb550a82ab7a4b00c1fa1f3592e54ae486aeda2e11b49d"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/coauthor_breadth-02.json",
+      "sha256": "103f05e0be9b35c82caa6fe70b46ecfecff2b395055f6553e3edadb3fbd79003"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/coauthor_breadth-03.json",
+      "sha256": "39159baa085b2438dcb6ec7487911a4971a21876a38907f58b36d879262841b0"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/coauthor_breadth-04.json",
+      "sha256": "b89d172f136f49943ad4e7a67233401e2a45ba89bd835d0097d16e0934bfba97"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/community-01.json",
+      "sha256": "e493996f0aa1c3b75fbac969a84752fd95d3d16b7c46fd9b1b4d12311a2fdf80"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/community-02.json",
+      "sha256": "39e15509389dd9e8c225734a071d21f6e9d8aefdaee81f91a22f0f3da07b2975"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/community-03.json",
+      "sha256": "e2b0e27b140f860f21e884a87a3d3d823428408907b60ca4352654799b903c9d"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/component-01.json",
+      "sha256": "a21aaf12f8eaae643758b347979b8ecb9918af76f0be07c0f8c21108fe468a1e"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/component-02.json",
+      "sha256": "721f3963c666790891cac0a5241dd04bda21f6047e676fd88923099d9616aa9a"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/component-03.json",
+      "sha256": "a52663bf7261282cb14f78fe7caab2c0c766538f31b9aad53eb85f9300f1f5b6"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/direct_collaboration-01.json",
+      "sha256": "0d1b32d96a5db2332bc481595a4a035a9fea8abeb2e77dcd56059daede88e83d"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/direct_collaboration-02.json",
+      "sha256": "d045a8dc73d9e30f2a43f1310c82e05754e750a23b42e5e0f92dd10fcd5c11ca"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/direct_collaboration-03.json",
+      "sha256": "74415ca4cc90be88fd2216c565e9950082f84fc66983440f869100c199798837"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/evidence_lookup-01.json",
+      "sha256": "405edc2c888085024a36ed6d38ace8610fe96c1f0020ac2e356f6682ccfc58df"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/evidence_lookup-02.json",
+      "sha256": "6398fda17133922fda6b76662ee092f020d3e15ac9ef6131a0089150d789adb8"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/evidence_lookup-03.json",
+      "sha256": "f01e4be0babc8aeb614d0f10743bf3062224b9b2644babb879959e56d790fccf"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/homonym_suffix-01.json",
+      "sha256": "24e781efae9b7c8c8ea8f9613cfbaef5f61141b04b8e24fa53a6a4310a9b07b8"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/homonym_suffix-02.json",
+      "sha256": "c2b83301b92302895152051502016cc9d7c494f36c3781e485bb6b3197e64a2b"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/institution-01.json",
+      "sha256": "96350bf3b51dca2de20f65000df5766d795f69dedc97eb3d47f22686fcaa2398"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/institution-02.json",
+      "sha256": "72ab3f20f1d4fdf90b461bcde67af9a761cef5ee6d481d6a7666e6e844b9f3f2"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/max_team_size-01.json",
+      "sha256": "27d5adceabaa2b47f8ca8a242eac4dcb1d1993e18f087089478dc416a0dd3bc8"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/max_team_size-02.json",
+      "sha256": "132f959afa721940863c4389fbd7668e8895c00f49e2f0bbcb041b654930aa71"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/max_team_size-03.json",
+      "sha256": "7e9889c86ba3efc21665af1898aa279766a2e7b9756c248122780fe507220a4b"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/prompt_injection-01.json",
+      "sha256": "63d01bfe9e734f5eb6968c0d931536e7c696f22cd25efeee3642bc36bcd1bffa"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/prompt_injection-02.json",
+      "sha256": "97edb69c7bd011e4e6894933df3bc85de61af672dc56d19e5990bf6aa2b9eb33"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/prompt_injection-03.json",
+      "sha256": "a62df44ac7c1875594d6fdf18d4d082c641b0f8750bd75db3eaa0b9104670f74"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/prompt_injection-04.json",
+      "sha256": "567fc2f2b78a8f7602e17cf5e63b30047ec339c7f256de50d89f92cb0e8ad07a"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/shortest_path-01.json",
+      "sha256": "f17e9d11b16bf8b47766bf8fcc2d6e1f6c16b0e83d47efab15990486f709bc76"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/shortest_path-02.json",
+      "sha256": "a033b4e1108716cfb0571b111118671cac74c570c477c5b0b73944b29ebbe701"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/shortest_path-03.json",
+      "sha256": "3ef1864665e41c793a9ee2f21608ebff211e960d5626cbb78a79463a2f20a9fd"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/shortest_path-04.json",
+      "sha256": "90d6001072ce6137af49659aa777f44a4a74b3626637f5daf8f7018a9329d5d4"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/shortest_path-05.json",
+      "sha256": "3340418d684bd1e8b5b1491202c0e8f54fd1bf98af948f9cd0fdfa1634cc099c"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/temporal_change-01.json",
+      "sha256": "f74c88cc3c6984b58a1c6ee00dd6cb1aa94596e99942ec901f69ee0322f9ed75"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/temporal_change-02.json",
+      "sha256": "7f679049992b0eca9ae7ff94d5a36efcb004cac40ea1dda8c3a153cd6539fc82"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/temporal_change-03.json",
+      "sha256": "aaf4bc4d3091ea2bf9435408c78d4d0cd4098f9785f75c210a3807517e4b8e5d"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/topic-01.json",
+      "sha256": "8e063cd779d9237aa433ca1580045e89a7bbf317de8c33cd0eb72c1aa6adfae9"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/services/target/phase09-benchmark/R2/questions/topic-02.json",
+      "sha256": "9a982598c9047d11186743a2aba6aeeffcdc8e6a889c6ed621d724ba2a4006c7"
+    }
+  ],
+  "not_available_inputs": [],
+  "notes": [],
+  "parameters": {},
+  "python": "3.14.2",
+  "run_id": "f2",
+  "script": "experiments/evaluation/local_eval.py",
+  "script_sha256": "7080fa8758abefa4a3264c97556a02dba908ee983018b4c7c2748e8a5744e1eb",
+  "synthetic": false,
+  "tree_dirty": true
+}

@@ -1,0 +1,13 @@
+{
+  "clone_dirty": false,
+  "clone_git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "env_removed": [
+    "CLAUDE_PROJECT_DIR",
+    "SC_RESULTS_ROOT"
+  ],
+  "note": "untracked and uncommitted files are not in the clone; gitignored data under datasets/raw is absent, so checks that need it differ from the worktree",
+  "python": "3.14.2",
+  "source": "git clone --local --no-hardlinks of the worktree into a scratch directory outside the repository (no network)",
+  "worktree_dirty_at_run": true,
+  "worktree_git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e"
+}

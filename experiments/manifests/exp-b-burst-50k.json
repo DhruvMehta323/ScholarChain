@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "exp-b-burst-50k",
+  "letter": "B",
+  "title": "Burst run at 50K works with EMR managed scaling",
+  "purpose": "50K run of the bounded pipeline, only after experiment A succeeded and with explicit human approval, observing EMR managed scaling within the 3-node cap: requested, provisioned and released capacity over time. Doubles as the instructor-approved 10K versus 50K comparison of time, utilization and cost.",
+  "approved": false,
+  "approved_by": "",
+  "approval_ref": "",
+  "commit_sha": "FILL_AT_RUN_TIME",
+  "seed": 441,
+  "environment": {
+    "region": "us-east-2",
+    "approved_environments": [
+      "course"
+    ],
+    "profile_env_var": "AWS_PROFILE",
+    "region_env_var": "AWS_REGION",
+    "note": "Terraform output region; no AWS call is made by this manifest."
+  },
+  "command": [
+    "bash",
+    "scripts/run-bounded-pipeline.sh",
+    "--scale",
+    "50k",
+    "--stages",
+    "hadoop,spark"
+  ],
+  "command_notes": [
+    "The pipeline script ALSO needs --approve-50k and a succeeded 10K record under reports/pipeline/10k/. That flag is deliberately NOT in this command: the human adds it only after recording the decision in a human-gate file.",
+    "HUMAN APPROVAL EDIT (same step as setting approved and approved_by): append to the command array \"--approve-50k\", \"--dblp-xml\", \"<file>\", \"--dtd\", \"<file>\", \"--enrichment-dir\", \"<dir>\" (the script exits 2 without the first three). Appending arguments to this array is a manifest edit by the human, not a change by experiment-engineer.",
+    "scripts/run-experiment.sh runs this command verbatim (no extra arguments) and does not export its run id. The pipeline script therefore generates its own run id; its record is reports/pipeline/50k/<generated id>/run.json (use that id as --run-id of the collectors). The run-experiment.sh run id names only reports/experiments/<id>/<run>/.",
+    "Core count: the default --core-count 1 lets managed scaling grow to 2 core/task nodes (the 3-node cap).",
+    "scripts/run-experiment.sh refuses unless approved is true and approved_by is non-empty, and refuses a dirty tree: commit the raw results of experiment A first."
+  ],
+  "max_runtime_seconds": 14400,
+  "duration_cap_seconds": 14400,
+  "cost_cap_usd": 4.0,
+  "cost_estimate": {
+    "basis": "INFRA-CONTRACTS.md section 10: one 50K run is about $2.47 of EMR",
+    "expected_usd": 2.47,
+    "status": "estimate, not measurement"
+  },
+  "dataset_snapshot": {
+    "id": "dblp-50k",
+    "manifest_entry": "datasets/dataset-manifest.yaml#scale_datasets.dblp-50k",
+    "works": 50000,
+    "notes": "10K plus seeded fill from the policy-1 100K selection; use of that selection is flagged PENDING human approval in the dataset manifest"
+  },
+  "scale": {
+    "label": "50K",
+    "dblp_works": 50000
+  },
+  "resource_limits": {
+    "emr_max_nodes": 3,
+    "emr_instance_type": "m5.xlarge",
+    "emr_core_nodes": 1,
+    "emr_managed_scaling_max_core_task": 2,
+    "ecs_max_tasks_per_service": 0,
+    "step_timeout_seconds": 3600
+  },
+  "metrics_to_collect": [
+    "emr-list-instance-groups:RequestedInstanceCount,RunningInstanceCount over time (sample_resources.py, 30 s): requested, provisioned, released",
+    "cloudwatch:AWS/ElasticMapReduce/TotalNodesRequested,TotalNodesRunning,CoreNodesRunning,CoreNodesPending(JobFlowId) (managed-scaling metric names UNVERIFIED, no network)",
+    "emr-list-steps:step timeline",
+    "hadoop-counters and spark-event-log as in experiment A",
+    "cost-explorer:daily UnblendedCost by SERVICE, credits excluded",
+    "comparison inputs: reports/pipeline/10k/<run>/run.json and reports/pipeline/50k/<run>/run.json (scale_comparison.py)"
+  ],
+  "metric_locations": [
+    "experiments/results/exp-b-burst-50k/<run>/",
+    "reports/pipeline/50k/<run>/run.json",
+    "s3://<logs-bucket>/emr/"
+  ],
+  "stop_conditions": [
+    "no succeeded 10K record (experiment A) exists: do not start",
+    "no recorded human approval (--approve-50k decision) exists: do not start",
+    "any step exceeds 3600 s",
+    "cost reaches the cost cap (4.00 USD)",
+    "EMR reports more than 3 nodes in total: stop and report",
+    "wall clock reaches duration_cap_seconds"
+  ],
+  "requires": {
+    "prior_runs": [
+      {
+        "experiment_id": "exp-a-baseline-10k",
+        "record_glob": "reports/pipeline/10k/*/run.json",
+        "status": "succeeded"
+      }
+    ],
+    "human_approval_flags": [
+      "--approve-50k"
+    ],
+    "explicit_human_approval_required": true
+  },
+  "reproduction": "After A succeeded and the human recorded approval: bash scripts/run-experiment.sh exp-b-burst-50k --run-id <token> (human has set approved/approved_by and appended --approve-50k and the three input arguments to command); collectors for the window with the pipeline's generated run id; analysis: emr_capacity.py, scale_comparison.py (10K versus 50K)"
+}

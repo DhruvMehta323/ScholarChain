@@ -1,0 +1,62 @@
+{
+  "label": "SYNTHETIC hand-check labels",
+  "questions": [
+    {
+      "category": "t",
+      "expected": {
+        "facts": [
+          {
+            "kind": "identity",
+            "subject": "a"
+          }
+        ]
+      },
+      "id": "HQ1",
+      "question": "q"
+    },
+    {
+      "category": "t",
+      "expected": {
+        "facts": [
+          {
+            "kind": "identity",
+            "subject": "b"
+          },
+          {
+            "kind": "identity",
+            "subject": "c"
+          },
+          {
+            "kind": "metrics",
+            "subject": "zzz"
+          }
+        ]
+      },
+      "id": "HQ2",
+      "question": "q"
+    },
+    {
+      "category": "t",
+      "expected": {
+        "facts": [
+          {
+            "kind": "identity",
+            "subject": "d"
+          }
+        ]
+      },
+      "id": "HQ3",
+      "question": "q"
+    },
+    {
+      "category": "t",
+      "expected": {
+        "abstain": true,
+        "facts": []
+      },
+      "id": "HQ4",
+      "question": "q"
+    }
+  ],
+  "synthetic": true
+}

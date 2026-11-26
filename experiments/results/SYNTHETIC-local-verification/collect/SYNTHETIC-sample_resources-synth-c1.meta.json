@@ -1,0 +1,129 @@
+{
+  "aws_binary_is_stub": true,
+  "caps": {
+    "duration": 10.0,
+    "max_samples": 7
+  },
+  "collector": "sample_resources",
+  "commands": [
+    {
+      "command": "aws ecs describe-services --cluster scholarchain-course --services embedding-worker --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws sqs get-queue-attributes --queue-url https://sqs.us-east-2.amazonaws.com/000000000000/scholarchain-embedding-jobs --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws sqs get-queue-attributes --queue-url https://sqs.us-east-2.amazonaws.com/000000000000/scholarchain-embedding-jobs-dlq --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr list-instance-groups --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr describe-cluster --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws ecs describe-services --cluster scholarchain-course --services embedding-worker --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws sqs get-queue-attributes --queue-url https://sqs.us-east-2.amazonaws.com/000000000000/scholarchain-embedding-jobs --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws sqs get-queue-attributes --queue-url https://sqs.us-east-2.amazonaws.com/000000000000/scholarchain-embedding-jobs-dlq --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr list-instance-groups --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr describe-cluster --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws ecs describe-services --cluster scholarchain-course --services embedding-worker --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws sqs get-queue-attributes --queue-url https://sqs.us-east-2.amazonaws.com/000000000000/scholarchain-embedding-jobs --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws sqs get-queue-attributes --queue-url https://sqs.us-east-2.amazonaws.com/000000000000/scholarchain-embedding-jobs-dlq --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr list-instance-groups --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr describe-cluster --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws ecs describe-services --cluster scholarchain-course --services embedding-worker --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws sqs get-queue-attributes --queue-url https://sqs.us-east-2.amazonaws.com/000000000000/scholarchain-embedding-jobs --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws sqs get-queue-attributes --queue-url https://sqs.us-east-2.amazonaws.com/000000000000/scholarchain-embedding-jobs-dlq --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr list-instance-groups --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr describe-cluster --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "dry_run": true,
+  "ended_at": "2026-11-24T08:42:10.571Z",
+  "errors": [],
+  "experiment_id": "exp-c-embedding-backlog",
+  "files": [
+    {
+      "file": "SYNTHETIC-sample_resources-synth-c1-samples.jsonl",
+      "sha256": "d415badc34d42b9a685e58e0b6714231802b85b1159244e06cca1ac353795f46"
+    }
+  ],
+  "interval_seconds": 0.1,
+  "label": "SYNTHETIC",
+  "python": "3.14.2",
+  "region": "us-east-2",
+  "run_id": "synth-c1",
+  "samples": 7,
+  "started_at": "2026-11-24T08:42:09.563Z",
+  "synthetic": true
+}

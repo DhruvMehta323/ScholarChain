@@ -1,0 +1,117 @@
+{
+  "evidence_class": "per file: see file_evidence_class",
+  "file_evidence_class": {
+    "graph-correctness-checks.csv": "R",
+    "graph-summary.json": "R",
+    "known-small-graph-citations.md": "L",
+    "provenance-audit.csv": "R",
+    "provenance-audit.json": "R",
+    "referential-integrity.csv": "R"
+  },
+  "generated_at_utc": "2026-11-25T00:43:21.109Z",
+  "git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "group": "g2",
+  "inputs": [
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/vertices/Researcher.csv",
+      "sha256": "867caa7f5b2cd7383cea0db58e4e29955a9977dcfe4545decab766162bd20b97"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/vertices/Work.csv",
+      "sha256": "6f4570b629a453db2a1c979b967dcd51ac346911decaf5c1bdc5ceddbed633fd"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/vertices/Venue.csv",
+      "sha256": "ee06e8da6391c404d23ea4f428f03605d53810e418c273abe8c81dcbba0434b1"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/vertices/Topic.csv",
+      "sha256": "53eb15c18cd4c43a3718768ddc7da9011121df7a6d14f49f5706e2f1e8ece00a"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/vertices/Institution.csv",
+      "sha256": "8ec6800f4a16a1543307482e192662b93385315fc0ea47992cd82fd527e5659a"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/vertices/Community.csv",
+      "sha256": "d9788d97efdcee6c919cfb3c0c24707419f2869a0ffa50dc19ed96d97b835839"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/vertices/Component.csv",
+      "sha256": "1226ee814e4b5fed048e8ce081a1af03e1cca0d83ae7699aebec892bbfcebca8"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/vertices/ExternalIdentity.csv",
+      "sha256": "23bf9482c492e38e7044fcffb050798cb2cfc61dcbd98ce109c74c613652ce13"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/edges/AUTHORED.csv",
+      "sha256": "0d3088506035e1fc98e570709bbb58f56ac73c938ab77d2695d7a11245e79c70"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/edges/COAUTHORED_WITH.csv",
+      "sha256": "0dd32d26633e7d4380c960b0cbaf1c0a7c5daa5e7afaff5875f7893127554f75"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/edges/COMMUNITY_LINK.csv",
+      "sha256": "0cfc55c9cde2df8f8b69d3c2a36591df7e343a87756e574caa9d8f5c6d09d5f5"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/edges/HAS_TOPIC.csv",
+      "sha256": "49d3fb3d05af572b15740ea5c5b2dac976eec93f1dc577171261bb2bac838c69"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/edges/IN_COMPONENT.csv",
+      "sha256": "bd7f157b2894a24406cfa5e01188904514416a515271d20818fa66cef6362d4b"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/edges/MEMBER_OF.csv",
+      "sha256": "ea4e9d6e0006245f63ab909267ea5313e4674870c7d4dd65644026e4d3f0b781"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/edges/PUBLISHED_IN.csv",
+      "sha256": "4fcafab6b052557b6dfb73f14939579774817be9bb8293c822ff209b03b4db9f"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/neptune/edges/RESOLVES_TO.csv",
+      "sha256": "f4911e72a77d140bfd93d8c48009c96927c4bf70e54691abe98ff0481d685437"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/dynamodb/items/coauthor-edge-works.jsonl",
+      "sha256": "f93dcf3995c111230ae1c232839e39de263af87484509c0850c9dd850ca7503f"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/dynamodb/items/researcher-metrics.jsonl",
+      "sha256": "231ea1df86be71624ad6e4a76212662721a96d731e662a4fe353174b48911fb6"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/dynamodb/items/paths.jsonl",
+      "sha256": "01f6ba61c514db68fd8ba642c00b29ba861975bd5b0ede5ab8d16d62599e7b0d"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/dynamodb/items/mention-researcher.jsonl",
+      "sha256": "c4c6c7a821b8639a13d6a156923d0bf83dc8a45f1bfee5c34c71f1d0f2f415d4"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/modules/storage/target/loads/L5/load-manifest.json",
+      "sha256": "7c82b251071163498550e87b3d7eb6747572baffea240da29d378b0a47ca7758"
+    },
+    {
+      "path": "/Users/dhruv_mehta/Desktop/ScholarChain/datasets/raw/dblp/derived/dblp_selection_1000.xml",
+      "sha256": "3dfcab53e2764639f8777707fe55f2c3bc067e040282c63c24cdc72341868db6"
+    }
+  ],
+  "not_available_inputs": [],
+  "notes": [],
+  "parameters": {
+    "load": "L5",
+    "sample": 25,
+    "seed": 160101
+  },
+  "python": "3.14.2",
+  "run_id": "f1",
+  "script": "experiments/evaluation/local_eval.py",
+  "script_sha256": "a49c6df57ca6394758656cb1da7c31077de91fdeb83747a43f8a5ed6978c9119",
+  "synthetic": false,
+  "tree_dirty": true
+}

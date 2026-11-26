@@ -1,0 +1,42 @@
+{
+  "blocked_on_status_lines": 11,
+  "evidence_class": "R (derived from committed docs/agent-runs text; counts are of matching lines unless stated)",
+  "first_pass_acceptance_rate": 0.2,
+  "first_pass_accepted_by_reviewer": 3,
+  "guard_hook_block_matching_lines": 30,
+  "human_gate_files": 17,
+  "human_rewrite_candidate_lines": 2,
+  "manual_intervention_matching_lines": 145,
+  "ownership_guard_matching_lines": 4,
+  "phases_scanned": 17,
+  "phases_scored_for_first_pass": 15,
+  "phases_with_review_report": 15,
+  "repair_files_by_phase": {
+    "phase-00-seed-agent": 1,
+    "phase-01-agent-factory": 2,
+    "phase-02-build-skeleton": 0,
+    "phase-03-contracts-datasets": 2,
+    "phase-04-hadoop-mapreduce": 2,
+    "phase-05-entity-resolution": 4,
+    "phase-06-spark-analytics": 2,
+    "phase-07-storage": 1,
+    "phase-08-embeddings-vectors": 3,
+    "phase-09-runtime-agents": 2,
+    "phase-10-services": 1,
+    "phase-11-adversarial-review": 1,
+    "phase-12-terraform": 0,
+    "phase-13-automation": 0,
+    "phase-15a-dataset-scale": 0,
+    "phase-15b-experiment-harness": 1,
+    "phase-17a-docs-draft": 0
+  },
+  "repair_files_total": 22,
+  "review_findings_tagged_by_severity": {
+    "HIGH": 1,
+    "INFO": 2,
+    "LOW": 13,
+    "MEDIUM": 2
+  },
+  "status_lines_total": 70,
+  "stop_hook_matching_lines": 39
+}

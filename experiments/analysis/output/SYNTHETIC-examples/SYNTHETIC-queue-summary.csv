@@ -1,0 +1,8 @@
+metric,value,synthetic
+peak_backlog,1000,true
+t_peak_rel_s,15.0,true
+drained,true,true
+drain_seconds,120.0,true
+mean_drain_rate_msgs_per_s_ASSUMES_peak_equals_enqueued,8.333,true
+dlq_max_depth,1,true
+samples,51,true

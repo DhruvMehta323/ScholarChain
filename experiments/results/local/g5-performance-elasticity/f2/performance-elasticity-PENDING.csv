@@ -1,0 +1,20 @@
+item,experiment_id,source_script,unit,value,note
+latency_p50_by_concurrency,exp-d-query-load,experiments/analysis/latency_percentiles.py,ms,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+latency_p95_by_concurrency,exp-d-query-load,experiments/analysis/latency_percentiles.py,ms,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+latency_p99_by_concurrency,exp-d-query-load,experiments/analysis/latency_percentiles.py,ms,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+throughput_by_concurrency,exp-d-query-load,experiments/analysis/latency_percentiles.py,requests per second,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+error_rate_by_concurrency,exp-d-query-load,experiments/analysis/latency_percentiles.py,fraction,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+ecs_scale_out_events,exp-d-query-load,experiments/analysis/scale_timeline.py,count,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+ecs_scale_in_events,exp-d-query-load,experiments/analysis/scale_timeline.py,count,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+queue_peak_backlog,exp-c-embedding-backlog,experiments/analysis/queue_drain.py,messages,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+queue_drain_seconds,exp-c-embedding-backlog,experiments/analysis/queue_drain.py,seconds,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+dlq_max_depth,exp-c-embedding-backlog,experiments/analysis/queue_drain.py,messages,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+emr_peak_provisioned_nodes_10k,exp-a-baseline-10k,experiments/analysis/emr_capacity.py,nodes,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+emr_peak_provisioned_nodes_50k,exp-b-burst-50k,experiments/analysis/emr_capacity.py,nodes,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+wall_seconds_10k,exp-a-baseline-10k,experiments/analysis/scale_comparison.py,seconds,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+wall_seconds_50k,exp-b-burst-50k,experiments/analysis/scale_comparison.py,seconds,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+node_hours_10k,exp-a-baseline-10k,experiments/analysis/emr_capacity.py,node-hours,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+node_hours_50k,exp-b-burst-50k,experiments/analysis/emr_capacity.py,node-hours,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+measured_window_cost_10k,exp-a-baseline-10k,experiments/analysis/cost_report.py,USD,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+measured_window_cost_50k,exp-b-burst-50k,experiments/analysis/cost_report.py,USD,[[PENDING-AWS]],no AWS run exists; Phase 15c/16
+failure_recovery_observed,exp-f-failure-recovery,experiments/analysis/queue_drain.py,text,[[PENDING-AWS]],no AWS run exists; Phase 15c/16

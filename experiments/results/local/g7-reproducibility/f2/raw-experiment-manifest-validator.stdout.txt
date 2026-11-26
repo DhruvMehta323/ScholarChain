@@ -1,0 +1,8 @@
+OK /private/var/folders/h2/9kvthml17sl7246t67dn14t40000gn/T/sc16a-clean-qwxgiq_y/checkout/experiments/manifests/exp-a-baseline-10k.json (letter A, cost cap 3.00 USD, duration cap 10800 s, approved=False)
+OK /private/var/folders/h2/9kvthml17sl7246t67dn14t40000gn/T/sc16a-clean-qwxgiq_y/checkout/experiments/manifests/exp-b-burst-50k.json (letter B, cost cap 4.00 USD, duration cap 14400 s, approved=False)
+OK /private/var/folders/h2/9kvthml17sl7246t67dn14t40000gn/T/sc16a-clean-qwxgiq_y/checkout/experiments/manifests/exp-c-embedding-backlog.json (letter C, cost cap 1.00 USD, duration cap 5400 s, approved=False)
+OK /private/var/folders/h2/9kvthml17sl7246t67dn14t40000gn/T/sc16a-clean-qwxgiq_y/checkout/experiments/manifests/exp-d-query-load.json (letter D, cost cap 1.80 USD, duration cap 3600 s, approved=False)
+OK /private/var/folders/h2/9kvthml17sl7246t67dn14t40000gn/T/sc16a-clean-qwxgiq_y/checkout/experiments/manifests/exp-e-retrieval-modes.json (letter E, cost cap 1.20 USD, duration cap 3600 s, approved=False)
+OK /private/var/folders/h2/9kvthml17sl7246t67dn14t40000gn/T/sc16a-clean-qwxgiq_y/checkout/experiments/manifests/exp-f-failure-recovery.json (letter F, cost cap 0.80 USD, duration cap 2700 s, approved=False)
+SUM model caps 1.85 USD (limit 2.00), cost caps 11.80 USD (project budget 25.00)
+RESULT PASSED (0 problem(s))

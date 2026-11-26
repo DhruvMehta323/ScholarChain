@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "exp-d-query-load",
+  "letter": "D",
+  "title": "Query load at four concurrency levels",
+  "purpose": "Drive POST /v1/query at concurrency 1, 4, 8 and 16 (the service runs 4 queries at once with 16 queued, so 20 is the most it accepts before 429) and record p50, p95, p99 latency, throughput, error rate, ECS task count, CPU, memory, Neptune, DynamoDB throttles, vector query and LLM stage latency.",
+  "approved": false,
+  "approved_by": "",
+  "approval_ref": "",
+  "commit_sha": "FILL_AT_RUN_TIME",
+  "seed": 441,
+  "environment": {
+    "region": "us-east-2",
+    "approved_environments": [
+      "course"
+    ],
+    "profile_env_var": "AWS_PROFILE",
+    "region_env_var": "AWS_REGION",
+    "note": "Terraform output region; no AWS call is made by this manifest."
+  },
+  "command": [
+    "python3",
+    "-B",
+    "load-tests/run_suite.py",
+    "--manifest",
+    "experiments/manifests/exp-d-query-load.json"
+  ],
+  "command_notes": [
+    "Environment names (set by the human before run-experiment.sh): SC_LOADTEST_API_KEY_FILE (mode 600 file outside the repository), SC_LOADTEST_BASE_URL (Terraform output query_api_url), SC_LOADTEST_EXPECT_HOST (its host), SC_LOADTEST_BENCHMARK (path of benchmark-v1.json obtained with git show main:..., outside the repository), SC_RUN_ID (the same token passed to run-experiment.sh --run-id; run-experiment.sh does not export its run id).",
+    "HUMAN APPROVAL EDIT (Phase 13 decision 2): the ALB is HTTP only, so the human appends \"--allow-insecure-http\" to the command array when approving the manifest (ingress limited to the human's /32; rotate the key afterwards). Without it the generator refuses (exit 3) before any request.",
+    "Non-loopback rules enforced by loadgen.py and run_suite.py: the manifest must pass validate_manifests.py and be approved, --ledger and --budget-file are refused, and the benchmark SHA-256 must equal loadgen.benchmark.sha256.",
+    "Neptune and the ALB must be on (bash scripts/env-window.sh up, printed human steps); ecs_min_tasks for query-api and retrieval at 1.",
+    "scripts/run-experiment.sh refuses a dirty tree: commit the raw results of the previous experiment first (experiments/README.md, Between experiments)."
+  ],
+  "max_runtime_seconds": 3600,
+  "duration_cap_seconds": 3600,
+  "cost_cap_usd": 1.8,
+  "model_cost_cap_usd": 0.9,
+  "cost_estimate": {
+    "basis": "model: 42 requests x $0.02101 = $0.88 (assumptions in model-budget.json); Neptune plus ALB about $0.20 per hour for at most 1 hour; Fargate about $0.017 per task-hour",
+    "expected_usd": 1.2,
+    "status": "estimate"
+  },
+  "dataset_snapshot": {
+    "id": "dblp-10k",
+    "manifest_entry": "datasets/dataset-manifest.yaml#scale_datasets.dblp-10k",
+    "works": 10000,
+    "notes": "questions come from benchmark-v1 (44 questions generated over the Phase 07/08 L4 sample, not over dblp-10k); recorded as a limitation"
+  },
+  "scale": {
+    "label": "4 concurrency levels",
+    "concurrency_levels": [
+      1,
+      4,
+      8,
+      16
+    ]
+  },
+  "resource_limits": {
+    "ecs_max_tasks_per_service": 4,
+    "max_requests": 42,
+    "max_model_calls": 126,
+    "max_concurrency": 16
+  },
+  "loadgen": {
+    "max_requests_per_run": 42,
+    "max_model_calls_per_run": 126,
+    "max_duration_seconds": 1500,
+    "max_concurrency": 16,
+    "model_cost_cap_usd": 0.9,
+    "request_timeout_seconds": 60,
+    "ramp_seconds": 5,
+    "mode": "fused",
+    "levels": [
+      {
+        "concurrency": 1,
+        "requests": 5,
+        "duration_seconds": 300
+      },
+      {
+        "concurrency": 4,
+        "requests": 9,
+        "duration_seconds": 300
+      },
+      {
+        "concurrency": 8,
+        "requests": 12,
+        "duration_seconds": 300
+      },
+      {
+        "concurrency": 16,
+        "requests": 16,
+        "duration_seconds": 300
+      }
+    ],
+    "benchmark": {
+      "source_ref": "main",
+      "source_commit_at_authoring": "932fd2f21ec0abcc5cbe3a31a07c1536be3b5242",
+      "source_path": "modules/rag/src/main/resources/benchmarks/benchmark-v1.json",
+      "sha256": "e511d17530823374bfeec5683d2ac25c6980d5a31f49b470e47d62f561a721e6",
+      "benchmarkVersion": "benchmark-v1",
+      "questionCount": 44,
+      "how_to_obtain": "git show main:<source_path> > <file outside the repository>; pass the file with --benchmark (not copied into this repository)"
+    }
+  },
+  "metrics_to_collect": [
+    "loadgen raw CSV: per-request latency_ms, http_status, trace_id (load-tests/loadgen.py)",
+    "cloudwatch:AWS/ApplicationELB/TargetResponseTime(p50,p95,p99),RequestCount,HTTPCode_Target_2XX_Count,HTTPCode_Target_4XX_Count,HTTPCode_Target_5XX_Count,HealthyHostCount(LoadBalancer,TargetGroup)",
+    "cloudwatch:AWS/ECS/CPUUtilization,MemoryUtilization(query-api, retrieval)",
+    "ecs-describe-services:runningCount, 15 s (sample_resources.py)",
+    "cloudwatch:AWS/Neptune/CPUUtilization,ServerlessDatabaseCapacity,NumTxRolledBack(DBClusterIdentifier)",
+    "cloudwatch:AWS/DynamoDB/ReadThrottleEvents,WriteThrottleEvents,UserErrors,SystemErrors(TableName); SuccessfulRequestLatency(TableName,Operation)",
+    "explain stagesExecuted latency per request (loadgen --fetch-explain): retrieval, vector and LLM stage latency",
+    "logs-insights:/scholarchain/query-api query.completed events (collect_logs.py); no custom CloudWatch namespace exists in Terraform"
+  ],
+  "metric_locations": [
+    "experiments/results/exp-d-query-load/<run>/"
+  ],
+  "stop_conditions": [
+    "request cap (42), model-call cap (126) or model cost cap (0.90 USD) reached: the generator stops by itself",
+    "error rate above 50 percent over any 10 consecutive requests: stop the suite and report",
+    "ledger of model spend at the loadgen limit (1.80 USD): refuse to start",
+    "duration_cap_seconds reached",
+    "any 5xx burst that triggers the query-api 5xx alarm: stop and report"
+  ],
+  "requires": {
+    "prior_runs": [],
+    "human_approval_flags": [
+      "--allow-insecure-http"
+    ],
+    "explicit_human_approval_required": true
+  },
+  "reproduction": "export SC_RUN_ID=<token> SC_LOADTEST_BENCHMARK=<file> SC_LOADTEST_API_KEY_FILE=<key file> SC_LOADTEST_BASE_URL=<query_api_url> SC_LOADTEST_EXPECT_HOST=<its host>; bash scripts/run-experiment.sh exp-d-query-load --run-id $SC_RUN_ID (after the human set approved/approved_by and appended --allow-insecure-http to command); analysis: latency_percentiles.py, scale_timeline.py"
+}

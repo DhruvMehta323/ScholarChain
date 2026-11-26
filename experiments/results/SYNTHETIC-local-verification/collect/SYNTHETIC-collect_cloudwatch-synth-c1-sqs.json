@@ -1,0 +1,187 @@
+{
+  "SYNTHETIC": true,
+  "stub": "experiments/collect/testing/stub-bin/aws",
+  "MetricDataResults": [
+    {
+      "Id": "m1",
+      "Label": "queue ApproximateNumberOfMessagesVisible",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m2",
+      "Label": "queue ApproximateNumberOfMessagesNotVisible",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m3",
+      "Label": "queue ApproximateAgeOfOldestMessage",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m4",
+      "Label": "queue NumberOfMessagesSent",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m5",
+      "Label": "queue NumberOfMessagesReceived",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m6",
+      "Label": "queue NumberOfMessagesDeleted",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m7",
+      "Label": "dlq ApproximateNumberOfMessagesVisible",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m8",
+      "Label": "dlq ApproximateNumberOfMessagesNotVisible",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m9",
+      "Label": "dlq ApproximateAgeOfOldestMessage",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m10",
+      "Label": "dlq NumberOfMessagesSent",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m11",
+      "Label": "dlq NumberOfMessagesReceived",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "Id": "m12",
+      "Label": "dlq NumberOfMessagesDeleted",
+      "StatusCode": "Complete",
+      "Timestamps": [
+        "2026-01-01T00:00:00+00:00",
+        "2026-01-01T00:01:00+00:00",
+        "2026-01-01T00:02:00+00:00"
+      ],
+      "Values": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    }
+  ],
+  "Messages": []
+}

@@ -1,0 +1,79 @@
+{
+  "aws_binary_is_stub": true,
+  "collector": "collect_cloudwatch",
+  "commands": [
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"query-api CPUUtilization Average\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/ECS\", \"MetricName\": \"CPUUtilization\", \"Dimensions\": [{... --start-time 2026-11-30T14:00:00Z --end-time 2026-11-30T15:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"queue ApproximateNumberOfMessagesVisible\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/SQS\", \"MetricName\": \"ApproximateNumberOfMessag... --start-time 2026-11-30T14:00:00Z --end-time 2026-11-30T15:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"TargetResponseTime p50\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/ApplicationELB\", \"MetricName\": \"TargetResponseTime\", \"Dimensions... --start-time 2026-11-30T14:00:00Z --end-time 2026-11-30T15:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"ServerlessDatabaseCapacity Average\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/Neptune\", \"MetricName\": \"ServerlessDatabaseCapacity\"... --start-time 2026-11-30T14:00:00Z --end-time 2026-11-30T15:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"QuerySession ReadThrottleEvents\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/DynamoDB\", \"MetricName\": \"ReadThrottleEvents\", \"Dimensi... --start-time 2026-11-30T14:00:00Z --end-time 2026-11-30T15:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"CoreNodesRunning\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/ElasticMapReduce\", \"MetricName\": \"CoreNodesRunning\", \"Dimensions\": [{\"... --start-time 2026-11-30T14:00:00Z --end-time 2026-11-30T15:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "dry_run": true,
+  "ended_at": "2026-11-24T08:42:09.119Z",
+  "errors": [],
+  "experiment_id": "exp-d-query-load",
+  "files": [
+    {
+      "file": "SYNTHETIC-collect_cloudwatch-synth-c1-ecs.json",
+      "sha256": "0ac7288b14832a91eab9ff723d6083d8d80f61c4b65402aca01cb0529d74583c"
+    },
+    {
+      "file": "SYNTHETIC-collect_cloudwatch-synth-c1-sqs.json",
+      "sha256": "f9491a423b2d0910194a8672d4b53b29c143b197865043041b74d190bdc8eec6"
+    },
+    {
+      "file": "SYNTHETIC-collect_cloudwatch-synth-c1-alb.json",
+      "sha256": "6e67ab27b4b46d5652e6e0ea85b6663cbf5cd1944d77882bc00c0370dfafb0c6"
+    },
+    {
+      "file": "SYNTHETIC-collect_cloudwatch-synth-c1-neptune.json",
+      "sha256": "e1706e943efad5e73a394161de0f48b38c40bc5788e4e07f0adb72d64b82e9be"
+    },
+    {
+      "file": "SYNTHETIC-collect_cloudwatch-synth-c1-dynamodb.json",
+      "sha256": "17896585cb5e36918ed95b6d4083bc02d2908792b1157c56810d51f30a0e0b00"
+    },
+    {
+      "file": "SYNTHETIC-collect_cloudwatch-synth-c1-emr.json",
+      "sha256": "8797c8e4c21b612c1d08f977599c22a62712660b3eeeb0d0134f234459b09d96"
+    }
+  ],
+  "label": "SYNTHETIC",
+  "python": "3.14.2",
+  "region": "us-east-2",
+  "run_id": "synth-c1",
+  "skipped_groups": [],
+  "started_at": "2026-11-24T08:42:08.383Z",
+  "synthetic": true,
+  "window": {
+    "end": "2026-11-30T15:00:00Z",
+    "period": 60,
+    "start": "2026-11-30T14:00:00Z"
+  }
+}

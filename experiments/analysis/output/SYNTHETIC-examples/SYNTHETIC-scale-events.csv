@@ -1,0 +1,17 @@
+service,t_utc,t_rel_s,from,to,direction,synthetic
+embedding-worker,2026-11-25T09:48:40.000Z,120.0,0,1,out,true
+embedding-worker,2026-11-25T09:49:40.000Z,180.0,1,2,out,true
+embedding-worker,2026-11-25T09:51:40.000Z,300.0,2,3,out,true
+embedding-worker,2026-11-25T09:52:40.000Z,360.0,3,4,out,true
+embedding-worker,2026-11-25T09:55:40.000Z,540.0,4,3,in,true
+embedding-worker,2026-11-25T09:56:40.000Z,600.0,3,2,in,true
+embedding-worker,2026-11-25T09:57:40.000Z,660.0,2,1,in,true
+embedding-worker,2026-11-25T09:58:40.000Z,720.0,1,0,in,true
+query-api,2026-11-25T09:47:40.000Z,60.0,0,1,out,true
+query-api,2026-11-25T09:49:40.000Z,180.0,1,2,out,true
+query-api,2026-11-25T09:50:40.000Z,240.0,2,3,out,true
+query-api,2026-11-25T09:51:40.000Z,300.0,3,4,out,true
+query-api,2026-11-25T09:54:40.000Z,480.0,4,3,in,true
+query-api,2026-11-25T09:55:40.000Z,540.0,3,2,in,true
+query-api,2026-11-25T09:56:40.000Z,600.0,2,1,in,true
+query-api,2026-11-25T09:58:40.000Z,720.0,1,0,in,true

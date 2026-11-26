@@ -1,0 +1,9 @@
+check_id,description,run_a,run_b,field_compared,value_a,value_b,equal_yes_no,reviewer,checked_at_utc
+RP-01,Same code commit,,,commit,,,,,
+RP-02,Same manifest (SHA-256),,,manifest_sha256,,,,,
+RP-03,Same seed,,,seed,,,,,
+RP-04,Same benchmark file (SHA-256),,,benchmark.sha256,,,,,
+RP-05,Same dataset snapshot id and manifest entry,,,dataset_snapshot,,,,,
+RP-06,Raw files unchanged since written (verify_raw_integrity.py exit 0),,,csv_sha256,,,,,
+RP-07,Analysis rerun reproduces the committed tables byte for byte (same inputs),,,table sha256,,,,,
+RP-08,Rerun of the deterministic parts (Hadoop output checksums) matches,,,output checksum,,,,,

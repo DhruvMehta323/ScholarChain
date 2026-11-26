@@ -1,0 +1,12 @@
+metric,A_10k,B_50k,ratio_B_over_A,synthetic
+scale,10k,50k,,true
+run_id,SYNTHETIC-10k,SYNTHETIC-50k,,true
+status,succeeded,succeeded,,true
+total_wall_seconds,1260.0,4320.0,3.43,true
+step_seconds:hadoop,600.0,2400.0,4.00,true
+step_seconds:spark,420.0,1680.0,4.00,true
+node_hours,0.5167,0.5167,1.00,true
+peak_provisioned_nodes,3,3,1.00,true
+peak_requested_nodes,3,3,1.00,true
+measured_window_cost_usd_all_services_credits_excluded,0.5100,2.0400,4.00,true
+note,ratio is B divided by A,cost is WINDOW cost (all services on those days),,true

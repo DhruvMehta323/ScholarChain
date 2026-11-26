@@ -1,0 +1,5 @@
+series,t_utc,t_rel_s,from,to,meaning,synthetic
+requested,2026-11-25T09:49:10.000Z,150.0,2,3,increase,true
+requested,2026-11-25T09:55:10.000Z,510.0,3,2,decrease,true
+provisioned,2026-11-25T09:50:10.000Z,210.0,2,3,provisioned,true
+provisioned,2026-11-25T09:56:10.000Z,570.0,3,2,released,true

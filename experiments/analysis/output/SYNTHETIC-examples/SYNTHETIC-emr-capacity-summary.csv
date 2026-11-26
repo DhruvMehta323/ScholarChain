@@ -1,0 +1,8 @@
+metric,value,synthetic
+peak_requested_nodes,3,true
+peak_provisioned_nodes,3,true
+provision_lag_seconds,60.0,true
+released_events,1,true
+node_hours,0.5167,true
+cost_estimate_usd_ESTIMATE_not_measured,0.1309,true
+observed_seconds,750.0,true

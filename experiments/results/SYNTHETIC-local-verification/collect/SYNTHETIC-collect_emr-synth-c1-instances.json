@@ -1,0 +1,16 @@
+{
+  "SYNTHETIC": true,
+  "stub": "experiments/collect/testing/stub-bin/aws",
+  "Instances": [
+    {
+      "Id": "i-SYNTHETIC",
+      "InstanceGroupId": "ig-SYNTHETIC",
+      "Status": {
+        "State": "RUNNING",
+        "Timeline": {
+          "CreationDateTime": "2026-01-01T00:00:00+00:00"
+        }
+      }
+    }
+  ]
+}

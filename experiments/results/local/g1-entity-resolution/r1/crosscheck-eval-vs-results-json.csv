@@ -1,0 +1,25 @@
+json_path,heldout_eval_json,results_json_heldout
+researcher.byPath.llm.confusion.f1,0,None
+researcher.byPath.llm.confusion.precision,0,None
+researcher.byPath.llm.confusion.recall,0,None
+researcher.byPath.llm.confusion.status,ABSENT,'NOT RUN'
+work.byPath.deterministic.confusion.f1,0,None
+work.byPath.deterministic.confusion.precision,0,None
+work.byPath.deterministic.confusion.recall,0,None
+work.byPath.deterministic.confusion.status,ABSENT,'n/a: no rows on this path'
+work.byPath.exact_id.confusion.f1,0.7499999999999999,None
+work.byPath.exact_id.confusion.f1Note,ABSENT,'not measurable: no held-out NON_MATCH'
+work.byPath.exact_id.confusion.precision,1,None
+work.byPath.exact_id.confusion.precisionNote,ABSENT,'not measurable: no held-out NON_MATCH'
+work.byPath.llm.confusion.f1,0,None
+work.byPath.llm.confusion.precision,0,None
+work.byPath.llm.confusion.recall,0,None
+work.byPath.llm.confusion.status,ABSENT,'NOT RUN'
+work.byPath.probabilistic.confusion.f1,0,None
+work.byPath.probabilistic.confusion.precision,0,None
+work.byPath.probabilistic.confusion.recall,0,None
+work.byPath.probabilistic.confusion.status,ABSENT,'n/a: no rows on this path'
+work.confusion.f1,0.7499999999999999,None
+work.confusion.f1Note,ABSENT,'not measurable: no held-out NON_MATCH'
+work.confusion.precision,1,None
+work.confusion.precisionNote,ABSENT,'not measurable: no held-out NON_MATCH'

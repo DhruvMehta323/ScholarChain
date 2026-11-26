@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "--out-dir",
+    "experiments/results/local/g1-entity-resolution/r1/er_report_py"
+  ],
+  "benchmark_sha256": null,
+  "generated_at_utc": "2026-11-24T23:33:59.942Z",
+  "git_head": "f680ca5ef65648e64de3fed35616ea9e321bda2e",
+  "inputs": [
+    {
+      "path": "modules/entity-resolution/evaluation/er-v1-heldout-eval.json",
+      "sha256": "81525378e930cc2574033c27a085e735a7e076ed1b6bc7728f88cec867622622"
+    },
+    {
+      "path": "modules/entity-resolution/gold/gold-split-v1.summary.json",
+      "sha256": "ef19a034e49b1c57f07b05f7163dfde8c56213bc3c047c4d60423a9908dcd2dc"
+    }
+  ],
+  "output": "er-gold-split-counts.csv",
+  "output_sha256": "ee2133e2542738c2cdaa5bd9cc18b06aecf2acf4ef7dda25549f9d5ae99e4f0e",
+  "parameters": {
+    "eval": "/Users/dhruv_mehta/Desktop/ScholarChain-lane2/modules/entity-resolution/evaluation/er-v1-heldout-eval.json",
+    "force": false,
+    "out_dir": "experiments/results/local/g1-entity-resolution/r1/er_report_py",
+    "split": "/Users/dhruv_mehta/Desktop/ScholarChain-lane2/modules/entity-resolution/gold/gold-split-v1.summary.json"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/evaluation/er_report.py",
+  "synthetic": false,
+  "tree_dirty": true
+}

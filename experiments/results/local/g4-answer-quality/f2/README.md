@@ -1,0 +1,3 @@
+# Group 4 answer quality (fixture model)
+
+Evidence class F: the answers come from the Phase 09 composed benchmark with the scripted `fake-model-v1` and `BenchmarkResponders` (Phase 09 agent report). They show that the pipeline wiring, verifier and abstention logic behave as tested on 44 data-derived questions; they say nothing about answer quality with a real model. The expected values were generated from the same L4 tables the answers read (`BenchmarkGenerator`, no model), so correctness checks are data-consistency checks, not independent judgments. The human rating sheet is intentionally empty.

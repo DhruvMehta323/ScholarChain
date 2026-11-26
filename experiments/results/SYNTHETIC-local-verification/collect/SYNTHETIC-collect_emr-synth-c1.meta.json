@@ -1,0 +1,56 @@
+{
+  "aws_binary_is_stub": true,
+  "cluster_id": "j-ABC123",
+  "collector": "collect_emr",
+  "commands": [
+    {
+      "command": "aws emr describe-cluster --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr list-steps --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr list-instance-groups --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr list-instances --cluster-id j-ABC123 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "3115aa38aea91a5128d65e997d04c449d59126d5",
+  "dry_run": true,
+  "ended_at": "2026-11-24T08:42:09.302Z",
+  "errors": [],
+  "experiment_id": "exp-a-baseline-10k",
+  "files": [
+    {
+      "file": "SYNTHETIC-collect_emr-synth-c1-cluster.json",
+      "sha256": "364bcd90713dea412f3a22d7e27682346f55242a4d7d98de5420b2129783c87d"
+    },
+    {
+      "file": "SYNTHETIC-collect_emr-synth-c1-steps.json",
+      "sha256": "ea1648278c38206bddcfea85026ef2b553f59ebb49fae1f1907671813f850f36"
+    },
+    {
+      "file": "SYNTHETIC-collect_emr-synth-c1-instance-groups.json",
+      "sha256": "c79fff4e0a81a837f165e88f4aa0800b6054c28b25ab2bb2f7a36b832d9dc38a"
+    },
+    {
+      "file": "SYNTHETIC-collect_emr-synth-c1-instances.json",
+      "sha256": "ae9fa02300a3129474189c345841cfd7798b7574b7b7c08dcc4dc25627add0fd"
+    }
+  ],
+  "label": "SYNTHETIC",
+  "python": "3.14.2",
+  "region": "us-east-2",
+  "run_id": "synth-c1",
+  "started_at": "2026-11-24T08:42:09.161Z",
+  "synthetic": true
+}

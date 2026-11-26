@@ -1,0 +1,5 @@
+item,status,note
+sbt clean check from a clean checkout,[[PENDING-EVAL]],needs sbt; run by the human (canonical CHECK)
+bounded pipeline replay,[[PENDING-AWS]],needs AWS (Phase 14/15c)
+deployment from the approved plan,[[PENDING-AWS]],needs AWS (Phase 14)
+regenerate reported tables and plots (Phase 15c/16 raw results),[[PENDING-AWS]],no AWS raw results yet
