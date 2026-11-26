@@ -964,6 +964,34 @@ printf '{ broken' > "${REPO}/.mcp.json"
 run check-bad-json 1 bash scripts/check.sh --skip-sbt --skip-terraform
 printf '{}\n' > "${REPO}/.mcp.json"
 
+echo "== T14 C9 Java selection, M1, L1 =="
+RBP="${REPO}/scripts/run-bounded-pipeline.sh"
+expect_in "step script has Java selection" "${RBP}" "JAVA-SELECT-BEGIN"
+# shellcheck disable=SC2016
+expect_in "FinalDecisions runs with \"\$J\"" "${RBP}" '"${J}" -Xmx${SC_FD_HEAP:-9g} -XX:+ExitOnOutOfMemoryError -cp "${L}/jars/${hn}" scholarchain.er.tools.FinalDecisions'
+# shellcheck disable=SC2016
+# shellcheck disable=SC2016
+expect_in "FinalDecisions heap flags" "${RBP}" '"${J}" -Xmx${SC_FD_HEAP:-9g} -XX:+ExitOnOutOfMemoryError -cp'
+# shellcheck disable=SC2016
+expect_in "spark executorEnv JAVA_HOME" "${RBP}" 'spark.executorEnv.JAVA_HOME=${JH}'
+# shellcheck disable=SC2016
+expect_in "spark appMasterEnv JAVA_HOME" "${RBP}" 'spark.yarn.appMasterEnv.JAVA_HOME=${JH}'
+# shellcheck disable=SC2016
+expect_in "M1: s3_count assigned first" "${RBP}" 'ecount="$(s3_count'
+# shellcheck disable=SC2016
+expect_not_in "M1: no s3_count inside a test" "${RBP}" '[[ "$(s3_count'
+# shellcheck disable=SC2016
+expect_in "L1: empty key rejected" "${REPO}/scripts/lib/common.sh" 'empty key in'
+JT="${SCRATCH}/javasel"; mkdir -p "${JT}/j8/bin" "${JT}/j17/bin"
+printf '#!/bin/sh\necho "openjdk version \\"1.8.0_392\\"" >&2\n' > "${JT}/j8/bin/java"
+printf '#!/bin/sh\necho "openjdk version \\"17.0.9\\" 2023-10-17" >&2\n' > "${JT}/j17/bin/java"
+chmod +x "${JT}/j8/bin/java" "${JT}/j17/bin/java"
+sed -n '/^# JAVA-SELECT-BEGIN/,/^# JAVA-SELECT-END/p' "${RBP}" > "${JT}/sel.sh"
+o17="$(JAVA_HOME="${JT}/j17" bash -c 'set -euo pipefail; . "$1"; echo "JH=${JAVA_HOME}"' _ "${JT}/sel.sh" 2>&1)" || true
+[[ "${o17}" == *"java: ${JT}/j17/bin/java"* && "${o17}" == *"JH=${JT}/j17"* ]] && ok "selection picks Java 17 and exports its home" || bad "java17 selection: ${o17}"
+rc8=0; JAVA_HOME="${JT}/j8" bash -c 'set -euo pipefail; . "$1"' _ "${JT}/sel.sh" > "${JT}/o8" 2>&1 || rc8=$?
+[[ "${rc8}" == 1 ]] && grep -q "no Java >= 17" "${JT}/o8" && ok "Java 8 rejected with exit 1" || bad "java8 rejection rc=${rc8}"
+
 echo "== T13 no guarded phrase in any script text =="
 P1="terra"; P2="form"
 if grep -rniE --exclude-dir=tests "${P1}${P2}[[:space:]\\]+(apply|destroy)" "${SRC_ROOT}/scripts" > "${OUT}/phrase.out" 2>&1; then bad "guarded phrase found (see ${OUT}/phrase.out)"; else ok "no script (outside this harness) contains the guarded apply/destroy phrase"; fi

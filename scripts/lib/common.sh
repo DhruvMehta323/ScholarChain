@@ -218,6 +218,7 @@ sc_put_verified() {
   local f="$1" uri="$2" rest bucket key want got rc n=1
   [[ "${uri}" == s3://*/* ]] || { sc_warn "not an s3://bucket/key URI: ${uri}"; return 2; }
   rest="${uri#s3://}" bucket="${rest%%/*}" key="${rest#*/}"
+  [[ -n "${key}" ]] || { sc_warn "empty key in ${uri}"; return 2; }
   want="$(wc -c < "${f}" | tr -d ' ')"
   while :; do
     rc=0

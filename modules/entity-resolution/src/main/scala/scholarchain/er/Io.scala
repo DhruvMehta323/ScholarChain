@@ -141,6 +141,45 @@ object Io:
         ()
       }.toEither.left.map(_ => s"cannot write $p")
 
+  /** Streams `lines` (each a line without its newline) to a new file, byte-identical to
+    * `writeNew(p, lines.mkString("", "\n", if empty then "" else "\n"))`. Refuses an existing file.
+    * Writes a sibling temp file and moves it into place without replacing, so a failed line leaves
+    * no partial output.
+    */
+  def writeLinesNew(p: Path, lines: Iterator[Either[String, String]]): Either[String, Unit] =
+    if Files.exists(p) then Left(s"refusing to overwrite existing file $p")
+    else
+      val tmp = Try {
+        Option(p.getParent).foreach(Files.createDirectories(_))
+        Files.createTempFile(
+          Option(p.toAbsolutePath.getParent).getOrElse(Paths.get(".")),
+          ".er-",
+          ".tmp",
+        )
+      }.toEither.left.map(_ => s"cannot write $p")
+      tmp.flatMap { t =>
+        val result: Either[String, Unit] =
+          try
+            val w = java.io.BufferedWriter(
+              java.io.OutputStreamWriter(Files.newOutputStream(t), StandardCharsets.UTF_8),
+              1 << 16,
+            )
+            try
+              var err: Option[String] = None
+              while err.isEmpty && lines.hasNext do
+                lines.next() match
+                  case Left(e)  => err = Some(e)
+                  case Right(l) => w.write(l); w.write('\n')
+              err.toLeft(())
+            finally w.close()
+          catch case _: Exception => Left(s"cannot write $p")
+        val moved = result.flatMap(_ =>
+          Try(Files.move(t, p)).toEither.left.map(_ => s"cannot write $p").map(_ => ())
+        )
+        if moved.isLeft then Try(Files.deleteIfExists(t))
+        moved
+      }
+
   private def readAll[A](p: Path, label: String)(
       f: String => Either[String, A]
   ): Either[String, List[A]] =

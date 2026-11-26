@@ -548,20 +548,17 @@ object FinalDecisions:
       )
       decisions <- cands
         .sortBy(c => (c.leftId, c.rightId))
-        .foldLeft[Either[String, List[MatchDecisionV2]]](Right(Nil)) { (acc, c) =>
-          for
-            xs <- acc
-            rec = adj.flatMap((vs, cache) => Resolver.cached(c, cfg, vs, cache, prompt.version))
-            d <- Decisions
+        .foldLeft[Either[String, Vector[MatchDecisionV2]]](Right(Vector.empty)) { (acc, c) =>
+          acc.flatMap { xs =>
+            val rec = adj.flatMap((vs, cache) => Resolver.cached(c, cfg, vs, cache, prompt.version))
+            Decisions
               .build(c, Resolver.decide(c, cfg, rec), cfg, runId, prov)
               .left
               .map(_.message)
-          yield xs :+ d
+              .map(xs :+ _)
+          }
         }
-      lines <- decisions.foldLeft[Either[String, List[String]]](Right(Nil))((acc, d) =>
-        for xs <- acc; j <- Wire.write(d).left.map(_.message) yield xs :+ j
-      )
-      _ <- Io.writeNew(op, lines.mkString("", "\n", if lines.isEmpty then "" else "\n"))
+      _ <- Io.writeLinesNew(op, decisions.iterator.map(d => Wire.write(d).left.map(_.message)))
       grouped = decisions.groupBy(d => (d.entityKind.wire, d.outcome.wire, d.matchPath.wire))
       summary = ujson.Obj(
         "tool"          -> "FinalDecisions",

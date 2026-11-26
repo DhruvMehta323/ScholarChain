@@ -324,7 +324,8 @@ for src in crossref openalex orcid; do
   elif [[ "${SKIP_UPLOAD}" == 1 ]]; then
     if [[ "${SC_DRY_RUN}" == 1 ]]; then pass=1
     elif [[ "${EMR_MODE}" == 1 && "${SMOKE}" != 1 ]] && has_stage hadoop; then
-      if [[ "$(s3_count "${RAW}" "raw/${SCALE}/${RUN_ID}/enrichment/${src}/")" -gt 0 ]]; then pass=1; else sc_warn "--skip-upload: no objects under ${RAW_PREFIX}/enrichment/${src}/: --${src} not passed"; fi
+      ecount="$(s3_count "${RAW}" "raw/${SCALE}/${RUN_ID}/enrichment/${src}/")"
+      if [[ "${ecount}" -gt 0 ]]; then pass=1; else sc_warn "--skip-upload: no objects under ${RAW_PREFIX}/enrichment/${src}/: --${src} not passed"; fi
     fi
   elif [[ -n "${ENRICH_DIR}" && -d "${ENRICH_DIR}/${src}" ]]; then
     if [[ "$(find "${ENRICH_DIR}/${src}" -type f | wc -l | tr -d ' ')" -gt 0 ]]; then pass=1; fi
@@ -358,8 +359,20 @@ hadoop fs -copyToLocal "${out}/curated" "${L}/in/curated"
 hadoop fs -copyToLocal "${out}/work/hj6a/entity-views" "${L}/in/entity-views"
 hadoop fs -copyToLocal "${out}/work/hj6d/match-candidates" "${L}/in/match-candidates"
 hadoop fs -copyToLocal "${pol}" "${L}/in/er-v1-frozen-policy.json"
-java -cp "${L}/jars/${hn}" scholarchain.er.tools.FinalDecisions --candidates "${L}/in/match-candidates" --policy "${L}/in/er-v1-frozen-policy.json" --out "${L}/work/match-decisions-final.jsonl" --summary "${L}/work/match-decisions-final.summary.json" --code-version "${cv}"
-spark-submit --master "local[*]" --driver-memory 8g --conf spark.hadoop.fs.defaultFS=file:/// --conf "spark.local.dir=${L}/spark-tmp" --conf spark.eventLog.enabled=false --conf spark.dynamicAllocation.enabled=false --conf spark.shuffle.service.enabled=false --class scholarchain.spark.Run "${L}/jars/${sn}" --output-root "${L}/spark-out" --checkpoint-dir "${L}/checkpoints" --code-version "${cv}" --set "input.root-i-dir=${L}/in/curated" --set "input.hj6a-entity-views-dir=${L}/in/entity-views" --set "input.match-decisions-final-path=${L}/work/match-decisions-final.jsonl" "$@"
+# JAVA-SELECT-BEGIN
+J=""
+for c in "${JAVA_HOME:+${JAVA_HOME}/bin/java}" /usr/lib/jvm/jre-17/bin/java /usr/lib/jvm/java-17*/bin/java /usr/lib/jvm/*17*/bin/java; do
+  if [ -z "${c}" ] || [ ! -x "${c}" ]; then continue; fi
+  jv="$("${c}" -version 2>&1 | sed -n "s/.*version \"\([0-9][0-9]*\).*/\1/p" | head -n1 || true)"
+  if [ -n "${jv}" ] && [ "${jv}" -ge 17 ]; then J="${c}"; break; fi
+done
+if [ -z "${J}" ]; then echo "no Java >= 17 found (tried JAVA_HOME, /usr/lib/jvm/jre-17, java-17*, *17*); plain java is too old for the class files (61.0)" >&2; exit 1; fi
+echo "java: ${J}"
+JH="$(dirname "$(dirname "${J}")")"
+export JAVA_HOME="${JH}"
+# JAVA-SELECT-END
+"${J}" -Xmx${SC_FD_HEAP:-9g} -XX:+ExitOnOutOfMemoryError -cp "${L}/jars/${hn}" scholarchain.er.tools.FinalDecisions --candidates "${L}/in/match-candidates" --policy "${L}/in/er-v1-frozen-policy.json" --out "${L}/work/match-decisions-final.jsonl" --summary "${L}/work/match-decisions-final.summary.json" --code-version "${cv}"
+spark-submit --master "local[*]" --driver-memory 8g --conf spark.hadoop.fs.defaultFS=file:/// --conf "spark.local.dir=${L}/spark-tmp" --conf spark.eventLog.enabled=false --conf spark.dynamicAllocation.enabled=false --conf spark.shuffle.service.enabled=false --conf "spark.executorEnv.JAVA_HOME=${JH}" --conf "spark.yarn.appMasterEnv.JAVA_HOME=${JH}" --class scholarchain.spark.Run "${L}/jars/${sn}" --output-root "${L}/spark-out" --checkpoint-dir "${L}/checkpoints" --code-version "${cv}" --set "input.root-i-dir=${L}/in/curated" --set "input.hj6a-entity-views-dir=${L}/in/entity-views" --set "input.match-decisions-final-path=${L}/work/match-decisions-final.jsonl" "$@"
 hadoop fs -copyFromLocal -d "${L}/spark-out" "${so}"
 hadoop fs -mkdir -p "${so}/provenance"
 hadoop fs -copyFromLocal -d "${L}/work/match-decisions-final.jsonl" "${L}/work/match-decisions-final.summary.json" "${so}/provenance/"'
