@@ -1,0 +1,43 @@
+{
+  "aws_binary_is_stub": false,
+  "collector": "collect_cloudwatch",
+  "commands": [
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"retrieval CPUUtilization Average\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/ECS\", \"MetricName\": \"CPUUtilization\", \"Dimensions\": [{... --start-time 2026-11-27T02:50:00Z --end-time 2026-11-27T03:05:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"TargetResponseTime p50\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/ApplicationELB\", \"MetricName\": \"TargetResponseTime\", \"Dimensions... --start-time 2026-11-27T02:50:00Z --end-time 2026-11-27T03:05:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "312c90d46d20b86cf95f156d578ccd708e70ddcf",
+  "dry_run": false,
+  "ended_at": "2026-11-27T03:04:06.108Z",
+  "errors": [],
+  "experiment_id": "exp-f-failure-recovery",
+  "files": [
+    {
+      "file": "collect_cloudwatch-p15c-f1-ecs.json",
+      "sha256": "b669ca2920ded9188446b0c8c4b5bed68d91785e756770f6e5cf8fe5854c0416"
+    },
+    {
+      "file": "collect_cloudwatch-p15c-f1-alb.json",
+      "sha256": "f39a195c58791c4ab12bd869c9138ad2defd507f973368a74f252c0ae84d3ba5"
+    }
+  ],
+  "label": "REAL",
+  "python": "3.14.2",
+  "region": "us-east-2",
+  "run_id": "p15c-f1",
+  "skipped_groups": [],
+  "started_at": "2026-11-27T03:04:05.218Z",
+  "synthetic": false,
+  "window": {
+    "end": "2026-11-27T03:05:00Z",
+    "period": 60,
+    "start": "2026-11-27T02:50:00Z"
+  }
+}

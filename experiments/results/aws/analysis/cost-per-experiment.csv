@@ -1,0 +1,7 @@
+experiment_id,letter,cost_cap_usd,model_cost_cap_usd,measured_window_usd,model_estimate_usd,n_real_loadgen_runs,synthetic_model_estimate_usd,n_synthetic_loadgen_runs,over_cap,synthetic
+exp-a-baseline-10k,A,3.0,,NOT RUN / NO COST FILE,0.0000,0,0.0000,0,no,false
+exp-b-burst-50k,B,4.0,,NOT RUN / NO COST FILE,0.0000,0,0.0000,0,no,false
+exp-c-embedding-backlog,C,1.0,0.2,NOT RUN / NO COST FILE,0.0000,0,0.0000,0,no,false
+exp-d-query-load,D,1.8,0.9,NOT RUN / NO COST FILE,0.0000,0,0.0000,0,no,false
+exp-e-retrieval-modes,E,1.2,0.6,NOT RUN / NO COST FILE,0.0000,0,0.0000,0,no,false
+exp-f-failure-recovery,F,0.8,0.15,NOT RUN / NO COST FILE,0.0000,0,0.0000,0,no,false

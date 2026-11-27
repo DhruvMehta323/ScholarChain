@@ -1,0 +1,13 @@
+{
+  "15b_scripts_edited": false,
+  "head": "82d21c73925657ab5b7284ffecd91801fd0376b8",
+  "scripts_not_applicable": {
+    "emr_capacity.py": "expects sample_resources.py JSONL (field emr.groups); none was collected for A or B (the cluster had terminated). Probe on the collected files failed with a JSON decode error and wrote nothing. Replaced by derived-exp-b-capacity-timeline.json.",
+    "queue_drain.py": "expects sample_resources.py JSONL; only CloudWatch get-metric-data JSON exists for C. Replaced by derived-exp-c-backlog.json.",
+    "scale_timeline.py": "expects sample_resources.py JSONL (ECS runningCount samples); only scaling activities and ECS events exist for C. Replaced by derived-exp-c-backlog.json."
+  },
+  "scripts_run": {
+    "cost_report.py": "ran, exit 0; output cost-per-experiment.csv (+ provenance sidecar). I passed --cost cost=... and cost-end=..., but those ids are not manifest ids and the Cost Explorer files are month-to-date by day, so every experiment row reads 'NOT RUN / NO COST FILE'. The table therefore carries no measured per-experiment cost; the measured numbers are in SUMMARY.md (Cost) from the two raw cost files. Not rerun, to keep write-once."
+  },
+  "work_order": "X3 Phase 15c"
+}

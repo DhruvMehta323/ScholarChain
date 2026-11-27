@@ -1,0 +1,12 @@
+{
+  "corrects": "derived-exp-a-summary.json",
+  "head": "82d21c73925657ab5b7284ffecd91801fd0376b8",
+  "notes": [
+    "Cost: 0.2420 USD is a per-second estimate (0.9535 instance-hours x 0.2537671233). EMR reported NormalizedInstanceHours=24 (3 instances x 8 for m5.xlarge, hourly rounding); if billed per started hour the upper bound is 3 x 0.2537671233 = 0.7613 USD. Neither is read from the bill. Cost Explorer gives no per-run split.",
+    "All CloudWatch and EMR timestamps in the raw files use -06:00; every _utc value in derived files is converted to UTC.",
+    "HJ1-HJ7 step: 2026-11-25T21:49:46Z to 22:05:24Z = 938 s. The 11 MapReduce jobs sum to 1.0 of that minus gaps; per-job seconds are in derived-exp-a-summary.json. Task counts are maps/reduces from the .jhist names: 53 maps and 21 reduces over 11 jobs.",
+    "Spark did not complete on EMR for this run (FAILED after 38 s, Java 8, F14-8); Spark ran locally."
+  ],
+  "references": "derived-*.json in this folder, written by experiments/analysis/p15c_x1_derive.py",
+  "work_order": "X1 Phase 15c"
+}

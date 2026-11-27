@@ -1,0 +1,34 @@
+{
+  "aws_binary_is_stub": false,
+  "collector": "collect_cloudwatch",
+  "commands": [
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"CoreNodesRunning\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/ElasticMapReduce\", \"MetricName\": \"CoreNodesRunning\", \"Dimensions\": [{\"... --start-time 2026-11-25T21:40:00Z --end-time 2026-11-25T22:15:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "82d21c73925657ab5b7284ffecd91801fd0376b8",
+  "dry_run": false,
+  "ended_at": "2026-11-27T00:13:16.779Z",
+  "errors": [],
+  "experiment_id": "exp-b-burst-50k",
+  "files": [
+    {
+      "file": "collect_cloudwatch-p15c-b1-emr.json",
+      "sha256": "19ae72763d5806ce4e0c361c9ba4b20224b95eb7cf3715ab1b720a3f1826cc50"
+    }
+  ],
+  "label": "REAL",
+  "python": "3.14.2",
+  "region": "us-east-2",
+  "run_id": "p15c-b1",
+  "skipped_groups": [],
+  "started_at": "2026-11-27T00:13:16.200Z",
+  "synthetic": false,
+  "window": {
+    "end": "2026-11-25T22:15:00Z",
+    "period": 60,
+    "start": "2026-11-25T21:40:00Z"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "about": "healthz-probes.txt",
+  "work_order": "R1 L3",
+  "label": "healthz-probes.txt is OPERATOR NOTES with approximate times (shell clock, written by hand after the run), not a collector output.",
+  "unsupported_claim": "The line 'during-gap 02:58:54Z ... retrieval desired 1 running 0 pending 1' is not supported by any sampler sample: the first sample showing running 0 pending 1 is 02:59:00Z (sample_resources-p15c-f1-samples.jsonl). The 02:58:54Z replacement-created time comes from ECS task createdAt (describe-tasks.json), not from that probe note.",
+  "supported": "only that each /healthz GET returned HTTP 200; it reaches query-api through the ALB, not retrieval"
+}

@@ -1,0 +1,5 @@
+{
+    "taskArns": [
+        "arn:aws:ecs:us-east-2:<acct>:task/scholarchain-cluster/48763108e0e54673a8a9f32e10f13f6f"
+    ]
+}

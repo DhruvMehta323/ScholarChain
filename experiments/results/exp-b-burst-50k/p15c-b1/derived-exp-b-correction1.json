@@ -1,0 +1,13 @@
+{
+  "corrects": "derived-exp-b-capacity-timeline.json",
+  "head": "82d21c73925657ab5b7284ffecd91801fd0376b8",
+  "notes": [
+    "Folder name exp-b-burst-50k is the manifest id of experiment B; it is misleading for this data. There was NO burst run and NO 50K run. The data are the capacity timeline of the single 10K cluster j-0072517WQADTWOIR2LO (run r20261125T214348Z-63958). Spark did not run on EMR (it failed after 38 s and ran locally).",
+    "Observed scale-out: managed scaling grew CORE 1->2 (policy max core 2, ComputeLimits Min 1 / Max 2 instances, On-Demand). CloudWatch TotalNodesRequested 1.0 -> 1.5 (21:52Z) -> 2.0 (21:53Z, with CoreNodesPending 1); the third EC2 (i-03e5...) was created 21:52:50Z and became ready 21:54:54Z; CoreNodesRunning 2.0 from 21:56Z. ContainerPending peaked 19 at 21:56Z.",
+    "Observed release: all three EC2 instances ended together at 22:07:07Z (cluster shutdown after the Spark step failed, 'Shut down as step failed'). There was no managed-scaling scale-in before termination. CloudWatch TotalNodesRequested fell to 0.833 in the last 5-min bucket (22:06Z) because the cluster was ending.",
+    "CloudWatch CoreNodesRunning/TotalNodesRunning exclude the primary node (peak 2.0 while 3 EC2 instances ran).",
+    "Requested versus provisioned over time: see capacity_events_utc and cloudwatch_emr_5min_points in the derived file."
+  ],
+  "references": "derived-*.json in this folder, written by experiments/analysis/p15c_x1_derive.py",
+  "work_order": "X1 Phase 15c"
+}

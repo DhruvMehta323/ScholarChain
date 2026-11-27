@@ -1,0 +1,40 @@
+{
+  "repair": "R1 M1",
+  "what": "every sha256 in phase files that hashed an UNREDACTED original was replaced by the sha256 of the stored redacted file, or removed",
+  "changed": [
+    {
+      "file": "exp-a-baseline-10k/p15c-a1/collect_emr-p15c-a1.meta.json",
+      "field": "files[0].sha256 (collect_emr-p15c-a1-cluster.json)",
+      "action": "replaced with sha256 of the stored redacted file"
+    },
+    {
+      "file": "exp-a-baseline-10k/p15c-a1/collect_emr-p15c-a1.meta.json",
+      "field": "files[1].sha256 (collect_emr-p15c-a1-steps.json)",
+      "action": "replaced with sha256 of the stored redacted file"
+    },
+    {
+      "file": "exp-b-burst-50k/p15c-b1/collect_emr-p15c-b1.meta.json",
+      "field": "files[0].sha256 (collect_emr-p15c-b1-cluster.json)",
+      "action": "replaced with sha256 of the stored redacted file"
+    },
+    {
+      "file": "exp-b-burst-50k/p15c-b1/collect_emr-p15c-b1.meta.json",
+      "field": "files[1].sha256 (collect_emr-p15c-b1-steps.json)",
+      "action": "replaced with sha256 of the stored redacted file"
+    },
+    {
+      "file": "exp-d-query-load/p15c-d1/collect_logs-p15c-d1.meta.json",
+      "field": "files[1].sha256 (collect_logs-p15c-d1-scholarchain_query-api-results.json)",
+      "action": "replaced with sha256 of the stored redacted file"
+    },
+    {
+      "file": "exp-f-failure-recovery/p15c-f1/redaction-note-failure-drill-record.json",
+      "field": "sha256_original_unredacted",
+      "action": "replaced with the text 'removed: hash of unredacted original'"
+    }
+  ],
+  "count": 6,
+  "checked": "22 file entries in the collector *.meta.json files of A, B, C, D, F and cost, the sha256 fields of the aws/analysis provenance sidecars whose inputs are phase result files, and the redaction notes; all other hashes already matched stored files or hash files that were never redacted (loadgen CSVs, cost files, benchmark, manifests, S3 input data in source records) and are unchanged",
+  "exception_to": "raw files write-once; disclosed, decided by Dhruv (Repair R1)",
+  "no_old_hash_values_here": true
+}

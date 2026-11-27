@@ -1,0 +1,443 @@
+{
+    "services": [
+        {
+            "serviceArn": "arn:aws:ecs:us-east-2:<acct>:service/scholarchain-cluster/retrieval",
+            "serviceName": "retrieval",
+            "clusterArn": "arn:aws:ecs:us-east-2:<acct>:cluster/scholarchain-cluster",
+            "loadBalancers": [],
+            "serviceRegistries": [
+                {
+                    "registryArn": "arn:aws:servicediscovery:us-east-2:<acct>:service/srv-dhrmazvoh3hzmj5o"
+                }
+            ],
+            "status": "ACTIVE",
+            "desiredCount": 1,
+            "runningCount": 1,
+            "pendingCount": 0,
+            "capacityProviderStrategy": [
+                {
+                    "capacityProvider": "FARGATE",
+                    "weight": 1,
+                    "base": 0
+                }
+            ],
+            "platformVersion": "LATEST",
+            "platformFamily": "Linux",
+            "taskDefinition": "arn:aws:ecs:us-east-2:<acct>:task-definition/scholarchain-retrieval:15",
+            "deploymentConfiguration": {
+                "deploymentCircuitBreaker": {
+                    "enable": true,
+                    "rollback": true
+                },
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100,
+                "strategy": "ROLLING",
+                "bakeTimeInMinutes": 0
+            },
+            "deployments": [
+                {
+                    "id": "ecs-svc/4458621296897894412",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-east-2:<acct>:task-definition/scholarchain-retrieval:15",
+                    "desiredCount": 1,
+                    "pendingCount": 0,
+                    "runningCount": 1,
+                    "failedTasks": 0,
+                    "createdAt": "2026-11-26T15:29:26.196000-06:00",
+                    "updatedAt": "2026-11-26T15:32:41.639000-06:00",
+                    "capacityProviderStrategy": [
+                        {
+                            "capacityProvider": "FARGATE",
+                            "weight": 1,
+                            "base": 0
+                        }
+                    ],
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0feae98cfe371666e",
+                                "subnet-0157ff3333f9d2747"
+                            ],
+                            "securityGroups": [
+                                "sg-0a83ace9c6c61f4a7"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "COMPLETED",
+                    "rolloutStateReason": "ECS deployment ecs-svc/4458621296897894412 completed."
+                }
+            ],
+            "roleArn": "arn:aws:iam::<acct>:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "8b34d948-f3e0-4ffa-8961-8f0177e952d1",
+                    "createdAt": "2026-11-26T15:32:41.701000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "b47ab212-5dd4-4842-9459-2880df1d02e9",
+                    "createdAt": "2026-11-26T15:32:41.700000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/4458621296897894412) deployment completed."
+                },
+                {
+                    "id": "109ccad0-2349-4939-a691-4b31627cb020",
+                    "createdAt": "2026-11-26T15:30:56.189000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task 2163fd3d434843b7a60d898829e2ada5)."
+                },
+                {
+                    "id": "f7f725d2-16a2-44be-932d-703c9473e397",
+                    "createdAt": "2026-11-26T15:29:43.864000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 48763108e0e54673a8a9f32e10f13f6f)."
+                },
+                {
+                    "id": "e6939c15-b00e-4b66-b5d5-447a124765b3",
+                    "createdAt": "2026-11-26T15:28:48.401000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "79f80ea7-713b-41af-97b7-d640704f4325",
+                    "createdAt": "2026-11-26T15:28:48.400000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/1612505714993975753) deployment completed."
+                },
+                {
+                    "id": "5aa75d61-1671-4274-87fb-534f3e9a452a",
+                    "createdAt": "2026-11-26T15:27:17.654000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task 3c498a6da89f442f9cbd2eb4872110d7)."
+                },
+                {
+                    "id": "b201b7dc-04a4-49af-8bd0-02f06bc93746",
+                    "createdAt": "2026-11-26T15:26:07.308000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 2163fd3d434843b7a60d898829e2ada5)."
+                },
+                {
+                    "id": "ff060a98-774c-426f-865c-25d458055f56",
+                    "createdAt": "2026-11-26T12:23:46.687000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "ea6b9ee3-2e1c-46cc-a6f1-eb61bef41e21",
+                    "createdAt": "2026-11-26T12:23:46.686000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/7299937774688588017) deployment completed."
+                },
+                {
+                    "id": "81daec6b-4309-478d-b538-07417d04aaef",
+                    "createdAt": "2026-11-26T12:22:24.716000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task d0672d9064aa40a98ef1d0a92fa758d6)."
+                },
+                {
+                    "id": "8b251da1-792e-4f91-ae91-4838c84bbf5f",
+                    "createdAt": "2026-11-26T12:21:12.710000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 3c498a6da89f442f9cbd2eb4872110d7)."
+                },
+                {
+                    "id": "7b89fd13-a462-4dda-ac1e-ea220484165c",
+                    "createdAt": "2026-11-26T12:20:27.713000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "c01df8b1-d279-4f8e-acf6-f7b8b4e5deda",
+                    "createdAt": "2026-11-26T12:20:27.712000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/0991281542970329568) deployment completed."
+                },
+                {
+                    "id": "888befaa-dcdf-4dba-b3fa-17b126940961",
+                    "createdAt": "2026-11-26T12:18:56.448000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task 689478e2509d452e992118d4c2e69a56)."
+                },
+                {
+                    "id": "0b03c39f-e1f1-4fdb-99e2-afe3c42840c2",
+                    "createdAt": "2026-11-26T12:17:34.870000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task d0672d9064aa40a98ef1d0a92fa758d6)."
+                },
+                {
+                    "id": "db330ec0-8704-4958-be8f-0445bd793004",
+                    "createdAt": "2026-11-26T08:58:13.698000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "713d3315-3949-4e2a-a6b2-68c87ca877ca",
+                    "createdAt": "2026-11-26T03:00:16.623000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "84eb7db4-1e20-4dc9-91b2-b2e2c4773d4d",
+                    "createdAt": "2026-11-26T03:00:16.622000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/6576438979039038801) deployment completed."
+                },
+                {
+                    "id": "20dc7475-6a3a-40c9-b486-99018458cf3a",
+                    "createdAt": "2026-11-26T02:58:43.590000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task 6f4e849a2eb549d4b317b206860e0ee4)."
+                },
+                {
+                    "id": "dc7e6d45-8692-419e-a640-69ccf74d8590",
+                    "createdAt": "2026-11-26T02:57:32.190000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 689478e2509d452e992118d4c2e69a56)."
+                },
+                {
+                    "id": "1c1f4f91-8652-45e1-87ad-22b4c28637cd",
+                    "createdAt": "2026-11-26T02:56:59.465000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "661fc4d5-fd56-4fbd-ac26-70eacba11133",
+                    "createdAt": "2026-11-26T02:56:59.464000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/3326301642794923649) deployment completed."
+                },
+                {
+                    "id": "96a6a342-8a58-4bd2-bd4a-d258755e5e58",
+                    "createdAt": "2026-11-26T02:55:15.975000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task 93082d0ac72c455aa487ca2ad4a6f040)."
+                },
+                {
+                    "id": "06d8dec7-d95e-4c3f-86de-03a33e8f5ea6",
+                    "createdAt": "2026-11-26T02:54:04.245000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 6f4e849a2eb549d4b317b206860e0ee4)."
+                },
+                {
+                    "id": "8f3ce55a-5003-4a61-aa97-cef00ac62b38",
+                    "createdAt": "2026-11-25T21:15:01.996000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "47addae8-1727-4f9a-938c-1428ccb4b706",
+                    "createdAt": "2026-11-25T15:16:59.049000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "061f9716-7e37-49a8-a9d5-3a5db2340bd7",
+                    "createdAt": "2026-11-25T15:16:59.048000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/3402851242887236544) deployment completed."
+                },
+                {
+                    "id": "1cea0780-9979-4958-8550-0b4c97d95534",
+                    "createdAt": "2026-11-25T15:15:26.870000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task 6a6ccbc654a241e7a1cabe8ff199d1e0)."
+                },
+                {
+                    "id": "6e2461ac-47e4-4fd9-9b96-0430d98db1d5",
+                    "createdAt": "2026-11-25T15:14:05.368000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 93082d0ac72c455aa487ca2ad4a6f040)."
+                },
+                {
+                    "id": "88539f04-ca92-440b-8f25-77c98e41ad7d",
+                    "createdAt": "2026-11-25T15:13:32.593000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "17ca227b-6c2d-4752-be89-b1153aa28836",
+                    "createdAt": "2026-11-25T15:13:32.592000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/3862609422414180296) deployment completed."
+                },
+                {
+                    "id": "36b4df49-6e38-423c-a1a1-9a634b940b53",
+                    "createdAt": "2026-11-25T15:12:10.353000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task d8a7c22e17924a2bb1dcd863f4a4030b)."
+                },
+                {
+                    "id": "9aacb81c-d6cf-483e-aeed-d80f1a3077bd",
+                    "createdAt": "2026-11-25T15:10:58.273000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 6a6ccbc654a241e7a1cabe8ff199d1e0)."
+                },
+                {
+                    "id": "9b4f5260-13b4-4fe9-ac93-40e5e0782ae6",
+                    "createdAt": "2026-11-25T14:20:42.827000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "96ac7f6c-271f-4f7f-a904-9e803e91822b",
+                    "createdAt": "2026-11-25T14:20:42.826000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/3078358668794599052) deployment completed."
+                },
+                {
+                    "id": "63a53303-6e52-4e7a-a0f6-981465fa46e7",
+                    "createdAt": "2026-11-25T14:19:19.540000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task 321a5927a0fd4b8fb051a970509cc7f2)."
+                },
+                {
+                    "id": "ca0f7043-7206-4850-93d4-bd3f5258e133",
+                    "createdAt": "2026-11-25T14:18:07.812000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task d8a7c22e17924a2bb1dcd863f4a4030b)."
+                },
+                {
+                    "id": "58feb968-5afc-480d-aa6d-029dcbbc2738",
+                    "createdAt": "2026-11-25T14:17:35.084000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "bceb2c5b-ee92-4205-94ce-370c507e5c40",
+                    "createdAt": "2026-11-25T14:17:35.083000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/2819777807228481237) deployment completed."
+                },
+                {
+                    "id": "96fb0576-d5e0-4c7e-ad1d-ebd0db3a958a",
+                    "createdAt": "2026-11-25T14:16:12.166000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task 440eba83325448beaa526af6c90dbbb1)."
+                },
+                {
+                    "id": "c5f24406-668b-491e-9489-1308c8a789e1",
+                    "createdAt": "2026-11-25T14:15:00.256000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 321a5927a0fd4b8fb051a970509cc7f2)."
+                },
+                {
+                    "id": "9e56bba9-a774-40bc-ab1c-dc60f6058d3e",
+                    "createdAt": "2026-11-25T12:33:44.103000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "78e14106-0587-4650-b39e-c80b5eb29aa1",
+                    "createdAt": "2026-11-25T12:33:44.102000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/2367391456375245001) deployment completed."
+                },
+                {
+                    "id": "8a4317fd-a2f6-42c7-9feb-e37af7bb7da5",
+                    "createdAt": "2026-11-25T12:32:03.474000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task 38c8ba4ea5f341709172143fb6e791ff)."
+                },
+                {
+                    "id": "ce1516da-5d88-4a7c-94c2-8bd71ffae98e",
+                    "createdAt": "2026-11-25T12:30:51.380000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 440eba83325448beaa526af6c90dbbb1)."
+                },
+                {
+                    "id": "a097985f-e1e8-4b2d-ba54-da798e677d27",
+                    "createdAt": "2026-11-25T12:03:54.086000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "9c5e0eb3-98b5-4431-b079-d292e88ef68f",
+                    "createdAt": "2026-11-25T12:03:54.085000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/7483638801380822670) deployment completed."
+                },
+                {
+                    "id": "b177fa3f-4d9e-43c3-9658-35dfd1c3c672",
+                    "createdAt": "2026-11-25T12:02:32.021000-06:00",
+                    "message": "(service retrieval) has stopped 1 running tasks: (task d04a9fc6df294fc2ba6a7e33bf35cc7c)."
+                },
+                {
+                    "id": "efc4103c-dc77-49a3-81d2-b58a10cb4146",
+                    "createdAt": "2026-11-25T12:01:20.261000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 38c8ba4ea5f341709172143fb6e791ff)."
+                },
+                {
+                    "id": "47e8d7de-7f58-4078-91c4-d59eb97e70dd",
+                    "createdAt": "2026-11-25T10:07:05.528000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "25113199-bf20-4f61-9204-2b10a5714904",
+                    "createdAt": "2026-11-25T10:07:05.527000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/9650746748366041449) deployment completed."
+                },
+                {
+                    "id": "aed975c1-ecee-4373-9523-5ffe6b46d385",
+                    "createdAt": "2026-11-25T10:06:19-06:00",
+                    "message": "(service retrieval) rolling back to deployment ecs-svc/9650746748366041449."
+                },
+                {
+                    "id": "5b4caf83-e981-4dd1-a976-93d72052df52",
+                    "createdAt": "2026-11-25T10:06:18.999000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/5317082517615384497) deployment failed: tasks failed to start."
+                },
+                {
+                    "id": "4d86123a-bb14-46f0-812d-bd3edf409e50",
+                    "createdAt": "2026-11-25T10:05:30.322000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task d9bb67ce59634d9db1d718fcb9f9c0fc)."
+                },
+                {
+                    "id": "1bb4f32d-cbbd-41e5-abfd-feacac77f8de",
+                    "createdAt": "2026-11-25T10:00:06.871000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 94913cc74d3347ceb1b5d2c44700100a)."
+                },
+                {
+                    "id": "5f8d2875-0385-4e6e-8584-4254f6ea656f",
+                    "createdAt": "2026-11-25T09:58:58.543000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 60ae385c81b74939835f9d27c162dbb3)."
+                },
+                {
+                    "id": "5692efb8-004e-4ccb-8bdc-d1cf95e21542",
+                    "createdAt": "2026-11-25T09:57:54.236000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 21e99a34e2714970b72cdfcae7d19936)."
+                },
+                {
+                    "id": "c4d41622-742f-45b9-bac1-0cbded86f52f",
+                    "createdAt": "2026-11-25T07:06:19.153000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "27864fd5-4cf5-477d-ac39-880f33519462",
+                    "createdAt": "2026-11-25T01:07:55.360000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "78ed55b8-d11f-4c13-af39-1f390bac721c",
+                    "createdAt": "2026-11-25T01:07:55.359000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/9650746748366041449) deployment completed."
+                },
+                {
+                    "id": "0b18842e-e2f0-4392-8f96-a5007cee8cdb",
+                    "createdAt": "2026-11-25T01:06:11.396000-06:00",
+                    "message": "(service retrieval) stopped 1 pending tasks."
+                },
+                {
+                    "id": "940964c2-c141-4b84-9779-030083938d8d",
+                    "createdAt": "2026-11-25T01:05:31.039000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task d04a9fc6df294fc2ba6a7e33bf35cc7c)."
+                },
+                {
+                    "id": "6850ad68-05e6-49c5-9ae7-f98a779c1780",
+                    "createdAt": "2026-11-25T01:05:21.502000-06:00",
+                    "message": "(service retrieval) has started 1 tasks: (task 525450de5bc3465896c9a7909a68a147)."
+                },
+                {
+                    "id": "2bd92d27-422f-4d02-9822-0bef972b5a45",
+                    "createdAt": "2026-11-24T19:16:23.975000-06:00",
+                    "message": "(service retrieval) has reached a steady state."
+                },
+                {
+                    "id": "3bdff2b0-1d71-4eca-810a-bcec9334114a",
+                    "createdAt": "2026-11-24T19:16:23.974000-06:00",
+                    "message": "(service retrieval) (deployment ecs-svc/1538811900965422696) deployment completed."
+                }
+            ],
+            "createdAt": "2026-11-24T19:16:03.733000-06:00",
+            "currentServiceRevisions": [
+                {
+                    "arn": "arn:aws:ecs:us-east-2:<acct>:service-revision/scholarchain-cluster/retrieval/4458621296897894412",
+                    "requestedTaskCount": 1,
+                    "runningTaskCount": 1,
+                    "pendingTaskCount": 0
+                }
+            ],
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-0feae98cfe371666e",
+                        "subnet-0157ff3333f9d2747"
+                    ],
+                    "securityGroups": [
+                        "sg-0a83ace9c6c61f4a7"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 0,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "ECS"
+            },
+            "createdBy": "arn:aws:iam::<acct>:role/managed/AccountFullAccessRole",
+            "enableECSManagedTags": false,
+            "propagateTags": "NONE",
+            "enableExecuteCommand": false,
+            "availabilityZoneRebalancing": "ENABLED",
+            "resourceManagementType": "CUSTOMER"
+        }
+    ],
+    "failures": []
+}

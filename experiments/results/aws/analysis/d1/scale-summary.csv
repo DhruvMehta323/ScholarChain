@@ -1,0 +1,5 @@
+service,samples,min_running,max_running,scale_out_events,scale_in_events,synthetic
+embedding-worker,43,1,1,0,0,false
+query-api,43,1,1,0,0,false
+retrieval,43,1,1,0,0,false
+(load window),40,,,start_rel_s=36.1,end_rel_s=75.6,false

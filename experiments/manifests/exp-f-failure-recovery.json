@@ -4,9 +4,9 @@
   "letter": "F",
   "title": "Failure and recovery of the embedding worker",
   "purpose": "ONE safe failure per run: either send one poison message to the embedding queue (--action poison-message, the default plan) or stop one embedding-worker task (--action stop-task), then show retry, dead-letter, idempotency and recovery from the queue, DLQ and worker task timelines.",
-  "approved": false,
-  "approved_by": "",
-  "approval_ref": "",
+  "approved": true,
+  "approved_by": "Dhruv Mehta (dmeht35@uic.edu)",
+  "approval_ref": "docs/agent-runs/phase-15c-aws-experiments/prompt.md",
   "commit_sha": "FILL_AT_RUN_TIME",
   "seed": 441,
   "environment": {
@@ -25,8 +25,13 @@
     "--manifest",
     "experiments/manifests/exp-f-failure-recovery.json",
     "--action",
-    "poison-message",
-    "--dry-run"
+    "stop-task",
+    "--cluster-name",
+    "scholarchain-cluster",
+    "--service",
+    "retrieval",
+    "--execute",
+    "--yes"
   ],
   "command_notes": [
     "The command above is the DRY RUN plan print (no AWS call). The run id comes from SC_RUN_ID (the human sets it to the token passed to run-experiment.sh --run-id; run-experiment.sh does not export its run id).",
@@ -89,5 +94,6 @@
     ],
     "explicit_human_approval_required": true
   },
-  "reproduction": "SC_RUN_ID=<token> python3 -B experiments/collect/failure_drill.py --manifest experiments/manifests/exp-f-failure-recovery.json --action poison-message --dry-run (prints the plan; or run through scripts/run-experiment.sh exp-f-failure-recovery --run-id <token> with SC_RUN_ID set); the human performs it by editing the command as in command_notes; analysis: queue_drain.py, scale_timeline.py"
+  "reproduction": "SC_RUN_ID=<token> python3 -B experiments/collect/failure_drill.py --manifest experiments/manifests/exp-f-failure-recovery.json --action poison-message --dry-run (prints the plan; or run through scripts/run-experiment.sh exp-f-failure-recovery --run-id <token> with SC_RUN_ID set); the human performs it by editing the command as in command_notes; analysis: queue_drain.py, scale_timeline.py",
+  "approved_at": "2026-11-26"
 }

@@ -1,0 +1,3 @@
+mode,concurrency,n_total,n_success,n_failed,error_rate,p50_ms,p95_ms,p99_ms,min_ms,max_ms,mean_ms,wall_seconds,throughput_rps,status_counts,runs,synthetic
+fused,5,16,16,0,0.0000,4905.549,10277.114,10277.114,572.786,10277.114,5087.138,19.940,0.802,200:16,p15c-d1,false
+fused,20,24,24,0,0.0000,7884.295,15085.562,15136.972,1725.705,15136.972,8359.959,19.341,1.241,200:24,p15c-d1,false

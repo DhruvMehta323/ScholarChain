@@ -1,0 +1,35 @@
+{
+  "cloudwatch": "retrieval CPU average max 12.0 percent, maximum 70.2 percent in the window; ALB RequestCount 2 (the two healthz probes), no 5xx (collect_cloudwatch-p15c-f1-ecs.json, -alb.json)",
+  "disclosures": [
+    "manifest title still says 'embedding worker' but the action stopped a retrieval task (Dhruv's decision: leave title)",
+    "stop condition 'DLQ depth above 1 before the drill' waived by Dhruv for stop-task on retrieval; the 2 DLQ messages (F14-16) were untouched",
+    "the drill record was redacted in place (redaction-note-failure-drill-record.json)",
+    "one failure only; the drill never retried",
+    "sampler stopped at 03:04:00Z after 23 samples (duration 1200 s not run to the end)"
+  ],
+  "failure": "ONE stop-task of the single running retrieval task (task id ending 10f13f6f) via failure_drill.py --action stop-task --service retrieval; record failure_drill-p15c-f1-record.jsonl",
+  "head": "312c90d46d20b86cf95f156d578ccd708e70ddcf",
+  "healthy_check": "retrieval has no ALB target group (only scholarchain-query-api exists) and its tasks report healthStatus UNKNOWN (no container health check), so 'healthy in target group' cannot be shown. RUNNING plus the ECS 'reached a steady state' event is the recovery criterion used. /healthz probes hit query-api through the ALB and returned 200 before, during and after (healthz-probes.txt); they do NOT test retrieval.",
+  "impact": "user-visible impact on retrieval during the 32.9 s gap is NOT measured: no /v1/query was sent (Bedrock budget used up). Query path availability during the gap is unknown.",
+  "kind": "DERIVED (not raw)",
+  "label": "REAL",
+  "recovery_seconds": {
+    "replacement_provisioning_to_running": 30.4,
+    "stop_issued_to_replacement_RUNNING": 32.9,
+    "stop_issued_to_replacement_created": 2.5,
+    "stop_issued_to_service_steady_state": 40.1
+  },
+  "run": "p15c-f1",
+  "sampler_evidence": "15 s samples: retrieval desired 1 running 0 pending 1 at 02:59:00Z and 02:59:15Z; running 1 pending 0 from 02:59:30Z; query-api 1/1 throughout (sample_resources-p15c-f1-samples.jsonl, 23 samples 02:58:30Z-03:04:00Z)",
+  "timeline_utc": {
+    "old_task_STOPPED_stoppedAt": "2026-11-27T02:59:38.405Z",
+    "replacement_RUNNING_startedAt": "2026-11-27T02:59:24.690Z",
+    "replacement_created_PROVISIONING": "2026-11-27T02:58:54.308Z (task 6ffbb9cc; ECS event 'has started 1 tasks' 02:58:54.348Z)",
+    "service_steady_state_event": "2026-11-27T02:59:31.822Z",
+    "stop_call_returned": "2026-11-27T02:58:52.288Z",
+    "stop_issued": "2026-11-27T02:58:51.764Z (action_begin in the drill record)",
+    "stopped_reason": "experiment F drill",
+    "task_stopping_at": "2026-11-27T02:58:52.222Z"
+  },
+  "work_order": "X5"
+}

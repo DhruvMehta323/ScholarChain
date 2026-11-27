@@ -1,0 +1,339 @@
+{
+    "services": [
+        {
+            "serviceArn": "arn:aws:ecs:us-east-2:<acct>:service/scholarchain-cluster/embedding-worker",
+            "serviceName": "embedding-worker",
+            "clusterArn": "arn:aws:ecs:us-east-2:<acct>:cluster/scholarchain-cluster",
+            "loadBalancers": [],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 1,
+            "runningCount": 1,
+            "pendingCount": 0,
+            "capacityProviderStrategy": [
+                {
+                    "capacityProvider": "FARGATE",
+                    "weight": 1,
+                    "base": 0
+                }
+            ],
+            "platformVersion": "LATEST",
+            "platformFamily": "Linux",
+            "taskDefinition": "arn:aws:ecs:us-east-2:<acct>:task-definition/scholarchain-embedding-worker:15",
+            "deploymentConfiguration": {
+                "deploymentCircuitBreaker": {
+                    "enable": true,
+                    "rollback": true
+                },
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100,
+                "strategy": "ROLLING",
+                "bakeTimeInMinutes": 0
+            },
+            "deployments": [
+                {
+                    "id": "ecs-svc/0233360100548353117",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-east-2:<acct>:task-definition/scholarchain-embedding-worker:15",
+                    "desiredCount": 1,
+                    "pendingCount": 0,
+                    "runningCount": 1,
+                    "failedTasks": 0,
+                    "createdAt": "2026-11-26T15:29:26.125000-06:00",
+                    "updatedAt": "2026-11-26T16:55:45.741000-06:00",
+                    "capacityProviderStrategy": [
+                        {
+                            "capacityProvider": "FARGATE",
+                            "weight": 1,
+                            "base": 0
+                        }
+                    ],
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0feae98cfe371666e",
+                                "subnet-0157ff3333f9d2747"
+                            ],
+                            "securityGroups": [
+                                "sg-01357f5548bd27047"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "COMPLETED",
+                    "rolloutStateReason": "ECS deployment ecs-svc/0233360100548353117 completed."
+                }
+            ],
+            "roleArn": "arn:aws:iam::<acct>:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "243ed2b7-4ffd-4c49-9f2c-dccc4ab38e49",
+                    "createdAt": "2026-11-26T16:55:45.805000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "368f9b96-2651-4709-bd81-be98172ba6f0",
+                    "createdAt": "2026-11-26T16:55:36.740000-06:00",
+                    "message": "(service embedding-worker) has stopped 1 running tasks: (task 2e01b4df71e541e68d3dec1314269f12)."
+                },
+                {
+                    "id": "eac42351-dbbe-44b2-b312-de0cbb795822",
+                    "createdAt": "2026-11-26T16:49:54.254000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "a8ad297a-1a5b-455a-82d2-ed960fff1ec0",
+                    "createdAt": "2026-11-26T16:49:44.672000-06:00",
+                    "message": "(service embedding-worker) has stopped 1 running tasks: (task 209b565f47f04e1aa89a61d47c41da48)."
+                },
+                {
+                    "id": "3280b1f3-1f60-41d6-8801-1da95acabdbd",
+                    "createdAt": "2026-11-26T16:43:52.416000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "5e54bc51-7c10-4b42-aae3-e1f61c0071af",
+                    "createdAt": "2026-11-26T16:43:42.559000-06:00",
+                    "message": "(service embedding-worker) has stopped 1 running tasks: (task 2ae5d34a2c864266be8a921aa123ad72)."
+                },
+                {
+                    "id": "1f5a94e2-7bbb-47cd-a1ed-6235dc0edf91",
+                    "createdAt": "2026-11-26T16:18:25.012000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "987bb140-2f27-4560-9349-0ba85e1ee9da",
+                    "createdAt": "2026-11-26T16:17:57.486000-06:00",
+                    "message": "(service embedding-worker) has started 2 tasks: (task 209b565f47f04e1aa89a61d47c41da48) (task f63c31f6b53a40c681402db388ecc9d4)."
+                },
+                {
+                    "id": "80482382-e069-4362-ab7a-bade61014f0b",
+                    "createdAt": "2026-11-26T16:16:24.904000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "a21fee53-c6ca-4d29-8544-7755e8f16914",
+                    "createdAt": "2026-11-26T16:15:55.884000-06:00",
+                    "message": "(service embedding-worker) has started 1 tasks: (task 2ae5d34a2c864266be8a921aa123ad72)."
+                },
+                {
+                    "id": "d4db32f5-e784-4939-826d-818ccd3f01e9",
+                    "createdAt": "2026-11-26T15:33:27.090000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "41f3ad11-1ea8-4866-ae4a-66dabcf2d83b",
+                    "createdAt": "2026-11-26T15:33:27.089000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/0233360100548353117) deployment completed."
+                },
+                {
+                    "id": "41757ed1-6b1c-417a-b504-f4ef49f852ad",
+                    "createdAt": "2026-11-26T15:30:41.499000-06:00",
+                    "message": "(service embedding-worker) has stopped 1 running tasks: (task 00d3a8d010f1420fa3c12c7b41cfb863)."
+                },
+                {
+                    "id": "e182667e-d908-48ad-9d40-475263167398",
+                    "createdAt": "2026-11-26T15:29:40.814000-06:00",
+                    "message": "(service embedding-worker) has started 1 tasks: (task 2e01b4df71e541e68d3dec1314269f12)."
+                },
+                {
+                    "id": "2b23eb3d-7423-4f59-92c5-3c2f617c122c",
+                    "createdAt": "2026-11-26T15:29:30.951000-06:00",
+                    "message": "(service embedding-worker) has started 1 tasks: (task 00d3a8d010f1420fa3c12c7b41cfb863)."
+                },
+                {
+                    "id": "856fc289-e3df-4755-b0ff-fc5401537706",
+                    "createdAt": "2026-11-26T15:27:22.766000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "914916d7-a94f-4a60-9b4e-21879bedeaab",
+                    "createdAt": "2026-11-26T15:27:22.765000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/1337214471621059642) deployment completed."
+                },
+                {
+                    "id": "6c3cd225-e595-4d3c-9a79-872a8cd69744",
+                    "createdAt": "2026-11-26T12:22:22.341000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "f441b093-f7e2-4f75-8c5d-31ef8b76d0cb",
+                    "createdAt": "2026-11-26T12:22:22.340000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/6233366605303683962) deployment completed."
+                },
+                {
+                    "id": "ab9b6ac1-3311-4232-a3cd-ff4db9372b99",
+                    "createdAt": "2026-11-26T12:18:45.346000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "661164b0-2532-4368-b31d-6b8dccbdde54",
+                    "createdAt": "2026-11-26T12:18:45.345000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/1652288312276754977) deployment completed."
+                },
+                {
+                    "id": "c5ca0419-9592-410c-b7be-bbd0afef59f9",
+                    "createdAt": "2026-11-26T08:57:44.277000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "141c86bf-106a-4d0b-a2e3-1e9b678ec812",
+                    "createdAt": "2026-11-26T02:58:54.347000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "c4352591-1097-44d8-bebb-23cfa92f12c5",
+                    "createdAt": "2026-11-26T02:58:54.346000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/0566747738797128395) deployment completed."
+                },
+                {
+                    "id": "3ca792ec-2424-4ad3-a5ae-bef2e466d610",
+                    "createdAt": "2026-11-26T02:55:19.125000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "6bdbe812-2fd8-4241-91ac-f87f45663316",
+                    "createdAt": "2026-11-26T02:55:19.124000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/2446921414331266059) deployment completed."
+                },
+                {
+                    "id": "d51fb62d-d0f1-4554-b323-3075b1aad44a",
+                    "createdAt": "2026-11-25T21:14:27.283000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "2b0aeaa4-6c4c-4de6-bfa9-dcf99decdaab",
+                    "createdAt": "2026-11-25T15:15:30.733000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "b6644daf-3200-46e5-8499-379b4286dc8e",
+                    "createdAt": "2026-11-25T15:15:30.732000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/8784765469105522459) deployment completed."
+                },
+                {
+                    "id": "38dc6a9d-754d-49c0-aa2c-c70d4f6f0917",
+                    "createdAt": "2026-11-25T15:12:04.864000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "0c23c229-b320-407f-9c37-e53d4ea841f3",
+                    "createdAt": "2026-11-25T15:12:04.863000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/7265610441034327840) deployment completed."
+                },
+                {
+                    "id": "6645ae93-10cb-42a9-9071-633645ce8a5b",
+                    "createdAt": "2026-11-25T14:19:37.851000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "800d5455-1aea-46a2-ab5c-316be319f93d",
+                    "createdAt": "2026-11-25T14:19:37.850000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/0144491824252405195) deployment completed."
+                },
+                {
+                    "id": "689ac561-8f5b-40b4-a69a-50799f84cbdf",
+                    "createdAt": "2026-11-25T14:16:17.892000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "d50ea857-1f86-4630-a6de-fdb827c7f514",
+                    "createdAt": "2026-11-25T14:16:17.891000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/1244216773123835118) deployment completed."
+                },
+                {
+                    "id": "d6f47012-2e83-4d11-8de6-a5f0d744d789",
+                    "createdAt": "2026-11-25T12:31:58.874000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "c324dbdf-4009-49ba-937d-fce1ce6fa06b",
+                    "createdAt": "2026-11-25T12:31:58.873000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/3882295968648616330) deployment completed."
+                },
+                {
+                    "id": "6d57570c-9594-460a-b285-030cbaf6901c",
+                    "createdAt": "2026-11-25T12:02:36.194000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "6b65eb9c-b9df-4952-a2df-38e97ff2296e",
+                    "createdAt": "2026-11-25T12:02:36.193000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/9232708132303846418) deployment completed."
+                },
+                {
+                    "id": "be79c88d-6cc4-4e2a-b432-b22c0954be36",
+                    "createdAt": "2026-11-25T09:59:09.807000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "44159b45-f0db-4de4-9caa-a313609c9858",
+                    "createdAt": "2026-11-25T09:59:09.806000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/7747920408339465913) deployment completed."
+                },
+                {
+                    "id": "3a5d1f59-8da9-4803-9085-eff07242b976",
+                    "createdAt": "2026-11-25T07:05:18.754000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "6e615228-38d0-4f72-a4b8-96d08122b59a",
+                    "createdAt": "2026-11-25T01:06:34.727000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "00c51b77-2e58-4533-96d0-7a36a7cd05a9",
+                    "createdAt": "2026-11-25T01:06:34.726000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/3156144524829705275) deployment completed."
+                },
+                {
+                    "id": "1993ee37-8fcf-4f84-b3b6-7cb04f2af3cd",
+                    "createdAt": "2026-11-24T19:16:16.393000-06:00",
+                    "message": "(service embedding-worker) has reached a steady state."
+                },
+                {
+                    "id": "cc78f385-92ca-4594-95ec-9b8bc506ae21",
+                    "createdAt": "2026-11-24T19:16:16.392000-06:00",
+                    "message": "(service embedding-worker) (deployment ecs-svc/1012058747116824171) deployment completed."
+                }
+            ],
+            "createdAt": "2026-11-24T19:16:03.672000-06:00",
+            "currentServiceRevisions": [
+                {
+                    "arn": "arn:aws:ecs:us-east-2:<acct>:service-revision/scholarchain-cluster/embedding-worker/0233360100548353117",
+                    "requestedTaskCount": 1,
+                    "runningTaskCount": 1,
+                    "pendingTaskCount": 0
+                }
+            ],
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-0feae98cfe371666e",
+                        "subnet-0157ff3333f9d2747"
+                    ],
+                    "securityGroups": [
+                        "sg-01357f5548bd27047"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 0,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "ECS"
+            },
+            "createdBy": "arn:aws:iam::<acct>:role/managed/AccountFullAccessRole",
+            "enableECSManagedTags": false,
+            "propagateTags": "NONE",
+            "enableExecuteCommand": false,
+            "availabilityZoneRebalancing": "ENABLED",
+            "resourceManagementType": "CUSTOMER"
+        }
+    ],
+    "failures": []
+}

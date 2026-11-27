@@ -1,0 +1,32 @@
+{
+    "ScalingPolicies": [
+        {
+            "PolicyARN": "arn:aws:autoscaling:us-east-2:<acct>:scalingPolicy:6b6ec9a9-afca-4a88-95cb-54ab144e1d12:resource/ecs/service/scholarchain-cluster/retrieval:policyName/scholarchain-retrieval-cpu",
+            "PolicyName": "scholarchain-retrieval-cpu",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/scholarchain-cluster/retrieval",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "PolicyType": "TargetTrackingScaling",
+            "TargetTrackingScalingPolicyConfiguration": {
+                "TargetValue": 60.0,
+                "PredefinedMetricSpecification": {
+                    "PredefinedMetricType": "ECSServiceAverageCPUUtilization"
+                },
+                "ScaleOutCooldown": 60,
+                "ScaleInCooldown": 120,
+                "DisableScaleIn": false
+            },
+            "Alarms": [
+                {
+                    "AlarmName": "TargetTracking-service/scholarchain-cluster/retrieval-AlarmHigh-be52103d-251a-4f54-baf2-ee4125dfdee6",
+                    "AlarmARN": "arn:aws:cloudwatch:us-east-2:<acct>:alarm:TargetTracking-service/scholarchain-cluster/retrieval-AlarmHigh-be52103d-251a-4f54-baf2-ee4125dfdee6"
+                },
+                {
+                    "AlarmName": "TargetTracking-service/scholarchain-cluster/retrieval-AlarmLow-f1ec08ea-86ba-4bf8-9963-7e414ceefc58",
+                    "AlarmARN": "arn:aws:cloudwatch:us-east-2:<acct>:alarm:TargetTracking-service/scholarchain-cluster/retrieval-AlarmLow-f1ec08ea-86ba-4bf8-9963-7e414ceefc58"
+                }
+            ],
+            "CreationTime": "2026-11-24T19:16:05.063000-06:00"
+        }
+    ]
+}

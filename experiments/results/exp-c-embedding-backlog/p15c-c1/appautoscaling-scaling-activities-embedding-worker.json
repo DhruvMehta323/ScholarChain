@@ -1,0 +1,76 @@
+{
+    "ScalingActivities": [
+        {
+            "ActivityId": "ef239726-4aed-4eac-a3fa-bccf3c3afc0c",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/scholarchain-cluster/embedding-worker",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "Description": "Setting desired count to 1.",
+            "Cause": "monitor alarm TargetTracking-service/scholarchain-cluster/embedding-worker-AlarmLow-3e8d1f5f-7208-458e-8354-95170ac4296c in state ALARM triggered policy scholarchain-embedding-worker-backlog",
+            "StartTime": "2026-11-26T16:55:33.832000-06:00",
+            "EndTime": "2026-11-26T16:56:09.698000-06:00",
+            "StatusCode": "Successful",
+            "StatusMessage": "Successfully set desired count to 1. Change successfully fulfilled by ecs."
+        },
+        {
+            "ActivityId": "8a495ee9-0cb8-42e2-964e-8810c3f487d3",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/scholarchain-cluster/embedding-worker",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "Description": "Setting desired count to 2.",
+            "Cause": "monitor alarm TargetTracking-service/scholarchain-cluster/embedding-worker-AlarmLow-3e8d1f5f-7208-458e-8354-95170ac4296c in state ALARM triggered policy scholarchain-embedding-worker-backlog",
+            "StartTime": "2026-11-26T16:49:33.878000-06:00",
+            "EndTime": "2026-11-26T16:50:09.611000-06:00",
+            "StatusCode": "Successful",
+            "StatusMessage": "Successfully set desired count to 2. Change successfully fulfilled by ecs."
+        },
+        {
+            "ActivityId": "cab02f18-e412-422a-a25d-e06e96caef98",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/scholarchain-cluster/embedding-worker",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "Description": "Setting desired count to 3.",
+            "Cause": "monitor alarm TargetTracking-service/scholarchain-cluster/embedding-worker-AlarmLow-3e8d1f5f-7208-458e-8354-95170ac4296c in state ALARM triggered policy scholarchain-embedding-worker-backlog",
+            "StartTime": "2026-11-26T16:43:33.869000-06:00",
+            "EndTime": "2026-11-26T16:44:04.851000-06:00",
+            "StatusCode": "Successful",
+            "StatusMessage": "Successfully set desired count to 3. Change successfully fulfilled by ecs."
+        },
+        {
+            "ActivityId": "76fde3b8-001f-4d12-a50b-65c09e742e9b",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/scholarchain-cluster/embedding-worker",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "Description": "Setting desired count to 4.",
+            "Cause": "monitor alarm TargetTracking-service/scholarchain-cluster/embedding-worker-AlarmHigh-ba525a3f-96b8-4690-889e-b2636f47e0e7 in state ALARM triggered policy scholarchain-embedding-worker-backlog",
+            "StartTime": "2026-11-26T16:17:51.587000-06:00",
+            "EndTime": "2026-11-26T16:18:25.367000-06:00",
+            "StatusCode": "Successful",
+            "StatusMessage": "Successfully set desired count to 4. Change successfully fulfilled by ecs."
+        },
+        {
+            "ActivityId": "a2a7ad26-d92e-4a7c-9b91-d933cd7633b1",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/scholarchain-cluster/embedding-worker",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "Description": "Setting desired count to 2.",
+            "Cause": "monitor alarm TargetTracking-service/scholarchain-cluster/embedding-worker-AlarmHigh-ba525a3f-96b8-4690-889e-b2636f47e0e7 in state ALARM triggered policy scholarchain-embedding-worker-backlog",
+            "StartTime": "2026-11-26T16:15:51.593000-06:00",
+            "EndTime": "2026-11-26T16:16:23.360000-06:00",
+            "StatusCode": "Successful",
+            "StatusMessage": "Successfully set desired count to 2. Change successfully fulfilled by ecs."
+        },
+        {
+            "ActivityId": "9495d30f-815b-4600-a6c8-fb3928e93adf",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/scholarchain-cluster/embedding-worker",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "Description": "Setting desired count to 1.",
+            "Cause": "minimum capacity was set to 1",
+            "StartTime": "2026-11-26T15:29:27.341000-06:00",
+            "EndTime": "2026-11-26T15:29:58.161000-06:00",
+            "StatusCode": "Successful",
+            "StatusMessage": "Successfully set desired count to 1. Change successfully fulfilled by ecs."
+        }
+    ]
+}

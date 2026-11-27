@@ -1,0 +1,44 @@
+{
+  "argv": [
+    "experiments/results/exp-d-query-load/p15c-d1/sample_resources-p15c-d1-samples.jsonl",
+    "--loadgen",
+    "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c5-fused.csv",
+    "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c20-fused.csv",
+    "--out-dir",
+    "experiments/results/aws/analysis/d1"
+  ],
+  "benchmark_sha256": null,
+  "generated_at_utc": "2026-11-27T01:56:01.377Z",
+  "git_head": "36b19d19fb462f2dd1391991020e32ac064af177",
+  "inputs": [
+    {
+      "path": "experiments/results/exp-d-query-load/p15c-d1/sample_resources-p15c-d1-samples.jsonl",
+      "sha256": "3cd6691bfa21298adb79d5b11c107b414e56a081f25b1084f8e102ebffa3a3f0"
+    },
+    {
+      "path": "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c5-fused.csv",
+      "sha256": "c6e35c34ec8579f3e65763f9e763b0ce8fb1bcad1c8bbac512a1ab584db5dc8f"
+    },
+    {
+      "path": "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c20-fused.csv",
+      "sha256": "4eeeef5ff9d97835c2ee02b14ecece80d52d93fee65fe3401a4cf231afb2ad86"
+    }
+  ],
+  "output": "scale-summary.csv",
+  "output_sha256": "06b1c43c71b5d4e85c99b15b821b69608e20d95ef194aa19dcaff5d539893870",
+  "parameters": {
+    "force": false,
+    "loadgen": [
+      "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c5-fused.csv",
+      "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c20-fused.csv"
+    ],
+    "no_plot": false,
+    "out_dir": "experiments/results/aws/analysis/d1",
+    "samples": "experiments/results/exp-d-query-load/p15c-d1/sample_resources-p15c-d1-samples.jsonl"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/analysis/scale_timeline.py",
+  "synthetic": false,
+  "tree_dirty": true
+}

@@ -1,0 +1,641 @@
+{
+  "codeVersion": "38f2160a6e95",
+  "documents": {
+    "byType": {
+      "community_profile": 2653,
+      "paper_abstract": 2653,
+      "path_summary": 84,
+      "researcher_profile": 2654,
+      "topic_summary": 1956
+    },
+    "cap": 10000,
+    "entitiesByType": {
+      "community_profile": 2653,
+      "paper_abstract": 2653,
+      "path_summary": 84,
+      "researcher_profile": 1454,
+      "topic_summary": 1956
+    },
+    "selection": {
+      "available": 96781,
+      "availableByType": {
+        "collaboration-community-v1": 17101,
+        "collaboration-path-v1": 84,
+        "paper-abstract-v1": 10000,
+        "researcher-profile-v1": 67640,
+        "topic-institution-summary-v1": 1956
+      },
+      "cap": 10000,
+      "description": "Render all documents; group by vector index (fixed order: researcher-profile-v1, collaboration-community-v1, paper-abstract-v1, collaboration-path-v1, topic-institution-summary-v1); sort each group by document id; take one document from each non-empty group in that order, repeating until exactly min(cap, total) are selected or all are exhausted.",
+      "indexOrder": [
+        "researcher-profile-v1",
+        "collaboration-community-v1",
+        "paper-abstract-v1",
+        "collaboration-path-v1",
+        "topic-institution-summary-v1"
+      ],
+      "rule": "stratified-round-robin-by-index-v1",
+      "selected": 10000,
+      "selectedByType": {
+        "collaboration-community-v1": 2653,
+        "collaboration-path-v1": 84,
+        "paper-abstract-v1": 2653,
+        "researcher-profile-v1": 2654,
+        "topic-institution-summary-v1": 1956
+      }
+    },
+    "skippedByReason": {},
+    "total": 10000,
+    "uncappedTotal": 96781
+  },
+  "dryRun": false,
+  "exitCode": 0,
+  "imageTag": null,
+  "inputs": {
+    "checksumsSha256": "de442a23fcda44e038fa039e5ea86697339d367d8ddd8190f260acfb26d285df",
+    "embeddingInputs": [
+      {
+        "bytes": 68845972,
+        "rows": 86781,
+        "sha256": "439036ad940fe417f20d02847030898f451d3a3d5cda016709870f14407b51df",
+        "table": "semantic-summaries",
+        "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/embedding-inputs/semantic-summaries.jsonl"
+      },
+      {
+        "bytes": 203621,
+        "rows": 1966,
+        "sha256": "287ee3cad56637e32d406e3e5446ab15d005b2ecb058e7faaf5eb61e5ce1cffb",
+        "table": "topics",
+        "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/embedding-inputs/topics.jsonl"
+      },
+      {
+        "bytes": 100551,
+        "rows": 1372,
+        "sha256": "8ec9547bf8cc047a2fbece4591474d37ecf7d0006f9aa8ede58490dac8b183ec",
+        "table": "venues",
+        "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/embedding-inputs/venues.jsonl"
+      },
+      {
+        "bytes": 4119449,
+        "rows": 10000,
+        "sha256": "722449808f286cafc1530a2d7290dc76272f6a677971fe5af9321467b69c78ab",
+        "table": "works",
+        "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/embedding-inputs/works.jsonl"
+      }
+    ],
+    "loadManifestSha256": "bfd5e2000daefc0558965dcfa2dcc739525cf5c976cda833cd3e35c43daefdd0"
+  },
+  "liveLoad": {
+    "codeVersion": "38f2160a6e95",
+    "detail": "ok",
+    "durationsMillis": {
+      "items": 349938,
+      "neptune": 1284094,
+      "total": 1682961,
+      "verify": 48915
+    },
+    "exitCode": 0,
+    "inputs": {
+      "files": [
+        {
+          "bytes": 3847,
+          "role": "checksums",
+          "sha256": "de442a23fcda44e038fa039e5ea86697339d367d8ddd8190f260acfb26d285df",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/checksums.sha256"
+        },
+        {
+          "bytes": 68845972,
+          "role": "embedding-input",
+          "sha256": "439036ad940fe417f20d02847030898f451d3a3d5cda016709870f14407b51df",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/embedding-inputs/semantic-summaries.jsonl"
+        },
+        {
+          "bytes": 203621,
+          "role": "embedding-input",
+          "sha256": "287ee3cad56637e32d406e3e5446ab15d005b2ecb058e7faaf5eb61e5ce1cffb",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/embedding-inputs/topics.jsonl"
+        },
+        {
+          "bytes": 100551,
+          "role": "embedding-input",
+          "sha256": "8ec9547bf8cc047a2fbece4591474d37ecf7d0006f9aa8ede58490dac8b183ec",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/embedding-inputs/venues.jsonl"
+        },
+        {
+          "bytes": 4119449,
+          "role": "embedding-input",
+          "sha256": "722449808f286cafc1530a2d7290dc76272f6a677971fe5af9321467b69c78ab",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/embedding-inputs/works.jsonl"
+        },
+        {
+          "bytes": 105509045,
+          "role": "items-jsonl",
+          "sha256": "450e0a380ee2140edb95524f7142d60f867dd16e53ecd7b851853f3c3fae07e8",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/bridges.jsonl"
+        },
+        {
+          "bytes": 65875556,
+          "role": "items-jsonl",
+          "sha256": "41c31d458979b23b8b576fc977076f388e715480acf8a8db9dc80bf1b61d4811",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/coauthor-edge-works.jsonl"
+        },
+        {
+          "bytes": 26247528,
+          "role": "items-jsonl",
+          "sha256": "98731a77f737bba4d8ddacbc0d9bb1fb8cdf2574435e59300b31bea20d6f7c03",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/coreness.jsonl"
+        },
+        {
+          "bytes": 41495929,
+          "role": "items-jsonl",
+          "sha256": "8a7754fd493f43179b2a26a60358eeae514f2772fda33bd749cc2719dc6c53c6",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/identity-clusters.jsonl"
+        },
+        {
+          "bytes": 59788352,
+          "role": "items-jsonl",
+          "sha256": "eb82628542a75dbdb27e31a5412d4542e3ccfb4496bb8b754d6fa3195d22eb42",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/mention-researcher.jsonl"
+        },
+        {
+          "bytes": 2324,
+          "role": "items-jsonl",
+          "sha256": "4d459e34cb0c9303950c1a61eb0a64139cafb0a5bccb169a9560676893db288d",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/path-estimates.jsonl"
+        },
+        {
+          "bytes": 84261,
+          "role": "items-jsonl",
+          "sha256": "fefdf7bc33a1dead51a8fe330d7ce833313b8377fc2995531bad234b906de4e6",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/paths.jsonl"
+        },
+        {
+          "bytes": 78169905,
+          "role": "items-jsonl",
+          "sha256": "b5530e8c84f9ff09ba4a25ef9e6d832843d76c5ac932c4f388c28d6985438b04",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/researcher-metrics.jsonl"
+        },
+        {
+          "bytes": 34622789,
+          "role": "items-jsonl",
+          "sha256": "089bd1f5985be8aa9789d9c97bfa53d76978a3bd66d353a2608df7fdd375b12d",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/temporal-changes.jsonl"
+        },
+        {
+          "bytes": 2914,
+          "role": "items-jsonl",
+          "sha256": "02aba033d9405bad1d2c53361adad419b686844d92b33a641de7abcffa4cf6d0",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/dynamodb/items/window-summary.jsonl"
+        },
+        {
+          "bytes": 87561,
+          "role": "load-manifest",
+          "sha256": "bfd5e2000daefc0558965dcfa2dcc739525cf5c976cda833cd3e35c43daefdd0",
+          "uri": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/load-manifest.json"
+        },
+        {
+          "bytes": 15831737,
+          "role": "neptune-csv",
+          "sha256": "b5db8ff5a9806ab366400505dc982f31466696d4bc7f776b45a2f39918cbd72e",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/edges/AUTHORED.csv"
+        },
+        {
+          "bytes": 102094931,
+          "role": "neptune-csv",
+          "sha256": "ff1a5e3fbb15a7ed9091c64f5e9a4bffa404566bdab4be425e0e53f1041f24aa",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/edges/COAUTHORED_WITH.csv"
+        },
+        {
+          "bytes": 784202,
+          "role": "neptune-csv",
+          "sha256": "0c7cc7018220fefba8693ebe7f0cbd4d466206e928ac9b4254137005cf16851c",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/edges/COMMUNITY_LINK.csv"
+        },
+        {
+          "bytes": 10860509,
+          "role": "neptune-csv",
+          "sha256": "a00d571b88a621c12244bcabe14e956ce0474eb6685298d3d477cba226d2bf7b",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/edges/HAS_TOPIC.csv"
+        },
+        {
+          "bytes": 32264381,
+          "role": "neptune-csv",
+          "sha256": "98cf9006817542f8e5d9e16e3972d8f13eff39cf41ca4719839e1488256ae5a6",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/edges/IN_COMPONENT.csv"
+        },
+        {
+          "bytes": 32061461,
+          "role": "neptune-csv",
+          "sha256": "da4b0b4fe8d4fa619b834bcbd892ee339200adb06d4f130b322c5ddf6ae5af0b",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/edges/MEMBER_OF.csv"
+        },
+        {
+          "bytes": 3448609,
+          "role": "neptune-csv",
+          "sha256": "c1c2538c3d930cebb29928c064aaddfe2d2c5e73818bae4149a3aaa55926eca2",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/edges/PUBLISHED_IN.csv"
+        },
+        {
+          "bytes": 15162840,
+          "role": "neptune-csv",
+          "sha256": "b69af57330fde351df6c3e74499b118454d0fffdeca87f3a5d44c2727b9d112f",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/edges/RESOLVES_TO.csv"
+        },
+        {
+          "bytes": 5990875,
+          "role": "neptune-csv",
+          "sha256": "ce441e5adaeb43919c03220a985ebf8d8f2c2d77e0915bb963a5c3f9c55fb996",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/vertices/Community.csv"
+        },
+        {
+          "bytes": 5095476,
+          "role": "neptune-csv",
+          "sha256": "3dd33d3758214d45cc25d72eae3a30b177c9d84e72b86d9e93c8d90d7a21e157",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/vertices/Component.csv"
+        },
+        {
+          "bytes": 7634020,
+          "role": "neptune-csv",
+          "sha256": "7c4434518d245487475e90309537b5928512bf3ba575390f1c5e902ec324b55a",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/vertices/ExternalIdentity.csv"
+        },
+        {
+          "bytes": 3891993,
+          "role": "neptune-csv",
+          "sha256": "a2332594ffbe0400667c001da927eecec4bd70bb4c8c749086cb8329babe80f5",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/vertices/Institution.csv"
+        },
+        {
+          "bytes": 14197639,
+          "role": "neptune-csv",
+          "sha256": "e18e1a3e817035d22f7397d9ca77eb7b705ab0682b0bc361c51a7e6a68bc9618",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/vertices/Researcher.csv"
+        },
+        {
+          "bytes": 532211,
+          "role": "neptune-csv",
+          "sha256": "f480cf4951db8043c75e24cae894597bfcbbeb2198ad86f6a1aacedc2a49f8ba",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/vertices/Topic.csv"
+        },
+        {
+          "bytes": 339376,
+          "role": "neptune-csv",
+          "sha256": "cef0ba552714035237275a45c3aa2f49e1fa919cefcbcb08924f87897d000c65",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/vertices/Venue.csv"
+        },
+        {
+          "bytes": 3844134,
+          "role": "neptune-csv",
+          "sha256": "7aef1d921d0950fbce564c766c3d9103763e00641ef5698cbb0488ef90e46901",
+          "uri": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/vertices/Work.csv"
+        }
+      ],
+      "loadRunId": "run:ba9abdfcb4ef28fbee823d753bac7344e96799c3cc03de7d540b7df5a78d261d",
+      "localLoadCodeVersion": "38f2160a6e95",
+      "sparkRunId": "run:87fbb1fb0bd95334e044b7db6ada99c9e3d7e0f9aac25055335746f9be467841"
+    },
+    "items": {
+      "planned": {
+        "bridges": 202920,
+        "coauthor-edge-works": 145064,
+        "coreness": 67640,
+        "identity-clusters": 40757,
+        "mention-researcher": 116624,
+        "path-estimates": 6,
+        "paths": 84,
+        "researcher-metrics": 67640,
+        "temporal-changes": 46618,
+        "window-summary": 6
+      },
+      "total": 687359,
+      "written": {
+        "bridges": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 202920
+        },
+        "coauthor-edge-works": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 145064
+        },
+        "coreness": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 67640
+        },
+        "identity-clusters": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 40757
+        },
+        "mention-researcher": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 116624
+        },
+        "path-estimates": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 6
+        },
+        "paths": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 84
+        },
+        "researcher-metrics": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 67640
+        },
+        "temporal-changes": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 46618
+        },
+        "window-summary": {
+          "conflicts": 0,
+          "unchanged": 0,
+          "written": 6
+        }
+      }
+    },
+    "loader": "scholarchain.storage.LiveLoad",
+    "neptune": {
+      "loadId": "98dfa0d8-f6aa-471c-8ae1-c975d994e070",
+      "processedRecords": 4274831,
+      "rowsPlanned": 508841,
+      "status": "completed"
+    },
+    "parameters": {
+      "dryRun": false,
+      "itemParallelism": 16,
+      "itemsSource": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/",
+      "maxItems": 1000000,
+      "neptuneFormat": "opencypher",
+      "neptuneMode": "AUTO",
+      "neptuneSource": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/",
+      "neptuneTimeoutSeconds": 1800,
+      "pollIntervalSeconds": 10
+    },
+    "runId": "r20261125T214348Z-63958-s4",
+    "schema": "scholarchain.ops-load-provenance.v1",
+    "startedAtEpochMillis": 1795729101928,
+    "status": "completed"
+  },
+  "parameters": {
+    "embeddingModelId": "amazon.titan-embed-text-v2:0",
+    "embeddingModelVersion": "v2",
+    "itemsSource": "s3://scholarchain-course-<acct>-curated/curated/loads/10k/r20261125T214348Z-63958-s4/",
+    "maxDocumentsPerJob": 50,
+    "maxItems": 1000000,
+    "maxVectors": 10000,
+    "neptuneSource": "s3://scholarchain-course-<acct>-curated/graph/neptune-load/10k/r20261125T214348Z-63958-s4/",
+    "neptuneTimeoutSeconds": 1800,
+    "textPrefix": "s3://scholarchain-course-<acct>-curated/rag/text/"
+  },
+  "producer": {
+    "documentsSeen": 10000,
+    "jobIds": [
+      "embjob-f065d1920ca4592f1eec23846199e4ae",
+      "embjob-c608e1727e269a80d1c71f5aff739fdb",
+      "embjob-4150afaf0524ee05cc523647b0981f05",
+      "embjob-165f23d77934841bfeb5832b2cb8fbbd",
+      "embjob-a261a52ab7fe245778278c2a1a80c9c7",
+      "embjob-1590ce7c94cf02e829104d56749de363",
+      "embjob-b64928027bf03a9d77351ce03f7178e8",
+      "embjob-b604ee78564a78c0200435900db15237",
+      "embjob-4494386bb0c4575f8d6f61b882ad1359",
+      "embjob-1de5049059edd4d754a836cf2bdb1583",
+      "embjob-a527e38f7b46b8562164038b29b7a2ff",
+      "embjob-94fa9e06486d94ea84cd8219aac857c1",
+      "embjob-ee3857d672daae8b504a47820a8cacda",
+      "embjob-8a6c6db91429a20d67f197c3c2de4485",
+      "embjob-aa125ff5f7178c15b2700741cbc6a206",
+      "embjob-dde9b5a68293d6b862f0ebd2a30bb3af",
+      "embjob-3251b072f975563e8f2470c29671db78",
+      "embjob-96cffbf8c290ec64f97edcc6f6dfac9b",
+      "embjob-7f062a5d83fb2459b3b18c84bc758322",
+      "embjob-51f9cb1a71a80cacde3d51fbdc560d6a",
+      "embjob-ba052aa2ba50763419949fe08d54440f",
+      "embjob-e0b4b2fd7ea4f12f0a37ad022e10a146",
+      "embjob-5d75299e57e02f6b8c8c1c9a1870fe97",
+      "embjob-ea2985fa07ab43e859a6884aa3b3be36",
+      "embjob-3cfe650fd92df21f480d03368c8d5192",
+      "embjob-07ca6360d07afef343918ab575fec8a3",
+      "embjob-6cc2b99656217732c4a855456ab94526",
+      "embjob-ff2ecade29c293c30ed4946f6717710b",
+      "embjob-1487056e072c73d69949223a73f5d209",
+      "embjob-e6e62edf22b0f58d9529102cd1c85999",
+      "embjob-a4e54c61ece93e43acd14f6ee9a0325a",
+      "embjob-757e17e0270a30ef63d305ecaa250b86",
+      "embjob-427b83a3e7399c638b11f6f09ba7898c",
+      "embjob-f85b9a8315a7860c555b1076f89df094",
+      "embjob-a38784bfef046d08195ce7b7372d0dcb",
+      "embjob-d00a0e6ec7b9da500b7958122a7f1604",
+      "embjob-cdb476654f2fe1a42096fa25e7ac6be7",
+      "embjob-1e16eacac5c29306da30e56fe99dd423",
+      "embjob-3d6256f9f54e8f55e6d980f08e5410fe",
+      "embjob-87c7aa44ee4eb8ff262a21665984ef43",
+      "embjob-365e5ea554e37a548e5a2344866b1f04",
+      "embjob-d82a08aa286b5b10d5478c7e6d01ac2c",
+      "embjob-9412790bb36edc9f49d163870bd3b2b4",
+      "embjob-47203ef34b87c4187576635061e436a8",
+      "embjob-93258b6dfee5766b2ee72a52adb00757",
+      "embjob-533ffdedaf4dd50b9852d2c64040e938",
+      "embjob-e557f59693bcd7e114fa4a66a21fc417",
+      "embjob-10d8b162126f62be8b06e9dea5356f73",
+      "embjob-fd9d7c8af03f05ca218a7252cb420b61",
+      "embjob-8e970018ed561f6ed1800a6dbdc71383",
+      "embjob-e1e4de35eaac054a366e0b2f56665cf3",
+      "embjob-99471c605d3b403346a3dd9cad2038c5",
+      "embjob-9c986c82dc0b69fe996be82f557c502c",
+      "embjob-4d865b1244f333fa8832a9f1b6c0e969",
+      "embjob-f02838b3c286364875b2608909986ff2",
+      "embjob-df67222f5dade0e5020d9ef0bdc84a1d",
+      "embjob-69c1c3ea5a0ed4e9be396a2d349c8b24",
+      "embjob-1565527459dbed23addfcff2e22af9f5",
+      "embjob-d0995a24334bad532b4ecd2f97ebb17f",
+      "embjob-386451d18ff340059d6043a628e76bb6",
+      "embjob-7de81cbe0ec99a4258d839bfd5e4f60e",
+      "embjob-36d7e8622b78f4cf169d77498135297d",
+      "embjob-012cbdbba01def840382d895792b147e",
+      "embjob-50d716d23f5e21fcb91c6edae8ba9344",
+      "embjob-34b648a19a0ac6fc6bac31349961e9b1",
+      "embjob-f0c41099eb675cb8a19a43dc713d5bcd",
+      "embjob-dc203427f329ea0b90c1724800e4ce10",
+      "embjob-b19219db6605b0313e7a01e81cb6937f",
+      "embjob-b5185b57dc9c18103620e8c30a83230a",
+      "embjob-ef2af1dd41f018c1e36bc4d31a4e1980",
+      "embjob-9a553d231fddecddc5d0e32f80a0a2e9",
+      "embjob-9eba206ea9b0ad943f6319a81532529b",
+      "embjob-afe2545f19ecca563a2ea43a6b3b4ac3",
+      "embjob-bac20b5260fcf286e544a66a4baabfbc",
+      "embjob-212b57e69477b72bf40dcfccb7c7e023",
+      "embjob-8db22817e14f2ad9f42dccb24f5eea01",
+      "embjob-776e005811fba21b5a78af8dfc2dfb53",
+      "embjob-ff09143b6298902abc10946aacd49050",
+      "embjob-226b16cc6779306cf01366a9354b523f",
+      "embjob-2d73d15c2496d81b6acce34c66ad3051",
+      "embjob-7be6c8eb7324cc1e38b62ba44ea57f10",
+      "embjob-f08458d169cbe37fa4e9bbcb6fc5c0f0",
+      "embjob-1134294cc446231f2b9baace8251b4bb",
+      "embjob-7b2718a75ec1a3e7faeb1093a26085a3",
+      "embjob-77663db7e1dc63477091032cf805d6b1",
+      "embjob-0b5aba633072d858afd7fdb60724516c",
+      "embjob-bca97df7364409d1b58af72aedab895a",
+      "embjob-2e30788db251d717265bca8684456487",
+      "embjob-9d421ee3ca63c1209c4bc0c3fb3a0ef6",
+      "embjob-a0df99802647c403754cbbe097c672b3",
+      "embjob-b8972b6376ab3f1117e0bc3f21b12b2c",
+      "embjob-62739b0b139137e2a5ebccf3805355f2",
+      "embjob-61c062d91171833a60aebee2572b9048",
+      "embjob-da5591230500b9af898a2d616bb75047",
+      "embjob-6b1e26c88062ddf1b9f2ab89aea067b9",
+      "embjob-7728ee3e39404f06e4dae9467908462c",
+      "embjob-8c2f1d8e6b7652320e31b5072ff242ff",
+      "embjob-5efab44aaf4dcb7846ecdef369b677cd",
+      "embjob-1126bb86797beb64bdd713110b9950d2",
+      "embjob-d927056382458bf576daa5171e00d531",
+      "embjob-b853e5fd45d0dca16fbeed64cc0d004b",
+      "embjob-fb2d43c806e2484aa52b3ac1526ebcfd",
+      "embjob-8ece6196f471a9ad80e37bd7a70b38d8",
+      "embjob-611464397a9ff42c9303b3dc377dda5e",
+      "embjob-09b610b63945fca72aad7d0a2f65adcf",
+      "embjob-9f72666e640eacbae84feb3165f3c990",
+      "embjob-c3230beeab47c77d4343146db66b4dc0",
+      "embjob-33443134cc30291b6c6da3b2eb4329ad",
+      "embjob-b912a512b73784ed10a8b8aac9bea17a",
+      "embjob-ac6c3206cf17145eaf5ba6f70275a6cf",
+      "embjob-f3625facaeffd2d7f9c2dc0ebbee50da",
+      "embjob-8da34cacbb3e0f82b2b72e8e2a3f0619",
+      "embjob-f808eba94b4a15e417275d037b909892",
+      "embjob-01185807c024e106fb9db13d74de245c",
+      "embjob-2ff0b2259adbd07db29fd94143594aa9",
+      "embjob-ec7190fae9077cb2433870304978da9b",
+      "embjob-093aa32b2dd004ec816033da724ae5ed",
+      "embjob-122ec5c270b152822c5698dd7bd1a1ea",
+      "embjob-569f131dae5d15e443ece74ffc029f6b",
+      "embjob-24018ee6402f03ebfd05d1ad01136aa2",
+      "embjob-cad209568d1b9684bdbb9513489d9294",
+      "embjob-025cfdbe92f462820f7ba26fe65882f3",
+      "embjob-5f2b378511f25947125598e3560b62ae",
+      "embjob-b07dba39b3952d15ad641216c92d2ff4",
+      "embjob-dfbf187b7318be7b3f973461ccbde9c8",
+      "embjob-e894d488ca41eb903d73eb5b5498ca13",
+      "embjob-61e0767c1ce4780c26330a8af98d4f69",
+      "embjob-834d810a52b17cae56cbf38b6a593005",
+      "embjob-336f8e2c5856beeee5524e8ea87487c2",
+      "embjob-eb1717161b1f7b4cdd2c9d98003f91c5",
+      "embjob-c726f764f889de73f715dcdb1c0a6d89",
+      "embjob-e5ecc62282540d91f212e38efd7d72c5",
+      "embjob-62137761ea3552842dae3b605b5c0cef",
+      "embjob-94c156640523fcbd0533b9a04266d9d4",
+      "embjob-df4e09f417a1a1b4d91b426356cb1e96",
+      "embjob-1acc78a71689a3b405cf018a0f67e356",
+      "embjob-f8883b3ecb9affeb6bafd9f400f93d0b",
+      "embjob-3ea0d7748897c6a18ca382724635cb52",
+      "embjob-5db2b84e01f915bd09da7196b9fe991f",
+      "embjob-f6993ed1239417f37e0b0a0118b72854",
+      "embjob-802fa59b668527442ed27a98c20ef351",
+      "embjob-bfc9047e5117324d9a2040843fa3368b",
+      "embjob-4fc4956607c2b523603a48ba92874a70",
+      "embjob-25053534a34c2958f08e6c780474c51b",
+      "embjob-fb0822eba2a8de5d0033e80fcb1b9dd7",
+      "embjob-159f29fad30f725ecb489f1e90ec31be",
+      "embjob-bec8bde9053c10553e86669b75e856c7",
+      "embjob-fed885791efbdb3bf54774691767d8d3",
+      "embjob-895adcacab82e54e83e2c5e2b39ba50e",
+      "embjob-eb3261e5e650f909994baa13a5a964dc",
+      "embjob-4c324e9316606f830eb2da89637c503c",
+      "embjob-9fb1c031dfcb6b75abb8e49f088fcd53",
+      "embjob-ce6a8d3e2e748e9e07df49db9ea777ab",
+      "embjob-09b486f2d677d22028c4bbfe7ecf85f5",
+      "embjob-b29882802950bec82407f02ba10399bf",
+      "embjob-d60a5986c06cc483e241fc095a1ddc59",
+      "embjob-5dd31ebe3a0324925db1d4d6eab5c5c9",
+      "embjob-ad848938d6b3515d0b5461fab4a69e74",
+      "embjob-0bdba0a528b99ff4173c90300d0d8413",
+      "embjob-e97aeaf96432defb8b7fd898d0a175b7",
+      "embjob-7252c600a90e79f02b4348983360e480",
+      "embjob-b3225b645ddfa9f8344114f9f919c202",
+      "embjob-cf1b70c23fdca5629e36359b54fcc421",
+      "embjob-5cb6ed65069e5c5879b7ac5d2e45a908",
+      "embjob-aeee4d8ead0505fced78ffe3a53485ae",
+      "embjob-ea55aaefb98e5023f888a36c374934e5",
+      "embjob-53af9a29d64094d57632231954539538",
+      "embjob-7d542622a2b45a1a715e1dbf52f0dfa6",
+      "embjob-ded6ed87a888008bfce3b8a810f0d917",
+      "embjob-6ddb079b30f044968f3952faf3e929aa",
+      "embjob-fe7b92e4dcd06d48ee9a397d66c1853e",
+      "embjob-34e4a008506d208daa9a75c7bdd5444f",
+      "embjob-02bc84e037621b71aec5767b393e057a",
+      "embjob-efe85bbde061bb8cbc6909012e65bd18",
+      "embjob-ed2f1068c14684e804b3dac666eb55e4",
+      "embjob-2c861f99e23f4386f5d1315ab6ad478c",
+      "embjob-8d78dc588688fe1136dc64da2eaf92e9",
+      "embjob-674dfa4fed8ee23947f21ce507b4263d",
+      "embjob-3e82b26e5485d82a6e6261909b534d88",
+      "embjob-7153ec23d2f23041db104b1a19380395",
+      "embjob-2963cdc9580a3e6757b36d4d2432069d",
+      "embjob-e2390ab6682ac0f17f62be8ce7df7cab",
+      "embjob-953df322bca09c89ddcb8565822b0ee9",
+      "embjob-34b3ee1ff3837d20ff1eef6a8d779f0a",
+      "embjob-be339f993c031ed4fc312974b1e9a691",
+      "embjob-e3475504dac6f4effc86cc7fc921c933",
+      "embjob-d02d56c7610b4552efd423dcc63183c0",
+      "embjob-46b9938c2bdb6d3fc1c082c09ce5ac67",
+      "embjob-e8adf71c02242261a9f830e40bd71aff",
+      "embjob-81e7ad32d99f02b38d142acf19bf49aa",
+      "embjob-aff656f1b3a8f360fc4a411aef73087e",
+      "embjob-5c99e84005a5c2aec6e811598ba2a752",
+      "embjob-7638ea5a876087a54537e5133e1a30ed",
+      "embjob-a67b4d6bf51c9d5128e16f54550e16f3",
+      "embjob-102dd9e1079c9cb76115530b7340af5c",
+      "embjob-630d2fb8ec98358e36ef50b16e3d7be4",
+      "embjob-0ed772c25940563129f1d5917de265b8",
+      "embjob-b8b1582e04bf630128a1b406b73bc68f",
+      "embjob-98f9981a66ec4bc0b116fc6628e525ec",
+      "embjob-4c96934ce353e570bb28a69a8ffbe29a",
+      "embjob-1630a0ad5a2902c54c105cfb867ae02c",
+      "embjob-83f5197c32799770eb2be57823dd88d3",
+      "embjob-aed08cbaa855e4154e78089a4d7dd117",
+      "embjob-29acf58ad81cfffda8c22df244d5c58c"
+    ],
+    "jobsEnqueued": 204,
+    "rejectedByReason": {},
+    "textsUnchanged": 0,
+    "textsWritten": 10000
+  },
+  "records": {
+    "semantic-summaries": {
+      "converted": 86781,
+      "rejected": {},
+      "rows": 86781
+    },
+    "topics": {
+      "converted": 1966,
+      "rejected": {},
+      "rows": 1966
+    },
+    "venues": {
+      "converted": 1372,
+      "rejected": {},
+      "rows": 1372
+    },
+    "works": {
+      "converted": 10000,
+      "rejected": {},
+      "rows": 10000
+    }
+  },
+  "runId": "r20261125T214348Z-63958-s4",
+  "schema": "scholarchain.ops-manifest.v1",
+  "source": {
+    "sparkCodeVersion": "378d12e0fb70+spark-local-fallback",
+    "sparkRunId": "run:87fbb1fb0bd95334e044b7db6ada99c9e3d7e0f9aac25055335746f9be467841"
+  },
+  "status": "completed",
+  "tool": "scholarchain.services.OpsLoadMain"
+}

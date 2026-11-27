@@ -1,0 +1,178 @@
+{
+  "cluster_id": "j-000270910KZDB65AYWRX",
+  "commit": "dc20d0fa23df346bddf93c1a2a07195a07566a9e",
+  "configuration": {
+    "action_on_failure": "TERMINATE_CLUSTER",
+    "core_nodes": 1,
+    "hadoop_mode": "driver",
+    "idle_timeout_seconds": 900,
+    "instance_type": "m5.xlarge",
+    "managed_scaling_max_core_task": 2,
+    "market": "ON_DEMAND",
+    "primary_nodes": 1,
+    "release_label": "emr-spark-8.1.0",
+    "stages": "hadoop,spark,convert,load",
+    "step_timeout_seconds": 3600
+  },
+  "failed_step": "spark-graph-analytics",
+  "outputs": {
+    "hadoop_root": "s3://scholarchain-course-<acct>-curated/curated/runs/10k/r20261125T183800Z-79065",
+    "jars": "s3://scholarchain-course-<acct>-artifacts/jars/dc20d0fa23df",
+    "raw_inputs": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065",
+    "spark_root": "s3://scholarchain-course-<acct>-curated/graph/runs/10k/r20261125T183800Z-79065/spark"
+  },
+  "post_steps": [],
+  "region": "us-east-2",
+  "run_id": "r20261125T183800Z-79065",
+  "scale": "10k",
+  "started_at": "2026-11-25T18:39:07Z",
+  "status": "failed",
+  "step_timings": [
+    {
+      "end": null,
+      "id": "s-09742233G75XVEDUH5KE",
+      "name": "spark-graph-analytics",
+      "start": null,
+      "state": "CANCELLED"
+    },
+    {
+      "end": "2026-11-25T18:43:55.025000+00:00",
+      "id": "s-09742161FYVRNKKDIME8",
+      "name": "hadoop-pipeline-HJ1-HJ7",
+      "start": "2026-11-25T18:43:52.662000+00:00",
+      "state": "FAILED"
+    }
+  ],
+  "steps": [
+    {
+      "ActionOnFailure": "TERMINATE_CLUSTER",
+      "Args": [
+        "timeout",
+        "--kill-after=60",
+        "3600",
+        "hadoop",
+        "jar",
+        "s3://scholarchain-course-<acct>-artifacts/jars/dc20d0fa23df/scholarchain-hadoop-0.1.0-SNAPSHOT-assembly.jar",
+        "scholarchain.hadoop.PipelineDriver",
+        "--dblp",
+        "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/dblp.xml",
+        "--dtd",
+        "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/dblp.dtd",
+        "--output",
+        "s3://scholarchain-course-<acct>-curated/curated/runs/10k/r20261125T183800Z-79065",
+        "--snapshot",
+        "dblp-10k",
+        "--code-version",
+        "dc20d0fa23df",
+        "--attempt",
+        "1",
+        "--crossref",
+        "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/crossref",
+        "--openalex",
+        "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/openalex",
+        "--orcid",
+        "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/orcid"
+      ],
+      "Jar": "command-runner.jar",
+      "Name": "hadoop-pipeline-HJ1-HJ7",
+      "Type": "CUSTOM_JAR"
+    },
+    {
+      "ActionOnFailure": "TERMINATE_CLUSTER",
+      "Args": [
+        "timeout",
+        "--kill-after=60",
+        "3600",
+        "spark-submit",
+        "--deploy-mode",
+        "client",
+        "--class",
+        "scholarchain.spark.Run",
+        "s3://scholarchain-course-<acct>-artifacts/jars/dc20d0fa23df/scholarchain-spark-0.1.0-SNAPSHOT-assembly.jar",
+        "--output-root",
+        "s3://scholarchain-course-<acct>-curated/graph/runs/10k/r20261125T183800Z-79065/spark",
+        "--checkpoint-dir",
+        "s3://scholarchain-course-<acct>-curated/tmp/spark-checkpoints/r20261125T183800Z-79065",
+        "--code-version",
+        "dc20d0fa23df",
+        "--set",
+        "input.root-i-dir=s3://scholarchain-course-<acct>-curated/curated/runs/10k/r20261125T183800Z-79065/curated",
+        "--set",
+        "input.hj6a-entity-views-dir=s3://scholarchain-course-<acct>-curated/curated/runs/10k/r20261125T183800Z-79065/work/hj6a/entity-views",
+        "--set",
+        "input.match-decisions-final-path=s3://scholarchain-course-<acct>-curated/curated/runs/10k/r20261125T183800Z-79065/work/hj7/match-decisions-final.jsonl"
+      ],
+      "Jar": "command-runner.jar",
+      "Name": "spark-graph-analytics",
+      "Type": "CUSTOM_JAR"
+    }
+  ],
+  "updated_at": "2026-11-25T18:45:27Z",
+  "uploads": [
+    {
+      "file": "scholarchain-hadoop-0.1.0-SNAPSHOT-assembly.jar",
+      "sha256": "a6fbe5599dc0f21a49ec061e0592f3c7a4293f7988e6190cdc609402f6e3bd18",
+      "uri": "s3://scholarchain-course-<acct>-artifacts/jars/dc20d0fa23df/scholarchain-hadoop-0.1.0-SNAPSHOT-assembly.jar"
+    },
+    {
+      "file": "scholarchain-spark-0.1.0-SNAPSHOT-assembly.jar",
+      "sha256": "6f4b12d7f0ffc298da307aca5efa13dda8fc3e6c8a283fab0566d2b06cd59bf4",
+      "uri": "s3://scholarchain-course-<acct>-artifacts/jars/dc20d0fa23df/scholarchain-spark-0.1.0-SNAPSHOT-assembly.jar"
+    },
+    {
+      "file": "dblp_selection_10000.xml",
+      "sha256": "af3e079f8d69ea2406ec5542f65378c022e1b01b3a43ab92a7d6f1ee7ec5f5a3",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/dblp.xml"
+    },
+    {
+      "file": "dblp.dtd",
+      "sha256": "2d864498f9eef9298662df11e3874171ff24cd4a21ab5974f1369c90acdb1ef6",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/dblp.dtd"
+    },
+    {
+      "file": "crossref-10k-00001.envelopes.jsonl",
+      "sha256": "9908ba1897eafb71bc49e2a0c9975d185edf476a4ac3ccc97fe550ee74de028f",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/crossref/crossref-10k-00001.envelopes.jsonl"
+    },
+    {
+      "file": "crossref-10k-00002.envelopes.jsonl",
+      "sha256": "735428148c3f9c209a02bcb8343dafc3fffa3cea4f94232ae95fdd085369c3ee",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/crossref/crossref-10k-00002.envelopes.jsonl"
+    },
+    {
+      "file": "openalex-10k-00001.envelopes.jsonl",
+      "sha256": "6471c4831bb548e11f0f49fa279aa242b566d30a30344db1ea11de818d57c16a",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/openalex/openalex-10k-00001.envelopes.jsonl"
+    },
+    {
+      "file": "openalex-10k-00002.envelopes.jsonl",
+      "sha256": "9e432f883aa6467a291f3673ea545c35a0cef13d27956c00c2f14deb6871e0b2",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/openalex/openalex-10k-00002.envelopes.jsonl"
+    },
+    {
+      "file": "openalex-10k-00003.envelopes.jsonl",
+      "sha256": "01c37fff89ff2c1f1375384e1fedb09e1bec5c1cc362a467af3d47eda309841c",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/openalex/openalex-10k-00003.envelopes.jsonl"
+    },
+    {
+      "file": "orcid-10k-00001.envelopes.jsonl",
+      "sha256": "750c83f9e0dc1b51aa747877581a1d775d9087a4881f8bd8e772ec73335e60c1",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/orcid/orcid-10k-00001.envelopes.jsonl"
+    },
+    {
+      "file": "orcid-10k-00002.envelopes.jsonl",
+      "sha256": "5220622671be0e999f42c4f8123ca669999ecf32648d6074ae200ab694ca5088",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/orcid/orcid-10k-00002.envelopes.jsonl"
+    },
+    {
+      "file": "orcid-10k-00003.envelopes.jsonl",
+      "sha256": "9ac3786bdc2106b48d70ab61367019c7104c12ac246919e23fbe5fddb3909104",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/orcid/orcid-10k-00003.envelopes.jsonl"
+    },
+    {
+      "file": "orcid-10k-00004.envelopes.jsonl",
+      "sha256": "9c02edeb5661be45e3596fe79a275151735e36d79037d2f830b6ea50bf483c8a",
+      "uri": "s3://scholarchain-course-<acct>-raw/raw/10k/r20261125T183800Z-79065/enrichment/orcid/orcid-10k-00004.envelopes.jsonl"
+    }
+  ]
+}

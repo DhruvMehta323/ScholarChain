@@ -1,0 +1,186 @@
+{
+  "runId": "run:e512392819bf1f418a2af7f7eab63258e0152f44d951536e67dad03e8697d209",
+  "snapshot": "dblp-10k",
+  "codeVersion": "e88061f48631",
+  "jobs": {
+    "hj1-dblp-extract": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 10000,
+        "INPUT_DBLP": 10000,
+        "INPUT_RECORDS": 10000,
+        "SELF_PAIR_SKIPPED": 0
+      },
+      "rows": {
+        "author-mentions": 39096,
+        "id-refs": 23100,
+        "works": 10000
+      },
+      "rejects": {}
+    },
+    "hj2-source-normalize": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 21237,
+        "INPUT_CROSSREF": 10000,
+        "INPUT_OPENALEX": 10000,
+        "INPUT_ORCID": 1384,
+        "INPUT_RECORDS": 21384,
+        "MISSING_YEAR_KEPT": 329,
+        "REJECTED": 2,
+        "UPSTREAM_MISSING": 145,
+        "WORK_SKIPPED": 661
+      },
+      "rows": {
+        "author-mentions": 77528,
+        "id-refs": 172741,
+        "institutions": 26486,
+        "rejects": 2,
+        "topics": 29943,
+        "works": 104936
+      },
+      "rejects": {
+        "missing_title": 2
+      }
+    },
+    "hj3-exact-identifier": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 24976,
+        "DUPLICATE": 2948,
+        "EXACT_LINK": 22028,
+        "INPUT_RECORDS": 195841
+      },
+      "rows": {
+        "exact-identifier-evidence": 24976
+      },
+      "rejects": {}
+    },
+    "hj4a-team-expand": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 10000,
+        "EMITTED_PAIRS": 82862,
+        "EXPECTED_PAIRS": 82862,
+        "INPUT_RECORDS": 49096,
+        "LARGE_AUTHOR_TEAM": 1
+      },
+      "rows": {
+        "authorship": 39096,
+        "large-teams": 1,
+        "pair-stage": 82862,
+        "teams": 10000
+      },
+      "rejects": {}
+    },
+    "hj4b-pair-dedupe": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 82862,
+        "DUPLICATE_PAIR": 0,
+        "INPUT_RECORDS": 82862
+      },
+      "rows": {
+        "pair-candidates": 82862
+      },
+      "rejects": {}
+    },
+    "hj5-graph-candidate-export": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 401492,
+        "ENTITY_MERGED": 42864,
+        "INPUT_RECORDS": 444926,
+        "WORK_MERGED": 570
+      },
+      "rows": {
+        "author-mentions": 116624,
+        "authorship": 39096,
+        "exact-identifier-evidence": 24976,
+        "institutions": 11599,
+        "large-teams": 1,
+        "pair-candidates": 82862,
+        "rejects": 2,
+        "teams": 10000,
+        "topics": 1966,
+        "works": 114366
+      },
+      "rejects": {}
+    },
+    "hj6a-entity-views": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 230990,
+        "ENTITY_VIEWS": 230990,
+        "INPUT_RECORDS": 230990
+      },
+      "rows": {
+        "entity-views": 230990
+      },
+      "rejects": {}
+    },
+    "hj6b-block-count": {
+      "success": true,
+      "counters": {
+        "BLOCK_KEYS": 115261,
+        "INPUT_RECORDS": 230990,
+        "UNBLOCKED_VIEW": 19
+      },
+      "rows": {
+        "block-sizes": 115261
+      },
+      "rejects": {},
+      "framework": {
+        "COMBINE_INPUT_RECORDS": 230971,
+        "COMBINE_OUTPUT_RECORDS": 143598
+      }
+    },
+    "hj6c-candidates": {
+      "success": true,
+      "counters": {
+        "BLOCK_GROUPS": 221137,
+        "CANDIDATE_STAGED": 959940,
+        "INPUT_RECORDS": 230990
+      },
+      "rows": {
+        "candidate-stage": 959940
+      },
+      "rejects": {}
+    },
+    "hj6d-candidate-dedupe": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 920620,
+        "CANDIDATE_DUPLICATE": 39320,
+        "INPUT_RECORDS": 959940
+      },
+      "rows": {
+        "match-candidates": 920620
+      },
+      "rejects": {}
+    },
+    "hj7-match-decision": {
+      "success": true,
+      "counters": {
+        "ACCEPTED": 920620,
+        "CONFLICT": 777,
+        "DECISIONS": 920620,
+        "INPUT_RECORDS": 920620,
+        "LLM_ELIGIBLE": 78752
+      },
+      "rows": {
+        "match-decisions": 920620
+      },
+      "rejects": {},
+      "decisions": {
+        "accepted.deterministic": 54337,
+        "accepted.exact_id": 40672,
+        "accepted.probabilistic": 1262,
+        "conflict.exact_id": 777,
+        "rejected.exact_id": 132017,
+        "rejected.probabilistic": 9402,
+        "unresolved.probabilistic": 682153
+      }
+    }
+  }
+}

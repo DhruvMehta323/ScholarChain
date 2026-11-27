@@ -1,0 +1,106 @@
+{
+  "argv": [
+    "--cost",
+    "cost=experiments/results/cost/p15c-start/collect_cost-p15c-start-daily-by-service.json",
+    "--cost",
+    "cost-end=experiments/results/cost/p15c-x1-end/collect_cost-p15c-x1-end-daily-by-service.json",
+    "--out-dir",
+    "experiments/results/aws/analysis"
+  ],
+  "benchmark_sha256": null,
+  "generated_at_utc": "2026-11-27T00:35:36.270Z",
+  "git_head": "82d21c73925657ab5b7284ffecd91801fd0376b8",
+  "inputs": [
+    {
+      "path": "experiments/results/cost/p15c-start/collect_cost-p15c-start-daily-by-service.json",
+      "sha256": "a4fe77b1efc8305d12f6199bc5aa13330933e26192496711a53eb642daab59f7"
+    },
+    {
+      "path": "experiments/results/cost/p15c-x1-end/collect_cost-p15c-x1-end-daily-by-service.json",
+      "sha256": "a4fe77b1efc8305d12f6199bc5aa13330933e26192496711a53eb642daab59f7"
+    },
+    {
+      "path": "experiments/manifests/exp-a-baseline-10k.json",
+      "sha256": "072b40f2f4f9957924299a46148fb78dd0e48a416ac27e1083d618b59ac92085"
+    },
+    {
+      "path": "experiments/manifests/exp-b-burst-50k.json",
+      "sha256": "72332b8f4ec70b006834e5a92b7b54979b63ad0d1ad32136696b74d1b8546f58"
+    },
+    {
+      "path": "experiments/manifests/exp-c-embedding-backlog.json",
+      "sha256": "65986606ffef699af6af5b6dba511c553142312f541e721fd91a3b0a9f42404e"
+    },
+    {
+      "path": "experiments/manifests/exp-d-query-load.json",
+      "sha256": "0ddf928019d455d27cdef265cc56aca7a5736d9dfe8c0cc78e4e25d4cf6df25b"
+    },
+    {
+      "path": "experiments/results/exp-d-query-load/synth-local-1/SYNTHETIC-loadgen-synth-local-1-c1-fused.meta.json",
+      "sha256": "fd5b21c840c1e7065d6c56590c6e86b1edbd0d1b50884a61997e64461f503fbb"
+    },
+    {
+      "path": "experiments/results/exp-d-query-load/synth-local-1/SYNTHETIC-loadgen-synth-local-1-c4-fused.meta.json",
+      "sha256": "9735d0f03f7ce5d4946724064665c7ff6e3a045c505601e5b3b38e5206c198f6"
+    },
+    {
+      "path": "experiments/results/exp-d-query-load/synth-local-2/SYNTHETIC-loadgen-synth-local-2-c1-fused.meta.json",
+      "sha256": "45c39d4ff380d7c0d2470259b20c79cda80259fb0cbd7c29d4bac5454970a0f8"
+    },
+    {
+      "path": "experiments/results/exp-d-query-load/synth-local-2/SYNTHETIC-loadgen-synth-local-2-c16-fused.meta.json",
+      "sha256": "afe6b57edbf546aaa1bd19a31480971e36a99c33a996b1b60f3258abd1c1bee0"
+    },
+    {
+      "path": "experiments/results/exp-d-query-load/synth-local-2/SYNTHETIC-loadgen-synth-local-2-c4-fused.meta.json",
+      "sha256": "a20d7460a2c335d844cb9cf797bc2e0b15210e4c3e5a81c9eb7e87d135f7e57f"
+    },
+    {
+      "path": "experiments/results/exp-d-query-load/synth-local-2/SYNTHETIC-loadgen-synth-local-2-c8-fused.meta.json",
+      "sha256": "cc2cd03dc4de8132067fe754a177d45c7534edf80c297c27ad78390b2b236c92"
+    },
+    {
+      "path": "experiments/manifests/exp-e-retrieval-modes.json",
+      "sha256": "d67c0241df72378458cdde362304ad027c191b0ebb5565217caf0702951ab8ca"
+    },
+    {
+      "path": "experiments/results/exp-e-retrieval-modes/synth-local-e1/SYNTHETIC-loadgen-synth-local-e1-c2-graph-only.meta.json",
+      "sha256": "fb6644fa1a67b12e652bd1232e185ed6dc475f7cf70d88849ac3c4e34dc661b6"
+    },
+    {
+      "path": "experiments/results/exp-e-retrieval-modes/synth-local-e2/SYNTHETIC-loadgen-synth-local-e2-c2-fused.meta.json",
+      "sha256": "b81afd16d068f7804f3e452cdfca9050a0cb555182b008893dde75e0178f8a4f"
+    },
+    {
+      "path": "experiments/results/exp-e-retrieval-modes/synth-local-e2/SYNTHETIC-loadgen-synth-local-e2-c2-graph-only.meta.json",
+      "sha256": "21807f46f923e5bbf27da300a7ad5db5373f99e077267a68d5cca0c58390a5cb"
+    },
+    {
+      "path": "experiments/results/exp-e-retrieval-modes/synth-local-e2/SYNTHETIC-loadgen-synth-local-e2-c2-vector-only.meta.json",
+      "sha256": "914b461e029347c6046962f0b216e1cc151655cce44097fc155a1d650df045ed"
+    },
+    {
+      "path": "experiments/manifests/exp-f-failure-recovery.json",
+      "sha256": "8678c203bf4ffb0fce7b8921e98ffba9de2a635f21850289741a1bc86f6e72df"
+    }
+  ],
+  "output": "cost-per-experiment.csv",
+  "output_sha256": "7a591857ee3c28254fab2e58300ac721b156c26c0149fcb21e6e5fc2222c4c71",
+  "parameters": {
+    "cost": [
+      "cost=experiments/results/cost/p15c-start/collect_cost-p15c-start-daily-by-service.json",
+      "cost-end=experiments/results/cost/p15c-x1-end/collect_cost-p15c-x1-end-daily-by-service.json"
+    ],
+    "force": false,
+    "include_synthetic": false,
+    "manifests": "/Users/dhruv_mehta/Desktop/ScholarChain/experiments/analysis/../manifests",
+    "no_plot": false,
+    "out_dir": "experiments/results/aws/analysis",
+    "results": "/Users/dhruv_mehta/Desktop/ScholarChain/experiments/results"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/analysis/cost_report.py",
+  "synthetic": false,
+  "tree_dirty": true
+}

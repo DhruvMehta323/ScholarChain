@@ -1,0 +1,5 @@
+GET /healthz on the ALB (query-api target group; retrieval has no ALB target group). No API key sent.
+pre-drill   2026-11-27T02:58:~35Z  HTTP 200  (before run-experiment.sh)
+during-gap  2026-11-27T02:58:54Z   HTTP 200  (retrieval desired 1 running 0 pending 1; this probe reaches query-api, so it does not test retrieval)
+after       2026-11-27T02:59:35Z   HTTP 200
+Times are from the shell clock when the call returned.

@@ -1,0 +1,349 @@
+{
+  "cluster_created_utc": "2026-11-25T21:45:31Z",
+  "cluster_ended_utc": "2026-11-25T22:07:07Z",
+  "cluster_id": "j-0072517WQADTWOIR2LO",
+  "cluster_ready_utc": "2026-11-25T21:49:45Z",
+  "cost_estimate": {
+    "formula": "instance_hours x node_hour_usd",
+    "label": "ESTIMATE, not read from the bill",
+    "node_hour_usd": 0.2537671233,
+    "note": "includes the Spark step that failed after 38 s and the idle tail until shutdown",
+    "price_source": "infra/terraform/INFRA-CONTRACTS.md section 10 (EC2 m5.xlarge 0.192 + EMR 0.048 per hour + EBS; price table marked verified AmazonEC2 2026-11-23, ElasticMapReduce 2026-11-17)",
+    "usd": 0.242
+  },
+  "emr_steps": [
+    {
+      "end": "2026-11-25T22:06:03Z",
+      "failure": "Unknown Error.",
+      "name": "spark-graph-analytics",
+      "seconds": 38.1,
+      "start": "2026-11-25T22:05:25Z",
+      "state": "FAILED"
+    },
+    {
+      "end": "2026-11-25T22:05:24Z",
+      "failure": null,
+      "name": "hadoop-pipeline-HJ1-HJ7",
+      "seconds": 938.2,
+      "start": "2026-11-25T21:49:46Z",
+      "state": "COMPLETED"
+    }
+  ],
+  "failures": [
+    {
+      "end": "2026-11-25T22:06:03Z",
+      "failure": "Unknown Error.",
+      "name": "spark-graph-analytics",
+      "seconds": 38.1,
+      "start": "2026-11-25T22:05:25Z",
+      "state": "FAILED"
+    }
+  ],
+  "hadoop_counters_source": "counters.json (the pipeline's own run counters, per job)",
+  "hadoop_job_counters": {
+    "hj1-dblp-extract": {
+      "ACCEPTED": 10000,
+      "INPUT_DBLP": 10000,
+      "INPUT_RECORDS": 10000,
+      "SELF_PAIR_SKIPPED": 0
+    },
+    "hj2-source-normalize": {
+      "ACCEPTED": 21237,
+      "INPUT_CROSSREF": 10000,
+      "INPUT_OPENALEX": 10000,
+      "INPUT_ORCID": 1384,
+      "INPUT_RECORDS": 21384,
+      "MISSING_YEAR_KEPT": 329,
+      "REJECTED": 2,
+      "UPSTREAM_MISSING": 145,
+      "WORK_SKIPPED": 661
+    },
+    "hj3-exact-identifier": {
+      "ACCEPTED": 24976,
+      "DUPLICATE": 2948,
+      "EXACT_LINK": 22028,
+      "INPUT_RECORDS": 195841
+    },
+    "hj4a-team-expand": {
+      "ACCEPTED": 10000,
+      "EMITTED_PAIRS": 82862,
+      "EXPECTED_PAIRS": 82862,
+      "INPUT_RECORDS": 49096,
+      "LARGE_AUTHOR_TEAM": 1
+    },
+    "hj4b-pair-dedupe": {
+      "ACCEPTED": 82862,
+      "DUPLICATE_PAIR": 0,
+      "INPUT_RECORDS": 82862
+    },
+    "hj5-graph-candidate-export": {
+      "ACCEPTED": 401492,
+      "ENTITY_MERGED": 42864,
+      "INPUT_RECORDS": 444926,
+      "WORK_MERGED": 570
+    },
+    "hj6a-entity-views": {
+      "ACCEPTED": 230990,
+      "ENTITY_VIEWS": 230990,
+      "INPUT_RECORDS": 230990
+    },
+    "hj6b-block-count": {
+      "BLOCK_KEYS": 115261,
+      "INPUT_RECORDS": 230990,
+      "UNBLOCKED_VIEW": 19
+    },
+    "hj6c-candidates": {
+      "BLOCK_GROUPS": 221137,
+      "CANDIDATE_STAGED": 959940,
+      "INPUT_RECORDS": 230990
+    },
+    "hj6d-candidate-dedupe": {
+      "ACCEPTED": 920620,
+      "CANDIDATE_DUPLICATE": 39320,
+      "INPUT_RECORDS": 959940
+    },
+    "hj7-match-decision": {
+      "ACCEPTED": 920620,
+      "CONFLICT": 777,
+      "DECISIONS": 920620,
+      "INPUT_RECORDS": 920620,
+      "LLM_ELIGIBLE": 78752
+    }
+  },
+  "hadoop_job_rejects": {
+    "hj1-dblp-extract": {},
+    "hj2-source-normalize": {
+      "missing_title": 2
+    },
+    "hj3-exact-identifier": {},
+    "hj4a-team-expand": {},
+    "hj4b-pair-dedupe": {},
+    "hj5-graph-candidate-export": {},
+    "hj6a-entity-views": {},
+    "hj6b-block-count": {},
+    "hj6c-candidates": {},
+    "hj6d-candidate-dedupe": {},
+    "hj7-match-decision": {}
+  },
+  "hadoop_job_rows": {
+    "hj1-dblp-extract": {
+      "author-mentions": 39096,
+      "id-refs": 23100,
+      "works": 10000
+    },
+    "hj2-source-normalize": {
+      "author-mentions": 77528,
+      "id-refs": 172741,
+      "institutions": 26486,
+      "rejects": 2,
+      "topics": 29943,
+      "works": 104936
+    },
+    "hj3-exact-identifier": {
+      "exact-identifier-evidence": 24976
+    },
+    "hj4a-team-expand": {
+      "authorship": 39096,
+      "large-teams": 1,
+      "pair-stage": 82862,
+      "teams": 10000
+    },
+    "hj4b-pair-dedupe": {
+      "pair-candidates": 82862
+    },
+    "hj5-graph-candidate-export": {
+      "author-mentions": 116624,
+      "authorship": 39096,
+      "exact-identifier-evidence": 24976,
+      "institutions": 11599,
+      "large-teams": 1,
+      "pair-candidates": 82862,
+      "rejects": 2,
+      "teams": 10000,
+      "topics": 1966,
+      "works": 114366
+    },
+    "hj6a-entity-views": {
+      "entity-views": 230990
+    },
+    "hj6b-block-count": {
+      "block-sizes": 115261
+    },
+    "hj6c-candidates": {
+      "candidate-stage": 959940
+    },
+    "hj6d-candidate-dedupe": {
+      "match-candidates": 920620
+    },
+    "hj7-match-decision": {
+      "match-decisions": 920620
+    }
+  },
+  "instance_groups_requested": {
+    "CORE": {
+      "requested": 1,
+      "type": "m5.xlarge"
+    },
+    "MASTER": {
+      "requested": 1,
+      "type": "m5.xlarge"
+    }
+  },
+  "instance_hours": 0.9535,
+  "instances": [
+    {
+      "created": "2026-11-25T21:45:39Z",
+      "ec2": "i-0aaf76f8a6d32bedb",
+      "ended": "2026-11-25T22:07:07Z",
+      "group": "ig-0207151927AEUK5OD46",
+      "hours": 0.3577,
+      "ready": "2026-11-25T21:49:20Z"
+    },
+    {
+      "created": "2026-11-25T21:45:39Z",
+      "ec2": "i-06713527b41aae669",
+      "ended": "2026-11-25T22:07:07Z",
+      "group": "ig-02071443KPFCZIRRPANP",
+      "hours": 0.3577,
+      "ready": "2026-11-25T21:49:10Z"
+    },
+    {
+      "created": "2026-11-25T21:52:50Z",
+      "ec2": "i-03e52af00c1a4cf6e",
+      "ended": "2026-11-25T22:07:07Z",
+      "group": "ig-0207151927AEUK5OD46",
+      "hours": 0.2381,
+      "ready": "2026-11-25T21:54:54Z"
+    }
+  ],
+  "kind": "DERIVED (not raw); sources are the raw files in this folder",
+  "label": "REAL",
+  "mapreduce_jobs_found": 11,
+  "mapreduce_jobs_from_jhist_filenames": [
+    {
+      "finish": "2026-11-25T21:50:44Z",
+      "job": "job_1795643344273_0001",
+      "maps": 1,
+      "name": "hj1-dblp-extract",
+      "reduces": 2,
+      "seconds": 39.4,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T21:50:04Z"
+    },
+    {
+      "finish": "2026-11-25T21:52:51Z",
+      "job": "job_1795643344273_0002",
+      "maps": 9,
+      "name": "hj2-source-normalize",
+      "reduces": 2,
+      "seconds": 120.0,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T21:50:51Z"
+    },
+    {
+      "finish": "2026-11-25T21:53:42Z",
+      "job": "job_1795643344273_0003",
+      "maps": 4,
+      "name": "hj3-exact-identifier",
+      "reduces": 2,
+      "seconds": 44.7,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T21:52:58Z"
+    },
+    {
+      "finish": "2026-11-25T21:54:52Z",
+      "job": "job_1795643344273_0004",
+      "maps": 4,
+      "name": "hj4a-team-expand",
+      "reduces": 2,
+      "seconds": 62.2,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T21:53:50Z"
+    },
+    {
+      "finish": "2026-11-25T21:55:30Z",
+      "job": "job_1795643344273_0005",
+      "maps": 2,
+      "name": "hj4b-pair-dedupe",
+      "reduces": 2,
+      "seconds": 33.2,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T21:54:56Z"
+    },
+    {
+      "finish": "2026-11-25T21:57:25Z",
+      "job": "job_1795643344273_0006",
+      "maps": 23,
+      "name": "hj5-graph-candidate-export",
+      "reduces": 1,
+      "seconds": 110.9,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T21:55:34Z"
+    },
+    {
+      "finish": "2026-11-25T21:58:08Z",
+      "job": "job_1795643344273_0007",
+      "maps": 2,
+      "name": "hj6a-entity-views",
+      "reduces": 2,
+      "seconds": 36.7,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T21:57:31Z"
+    },
+    {
+      "finish": "2026-11-25T21:58:39Z",
+      "job": "job_1795643344273_0008",
+      "maps": 2,
+      "name": "hj6b-block-count",
+      "reduces": 2,
+      "seconds": 26.3,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T21:58:13Z"
+    },
+    {
+      "finish": "2026-11-25T22:01:05Z",
+      "job": "job_1795643344273_0009",
+      "maps": 2,
+      "name": "hj6c-candidates",
+      "reduces": 2,
+      "seconds": 140.1,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T21:58:45Z"
+    },
+    {
+      "finish": "2026-11-25T22:03:10Z",
+      "job": "job_1795643344273_0010",
+      "maps": 2,
+      "name": "hj6d-candidate-dedupe",
+      "reduces": 2,
+      "seconds": 118.5,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T22:01:11Z"
+    },
+    {
+      "finish": "2026-11-25T22:05:19Z",
+      "job": "job_1795643344273_0011",
+      "maps": 2,
+      "name": "hj7-match-decision",
+      "reduces": 2,
+      "seconds": 126.6,
+      "status": "SUCCEEDED",
+      "submit": "2026-11-25T22:03:13Z"
+    }
+  ],
+  "normalized_instance_hours_reported_by_emr": 24,
+  "notes": [
+    "HJ5 has no _SUCCESS marker of its own under work/; it writes curated/ (success-times.txt).",
+    "The jhist listing is what the EMR log pusher had uploaded; jobs missing from it are not counted here.",
+    "run.json for this run is stale at status running (Phase 14 F14-8); the EMR step records are the authority."
+  ],
+  "state": "TERMINATED_WITH_ERRORS",
+  "state_reason": {
+    "Code": "STEP_FAILURE",
+    "Message": "Shut down as step failed"
+  },
+  "tasks_total_from_listed_jhist": {
+    "maps": 53,
+    "reduces": 21
+  }
+}

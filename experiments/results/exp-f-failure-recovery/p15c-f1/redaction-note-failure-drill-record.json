@@ -1,0 +1,7 @@
+{
+  "file": "failure_drill-p15c-f1-record.jsonl",
+  "what": "the failure_drill wrote this write-once record with the 12-digit account ID in task ARNs; it was redacted in place to <acct> BEFORE any commit, as required by the no-account-ID rule. Content is otherwise unchanged (sed replacement only).",
+  "sha256_original_unredacted": "removed: hash of unredacted original",
+  "sha256_redacted": "93483cf36cbdcc672692d755af2999513002ec81bec067cbbd8647c77c63257d",
+  "exception_to": "raw files write-once; disclosed"
+}

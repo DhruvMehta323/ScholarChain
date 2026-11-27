@@ -1,0 +1,19 @@
+{
+    "ScalableTargets": [
+        {
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/scholarchain-cluster/retrieval",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "MinCapacity": 0,
+            "MaxCapacity": 4,
+            "RoleARN": "arn:aws:iam::<acct>:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService",
+            "CreationTime": "2026-11-24T19:16:04.830000-06:00",
+            "SuspendedState": {
+                "DynamicScalingInSuspended": false,
+                "DynamicScalingOutSuspended": false,
+                "ScheduledScalingSuspended": false
+            },
+            "ScalableTargetARN": "arn:aws:application-autoscaling:us-east-2:<acct>:scalable-target/0ec56b6ec9a9afca4a8895cb54ab144e1d12"
+        }
+    ]
+}

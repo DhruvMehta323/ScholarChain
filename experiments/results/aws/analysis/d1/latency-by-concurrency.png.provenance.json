@@ -1,0 +1,37 @@
+{
+  "argv": [
+    "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c5-fused.csv",
+    "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c20-fused.csv",
+    "--out-dir",
+    "experiments/results/aws/analysis/d1"
+  ],
+  "benchmark_sha256": null,
+  "generated_at_utc": "2026-11-27T01:46:20.409Z",
+  "git_head": "36b19d19fb462f2dd1391991020e32ac064af177",
+  "inputs": [
+    {
+      "path": "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c5-fused.csv",
+      "sha256": "c6e35c34ec8579f3e65763f9e763b0ce8fb1bcad1c8bbac512a1ab584db5dc8f"
+    },
+    {
+      "path": "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c20-fused.csv",
+      "sha256": "4eeeef5ff9d97835c2ee02b14ecece80d52d93fee65fe3401a4cf231afb2ad86"
+    }
+  ],
+  "output": "latency-by-concurrency.png",
+  "output_sha256": "3809ac5baf4b798d67e3a9935b88046cef05a667a325c429eea92360911d2288",
+  "parameters": {
+    "force": false,
+    "inputs": [
+      "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c5-fused.csv",
+      "experiments/results/exp-d-query-load/p15c-d1/loadgen-p15c-d1-c20-fused.csv"
+    ],
+    "no_plot": false,
+    "out_dir": "experiments/results/aws/analysis/d1"
+  },
+  "python": "3.14.2",
+  "schema": "scholarchain-provenance.v1",
+  "script": "experiments/analysis/latency_percentiles.py",
+  "synthetic": false,
+  "tree_dirty": true
+}

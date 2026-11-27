@@ -1,0 +1,61 @@
+{
+  "aws_binary_is_stub": false,
+  "collector": "collect_cloudwatch",
+  "commands": [
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"query-api CPUUtilization Average\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/ECS\", \"MetricName\": \"CPUUtilization\", \"Dimensions\": [{... --start-time 2026-11-27T01:40:00Z --end-time 2026-11-27T02:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"TargetResponseTime p50\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/ApplicationELB\", \"MetricName\": \"TargetResponseTime\", \"Dimensions... --start-time 2026-11-27T01:40:00Z --end-time 2026-11-27T02:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"ServerlessDatabaseCapacity Average\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/Neptune\", \"MetricName\": \"ServerlessDatabaseCapacity\"... --start-time 2026-11-27T01:40:00Z --end-time 2026-11-27T02:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"scholarchain-EvidenceBundle ReadThrottleEvents\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/DynamoDB\", \"MetricName\": \"ReadThrottleEv... --start-time 2026-11-27T01:40:00Z --end-time 2026-11-27T02:00:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "36b19d19fb462f2dd1391991020e32ac064af177",
+  "dry_run": false,
+  "ended_at": "2026-11-27T01:55:43.376Z",
+  "errors": [],
+  "experiment_id": "exp-d-query-load",
+  "files": [
+    {
+      "file": "collect_cloudwatch-p15c-d1-ecs.json",
+      "sha256": "86406768b195e71d2687157506413844dab8d80b0f1014ccb850be30ea3789fc"
+    },
+    {
+      "file": "collect_cloudwatch-p15c-d1-alb.json",
+      "sha256": "89562120cad9fb45f2977805b310dfba6ee5a2cbe01bc573892a18797026b413"
+    },
+    {
+      "file": "collect_cloudwatch-p15c-d1-neptune.json",
+      "sha256": "4f05c2181089d58b0aa3a0e108accd216deca6209f469057efd9df605ac0c824"
+    },
+    {
+      "file": "collect_cloudwatch-p15c-d1-dynamodb.json",
+      "sha256": "4c27b3e111a843bbd849b4076508fea116769a2de0677982cb030f98f62169c2"
+    }
+  ],
+  "label": "REAL",
+  "python": "3.14.2",
+  "region": "us-east-2",
+  "run_id": "p15c-d1",
+  "skipped_groups": [],
+  "started_at": "2026-11-27T01:55:41.393Z",
+  "synthetic": false,
+  "window": {
+    "end": "2026-11-27T02:00:00Z",
+    "period": 60,
+    "start": "2026-11-27T01:40:00Z"
+  }
+}

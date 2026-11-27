@@ -1,0 +1,43 @@
+{
+  "aws_binary_is_stub": false,
+  "collector": "collect_cloudwatch",
+  "commands": [
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"embedding-worker CPUUtilization Average\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/ECS\", \"MetricName\": \"CPUUtilization\", \"Dimensio... --start-time 2026-11-26T22:05:00Z --end-time 2026-11-26T23:05:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws cloudwatch get-metric-data --metric-data-queries [{\"Id\": \"m1\", \"Label\": \"queue ApproximateNumberOfMessagesVisible\", \"MetricStat\": {\"Metric\": {\"Namespace\": \"AWS/SQS\", \"MetricName\": \"ApproximateNumberOfMessag... --start-time 2026-11-26T22:05:00Z --end-time 2026-11-26T23:05:00Z --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "82d21c73925657ab5b7284ffecd91801fd0376b8",
+  "dry_run": false,
+  "ended_at": "2026-11-27T00:13:34.003Z",
+  "errors": [],
+  "experiment_id": "exp-c-embedding-backlog",
+  "files": [
+    {
+      "file": "collect_cloudwatch-p15c-c1-ecs.json",
+      "sha256": "6ca6e67e35906078f839e2a4ab2fab3b9954987f8198c6f21fd2eb217c72b496"
+    },
+    {
+      "file": "collect_cloudwatch-p15c-c1-sqs.json",
+      "sha256": "c485d8e8193655005e5d53667360b4118b55c212aea7a36e06156e345268a1d2"
+    }
+  ],
+  "label": "REAL",
+  "python": "3.14.2",
+  "region": "us-east-2",
+  "run_id": "p15c-c1",
+  "skipped_groups": [],
+  "started_at": "2026-11-27T00:13:32.973Z",
+  "synthetic": false,
+  "window": {
+    "end": "2026-11-26T23:05:00Z",
+    "period": 60,
+    "start": "2026-11-26T22:05:00Z"
+  }
+}

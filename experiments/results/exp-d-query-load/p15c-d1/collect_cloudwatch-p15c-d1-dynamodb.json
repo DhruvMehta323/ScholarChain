@@ -1,0 +1,499 @@
+{
+    "MetricDataResults": [
+        {
+            "Id": "m1",
+            "Label": "scholarchain-EvidenceBundle ReadThrottleEvents",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m2",
+            "Label": "scholarchain-EvidenceBundle WriteThrottleEvents",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m3",
+            "Label": "scholarchain-EvidenceBundle UserErrors",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m4",
+            "Label": "scholarchain-EvidenceBundle SystemErrors",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m5",
+            "Label": "scholarchain-EvidenceBundle ConsumedReadCapacityUnits",
+            "Timestamps": [
+                "2026-11-26T19:52:00-06:00",
+                "2026-11-26T19:51:00-06:00",
+                "2026-11-26T19:50:00-06:00",
+                "2026-11-26T19:49:00-06:00",
+                "2026-11-26T19:48:00-06:00",
+                "2026-11-26T19:47:00-06:00",
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00",
+                "2026-11-26T19:44:00-06:00",
+                "2026-11-26T19:43:00-06:00",
+                "2026-11-26T19:42:00-06:00",
+                "2026-11-26T19:41:00-06:00",
+                "2026-11-26T19:40:00-06:00"
+            ],
+            "Values": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m6",
+            "Label": "scholarchain-EvidenceBundle ConsumedWriteCapacityUnits",
+            "Timestamps": [
+                "2026-11-26T19:52:00-06:00",
+                "2026-11-26T19:51:00-06:00",
+                "2026-11-26T19:50:00-06:00",
+                "2026-11-26T19:49:00-06:00",
+                "2026-11-26T19:48:00-06:00",
+                "2026-11-26T19:47:00-06:00",
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00",
+                "2026-11-26T19:44:00-06:00",
+                "2026-11-26T19:43:00-06:00",
+                "2026-11-26T19:42:00-06:00",
+                "2026-11-26T19:41:00-06:00",
+                "2026-11-26T19:40:00-06:00"
+            ],
+            "Values": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                135.0,
+                364.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m7",
+            "Label": "scholarchain-EvidenceBundle SuccessfulRequestLatency GetItem",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m8",
+            "Label": "scholarchain-EvidenceBundle SuccessfulRequestLatency Query",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m9",
+            "Label": "scholarchain-EvidenceBundle SuccessfulRequestLatency PutItem",
+            "Timestamps": [
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00"
+            ],
+            "Values": [
+                5.185857142857143,
+                4.9215
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m10",
+            "Label": "scholarchain-QuerySession ReadThrottleEvents",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m11",
+            "Label": "scholarchain-QuerySession WriteThrottleEvents",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m12",
+            "Label": "scholarchain-QuerySession UserErrors",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m13",
+            "Label": "scholarchain-QuerySession SystemErrors",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m14",
+            "Label": "scholarchain-QuerySession ConsumedReadCapacityUnits",
+            "Timestamps": [
+                "2026-11-26T19:52:00-06:00",
+                "2026-11-26T19:51:00-06:00",
+                "2026-11-26T19:50:00-06:00",
+                "2026-11-26T19:49:00-06:00",
+                "2026-11-26T19:48:00-06:00",
+                "2026-11-26T19:47:00-06:00",
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00",
+                "2026-11-26T19:44:00-06:00",
+                "2026-11-26T19:43:00-06:00",
+                "2026-11-26T19:42:00-06:00",
+                "2026-11-26T19:41:00-06:00",
+                "2026-11-26T19:40:00-06:00"
+            ],
+            "Values": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.0,
+                29.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m15",
+            "Label": "scholarchain-QuerySession ConsumedWriteCapacityUnits",
+            "Timestamps": [
+                "2026-11-26T19:52:00-06:00",
+                "2026-11-26T19:51:00-06:00",
+                "2026-11-26T19:50:00-06:00",
+                "2026-11-26T19:49:00-06:00",
+                "2026-11-26T19:48:00-06:00",
+                "2026-11-26T19:47:00-06:00",
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00",
+                "2026-11-26T19:44:00-06:00",
+                "2026-11-26T19:43:00-06:00",
+                "2026-11-26T19:42:00-06:00",
+                "2026-11-26T19:41:00-06:00",
+                "2026-11-26T19:40:00-06:00"
+            ],
+            "Values": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                189.0,
+                507.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m16",
+            "Label": "scholarchain-QuerySession SuccessfulRequestLatency GetItem",
+            "Timestamps": [
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00"
+            ],
+            "Values": [
+                1.223,
+                1.1982758617241378
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m17",
+            "Label": "scholarchain-QuerySession SuccessfulRequestLatency Query",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m18",
+            "Label": "scholarchain-QuerySession SuccessfulRequestLatency PutItem",
+            "Timestamps": [
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00"
+            ],
+            "Values": [
+                2.910827955913979,
+                2.911625946183206
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m19",
+            "Label": "scholarchain-ArtifactRegistry ReadThrottleEvents",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m20",
+            "Label": "scholarchain-ArtifactRegistry WriteThrottleEvents",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m21",
+            "Label": "scholarchain-ArtifactRegistry UserErrors",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m22",
+            "Label": "scholarchain-ArtifactRegistry SystemErrors",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m23",
+            "Label": "scholarchain-ArtifactRegistry ConsumedReadCapacityUnits",
+            "Timestamps": [
+                "2026-11-26T19:52:00-06:00",
+                "2026-11-26T19:51:00-06:00",
+                "2026-11-26T19:50:00-06:00",
+                "2026-11-26T19:49:00-06:00",
+                "2026-11-26T19:48:00-06:00",
+                "2026-11-26T19:47:00-06:00",
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00",
+                "2026-11-26T19:44:00-06:00",
+                "2026-11-26T19:43:00-06:00",
+                "2026-11-26T19:42:00-06:00",
+                "2026-11-26T19:41:00-06:00",
+                "2026-11-26T19:40:00-06:00"
+            ],
+            "Values": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m24",
+            "Label": "scholarchain-ArtifactRegistry ConsumedWriteCapacityUnits",
+            "Timestamps": [
+                "2026-11-26T19:52:00-06:00",
+                "2026-11-26T19:51:00-06:00",
+                "2026-11-26T19:50:00-06:00",
+                "2026-11-26T19:49:00-06:00",
+                "2026-11-26T19:48:00-06:00",
+                "2026-11-26T19:47:00-06:00",
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00",
+                "2026-11-26T19:44:00-06:00",
+                "2026-11-26T19:43:00-06:00",
+                "2026-11-26T19:42:00-06:00",
+                "2026-11-26T19:41:00-06:00",
+                "2026-11-26T19:40:00-06:00"
+            ],
+            "Values": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m25",
+            "Label": "scholarchain-ArtifactRegistry SuccessfulRequestLatency GetItem",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m26",
+            "Label": "scholarchain-ArtifactRegistry SuccessfulRequestLatency Query",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m27",
+            "Label": "scholarchain-ArtifactRegistry SuccessfulRequestLatency PutItem",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m28",
+            "Label": "scholarchain-EntityLinkCache ReadThrottleEvents",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m29",
+            "Label": "scholarchain-EntityLinkCache WriteThrottleEvents",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m30",
+            "Label": "scholarchain-EntityLinkCache UserErrors",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m31",
+            "Label": "scholarchain-EntityLinkCache SystemErrors",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m32",
+            "Label": "scholarchain-EntityLinkCache ConsumedReadCapacityUnits",
+            "Timestamps": [
+                "2026-11-26T19:52:00-06:00",
+                "2026-11-26T19:51:00-06:00",
+                "2026-11-26T19:50:00-06:00",
+                "2026-11-26T19:49:00-06:00",
+                "2026-11-26T19:48:00-06:00",
+                "2026-11-26T19:47:00-06:00",
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00",
+                "2026-11-26T19:44:00-06:00",
+                "2026-11-26T19:43:00-06:00",
+                "2026-11-26T19:42:00-06:00",
+                "2026-11-26T19:41:00-06:00",
+                "2026-11-26T19:40:00-06:00"
+            ],
+            "Values": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m33",
+            "Label": "scholarchain-EntityLinkCache ConsumedWriteCapacityUnits",
+            "Timestamps": [
+                "2026-11-26T19:52:00-06:00",
+                "2026-11-26T19:51:00-06:00",
+                "2026-11-26T19:50:00-06:00",
+                "2026-11-26T19:49:00-06:00",
+                "2026-11-26T19:48:00-06:00",
+                "2026-11-26T19:47:00-06:00",
+                "2026-11-26T19:46:00-06:00",
+                "2026-11-26T19:45:00-06:00",
+                "2026-11-26T19:44:00-06:00",
+                "2026-11-26T19:43:00-06:00",
+                "2026-11-26T19:42:00-06:00",
+                "2026-11-26T19:41:00-06:00",
+                "2026-11-26T19:40:00-06:00"
+            ],
+            "Values": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m34",
+            "Label": "scholarchain-EntityLinkCache SuccessfulRequestLatency GetItem",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m35",
+            "Label": "scholarchain-EntityLinkCache SuccessfulRequestLatency Query",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        },
+        {
+            "Id": "m36",
+            "Label": "scholarchain-EntityLinkCache SuccessfulRequestLatency PutItem",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        }
+    ],
+    "Messages": []
+}

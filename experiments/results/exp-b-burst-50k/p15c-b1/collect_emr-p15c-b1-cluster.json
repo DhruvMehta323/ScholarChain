@@ -1,0 +1,162 @@
+{
+    "Cluster": {
+        "Id": "j-0072517WQADTWOIR2LO",
+        "Name": "scholarchain-10k-r20261125T214348Z-63958",
+        "Status": {
+            "State": "TERMINATED_WITH_ERRORS",
+            "StateChangeReason": {
+                "Code": "STEP_FAILURE",
+                "Message": "Shut down as step failed"
+            },
+            "Timeline": {
+                "CreationDateTime": "2026-11-25T15:45:31.888000-06:00",
+                "ReadyDateTime": "2026-11-25T15:49:45.598000-06:00",
+                "EndDateTime": "2026-11-25T16:07:07.471000-06:00"
+            }
+        },
+        "Ec2InstanceAttributes": {
+            "Ec2SubnetId": "subnet-0feae98cfe371666e",
+            "RequestedEc2SubnetIds": [
+                "subnet-0feae98cfe371666e"
+            ],
+            "Ec2AvailabilityZone": "us-east-2a",
+            "RequestedEc2AvailabilityZones": [],
+            "IamInstanceProfile": "scholarchain-emr-ec2",
+            "EmrManagedMasterSecurityGroup": "sg-0be2a00e14c2f1637",
+            "EmrManagedSlaveSecurityGroup": "sg-0be2a00e14c2f1637"
+        },
+        "InstanceCollectionType": "INSTANCE_GROUP",
+        "LogUri": "s3n://scholarchain-course-<acct>-logs/emr/",
+        "ReleaseLabel": "emr-spark-8.1.0",
+        "AutoTerminate": false,
+        "TerminationProtected": false,
+        "UnhealthyNodeReplacement": true,
+        "VisibleToAllUsers": true,
+        "Applications": [
+            {
+                "Name": "Spark",
+                "Version": "4.1.1"
+            }
+        ],
+        "Tags": [
+            {
+                "Key": "project",
+                "Value": "scholarchain"
+            },
+            {
+                "Key": "environment",
+                "Value": "course"
+            },
+            {
+                "Key": "for-use-with-amazon-emr-managed-policies",
+                "Value": "true"
+            },
+            {
+                "Key": "run-id",
+                "Value": "r20261125T214348Z-63958"
+            }
+        ],
+        "ServiceRole": "scholarchain-emr-service",
+        "NormalizedInstanceHours": 24,
+        "MasterPublicDnsName": "ec2-13-185-97-57.us-east-2.compute.amazonaws.com",
+        "Configurations": [],
+        "ScaleDownBehavior": "TERMINATE_AT_TASK_COMPLETION",
+        "KerberosAttributes": {},
+        "ClusterArn": "arn:aws:elasticmapreduce:us-east-2:<acct>:cluster/j-0072517WQADTWOIR2LO",
+        "StepConcurrencyLevel": 1,
+        "PlacementGroups": [],
+        "OSReleaseLabel": "2023.12.20261117.0",
+        "BootstrapActions": [],
+        "InstanceGroups": [
+            {
+                "Id": "ig-02071443KPFCZIRRPANP",
+                "Name": "MASTER",
+                "Market": "ON_DEMAND",
+                "InstanceGroupType": "MASTER",
+                "InstanceType": "m5.xlarge",
+                "RequestedInstanceCount": 1,
+                "RunningInstanceCount": 0,
+                "Status": {
+                    "State": "TERMINATED",
+                    "StateChangeReason": {
+                        "Code": "CLUSTER_TERMINATED",
+                        "Message": "Job flow terminated"
+                    },
+                    "Timeline": {
+                        "CreationDateTime": "2026-11-25T15:45:31.905000-06:00",
+                        "ReadyDateTime": "2026-11-25T15:49:10.380000-06:00",
+                        "EndDateTime": "2026-11-25T16:07:07.453000-06:00"
+                    }
+                },
+                "Configurations": [],
+                "ConfigurationsVersion": 0,
+                "LastSuccessfullyAppliedConfigurations": [],
+                "LastSuccessfullyAppliedConfigurationsVersion": 0,
+                "EbsBlockDevices": [
+                    {
+                        "VolumeSpecification": {
+                            "VolumeType": "gp2",
+                            "SizeInGB": 32
+                        },
+                        "Device": "/dev/sdb"
+                    },
+                    {
+                        "VolumeSpecification": {
+                            "VolumeType": "gp2",
+                            "SizeInGB": 32
+                        },
+                        "Device": "/dev/sdc"
+                    }
+                ],
+                "ShrinkPolicy": {}
+            },
+            {
+                "Id": "ig-0207151927AEUK5OD46",
+                "Name": "CORE",
+                "Market": "ON_DEMAND",
+                "InstanceGroupType": "CORE",
+                "InstanceType": "m5.xlarge",
+                "RequestedInstanceCount": 1,
+                "RunningInstanceCount": 0,
+                "Status": {
+                    "State": "TERMINATED",
+                    "StateChangeReason": {
+                        "Code": "CLUSTER_TERMINATED",
+                        "Message": "Job flow terminated"
+                    },
+                    "Timeline": {
+                        "CreationDateTime": "2026-11-25T15:45:31.905000-06:00",
+                        "ReadyDateTime": "2026-11-25T15:49:45.598000-06:00",
+                        "EndDateTime": "2026-11-25T16:07:07.453000-06:00"
+                    }
+                },
+                "Configurations": [],
+                "ConfigurationsVersion": 0,
+                "LastSuccessfullyAppliedConfigurations": [],
+                "LastSuccessfullyAppliedConfigurationsVersion": 0,
+                "EbsBlockDevices": [
+                    {
+                        "VolumeSpecification": {
+                            "VolumeType": "gp2",
+                            "SizeInGB": 32
+                        },
+                        "Device": "/dev/sdb"
+                    },
+                    {
+                        "VolumeSpecification": {
+                            "VolumeType": "gp2",
+                            "SizeInGB": 32
+                        },
+                        "Device": "/dev/sdc"
+                    }
+                ],
+                "ShrinkPolicy": {
+                    "InstanceResizePolicy": {
+                        "InstancesToTerminate": [],
+                        "InstancesToProtect": []
+                    }
+                }
+            }
+        ]
+    }
+}

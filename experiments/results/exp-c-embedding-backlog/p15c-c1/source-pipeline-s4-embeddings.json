@@ -1,0 +1,14 @@
+{
+  "counts": "approximate message counts; vectors are not counted here",
+  "dlq_messages": 2,
+  "finished_at": "2026-11-26T22:35:40Z",
+  "queue": {
+    "delayed": 0,
+    "in_flight": 0,
+    "visible": 0
+  },
+  "quiet_seconds_required": 300,
+  "status": "drained",
+  "timeout_seconds": 7200,
+  "waited_seconds": 1435
+}

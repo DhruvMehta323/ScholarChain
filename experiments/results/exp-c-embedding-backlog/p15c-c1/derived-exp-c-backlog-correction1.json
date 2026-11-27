@@ -1,0 +1,12 @@
+{
+  "corrections": [
+    "Keys queue_first_nonzero_visible_utc and queue_drained_utc_cloudwatch_first_zero hold CloudWatch timestamps that carry the offset -06:00 (the aws CLI prints local time). In UTC: first nonzero visible 2026-11-26T22:11:00Z, peak visible 203 at 22:11:00Z, first minute with visible=0 and in-flight=0 at 22:31:00Z.",
+    "Key retries_estimate_received_minus_deleted=0 is NOT a retry count. NumberOfMessagesSent sums to 258 although 204 jobs were enqueued (ops-manifest jobsEnqueued): 54 additional sends, which matches the 54 'retried' in the worker logs quoted in the Phase 14 agent-report.md (inference: the worker re-sends a failed batch). Received 258, deleted 258. DLQ NumberOfMessagesSent sums to 2 (the 2 dead-lettered jobs, F14-16).",
+    "Drain time: wait-embeddings recorded waited_seconds=1435 and finished_at 22:35:40Z, which includes a 300 s quiet period; the CloudWatch queue was empty from 22:31:00Z, about 19.3 min after the first nonzero minute."
+  ],
+  "corrects": "derived-exp-c-backlog.json",
+  "head": "82d21c73925657ab5b7284ffecd91801fd0376b8",
+  "references": "derived-*.json in this folder, written by experiments/analysis/p15c_x1_derive.py",
+  "work_order": "X1 Phase 15c",
+  "worker_scale_out_answer": "YES. Scaling activities: desired 1->2 at 2026-11-26T22:15:51Z (activity start, local 16:15:51-06:00), 2->4 at 22:17:51Z; scale-in 4->3 at 22:43:33Z, 3->2 at 22:49:33Z, 2->1 at 22:55:33Z. Evidence: appautoscaling-scaling-activities-embedding-worker.json and ecs-describe-services-embedding-worker.json events. In-flight messages reached 4 (collect_cloudwatch-p15c-c1-sqs.json). Note the first 1->2 came about 4 min after the backlog appeared (22:11:00Z)."
+}

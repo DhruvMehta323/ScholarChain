@@ -1,0 +1,1844 @@
+{
+    "queryLanguage": "CWLI",
+    "results": [
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:40:18.912"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:40:18.912469031Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-53b988d6-acd7-4a20-99d1-ec5268bd7c4d\",\"requestId\":\"req-9d141db4-56f2-477a-84cf-7328733c0292\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:40:18.921"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:40:18.920937595Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-6d4e532c-45e5-49bd-9740-c461f8a2ab05\",\"requestId\":\"req-85779f2c-e4ad-4e55-b786-a345bf92ad1f\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:40:48.921"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:40:48.921701076Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-794ef353-1bc0-46db-8c56-ca0dd8aa38cf\",\"requestId\":\"req-9e6e1978-769a-423a-a401-73e01b0f2619\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:40:48.951"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:40:48.951592457Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-e23c0a19-aef5-4ac0-8461-eb472de52d00\",\"requestId\":\"req-d6a5469f-a8c4-4584-bc8b-c2716259d462\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:41:18.930"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:41:18.930830238Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-17ce5afa-064d-4ed0-b49f-c618ec2032a4\",\"requestId\":\"req-e1a6b27d-ef6c-4642-a4ae-18221af49c22\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:41:18.954"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:41:18.954391738Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-f32aebb2-6103-4571-9069-3c470f4a0499\",\"requestId\":\"req-ad9eb25d-9649-4aa7-ac2e-d44ad6d8fa75\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:41:48.961"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:41:48.961639680Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-efe634fd-5acb-4109-8f75-a1dc8eed9832\",\"requestId\":\"req-4cdba61c-5d84-47fd-a20e-7cc8541c517c\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:41:48.984"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:41:48.984194770Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-4016aa3d-dbc5-4302-b5c6-bfa64759712d\",\"requestId\":\"req-5fa3f1cd-969d-41fc-b4e2-f1c18518dcf6\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:42:18.988"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:42:18.988342319Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-13e5a5cd-1ef2-499b-8366-9a4cd7ea027d\",\"requestId\":\"req-4fbda07b-26ff-4bf3-bb32-edd50185f70a\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:42:19.001"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:42:19.001303369Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-4f768fba-34b8-4e11-8c5e-e60499810159\",\"requestId\":\"req-2b86729a-b27b-48b0-bd7e-baa6b81daf4c\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:42:49.010"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:42:49.010621396Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-c114f85c-0070-4f2e-acf4-b5417b955d14\",\"requestId\":\"req-15b4f878-a712-4ba1-a2b1-18afd08456bd\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:42:49.013"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:42:49.013823234Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-96b4b253-d2a7-4105-baf9-65a296ddece5\",\"requestId\":\"req-a6713ab5-52f5-49ca-823f-2936c785e19f\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:43:19.039"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:43:19.038934359Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-c0464d06-964f-4303-bcb1-369a5f206c35\",\"requestId\":\"req-0d194799-5e49-4f62-bf55-5e9ff8ee4290\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:43:19.041"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:43:19.041058053Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-42ec3add-b72f-45f3-9ea0-6431062f13e8\",\"requestId\":\"req-3802b3b8-800a-471f-8f4c-8d0da217101d\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:43:49.068"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:43:49.068466104Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-88bd5f7e-44ec-4778-a287-39411ecb58d1\",\"requestId\":\"req-1946f7b0-edfc-4134-87f4-5f32a69a716d\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:43:49.072"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:43:49.072018611Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-37c33098-33af-43fd-b948-bdc0b4225d79\",\"requestId\":\"req-a049dcc0-2764-445e-a506-41e372335db2\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:44:19.075"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:44:19.075093919Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-3eaf5828-6015-454e-a6b7-4f6d8caa157a\",\"requestId\":\"req-34e76486-da3a-4b03-b7f0-f25957609344\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:44:19.098"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:44:19.098145940Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-abd5a3c2-1343-4919-88d5-04a31830b8e5\",\"requestId\":\"req-cb2a528a-d325-4e23-84a7-1c0c30e67d79\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:44:42.595"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:44:42.594854626Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-68338288-a389-442c-92c6-35570025f7ca\",\"requestId\":\"req-3b9e26c7-a5d8-4966-b5f8-0c1c0c5b2338\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:44:49.102"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:44:49.102486662Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-4d9d8f25-9995-41b0-82c7-8aaa50bcb384\",\"requestId\":\"req-69496ada-2e39-4157-a9e1-8b7f3204a87f\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:44:49.127"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:44:49.127133341Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-c013366a-44fc-4d71-9f66-b4c7d6ea70f4\",\"requestId\":\"req-99f52e05-7830-4542-a2a0-4efb6aa1acfb\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:19.130"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:19.130526127Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-d1147393-b4ad-414d-8163-3b6ec2d8bc5b\",\"requestId\":\"req-c5933a82-e438-449b-a09e-d5843fa104b7\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:19.158"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:19.157856262Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-993a0f8b-35ef-4b2a-aeb5-e06dbdbaa2fd\",\"requestId\":\"req-9551e7d1-24d8-4e63-8694-aade9b1c65a2\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:30.856"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:30.856628197Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-3\",\"requestId\":\"req-98da8963-3124-4467-a0a2-606b39d9e66f\",\"mode\":\"synchronous\",\"queryId\":\"query:67285943337ac916e9c76acce8e90522143a0d143aa62bd3e4456f0ea5ea165c\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:30.857"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:30.857607841Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-3\",\"requestId\":\"req-98da8963-3124-4467-a0a2-606b39d9e66f\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"1306\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:31.063"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:31.063476169Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-3\",\"requestId\":\"req-5f1aef9d-315c-422b-ad4e-9f835d80ff27\",\"method\":\"GET\",\"path\":\"/v1/explain/query:67285943337ac916e9c76acce8e90522143a0d143aa62bd3e4456f0ea5ea165c\",\"status\":\"200\",\"latencyMs\":\"6\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:31.762"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:31.762068148Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-5\",\"requestId\":\"req-c8cc11e1-5e83-4414-ab50-288864d389b9\",\"mode\":\"synchronous\",\"queryId\":\"query:12fb79313eb88b7cf4eee2d27ed2d869626291f718f17b85f49f9cf6ca892b76\",\"abstained\":\"true\",\"abstainReason\":\"no_evidence\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:31.763"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:31.763474573Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-5\",\"requestId\":\"req-c8cc11e1-5e83-4414-ab50-288864d389b9\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"606\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:31.957"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:31.956872437Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-5\",\"requestId\":\"req-d27aef7a-31a9-4072-b70e-b02d474e2375\",\"method\":\"GET\",\"path\":\"/v1/explain/query:12fb79313eb88b7cf4eee2d27ed2d869626291f718f17b85f49f9cf6ca892b76\",\"status\":\"200\",\"latencyMs\":\"99\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:32.065"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:32.065846906Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-6\",\"requestId\":\"req-4abb8b45-f083-446a-ad91-d9479a1c99f8\",\"mode\":\"synchronous\",\"queryId\":\"query:68a7466686b2f5d6815feba246a9a05739f7fd6640ad1295f44eb0b7ffa8e45e\",\"abstained\":\"true\",\"abstainReason\":\"no_evidence\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:32.066"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:32.066704711Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-6\",\"requestId\":\"req-4abb8b45-f083-446a-ad91-d9479a1c99f8\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"510\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:32.166"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:32.165999524Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-6\",\"requestId\":\"req-95b5c45f-9f96-4e5e-a157-fef3f872064a\",\"method\":\"GET\",\"path\":\"/v1/explain/query:68a7466686b2f5d6815feba246a9a05739f7fd6640ad1295f44eb0b7ffa8e45e\",\"status\":\"200\",\"latencyMs\":\"8\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:36.968"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:36.967875345Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-2\",\"requestId\":\"req-4fde9e5e-e7ae-47b2-b1bf-2a4b2a6a685d\",\"mode\":\"synchronous\",\"queryId\":\"query:79cea897251c7d5059f9d0f40b02c98513263955a55f2f63e41ca5f1a0fdad13\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:36.969"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:36.969646629Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-2\",\"requestId\":\"req-4fde9e5e-e7ae-47b2-b1bf-2a4b2a6a685d\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"8427\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.257"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.256999973Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-2\",\"requestId\":\"req-15cad1da-04bf-42bf-a839-8e3a82417bb0\",\"method\":\"GET\",\"path\":\"/v1/explain/query:79cea897251c7d5059f9d0f40b02c98513263955a55f2f63e41ca5f1a0fdad13\",\"status\":\"200\",\"latencyMs\":\"200\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.556"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.556631486Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-4\",\"requestId\":\"req-e0e3236d-2b67-4636-be83-aba245988f73\",\"mode\":\"synchronous\",\"queryId\":\"query:67ee5e7286f8f11eb25ca46c5364e93b3074422ccfbc44ae217496730a31eab6\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.559"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.558963445Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-4\",\"requestId\":\"req-e0e3236d-2b67-4636-be83-aba245988f73\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"6998\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.662"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.662820499Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-7\",\"requestId\":\"req-e86ea5a2-2adf-462f-9888-e4fbcf9384a6\",\"mode\":\"synchronous\",\"queryId\":\"query:633b4e127f6ad329b2b45379b9351415cb686ca62a23c3a76a43514bec56f077\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.664"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.663960626Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-7\",\"requestId\":\"req-e86ea5a2-2adf-462f-9888-e4fbcf9384a6\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"5607\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.665"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.665626842Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-4\",\"requestId\":\"req-45ecc2d4-c5d5-47ec-b2b8-960c3a72e160\",\"method\":\"GET\",\"path\":\"/v1/explain/query:67ee5e7286f8f11eb25ca46c5364e93b3074422ccfbc44ae217496730a31eab6\",\"status\":\"200\",\"latencyMs\":\"8\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.764"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.764613502Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-1\",\"requestId\":\"req-24745afa-5d74-42ea-b128-808ad46c9fed\",\"mode\":\"synchronous\",\"queryId\":\"query:986d31e81a699018de52db65806657f5410a10d2d07e12b7d28290828b12ee76\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.765"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.765846834Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-1\",\"requestId\":\"req-24745afa-5d74-42ea-b128-808ad46c9fed\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"10198\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.961"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.961360817Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-7\",\"requestId\":\"req-f12c1a62-9b01-4431-ba39-65a3d3205135\",\"method\":\"GET\",\"path\":\"/v1/explain/query:633b4e127f6ad329b2b45379b9351415cb686ca62a23c3a76a43514bec56f077\",\"status\":\"200\",\"latencyMs\":\"104\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:37.964"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:37.964482403Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-1\",\"requestId\":\"req-8bc99a6f-f51f-4269-b35e-55d3f636b551\",\"method\":\"GET\",\"path\":\"/v1/explain/query:986d31e81a699018de52db65806657f5410a10d2d07e12b7d28290828b12ee76\",\"status\":\"200\",\"latencyMs\":\"107\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:40.757"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:40.757510658Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-8\",\"requestId\":\"req-4dfe66fc-33c0-4544-b82c-e6dd51ee345d\",\"mode\":\"synchronous\",\"queryId\":\"query:f86e70d684cb4ca75e639e66a6f88a02b85c0117318332b82a2bdc61ccc06b7d\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:40.758"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:40.758603478Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-8\",\"requestId\":\"req-4dfe66fc-33c0-4544-b82c-e6dd51ee345d\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"8501\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:41.061"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:41.060840181Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-8\",\"requestId\":\"req-8af955e6-7b4a-49ce-955c-a10bfac63b40\",\"method\":\"GET\",\"path\":\"/v1/explain/query:f86e70d684cb4ca75e639e66a6f88a02b85c0117318332b82a2bdc61ccc06b7d\",\"status\":\"200\",\"latencyMs\":\"103\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:42.358"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:42.358826328Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-9\",\"requestId\":\"req-83571a59-3e3a-4602-9bc2-5f89d3021b5e\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"5001\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:42.358"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:42.357901803Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-9\",\"requestId\":\"req-83571a59-3e3a-4602-9bc2-5f89d3021b5e\",\"mode\":\"synchronous\",\"queryId\":\"query:2399ea3aa259d8ba210ecd719f1db60dea6e16537af0f806379277cd789b8059\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:42.368"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:42.368455104Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-11\",\"requestId\":\"req-d2c2d5ac-befe-434d-8a97-8844ee0cd497\",\"mode\":\"synchronous\",\"queryId\":\"query:8f5cfc93674e7cf44b30faf417220abfc0e346361154b3b1069f288f51327656\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:42.369"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:42.369299609Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-11\",\"requestId\":\"req-d2c2d5ac-befe-434d-8a97-8844ee0cd497\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"4310\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:42.564"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:42.564489392Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-9\",\"requestId\":\"req-44cecd8a-98d6-405a-b10c-2d2d03972fbd\",\"method\":\"GET\",\"path\":\"/v1/explain/query:2399ea3aa259d8ba210ecd719f1db60dea6e16537af0f806379277cd789b8059\",\"status\":\"200\",\"latencyMs\":\"7\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:42.565"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:42.564853704Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-11\",\"requestId\":\"req-63e520e0-9ae4-4411-8608-bd26150aa676\",\"method\":\"GET\",\"path\":\"/v1/explain/query:8f5cfc93674e7cf44b30faf417220abfc0e346361154b3b1069f288f51327656\",\"status\":\"200\",\"latencyMs\":\"7\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:42.656"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:42.656657760Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-10\",\"requestId\":\"req-1fe0125d-a845-41e3-87d1-039e3b370cd4\",\"mode\":\"synchronous\",\"queryId\":\"query:4ef6e3b832c48762d95246cca10db8c5998f81a1222ecced5698b67ad79365b1\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:42.658"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:42.658770214Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-10\",\"requestId\":\"req-1fe0125d-a845-41e3-87d1-039e3b370cd4\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"4801\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:42.957"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:42.956916611Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-10\",\"requestId\":\"req-072fda21-0399-44f6-969b-298df94306ea\",\"method\":\"GET\",\"path\":\"/v1/explain/query:4ef6e3b832c48762d95246cca10db8c5998f81a1222ecced5698b67ad79365b1\",\"status\":\"200\",\"latencyMs\":\"100\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:44.563"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:44.562858832Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-12\",\"requestId\":\"req-d851593c-8284-4b1f-83f7-f9c56f8c0d42\",\"mode\":\"synchronous\",\"queryId\":\"query:900766e9af5fe02efd8f814a188fcec188f22e389f22d94211a06640ed189163\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:44.564"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:44.564054370Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-12\",\"requestId\":\"req-d851593c-8284-4b1f-83f7-f9c56f8c0d42\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"6504\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:44.667"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:44.666978490Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-12\",\"requestId\":\"req-f72f50be-bd5d-4778-997a-d88a97adec14\",\"method\":\"GET\",\"path\":\"/v1/explain/query:900766e9af5fe02efd8f814a188fcec188f22e389f22d94211a06640ed189163\",\"status\":\"200\",\"latencyMs\":\"10\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:45.964"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:45.964549833Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-13\",\"requestId\":\"req-adac5fa1-33af-40f1-8f35-eca9f18dfd8e\",\"mode\":\"synchronous\",\"queryId\":\"query:3f8fa43afb69c5cf8b6355b8049b7ad186e59e522e8104a38e2fd6e2ef906ed1\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:45.965"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:45.965382549Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-13\",\"requestId\":\"req-adac5fa1-33af-40f1-8f35-eca9f18dfd8e\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"4808\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:46.157"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:46.156921004Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-13\",\"requestId\":\"req-8c1329d8-0547-4232-8161-cc4a4ffa0b23\",\"method\":\"GET\",\"path\":\"/v1/explain/query:3f8fa43afb69c5cf8b6355b8049b7ad186e59e522e8104a38e2fd6e2ef906ed1\",\"status\":\"200\",\"latencyMs\":\"98\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:46.366"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:46.365863956Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-15\",\"requestId\":\"req-acd016ae-b3a1-4923-b491-e86b16b51f56\",\"mode\":\"synchronous\",\"queryId\":\"query:c710f3385df0f63ea545a2e99cf42399b588398bfec0de7650af1e80e8ef0737\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:46.366"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:46.366662448Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-15\",\"requestId\":\"req-acd016ae-b3a1-4923-b491-e86b16b51f56\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"3709\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:46.561"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:46.561212816Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-15\",\"requestId\":\"req-9352be78-e879-4ef5-8614-3739ad1d970f\",\"method\":\"GET\",\"path\":\"/v1/explain/query:c710f3385df0f63ea545a2e99cf42399b588398bfec0de7650af1e80e8ef0737\",\"status\":\"200\",\"latencyMs\":\"104\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:46.765"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:46.765666554Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-14\",\"requestId\":\"req-91519bb0-1a69-41ac-94a0-c2139a3ea488\",\"mode\":\"synchronous\",\"queryId\":\"query:da3b0173040e7b518da83fda40ad45f73c3e3594456aea25c16e208c2d0e706f\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:46.766"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:46.766667791Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-14\",\"requestId\":\"req-91519bb0-1a69-41ac-94a0-c2139a3ea488\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"4108\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:46.863"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:46.863593686Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-14\",\"requestId\":\"req-d167af45-ad6f-45be-8b82-051a879f3412\",\"method\":\"GET\",\"path\":\"/v1/explain/query:da3b0173040e7b518da83fda40ad45f73c3e3594456aea25c16e208c2d0e706f\",\"status\":\"200\",\"latencyMs\":\"5\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:47.359"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:47.358829831Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-16\",\"requestId\":\"req-a3389deb-8fd3-4ef3-9e76-857f74502633\",\"mode\":\"synchronous\",\"queryId\":\"query:5b19684b443bc3b236cc429a11b09411fd975d867553ecef65dd8f989958a86c\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:47.360"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:47.360249867Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-16\",\"requestId\":\"req-a3389deb-8fd3-4ef3-9e76-857f74502633\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"4303\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:47.496"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:47.495929829Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-16\",\"requestId\":\"req-52acd0af-561c-4faa-96cf-b2e43582071f\",\"method\":\"GET\",\"path\":\"/v1/explain/query:5b19684b443bc3b236cc429a11b09411fd975d867553ecef65dd8f989958a86c\",\"status\":\"200\",\"latencyMs\":\"6\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:49.160"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:49.159851065Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-8da3ad69-c93f-4934-b5f2-ed4f8f099dd6\",\"requestId\":\"req-c9d31350-64b1-4e9a-95b9-4ef149273155\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:49.162"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:49.161998447Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-c68bfc71-986b-40f5-a0ae-045494c5ae3f\",\"requestId\":\"req-7824188e-5645-4e9d-b777-8456a8bda6e9\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:49.856"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:49.856666621Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-3\",\"requestId\":\"req-5352b700-fa56-409d-a8b8-b1a6848c6d95\",\"mode\":\"synchronous\",\"queryId\":\"query:67285943337ac916e9c76acce8e90522143a0d143aa62bd3e4456f0ea5ea165c\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:49.857"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:49.857532080Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-3\",\"requestId\":\"req-5352b700-fa56-409d-a8b8-b1a6848c6d95\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"1582\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:50.057"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:50.056993998Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-3\",\"requestId\":\"req-3dbed728-fe27-481f-966a-80113aabaae9\",\"method\":\"GET\",\"path\":\"/v1/explain/query:67285943337ac916e9c76acce8e90522143a0d143aa62bd3e4456f0ea5ea165c\",\"status\":\"200\",\"latencyMs\":\"99\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:50.457"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:50.457760393Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-5\",\"requestId\":\"req-35a1901c-f685-4b8e-bcd9-bb7922177362\",\"mode\":\"synchronous\",\"queryId\":\"query:12fb79313eb88b7cf4eee2d27ed2d869626291f718f17b85f49f9cf6ca892b76\",\"abstained\":\"true\",\"abstainReason\":\"no_evidence\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:50.458"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:50.458260143Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-5\",\"requestId\":\"req-35a1901c-f685-4b8e-bcd9-bb7922177362\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"1601\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:50.658"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:50.658180524Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-5\",\"requestId\":\"req-208f9a2e-da58-43f9-8945-2630ec6f8a7f\",\"method\":\"GET\",\"path\":\"/v1/explain/query:12fb79313eb88b7cf4eee2d27ed2d869626291f718f17b85f49f9cf6ca892b76\",\"status\":\"200\",\"latencyMs\":\"100\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:50.768"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:50.768876701Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-6\",\"requestId\":\"req-1b6e0361-cc83-46c3-ae63-bc39e4c8bd0c\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"1812\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:50.768"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:50.768302174Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-6\",\"requestId\":\"req-1b6e0361-cc83-46c3-ae63-bc39e4c8bd0c\",\"mode\":\"synchronous\",\"queryId\":\"query:68a7466686b2f5d6815feba246a9a05739f7fd6640ad1295f44eb0b7ffa8e45e\",\"abstained\":\"true\",\"abstainReason\":\"no_evidence\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:51.064"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:51.064332020Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-6\",\"requestId\":\"req-5f33ab51-f6c1-4176-8293-050f20946975\",\"method\":\"GET\",\"path\":\"/v1/explain/query:68a7466686b2f5d6815feba246a9a05739f7fd6640ad1295f44eb0b7ffa8e45e\",\"status\":\"200\",\"latencyMs\":\"104\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:51.263"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:51.262970778Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-2\",\"requestId\":\"req-959641ef-2a90-4166-a60e-46c27ac44fdb\",\"mode\":\"synchronous\",\"queryId\":\"query:79cea897251c7d5059f9d0f40b02c98513263955a55f2f63e41ca5f1a0fdad13\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:51.263"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:51.263820158Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-2\",\"requestId\":\"req-959641ef-2a90-4166-a60e-46c27ac44fdb\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"3306\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:51.266"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:51.266595149Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-1\",\"requestId\":\"req-38b90297-91f5-457f-bcd5-babf762252ef\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"3520\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:51.266"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:51.265972914Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-1\",\"requestId\":\"req-38b90297-91f5-457f-bcd5-babf762252ef\",\"mode\":\"synchronous\",\"queryId\":\"query:986d31e81a699018de52db65806657f5410a10d2d07e12b7d28290828b12ee76\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:51.557"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:51.556913866Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-1\",\"requestId\":\"req-649db564-7e35-4797-a1f2-18fd030db64e\",\"method\":\"GET\",\"path\":\"/v1/explain/query:986d31e81a699018de52db65806657f5410a10d2d07e12b7d28290828b12ee76\",\"status\":\"200\",\"latencyMs\":\"99\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:51.559"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:51.559387032Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-2\",\"requestId\":\"req-fa69da33-a4d5-4c0b-b557-25ba9e4d682d\",\"method\":\"GET\",\"path\":\"/v1/explain/query:79cea897251c7d5059f9d0f40b02c98513263955a55f2f63e41ca5f1a0fdad13\",\"status\":\"200\",\"latencyMs\":\"102\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:52.469"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:52.468849114Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-4\",\"requestId\":\"req-22ac2ee2-ab00-4b01-98bf-f0b3d63d69d5\",\"mode\":\"synchronous\",\"queryId\":\"query:67ee5e7286f8f11eb25ca46c5364e93b3074422ccfbc44ae217496730a31eab6\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:52.557"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:52.556865666Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-4\",\"requestId\":\"req-22ac2ee2-ab00-4b01-98bf-f0b3d63d69d5\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"4099\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:54.259"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:54.259229932Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-7\",\"requestId\":\"req-69583a97-7257-48b3-a332-aa02c3e8d2dc\",\"mode\":\"synchronous\",\"queryId\":\"query:633b4e127f6ad329b2b45379b9351415cb686ca62a23c3a76a43514bec56f077\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:54.260"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:54.260164503Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-7\",\"requestId\":\"req-69583a97-7257-48b3-a332-aa02c3e8d2dc\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"5002\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:54.768"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:54.768753496Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-8\",\"requestId\":\"req-bbac631f-ff33-4d12-baca-5aa409ef9ec9\",\"mode\":\"synchronous\",\"queryId\":\"query:f86e70d684cb4ca75e639e66a6f88a02b85c0117318332b82a2bdc61ccc06b7d\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:54.769"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:54.769319645Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-8\",\"requestId\":\"req-bbac631f-ff33-4d12-baca-5aa409ef9ec9\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"5312\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:54.965"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:54.965350554Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-9\",\"requestId\":\"req-a15f5c07-3cc5-4606-a83d-f64cb7d91eca\",\"mode\":\"synchronous\",\"queryId\":\"query:2399ea3aa259d8ba210ecd719f1db60dea6e16537af0f806379277cd789b8059\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:54.966"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:54.966252728Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-9\",\"requestId\":\"req-a15f5c07-3cc5-4606-a83d-f64cb7d91eca\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"5208\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:55.057"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:55.056984118Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-4\",\"requestId\":\"req-4c1c069a-6bcf-405f-8090-d1c227eadf83\",\"method\":\"GET\",\"path\":\"/v1/explain/query:67ee5e7286f8f11eb25ca46c5364e93b3074422ccfbc44ae217496730a31eab6\",\"status\":\"200\",\"latencyMs\":\"90\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:55.067"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:55.067448172Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-7\",\"requestId\":\"req-0378094f-cd5a-4573-9f24-8c475faf5ccb\",\"method\":\"GET\",\"path\":\"/v1/explain/query:633b4e127f6ad329b2b45379b9351415cb686ca62a23c3a76a43514bec56f077\",\"status\":\"200\",\"latencyMs\":\"10\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:55.163"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:55.163560718Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-8\",\"requestId\":\"req-643b44b1-5c84-49aa-94af-464ab9674606\",\"method\":\"GET\",\"path\":\"/v1/explain/query:f86e70d684cb4ca75e639e66a6f88a02b85c0117318332b82a2bdc61ccc06b7d\",\"status\":\"200\",\"latencyMs\":\"95\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:55.264"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:55.264205722Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-9\",\"requestId\":\"req-537c53da-0ec4-436d-bdcf-9cae9e32e34a\",\"method\":\"GET\",\"path\":\"/v1/explain/query:2399ea3aa259d8ba210ecd719f1db60dea6e16537af0f806379277cd789b8059\",\"status\":\"200\",\"latencyMs\":\"100\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:56.158"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:56.157907226Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-10\",\"requestId\":\"req-4da53065-6412-47e9-a06e-f7db27d8774d\",\"mode\":\"synchronous\",\"queryId\":\"query:4ef6e3b832c48762d95246cca10db8c5998f81a1222ecced5698b67ad79365b1\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:56.159"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:56.159090892Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-10\",\"requestId\":\"req-4da53065-6412-47e9-a06e-f7db27d8774d\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"6201\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:56.457"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:56.456905059Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-10\",\"requestId\":\"req-cb2645e3-7e86-4ed5-8c62-461cc72315a2\",\"method\":\"GET\",\"path\":\"/v1/explain/query:4ef6e3b832c48762d95246cca10db8c5998f81a1222ecced5698b67ad79365b1\",\"status\":\"200\",\"latencyMs\":\"200\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:57.063"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:57.063513785Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-11\",\"requestId\":\"req-db16db56-3971-4314-bce6-e276a98765c0\",\"mode\":\"synchronous\",\"queryId\":\"query:8f5cfc93674e7cf44b30faf417220abfc0e346361154b3b1069f288f51327656\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:57.064"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:57.064351228Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-11\",\"requestId\":\"req-db16db56-3971-4314-bce6-e276a98765c0\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"6906\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:57.263"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:57.262949734Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-11\",\"requestId\":\"req-3cdd62d3-f450-49da-86e0-aed5ca1718fa\",\"method\":\"GET\",\"path\":\"/v1/explain/query:8f5cfc93674e7cf44b30faf417220abfc0e346361154b3b1069f288f51327656\",\"status\":\"200\",\"latencyMs\":\"6\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:58.162"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:58.162306163Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-12\",\"requestId\":\"req-dfcea50c-fe42-405a-91ef-4e0b703070d1\",\"mode\":\"synchronous\",\"queryId\":\"query:900766e9af5fe02efd8f814a188fcec188f22e389f22d94211a06640ed189163\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:58.163"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:58.163062429Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-12\",\"requestId\":\"req-dfcea50c-fe42-405a-91ef-4e0b703070d1\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"7905\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:58.265"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:58.265784749Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-13\",\"requestId\":\"req-0ca0e116-ac76-4f8b-9bcc-7be7ab615cb4\",\"mode\":\"synchronous\",\"queryId\":\"query:3f8fa43afb69c5cf8b6355b8049b7ad186e59e522e8104a38e2fd6e2ef906ed1\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:58.266"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:58.266379810Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-13\",\"requestId\":\"req-0ca0e116-ac76-4f8b-9bcc-7be7ab615cb4\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"7809\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:58.363"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:58.363008745Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-12\",\"requestId\":\"req-9f4a4d60-9884-49c6-9e29-50c561368806\",\"method\":\"GET\",\"path\":\"/v1/explain/query:900766e9af5fe02efd8f814a188fcec188f22e389f22d94211a06640ed189163\",\"status\":\"200\",\"latencyMs\":\"106\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:45:58.456"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:45:58.456633069Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-13\",\"requestId\":\"req-88edda56-f39f-4f3d-983f-088cc81d521a\",\"method\":\"GET\",\"path\":\"/v1/explain/query:3f8fa43afb69c5cf8b6355b8049b7ad186e59e522e8104a38e2fd6e2ef906ed1\",\"status\":\"200\",\"latencyMs\":\"99\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:00.360"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:00.359680388Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-15\",\"requestId\":\"req-5e92c1b3-8417-4ea3-926a-a304d2594487\",\"mode\":\"synchronous\",\"queryId\":\"query:c710f3385df0f63ea545a2e99cf42399b588398bfec0de7650af1e80e8ef0737\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:00.360"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:00.360782864Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-15\",\"requestId\":\"req-5e92c1b3-8417-4ea3-926a-a304d2594487\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"9603\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:00.365"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:00.365812821Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-18\",\"requestId\":\"req-737262ca-a5f2-4827-ba7a-90ab58e01134\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"9107\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:00.365"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:00.365226135Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-18\",\"requestId\":\"req-737262ca-a5f2-4827-ba7a-90ab58e01134\",\"mode\":\"synchronous\",\"queryId\":\"query:134cae99de2f4a9ad30e40e7dcbde4e4fd1a5fedb20504d448139c06345c6c43\",\"abstained\":\"true\",\"abstainReason\":\"no_evidence\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:00.465"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:00.465715654Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-18\",\"requestId\":\"req-1ce984e4-1707-45f3-b7b2-c9f73f002c97\",\"method\":\"GET\",\"path\":\"/v1/explain/query:134cae99de2f4a9ad30e40e7dcbde4e4fd1a5fedb20504d448139c06345c6c43\",\"status\":\"200\",\"latencyMs\":\"5\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:00.559"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:00.558792477Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-15\",\"requestId\":\"req-1201a43e-5937-44fc-bf20-aa87dd2644e2\",\"method\":\"GET\",\"path\":\"/v1/explain/query:c710f3385df0f63ea545a2e99cf42399b588398bfec0de7650af1e80e8ef0737\",\"status\":\"200\",\"latencyMs\":\"98\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:01.166"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:01.166682441Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-16\",\"requestId\":\"req-fe720bba-7af1-464a-acf3-0aa4eff673b0\",\"mode\":\"synchronous\",\"queryId\":\"query:5b19684b443bc3b236cc429a11b09411fd975d867553ecef65dd8f989958a86c\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:01.168"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:01.167700319Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-16\",\"requestId\":\"req-fe720bba-7af1-464a-acf3-0aa4eff673b0\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"10207\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:01.270"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:01.270455055Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-16\",\"requestId\":\"req-08df9fdc-0466-40fe-9282-f6082d7f1ba3\",\"method\":\"GET\",\"path\":\"/v1/explain/query:5b19684b443bc3b236cc429a11b09411fd975d867553ecef65dd8f989958a86c\",\"status\":\"200\",\"latencyMs\":\"13\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:01.872"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:01.872659780Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-17\",\"requestId\":\"req-4f67aec1-305d-4267-8f9e-31c718e74b82\",\"mode\":\"synchronous\",\"queryId\":\"query:e9678c1dbfd87181c61a010a1ba282c5d07ca8581d91815bb14e2a1654a75b7f\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:01.874"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:01.874566435Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-17\",\"requestId\":\"req-4f67aec1-305d-4267-8f9e-31c718e74b82\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"10717\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:02.064"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:02.064813853Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-17\",\"requestId\":\"req-7828d538-409f-4ead-a330-4c9dd984d1b9\",\"method\":\"GET\",\"path\":\"/v1/explain/query:e9678c1dbfd87181c61a010a1ba282c5d07ca8581d91815bb14e2a1654a75b7f\",\"status\":\"200\",\"latencyMs\":\"6\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.463"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.463756656Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-14\",\"requestId\":\"req-9d86428c-fb38-449d-83d3-acb11649dce5\",\"mode\":\"synchronous\",\"queryId\":\"query:da3b0173040e7b518da83fda40ad45f73c3e3594456aea25c16e208c2d0e706f\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.464"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.464590286Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-14\",\"requestId\":\"req-9d86428c-fb38-449d-83d3-acb11649dce5\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"13707\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.657"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.657721423Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-21\",\"requestId\":\"req-00406280-e2b6-4c0d-a06a-b53af9550edd\",\"mode\":\"synchronous\",\"queryId\":\"query:b2291eb417f3a7966654d4d6d6e3191e68b36e47f266cc2a0d1b4981328acbf8\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.659"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.659201752Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-21\",\"requestId\":\"req-00406280-e2b6-4c0d-a06a-b53af9550edd\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"12997\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.665"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.665491280Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-19\",\"requestId\":\"req-1e70352f-03cc-4adc-a2fb-74155ac7ef10\",\"mode\":\"synchronous\",\"queryId\":\"query:0de03950b48b306eebba91dd1b9e3bf8f6fe83d651c5e1c1968a8b95c5e7c8ec\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.666"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.666343501Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-14\",\"requestId\":\"req-4b752a09-f150-4f27-99bb-55a217da95a5\",\"method\":\"GET\",\"path\":\"/v1/explain/query:da3b0173040e7b518da83fda40ad45f73c3e3594456aea25c16e208c2d0e706f\",\"status\":\"200\",\"latencyMs\":\"8\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.667"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.667061900Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-19\",\"requestId\":\"req-1e70352f-03cc-4adc-a2fb-74155ac7ef10\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"13208\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.857"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.857314849Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-21\",\"requestId\":\"req-cf3c02b8-d5b0-46ba-8b5e-693f6ca3921a\",\"method\":\"GET\",\"path\":\"/v1/explain/query:b2291eb417f3a7966654d4d6d6e3191e68b36e47f266cc2a0d1b4981328acbf8\",\"status\":\"200\",\"latencyMs\":\"100\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.860"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.860528507Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-19\",\"requestId\":\"req-506ade6e-077b-4a57-abf3-32598a5f43a1\",\"method\":\"GET\",\"path\":\"/v1/explain/query:0de03950b48b306eebba91dd1b9e3bf8f6fe83d651c5e1c1968a8b95c5e7c8ec\",\"status\":\"200\",\"latencyMs\":\"103\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.868"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.868514407Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-20\",\"requestId\":\"req-fc320a59-7b3c-4ef4-9077-5011c27b64af\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"13210\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.868"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.867903623Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-20\",\"requestId\":\"req-fc320a59-7b3c-4ef4-9077-5011c27b64af\",\"mode\":\"synchronous\",\"queryId\":\"query:1e947d8ac46ef43fdc7a828257debae8e9a0c44697b5d4551a3ba1cf339f0a8c\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:04.965"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:04.965307582Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-20\",\"requestId\":\"req-66da538f-c676-4c3d-a261-5cae15b1a21e\",\"method\":\"GET\",\"path\":\"/v1/explain/query:1e947d8ac46ef43fdc7a828257debae8e9a0c44697b5d4551a3ba1cf339f0a8c\",\"status\":\"200\",\"latencyMs\":\"8\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:06.766"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:06.766668277Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-22\",\"requestId\":\"req-bf8c74b1-99f7-4c65-ab89-a165838bd4cf\",\"mode\":\"synchronous\",\"queryId\":\"query:72d24511f0677efa86a98f0a5adb914236813a64eff32cbd7d179acebfb2d44b\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:06.767"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:06.767558463Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-22\",\"requestId\":\"req-bf8c74b1-99f7-4c65-ab89-a165838bd4cf\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"14210\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:06.862"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:06.862813241Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-22\",\"requestId\":\"req-a1d32d22-7293-4d41-86a0-d304920bc13e\",\"method\":\"GET\",\"path\":\"/v1/explain/query:72d24511f0677efa86a98f0a5adb914236813a64eff32cbd7d179acebfb2d44b\",\"status\":\"200\",\"latencyMs\":\"5\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:06.962"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:06.962632328Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-24\",\"requestId\":\"req-0cc59491-5fcb-46f9-aa35-b7b6136de56a\",\"mode\":\"synchronous\",\"queryId\":\"query:d4ca43fb713348af9db20a3c5d16604ccc9314eb794b09aea0a82a001e83a8a4\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:06.963"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:06.963465368Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-24\",\"requestId\":\"req-0cc59491-5fcb-46f9-aa35-b7b6136de56a\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"12194\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:06.966"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:06.966858761Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"query.completed\",\"traceId\":\"lt-p15c-d1-23\",\"requestId\":\"req-54484392-d3db-4189-81e1-c937eec9682e\",\"mode\":\"synchronous\",\"queryId\":\"query:1c46d098908a0ce341036dcbc9a887e031b55ca64c08e1c7788d4ca9f3123100\",\"abstained\":\"false\",\"abstainReason\":\"\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:06.967"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:06.967453565Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-23\",\"requestId\":\"req-54484392-d3db-4189-81e1-c937eec9682e\",\"method\":\"POST\",\"path\":\"/v1/query\",\"status\":\"200\",\"latencyMs\":\"12706\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:07.062"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:07.062469442Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-23\",\"requestId\":\"req-eef92593-2f87-45b7-8a7b-563a3037bf8a\",\"method\":\"GET\",\"path\":\"/v1/explain/query:1c46d098908a0ce341036dcbc9a887e031b55ca64c08e1c7788d4ca9f3123100\",\"status\":\"200\",\"latencyMs\":\"5\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:07.063"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:07.062957889Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"lt-p15c-d1-24\",\"requestId\":\"req-1635335e-7ea2-4333-8bba-0f057dd7fadb\",\"method\":\"GET\",\"path\":\"/v1/explain/query:d4ca43fb713348af9db20a3c5d16604ccc9314eb794b09aea0a82a001e83a8a4\",\"status\":\"200\",\"latencyMs\":\"6\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:19.167"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:19.167326484Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-607bc5f5-50f1-498d-9db2-5221da02a6f8\",\"requestId\":\"req-c8d8e6de-6118-4b20-8dd7-de0286e79a1a\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:19.189"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:19.189251199Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-c7d77134-90b8-4c1e-8df5-2748b4a6568b\",\"requestId\":\"req-1a2181bd-a6be-44d7-8250-f32f017c9b51\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:49.198"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:49.197902257Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-1e55de6d-ce56-4650-aa5e-f2705c3000df\",\"requestId\":\"req-e4d40cdc-0ba1-411e-b730-54dab52016d0\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:46:49.220"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:46:49.220093867Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-9267ca7f-3e92-4394-983b-5f32dff8a3c9\",\"requestId\":\"req-2d0a4e7c-4aaf-47e6-b568-5cb8f9e77739\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:47:19.210"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:47:19.210360932Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-9cb5e3f4-55d0-4f03-88fd-ccab65718739\",\"requestId\":\"req-32571fd8-dcc9-4030-85f1-33a62d0d3c0e\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:47:19.248"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:47:19.248308607Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-34361eeb-9712-4cf0-911f-06223bea1cc5\",\"requestId\":\"req-6f421cb7-f441-4e7b-97c3-adab282c0b96\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:47:49.225"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:47:49.225485154Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-4a4a8151-de5a-41d7-bb58-feb69fd4377f\",\"requestId\":\"req-6dcb9f04-dd23-4769-b054-5d344b9141a6\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:47:49.276"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:47:49.276479209Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-3229c124-9e13-4dda-b531-2d63d47c4f69\",\"requestId\":\"req-b3c5b471-ae89-4686-9ca3-2b4633091849\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:48:19.256"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:48:19.256157861Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-180c2ebf-2547-488c-aecb-a466aa99b113\",\"requestId\":\"req-1866562f-d0a5-49f5-9749-c96f97d3b8c9\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:48:19.307"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:48:19.306874409Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-8451125c-06a6-479a-8b7b-5b40122c0c30\",\"requestId\":\"req-42127867-0e99-4a14-88fc-30312eee69c4\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:48:49.284"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:48:49.283708017Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-e444a915-352d-48c4-8561-36fdcc645f0b\",\"requestId\":\"req-9b40de54-1df9-4404-be50-21d109719bce\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:48:49.313"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:48:49.312812332Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-22a94958-b8bc-4d4f-96bd-0f02fdb17e9d\",\"requestId\":\"req-14dca35a-5668-4f09-b136-5ef1952dd857\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:49:19.309"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:49:19.309750747Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-be493f94-5a68-450a-a7af-67da903b3965\",\"requestId\":\"req-553133e8-46d3-4aa2-bb47-507086811718\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:49:19.328"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:49:19.328522416Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-c0a6edac-48f1-411c-a24d-95356cf0a09a\",\"requestId\":\"req-0a860ec5-e64b-4642-8106-8036d6cca7ac\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:49:49.338"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:49:49.338351316Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-0a3284c8-f06d-4be5-ab18-90548e4af161\",\"requestId\":\"req-8815fa0f-1c3d-4d21-8662-598f81989537\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:49:49.359"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:49:49.359194463Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-be9606a2-c590-421b-af5d-28039954c878\",\"requestId\":\"req-ba4b9cf7-c83e-4f35-9a9e-e2cd25e77f37\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:50:19.369"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:50:19.369254486Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-08f3c369-db86-4898-b36b-155e8187f038\",\"requestId\":\"req-9e5e08c7-617d-489a-b032-9cdbd5ce8e59\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:50:19.388"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:50:19.388426233Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-af4f1a19-233c-411a-94b3-a722842f25c5\",\"requestId\":\"req-6e1e7fd9-b559-4a8e-993d-78da5de10f3b\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:50:49.396"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:50:49.396548063Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-0b4b930d-5d28-4341-85db-d14691a1eae3\",\"requestId\":\"req-19a12063-60d1-4a5c-953b-f08fb8153891\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:50:49.398"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:50:49.398336226Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-19b40d8c-3e3c-4744-aee5-96b765520797\",\"requestId\":\"req-d051212d-4ba1-4ce9-a0c8-b6efe6a9a838\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:51:19.410"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:51:19.410386089Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-a3338ff1-58fd-474f-add2-d52b59c752b8\",\"requestId\":\"req-dd668646-1c10-4983-a953-a1031a5e81e2\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:51:19.427"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:51:19.427136052Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-5626720c-ea12-4db6-8147-9fb4ee0cf2c3\",\"requestId\":\"req-f0299431-c162-48e9-996c-c9eebeb5ffad\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:51:49.426"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:51:49.426422977Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-0c35058f-e338-40db-a7db-a55d09036b09\",\"requestId\":\"req-8d4330aa-84af-4514-bb1c-3c1ecd09ece2\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:51:49.456"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:51:49.456382063Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-00232c2b-464f-4d78-ab82-1f5dd1674522\",\"requestId\":\"req-aec963eb-4032-4c03-bc9f-d718c6aec85d\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:52:19.457"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:52:19.457029697Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-c645bfc2-e681-4e54-a2bf-39ad1ae44f4c\",\"requestId\":\"req-82166436-2427-4c3f-b0c8-f72a39e6bc67\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:52:19.464"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:52:19.463862527Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-d923033b-a15d-464b-b5c7-90f23f9fa214\",\"requestId\":\"req-509674e2-2358-428a-ac79-cce5e128da2c\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:52:49.485"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:52:49.485721191Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-2a5c0a3d-0243-4e6f-a5cd-660d7d279a15\",\"requestId\":\"req-662e59f7-816a-42f7-b09e-7b177d65da62\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:52:49.492"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:52:49.492236026Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-bc957ebb-bd6c-41e6-974a-9d3801c44b69\",\"requestId\":\"req-5a899f79-aac3-490e-a1ca-af22d6eb4baa\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:53:19.498"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:53:19.498380325Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-14a5a648-af68-4917-a49e-3931573ffa6f\",\"requestId\":\"req-2753f102-fbbe-4902-b32e-82570150ee41\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:53:19.516"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:53:19.516372243Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-989ac83d-4491-49d4-95d9-abc901d65a3d\",\"requestId\":\"req-decef188-5804-4958-9f85-db435ea593a8\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:53:49.511"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:53:49.510868371Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-a7b7aaac-4109-42eb-8d6d-6a46aabc57ab\",\"requestId\":\"req-c31ca041-af5e-4231-93c4-92efbebe7207\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:53:49.547"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:53:49.547147264Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-c7e988e4-d65a-42b1-b93e-2f446b0754da\",\"requestId\":\"req-faf70081-fb75-4167-9d3f-09900722e05c\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:54:19.541"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:54:19.541603495Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-cb13f8c1-03c9-4118-8f75-e4309b7343c3\",\"requestId\":\"req-82a50433-475f-42cb-a4f9-bfdcaed2f963\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:54:19.574"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:54:19.574349050Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-86050f55-727e-4351-9c8e-367ef31e2195\",\"requestId\":\"req-a59a9fae-f0d6-47a1-a6ee-43b3ea7e79bd\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:54:49.572"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:54:49.572228890Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-23332199-f150-402e-afe2-e586e3945a9a\",\"requestId\":\"req-33893aae-88e0-4da8-97c8-1652e4a924e4\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:54:49.605"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:54:49.605103541Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-79550384-dcd1-4a77-8ddb-9ff1f0c59da5\",\"requestId\":\"req-0ac4eb3e-bd85-441d-ad28-b5a2d19d1d07\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:55:19.601"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:55:19.601483871Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-ba8e76ba-a856-403d-bfec-609bbf309a06\",\"requestId\":\"req-efae5fd6-7349-49be-b824-915e1c73fa1e\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ],
+        [
+            {
+                "field": "@timestamp",
+                "value": "2026-11-27 01:55:19.610"
+            },
+            {
+                "field": "@message",
+                "value": "{\"ts\":\"2026-11-27T01:55:19.610350727Z\",\"level\":\"info\",\"service\":\"query-api\",\"event\":\"request\",\"traceId\":\"trace-64776a6b-2c1a-40fa-8679-608ee901aa54\",\"requestId\":\"req-b577bed6-db5a-4a2a-95a7-9a69beb3bbd8\",\"method\":\"GET\",\"path\":\"/healthz\",\"status\":\"200\",\"latencyMs\":\"0\"}"
+            }
+        ]
+    ],
+    "statistics": {
+        "recordsMatched": 183.0,
+        "recordsScanned": 183.0,
+        "estimatedRecordsSkipped": 0.0,
+        "bytesScanned": 57920.0,
+        "estimatedBytesSkipped": 0.0,
+        "logGroupsScanned": 1.0
+    },
+    "status": "Complete"
+}

@@ -1,0 +1,298 @@
+{
+  "capacity_events_utc": [
+    {
+      "ec2": "i-0aaf76f8a6d32bedb",
+      "event": "instance requested/created",
+      "group": "ig-0207151927AEUK5OD46",
+      "running_after": 0,
+      "t": "2026-11-25T21:45:39Z"
+    },
+    {
+      "ec2": "i-06713527b41aae669",
+      "event": "instance requested/created",
+      "group": "ig-02071443KPFCZIRRPANP",
+      "running_after": 0,
+      "t": "2026-11-25T21:45:39Z"
+    },
+    {
+      "ec2": "i-06713527b41aae669",
+      "event": "instance ready",
+      "group": "ig-02071443KPFCZIRRPANP",
+      "running_after": 1,
+      "t": "2026-11-25T21:49:10Z"
+    },
+    {
+      "ec2": "i-0aaf76f8a6d32bedb",
+      "event": "instance ready",
+      "group": "ig-0207151927AEUK5OD46",
+      "running_after": 2,
+      "t": "2026-11-25T21:49:20Z"
+    },
+    {
+      "ec2": "i-03e52af00c1a4cf6e",
+      "event": "instance requested/created",
+      "group": "ig-0207151927AEUK5OD46",
+      "running_after": 2,
+      "t": "2026-11-25T21:52:50Z"
+    },
+    {
+      "ec2": "i-03e52af00c1a4cf6e",
+      "event": "instance ready",
+      "group": "ig-0207151927AEUK5OD46",
+      "running_after": 3,
+      "t": "2026-11-25T21:54:54Z"
+    },
+    {
+      "ec2": "i-0aaf76f8a6d32bedb",
+      "event": "instance ended",
+      "group": "ig-0207151927AEUK5OD46",
+      "running_after": 2,
+      "t": "2026-11-25T22:07:07Z"
+    },
+    {
+      "ec2": "i-06713527b41aae669",
+      "event": "instance ended",
+      "group": "ig-02071443KPFCZIRRPANP",
+      "running_after": 1,
+      "t": "2026-11-25T22:07:07Z"
+    },
+    {
+      "ec2": "i-03e52af00c1a4cf6e",
+      "event": "instance ended",
+      "group": "ig-0207151927AEUK5OD46",
+      "running_after": 0,
+      "t": "2026-11-25T22:07:07Z"
+    }
+  ],
+  "cloudwatch_emr_5min_points": [
+    {
+      "AppsRunning": 0.714,
+      "ContainerPending": 0.143,
+      "CoreNodesRunning": 1.0,
+      "IsIdle": 0.286,
+      "TotalNodesRequested": 1.0,
+      "TotalNodesRunning": 1.0,
+      "YARNMemoryAvailablePercentage": 50.0,
+      "t": "2026-11-25T15:50:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 7.833,
+      "CoreNodesRunning": 1.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 1.0,
+      "TotalNodesRunning": 1.0,
+      "YARNMemoryAvailablePercentage": 8.333,
+      "t": "2026-11-25T15:51:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 4.5,
+      "CoreNodesRunning": 1.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 1.5,
+      "TotalNodesRunning": 1.0,
+      "YARNMemoryAvailablePercentage": 4.167,
+      "t": "2026-11-25T15:52:00-06:00"
+    },
+    {
+      "AppsRunning": 0.923,
+      "ContainerPending": 2.231,
+      "CoreNodesPending": 1.0,
+      "CoreNodesRunning": 1.0,
+      "IsIdle": 0.077,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 1.0,
+      "YARNMemoryAvailablePercentage": 11.538,
+      "t": "2026-11-25T15:53:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 1.5,
+      "CoreNodesRunning": 1.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 1.0,
+      "YARNMemoryAvailablePercentage": 4.167,
+      "t": "2026-11-25T15:54:00-06:00"
+    },
+    {
+      "AppsRunning": 1.083,
+      "ContainerPending": 0.083,
+      "CoreNodesRunning": 1.667,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 1.667,
+      "YARNMemoryAvailablePercentage": 35.417,
+      "t": "2026-11-25T15:55:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 19.0,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 12.5,
+      "t": "2026-11-25T15:56:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 1.25,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 34.375,
+      "t": "2026-11-25T15:57:00-06:00"
+    },
+    {
+      "AppsRunning": 1.077,
+      "ContainerPending": 0.0,
+      "CoreNodesPending": 0.0,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 46.154,
+      "t": "2026-11-25T15:58:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 0.0,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 37.5,
+      "t": "2026-11-25T15:59:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 0.0,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 25.0,
+      "t": "2026-11-25T16:00:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 0.0,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 39.583,
+      "t": "2026-11-25T16:01:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 0.0,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 33.333,
+      "t": "2026-11-25T16:02:00-06:00"
+    },
+    {
+      "AppsRunning": 1.077,
+      "ContainerPending": 0.0,
+      "CoreNodesPending": 0.0,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 38.462,
+      "t": "2026-11-25T16:03:00-06:00"
+    },
+    {
+      "AppsRunning": 1.0,
+      "ContainerPending": 0.0,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.0,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 35.417,
+      "t": "2026-11-25T16:04:00-06:00"
+    },
+    {
+      "AppsRunning": 0.917,
+      "ContainerPending": 0.0,
+      "CoreNodesRunning": 2.0,
+      "IsIdle": 0.083,
+      "TotalNodesRequested": 2.0,
+      "TotalNodesRunning": 2.0,
+      "YARNMemoryAvailablePercentage": 37.5,
+      "t": "2026-11-25T16:05:00-06:00"
+    },
+    {
+      "AppsRunning": 0.0,
+      "ContainerPending": 0.0,
+      "CoreNodesRunning": 1.333,
+      "IsIdle": 1.0,
+      "TotalNodesRequested": 0.833,
+      "TotalNodesRunning": 1.333,
+      "YARNMemoryAvailablePercentage": 100.0,
+      "t": "2026-11-25T16:06:00-06:00"
+    }
+  ],
+  "disclosures": [
+    "There was no separate burst run and no 50K run. This is the capacity timeline of the single 10K cluster.",
+    "Spark did NOT run on EMR for this run: the EMR Spark step failed after 38 s (Java 8, F14-8); Spark ran locally (Phase 14 agent-report.md). No Spark-elasticity claim can be made.",
+    "EMR does not keep a cluster event log through the API after termination; the timeline is rebuilt from list-instances timestamps, describe-cluster instance groups and 5-minute CloudWatch EMR metrics.",
+    "aws emr list-instance-groups is not a valid subcommand in the installed CLI (collector bug, rc=252, file kept)."
+  ],
+  "instance_groups_requested_at_creation": [
+    {
+      "name": "MASTER",
+      "requested": 1,
+      "running_at_end": 0
+    },
+    {
+      "name": "CORE",
+      "requested": 1,
+      "running_at_end": 0
+    }
+  ],
+  "instance_hours": 0.9535,
+  "instances": [
+    {
+      "created": "2026-11-25T21:45:39Z",
+      "ec2": "i-0aaf76f8a6d32bedb",
+      "ended": "2026-11-25T22:07:07Z",
+      "group": "ig-0207151927AEUK5OD46",
+      "hours": 0.3577,
+      "ready": "2026-11-25T21:49:20Z"
+    },
+    {
+      "created": "2026-11-25T21:45:39Z",
+      "ec2": "i-06713527b41aae669",
+      "ended": "2026-11-25T22:07:07Z",
+      "group": "ig-02071443KPFCZIRRPANP",
+      "hours": 0.3577,
+      "ready": "2026-11-25T21:49:10Z"
+    },
+    {
+      "created": "2026-11-25T21:52:50Z",
+      "ec2": "i-03e52af00c1a4cf6e",
+      "ended": "2026-11-25T22:07:07Z",
+      "group": "ig-0207151927AEUK5OD46",
+      "hours": 0.2381,
+      "ready": "2026-11-25T21:54:54Z"
+    }
+  ],
+  "kind": "DERIVED (not raw)",
+  "label": "REAL",
+  "managed_scaling_policy_requested": {
+    "MaximumCapacityUnits": 2,
+    "MaximumCoreCapacityUnits": 2,
+    "MaximumOnDemandCapacityUnits": 2,
+    "MinimumCapacityUnits": 1,
+    "UnitType": "Instances"
+  },
+  "peak_running_instances": 3,
+  "released": "all 3 instances ended at the same instant as the cluster (EndDateTime), reason: cluster shut down after step failure"
+}

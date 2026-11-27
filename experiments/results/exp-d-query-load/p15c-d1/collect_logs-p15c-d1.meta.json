@@ -1,0 +1,43 @@
+{
+  "aws_binary_is_stub": false,
+  "collector": "collect_logs",
+  "commands": [
+    {
+      "command": "aws logs start-query --log-group-name /scholarchain/query-api --start-time 1795743600 --end-time 1795744800 --query-string fields @timestamp, @message | sort @timestamp asc | limit 5000 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws logs get-query-results --query-id 4f15a341-45c8-4fd6-a44a-6592acfb5ed3 --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "36b19d19fb462f2dd1391991020e32ac064af177",
+  "dry_run": false,
+  "ended_at": "2026-11-27T01:55:52.969Z",
+  "errors": [],
+  "experiment_id": "exp-d-query-load",
+  "files": [
+    {
+      "file": "collect_logs-p15c-d1-scholarchain_query-api-start.json",
+      "sha256": "0fcdf41264c264b4a786a890eb70e92139ad90dcbc2f6816ea083b28d4997bd0"
+    },
+    {
+      "file": "collect_logs-p15c-d1-scholarchain_query-api-results.json",
+      "sha256": "9bc73af5208e69c6d6daaf5c1cec68bdc1d8f3bea8318ecf2929b3d497dff845"
+    }
+  ],
+  "label": "REAL",
+  "log_group": "/scholarchain/query-api",
+  "python": "3.14.2",
+  "query_string": "fields @timestamp, @message | sort @timestamp asc | limit 5000",
+  "region": "us-east-2",
+  "run_id": "p15c-d1",
+  "started_at": "2026-11-27T01:55:51.702Z",
+  "synthetic": false,
+  "window_epoch": [
+    1795743600,
+    1795744800
+  ]
+}

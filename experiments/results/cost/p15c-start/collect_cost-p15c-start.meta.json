@@ -1,0 +1,45 @@
+{
+  "aws_binary_is_stub": false,
+  "collector": "collect_cost",
+  "commands": [
+    {
+      "command": "aws ce get-cost-and-usage --time-period Start=2026-11-01,End=2026-11-28 --granularity DAILY --metrics UnblendedCost --group-by Type=DIMENSION,Key=SERVICE --filter {\"Not\": {\"Dimensions\": {\"Key\": \"RECORD_TYPE\", \"Values\": [\"Credit\", \"Refund\"]}}} --region us-east-1 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "82d21c73925657ab5b7284ffecd91801fd0376b8",
+  "credits_excluded": true,
+  "dry_run": false,
+  "ended_at": "2026-11-27T00:11:57.727Z",
+  "errors": [],
+  "experiment_id": "cost",
+  "files": [
+    {
+      "file": "collect_cost-p15c-start-daily-by-service.json",
+      "sha256": "a4fe77b1efc8305d12f6199bc5aa13330933e26192496711a53eb642daab59f7"
+    }
+  ],
+  "filter": {
+    "Not": {
+      "Dimensions": {
+        "Key": "RECORD_TYPE",
+        "Values": [
+          "Credit",
+          "Refund"
+        ]
+      }
+    }
+  },
+  "label": "REAL",
+  "metric": "UnblendedCost",
+  "python": "3.14.2",
+  "region": "us-east-1",
+  "run_id": "p15c-start",
+  "started_at": "2026-11-27T00:11:56.358Z",
+  "synthetic": false,
+  "window": {
+    "end_exclusive": "2026-11-28",
+    "start": "2026-11-01"
+  }
+}

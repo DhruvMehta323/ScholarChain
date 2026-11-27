@@ -1,0 +1,4 @@
+{"at": "2026-11-27T01:45:27.391Z", "event": "reserve", "key": "exp-d-query-load/p15c-d1/c5/fused", "synthetic": false, "usd": 0.33616}
+{"at": "2026-11-27T01:45:47.399Z", "event": "final", "key": "exp-d-query-load/p15c-d1/c5/fused", "status": "completed", "synthetic": false, "usd": 0.33616}
+{"at": "2026-11-27T01:45:47.529Z", "event": "reserve", "key": "exp-d-query-load/p15c-d1/c20/fused", "synthetic": false, "usd": 0.50424}
+{"at": "2026-11-27T01:46:07.003Z", "event": "final", "key": "exp-d-query-load/p15c-d1/c20/fused", "status": "completed", "synthetic": false, "usd": 0.50424}

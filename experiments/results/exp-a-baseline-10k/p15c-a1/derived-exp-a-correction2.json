@@ -1,0 +1,6 @@
+{
+  "corrects": "derived-exp-a-correction1.json (one garbled sentence in its notes[2])",
+  "references": "derived-exp-a-summary.json",
+  "replacement_sentence": "The 11 MapReduce jobs took 858.6 s in total (sum of the per-job seconds), 91.5 percent of the 938.2 s HJ1-HJ7 step; the other 79.6 s is startup and gaps between jobs. Task counts from the .jhist names: 53 maps and 21 reduces over the 11 jobs.",
+  "work_order": "X3 Phase 15c"
+}

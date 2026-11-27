@@ -1,0 +1,5 @@
+{
+  "work_order": "R1 L4",
+  "supersedes": "aws/analysis/cost-per-experiment.csv and its provenance sidecar",
+  "note": "cost-per-experiment.csv was produced before D (and F) ran, with --cost ids that were not manifest ids, so every row reads NOT RUN / NO COST FILE. It is stale and is superseded by the Cost section of aws/SUMMARY-v2.md. It is kept, not deleted."
+}

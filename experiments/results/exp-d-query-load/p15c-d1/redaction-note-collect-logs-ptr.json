@@ -1,0 +1,10 @@
+{
+  "file": "collect_logs-p15c-d1-scholarchain_query-api-results.json",
+  "removed": "the '@ptr' field object from every result row (CloudWatch Logs Insights result pointer)",
+  "field_count_removed": 183,
+  "rows": 183,
+  "why": "each '@ptr' value is a base64 string that decodes to text containing the 12-digit AWS account ID (verified by the orchestrator on 183 of 183 values); the ID must not be committed",
+  "changed_nothing_else": "the file was re-serialised with the same json formatting (indent 4) and a roundtrip check showed identical text before removal",
+  "sha256_of_stored_redacted_file": "9bc73af5208e69c6d6daaf5c1cec68bdc1d8f3bea8318ecf2929b3d497dff845",
+  "exception_to": "raw files write-once; disclosed, decided by Dhruv (Repair R1, H1)"
+}

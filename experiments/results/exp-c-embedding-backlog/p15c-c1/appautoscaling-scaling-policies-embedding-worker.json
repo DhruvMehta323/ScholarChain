@@ -1,0 +1,40 @@
+{
+    "ScalingPolicies": [
+        {
+            "PolicyARN": "arn:aws:autoscaling:us-east-2:<acct>:scalingPolicy:4e77bba4-337e-4ced-83f1-d7268772179d:resource/ecs/service/scholarchain-cluster/embedding-worker:policyName/scholarchain-embedding-worker-backlog",
+            "PolicyName": "scholarchain-embedding-worker-backlog",
+            "ServiceNamespace": "ecs",
+            "ResourceId": "service/scholarchain-cluster/embedding-worker",
+            "ScalableDimension": "ecs:service:DesiredCount",
+            "PolicyType": "TargetTrackingScaling",
+            "TargetTrackingScalingPolicyConfiguration": {
+                "TargetValue": 100.0,
+                "CustomizedMetricSpecification": {
+                    "MetricName": "ApproximateNumberOfMessagesVisible",
+                    "Namespace": "AWS/SQS",
+                    "Dimensions": [
+                        {
+                            "Name": "QueueName",
+                            "Value": "scholarchain-embedding-jobs"
+                        }
+                    ],
+                    "Statistic": "Average"
+                },
+                "ScaleOutCooldown": 60,
+                "ScaleInCooldown": 300,
+                "DisableScaleIn": false
+            },
+            "Alarms": [
+                {
+                    "AlarmName": "TargetTracking-service/scholarchain-cluster/embedding-worker-AlarmHigh-ba525a3f-96b8-4690-889e-b2636f47e0e7",
+                    "AlarmARN": "arn:aws:cloudwatch:us-east-2:<acct>:alarm:TargetTracking-service/scholarchain-cluster/embedding-worker-AlarmHigh-ba525a3f-96b8-4690-889e-b2636f47e0e7"
+                },
+                {
+                    "AlarmName": "TargetTracking-service/scholarchain-cluster/embedding-worker-AlarmLow-3e8d1f5f-7208-458e-8354-95170ac4296c",
+                    "AlarmARN": "arn:aws:cloudwatch:us-east-2:<acct>:alarm:TargetTracking-service/scholarchain-cluster/embedding-worker-AlarmLow-3e8d1f5f-7208-458e-8354-95170ac4296c"
+                }
+            ],
+            "CreationTime": "2026-11-24T19:16:05.011000-06:00"
+        }
+    ]
+}

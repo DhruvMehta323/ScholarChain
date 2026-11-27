@@ -1,0 +1,58 @@
+{
+  "aws_binary_is_stub": false,
+  "cluster_id": "j-0072517WQADTWOIR2LO",
+  "collector": "collect_emr",
+  "commands": [
+    {
+      "command": "aws emr describe-cluster --cluster-id j-0072517WQADTWOIR2LO --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr list-steps --cluster-id j-0072517WQADTWOIR2LO --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    },
+    {
+      "command": "aws emr list-instance-groups --cluster-id j-0072517WQADTWOIR2LO --region us-east-2 --output json",
+      "executed": true,
+      "rc": 252
+    },
+    {
+      "command": "aws emr list-instances --cluster-id j-0072517WQADTWOIR2LO --region us-east-2 --output json",
+      "executed": true,
+      "rc": 0
+    }
+  ],
+  "commit": "82d21c73925657ab5b7284ffecd91801fd0376b8",
+  "dry_run": false,
+  "ended_at": "2026-11-27T00:13:58.739Z",
+  "errors": [
+    {
+      "file": "collect_emr-p15c-b1-instance-groups.ERROR",
+      "name": "instance-groups",
+      "rc": 252
+    }
+  ],
+  "experiment_id": "exp-b-burst-50k",
+  "files": [
+    {
+      "file": "collect_emr-p15c-b1-cluster.json",
+      "sha256": "22f41b144d0b6e587da7dea20596f72ca9868d453ed02af1aea127739ecc7824"
+    },
+    {
+      "file": "collect_emr-p15c-b1-steps.json",
+      "sha256": "1c094dfa95013db09dba26bd8d3dc28283d67c3a0b87854b6aca6b39d094ee52"
+    },
+    {
+      "file": "collect_emr-p15c-b1-instances.json",
+      "sha256": "fd80e57fd601fb26d4ce1455f4199d5f8f00993d0be52068ab2a702d996915ee"
+    }
+  ],
+  "label": "REAL",
+  "python": "3.14.2",
+  "region": "us-east-2",
+  "run_id": "p15c-b1",
+  "started_at": "2026-11-27T00:13:56.184Z",
+  "synthetic": false
+}

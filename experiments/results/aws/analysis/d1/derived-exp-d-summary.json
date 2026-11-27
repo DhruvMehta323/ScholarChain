@@ -1,0 +1,155 @@
+{
+  "alb_request_count_per_minute_max": 58.0,
+  "cpu_top3_minutes": {
+    "query-api CPUUtilization Average": [
+      [
+        "2026-11-26T19:46:00-06:00",
+        33.8
+      ],
+      [
+        "2026-11-26T19:45:00-06:00",
+        33.5
+      ],
+      [
+        "2026-11-26T19:50:00-06:00",
+        0.4
+      ]
+    ],
+    "query-api CPUUtilization Maximum": [
+      [
+        "2026-11-26T19:46:00-06:00",
+        100.0
+      ],
+      [
+        "2026-11-26T19:45:00-06:00",
+        99.5
+      ],
+      [
+        "2026-11-26T19:49:00-06:00",
+        0.5
+      ]
+    ],
+    "retrieval CPUUtilization Average": [
+      [
+        "2026-11-26T19:45:00-06:00",
+        19.8
+      ],
+      [
+        "2026-11-26T19:46:00-06:00",
+        17.7
+      ],
+      [
+        "2026-11-26T19:40:00-06:00",
+        0.4
+      ]
+    ],
+    "retrieval CPUUtilization Maximum": [
+      [
+        "2026-11-26T19:45:00-06:00",
+        58.4
+      ],
+      [
+        "2026-11-26T19:46:00-06:00",
+        52.0
+      ],
+      [
+        "2026-11-26T19:43:00-06:00",
+        0.5
+      ]
+    ]
+  },
+  "head": "36b19d19fb462f2dd1391991020e32ac064af177",
+  "kind": "DERIVED (not raw)",
+  "label": "REAL",
+  "latency_ms": [
+    {
+      "concurrency": "5",
+      "error_rate": "0.0000",
+      "max_ms": "10277.114",
+      "mean_ms": "5087.138",
+      "min_ms": "572.786",
+      "mode": "fused",
+      "n_failed": "0",
+      "n_success": "16",
+      "n_total": "16",
+      "p50_ms": "4905.549",
+      "p95_ms": "10277.114",
+      "p99_ms": "10277.114",
+      "runs": "p15c-d1",
+      "status_counts": "200:16",
+      "synthetic": "false",
+      "throughput_rps": "0.802",
+      "wall_seconds": "19.940"
+    },
+    {
+      "concurrency": "20",
+      "error_rate": "0.0000",
+      "max_ms": "15136.972",
+      "mean_ms": "8359.959",
+      "min_ms": "1725.705",
+      "mode": "fused",
+      "n_failed": "0",
+      "n_success": "24",
+      "n_total": "24",
+      "p50_ms": "7884.295",
+      "p95_ms": "15085.562",
+      "p99_ms": "15136.972",
+      "runs": "p15c-d1",
+      "status_counts": "200:24",
+      "synthetic": "false",
+      "throughput_rps": "1.241",
+      "wall_seconds": "19.341"
+    }
+  ],
+  "limits": [
+    "p95 and p99 at n=16 and n=24 sit near the maximum (weak percentiles)",
+    "single run",
+    "cost reading cost/p15c-after-d is $10.5971, identical to earlier readings; Cost Explorer lags"
+  ],
+  "load": {
+    "c20": "24 requests, starts 01:45:47Z to 01:45:52Z, all 200",
+    "c5": "16 requests, starts 01:45:27Z to 01:45:43Z, all 200",
+    "note": "both levels ended on the request cap, not the 240 s duration cap; load wall time about 40 s (run-experiment-console.log)",
+    "total_requests": 40
+  },
+  "mean_stage_latency_ms_from_explain": {
+    "c20": {
+      "ANSWER_SYNTHESIS": 262,
+      "CLAIM_VERIFICATION": 16,
+      "PLANNING": 186,
+      "RETRIEVAL": 1997
+    },
+    "c5": {
+      "ANSWER_SYNTHESIS": 312,
+      "CLAIM_VERIFICATION": 24,
+      "PLANNING": 187,
+      "RETRIEVAL": 2711
+    }
+  },
+  "model_calls_assumed_total": 120,
+  "model_calls_observed_total": 75,
+  "other": {
+    "alb_5xx_4xx": "none",
+    "dynamodb_throttles_and_errors": "none (no datapoints for Read/WriteThrottleEvents, UserErrors, SystemErrors on four tables)",
+    "neptune_cpu_max_pct": 30.8,
+    "neptune_serverless_capacity_avg_max": 1.0,
+    "vector_query_latency": "no separate CloudWatch metric; the explain RETRIEVAL stage latency is the closest figure"
+  },
+  "run": "p15c-d1",
+  "scalable_target_min_capacity": {
+    "embedding-worker": 1,
+    "query-api": 0,
+    "retrieval": 0
+  },
+  "scale_in_observed": false,
+  "scale_out_observed": false,
+  "scale_out_scale_in_evidence_for_phase": "rests on experiment C (embedding-worker: 1->2 22:15:51Z, 2->4 22:17:51Z; 4->3 22:43:33Z, 3->2 22:49:33Z, 2->1 22:55:33Z)",
+  "scaling_activities_query_api_retrieval": "none after 2026-11-26T19:00 (appautoscaling-or-ecs-scaling-activities-*.json); sampler shows desired=running=1 for query-api, retrieval, embedding-worker in all 43 samples (analysis/d1/scale-summary.csv)",
+  "why_no_scale_out": [
+    "Policy targets (appautoscaling-or-ecs-scaling-policies-*.json): query-api ECS average CPU 60 percent and ALBRequestCountPerTarget 200; retrieval average CPU 60 percent; scale-out cooldown 60 s, scale-in cooldown 120 s.",
+    "Load lasted about 40 s with 40 requests. ALB RequestCount peaked at 58 in one minute (below 200 per target; it includes explain fetches). Target-tracking alarms need several consecutive 1-minute datapoints beyond target.",
+    "query-api CPU maximum 100.0 percent in one minute, average peak 33.8 percent; retrieval average peak 19.8 percent (collect_cloudwatch-p15c-d1-ecs.json). Neither held above 60 percent for consecutive minutes.",
+    "No traffic beyond the manifest was added, as ordered."
+  ],
+  "work_order": "X4"
+}

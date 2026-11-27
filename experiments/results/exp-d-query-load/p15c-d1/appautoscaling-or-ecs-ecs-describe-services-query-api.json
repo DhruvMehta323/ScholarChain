@@ -1,0 +1,615 @@
+{
+    "services": [
+        {
+            "serviceArn": "arn:aws:ecs:us-east-2:<acct>:service/scholarchain-cluster/query-api",
+            "serviceName": "query-api",
+            "clusterArn": "arn:aws:ecs:us-east-2:<acct>:cluster/scholarchain-cluster",
+            "loadBalancers": [
+                {
+                    "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346",
+                    "containerName": "query-api",
+                    "containerPort": 8080
+                }
+            ],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 1,
+            "runningCount": 1,
+            "pendingCount": 0,
+            "capacityProviderStrategy": [
+                {
+                    "capacityProvider": "FARGATE",
+                    "weight": 1,
+                    "base": 0
+                }
+            ],
+            "platformVersion": "LATEST",
+            "platformFamily": "Linux",
+            "taskDefinition": "arn:aws:ecs:us-east-2:<acct>:task-definition/scholarchain-query-api:15",
+            "deploymentConfiguration": {
+                "deploymentCircuitBreaker": {
+                    "enable": true,
+                    "rollback": true
+                },
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100,
+                "strategy": "ROLLING",
+                "bakeTimeInMinutes": 0
+            },
+            "deployments": [
+                {
+                    "id": "ecs-svc/5698878688514711954",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-east-2:<acct>:task-definition/scholarchain-query-api:15",
+                    "desiredCount": 1,
+                    "pendingCount": 0,
+                    "runningCount": 1,
+                    "failedTasks": 0,
+                    "createdAt": "2026-11-26T15:29:26.231000-06:00",
+                    "updatedAt": "2026-11-26T15:32:03.014000-06:00",
+                    "capacityProviderStrategy": [
+                        {
+                            "capacityProvider": "FARGATE",
+                            "weight": 1,
+                            "base": 0
+                        }
+                    ],
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0feae98cfe371666e",
+                                "subnet-0157ff3333f9d2747"
+                            ],
+                            "securityGroups": [
+                                "sg-0be285e322877c111"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "COMPLETED",
+                    "rolloutStateReason": "ECS deployment ecs-svc/5698878688514711954 completed."
+                }
+            ],
+            "roleArn": "arn:aws:iam::<acct>:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "8e151048-1aec-464f-adb7-924714d45029",
+                    "createdAt": "2026-11-26T15:32:03.074000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "bc8e99fe-782b-4808-a220-eb2659072823",
+                    "createdAt": "2026-11-26T15:32:03.073000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/5698878688514711954) deployment completed."
+                },
+                {
+                    "id": "f9e21511-521a-440d-80a6-1f7895d7720a",
+                    "createdAt": "2026-11-26T15:31:09.920000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/9665704869142074437) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "b0267a98-c843-499a-b011-066674a571ad",
+                    "createdAt": "2026-11-26T15:31:09.915000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "45b83d80-1a92-4186-8122-6b9f4d4ca402",
+                    "createdAt": "2026-11-26T15:30:59.882000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task f772302ea08b46f98e4972b253f74f13)."
+                },
+                {
+                    "id": "4eb4c6e9-3dea-4aec-be3d-be64f0e91e5d",
+                    "createdAt": "2026-11-26T15:30:07.931000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "9219bdfa-e94f-410a-8bb6-761d594781ac",
+                    "createdAt": "2026-11-26T15:29:38.312000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 98bf84104b7449cd96d1f82194128190)."
+                },
+                {
+                    "id": "7b0eb968-6e5f-458a-9e66-111a6ab7febf",
+                    "createdAt": "2026-11-26T15:28:34.565000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "3ec99bdd-c4ff-4e75-afe3-60d300a9bd19",
+                    "createdAt": "2026-11-26T15:28:34.564000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/9665704869142074437) deployment completed."
+                },
+                {
+                    "id": "29d333a4-fc67-4b16-b77e-077d16396932",
+                    "createdAt": "2026-11-26T15:27:23.243000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/8587993331516788764) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "f52a07fc-efb8-4550-890e-cc8204641687",
+                    "createdAt": "2026-11-26T15:27:23.238000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "cf488050-9b80-423b-bd10-66cd12195627",
+                    "createdAt": "2026-11-26T15:27:21.843000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task 951515a0cb3042169093e8f1ac8aec0a)."
+                },
+                {
+                    "id": "f7462be2-7f9a-4503-bf5b-6207ee685d84",
+                    "createdAt": "2026-11-26T15:26:31.269000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "54bcc6a1-0c76-49b3-987d-b09de06943ec",
+                    "createdAt": "2026-11-26T15:26:09.791000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task f772302ea08b46f98e4972b253f74f13)."
+                },
+                {
+                    "id": "f6fa7364-513f-427f-ac58-722b7a0b72eb",
+                    "createdAt": "2026-11-26T12:23:38.667000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "ac5d8048-7a12-4728-b415-066bcbc97ae7",
+                    "createdAt": "2026-11-26T12:23:38.666000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/8587993331516788764) deployment completed."
+                },
+                {
+                    "id": "79c5a7b7-7266-4ef5-9d97-bdd3ea5dee1d",
+                    "createdAt": "2026-11-26T12:22:46.279000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/5478666777303950122) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "ebd7fb0d-f352-4c0f-badf-b6bd039f76c9",
+                    "createdAt": "2026-11-26T12:22:46.275000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "0af7c3af-c40b-403a-8744-7ad1ab8343a0",
+                    "createdAt": "2026-11-26T12:22:34.870000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task 6b649230fef14ad6abfebfd5bb56dffb)."
+                },
+                {
+                    "id": "bc38fc45-b317-4537-a73c-8fa5a169e447",
+                    "createdAt": "2026-11-26T12:21:44.216000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "d82c1dd5-5e2f-4df5-ad96-5281dac49c8c",
+                    "createdAt": "2026-11-26T12:21:13.240000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 951515a0cb3042169093e8f1ac8aec0a)."
+                },
+                {
+                    "id": "301bc08b-d5b5-40f0-a1a3-79e6e00a2ef3",
+                    "createdAt": "2026-11-26T12:19:50.414000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "d3317ed7-8edd-428e-a50a-170e797fe980",
+                    "createdAt": "2026-11-26T12:19:50.413000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/5478666777303950122) deployment completed."
+                },
+                {
+                    "id": "e5330593-78e0-4456-8780-9a5cebdeedbe",
+                    "createdAt": "2026-11-26T12:18:48.214000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/3513300967801193927) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "afc69083-8b5b-47d9-af95-26f9be1cef9d",
+                    "createdAt": "2026-11-26T12:18:48.208000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "21c8b3e7-315e-4327-a736-72d127d2c83c",
+                    "createdAt": "2026-11-26T12:18:46.930000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task 836fa221130a4868bab31192cf4de215)."
+                },
+                {
+                    "id": "10e2145c-a163-4515-bdf5-8481fb0adfeb",
+                    "createdAt": "2026-11-26T12:17:55.725000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "8ec6001e-a51d-4e0a-b460-5cacbcbf4812",
+                    "createdAt": "2026-11-26T12:17:35.738000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 6b649230fef14ad6abfebfd5bb56dffb)."
+                },
+                {
+                    "id": "64d8fd01-6b05-4874-bdc5-122617e635af",
+                    "createdAt": "2026-11-26T08:59:24.521000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "b06b0c21-f58c-4baa-9a18-38a306587e2b",
+                    "createdAt": "2026-11-26T03:00:07.479000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "7f47db0a-ab93-44b3-b156-ca78fcc4bc2c",
+                    "createdAt": "2026-11-26T03:00:07.478000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/3513300967801193927) deployment completed."
+                },
+                {
+                    "id": "53bb2c87-05ff-43b4-b1b3-76e5add19ab8",
+                    "createdAt": "2026-11-26T02:59:14.907000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/6184586636104795473) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "0ca11c60-7fd4-4726-b09c-89ba3afaa0df",
+                    "createdAt": "2026-11-26T02:59:14.902000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "58652074-fe95-494f-b8f8-08b687fbda57",
+                    "createdAt": "2026-11-26T02:59:04.969000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task e3595397ba704d71b0d036064f895d12)."
+                },
+                {
+                    "id": "b4f1e1b5-b0e3-4352-866c-7a2e597e639b",
+                    "createdAt": "2026-11-26T02:58:12.388000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "e6e43b5d-9f08-4586-b5a3-d4d39c72f6d8",
+                    "createdAt": "2026-11-26T02:57:42.999000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 836fa221130a4868bab31192cf4de215)."
+                },
+                {
+                    "id": "9bc4335c-9ea7-41af-9727-41a74f581c52",
+                    "createdAt": "2026-11-26T02:56:38.506000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "de3b1627-39a1-407d-a5de-dc406d3a21ef",
+                    "createdAt": "2026-11-26T02:56:38.505000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/6184586636104795473) deployment completed."
+                },
+                {
+                    "id": "f2429aaa-1ff2-49e5-990a-4c443432a806",
+                    "createdAt": "2026-11-26T02:55:37.703000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/0886896027178145407) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "4d8ea7e0-83d6-4349-9dcb-f346b70c2261",
+                    "createdAt": "2026-11-26T02:55:37.699000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "267c0c3d-5891-404d-b860-9c1f2cfd5e69",
+                    "createdAt": "2026-11-26T02:55:26.365000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task d04e1b026d5a4f89be00a1539710b6bd)."
+                },
+                {
+                    "id": "6e4c8907-15c4-4733-9f05-16c6840df84a",
+                    "createdAt": "2026-11-26T02:54:34.284000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "0d861a52-f0eb-4030-8430-fc1694d91bb2",
+                    "createdAt": "2026-11-26T02:54:04.248000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task e3595397ba704d71b0d036064f895d12)."
+                },
+                {
+                    "id": "fe69de4f-fb53-4633-a680-204e68fe4b2d",
+                    "createdAt": "2026-11-25T21:15:22.346000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "e4a5f6dd-c00d-4b1f-a2d1-c5a43618f3a7",
+                    "createdAt": "2026-11-25T15:16:36.247000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "11717d43-7ac7-4b65-9f82-b3bc79b98d78",
+                    "createdAt": "2026-11-25T15:16:36.246000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/0886896027178145407) deployment completed."
+                },
+                {
+                    "id": "b31446e4-1a6a-43ee-a857-72245b2009a8",
+                    "createdAt": "2026-11-25T15:15:43.899000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/0178029228277605139) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "a27d2a0e-28b5-430e-8563-9eebfb43e304",
+                    "createdAt": "2026-11-25T15:15:43.895000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "ceacd6da-2ce2-41fb-b99c-45852e0048f8",
+                    "createdAt": "2026-11-25T15:15:32.656000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task 3b7d0faee65949ca9d6f153e5dd08af1)."
+                },
+                {
+                    "id": "1108d868-78cc-4068-850f-0f8beca5b777",
+                    "createdAt": "2026-11-25T15:14:42.070000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "b9f154fc-133b-4e85-80d0-a1c608e40df4",
+                    "createdAt": "2026-11-25T15:14:11.584000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task d04e1b026d5a4f89be00a1539710b6bd)."
+                },
+                {
+                    "id": "2914e329-32cf-49df-b5b0-64d7bd0c12fd",
+                    "createdAt": "2026-11-25T15:13:19.131000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "9cb7b7f2-e919-4dd4-b1bd-89dce292e380",
+                    "createdAt": "2026-11-25T15:13:19.130000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/0178029228277605139) deployment completed."
+                },
+                {
+                    "id": "375aa248-251a-4a9e-bc8a-06210f479038",
+                    "createdAt": "2026-11-25T15:12:26.685000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/5232009586707291350) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "47b83397-a002-4904-8c78-28efcdfcabbb",
+                    "createdAt": "2026-11-25T15:12:26.681000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "3ab49418-57d8-4f00-8558-a641ec38d360",
+                    "createdAt": "2026-11-25T15:12:16.240000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task 71d42c8d12e14086b5c8eecd8538b964)."
+                },
+                {
+                    "id": "f334a6b9-76ff-439f-aaed-3e40c716816f",
+                    "createdAt": "2026-11-25T15:11:25.231000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "a06542bb-87cc-42e1-a765-c9302618b753",
+                    "createdAt": "2026-11-25T15:10:53.711000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 3b7d0faee65949ca9d6f153e5dd08af1)."
+                },
+                {
+                    "id": "5b90c284-97a8-45c6-8584-ddcabf5cac9a",
+                    "createdAt": "2026-11-25T14:20:37.062000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "5e584fa6-1f1c-47ea-b8dc-2cc7d228ee34",
+                    "createdAt": "2026-11-25T14:20:37.061000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/5232009586707291350) deployment completed."
+                },
+                {
+                    "id": "0bdb0b61-23bc-485f-ab49-abcd35613b2e",
+                    "createdAt": "2026-11-25T14:19:34.984000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/0265879300735629677) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "4c0172cc-af56-42f8-86c3-fd3439a09f51",
+                    "createdAt": "2026-11-25T14:19:34.978000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "55ec2c0f-35da-4aa2-a861-c954dc7a78d9",
+                    "createdAt": "2026-11-25T14:19:24.651000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task 8d2a5523398241c5aa164691984a8bad)."
+                },
+                {
+                    "id": "74143bfc-17ba-495d-a432-968bf42e1c9e",
+                    "createdAt": "2026-11-25T14:18:33.789000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "7e00d80e-a546-4d70-a13d-c0d7e2fe7d8e",
+                    "createdAt": "2026-11-25T14:18:12.130000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 71d42c8d12e14086b5c8eecd8538b964)."
+                },
+                {
+                    "id": "57dfd444-d1b1-42c3-a487-b48d7d40dc38",
+                    "createdAt": "2026-11-25T14:17:21.371000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "d291cee8-be8f-4030-b2dc-7fad0929c73c",
+                    "createdAt": "2026-11-25T14:17:21.370000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/0265879300735629677) deployment completed."
+                },
+                {
+                    "id": "c2978a96-0c6d-490c-925b-a793176b345f",
+                    "createdAt": "2026-11-25T14:16:28.940000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/8554518932697932347) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "4f7a8931-a3a4-4169-bff2-e206c17925ed",
+                    "createdAt": "2026-11-25T14:16:28.936000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "f52a9f72-8930-4155-80bd-9bb1c8f4ff68",
+                    "createdAt": "2026-11-25T14:16:18.688000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task 718d7d486948498a8bcc9554a2f296c7)."
+                },
+                {
+                    "id": "ffc9641a-f891-4ab0-8660-c0d0df290900",
+                    "createdAt": "2026-11-25T14:15:27.714000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "848e2f0a-f0a5-45d7-af23-b602ba55b54a",
+                    "createdAt": "2026-11-25T14:15:06.429000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 8d2a5523398241c5aa164691984a8bad)."
+                },
+                {
+                    "id": "ec857998-689b-4bf9-a2a0-03d8404da0d0",
+                    "createdAt": "2026-11-25T12:33:11.391000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "a712b2a1-9c78-4b69-90c3-b0cccd93cf65",
+                    "createdAt": "2026-11-25T12:33:11.390000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/8554518932697932347) deployment completed."
+                },
+                {
+                    "id": "c3224fa8-c4df-4152-948d-f7a3335c1d8e",
+                    "createdAt": "2026-11-25T12:32:19.328000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/1271098926116655367) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "e7f99b9a-2728-4d57-8afb-0bea6081babf",
+                    "createdAt": "2026-11-25T12:32:19.324000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "9afee6fa-d954-4bc5-b85b-0cc66063b213",
+                    "createdAt": "2026-11-25T12:32:07.812000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task 44b503a8e7b047368d4de270285d7c9e)."
+                },
+                {
+                    "id": "5babe51c-e87a-4fae-8b37-cc2bc44ecf72",
+                    "createdAt": "2026-11-25T12:31:17.447000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "de60613b-eac6-45a5-b9fc-7f4b01b88c6d",
+                    "createdAt": "2026-11-25T12:30:46.853000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 718d7d486948498a8bcc9554a2f296c7)."
+                },
+                {
+                    "id": "e2056615-197a-4cd1-8e3d-40b481996e18",
+                    "createdAt": "2026-11-25T12:03:57.451000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "2d662bfe-68d0-46d5-b927-9183db7f10b1",
+                    "createdAt": "2026-11-25T12:03:57.450000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/1271098926116655367) deployment completed."
+                },
+                {
+                    "id": "60e875e1-6eb2-4f04-9b9a-bb33ad677f5d",
+                    "createdAt": "2026-11-25T12:02:54.859000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/7043984373544146508) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "7d3cad69-b761-48ac-b4f7-a10bfd061b37",
+                    "createdAt": "2026-11-25T12:02:54.854000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "d30ba016-dde1-4e42-9986-d265469520bb",
+                    "createdAt": "2026-11-25T12:02:45.150000-06:00",
+                    "message": "(service query-api) has stopped 1 running tasks: (task c955cf56c28242b6996f22abe46fbe6a)."
+                },
+                {
+                    "id": "1e7778da-de2b-4013-a76c-dbfa96a3f239",
+                    "createdAt": "2026-11-25T12:01:54.300000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "06fd68f9-8491-4e2f-85ba-e39985fc48c1",
+                    "createdAt": "2026-11-25T12:01:22.698000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 44b503a8e7b047368d4de270285d7c9e)."
+                },
+                {
+                    "id": "22d6585e-9314-4968-a5e1-0e2aa8c9165d",
+                    "createdAt": "2026-11-25T10:14:05.479000-06:00",
+                    "message": "(service query-api) has reached a steady state."
+                },
+                {
+                    "id": "8732a113-cad8-4998-ace9-b85018a31025",
+                    "createdAt": "2026-11-25T10:14:05.478000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/7043984373544146508) deployment completed."
+                },
+                {
+                    "id": "509fd6c0-a3b1-4930-8fce-2af7290668b8",
+                    "createdAt": "2026-11-25T10:13:29.483000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/6520546076739260093) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "fb269530-4320-4b52-88a1-1397f1298b12",
+                    "createdAt": "2026-11-25T10:13:29.478000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "45383e9f-ef11-4634-bc8a-349b0a3604cf",
+                    "createdAt": "2026-11-25T10:08:20.920000-06:00",
+                    "message": "(service query-api) rolling back to deployment ecs-svc/7043984373544146508."
+                },
+                {
+                    "id": "cba1ba10-94c9-4147-8b1d-9bc61efdc437",
+                    "createdAt": "2026-11-25T10:08:20.919000-06:00",
+                    "message": "(service query-api) (deployment ecs-svc/6520546076739260093) deployment failed: tasks failed to start."
+                },
+                {
+                    "id": "7e492a14-86b7-442c-b512-e48f9c927d33",
+                    "createdAt": "2026-11-25T10:07:53.639000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 9a667186c0124ba2a79848fad4d245cd)."
+                },
+                {
+                    "id": "e2035a77-7d92-49d1-85db-e820515c2bde",
+                    "createdAt": "2026-11-25T10:06:57.074000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "293b9db5-8170-426d-995d-6f950c5b8534",
+                    "createdAt": "2026-11-25T10:06:57.009000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/6520546076739260093) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "287e0537-c5b6-4754-9a34-2e42cca9e104",
+                    "createdAt": "2026-11-25T10:06:57.004000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "9d04bc1f-e273-4773-b53a-ed5e8566e66e",
+                    "createdAt": "2026-11-25T10:01:46.983000-06:00",
+                    "message": "(service query-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                },
+                {
+                    "id": "486b7b71-5bc3-4834-bc89-9ff98d4ccb26",
+                    "createdAt": "2026-11-25T10:01:19.513000-06:00",
+                    "message": "(service query-api) has started 1 tasks: (task 07d9acafceb1487f89f8dd6c059d9702)."
+                },
+                {
+                    "id": "c14ecd0a-f65e-466d-8814-f535af89f9b8",
+                    "createdAt": "2026-11-25T10:00:20.043000-06:00",
+                    "message": "(service query-api, taskSet ecs-svc/6520546076739260093) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "488d33cd-b659-421c-a78c-2c9866876002",
+                    "createdAt": "2026-11-25T10:00:20.039000-06:00",
+                    "message": "(service query-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-2:<acct>:targetgroup/scholarchain-query-api/da550206b9770346)"
+                }
+            ],
+            "createdAt": "2026-11-24T19:16:03.740000-06:00",
+            "currentServiceRevisions": [
+                {
+                    "arn": "arn:aws:ecs:us-east-2:<acct>:service-revision/scholarchain-cluster/query-api/5698878688514711954",
+                    "requestedTaskCount": 1,
+                    "runningTaskCount": 1,
+                    "pendingTaskCount": 0
+                }
+            ],
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-0feae98cfe371666e",
+                        "subnet-0157ff3333f9d2747"
+                    ],
+                    "securityGroups": [
+                        "sg-0be285e322877c111"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 60,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "ECS"
+            },
+            "createdBy": "arn:aws:iam::<acct>:role/managed/AccountFullAccessRole",
+            "enableECSManagedTags": false,
+            "propagateTags": "NONE",
+            "enableExecuteCommand": false,
+            "availabilityZoneRebalancing": "ENABLED",
+            "resourceManagementType": "CUSTOMER"
+        }
+    ],
+    "failures": []
+}

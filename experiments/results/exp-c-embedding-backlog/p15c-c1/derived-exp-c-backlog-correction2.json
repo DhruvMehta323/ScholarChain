@@ -1,0 +1,11 @@
+{
+  "corrects": "derived-exp-c-backlog-correction1.json and derived-exp-c-backlog.json (drain time wording)",
+  "work_order": "R1 L1",
+  "drain_time": {
+    "from_wait_start_to_empty_min": "about 19.3 (wait-embeddings started 22:11:45Z, queue empty 22:31:00Z)",
+    "from_first_nonzero_to_first_zero_min": 20.0,
+    "first_nonzero_visible_utc": "2026-11-26T22:11:00Z",
+    "first_zero_utc": "2026-11-26T22:31:00Z"
+  },
+  "note": "the earlier 'about 19.3 min after the backlog appeared' is relabelled: 19.3 min runs from the wait start (22:11:45Z); first nonzero to first zero is 20.0 min. Sources: collect_cloudwatch-p15c-c1-sqs.json and source-wait-embeddings-console.log (wait started at about 22:11:45Z, 0 s mark)."
+}
